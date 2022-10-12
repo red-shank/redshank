@@ -33,7 +33,7 @@
   "author": "Kevin Rivas",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/rivaslive/react-native-beauty-design/issues"
+    "url": "https://github.com/Beauty-Design/react-native-beauty-design/issues"
   },
   "homepage": "https://www.beauty-design.app/",
   "dependencies": {
@@ -104,6 +104,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rivaslive/react-native-beauty-design.git"
+    "url": "git+https://github.com/Beauty-Design/react-native-beauty-design.git"
   }
 }
