@@ -2,5 +2,24 @@
   "banner": {
     "title": "Beauty Design Framework Component for React Native",
     "description": "Create your apps in React Native in a simple, fast and beautiful way."
+  },
+  "why-section": {
+    "title": "Why ",
+    "card1": {
+      "title": "Beautiful Design",
+      "description": "Create bright, beautiful and full of life apps, we have 25+ reusable components."
+    },
+    "card2": {
+      "title": "Easy to use",
+      "description": "Beautiful and vibrant applications with just one import, reduce development times and let us design for you."
+    },
+    "card3": {
+      "title": "Customizable",
+      "description": "Customize each element of the components and change their appearance in dark and light mode."
+    },
+    "card4": {
+      "title": "Progressive updates",
+      "description": "We try to keep the library up to date and compatible with the latest versions of React, React Native and Expo."
+    }
   }
 }

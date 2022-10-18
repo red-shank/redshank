@@ -2,5 +2,24 @@
   "banner": {
     "title": "Beauty Design Un Framework De Componentes Para React Native",
     "description": "Crear una app en React Native de una forma simple, rapida y hermosa."
+  },
+  "why-section": {
+    "title": "¿ Por qué ",
+    "card1": {
+      "title": "Diseño agradable",
+      "description": "Crear brillo, hermosas aplicaciones llenas de vida, tenemos mas de 25 componentes reutilizables."
+    },
+    "card2": {
+      "title": "Fácil de Usar",
+      "description": "Hermosas y vibrantes applicationes con un solo import de los elementos, reduce el tiempo de desarrollo y nos permite diseñar por ti."
+    },
+    "card3": {
+      "title": "Personalizable",
+      "description": "Personalizar cada elemento de los componentes y cambiar su apariencia en modo claro y oscuro."
+    },
+    "card4": {
+      "title": "Actualizaciones Recurrentes",
+      "description": "Intentaremos mantener la libreria actualizada y compatible con las ultimas versiones de React, React Native y Expo."
+    }
   }
 }
