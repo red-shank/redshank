@@ -21,5 +21,27 @@
       "title": "Actualizaciones Recurrentes",
       "description": "Intentaremos mantener la libreria actualizada y compatible con las ultimas versiones de React, React Native y Expo."
     }
+  },
+  "playground": {
+    "title": "Crear aplicaciones bonitas super rapido",
+    "description": "Construir aplicaciones en React Native nunca fue mas facil."
+  },
+  "can-do-it": {
+    "title": "Componentes reutilizables y faciles de implementar",
+    "with": "Con ",
+    "description": "Puedes usar cualquier componente con pocas lineas de codigo y con alta personalizacion, y lo mas importante, facil de usar y entender.",
+    "components": "Componentes"
+  },
+  "theme": {
+    "description": "Invierte los colores de los textos y  fondos para poder mostrar la informacion correctamente y automaticamente.",
+    "compatibility": "Compatibilidad con ",
+    "and": "Y ",
+    "mode": "Modo ",
+    "light": "Claro ",
+    "dark": "Oscuro "
+  },
+  "donations": {
+    "title": "¿Te gusta",
+    "description": "Puedes ayudarnos a seguir manteniendo la libreria, puedes brindarnos apoyo economico para brindar seguimiento a la plataforma."
   }
 }

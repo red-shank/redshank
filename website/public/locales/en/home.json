@@ -21,5 +21,27 @@
       "title": "Progressive updates",
       "description": "We try to keep the library up to date and compatible with the latest versions of React, React Native and Expo."
     }
+  },
+  "playground": {
+    "title": "Create beautiful apps very fast",
+    "description": "Building apps in React Native has never been so easy."
+  },
+  "can-do-it": {
+    "title": "Reusable Components and easy to implement",
+    "with": "With ",
+    "description": "you can use any component with few lines of code and with great customization, and most importantly very easy to use and understand.",
+    "components": "Components"
+  },
+  "theme": {
+    "description": "Invert the colors of the texts, backgrounds to be able to display the info correctly and automatically.",
+    "compatibility": "Compatibility With ",
+    "and": "And ",
+    "mode": "Mode",
+    "light": "Light ",
+    "dark": "Dark "
+  },
+  "donations": {
+    "title": "Do you like",
+    "description": "You can help us to continue maintaining this incredible library, you can give me your financial support from the following platforms."
   }
 }
