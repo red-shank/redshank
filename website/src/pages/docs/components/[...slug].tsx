@@ -3,7 +3,7 @@ import ROUTES from '@/config/routes';
 import Layout from '@/Components/Layout';
 import ComponentTemplate from '@/Components/Templates/Component';
 
-export default function Component() {
+ function Component() {
   return (
     <Layout
       contentFit
@@ -18,3 +18,6 @@ export default function Component() {
     </Layout>
   );
 }
+
+
+export default Component

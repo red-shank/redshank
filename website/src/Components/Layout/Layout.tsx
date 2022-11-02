@@ -6,6 +6,7 @@ import Footer from '@/Components/Footer';
 import LayoutContainer from '@/Components/LayoutContainer';
 import Title from '@/Components/Title';
 import ROUTES from '@/config/routes';
+import { useTranslation } from 'next-i18next';
 
 type LayoutProps = {
   children?: ReactNode;
@@ -24,6 +25,7 @@ const Layout = ({
   withAside = true,
   contentFit = false
 }: LayoutProps) => {
+  const { t } = useTranslation();
   return (
     <>
       <Navbar contentFit={contentFit} isActive={isActive} />

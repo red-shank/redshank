@@ -1,3 +1,6 @@
 {
-  "getStarted": "Get started"
+  "getStarted": "Get started",
+  "navbar": {
+    "search": "Search..."
+  }
 }

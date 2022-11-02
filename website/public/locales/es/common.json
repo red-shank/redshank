@@ -1,4 +1,7 @@
 {
-  "getStarted": "Empezar"
+  "getStarted": "Empezar",
+  "navbar": {
+    "search": "Buscar..."
+  }
 }
 

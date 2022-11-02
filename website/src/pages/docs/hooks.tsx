@@ -3,6 +3,7 @@ import type { NextPage } from 'next';
 import ROUTES from '@/config/routes';
 import Layout from '@/Components/Layout';
 import HooksTemplate from '@/Components/Templates/Hooks';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 const HooksPage: NextPage = () => {
   return (
@@ -16,5 +17,14 @@ const HooksPage: NextPage = () => {
     </Layout>
   );
 };
+
+export async function getStaticProps({ locale }: RouterLocale) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['common', 'home']))
+      // Will be passed to the page component as props
+    }
+  };
+}
 
 export default HooksPage;
