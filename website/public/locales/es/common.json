@@ -1,7 +1,21 @@
 {
   "getStarted": "Empezar",
+  "components": "Componentes",
   "navbar": {
-    "search": "Buscar..."
+    "search": "Buscar...",
+    "home": "Home",
+    "docs": "Docs",
+    "components": "Componentes",
+    "default-theme": "Tema Principal",
+    "provider": "Proveedor",
+    "about": "Acerca de"
+  },
+  "footer": {
+    "docs": "docs",
+    "start": "Empezar",
+    "templates": "Plantillas (Pronto)",
+    "community": "Comunidad",
+    "code": "Codigo"
   }
 }
 

@@ -72,7 +72,7 @@ const menu = [ROUTES.HOME, ROUTES.DOCS, ROUTES.COMPONENTS, ROUTES.ABOUT];
 const Navbar = ({ isActive, contentFit, ...props }: NavbarProps) => {
   const { setTheme, theme } = useNextTheme();
   const router = useRouter();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const toggleTheme = () => {
     setTheme(theme === 'dark' ? 'light' : 'dark');
@@ -119,15 +119,15 @@ const Navbar = ({ isActive, contentFit, ...props }: NavbarProps) => {
         </a>
       </Link>
       <NextNavbar.Content css={onlyDesk} variant="underline">
-        {menu.map(({ path, name }) => (
+        {menu.map((item) => (
           <RenderItem
-            href={path}
-            key={name}
+            href={item.path}
+            key={item.name}
             Component={NextNavbar.Link}
             itemCss={{ fontWeight: '$bold' }}
-            isActive={name === isActive}
+            isActive={item.name === isActive}
           >
-            {name}
+            {item[i18n.language] || item.name }
           </RenderItem>
         ))}
 

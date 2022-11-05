@@ -1,6 +1,21 @@
 {
   "getStarted": "Get started",
+  "components": "Components",
+  "community": "Community",
   "navbar": {
-    "search": "Search..."
+    "search": "Search...",
+    "home": "Home",
+    "docs": "Docs",
+    "components": "Components",
+    "default-theme": "Default Theme",
+    "provider": "Provider",
+    "about": "About"
+  },
+  "footer": {
+    "docs": "docs",
+    "start": "Getting started",
+    "templates": "Templates (Coming soon)",
+    "community": "Community",
+    "code": "Code"
   }
 }
