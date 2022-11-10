@@ -2,5 +2,46 @@
   "banner": {
     "title": "Beauty Design Un Framework De Componentes Para React Native",
     "description": "Crear una app en React Native de una forma simple, rapida y hermosa."
+  },
+  "why-section": {
+    "title": "¿ Por qué ",
+    "card1": {
+      "title": "Diseño agradable",
+      "description": "Crear brillo, hermosas aplicaciones llenas de vida, tenemos mas de 25 componentes reutilizables."
+    },
+    "card2": {
+      "title": "Fácil de Usar",
+      "description": "Hermosas y vibrantes applicationes con un solo import de los elementos, reduce el tiempo de desarrollo y nos permite diseñar por ti."
+    },
+    "card3": {
+      "title": "Personalizable",
+      "description": "Personalizar cada elemento de los componentes y cambiar su apariencia en modo claro y oscuro."
+    },
+    "card4": {
+      "title": "Actualizaciones Recurrentes",
+      "description": "Intentaremos mantener la libreria actualizada y compatible con las ultimas versiones de React, React Native y Expo."
+    }
+  },
+  "playground": {
+    "title": "Crear aplicaciones bonitas super rapido",
+    "description": "Construir aplicaciones en React Native nunca fue mas facil."
+  },
+  "can-do-it": {
+    "title": "Componentes reutilizables y faciles de implementar",
+    "with": "Con ",
+    "description": "Puedes usar cualquier componente con pocas lineas de codigo y con alta personalizacion, y lo mas importante, facil de usar y entender.",
+    "components": "Componentes"
+  },
+  "theme": {
+    "description": "Invierte los colores de los textos y  fondos para poder mostrar la informacion correctamente y automaticamente.",
+    "compatibility": "Compatibilidad con ",
+    "and": "Y ",
+    "mode": "Modo ",
+    "light": "Claro ",
+    "dark": "Oscuro "
+  },
+  "donations": {
+    "title": "¿Te gusta",
+    "description": "Puedes ayudarnos a seguir manteniendo la libreria, puedes brindarnos apoyo economico para brindar seguimiento a la plataforma."
   }
 }

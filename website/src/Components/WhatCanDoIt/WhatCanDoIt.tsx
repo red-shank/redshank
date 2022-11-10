@@ -1,9 +1,11 @@
 import { Button, Grid, Image, Text } from '@nextui-org/react';
 import Title from '@/Components/Title';
+import { useTranslation } from 'next-i18next';
 
 type WhatCanDoItProps = {};
 
 const WhatCanDoIt = (props: WhatCanDoItProps) => {
+  const { t } = useTranslation();
   return (
     <Grid.Container
       gap={4}
@@ -23,18 +25,29 @@ const WhatCanDoIt = (props: WhatCanDoItProps) => {
       </Grid>
       <Grid xs={12} sm={8} alignItems="center" direction="column">
         <Title className="text-center">
-          Reusable Components and easy to implement
+          {t(
+            'home:can-do-it.title',
+            'Reusable Components and easy to implement'
+          )}
         </Title>
         <Text size="$2xl" className="text-center w-full mb-4">
-          With{' '}
+          {t(
+            'home:can-do-it.with',
+            'Con '
+          )}
           <Text as="strong" color="warning">
             Beauty Design
           </Text>{' '}
-          you can use any component with few lines of code and with great
-          customization, and most importantly very easy to use and understand.
-        </Text>
+          {t(
+            'home:can-do-it.description',
+            'you can use any component with few lines of code and with great customization, and most importantly very easy to use and understand.'
+          )}
 
-        <Button className="mb-5">Components</Button>
+        </Text>
+        <Button className="mb-5"> {t(
+          'home:can-do-it.components',
+          'Components'
+        )}</Button>
       </Grid>
     </Grid.Container>
   );

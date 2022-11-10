@@ -6,25 +6,28 @@ import BlockCode from '@/Components/BlockCode';
 
 import { WrapperStyle } from './style';
 import TitleLink from '@/Components/TitleLink';
+import { useTranslation } from 'next-i18next';
 
 const HomeTemplate = () => {
+  const { t } = useTranslation();
+
   return (
     <WrapperStyle>
-      <Title>Getting started</Title>
+      <Title>
+        {t('docs:home.title', 'Getting started')}
+      </Title>
       <Text>
-        Welcome to the <strong>React Native Beauty Design</strong>{' '}
-        documentation! Beauty Design allows you to make beautiful, modern, and
-        fast mobile/applications regardless of your design experience, created
-        with React and React Native.
+        {t('docs:home.welcome', ' Welcome to the')} <strong>React Native Beauty Design</strong>{' '}
+        {t('docs:home.description', ' documentation! Beauty Design allows you to make beautiful, modern, and fast mobile/applications regardless of your design experience, created with React and React Native.')}
       </Text>
 
       <TitleLink className="mt-12">
-        Instalation:
+        {t('docs:home.install', 'Installation:')}
+
       </TitleLink>
 
       <Text>
-        Inside your React project directory, install NextUI by running either of
-        the following:
+        {t('docs:home.instruction', 'Inside your React project directory, install NextUI by running either of the following:')}
       </Text>
 
       <BlockCode

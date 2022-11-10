@@ -4,8 +4,10 @@ import useModal from '@/hooks/useModal';
 import { COINBASE_WALLET, PATREON_LINK, PAYPAL_LINK } from '@/config';
 import { PlayerStyle } from './style';
 import Title from '@/Components/Title';
+import { useTranslation } from 'next-i18next';
 
 const Donations = () => {
+  const { t } = useTranslation();
   const [visible, toggleVisible] = useModal();
 
   return (
@@ -32,7 +34,11 @@ const Donations = () => {
             }
           }}
         >
-          Do you like <br />
+          {t(
+            'home:donations.title',
+            'Do you like'
+          )}
+           <br />
           <Text
             as="span"
             size="2.5rem"
@@ -47,8 +53,10 @@ const Donations = () => {
         </Title>
 
         <Text size="$2xl" weight="semibold" className="text-center w-full mb-4">
-          You can help us to continue maintaining this incredible library, you
-          can give me your financial support from the following platforms.
+          {t(
+            'home:donations.description',
+            'You can help us to continue maintaining this incredible library, you can give me your financial support from the following platforms.'
+          )}
         </Text>
 
         <Grid.Container gap={2} justify="center">

@@ -4,6 +4,7 @@ import NavLink from '@/Components/NavLink';
 
 import { CollapseItemStyle, CollapseStyle } from './style';
 import { Text } from '@nextui-org/react';
+import { useTranslation } from 'next-i18next';
 
 const RenderIcon = ({ Component }: { Component?: any }) => {
   if (!Component) return null;
@@ -15,10 +16,11 @@ type AsideProps = {
 };
 
 const Aside = ({ titleClass }: AsideProps) => {
+  const { t } = useTranslation();
   return (
     <>
       <Text weight="bold" size="$xl" className={titleClass}>
-        Documentation
+        {t('docs:aside.title', 'Documentation')}
       </Text>
 
       {menu.map(({ children, name, key, icon }) => {
@@ -32,14 +34,14 @@ const Aside = ({ titleClass }: AsideProps) => {
           >
             <CollapseItemStyle
               expanded
-              title={name}
+              title={t(`docs:aside.${key}.name`, name)}
               // @ts-ignore
               contentLeft={<RenderIcon Component={icons[icon]} />}
             >
-              {children.map(({ key, name, path }) => {
+              {children.map(({ key: secondaryKey, name, path }) => {
                 return (
                   <NavLink
-                    key={key}
+                    key={secondaryKey}
                     href={path}
                     className="text-neutral-400"
                     activeCss={{
@@ -47,7 +49,7 @@ const Aside = ({ titleClass }: AsideProps) => {
                       fontWeight: '$bold'
                     }}
                   >
-                    {name}
+                    {t(`docs:aside.${key}.${secondaryKey}`, name)}
                   </NavLink>
                 );
               })}

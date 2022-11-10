@@ -1,3 +1,29 @@
 {
-  "getStarted": "Get started"
+  "getStarted": "Get started",
+  "components": "Components",
+  "community": "Community",
+  "navbar": {
+    "search": "Search...",
+    "home": "Home",
+    "docs": "Docs",
+    "components": "Components",
+    "default-theme": "Default Theme",
+    "provider": "Provider",
+    "about": "About"
+  },
+  "footer": {
+    "docs": "docs",
+    "start": "Getting started",
+    "templates": "Templates (Coming soon)",
+    "community": "Community",
+    "code": "Code"
+  },
+  "layout": {
+    "description": "We're excited to see the community adopt Beauty Design, raise issues, and provide feedback. Whether it's a feature request, bug report, or a project to showcase, please get involved!",
+    "contribute": "Contributing",
+    "contribuiteDescription1": "PR's on NextUI are always welcome, please see our ",
+    "contribuiteDescription2": "contribution guidelines ",
+    "contribuiteDescription3": "to learn how you can contribute to this project.",
+    "content": "Contents"
+  }
 }

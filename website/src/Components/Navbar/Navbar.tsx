@@ -21,6 +21,7 @@ import { AStyle, onlyDesk, onlyMdMobile, onlyMobile } from './style';
 import { ReactNode } from 'react';
 import Aside from '@/Components/Aside';
 import { useRouter } from 'next/router';
+import { useTranslation } from 'next-i18next';
 
 type NavbarProps = {
   isActive?: string;
@@ -71,6 +72,7 @@ const menu = [ROUTES.HOME, ROUTES.DOCS, ROUTES.COMPONENTS, ROUTES.ABOUT];
 const Navbar = ({ isActive, contentFit, ...props }: NavbarProps) => {
   const { setTheme, theme } = useNextTheme();
   const router = useRouter();
+  const { t, i18n } = useTranslation();
 
   const toggleTheme = () => {
     setTheme(theme === 'dark' ? 'light' : 'dark');
@@ -117,15 +119,15 @@ const Navbar = ({ isActive, contentFit, ...props }: NavbarProps) => {
         </a>
       </Link>
       <NextNavbar.Content css={onlyDesk} variant="underline">
-        {menu.map(({ path, name }) => (
+        {menu.map((item) => (
           <RenderItem
-            href={path}
-            key={name}
+            href={item.path}
+            key={item.name}
             Component={NextNavbar.Link}
             itemCss={{ fontWeight: '$bold' }}
-            isActive={name === isActive}
+            isActive={item.name === isActive}
           >
-            {name}
+            {item[i18n.language] || item.name }
           </RenderItem>
         ))}
 
@@ -186,7 +188,7 @@ const Navbar = ({ isActive, contentFit, ...props }: NavbarProps) => {
           </Grid.Container>
           <Input
             bordered
-            placeholder="Search..."
+            placeholder={t('common:navbar.search', 'Search...')}
             contentRight={<SearchIcon />}
           />
         </NextNavbar.Content>
