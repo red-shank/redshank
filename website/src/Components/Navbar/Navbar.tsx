@@ -127,7 +127,7 @@ const Navbar = ({ isActive, contentFit, ...props }: NavbarProps) => {
             itemCss={{ fontWeight: '$bold' }}
             isActive={item.name === isActive}
           >
-            {item[i18n.language] || item.name }
+            {item[i18n.language as LocaleType] || item.name }
           </RenderItem>
         ))}
 
