@@ -43,7 +43,7 @@ export async function getStaticProps({ locale }: any) {
     // fetching to mdx in github for get props component
     props: {
       // add others vars
-      ...(await serverSideTranslations(locale, ['common']))
+      ...(await serverSideTranslations(locale, ['common', 'docs', 'home']))
     }
   };
 }
