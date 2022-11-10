@@ -36,7 +36,7 @@ export interface DatePickerProps
   style?: StyleProp<ViewStyle>;
   onChange?: (d: string, date: Date) => void;
 
-  // rest DatePickerModal props https://github.com/mmazzarolo/react-native-modal-datetime-picker
+  // rest DatePickerModal pages https://github.com/mmazzarolo/react-native-modal-datetime-picker
   [key: string]: unknown;
 }
 

@@ -28,7 +28,7 @@ export interface TextAreaProps {
   onChange?: (v: string) => void;
   style?: StyleProp<TextStyle>;
 
-  // rest TextInput props https://reactnative.dev/docs/textinput
+  // rest TextInput pages https://reactnative.dev/docs/textinput
   [key: string]: unknown;
 }
 

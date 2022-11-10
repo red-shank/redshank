@@ -1,4 +1,4 @@
-// A root stack navigator is often used for displaying modals on top of all other examples
+// A root stack navigator is often used for displaying modals on top of all other content
 // Read more here: https://reactnavigation.org/docs/modal
 import {
   createDrawerNavigator,

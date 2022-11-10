@@ -24,7 +24,7 @@ const TableOfContent: FC<TableOfContentProps> = ({ headings, ...props }) => {
   return (
     <div className="container" {...props}>
       <h4 className="title">
-        {t('docs:layout.examples', 'Contents')}
+        {t('docs:layout.content', 'Contents')}
         </h4>
       <ul className="list">
         {headings.map((heading, i) => (

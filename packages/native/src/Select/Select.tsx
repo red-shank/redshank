@@ -100,7 +100,7 @@ export const Select: React.FC<SelectProps> = ({
           label,
           ...restItem,
         }))}
-        // IOS props
+        // IOS pages
         pickerProps={{
           itemStyle: {
             backgroundColor: colors[background] ?? background,
@@ -108,7 +108,7 @@ export const Select: React.FC<SelectProps> = ({
           },
           ...pickerProps,
         }}
-        // general props
+        // general pages
         touchableWrapperProps={{
           style: {
             ...sizes[size],

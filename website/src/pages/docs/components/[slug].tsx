@@ -14,7 +14,7 @@ import Layout from '@/Components/Layout';
 import { fetchRawDoc } from '@/lib/docs/page';
 import ComponentTemplate from '@/Components/Templates/Component';
 
-export default function Component({ meta, ...props }: any) {
+export default function Component({ meta, source, ...props }: any) {
   console.log(props);
   return (
     <Layout
@@ -24,8 +24,9 @@ export default function Component({ meta, ...props }: any) {
       isActive={ROUTES.COMPONENTS.name}
     >
       <ComponentTemplate
-        title={meta.title}
-        description={meta.description}
+        title={meta?.title}
+        source={source}
+        description={meta?.description}
       />
     </Layout>
   );
@@ -62,7 +63,7 @@ export async function getStaticProps({ locale, params }: any) {
     meta = data;
   } else {
     meta = null;
-    const folderPath = path.join(process.cwd(), 'content', 'props');
+    const folderPath = path.join(process.cwd(), 'content', 'pages');
     const filePath = path.join(folderPath, `${slug}.mdx`);
     const rawFileSource = fs.readFileSync(filePath);
     const { content, data } = matter(rawFileSource);
@@ -79,7 +80,7 @@ export async function getStaticProps({ locale, params }: any) {
   });
 
   return {
-    // fetching to mdx in github for get props component
+    // fetching to mdx in github for get pages component
     props: {
       meta,
       source: mdxSource,
