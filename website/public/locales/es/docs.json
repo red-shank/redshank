@@ -1,0 +1,78 @@
+{
+  "provider": {
+    "title": "Proveedor",
+    "themeObject": "Objeto del tema:",
+    "instruction": "Ve a la raiz de la aplicación y haz lo siguiente:",
+    "edit": "Editar tema:",
+    "override": "Puedes sobreescribir todo ",
+    "defaultTheme": "tema por defecto",
+    "for": "Para",
+    "mainInstruction": " para funcionar correctamente, necesitas agregar el ThemeProvider en el root de la aplicación."
+  },
+  "darkMode": {
+    "title": "Modo Oscuro",
+    "description": "Beauty Design atomaticamente maneja tema claro y oscuro, puedes cambiarlo usando una functiona llamada:  useTheme.",
+    "changeTheme": "Cambiar tema:",
+    "customColor": "Colores personalizados:",
+    "sample": "Ejemplo completo:"
+  },
+  "hooks": {
+    "utilities": "Utilidades Hooks (Funciones).",
+    "description": "Puedes acceder a todos los valores del tema actual",
+    "instruction": "Puedes cambiar modales facilmente."
+  },
+  "home": {
+    "title": "Empezar",
+    "install": "Instalacion",
+    "instruction": "Dentro del directorio de el proyecto, instala NextUI ejecutando lo siguiente:",
+    "welcome": "Bienvenido a",
+    "description": " documentacion! Beauty Design permite hacer bonitas, modernas y rapidas mobile/aplicaciones sin importar tu experiencia en diseño, creado con React y React Native."
+  },
+  "aside": {
+    "title": "Documentacion",
+    "started": {
+      "name": "Comienzo",
+      "getting-started": "Empezar",
+      "provider": "Proveedor",
+      "default-theme": "Tema por defecto",
+      "dark-mode": "Modo Oscuro",
+      "hooks": "Hooks"
+    },
+    "general": {
+      "name": "General",
+      "icon": "Icono",
+      "title": "Titulo",
+      "text": "Texto",
+      "button": "Botón"
+    },
+    "data-display": {
+      "name": "Mostrar Datos",
+      "avatar": "Avatar",
+      "badge": "Insignia",
+      "card": "Card",
+      "carousel": "Carusel",
+      "collapse": "Colapsar",
+      "image": "Imagen",
+      "header": "Cabecera",
+      "space": "Espaciado"
+    },
+    "data-entry": {
+      "name": "Entrada de Datos",
+      "checkbox": "Checkbox",
+      "controller": "Controlador",
+      "datepicker": "Seleccion de fechas",
+      "form": "Formularios",
+      "input": "Cajas de Texto",
+      "radio": "Boton Radio [tipo]",
+      "select": "Select",
+      "switch": "Switch"
+    },
+    "feedback": {
+      "name": "Retroalimentación",
+      "alert": "Alerta",
+      "modal": "Modal",
+      "message": "Mensaje",
+      "pop-confirm": "Alerta de Confirmacion"
+    }
+  }
+}

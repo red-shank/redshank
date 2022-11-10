@@ -21,7 +21,7 @@ const HooksPage: NextPage = () => {
 export async function getStaticProps({ locale }: RouterLocale) {
   return {
     props: {
-      ...(await serverSideTranslations(locale, ['common', 'home']))
+      ...(await serverSideTranslations(locale, ['common', 'home', "docs"]))
       // Will be passed to the page component as props
     }
   };

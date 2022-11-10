@@ -1,0 +1,78 @@
+{
+  "provider": {
+    "title": "Provider",
+    "themeObject": "Theme object: ",
+    "instruction": "Go to the root of your application and do this:",
+    "edit": "Editing theme:",
+    "override": "You can override all ",
+    "defaultTheme": "default theme",
+    "for": "For",
+    "mainInstruction": " to work correctly, you need to set up the ThemeProvider at the root of your application."
+  },
+  "darkMode": {
+    "title": "Dark Mode",
+    "description": "Beauty Design automatically handles the dark and light theme you can change using a useTheme function.",
+    "changeTheme": "Change Theme:",
+    "customColor": "Custom colors:",
+    "sample": " Complete example:"
+  },
+  "hooks": {
+    "utilities": "Hooks utilities.",
+    "description": "You can access all values of the current theme",
+    "instruction": "You can toggle modals easy."
+  },
+  "home": {
+    "title": "Getting started",
+    "install": "Installation",
+    "instruction": "Inside your React project directory, install NextUI by running either of the following:",
+    "welcome": "Welcome to the",
+    "description": " documentation! Beauty Design allows you to make beautiful, modern, and\n        fast mobile/applications regardless of your design experience, created\n        with React and React Native."
+  },
+  "aside": {
+    "title": "Documentation",
+     "started": {
+       "name": "Started",
+       "getting-started": "Getting started",
+       "provider": "Provider",
+       "default-theme": "Default theme",
+       "dark-mode": "Dark mode",
+       "hooks": "Hooks"
+     },
+    "general": {
+      "name": "General",
+      "icon": "Icon",
+      "title": "Title",
+      "text": "Text",
+      "button": "Button"
+    },
+    "data-display": {
+      "name": "Data Display",
+      "avatar": "Avatar",
+      "badge": "Badge",
+      "card": "Card",
+      "carousel": "Carrousel",
+      "collapse": "Collapse",
+      "image": "Image",
+      "header": "Header",
+      "space": "Space"
+    },
+    "data-entry": {
+      "name": "Data Entry",
+      "checkbox": "Checkbox",
+      "controller": "Controller",
+      "datepicker": "Date Picker",
+      "form": "Form",
+      "input": "Input",
+      "radio": "Radio",
+      "select": "Select",
+      "switch": "Switch"
+    },
+    "feedback": {
+      "name": "Feedback",
+      "alert": "Alert",
+      "modal": "Modal",
+      "message": "Message",
+      "pop-confirm": "Pop Confirm"
+    }
+  }
+}
