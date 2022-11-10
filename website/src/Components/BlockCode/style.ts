@@ -19,7 +19,7 @@ export const TextCodeStyle = styled('div', {
       false: {
         overflowX: 'auto',
         pre: {
-          width: 'max-content'
+          width: 'max-examples'
         }
       }
     }
