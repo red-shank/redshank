@@ -1,0 +1,99 @@
+---
+title: 'Icon'
+description: 'Icon wrapper to React Native Vector Icon.'
+url: https://beauty-design.app/docs/components/icon
+---
+
+```jsx
+import { Icon } from 'react-native-beauty-design';
+```
+
+<Spacer y={2} />
+
+<Playground
+  title="Default"
+  desc="You can display an icon with just text or image"
+  files={iconContent.initial}
+/>
+
+<Spacer y={3} />
+
+### APIs
+
+<Spacer y={2} />
+
+#### Avatar Props
+
+| Attribute        | Type                          | Accepted values                          | Description                            | Default   |
+| ---------------- | ----------------------------- | ---------------------------------------- | -------------------------------------- | --------- |
+| **color**        | `NormalColors` `string`       | [NormalColors](#normal-colors)           | Change avatar color                    | `default` |
+| **textColor**    | `SimpleColors` `string`       | [SimpleColors](#simple-colors)           | Change avatar text color               | `default` |
+| **src**          | `string`                      | -                                        | Image source (local or remote)         | -         |
+| **text**         | `string`                      | -                                        | Display text when image is missing     | -         |
+| **alt**          | `string`                      | -                                        | Display alt text when image is missing | -         |
+| **size**         | `NormalSizes` `number`        | [NormalSizes](#normal-sizes)             | Avatar size                            | `medium`  |
+| **bordered**     | `boolean`                     | `true/false`                             | Bordered avatar                        | `false`   |
+| **borderWeight** | `NormalWeights`               | [NormalWeights](#normal-weights)         | Border weight for `bordered` avatar    | `normal`  |
+| **pointer**      | `boolean`                     | `true/false`                             | Display pointer cursor on hover        | `false`   |
+| **stacked**      | `boolean`                     | `true/false`                             | Stacked display group                  | `false`   |
+| **zoomed**       | `boolean`                     | `true/false`                             | Zoomed avatar                          | `false`   |
+| **squared**      | `boolean`                     | `true/false`                             | Squared avatar                         | `false`   |
+| **icon**         | `ReactNode`                   | -                                        | Show icon in avatar                    | -         |
+| **css**          | `Stitches.CSS`                | -                                        | Override Default CSS style             | -         |
+| **as**           | `keyof JSX.IntrinsicElements` | -                                        | Changes which tag component outputs    | `span`    |
+| ...              | `ImgHTMLAttributes`           | `'alt', 'crossOrigin', 'className', ...` | Native props                           | -         |
+
+<Spacer y={2} />
+
+#### Avatar Group Props
+
+| Attribute    | Type                          | Accepted values                  | Description                             | Default |
+| ------------ | ----------------------------- | -------------------------------- | --------------------------------------- | ------- |
+| **count**    | `number`                      | -                                | Total count of avatars                  | -       |
+| **animated** | `boolean`                     | -                                | Display translations animation on hover | `true` |
+| **css**      | `Stitches.CSS`                | -                                | Override Default CSS style              | -       |
+| **as**       | `keyof JSX.IntrinsicElements` | -                                | Changes which tag component outputs     | `div`   |
+| ...          | `HTMLAttributes`              | `'id', 'name', 'className', ...` | Native props                            | -       |
+
+<Spacer y={2} />
+
+### Avatar types
+
+<Spacer y={1} />
+
+#### Normal Colors
+
+```ts
+type NormalColors =
+  | 'default'
+  | 'primary'
+  | 'secondary'
+  | 'success'
+  | 'warning'
+  | 'error'
+  | 'gradient';
+```
+
+#### Simple Colors
+
+```ts
+type SimpleColors =
+  | 'default'
+  | 'primary'
+  | 'secondary'
+  | 'success'
+  | 'warning'
+  | 'error';
+```
+
+#### Normal Sizes
+
+```ts
+type NormalSizes = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+```
+
+#### Normal Weights
+
+```ts
+type NormalWeights = 'light' | 'normal' | 'bold' | 'extrabold' | 'black';
+```
