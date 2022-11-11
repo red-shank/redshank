@@ -25,7 +25,6 @@ export type ComponentProps = {
 };
 
 const ComponentTemplate = ({ title, description, source }: ComponentProps) => {
-  console.log(source);
   return (
     <WrapperStyle>
       <Title>{title}</Title>

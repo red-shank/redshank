@@ -28,6 +28,17 @@
     "welcome": "Welcome to the",
     "description": " documentation! Beauty Design allows you to make beautiful, modern, and\n        fast mobile/applications regardless of your design experience, created\n        with React and React Native."
   },
+  "defaultTheme": {
+    "title": "Default Theme",
+    "description": "Beauty Design default theme is based on React Context API.",
+    "colors": "Colors:",
+    "instruction": "Beauty Design includes a default color palette out-of-the-box that is a great starting point if you don't have your own specific branding in mind. You can access the colors through the theme object, see the ",
+    "themeObject": "theme object",
+    "info": " for more information.",
+    "padding": "Paddings:",
+    "margin": "Margins:",
+    "borderRadius": "Border Radius:"
+  },
   "aside": {
     "title": "Documentation",
      "started": {

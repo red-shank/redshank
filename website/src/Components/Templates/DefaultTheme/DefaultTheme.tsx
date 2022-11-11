@@ -17,8 +17,10 @@ import processColor, { isLight } from '@/utils/processColor';
 
 import { ColorStyle, WrapperStyle } from './style';
 import processObject from '@/utils/processObject';
+import { useTranslation } from 'next-i18next';
 
 const DefaultThemeTemplate = () => {
+  const { t } = useTranslation();
   const { isDark } = useTheme();
 
   const colors = useMemo(() => {
@@ -47,21 +49,22 @@ const DefaultThemeTemplate = () => {
 
   return (
     <WrapperStyle>
-      <Title>Default Theme</Title>
-      <Text>Beauty Design default theme is based on React Context API.</Text>
-
+      <Title>{t('docs:defaultTheme.title', 'Default Theme')}</Title>
+      <Text> {t('docs:defaultTheme.description', 'Beauty Design default theme is based on React Context API.')}</Text>
       <TitleLink>
-        Colors:
+        {t('docs:defaultTheme.colors', 'Colors:')}
+
       </TitleLink>
 
       <Text>
-        Beauty Design includes a default color palette out-of-the-box that is a
-        great starting point if you don't have your own specific branding in
-        mind. You can access the colors through the theme object, see the{' '}
+        {t('docs:defaultTheme.instruction', 'Beauty Design includes a default color palette out-of-the-box that is a\n' +
+          '        great starting point if you don\'t have your own specific branding in\n' +
+          '        mind. You can access the colors through the theme object, see the ')}
         <Link href={ROUTES.PROVIDER.path + '#theme-object'}>
-          <NLink className="inline">theme object</NLink>
-        </Link>{' '}
-        for more information.
+          <NLink className="inline">
+            {t('docs:defaultTheme.themeObject', 'theme object')}
+          </NLink>
+        </Link>{t('docs:defaultTheme.info', 'for more information.')}
       </Text>
 
       {colors.map(({ colors, name }) => {
@@ -101,18 +104,21 @@ const DefaultThemeTemplate = () => {
       })}
 
       <TitleLink>
-        Paddings:
+        {t('docs:defaultTheme.padding', 'Paddings:')}
+
       </TitleLink>
 
       <BlockCode language="JSON" code={paddingObjectString} />
 
       <TitleLink>
-        Margins:
+        {t('docs:defaultTheme.margin', 'Margins:')}
+
       </TitleLink>
       <BlockCode language="JSON" code={marginObjectString} />
 
       <TitleLink>
-        Border Radius:
+        {t('docs:defaultTheme.borderRadius', 'Border Radius:')}
+
       </TitleLink>
       <BlockCode language="JSON" code={borderRadiusObjectString} />
 
