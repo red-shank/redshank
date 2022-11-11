@@ -51,10 +51,9 @@ const Layout = ({
           {!withFooter && (
             <>
               <Title level={2} className="mt-12">
-                {t('common:footer.community', 'Community')}:
+                {t('common:footer.community', 'Community:')}
               </Title>
               <Text>
-
                 {t('common:layout.description', 'We\'re excited to see the community adopt Beauty Design, raise\n' +
                   '                issues, and provide feedback. Whether it\'s a feature request,\n' +
                   '                bug report, or a project to showcase, please get involved!')}
@@ -78,7 +77,7 @@ const Layout = ({
               </Link>
 
               <Title level={2} className="mt-12">
-                {t('common:layout.contribute', 'Contributing')}:
+                {t('common:layout.contribute', 'Contributing:')}
               </Title>
               <Text>
                 {t('common:layout.contribuiteDescription1', 'PR\'s on NextUI are always welcome, please see our ')}
