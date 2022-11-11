@@ -2,8 +2,14 @@
 const { i18n } = require('./next-i18next.config');
 
 const nextConfig = {
-  reactStrictMode: true,
-  swcMinify: true,
+  pageExtensions: ['jsx', 'js', 'mdx', 'md', 'ts', 'tsx'],
+  reactStrictMode: false,
+  eslint: {
+    ignoreDuringBuilds: true
+  },
+  typescript: {
+    ignoreBuildErrors: process.env.IS_VERCEL_ENV === 'true'
+  },
   i18n
 };
 

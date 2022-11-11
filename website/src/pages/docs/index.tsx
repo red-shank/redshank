@@ -17,7 +17,7 @@ export async function getStaticProps({ locale }: RouterLocale) {
   return {
     props: {
       ...(await serverSideTranslations(locale, ['common', 'home', 'docs']))
-      // Will be passed to the page component as props
+      // Will be passed to the page component as pages
     }
   };
 }
