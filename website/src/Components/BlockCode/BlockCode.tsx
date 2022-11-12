@@ -28,15 +28,18 @@ const md: any = new MarkdownIt({
 type BlockCodeProps = {
   code: string;
   className?: string;
+  children?: JSX.Element;
   isInline?: boolean;
   language?: 'typescript' | 'bash' | 'JSON';
 };
 
 const BlockCode = ({
+  children,
   code,
   isInline = false,
   language = 'typescript',
-  className = ''
+  className = '',
+  ...rest
 }: BlockCodeProps) => {
   const [copied, setCopied] = useState(false);
 
@@ -63,10 +66,16 @@ const BlockCode = ({
       <TextCodeStyle
         isInline={isInline}
         className="mb-4 pr-11 text-white"
-        dangerouslySetInnerHTML={{
-          __html: md.render('```' + `${language}\n` + code + '\n```')
-        }}
-      />
+        dangerouslySetInnerHTML={
+          !children
+            ? {
+                __html: md.render('```' + `${language}\n` + code + '\n```')
+              }
+            : undefined
+        }
+      >
+        {children}
+      </TextCodeStyle>
 
       <Button
         auto
