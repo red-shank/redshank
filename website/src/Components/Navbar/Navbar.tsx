@@ -119,17 +119,21 @@ const Navbar = ({ isActive, contentFit, ...props }: NavbarProps) => {
         </a>
       </Link>
       <NextNavbar.Content css={onlyDesk} variant="underline">
-        {menu.map((item) => (
-          <RenderItem
-            href={item.path}
-            key={item.name}
-            Component={NextNavbar.Link}
-            itemCss={{ fontWeight: '$bold' }}
-            isActive={item.name === isActive}
-          >
-            {item[i18n.language as LocaleType] || item.name}
-          </RenderItem>
-        ))}
+        {menu.map((item) => {
+          const showName = item[i18n.language as LocaleType] || item.name;
+
+          return (
+            <RenderItem
+              href={item.path}
+              key={item.name}
+              Component={NextNavbar.Link}
+              itemCss={{ fontWeight: '$bold' }}
+              isActive={item.name === isActive}
+            >
+              {showName}
+            </RenderItem>
+          );
+        })}
 
         {/*
         <Link href="/" passHref>

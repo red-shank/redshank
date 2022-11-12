@@ -17,13 +17,15 @@ type AsideProps = {
 };
 
 const Aside = ({ titleClass, t }: AsideProps) => {
+  const docName = t('docs:aside.title', 'Documentation');
   return (
-    <>
+    <div>
       <Text weight="bold" size="$xl" className={titleClass}>
-        {t('docs:aside.title', 'Documentation')}
+        {docName}
       </Text>
 
       {menu.map(({ children, name, key, icon }) => {
+        const titleKey = `docs:aside.${key}.name`;
         return (
           <CollapseStyle
             shadow
@@ -34,11 +36,12 @@ const Aside = ({ titleClass, t }: AsideProps) => {
           >
             <CollapseItemStyle
               expanded
-              title={t(`docs:aside.${key}.name`, name)}
+              title={t(titleKey, name)}
               // @ts-ignore
               contentLeft={<RenderIcon Component={icons[icon]} />}
             >
               {children.map(({ key: secondaryKey, name, path }) => {
+                const keyName = `docs:aside.${key}.${secondaryKey}`;
                 return (
                   <NavLink
                     key={secondaryKey}
@@ -49,7 +52,7 @@ const Aside = ({ titleClass, t }: AsideProps) => {
                       fontWeight: '$bold'
                     }}
                   >
-                    {t(`docs:aside.${key}.${secondaryKey}`, name)}
+                    {t(keyName, name)}
                   </NavLink>
                 );
               })}
@@ -59,7 +62,7 @@ const Aside = ({ titleClass, t }: AsideProps) => {
       })}
 
       <div className="h-20 w-full" />
-    </>
+    </div>
   );
 };
 
