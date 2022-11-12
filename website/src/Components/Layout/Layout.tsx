@@ -1,12 +1,14 @@
 import { ReactNode } from 'react';
+import dynamic from 'next/dynamic';
+import { useTranslation } from 'next-i18next';
 import { Image, Link, Text } from '@nextui-org/react';
 
-import Navbar from '@/Components/Navbar';
+import ROUTES from '@/config/routes';
+import Title from '@/Components/Title';
 import Footer from '@/Components/Footer';
 import LayoutContainer from '@/Components/LayoutContainer';
-import Title from '@/Components/Title';
-import ROUTES from '@/config/routes';
-import { useTranslation } from 'next-i18next';
+
+const Navbar = dynamic(() => import('@/Components/Navbar'), { ssr: false })
 
 type LayoutProps = {
   children?: ReactNode;

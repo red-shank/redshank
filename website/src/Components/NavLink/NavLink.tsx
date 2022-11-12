@@ -17,7 +17,7 @@ const NavLink = ({
   className = '',
   activeCss = {}
 }: NavLinkProps) => {
-  const { pathname, query } = useRouter();
+  const { pathname, query, locale } = useRouter();
 
   const isActive = useMemo(() => {
     const withSlug = pathname.includes('[...slug]');
@@ -34,7 +34,7 @@ const NavLink = ({
   }, [pathname, query, href]);
 
   return (
-    <Link href={href} passHref>
+    <Link href={href} locale={locale} passHref>
       <ItemStyle
         className={`before:block before:content-[''] before:mr-3 before:bg-zinc-500 before:w-[4px] before:h-[4px] before:rounded ${className}`}
         css={isActive ? activeCss : {}}

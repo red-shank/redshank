@@ -1,11 +1,14 @@
 import { ReactNode, useEffect, useMemo, useState } from 'react';
+import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
-import { Text } from '@nextui-org/react';
 
 import Aside from '@/Components/Aside';
 import Footer from '@/Components/Footer';
+import HeadSeo from '@/Components/HeadSeo';
 import { useComponent } from '@/context/components';
 import NextAndPrevStep from '@/Components/NextAndPrevStep';
+import { getHeadings, Heading } from '@/utils/getHeadings';
+import TableOfContent from '@/Components/TableOfContent/TableOfContent';
 import {
   AsideStyle,
   WrapperStyle,
@@ -13,9 +16,6 @@ import {
   BodyStyle,
   BreadStyle
 } from './style';
-import { getHeadings, Heading } from '@/utils/getHeadings';
-import TableOfContent from '@/Components/TableOfContent/TableOfContent';
-import HeadSeo from '@/Components/HeadSeo';
 
 type LayoutProps = {
   children?: ReactNode;
@@ -24,6 +24,7 @@ type LayoutProps = {
 
 const LayoutContainer = ({ children, ...props }: LayoutProps) => {
   const routes = useRouter();
+  const { t } = useTranslation();
   const [headings, setHeadings] = useState<Heading[]>([]);
 
   useEffect(() => {
@@ -52,7 +53,7 @@ const LayoutContainer = ({ children, ...props }: LayoutProps) => {
       <HeadSeo title={currentComponent?.name} description="Hooks utilities." />
       <AsideStyle className="hidden lg:block fixed z-20 inset-0 top-[88px] left-[max(0px,calc(50%-45rem))] right-auto w-[19.5rem] py-10 px-8 overflow-y-auto">
         <nav className="lg:text-sm lg:leading-6 relative h-full px-5">
-          <Aside />
+          <Aside t={t} />
         </nav>
       </AsideStyle>
 
