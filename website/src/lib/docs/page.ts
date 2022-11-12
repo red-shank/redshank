@@ -1,17 +1,7 @@
-import { getLatestTag } from '@/lib/github/api';
-import { getRawFileFromRepo, getRawAssetFromRepo } from '@/lib/github/raw';
-import { isProd } from '@/config';
+import { getRawFileFromRepo } from '@/lib/github/raw';
 import { removeFromLast } from '@/utils';
-import localManifest from '@/assets/v1.json';
 
-import {
-  TAG,
-  FORCE_TAG,
-  PROPS_PATH,
-  DESCRIPTIONS_PATH,
-  EXAMPLES_PATH,
-  ASSETS_PATH
-} from './config';
+import { PROPS_PATH, TAG } from './config';
 
 export interface Route {
   title: string;
@@ -28,59 +18,13 @@ export interface Route {
   comingSoon?: boolean;
 }
 
-export interface RouteContext {
-  parent?: Route;
-  route?: Route;
-  nextRoute?: Route;
-  prevRoute?: Route;
-}
-
 export interface Carry {
   params: { slug: any };
 }
 
-export async function getCurrentTag(tag?: string) {
-  if (tag) return tag;
-  if (FORCE_TAG) return TAG;
-
-  return getLatestTag();
-}
-
-export function addTagToSlug(slug: string, tag?: string) {
-  return tag ? slug.replace('/docs', `/docs/tag/${tag}`) : slug;
-}
-
-export async function fetchRawDoc(tag: string) {
-  return await getRawFileFromRepo(`${PROPS_PATH}${tag}`);
-}
-
-// export async function fetchDocsManifest(tag: string) {
-//   if (!isProd) return localManifest;
-//
-//   const res = await getRawFileFromRepo(
-//     `${CONTENT_PATH}/docs/manifest.json`,
-//     tag
-//   );
-//
-//   return JSON.parse(res);
-// }
-
-export function getRawAsset(tag: string) {
-  return getRawAssetFromRepo(`${ASSETS_PATH}${tag}`);
-}
-
-export function findRouteByPath(
-  path: string,
-  routes: Route[]
-): Route | null | undefined {
-  for (const route of routes) {
-    if (route.path && removeFromLast(route.path, '.') === path) {
-      return route;
-    }
-    const childPath = route.routes ? findRouteByPath(path, route.routes) : null;
-
-    if (childPath) return childPath;
-  }
+export async function fetchRawDoc(slug: string, _tag: string) {
+  const tag = _tag === 'v1' ? TAG : 'v1';
+  return await getRawFileFromRepo(`${tag}/${PROPS_PATH}${slug}.mdx`);
 }
 
 export function getPaths(
