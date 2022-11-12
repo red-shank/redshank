@@ -56,7 +56,7 @@ export async function getStaticProps({ locale, params }: any) {
   let meta, doc;
 
   if (isProd) {
-    const rawFileSource = await fetchRawDoc(slug);
+    const rawFileSource = await fetchRawDoc(slug, 'v1');
     const { content, data } = matter(rawFileSource);
 
     doc = content.toString();
@@ -75,7 +75,7 @@ export async function getStaticProps({ locale, params }: any) {
   const mdxSource = await serialize(doc, {
     mdxOptions: {
       remarkPlugins: [remarkAutoLink, remarkSlug],
-      rehypePlugins: [mapboxPrism]
+      rehypePlugins: [mapboxPrism as any]
     }
   });
 
