@@ -8,9 +8,13 @@ import {
   Badge
 } from '@nextui-org/react';
 import Link from 'next/link';
+import { ReactNode } from 'react';
+import { useRouter } from 'next/router';
+import { useTranslation } from 'next-i18next';
 import { useTheme as useNextTheme } from 'next-themes';
 
 import ROUTES from '@/config/routes';
+import Aside from '@/Components/Aside';
 import {
   GithubIcon,
   SunIcon,
@@ -18,10 +22,6 @@ import {
   DiscordIcon
 } from '@/Components/Icons';
 import { AStyle, onlyDesk, onlyMdMobile, onlyMobile } from './style';
-import { ReactNode } from 'react';
-import Aside from '@/Components/Aside';
-import { useRouter } from 'next/router';
-import { useTranslation } from 'next-i18next';
 
 type NavbarProps = {
   isActive?: string;
@@ -127,7 +127,7 @@ const Navbar = ({ isActive, contentFit, ...props }: NavbarProps) => {
             itemCss={{ fontWeight: '$bold' }}
             isActive={item.name === isActive}
           >
-            {item[i18n.language as LocaleType] || item.name }
+            {item[i18n.language as LocaleType] || item.name}
           </RenderItem>
         ))}
 
@@ -249,7 +249,7 @@ const Navbar = ({ isActive, contentFit, ...props }: NavbarProps) => {
             />
           </NextNavbar.CollapseItem>
 
-          <Aside titleClass="mt-3" />
+          <Aside t={t} titleClass="mt-3" />
         </NextNavbar.Collapse>
       </NextNavbar.Content>
     </NextNavbar>

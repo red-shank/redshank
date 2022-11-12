@@ -1,10 +1,10 @@
+import { Text } from '@nextui-org/react';
+
 import menu from '@/assets/v1.json';
-import * as icons from '@/Components/Icons';
 import NavLink from '@/Components/NavLink';
+import * as icons from '@/Components/Icons';
 
 import { CollapseItemStyle, CollapseStyle } from './style';
-import { Text } from '@nextui-org/react';
-import { useTranslation } from 'next-i18next';
 
 const RenderIcon = ({ Component }: { Component?: any }) => {
   if (!Component) return null;
@@ -13,10 +13,10 @@ const RenderIcon = ({ Component }: { Component?: any }) => {
 
 type AsideProps = {
   titleClass?: string;
+  t: (key: string, defaultValue?: string) => string | undefined;
 };
 
-const Aside = ({ titleClass }: AsideProps) => {
-  const { t } = useTranslation();
+const Aside = ({ titleClass, t }: AsideProps) => {
   return (
     <>
       <Text weight="bold" size="$xl" className={titleClass}>
