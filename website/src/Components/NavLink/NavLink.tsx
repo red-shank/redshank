@@ -20,13 +20,13 @@ const NavLink = ({
   const { pathname, query, locale } = useRouter();
 
   const isActive = useMemo(() => {
-    const withSlug = pathname.includes('[...slug]');
+    const withSlug = pathname.includes('[slug]');
     if (!withSlug) {
       return pathname.startsWith(href);
     }
 
     const newPathname = `${pathname.replace(
-      '[...slug]',
+      '[slug]',
       query.slug as string
     )}`;
 

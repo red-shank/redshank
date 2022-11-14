@@ -13,6 +13,7 @@ import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import { useTheme as useNextTheme } from 'next-themes';
 
+import { isProd } from '@/config';
 import ROUTES from '@/config/routes';
 import Aside from '@/Components/Aside';
 import {
@@ -147,17 +148,19 @@ const Navbar = ({ isActive, contentFit, ...props }: NavbarProps) => {
       <NextNavbar.Content>
         <NextNavbar.Content css={onlyDesk}>
           <Grid.Container gap={2} className="w-auto">
-            <Button
-              auto
-              onClick={toggleLanguage}
-              className="h-auto bg-transparent p-0 px-2"
-              css={{
-                color: '$text',
-                fontSize: '1.1rem'
-              }}
-            >
-              <strong>{router.locale === 'es' ? 'EN' : 'ES'}</strong>
-            </Button>
+            {!isProd && (
+              <Button
+                auto
+                onClick={toggleLanguage}
+                className="h-auto bg-transparent p-0 px-2"
+                css={{
+                  color: '$text',
+                  fontSize: '1.1rem'
+                }}
+              >
+                <strong>{router.locale === 'es' ? 'EN' : 'ES'}</strong>
+              </Button>
+            )}
 
             <RenderLink href={ROUTES.DISCORD.path}>
               <Button

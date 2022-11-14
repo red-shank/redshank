@@ -1,5 +1,8 @@
-import { getRawFileFromRepo } from '@/lib/github/raw';
+import fs from 'fs';
+import path from 'path';
+
 import { removeFromLast } from '@/utils';
+import { getRawFileFromRepo } from '@/lib/github/raw';
 
 import { PROPS_PATH, TAG } from './config';
 
@@ -22,9 +25,39 @@ export interface Carry {
   params: { slug: any };
 }
 
-export async function fetchRawDoc(slug: string, _tag: string) {
+export async function fetchRawDoc(
+  slug: string,
+  _tag: string,
+  locale: LocaleType
+) {
   const tag = _tag === 'v1' ? TAG : 'v1';
-  return await getRawFileFromRepo(`${tag}/${PROPS_PATH}${slug}.mdx`);
+  try {
+    return await getRawFileFromRepo(
+      `${tag}/${PROPS_PATH}${locale}/${slug}.mdx`
+    );
+  } catch (e) {
+    if (locale === 'es') {
+      console.log('Get in English doc');
+      return await getRawFileFromRepo(`${tag}/${PROPS_PATH}${slug}.mdx`);
+    }
+    return '';
+  }
+}
+
+export function fetchRawDocLocal(
+  slug: string,
+  _tag: string,
+  locale: LocaleType
+) {
+  const folderPath = path.join(process.cwd(), 'content', 'pages');
+  const filePath = path.join(folderPath, `${locale}/${slug}.mdx`);
+
+  try {
+    return fs.readFileSync(filePath);
+  } catch (e) {
+    const newFilePath = path.join(folderPath, `en/${slug}.mdx`);
+    return fs.readFileSync(newFilePath);
+  }
 }
 
 export function getPaths(
