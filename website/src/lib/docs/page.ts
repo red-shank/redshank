@@ -33,12 +33,12 @@ export async function fetchRawDoc(
   const tag = _tag === 'v1' ? TAG : 'v1';
   try {
     return await getRawFileFromRepo(
-      `${tag}/${PROPS_PATH}${locale}/${slug}.mdx`
+      `/${tag}/${PROPS_PATH}/${locale}/${slug}.mdx`
     );
   } catch (e) {
     if (locale === 'es') {
       console.log('Get in English doc');
-      return await getRawFileFromRepo(`${tag}/${PROPS_PATH}${slug}.mdx`);
+      return await getRawFileFromRepo(`/${tag}/${PROPS_PATH}/en/${slug}.mdx`);
     }
     return '';
   }
