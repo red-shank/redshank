@@ -38,7 +38,7 @@ export async function fetchRawDoc(
   } catch (e) {
     if (locale === 'es') {
       console.log('Get in English doc');
-      return await getRawFileFromRepo(`/${tag}/${PROPS_PATH}en/${slug}.mdx`);
+      return await getRawFileFromRepo(`/${tag}/${PROPS_PATH}/en/${slug}.mdx`);
     }
     return '';
   }
