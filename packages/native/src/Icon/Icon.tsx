@@ -36,7 +36,7 @@ export type IconType =
   | string;
 
 export type IconObject = {
-  name?: string;
+  name: string;
   color?: ColorType;
   size?: number;
   type?: IconType;

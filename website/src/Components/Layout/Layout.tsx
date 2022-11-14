@@ -82,7 +82,7 @@ const Layout = ({
                 {t('common:layout.contribute', 'Contributing:')}
               </Title>
               <Text>
-                {t('common:layout.contribuiteDescription1', 'PR\'s on NextUI are always welcome, please see our ')}
+                {t('common:layout.contribuiteDescription1', 'PR\'s on Beauty Design are always welcome, please see our ')}
                 <Link href="#" className="inline">
                   {t('common:layout.contribuiteDescription2', ' contribution guidelines ')}
                 </Link>

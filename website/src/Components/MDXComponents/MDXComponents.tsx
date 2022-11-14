@@ -1,10 +1,10 @@
 /* eslint-disable react/display-name */
 import * as React from 'react';
-import { styled, useTheme } from '@nextui-org/react';
-import Anchor from '@/Components/Anchor';
+import { styled, Text, useTheme } from '@nextui-org/react';
 
-// import Playground from '../playground';
-import Codeblock from '@/Components/BlockCode';
+import Anchor from '@/Components/Anchor';
+import Playground from '@/Components/Playground';
+import CodeBlock, { CodeBlockSnippet } from '@/Components/BlockCode';
 
 const Table: React.FC<React.PropsWithChildren<unknown>> = ({ children }) => {
   return (
@@ -85,6 +85,7 @@ const Tcol: React.FC<React.PropsWithChildren<unknown>> = ({ children }) => {
 export interface LinkedHeadingProps {
   as: keyof JSX.IntrinsicElements;
   linked?: boolean;
+  children?: any;
 }
 
 const LinkedHeading: React.FC<LinkedHeadingProps> = ({
@@ -154,9 +155,20 @@ const MDXComponents = {
   thead: Thead,
   tr: Trow,
   td: Tcol,
-  Playground: () => <span></span>,
+  Playground: (props: { title: string; description: string; code: string }) => {
+    return (
+      <div>
+        <LinkedHeading as="h3" linked>
+          {props.title}
+        </LinkedHeading>
+        <Text>{props.description}</Text>
+        <Playground code={props.code} />
+      </div>
+    );
+  },
   // CarbonAd,
-  code: Codeblock,
+  code: CodeBlockSnippet,
+  BlockCode: CodeBlock,
   ul: List
   // Block
 };

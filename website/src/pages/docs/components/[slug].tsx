@@ -11,7 +11,7 @@ import v1 from '@/assets/v1.json';
 import { isProd } from '@/config';
 import ROUTES from '@/config/routes';
 import Layout from '@/Components/Layout';
-import { fetchRawDoc } from '@/lib/docs/page';
+import { fetchRawDoc, fetchRawDocLocal } from '@/lib/docs/page';
 import ComponentTemplate from '@/Components/Templates/Component';
 
 export default function Component({ meta, source, ...props }: any) {
@@ -56,16 +56,14 @@ export async function getStaticProps({ locale, params }: any) {
   let meta, doc;
 
   if (isProd) {
-    const rawFileSource = await fetchRawDoc(slug, 'v1');
+    const rawFileSource = await fetchRawDoc(slug, 'v1', locale);
     const { content, data } = matter(rawFileSource);
 
     doc = content.toString();
     meta = data;
   } else {
     meta = null;
-    const folderPath = path.join(process.cwd(), 'content', 'pages');
-    const filePath = path.join(folderPath, `${slug}.mdx`);
-    const rawFileSource = fs.readFileSync(filePath);
+    const rawFileSource = fetchRawDocLocal(slug, 'v1', locale);
     const { content, data } = matter(rawFileSource);
 
     doc = content.toString();
