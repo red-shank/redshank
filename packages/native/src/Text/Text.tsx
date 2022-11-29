@@ -15,6 +15,7 @@ export const Text: FC<TextProps> = ({
   marginBottom,
   marginVertical,
   marginHorizontal,
+  transform = 'none',
   size = 'base',
   color = 'text',
   readMore = false,
@@ -59,6 +60,7 @@ export const Text: FC<TextProps> = ({
           lineHeight && {
             lineHeight: fontSizes[size] ? fontSizes[size] + 4 : size,
           },
+          transform !== 'none' && styles[transform],
           italic && styles.italic,
           underline && styles.underline,
           style,
@@ -93,6 +95,15 @@ const styles = StyleSheet.create({
   underline: {
     textDecorationStyle: 'solid',
     textDecorationLine: 'line-through',
+  },
+  uppercase: {
+    textTransform: 'uppercase',
+  },
+  capitalize: {
+    textTransform: 'capitalize',
+  },
+  lowercase: {
+    textTransform: 'lowercase',
   },
   readMore: {
     marginRight: 0,

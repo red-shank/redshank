@@ -158,7 +158,7 @@ const MDXComponents = {
   Playground: (props: { title: string; description: string; code: string }) => {
     return (
       <div>
-        <LinkedHeading as="h3" linked>
+        <LinkedHeading as="h4" linked>
           {props.title}
         </LinkedHeading>
         <Text>{props.description}</Text>

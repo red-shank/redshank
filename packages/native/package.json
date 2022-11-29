@@ -1,6 +1,6 @@
 {
   "name": "react-native-beauty-design",
-  "version": "1.0.0-beta.1.4.2",
+  "version": "1.0.0-beta.1.4.3",
   "description": "React Native Beauty Design & UI Toolkit",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -56,7 +56,8 @@
     "react-native-safe-area-context": "^3.1.9",
     "react-native-vector-icons": "^7.0.0",
     "react-test-renderer": "^16.13.1",
-    "utility-types": "^3.10.0"
+    "utility-types": "^3.10.0",
+    "typescript": "4.8.3"
   },
   "peerDependencies": {
     "react-native-safe-area-context": ">3.1.9",

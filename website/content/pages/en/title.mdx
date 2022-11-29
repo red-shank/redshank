@@ -1,12 +1,77 @@
 ---
 title: 'Title'
-description: 'Title component.'
+description: 'Display title in different level.'
 url: https://beauty-design.app/docs/components/title
 ---
 
 ```jsx
 import { Title } from 'react-native-beauty-design';
 ```
-# Building, coming soon!
 
 <Spacer y={2} />
+
+<Playground
+  id="default"
+  title="Default"
+  description="You can display an title"
+  code={titleContent.initial}
+/>
+
+<Spacer y={2} />
+
+<Playground
+  id="change-color"
+  title="Change Color"
+  description="Change color to component"
+  code={titleContent.changeColor}
+/>
+
+<Spacer y={2} />
+
+<Playground
+  id="align-title"
+  title="Align Title"
+  description="Change align title"
+  code={titleContent.align}
+/>
+
+<Spacer y={2} />
+
+<Playground
+  id="transform-title"
+  title="Transform Title"
+  description="Change transform title"
+  code={titleContent.transform}
+/>
+
+<Spacer y={2} />
+
+### APIs
+
+<Spacer y={2} />
+
+#### Title Props
+More props in [TextProps](/docs/text#apis)
+
+| Attribute        | Type                  | Accepted values                   | Description                 | Default     |
+|------------------|-----------------------|-----------------------------------|-----------------------------|-------------|
+| **color**        | `ThemeColor` `string` | [ThemeColor](/docs/default-theme) | Change icon color           | `text`      |
+| **children**     | `string`  `ReactNode` | `any`                             | Content to show             | `undefined` |
+| **level**        | `number`              | `1` `2` `3` `4` `5`               | Level to title, change size | `1`         |
+| **align**        | `string`              | [Align](#align)                   | Align title text            | `left`      |
+| **transform**    | `string`              | [Transform](#transform)           | Transform title text        | `none`      |
+| **marginBottom** | `number`              | `number`                          | Margin bottom to element    | `undefined` |
+
+<Spacer y={2} />
+
+#### Align
+```typescript
+type AlignType = 'left' | 'center' | 'right' | 'justify';
+```
+
+<Spacer y={2} />
+
+#### Transform
+```typescript
+type TransformType = 'none' | 'uppercase' | 'lowercase' | 'capitalize';
+```

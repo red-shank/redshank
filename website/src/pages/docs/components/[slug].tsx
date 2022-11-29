@@ -14,8 +14,7 @@ import Layout from '@/Components/Layout';
 import { fetchRawDoc, fetchRawDocLocal } from '@/lib/docs/page';
 import ComponentTemplate from '@/Components/Templates/Component';
 
-export default function Component({ meta, source, ...props }: any) {
-  console.log(props);
+export default function Component({ meta, source }: any) {
   return (
     <Layout
       contentFit
