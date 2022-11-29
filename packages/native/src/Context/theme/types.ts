@@ -26,6 +26,13 @@ export interface FontProps {
     | '900';
 }
 
+export type SizeElements = {
+  small: number;
+  middle: number;
+  large: number;
+  xLarge: number;
+};
+
 export interface FontTypes {
   thin: FontProps;
   light: FontProps;
@@ -52,7 +59,6 @@ export interface TitleFontSizesProps {
   level4: number;
   level5: number;
 }
-
 
 interface ZIndexType {
   1: number;
@@ -92,4 +98,5 @@ export interface ThemeProps {
   colors: {
     [key in ColorType]: string;
   };
+  sizes: SizeElements;
 }

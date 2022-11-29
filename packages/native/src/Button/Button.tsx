@@ -27,6 +27,7 @@ export const Button: React.FC<ButtonProps> = ({
   suffix,
   suffixOrPrefixStyle,
   prefix = icon,
+  textProps,
   fullWidth = false,
   withMarginBottom = false,
   textAlign = 'center',
@@ -35,7 +36,6 @@ export const Button: React.FC<ButtonProps> = ({
   color = 'primary',
   type = 'solid',
   shape = 'round',
-  textProps = {},
   ...rest
 }) => {
   const {
@@ -43,6 +43,7 @@ export const Button: React.FC<ButtonProps> = ({
     borderRadius,
     isDark,
     fonts,
+    sizes,
     fontSizes,
     activeOpacity,
     marginSizes,
@@ -51,6 +52,7 @@ export const Button: React.FC<ButtonProps> = ({
   const isSolid = type === 'solid';
   const internalColor = colors[color] || color;
   const colorText = textColor || getColorForBackground(internalColor);
+  const textAlignWrapper = `text_${textAlign}`;
 
   return (
     <Component
@@ -65,8 +67,9 @@ export const Button: React.FC<ButtonProps> = ({
       {...rest}
       style={StyleSheet.flatten([
         styles.button,
+        styles[textAlignWrapper],
         {
-          borderRadius: shape === 'circle' ? borderRadius.max : borderRadius.lg,
+          borderRadius: shape === 'circle' ? sizes[size] : borderRadius.lg,
         },
         !fullWidth && { alignSelf: 'flex-start' },
         withMarginBottom && { marginBottom: marginSizes.md },
@@ -98,17 +101,17 @@ export const Button: React.FC<ButtonProps> = ({
         _borderRadius && {
           borderRadius: _borderRadius,
         },
-        type !== 'link' && styles[size],
+        type !== 'link' &&
+          StyleSheet.flatten([
+            {
+              height: sizes[size],
+            },
+            styles[size],
+          ]),
         style,
       ])}
     >
-      <View
-        style={StyleSheet.flatten([
-          styles.button,
-          styles[`text_${textAlign}`],
-          contentStyle,
-        ])}
-      >
+      <View style={StyleSheet.flatten([styles.button, contentStyle])}>
         {loading && (
           <ActivityIndicator
             style={styles.loading}
@@ -132,7 +135,6 @@ export const Button: React.FC<ButtonProps> = ({
           style={StyleSheet.flatten([
             fonts.bold,
             {
-              textAlign,
               fontSize: fontSizes.base,
               color: !isSolid ? internalColor : colors[colorText] || colorText,
             },
@@ -163,6 +165,7 @@ export const Button: React.FC<ButtonProps> = ({
 
 const styles = StyleSheet.create({
   button: {
+    overflow: 'hidden',
     flexDirection: 'row',
     alignItems: 'center',
   },
@@ -183,27 +186,23 @@ const styles = StyleSheet.create({
   shadow: {
     shadowOffset: {
       width: 0,
-      height: 2,
+      height: 5,
     },
-    shadowRadius: 12,
+    shadowRadius: 6,
   },
   small: {
-    height: 32,
     paddingRight: 10,
     paddingLeft: 10,
   },
   middle: {
-    height: 45,
     paddingRight: 18,
     paddingLeft: 18,
   },
   large: {
-    height: 50,
     paddingRight: 18,
     paddingLeft: 18,
   },
   xLarge: {
-    height: 55,
     paddingRight: 24,
     paddingLeft: 25,
   },

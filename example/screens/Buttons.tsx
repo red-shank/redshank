@@ -55,6 +55,19 @@ const ButtonsScreen = () => {
         <View style={styles.space} />
 
         <View>
+          <Title level={4}>Shadow buttons</Title>
+          <Space>
+            {colors.map((c, i) => (
+              <Button key={i} shape="circle" type="flat" color={c} shadow>
+                {c}
+              </Button>
+            ))}
+          </Space>
+        </View>
+
+        <View style={styles.space} />
+
+        <View>
           <Title level={4}>Outline buttons</Title>
           <Space>
             {colors.map((c, i) => (

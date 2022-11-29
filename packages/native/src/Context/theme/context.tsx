@@ -15,6 +15,7 @@ import {
   paddingSizes,
   marginSizes,
   zIndices,
+  sizes,
   borderRadius,
 } from './defaultValues';
 import type { FontTypes, ThemeProps } from './types';
@@ -31,6 +32,7 @@ const initialValue: ThemeProps = {
   titleFontSizes,
   activeOpacity: 0.6,
   zIndices,
+  sizes,
   borderWidth: 2,
   borderRadius,
   paddingSizes,
@@ -108,6 +110,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = React.memo(
             activeOpacity: _theme?.activeOpacity ?? prevTheme.activeOpacity,
             colors,
             fonts: Object.assign(prevTheme.fonts, _theme?.fonts),
+            sizes: Object.assign(prevTheme.sizes, _theme?.sizes),
             fontSizes: Object.assign(prevTheme.fontSizes, _theme?.fontSizes),
             titleFontSizes: Object.assign(
               prevTheme.titleFontSizes,
