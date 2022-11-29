@@ -23,6 +23,7 @@ export const Title: React.FC<TitleProps> = ({
   level = 1,
   marginBottom = stylesLevel[level].marginBottom,
   style = {},
+  ...restTextProps
 }) => {
   const { colors, titleFontSizes, fonts } = useTheme();
 
@@ -34,11 +35,13 @@ export const Title: React.FC<TitleProps> = ({
           fontSize: titleFontSizes[`level${level}`],
           fontFamily: fonts[font].fontFamily,
           fontWeight: fonts[font].fontWeight,
+          textAlign: align,
+          textTransform: transform,
+          color: colors[color] || color,
         },
-        { textAlign: align, textTransform: transform },
-        { color: colors[color] || color },
         style,
       ])}
+      {...restTextProps}
     >
       {children}
     </Text>

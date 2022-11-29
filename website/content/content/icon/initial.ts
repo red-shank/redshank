@@ -1,5 +1,6 @@
-export default `import { View, StyleSheet } from 'react-native';
-import { Icon } from 'react-native-beauty-design';
+import generateCode from '@/content/utils/generateCode';
+
+export default generateCode(`import { Icon } from 'react-native-beauty-design';
 
 export default function App() {
   return (
@@ -11,15 +12,8 @@ export default function App() {
         color="error"
         type="antdesign"
         name="heart"
+        onPress={() => alert("Press here!")}
       />
     </View>
   );
-}
-
-const styles = StyleSheet.create({
-  center: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
-  }
-})`;
+}`);

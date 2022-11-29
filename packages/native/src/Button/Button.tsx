@@ -10,6 +10,9 @@ import type { ButtonProps } from './types';
 export const Button: React.FC<ButtonProps> = ({
   children,
   onPress,
+  onPressIn,
+  onPressOut,
+  onLongPress,
   textColor,
   disabled,
   loading,
@@ -19,6 +22,13 @@ export const Button: React.FC<ButtonProps> = ({
   disableTransform,
   disableRipple,
   shadow,
+  borderRadius: _borderRadius,
+  icon,
+  suffix,
+  suffixOrPrefixStyle,
+  prefix = icon,
+  fullWidth = false,
+  withMarginBottom = false,
   textAlign = 'center',
   Component = Ripple,
   size = 'middle',
@@ -28,8 +38,15 @@ export const Button: React.FC<ButtonProps> = ({
   textProps = {},
   ...rest
 }) => {
-  const { colors, borderRadius, isDark, fonts, fontSizes, activeOpacity } =
-    useTheme();
+  const {
+    colors,
+    borderRadius,
+    isDark,
+    fonts,
+    fontSizes,
+    activeOpacity,
+    marginSizes,
+  } = useTheme();
 
   const isSolid = type === 'solid';
   const internalColor = colors[color] || color;
@@ -42,11 +59,17 @@ export const Button: React.FC<ButtonProps> = ({
       activeOpacity={activeOpacity}
       disableTransform={disabled || disableTransform}
       onPress={loading || disabled ? undefined : onPress}
+      onPressIn={loading || disabled ? undefined : onPressIn}
+      onPressOut={loading || disabled ? undefined : onPressOut}
+      onLongPress={loading || disabled ? undefined : onLongPress}
       {...rest}
       style={StyleSheet.flatten([
+        styles.button,
         {
           borderRadius: shape === 'circle' ? borderRadius.max : borderRadius.lg,
         },
+        !fullWidth && { alignSelf: 'flex-start' },
+        withMarginBottom && { marginBottom: marginSizes.md },
         isSolid && {
           backgroundColor: internalColor,
         },
@@ -72,6 +95,9 @@ export const Button: React.FC<ButtonProps> = ({
           !isSolid && {
             borderColor: colors.accents5,
           },
+        _borderRadius && {
+          borderRadius: _borderRadius,
+        },
         type !== 'link' && styles[size],
         style,
       ])}
@@ -94,6 +120,13 @@ export const Button: React.FC<ButtonProps> = ({
             }
           />
         )}
+        {!loading && prefix && (
+          <View
+            style={StyleSheet.flatten([styles.prefix, suffixOrPrefixStyle])}
+          >
+            {prefix}
+          </View>
+        )}
         <Text
           {...textProps}
           style={StyleSheet.flatten([
@@ -115,6 +148,14 @@ export const Button: React.FC<ButtonProps> = ({
         >
           {children}
         </Text>
+
+        {!loading && suffix && (
+          <View
+            style={StyleSheet.flatten([styles.suffix, suffixOrPrefixStyle])}
+          >
+            {suffix}
+          </View>
+        )}
       </View>
     </Component>
   );
@@ -147,27 +188,29 @@ const styles = StyleSheet.create({
     shadowRadius: 12,
   },
   small: {
-    paddingTop: 7,
-    paddingBottom: 7,
+    height: 32,
     paddingRight: 10,
     paddingLeft: 10,
   },
   middle: {
-    paddingTop: 14,
-    paddingBottom: 14,
+    height: 45,
     paddingRight: 18,
     paddingLeft: 18,
   },
   large: {
-    paddingTop: 16,
-    paddingBottom: 16,
+    height: 50,
     paddingRight: 18,
     paddingLeft: 18,
   },
   xLarge: {
-    paddingTop: 22,
-    paddingBottom: 22,
+    height: 55,
     paddingRight: 24,
     paddingLeft: 25,
+  },
+  prefix: {
+    marginRight: 8,
+  },
+  suffix: {
+    marginLeft: 8,
   },
 });

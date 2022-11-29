@@ -13,7 +13,7 @@
     "test": "lerna run test",
     "build": "lerna run build",
     "package:install": "cd ./packages/native && yarn install",
-    "package:build": "cd ./packages/native && yarn build",
+    "package:build": "cd ./packages/native && npm run build",
     "package:publish": "cd ./packages/native && npm publish",
     "clean-install": "rimraf node_modules && yarn",
     "example:install": "cd ./example && yarn install",

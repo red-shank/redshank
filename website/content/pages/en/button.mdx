@@ -1,12 +1,57 @@
 ---
 title: 'Button'
-description: 'Button component.'
+description: 'A button means an operation (or a series of operations). Clicking a button will trigger corresponding business logic.'
 url: https://beauty-design.app/docs/components/button
 ---
 
 ```jsx
 import { Button } from 'react-native-beauty-design';
 ```
-# Building, coming soon!
+
+### How to use
+In Beauty Design we provide 4 types of button ready for use.
+
+* solid
+* flat
+* link
+* outline
+
+<Spacer y={2} />
+
+### Examples
+
+<Playground
+  id="default"
+  title="Default"
+  description="You can display an button"
+  code={buttonContent.initial}
+/>
+
+<Spacer y={2} />
+
+### APIs
+
+<Spacer y={2} />
+
+#### Button Props
+Api props
+
+| Attribute            | Type                  | Accepted values                   | Description                                        | Default                           |
+|----------------------|-----------------------|-----------------------------------|----------------------------------------------------|-----------------------------------|
+| **Component**        | `Component`           | React Component                   | Change the element base                            | [Ripple](/docs/components/ripple) |
+| **borderRadius**     | `number`              | `number`                          | Defined border radius in components                | `8` or `20`                       |
+| **children**         | `string`  `ReactNode` | `any`                             | Accessory as a child for the component             | -                                 |
+| **color**            | `ThemeColor` `string` | [ThemeColor](/docs/default-theme) | Change icon color                                  | `text`                            |
+| **contentStyle**     | `object`              | `StyleProp<ViewStyle>`            | Style for wrapper text                             | -                                 |
+| **disableRipple**    | `boolean`             | `true` `false`                    | Disable ripple animation effect                    | `false`                           |
+| **disableTransform** | `boolean`             | `true` `false`                    | Disable transform scale animation effect           | `false`                           |
+| **disabled**         | `boolean`             | `true` `false`                    | Disable element, prevent click in element          | `false`                           |
+| **fullWidth**        | `boolean`             | `true` `false`                    | The button gets the width of 100% of the container | `false`                           |
+| **lines**            | `number`              | `number`                          | Number of lines you want to show on the screen     | -                                 |
+| **lineHeight**       | `number`              | `number`                          | Line height property                               | -                                 |
+| **style**            | `object`              | `StyleProp<ViewStyle>`            | Style text                                         | -                                 |
+| **transform**        | `string`              | [Transform](#transform)           | Transform title text                               | `none`                            |
+| **underline**        | `boolean`             | `true` `false`                    | Underline style                                    | -                                 |
+| **withMarginBottom** | `boolean`             | `true` `false`                    | Margin bottom in the element for separate views    | `false`                           |
 
 <Spacer y={2} />

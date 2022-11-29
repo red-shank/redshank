@@ -3,29 +3,34 @@ import type { StyleProp, TextStyle, ViewStyle } from 'react-native';
 
 import type { ColorType } from '../Context/theme/types';
 import type { TextProps } from '../Text';
+import { BaseProperties } from '../@types/utilities';
 
 export type ButtonSize = 'small' | 'middle' | 'large' | 'xLarge';
 export type ButtonType = 'solid' | 'link' | 'flat' | 'outline';
 
-export interface ButtonProps {
+export interface ButtonProps extends BaseProperties {
+  Component?: typeof Component;
+  borderRadius?: number;
   children: string | ReactNode;
-  onPress?: (event?: any) => void;
-  loading?: boolean;
-  disabled?: boolean;
+  color?: ColorType;
+  contentStyle?: StyleProp<ViewStyle>;
   disableRipple?: boolean;
   disableTransform?: boolean;
-  color?: ColorType;
-  shadow?: boolean;
-  textColor?: ColorType;
-  textAlign?: 'left' | 'center' | 'right';
-  size?: ButtonSize;
+  disabled?: boolean;
+  fullWidth?: boolean;
   icon?: ReactNode;
-  borderRadius?: number;
-  type?: ButtonType;
-  Component?: typeof Component;
+  loading?: boolean;
+  prefix?: ReactNode;
+  shadow?: boolean;
   shape?: 'circle' | 'round';
+  size?: ButtonSize;
   style?: StyleProp<ViewStyle>;
-  contentStyle?: StyleProp<ViewStyle>;
+  suffix?: ReactNode;
+  suffixOrPrefixStyle?: StyleProp<ViewStyle>;
+  textAlign?: 'left' | 'center' | 'right';
+  textColor?: ColorType;
   textProps?: Omit<TextProps, 'children' | 'style'>;
   textStyle?: StyleProp<TextStyle>;
+  type?: ButtonType;
+  withMarginBottom?: boolean;
 }

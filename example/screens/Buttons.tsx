@@ -5,6 +5,7 @@ import {
   Button,
   Space,
   Title,
+  Icon,
   InputScrollView,
 } from 'react-native-beauty-design';
 
@@ -104,10 +105,32 @@ const ButtonsScreen = () => {
             </Button>
             {colors.map((c, i) => (
               <Button key={i} type="flat" size="small" color={c}>
-                {/*{c}*/}
                 Obtener
               </Button>
             ))}
+          </Space>
+        </View>
+
+        <View style={styles.space} />
+
+        <View>
+          <Title level={4}>Icon, Prefix and Suffix Buttons</Title>
+          <Space>
+            <Button
+              icon={
+                <Icon color="yellow400" type="antdesign" name="smile-circle" />
+              }
+            >
+              Icon
+            </Button>
+            <Button
+              prefix={<Icon color="error" type="antdesign" name="heart" />}
+            >
+              Prefix
+            </Button>
+            <Button suffix={<Icon size={25} type="antdesign" name="like1" />}>
+              Suffix
+            </Button>
           </Space>
         </View>
 
