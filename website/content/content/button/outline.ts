@@ -5,14 +5,15 @@ export default generateCode(`import { Button, Space } from 'react-native-beauty-
 export default function App() {
   return (
     <View style={styles.center}>
-      <Space>
-        <Button>Hi!</Button>
-        <Button color="red500">Hello Word!</Button>
+      <Space orientation="vertical">
+        <Button type="outline">Outline</Button>
+        <Button type="outline" color="error">Outline</Button>
         <Button
           fullWidth
+          type="outline"
           color="secondary"
         >
-          This is a Button!
+          Outline
         </Button>
       </Space>
     </View>

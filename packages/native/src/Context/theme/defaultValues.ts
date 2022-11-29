@@ -180,3 +180,10 @@ export const colorsDark = {
   selection: '#98D5FD',
   code: '#DB39BD',
 };
+
+export const sizes = {
+  small: 32,
+  middle: 45,
+  large: 50,
+  xLarge: 55,
+};
