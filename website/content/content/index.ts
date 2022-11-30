@@ -11,5 +11,5 @@ export default {
   textContent,
   buttonContent,
   avatarContent,
-  themeColors: colorsLight
+  themeColors: colorsLight,
 };

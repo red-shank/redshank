@@ -1,5 +1,3 @@
-import path from 'path';
-import * as fs from 'fs';
 import matter from 'gray-matter';
 import remarkSlug from 'remark-slug';
 import mapboxPrism from '@mapbox/rehype-prism';
@@ -52,22 +50,17 @@ export async function getStaticPaths() {
 export async function getStaticProps({ locale, params }: any) {
   const { slug } = params;
 
-  let meta, doc;
+  let meta, doc, rawFileSource;
 
   if (isProd) {
-    const rawFileSource = await fetchRawDoc(slug, 'v1', locale);
-    const { content, data } = matter(rawFileSource);
-
-    doc = content.toString();
-    meta = data;
+    rawFileSource = await fetchRawDoc(slug, 'v1', locale);
   } else {
-    meta = null;
-    const rawFileSource = fetchRawDocLocal(slug, 'v1', locale);
-    const { content, data } = matter(rawFileSource);
-
-    doc = content.toString();
-    meta = data;
+    rawFileSource = fetchRawDocLocal(slug, 'v1', locale);
   }
+
+  const { content, data } = matter(rawFileSource);
+  doc = content.toString();
+  meta = data;
 
   const mdxSource = await serialize(doc, {
     mdxOptions: {
