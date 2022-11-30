@@ -50,29 +50,34 @@ const DefaultThemeTemplate = () => {
   return (
     <WrapperStyle>
       <Title>{t('docs:defaultTheme.title', 'Default Theme')}</Title>
-      <Text> {t('docs:defaultTheme.description', 'Beauty Design default theme is based on React Context API.')}</Text>
-      <TitleLink>
-        {t('docs:defaultTheme.colors', 'Colors:')}
-
-      </TitleLink>
+      <Text>
+        {' '}
+        {t(
+          'docs:defaultTheme.description',
+          'Beauty Design default theme is based on React Context API.'
+        )}
+      </Text>
+      <TitleLink>{t('docs:defaultTheme.colors', 'Colors:')}</TitleLink>
 
       <Text>
-        {t('docs:defaultTheme.instruction', 'Beauty Design includes a default color palette out-of-the-box that is a\n' +
-          '        great starting point if you don\'t have your own specific branding in\n' +
-          '        mind. You can access the colors through the theme object, see the ')}
+        {t(
+          'docs:defaultTheme.instruction',
+          'Beauty Design includes a default color palette out-of-the-box that is a\n' +
+            "        great starting point if you don't have your own specific branding in\n" +
+            '        mind. You can access the colors through the theme object, see the '
+        )}
         <Link href={ROUTES.PROVIDER.path + '#theme-object'}>
           <NLink className="inline">
             {t('docs:defaultTheme.themeObject', 'theme object')}
           </NLink>
-        </Link>{t('docs:defaultTheme.info', 'for more information.')}
+        </Link>
+        {t('docs:defaultTheme.info', 'for more information.')}
       </Text>
 
       {colors.map(({ colors, name }) => {
         return (
           <div key={name}>
-            <TitleLink>
-              {name}
-            </TitleLink>
+            <TitleLink>{name}</TitleLink>
 
             <Grid.Container gap={2}>
               {colors.map(({ value: color, name: nameColor }) => {
@@ -103,28 +108,19 @@ const DefaultThemeTemplate = () => {
         );
       })}
 
-      <TitleLink>
-        {t('docs:defaultTheme.padding', 'Paddings:')}
-
-      </TitleLink>
+      <TitleLink>{t('docs:defaultTheme.padding', 'Paddings:')}</TitleLink>
 
       <BlockCode language="JSON" code={paddingObjectString} />
 
-      <TitleLink>
-        {t('docs:defaultTheme.margin', 'Margins:')}
-
-      </TitleLink>
+      <TitleLink>{t('docs:defaultTheme.margin', 'Margins:')}</TitleLink>
       <BlockCode language="JSON" code={marginObjectString} />
 
       <TitleLink>
         {t('docs:defaultTheme.borderRadius', 'Border Radius:')}
-
       </TitleLink>
       <BlockCode language="JSON" code={borderRadiusObjectString} />
 
-      <TitleLink>
-        zIndex:
-      </TitleLink>
+      <TitleLink>zIndex:</TitleLink>
       <BlockCode language="JSON" code={zIndicesObjectString} />
     </WrapperStyle>
   );

@@ -5,6 +5,8 @@ import { styled, Text, useTheme } from '@nextui-org/react';
 import Anchor from '@/Components/Anchor';
 import Playground from '@/Components/Playground';
 import CodeBlock, { CodeBlockSnippet } from '@/Components/BlockCode';
+import BlockCode from '@/Components/BlockCode';
+import TitleLink from '@/Components/TitleLink';
 
 const Table: React.FC<React.PropsWithChildren<unknown>> = ({ children }) => {
   return (
@@ -165,6 +167,22 @@ const MDXComponents = {
         <Playground code={props.code} />
       </div>
     );
+  },
+  BaseProperties: () => {
+    const codeProperties = `type BaseProperties = {
+  onBlur?: ((e: NativeSyntheticEvent<TargetedEvent>) => void) | undefined;
+  onFocus?: ((e: NativeSyntheticEvent<TargetedEvent>) => void) | undefined;
+  onLayout?: ((event: LayoutChangeEvent) => void) | undefined;
+  onLongPress?: ((event: GestureResponderEvent) => void) | undefined;
+  onPress?: ((event: GestureResponderEvent) => void) | undefined;
+  onPressIn?: ((event: GestureResponderEvent) => void) | undefined;
+  onPressOut?: ((event: GestureResponderEvent) => void) | undefined;
+};`;
+
+    return <>
+      <LinkedHeading as="h4">Base Properties</LinkedHeading>
+      <BlockCode language="typescript" code={codeProperties} />
+    </>
   },
   // CarbonAd,
   code: CodeBlockSnippet,
