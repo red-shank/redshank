@@ -1,12 +1,96 @@
 ---
 title: 'Avatar'
-description: 'Avatar component.'
+description: 'Avatars can be used to represent people or objects. It supports images, icons, or letters.'
 url: https://beauty-design.app/docs/components/avatar
 ---
 
 ```jsx
 import { Avatar } from 'react-native-beauty-design';
 ```
-# Building, coming soon!
+### Examples
+
+<Playground
+  id="text-avatar"
+  title="Text Avatar"
+  description="The basic using text prop"
+  code={avatarContent.text}
+/>
 
 <Spacer y={2} />
+
+<Playground
+  id="color-ans-size"
+  title="Color And Size"
+  description="The custom color or size avatar"
+  code={avatarContent.colorAndSize}
+/>
+
+<Spacer y={2} />
+
+<Playground
+  id="avatar-type"
+  title="Avatar Type"
+  description="Change type into circle or square"
+  code={avatarContent.type}
+/>
+
+<Spacer y={2} />
+
+<Playground
+  id="with-image"
+  title="With Image"
+  description="Avatar render image"
+  code={avatarContent.image}
+/>
+
+<Spacer y={2} />
+
+<Playground
+  id="with-icons"
+  title="With Icons"
+  description="Show an icon instead of text or image"
+  code={avatarContent.icons}
+/>
+
+<Spacer y={2} />
+
+<Playground
+  id="count-text"
+  title="Count Text"
+  description="Show quantity letter in Avatar"
+  code={avatarContent.countText}
+/>
+
+<Spacer y={2} />
+
+<Playground
+  id="pressable"
+  title="Pressable"
+  description="Pressable avatar"
+  code={avatarContent.pressable}
+/>
+
+<Spacer y={2} />
+
+#### Icon Props
+Api props
+
+| Attribute          | Type                                 | Accepted values                           | Description                                                   | Default            |
+|--------------------|--------------------------------------|-------------------------------------------|---------------------------------------------------------------|--------------------|
+| **Component**      | `FunctionComponent` `ComponentClass` | React Element                             | Wrapper to avatar element                                     | `View` or `Ripple` |
+| **ImageComponent** | `FunctionComponent` `ComponentClass` | React Element                             | Wrapper to image element                                      | `ImageRN`          |
+| **color**          | `ThemeColor`                         | [ThemeColor](/docs/default-theme)         | `string` color format valid                                   | `getRandomColor`   |
+| **icon**           | `IconObject`                         | [IconObject](/docs/components/icon#apis)  | Size icon                                                     | -                  |
+| **imageProps**     | `object`                             | [ImageProps](/docs/components/image#apis) | Image props when passing the `src` prop                       | -                  |
+| **showCountText**  | `number` `all`                       | Number or `all`                           | show all text or number letter                                | `2`                |
+| **size**           | `number`                             | Number                                    | Size icon                                                     | `40`               |
+| **src**            | `ImageSrcType`                       | Absolute path or url                      | Render image for avatar                                       | -                  |
+| **style**          | `StyleProp<ViewStyle>`               | Object                                    | Style for wrapper element                                     | `-`                |
+| **text**           | `string`                             | String                                    | Text for show if your pass src prop, text will be placeholder | `-`                |
+| **textColor**      | `ThemeColor`                         | [ThemeColor](/docs/default-theme)         | Color of text                                                 | `white` or `black` |
+| **type**           | `AvatarType`                         | `circle` `square`                         | Avatar type variant                                           | `circle`           |
+| **Other Props**    | `any`                                | [Other props](#base-properties)           | Interactive props for element                                 | -                  |
+
+<Spacer y={1} />
+
+<BaseProperties />

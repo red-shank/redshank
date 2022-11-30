@@ -9,7 +9,7 @@ export default function App() {
         shadow
         fullWidth
         type="solid"
-        withBorderBottom
+        withMarginBottom
       >
         Solid
       </Button>
@@ -18,7 +18,7 @@ export default function App() {
         fullWidth
         type="flat"
         color="error"
-        withBorderBottom
+        withMarginBottom
       >
         Flat
       </Button>

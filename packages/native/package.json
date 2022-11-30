@@ -1,6 +1,6 @@
 {
   "name": "react-native-beauty-design",
-  "version": "1.0.0-beta.1.4.4",
+  "version": "1.0.0-beta.1.4.5",
   "description": "React Native Beauty Design & UI Toolkit",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
