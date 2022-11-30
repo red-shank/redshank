@@ -181,7 +181,7 @@ const MDXComponents = {
 
     return <>
       <LinkedHeading as="h4">Base Properties</LinkedHeading>
-      <BlockCode language="typescript" code={codeProperties} />
+      <CodeBlock language="typescript" code={codeProperties} />
     </>
   },
   // CarbonAd,

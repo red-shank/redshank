@@ -9,6 +9,7 @@ import {
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { fonts, fontSizes, titleFontSizes } from './fonts';
+import useColorScheme from '../../hooks/useColorScheme';
 import {
   colorsDark,
   colorsLight,
@@ -69,15 +70,14 @@ export interface ThemeProviderProps {
 
 export const ThemeProvider: React.FC<ThemeProviderProps> = React.memo(
   ({ children, theme, disableDarkMode = false }) => {
+    const _colorSchema = useColorScheme();
     let scrollOffsetY = React.useRef(new Animated.Value(0)).current;
 
     const [internalTheme, setInternalTheme] = useState<ThemeProps>(
       JSON.parse(JSON.stringify(initialValue))
     );
 
-    const isDark = React.useMemo<boolean>(() => {
-      return disableDarkMode ? false : colorScheme === 'dark';
-    }, [disableDarkMode]);
+    const isDark = disableDarkMode ? false : _colorSchema === 'dark';
 
     const onScroll = React.useMemo(
       () =>
