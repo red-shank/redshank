@@ -67,6 +67,10 @@ export const Avatar: React.FC<AvatarProps> = ({
     return colors[color] ?? getRandomColor();
   }, [color, colors]);
 
+  const colorText = React.useMemo<string | undefined>(() => {
+    return colors[textColor];
+  }, [textColor, colors]);
+
   const borderRadiusElement = type === 'circle' ? size / 2 : borderRadius.lg;
   const sourceImage = typeof src === 'string' ? { uri: src } : src;
 
@@ -84,7 +88,7 @@ export const Avatar: React.FC<AvatarProps> = ({
       {hidePlaceholder ? (
         <Text
           style={StyleSheet.flatten([
-            { color: getColorForBackground(backgroundColor) },
+            { color: colorText || getColorForBackground(backgroundColor) },
             {
               fontSize: fontSize,
               lineHeight: fontSize + 7,
@@ -97,10 +101,10 @@ export const Avatar: React.FC<AvatarProps> = ({
         <Image
           source={sourceImage}
           resizeMode="cover"
-          borderRadius={borderRadiusElement}
           {...imageProps}
           style={StyleSheet.flatten([
             { width: scale(size), height: scale(size) },
+            { borderRadius: borderRadiusElement },
             imageProps && imageProps.style,
           ])}
           ImageComponent={ImageComponent}
