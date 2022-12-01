@@ -4,6 +4,7 @@ import textContent from './text';
 import buttonContent from './button';
 import { colorsLight } from '../../temp/defaultValues'
 import * as avatarContent from './avatar';
+import * as badgeContent from './badge';
 
 export default {
   iconContent,
@@ -11,5 +12,6 @@ export default {
   textContent,
   buttonContent,
   avatarContent,
+  badgeContent,
   themeColors: colorsLight,
 };
