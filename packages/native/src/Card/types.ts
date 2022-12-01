@@ -1,32 +1,34 @@
 import type { Component, ReactNode } from 'react';
-import type { StyleProp, TouchableOpacityProps, ViewStyle } from 'react-native';
+import type { StyleProp, ViewStyle } from 'react-native';
 
 import type { RippleProps } from '../Ripple/type';
 import type { ColorType } from '../Context/theme/types';
+import { BaseProperties } from '../@types/utilities';
 
-export interface CardProps extends TouchableOpacityProps {
+export interface CardProps extends BaseProperties {
   Component?: typeof Component;
-  children?: ReactNode;
   background?: ColorType;
-  isPressable?: boolean;
-  withBorder?: boolean;
   borderWidth?: number;
-  isExpandCard?: number;
+  children?: ReactNode;
   expandContent?: ReactNode;
-  rippleProps?: RippleProps;
+  isExpandCard?: boolean;
+  isPressable?: boolean;
   onClose?: (event: any) => void;
+  rippleProps?: RippleProps;
+  withBorder?: boolean;
+  style?: StyleProp<ViewStyle>;
 }
 
 export interface CardHeaderProps {
   Component?: typeof Component;
-  children?: ReactNode;
-  withBackground?: boolean;
   background?: ColorType;
+  children?: ReactNode;
   isAbsolute?: boolean;
-  top?: number | string;
   left?: number | string;
   right?: number | string;
   style?: StyleProp<ViewStyle>;
+  top?: number | string;
+  withBackground?: boolean;
 }
 
 export interface CardFooterProps extends Omit<CardHeaderProps, 'top'> {
@@ -36,8 +38,8 @@ export interface CardFooterProps extends Omit<CardHeaderProps, 'top'> {
 export interface CardBodyProps {
   Component?: typeof Component;
   children?: ReactNode;
-  withPadding?: boolean;
   style?: StyleProp<ViewStyle>;
+  withPadding?: boolean;
 }
 
 export interface CardDividerProps {
