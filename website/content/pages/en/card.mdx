@@ -1,12 +1,138 @@
 ---
 title: 'Card'
-description: 'Card component.'
+description: 'Card is a container for text, photos, and actions in the context of a single subject.'
 url: https://beauty-design.app/docs/components/card
 ---
 
 ```jsx
 import { Card } from 'react-native-beauty-design';
 ```
-# Building, coming soon!
+### Examples
+
+<Playground
+  id="default-card"
+  title="Default"
+  description="Default card view."
+  code={cardContent.defaultCode}
+/>
 
 <Spacer y={2} />
+
+<Playground
+  id="absolute-card"
+  title="Absolute Card"
+  description="Absolute header and footer card."
+  code={cardContent.absoluteCard}
+/>
+
+<Spacer y={2} />
+
+<Playground
+  id="expandable-card"
+  title="Expandable Card"
+  description="Expandable header and footer card."
+  code={cardContent.expandableCard}
+/>
+
+<Spacer y={2} />
+
+<Playground
+  id="example-card"
+  title="Example Card"
+  description="Example header and footer card."
+  code={cardContent.exampleCard}
+/>
+
+<Spacer y={2} />
+
+<Playground
+  id="with-border"
+  title="With border"
+  description="With border example card."
+  code={cardContent.withBorder}
+/>
+
+<Spacer y={2} />
+
+### APIs
+
+<Spacer y={2} />
+
+#### Card
+Api props extends from [View](https://reactnative.dev/docs/view) or [Ripple](/docs/components/ripple#apis)
+
+| Attribute         | Type                  | Accepted values                   | Description                                                                                   | Default                           |
+|-------------------|-----------------------|-----------------------------------|-----------------------------------------------------------------------------------------------|-----------------------------------|
+| **Component**     | `Component`           | React Component                   | Change the element base                                                                       | [Ripple](/docs/components/ripple) |
+| **background**    | `ThemeColor` `string` | [ThemeColor](/docs/default-theme) | Change background color                                                                       | `border`                          |
+| **borderWidth**   | `number`              | `Number`                          | When withBorder prop is true render width of the border in the card                           | -                                 |
+| **children**      | `ReactNode`           | `ReactNode`                       | Accessory as a child for the component, we suggest passing Header, Content or Footer elements | -                                 |
+| **expandContent** | `ReactNode`           | `ReactNode`                       | Accessory for expand when user press the card                                                 | -                                 |
+| **isExpandCard**  | `boolean`             | `true` `false`                    | Active expand element with press the card                                                     | `!!expandContent`                 |
+| **isPressable**   | `boolean`             | `true` `false`                    | Active the animation effect when to press card                                                | `isExpandCard`                    |
+| **onClose**       | `function`            | `(event: any) => void`            | Function that is executed after closing the expand content                                    | -                                 |
+| **rippleProps**   | `RippleProps`         | `object`                          | Props for ripple wrapper element                                                              | -                                 |
+| **withBorder**    | `boolean`             | `true` `false`                    | Show borders for the card                                                                     | `false`                           |
+| **style**         | `object`              | `StyleProp<ViewStyle>`            | Style for the wrapper card                                                                    | -                                 |
+| **Other Props**   | `any`                 | [Other props](#base-properties)   | Interactive props for element                                                                 | -                                 |
+
+<Spacer y={2} />
+
+#### Header
+Api props for `Card.Header` element
+
+| Attribute          | Type                  | Accepted values                   | Description                            | Default                           |
+|--------------------|-----------------------|-----------------------------------|----------------------------------------|-----------------------------------|
+| **Component**      | `Component`           | React Component                   | Change the element base                | [Ripple](/docs/components/ripple) |
+| **background**     | `ThemeColor` `string` | [ThemeColor](/docs/default-theme) | Change background color                | `border`                          |
+| **children**       | `ReactNode`           | `ReactNode`                       | Accessory as a child for the component | -                                 |
+| **isAbsolute**     | `boolean`             | `true` `false`                    | Position absolute for header           | `false`                           |
+| **left**           | `number` `string`     | `Number` or `String`              | Left position for absolute variant     | `0`                               |
+| **right**          | `number` `string`     | `Number` or `String`              | Right position for absolute variant    | `0`                               |
+| **style**          | `object`              | `StyleProp<ViewStyle>`            | Style for the wrapper card             | -                                 |
+| **top**            | `number` `string`     | `Number` or `String`              | Top position for absolute variant      | `0`                               |
+| **withBackground** | `boolean`             | `true` `false`                    | Show background in the header          | `false`                           |
+
+<Spacer y={2} />
+
+#### Body
+Api props for `Card.Body` element
+
+| Attribute       | Type        | Accepted values        | Description                                                                                   | Default                             |
+|-----------------|-------------|------------------------|-----------------------------------------------------------------------------------------------|-------------------------------------|
+| **Component**   | `Component` | React Component        | Change the element base                                                                       | [Ripple](/docs/components/ripple)   |
+| **children**    | `ReactNode` | `ReactNode`            | Accessory as a child for the component, we suggest passing Header, Content or Footer elements | -                                   |
+| **style**       | `object`    | `StyleProp<ViewStyle>` | Style for the wrapper card                                                                    | -                                   |
+| **withPadding** | `boolean`   | `true` `false`         | Show padding in the body                                                                      | `false` or `card` in `paddingSizes` |
+
+<Spacer y={2} />
+
+#### Footer
+Api props for `Card.Body` element
+
+| Attribute          | Type                  | Accepted values                   | Description                            | Default                             |
+|--------------------|-----------------------|-----------------------------------|----------------------------------------|-------------------------------------|
+| **Component**      | `Component`           | React Component                   | Change the element base                | [Ripple](/docs/components/ripple)   |
+| **background**     | `ThemeColor` `string` | [ThemeColor](/docs/default-theme) | Change background color                | `border`                            |
+| **bottom**         | `number` `string`     | `Number` or `String`              | Bottom position for absolute variant   | -                                   |
+| **children**       | `ReactNode`           | `ReactNode`                       | Accessory as a child for the component | -                                   |
+| **isAbsolute**     | `boolean`             | `true` `false`                    | Position absolute for header           | `false`                             |
+| **left**           | `number` `string`     | `Number` or `String`              | Left position for absolute variant     | `0`                                 |
+| **right**          | `number` `string`     | `Number` or `String`              | Right position for absolute variant    | `0`                                 |
+| **style**          | `object`              | `StyleProp<ViewStyle>`            | Style for the wrapper card             | -                                   |
+| **withBackground** | `boolean`             | `true` `false`                    | Show background in the header          | `false` or `card` in `paddingSizes` |
+
+<Spacer y={2} />
+
+#### Divider
+Api props for `Card.Divider` element
+
+| Attribute          | Type                  | Accepted values                   | Description                            | Default                             |
+|--------------------|-----------------------|-----------------------------------|----------------------------------------|-------------------------------------|
+| **background**     | `ThemeColor` `string` | [ThemeColor](/docs/default-theme) | Change background color                | `border`                            |
+| **height**         | `number` `string`     | `Number` or `String`              | Height for line divider                | `1`                                 |
+| **style**          | `object`              | `StyleProp<ViewStyle>`            | Style for the wrapper card             | -                                   |
+
+<Spacer y={2} />
+
+<BaseProperties />
