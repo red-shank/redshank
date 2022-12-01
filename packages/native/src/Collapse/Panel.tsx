@@ -212,14 +212,14 @@ const Panel: React.FC<CollapseItemProps> = (props) => {
         style={StyleSheet.flatten([
           styles.content,
           {
-            display: !isInternalOpen ? 'none' : 'flex',
+            display: isInternalOpen || isOpen ? 'flex' : 'none',
             paddingTop: paddingSizes.card / 2,
             paddingBottom: paddingSizes.card,
             paddingHorizontal: paddingSizes.card,
             backgroundColor: colors[contentColor] || contentColor,
           },
           isLastElement &&
-            isOpen && {
+            (isInternalOpen || isOpen) && {
               borderBottomLeftRadius: borderRadius.card,
               borderBottomRightRadius: borderRadius.card,
             },
