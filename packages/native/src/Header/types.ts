@@ -11,6 +11,7 @@ export interface HeaderProps {
   leftIcon?: ReactNode;
   rightIcon?: ReactNode;
   titlePosition?: 'left' | 'center' | 'right';
+  titleOnScrollPosition?: 'left' | 'center' | 'right';
   titleStyle?: StyleProp<TextStyle>;
   headerStyle?: StyleProp<ViewStyle>;
 }

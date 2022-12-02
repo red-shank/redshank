@@ -1,14 +1,8 @@
 import React, { Children, FC, useEffect, useRef } from 'react';
-import { View, StyleSheet, ScrollView, ScrollViewProps } from 'react-native';
+import { View, StyleSheet, ScrollView } from 'react-native';
 
+import { CarouselProps } from './types';
 import useTheme from '../Context/theme/useTheme';
-
-export interface CarouselProps {
-  children?: JSX.Element[] | JSX.Element;
-  showScroll?: boolean;
-  widthChild?: number | string;
-  scrollViewProps?: Omit<ScrollViewProps, 'children'>;
-}
 
 export const Carousel: FC<CarouselProps> = ({
   widthChild,

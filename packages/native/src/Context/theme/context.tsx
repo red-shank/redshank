@@ -5,6 +5,7 @@ import {
   Dimensions,
   StyleSheet,
   View,
+  useWindowDimensions,
 } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
@@ -21,7 +22,7 @@ import {
 } from './defaultValues';
 import type { FontTypes, ThemeProps } from './types';
 
-const { width, height } = Dimensions.get('window');
+const dimensions = Dimensions.get('screen');
 
 const colorScheme = Appearance.getColorScheme();
 
@@ -56,8 +57,8 @@ export interface ThemeContextProps extends ThemeProps {
 
 export const ThemeContext = createContext<ThemeContextProps>({
   ...initialValue,
-  width,
-  height,
+  width: dimensions.width,
+  height: dimensions.height,
   scrollOffsetY: new Animated.Value(0),
   onScroll() {},
 });
@@ -71,6 +72,7 @@ export interface ThemeProviderProps {
 export const ThemeProvider: React.FC<ThemeProviderProps> = React.memo(
   ({ children, theme, disableDarkMode = false }) => {
     const _colorSchema = useColorScheme();
+    const { width, height } = useWindowDimensions();
     let scrollOffsetY = React.useRef(new Animated.Value(0)).current;
 
     const [internalTheme, setInternalTheme] = useState<ThemeProps>(
@@ -159,7 +161,15 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = React.memo(
         scrollOffsetY,
         onScroll,
       };
-    }, [internalTheme, isDark, setTheme, scrollOffsetY, onScroll]);
+    }, [
+      internalTheme,
+      setTheme,
+      width,
+      height,
+      isDark,
+      scrollOffsetY,
+      onScroll,
+    ]);
 
     return (
       <ThemeContext.Provider value={output}>

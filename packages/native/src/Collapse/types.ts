@@ -8,39 +8,39 @@ export type IconPosition = 'right' | 'left';
 export type CollapseProps = {
   accordion?: boolean;
   borderColor?: ColorType;
-  headerColor?: ColorType;
-  contentColor?: ColorType;
-  showArrow?: boolean;
   borderless?: boolean;
   children?: ReactNode;
+  contentColor?: ColorType;
   defaultOpenKeys?: KeyType[];
-  openKeys?: KeyType[];
-  style?: StyleProp<ViewStyle>;
+  headerColor?: ColorType;
   icon?: ReactNode;
   iconPosition?: IconPosition;
   onChange?: (key: KeyType) => void;
+  openKeys?: KeyType[];
+  showArrow?: boolean;
+  style?: StyleProp<ViewStyle>;
 };
 
 export interface CollapseContextProps {
-  openKeys: KeyType[];
-  icon: ReactNode;
   borderColor: ColorType;
-  headerColor: ColorType;
+  borderless?: boolean;
   contentColor: ColorType;
+  headerColor: ColorType;
+  icon: ReactNode;
   iconPosition: IconPosition;
   onChange?: (key: KeyType) => void;
+  openKeys: KeyType[];
   showArrow?: boolean;
-  borderless?: boolean;
 }
 
 export type CollapseItemProps = {
-  id?: KeyType;
-  title: ReactNode;
-  disabled?: boolean;
   children?: ReactNode;
-  subTitle?: ReactNode;
-  styleHeader?: StyleProp<ViewStyle>;
+  disabled?: boolean;
+  id?: KeyType;
   styleContent?: StyleProp<ViewStyle>;
+  styleHeader?: StyleProp<ViewStyle>;
+  subTitle?: ReactNode;
+  title: ReactNode;
 };
 
 export type CollapseInternalItemProps = CollapseItemProps & {

@@ -3,41 +3,21 @@ import {
   Animated,
   Image as ImageNative,
   ImageLoadEventData,
-  ImageProps as RNImageProps,
   NativeSyntheticEvent,
-  StyleProp,
   StyleSheet,
   View,
-  Pressable,
-  ViewStyle,
   Text,
 } from 'react-native';
-import { ImageSrcType } from '../@types/image';
-
-export type ImageProps = Omit<RNImageProps, 'source'> & {
-  Component?: typeof React.Component;
-  onPress?(): void;
-  onLongPress?(): void;
-  source: ImageSrcType;
-  height?: number | string;
-  width?: number | string;
-  ImageComponent?: typeof React.Component;
-  PlaceholderContent?: React.ReactElement;
-  containerStyle?: StyleProp<ViewStyle>;
-  childrenContainerStyle?: StyleProp<ViewStyle>;
-  placeholderStyle?: StyleProp<ViewStyle>;
-  transition?: boolean;
-  children?: React.ReactNode;
-  transitionDuration?: number;
-};
+import { Ripple } from '../Ripple';
+import { ImageProps } from './types';
 
 export const Image: React.FC<ImageProps> = ({
   onPress,
   onLongPress,
   source,
-  Component = onPress || onLongPress ? Pressable : View,
+  Component = onPress || onLongPress ? Ripple : View,
   placeholderStyle,
-  PlaceholderContent,
+  placeholderContent,
   containerStyle,
   childrenContainerStyle = null,
   style = {},
@@ -109,9 +89,9 @@ export const Image: React.FC<ImageProps> = ({
             placeholderStyle,
           ])}
         >
-          {React.isValidElement(PlaceholderContent)
-            ? PlaceholderContent
-            : PlaceholderContent && <Text>{PlaceholderContent}</Text>}
+          {React.isValidElement(placeholderContent)
+            ? placeholderContent
+            : placeholderContent && <Text>{placeholderContent}</Text>}
         </View>
       </Animated.View>
       {/* Children for Image */}

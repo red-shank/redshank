@@ -1,12 +1,31 @@
 ---
 title: 'Carousel'
-description: 'Carousel component.'
+description: 'A carousel component. Scales with its container.'
 url: https://beauty-design.app/docs/components/carousel
 ---
 
 ```jsx
 import { Carousel } from 'react-native-beauty-design';
 ```
-# Building, coming soon!
+### Examples
+
+<Playground
+  id="default"
+  title="Default"
+  description="Default carousel view."
+  code={carouselContent.defaultCode}
+/>
 
 <Spacer y={2} />
+
+### APIs
+
+#### Carousel props
+Api props extends from [ScrollView](https://reactnative.dev/docs/scrollview)
+
+| Attribute           | Type                       | Accepted values                     | Description                                                                                   | Default |
+|---------------------|----------------------------|-------------------------------------|-----------------------------------------------------------------------------------------------|---------|
+| **children**        | `JSXElemnt` `JSXElement[]` | `React Element`                     | Accessory as a child for the component, we suggest passing Header, Content or Footer elements | -       |
+| **scrollViewProps** | `ScrollViewProps`          | `Omit<ScrollViewProps, 'children'>` | Extra accessory for ScrollView element                                                        | -       |
+| **showScroll**      | `boolean`                  | `true` `false`                      | Show or Hidden scroll bars                                                                    | `false` |
+| **widthChild**      | `boolean`                  | `true` `false`                      | Subtract 60px to the element total width                                                      | `false` |

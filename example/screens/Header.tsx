@@ -14,6 +14,7 @@ const HeaderScreen = ({ navigation }) => {
         title="Hola"
         heightDynamic={25}
         titleOnScroll="Header"
+        titlePosition="left"
         backgroundSticky={navigationTheme.colors.card}
         leftIcon={<DrawerToggleButton tintColor={colors.text} />}
       />

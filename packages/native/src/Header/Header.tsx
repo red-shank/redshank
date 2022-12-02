@@ -19,6 +19,7 @@ export const Header: React.FC<HeaderProps> = ({
   titleStyle,
   headerStyle,
   titlePosition = defaultTitlePosition,
+  titleOnScrollPosition = 'center',
   background = 'background',
   backgroundSticky = background,
 }) => {
@@ -132,7 +133,7 @@ export const Header: React.FC<HeaderProps> = ({
                 {
                   opacity: fadeInOpacity,
                   color: colors.text,
-                  textAlign: titlePosition,
+                  textAlign: titleOnScrollPosition,
                 },
                 titleStyle,
               ]}

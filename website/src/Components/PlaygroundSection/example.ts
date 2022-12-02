@@ -16,9 +16,10 @@ const MyComponent = () => {
   const { onScroll, borderRadius } = useTheme();
 
   return (
-    <>
+    <View style={styles.content}>
       <Header
         heightDynamic={25}
+        titlePosition="left"
         title="Beauty Design"
         titleOnScroll="Welcome"
         backgroundSticky="green100"
@@ -54,7 +55,7 @@ const MyComponent = () => {
 
         <View style={{ height: 10000 }} />
       </ScrollView>
-    </>
+    </View>
   )
 }
 
@@ -81,6 +82,10 @@ const ExpandContent = () => (
 );
 
 const styles = StyleSheet.create({
+  content: {
+    flex: 1,
+    position: 'relative',
+  },
   wrapperScroll: {
     paddingHorizontal: 10,
   },
