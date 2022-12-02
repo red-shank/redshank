@@ -1,5 +1,7 @@
 import { Image as ImageNative } from 'react-native';
-import { Image, ImageProps } from './Image';
+import { Image } from './Image';
+
+export * from './types';
 
 const DefaultImage = Object.assign(Image, {
   getSize: ImageNative.getSize,
@@ -11,4 +13,3 @@ const DefaultImage = Object.assign(Image, {
 });
 
 export { DefaultImage as Image };
-export type { ImageProps };

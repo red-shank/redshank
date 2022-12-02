@@ -87,6 +87,8 @@ export const Avatar: React.FC<AvatarProps> = ({
         <Image
           source={sourceImage}
           resizeMode="cover"
+          width={size}
+          height={size}
           {...imageProps}
           style={StyleSheet.flatten([
             { width: size, height: size },
