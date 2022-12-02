@@ -6,6 +6,7 @@ import { colorsLight } from '../../temp/defaultValues'
 import * as avatarContent from './avatar';
 import * as badgeContent from './badge';
 import * as cardContent from './card';
+import * as imageContent from './image';
 import * as carouselContent from './carrousel';
 import * as collapseContent from './collapse';
 
@@ -17,6 +18,7 @@ export default {
   avatarContent,
   badgeContent,
   cardContent,
+  imageContent,
   carouselContent,
   collapseContent,
   themeColors: colorsLight,
