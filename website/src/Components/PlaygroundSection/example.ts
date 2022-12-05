@@ -22,7 +22,7 @@ const MyComponent = () => {
         titlePosition="left"
         title="Beauty Design"
         titleOnScroll="Welcome"
-        backgroundSticky="green100"
+        backgroundSticky="primary"
       />
 
       <ScrollView
@@ -31,7 +31,7 @@ const MyComponent = () => {
         contentContainerStyle={styles.wrapperScroll}
       >
         <View style={styles.container}>
-          <Title level={2}>Default Header</Title>
+          <Title level={2}>Demo</Title>
         </View>
         <Card style={styles.card} expandContent={<ExpandContent />}>
           <Card.Header isAbsolute>
@@ -84,6 +84,7 @@ const ExpandContent = () => (
 const styles = StyleSheet.create({
   content: {
     flex: 1,
+    overflow: 'hidden',
     position: 'relative',
   },
   wrapperScroll: {

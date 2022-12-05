@@ -11,6 +11,8 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { fonts, fontSizes, titleFontSizes } from './fonts';
 import useColorScheme from '../../hooks/useColorScheme';
+import { NavigationProvider } from '../navigation/context';
+import { NavigationContextProps } from '../navigation/types';
 import {
   colorsDark,
   colorsLight,
@@ -67,10 +69,11 @@ export interface ThemeProviderProps {
   children: React.ReactNode;
   disableDarkMode?: boolean;
   theme?: OptionalThemeProps;
+  navigationSettings?: Omit<NavigationContextProps, 'setValues'>;
 }
 
 export const ThemeProvider: React.FC<ThemeProviderProps> = React.memo(
-  ({ children, theme, disableDarkMode = false }) => {
+  ({ children, theme, navigationSettings, disableDarkMode = false }) => {
     const _colorSchema = useColorScheme();
     const { width, height } = useWindowDimensions();
     let scrollOffsetY = React.useRef(new Animated.Value(0)).current;
@@ -182,7 +185,9 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = React.memo(
               },
             ])}
           >
-            {children}
+            <NavigationProvider defaultValue={navigationSettings}>
+              {children}
+            </NavigationProvider>
           </View>
         </SafeAreaProvider>
       </ThemeContext.Provider>

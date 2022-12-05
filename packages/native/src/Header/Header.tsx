@@ -1,5 +1,4 @@
 import React from 'react';
-import { scale } from 'react-native-size-matters';
 import { Animated, Platform, StyleSheet, View, ViewStyle } from 'react-native';
 
 import useTheme from '../Context/theme/useTheme';
@@ -13,11 +12,12 @@ const defaultTitlePosition = Platform.select<'center' | 'left'>({
 export const Header: React.FC<HeaderProps> = ({
   title,
   titleOnScroll,
-  heightDynamic,
   leftIcon,
   rightIcon,
   titleStyle,
-  headerStyle,
+  style,
+  statusBarHeight,
+  heightDynamic = 0,
   titlePosition = defaultTitlePosition,
   titleOnScrollPosition = 'center',
   background = 'background',
@@ -28,11 +28,12 @@ export const Header: React.FC<HeaderProps> = ({
   const [opacityNumber, setOpacityNumber] = React.useState(0);
 
   const defaultHeight = useHeaderHeight();
+  const enableAnimation = React.useMemo(() => {
+    return heightDynamic > 0;
+  }, [heightDynamic]);
 
-  const { height = defaultHeight, ...restStyle } = StyleSheet.flatten([
-    defaultHeight,
-    headerStyle,
-  ]) as ViewStyle;
+  const { height = statusBarHeight || defaultHeight, ...restStyle } =
+    StyleSheet.flatten([defaultHeight, style]) as ViewStyle;
 
   const fadeInAnimation = React.useCallback(
     (start: number, end: number) => {
@@ -58,18 +59,22 @@ export const Header: React.FC<HeaderProps> = ({
     extrapolate: 'clamp',
   });
 
-  dynamicHeightAnimation?.addListener(({ value }) => {
-    const TOLERANCE_HEIGHT = 2;
-    setOpacityNumber(value <= TOLERANCE_HEIGHT ? 1 : 0);
-  });
+  if (enableAnimation) {
+    dynamicHeightAnimation?.addListener(({ value }) => {
+      const TOLERANCE_HEIGHT = 2;
+      setOpacityNumber(value <= TOLERANCE_HEIGHT ? 1 : 0);
+    });
+  }
 
   React.useEffect(() => {
-    if (opacityNumber > 0) {
+    if (!enableAnimation) {
+      fadeInAnimation(0, 1);
+    } else if (opacityNumber > 0) {
       fadeInAnimation(0, 1);
     } else {
       fadeInAnimation(1, 0);
     }
-  }, [fadeInAnimation, opacityNumber]);
+  }, [enableAnimation, fadeInAnimation, opacityNumber]);
 
   const backgroundColor = React.useMemo(() => {
     if (opacityNumber === 1) {
@@ -77,6 +82,13 @@ export const Header: React.FC<HeaderProps> = ({
     }
     return colors[background] || background;
   }, [background, backgroundSticky, opacityNumber, colors]);
+
+  const showIconSpace = React.useMemo(() => {
+    if (opacityNumber !== 0) {
+      return titleOnScrollPosition === 'center';
+    }
+    return titlePosition === 'center';
+  }, [opacityNumber, titleOnScrollPosition, titlePosition]);
 
   return (
     <>
@@ -94,14 +106,16 @@ export const Header: React.FC<HeaderProps> = ({
         ])}
       >
         <View style={styles.content}>
-          <View
-            style={StyleSheet.flatten([
-              styles.icon,
-              rightIcon && !leftIcon && styles.hideIcon,
-            ])}
-          >
-            {leftIcon || rightIcon}
-          </View>
+          {(leftIcon || showIconSpace) && (
+            <View
+              style={StyleSheet.flatten([
+                styles.icon,
+                !leftIcon && styles.hideIcon,
+              ])}
+            >
+              {leftIcon || rightIcon}
+            </View>
+          )}
 
           {typeof title === 'string' && opacityNumber === 0 ? (
             <Animated.Text
@@ -144,14 +158,16 @@ export const Header: React.FC<HeaderProps> = ({
             titleOnScroll
           ) : null}
 
-          <View
-            style={StyleSheet.flatten([
-              styles.icon,
-              !rightIcon && leftIcon && styles.hideIcon,
-            ])}
-          >
-            {leftIcon || rightIcon}
-          </View>
+          {(rightIcon || showIconSpace) && (
+            <View
+              style={StyleSheet.flatten([
+                styles.icon,
+                !rightIcon && styles.hideIcon,
+              ])}
+            >
+              {rightIcon || leftIcon}
+            </View>
+          )}
         </View>
       </Animated.View>
 
@@ -174,7 +190,7 @@ const styles = StyleSheet.create({
   icon: Platform.select({
     ios: {},
     default: {
-      marginBottom: scale(5),
+      marginBottom: 5,
     },
   }),
   hideIcon: {
@@ -192,7 +208,7 @@ const styles = StyleSheet.create({
   content: {
     flex: 1,
     flexDirection: 'row',
-    paddingBottom: scale(5),
+    paddingBottom: 5,
     justifyContent: 'space-between',
     alignItems: 'flex-end',
   },
@@ -201,27 +217,27 @@ const styles = StyleSheet.create({
   },
   defaultTitle: {
     flex: 1,
-    paddingHorizontal: scale(16),
+    paddingHorizontal: 16,
   },
   title: Platform.select({
     ios: {
       fontSize: 17,
       textAlign: 'center',
       fontWeight: '600',
-      marginBottom: scale(5),
+      marginBottom: 5,
     },
     android: {
       fontSize: 20,
       textAlign: 'left',
       fontFamily: 'sans-serif-medium',
       fontWeight: 'normal',
-      marginBottom: scale(7),
+      marginBottom: 7,
     },
     default: {
       fontSize: 18,
       textAlign: 'left',
       fontWeight: '500',
-      marginBottom: scale(7),
+      marginBottom: 7,
     },
   }),
 });
