@@ -84,7 +84,10 @@ const ExpandContent = () => (
 const styles = StyleSheet.create({
   content: {
     flex: 1,
+<<<<<<< HEAD
     overflow: 'hidden',
+=======
+>>>>>>> master
     position: 'relative',
   },
   wrapperScroll: {

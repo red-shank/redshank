@@ -25,6 +25,9 @@
 - Added Image documentation page.
 
 ### Package Native
+- Added Carousel documentation page.
+- Added Collapse documentation page.
+- Added Image documentation page.
 - Changed width context from windows to screen.
 - Fixed openKeys prop in collapse.
 
