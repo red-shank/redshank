@@ -9,6 +9,7 @@ import * as cardContent from './card';
 import * as imageContent from './image';
 import * as carouselContent from './carrousel';
 import * as collapseContent from './collapse';
+import * as headerContent from './header';
 
 export default {
   iconContent,
@@ -21,5 +22,6 @@ export default {
   imageContent,
   carouselContent,
   collapseContent,
+  headerContent,
   themeColors: colorsLight,
 };

@@ -157,14 +157,19 @@ const MDXComponents = {
   thead: Thead,
   tr: Trow,
   td: Tcol,
-  Playground: (props: { title: string; description: string; code: string }) => {
+  Playground: (props: {
+    title: string;
+    description: string;
+    code: string;
+    mode?: 'mobile' | 'all';
+  }) => {
     return (
       <div>
         <LinkedHeading as="h4" linked>
           {props.title}
         </LinkedHeading>
         <Text>{props.description}</Text>
-        <Playground code={props.code} />
+        <Playground code={props.code} mode={props?.mode} />
       </div>
     );
   },
@@ -179,10 +184,12 @@ const MDXComponents = {
   onPressOut?: ((event: GestureResponderEvent) => void) | undefined;
 };`;
 
-    return <>
-      <LinkedHeading as="h4">Base Properties</LinkedHeading>
-      <CodeBlock language="typescript" code={codeProperties} />
-    </>
+    return (
+      <>
+        <LinkedHeading as="h4">Base Properties</LinkedHeading>
+        <CodeBlock language="typescript" code={codeProperties} />
+      </>
+    );
   },
   // CarbonAd,
   code: CodeBlockSnippet,

@@ -6,13 +6,30 @@ import { LIB_VERSION } from '@/config';
 
 type SnackProps = {
   code?: string;
+  mode?: 'mobile' | 'all';
   snackId?: string;
   snackName?: string;
 };
 
 const dependencies = `@expo/vector-icons@^13.0.0,react-native-beauty-design@${LIB_VERSION},react-native-safe-area-context@4.3.1`;
 
-const Playground = ({ code, snackId, snackName = 'Beauty Design' }: SnackProps) => {
+const modes = {
+  mobile: [
+    'data-snack-platform="mydevice"',
+    'data-snack-supportedplatforms="mydevice,ios,android"'
+  ],
+  all: [
+    'data-snack-platform="web"',
+    'data-snack-supportedplatforms="mydevice,ios,android,web"'
+  ]
+};
+
+const Playground = ({
+  code,
+  mode = 'all',
+  snackId,
+  snackName = 'Beauty Design'
+}: SnackProps) => {
   const snackRef = useRef<any>(null);
 
   const updateIframeContent = useCallback(() => {
@@ -33,9 +50,9 @@ const Playground = ({ code, snackId, snackName = 'Beauty Design' }: SnackProps) 
       propsSnack = [`data-snack-id="${snackId}"`];
     }
 
-    const expoScript = `<div ${propsSnack.join(
+    const expoScript = `<div ${propsSnack.join(' ')} ${modes[mode].join(
       ' '
-    )} data-snack-platform="web" data-snack-preview="true" data-snack-loading="lazy" data-snack-theme="dark" style="overflow:hidden;background:transparent;border:none;height:100%;width:100%"></div><script async src="https://snack.expo.io/embed.js"></script>`;
+    )} data-snack-preview="true" data-snack-loading="lazy" data-snack-theme="dark" style="overflow:hidden;background:transparent;border:none;height:100%;width:100%"></div><script async src="https://snack.expo.io/embed.js"></script>`;
     const iframeHtml = `<html><head><base target="_parent"></head><body style="margin: 0; padding: 0; overflow: hidden;">${expoScript}</body></html>`;
 
     doc.open();
