@@ -33,6 +33,7 @@ const styleContent = StyleSheet.create({
     paddingBottom: 10,
   },
 })
+
 `, ['ScrollView']);
 
 export const onScroll =
