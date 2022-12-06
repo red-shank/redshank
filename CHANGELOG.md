@@ -1,3 +1,10 @@
+## 1.0.0-beta.1.4.10
+
+`2022-12-06`
+
+### Package Native
+- Fixed theme.theme in context.
+
 ## 1.0.0-beta.1.4.9
 
 `2022-12-02`

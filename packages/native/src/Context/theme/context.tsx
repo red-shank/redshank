@@ -82,7 +82,11 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = React.memo(
       JSON.parse(JSON.stringify(initialValue))
     );
 
-    const isDark = disableDarkMode ? false : _colorSchema === 'dark';
+    const isDark = disableDarkMode
+      ? false
+      : theme?.theme
+      ? theme?.theme === 'dark'
+      : _colorSchema === 'dark';
 
     const onScroll = React.useMemo(
       () =>

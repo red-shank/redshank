@@ -12,9 +12,9 @@ export default function App() {
       />
       <ScrollView
         scrollEventThrottle={16}
-        contentContainerStyle={styles.wrapperScroll}
+        contentContainerStyle={styleContent.wrapperScroll}
       >
-        <View style={styles.container}>
+        <View style={styleContent.container}>
           <Title level={2}>Default Header</Title>
         </View>
 
@@ -23,6 +23,16 @@ export default function App() {
     </View>
   );
 }
+
+const styleContent = StyleSheet.create({
+   wrapperScroll: {
+    paddingHorizontal: 10,
+  },
+  container: {
+    paddingTop: 70,
+    paddingBottom: 10,
+  },
+})
 `, ['ScrollView']);
 
 export const onScroll =
@@ -32,7 +42,7 @@ function RenderApp() {
   const { onScroll } = useTheme();
 
   return (
-    <View style={styles.center}>
+    <View>
       <Header
         heightDynamic={25}
         title="Header"
@@ -41,9 +51,9 @@ function RenderApp() {
       <ScrollView
         onScroll={onScroll}
         scrollEventThrottle={16}
-        contentContainerStyle={styles.wrapperScroll}
+        contentContainerStyle={styleContent.wrapperScroll}
       >
-        <View style={styles.container}>
+        <View style={styleContent.container}>
           <Title level={2}>Default Header</Title>
         </View>
 
@@ -61,6 +71,15 @@ export default function App() {
   );
 }
 
+const styleContent = StyleSheet.create({
+   wrapperScroll: {
+    paddingHorizontal: 10,
+  },
+  container: {
+    paddingTop: 70,
+    paddingBottom: 10,
+  },
+})
 `, ['ScrollView']);
 
 
@@ -135,7 +154,7 @@ function RenderApp() {
   };
 
   return (
-    <View style={styles.center}>
+    <View>
       <Header
         background={header?.background}
         backgroundSticky={
@@ -214,6 +233,9 @@ const styleScreen = StyleSheet.create({
   container: {
     paddingTop: 70,
     paddingBottom: 10,
+  },
+  wrapperScroll: {
+    paddingHorizontal: 10,
   },
   marginTop: {
     marginTop: 0,
