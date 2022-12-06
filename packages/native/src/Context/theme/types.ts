@@ -84,19 +84,19 @@ interface SizingType {
 }
 
 export interface ThemeProps {
-  theme: 'light' | 'dark';
-  isDark: boolean;
-  fonts: FontTypes;
-  fontSizes: FontSizesProps;
-  titleFontSizes: TitleFontSizesProps;
-  zIndices: ZIndexType;
-  borderWidth: number;
-  borderRadius: SizingType;
-  paddingSizes: SizingType;
-  marginSizes: SizingType;
   activeOpacity: number;
+  borderRadius: SizingType;
+  borderWidth: number;
   colors: {
     [key in ColorType]: string;
   };
+  fontSizes: FontSizesProps;
+  fonts: FontTypes;
+  isDark: boolean;
+  marginSizes: SizingType;
+  paddingSizes: SizingType;
   sizes: SizeElements;
+  theme: 'light' | 'dark';
+  titleFontSizes: TitleFontSizesProps;
+  zIndices: ZIndexType;
 }
