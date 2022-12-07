@@ -1,22 +1,8 @@
 import React, { Children } from 'react';
-import { StyleSheet, View, ViewStyle } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 import { justifies } from '../utils/justifies';
-import {
-  JustifyType,
-  GutterType,
-  OrientationType,
-  AlignType,
-} from '../@types/utilities';
-
-export interface SpaceProps {
-  children?: React.ReactNode;
-  justify?: JustifyType;
-  align?: AlignType;
-  orientation?: OrientationType;
-  gutter?: GutterType;
-  style?: ViewStyle;
-}
+import { SpaceProps, SpaceItemProps } from './types';
 
 export const Space: React.FC<SpaceProps> = ({
   children,
@@ -53,12 +39,6 @@ export const Space: React.FC<SpaceProps> = ({
     </View>
   );
 };
-
-export interface SpaceItemProps {
-  children?: React.ReactNode;
-  orientation: OrientationType;
-  gutter: GutterType;
-}
 
 const SpaceItem: React.FC<SpaceItemProps> = ({
   children,

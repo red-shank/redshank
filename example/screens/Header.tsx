@@ -11,10 +11,16 @@ import {
 import { useTheme as useNavigationTheme } from '@react-navigation/native';
 import DrawerToggleButton from '@react-navigation/drawer/src/views/DrawerToggleButton';
 
+const heightDynamic = Platform.select({
+  ios: 50,
+  android: 70,
+  default: 70,
+});
+
 const defaultValues = (color) =>
   ({
     title: 'Hello',
-    heightDynamic: 25,
+    heightDynamic,
     titleOnScroll: 'Header',
     titlePosition: 'left',
     leftIcon: <DrawerToggleButton tintColor={color} />,
@@ -41,7 +47,7 @@ const HeaderScreen = () => {
     setValues({
       header: {
         title: 'Right header',
-        heightDynamic: 25,
+        heightDynamic,
         titleOnScroll: 'Left scroll',
         titlePosition: 'right',
         titleOnScrollPosition: 'left',
@@ -51,11 +57,6 @@ const HeaderScreen = () => {
   };
 
   const onWithCustomBackground = () => {
-    const heightDynamic = Platform.select({
-      ios: 50,
-      android: 70,
-    });
-
     setValues({
       header: {
         title: 'Custom',
