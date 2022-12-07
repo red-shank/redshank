@@ -5,7 +5,7 @@ export const defaultCode =
 
 export default function App() {
   return (
-    <View style={styles.center}>
+    <View>
       <Header
         title="Hello Header!"
         heightDynamic={25}
@@ -66,7 +66,11 @@ function RenderApp() {
 
 export default function App() {
   return (
-    <ThemeProvider>
+    <ThemeProvider
+      theme={{
+        theme: 'dark'
+      }}
+    >
       <RenderApp />
     </ThemeProvider>
   );
@@ -94,27 +98,33 @@ export const usingContext =
   useTheme,
   useNavigation,
 } from "react-native-beauty-design";
+import React from 'react';
+
+const heightDynamic = Platform.select({
+  ios: 50,
+  android: 50,
+});
 
 function RenderApp() {
   const { onScroll, colors } = useTheme();
   const { header, setValues } = useNavigation();
 
-  const onDefaultValues = () => {
+  const onDefaultValues = React.useCallback(() => {
     setValues({
       header: {
+        heightDynamic,
         title: "Header",
-        heightDynamic: 25,
         titleOnScroll: "Beauty Design",
         titlePosition: "left",
       },
     });
-  };
+  }, []);
 
   const onWithRightIcon = () => {
     setValues({
       header: {
+        heightDynamic,
         title: "Right header",
-        heightDynamic: 25,
         titleOnScroll: "Left scroll",
         titlePosition: "right",
         titleOnScrollPosition: "left",
@@ -130,15 +140,10 @@ function RenderApp() {
   };
 
   const onWithCustomBackground = () => {
-    const heightDynamic = Platform.select({
-      ios: 50,
-      android: 70,
-    });
-
     setValues({
       header: {
         title: "Custom",
-        heightDynamic: heightDynamic,
+        heightDynamic,
         titleOnScroll: "Header custom",
         titlePosition: "center",
         backgroundSticky: colors.yellow500,
@@ -153,6 +158,10 @@ function RenderApp() {
       },
     });
   };
+
+  React.useEffect(() => {
+    onDefaultValues();
+  }, [onDefaultValues])
 
   return (
     <View>
@@ -221,6 +230,9 @@ function RenderApp() {
 export default function App() {
   return (
     <ThemeProvider
+      theme={{
+        theme: 'dark'
+      }}
       navigationSettings={{
         title: "Header",
       }}
@@ -251,4 +263,4 @@ const styleScreen = StyleSheet.create({
   },
 });
 
-`, ['ScrollView']);
+`, ['ScrollView', 'Platform']);

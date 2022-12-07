@@ -1,3 +1,5 @@
+import { REPOSITORY_URL } from '@/config';
+
 const ROUTES = {
   HOME: {
     name: 'Home',
@@ -37,7 +39,7 @@ const ROUTES = {
   },
   GITHUB: {
     name: 'Github',
-    path: 'https://github.com/rivaslive/react-native-beauty-design'
+    path: REPOSITORY_URL
   },
   DISCORD: {
     name: 'Discord',

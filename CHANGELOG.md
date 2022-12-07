@@ -1,3 +1,17 @@
+## 1.0.0-beta.1.4.11
+
+`2022-12-06`
+
+### Website
+- Fixed dynamic height in example.
+- Added Space documentation page.
+
+### Package Native
+- Fixed theme.theme in context.
+
+### Example
+- Fixed dynamic height in example.
+
 ## 1.0.0-beta.1.4.10
 
 `2022-12-06`

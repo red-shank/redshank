@@ -10,6 +10,7 @@ import * as imageContent from './image';
 import * as carouselContent from './carrousel';
 import * as collapseContent from './collapse';
 import * as headerContent from './header';
+import * as space from './space';
 
 export default {
   iconContent,
@@ -23,5 +24,6 @@ export default {
   carouselContent,
   collapseContent,
   headerContent,
+  space,
   themeColors: colorsLight,
 };
