@@ -11,6 +11,7 @@ import * as carouselContent from './carrousel';
 import * as collapseContent from './collapse';
 import * as headerContent from './header';
 import * as space from './space';
+import * as checkbox from './checkbox';
 
 export default {
   iconContent,
@@ -25,5 +26,6 @@ export default {
   collapseContent,
   headerContent,
   space,
+  checkbox,
   themeColors: colorsLight,
 };

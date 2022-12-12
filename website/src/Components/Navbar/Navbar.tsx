@@ -99,7 +99,16 @@ const Navbar = ({ isActive, contentFit, ...props }: NavbarProps) => {
       css={{
         background: 'transparent'
       }}
-      containerCss={{ maxWidth: '100%', borderRadius: '$base' }}
+      containerCss={{
+        maxWidth: '100%',
+        borderRadius: '$base',
+        ...(contentFit
+          ? {
+              marginRight: '0 !important',
+              marginLeft: '0 !important'
+            }
+          : {})
+      }}
       {...props}
     >
       <Link href={ROUTES.HOME.path} passHref>

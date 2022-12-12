@@ -19,7 +19,7 @@ export const FormItem = ({
   ...rest
 }: FormItemProps) => {
   const [textError, setTextError] = React.useState<string>();
-  const { errors } = useFormProvider();
+  const { errors, marginBottom } = useFormProvider();
 
   React.useEffect(() => {
     const find = errors.find((f) => f.name === name);
@@ -31,16 +31,15 @@ export const FormItem = ({
   }, [errors, name]);
 
   return (
-    <View>
+    <View style={{ marginBottom }}>
       {label && (
-        <Text style={{ marginBottom: 12 }}>
+        <Text style={{ marginBottom: 12, marginTop: 0, lineHeight: 0 }}>
           <Text color="error">{required ? '* ' : ''}</Text>
           {label}
         </Text>
       )}
       <Field name={name} {...rest}>
-        {/*// @ts-ignore*/}
-        {React.cloneElement(children, {
+        {React.cloneElement(children as JSX.Element, {
           error: !!textError,
           textError,
         })}

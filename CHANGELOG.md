@@ -1,3 +1,15 @@
+## 1.0.0-beta.1.4.12
+
+`2022-12-12`
+
+### Website
+- Added checkbox documentation.
+
+### Package Native
+- Change TouchOpacity for Ripple.
+- Fixed useForm submit.
+- Added marginBottom to Form for bottom to elements fields.
+
 ## 1.0.0-beta.1.4.11
 
 `2022-12-06`

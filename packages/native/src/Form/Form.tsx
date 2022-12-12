@@ -13,6 +13,7 @@ interface GenericValue {
 
 export interface FormProps extends Omit<FormFieldProps, 'children'> {
   children?: React.ReactNode;
+  marginBottom?: number;
 }
 
 interface ComponentExport {
@@ -62,10 +63,13 @@ const InternalFormInstance = ({
   );
 };
 
-const Form: FC<FormProps> & ComponentExport = (p) => {
+const Form: FC<FormProps> & ComponentExport = ({
+  marginBottom,
+  ...restProps
+}) => {
   return (
-    <FormProvider>
-      <InternalFormInstance {...p} />
+    <FormProvider marginBottom={marginBottom}>
+      <InternalFormInstance {...restProps} />
     </FormProvider>
   );
 };
@@ -74,7 +78,7 @@ function useForm<Values = any>(
   form?: FormInstance<Values>
 ): [FormInstance<Values>, () => void] {
   const [newForm] = useFormField<Values>(form);
-  return [newForm, form.submit];
+  return [newForm, newForm?.submit];
 }
 
 Form.useForm = useForm;
