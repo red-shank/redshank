@@ -1,30 +1,15 @@
 import React from 'react';
-import { Animated, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { Animated, StyleSheet, View } from 'react-native';
 
 import { Text } from '../Text';
+import { Ripple } from '../Ripple';
 import useTheme from '../Context/theme/useTheme';
-import { ColorType } from '../Context/theme/types';
-
-export type RadioType = 'circle' | 'square';
-export type SizeRadioType = 'small' | 'middle' | 'large';
-
-export interface CheckboxProps {
-  defaultValue?: boolean;
-  value?: boolean;
-  required?: boolean;
-  label: string;
-  type?: RadioType;
-  size?: SizeRadioType;
-  onChange?: (value: boolean) => void;
-  activeColor?: ColorType;
-  deactiveColor?: ColorType;
-  error?: boolean;
-}
+import type { CheckboxProps } from './types';
 
 export const Checkbox: React.FC<CheckboxProps> = ({
   onChange,
   label,
-  deactiveColor = 'accents2',
+  inactiveColor = 'accents2',
   activeColor = 'primary',
   value,
   required = false,
@@ -84,7 +69,7 @@ export const Checkbox: React.FC<CheckboxProps> = ({
   const borderR = type === 'circle' ? 1000 : borderRadius.sm;
 
   return (
-    <TouchableOpacity
+    <Ripple
       onPress={onInternalPress}
       style={StyleSheet.flatten([styles.container])}
     >
@@ -96,7 +81,7 @@ export const Checkbox: React.FC<CheckboxProps> = ({
               ? colors[activeColor] || activeColor
               : error
               ? colors.error
-              : colors[deactiveColor] || deactiveColor,
+              : colors[inactiveColor] || inactiveColor,
           },
           {
             borderRadius: borderR,
@@ -127,7 +112,7 @@ export const Checkbox: React.FC<CheckboxProps> = ({
         {required && <Text color="error">* </Text>}
         <Text color={error && !active ? 'error' : 'text'}>{label}</Text>
       </View>
-    </TouchableOpacity>
+    </Ripple>
   );
 };
 

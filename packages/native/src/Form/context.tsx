@@ -7,11 +7,13 @@ interface ErrorProps {
 
 interface ErrorContextProps {
   errors: ErrorProps[];
+  marginBottom: number;
   setErrors: (e: ErrorProps[]) => void;
   removeError: (name: string) => void;
 }
 
 const initialValues = {
+  marginBottom: 15,
   errors: [],
   setErrors: () => {},
   removeError: () => {},
@@ -20,7 +22,13 @@ const initialValues = {
 export const FormContext =
   React.createContext<ErrorContextProps>(initialValues);
 
-export const FormProvider = ({ children }: { children: React.ReactNode }) => {
+export const FormProvider = ({
+  children,
+  marginBottom = 15,
+}: {
+  children: React.ReactNode;
+  marginBottom?: number;
+}) => {
   const [errors, setErrors] = React.useState<ErrorProps[]>([]);
 
   const onChangeError = React.useCallback((e: ErrorProps[]) => {
@@ -36,6 +44,7 @@ export const FormProvider = ({ children }: { children: React.ReactNode }) => {
       value={{
         errors,
         removeError,
+        marginBottom,
         setErrors: onChangeError,
       }}
     >

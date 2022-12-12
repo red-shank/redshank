@@ -7,7 +7,7 @@ import {
   Button,
   InputScrollView,
   DatePicker,
-  Select,
+  // Select,
   Radio,
   Checkbox,
   Switch,
@@ -19,14 +19,6 @@ const { useForm } = Form;
 const FormScreen = () => {
   const [form, submit1] = useForm();
   const [form2, submit2] = useForm();
-
-  const onSubmit = () => {
-    form.submit();
-  };
-
-  const onSubmit2 = () => {
-    form2.submit();
-  };
 
   const onFinish = (values: any) => {
     console.log('Finish:', values);
@@ -44,7 +36,7 @@ const FormScreen = () => {
             label="Email"
             rules={[{ required: true, type: 'email' }]}
           >
-            <Input />
+            <Input placeholder="example@mail.com" />
           </Form.Item>
           <Form.Item
             required
@@ -52,9 +44,13 @@ const FormScreen = () => {
             label="Password"
             rules={[{ required: true }]}
           >
-            <Input type="password" />
+            <Input type="password" placeholder="********" />
           </Form.Item>
-          <Button onPress={submit1}>Login</Button>
+          <Form.Item>
+            <Button fullWidth onPress={submit1}>
+              Login
+            </Button>
+          </Form.Item>
         </Form>
       </View>
 
@@ -68,7 +64,7 @@ const FormScreen = () => {
             label="Name"
             rules={[{ required: true, message: 'Required field' }]}
           >
-            <Input />
+            <Input placeholder="First Name" />
           </Form.Item>
           <Form.Item
             required
@@ -76,7 +72,7 @@ const FormScreen = () => {
             label="Last Name"
             rules={[{ required: true, message: 'Required field' }]}
           >
-            <Input />
+            <Input placeholder="Last Name" />
           </Form.Item>
           <Form.Item
             required
@@ -86,7 +82,7 @@ const FormScreen = () => {
           >
             <DatePicker />
           </Form.Item>
-          <Form.Item
+          {/*<Form.Item
             required
             name="gender"
             label="Gender"
@@ -102,22 +98,22 @@ const FormScreen = () => {
                 },
               ]}
             />
-          </Form.Item>
+          </Form.Item>*/}
 
           <Form.Item
             required
             name="mayor_of_age"
-            label="You are over 18 years old"
+            label="You are over 18 years old?"
             rules={[{ required: true, message: 'Required field' }]}
           >
             <Radio.Group align="vertical">
-              <Radio value="si" label="Si" />
+              <Radio value="yes" label="Yes" />
               <Radio value="no" label="No" />
             </Radio.Group>
           </Form.Item>
 
-          <Form.Item name="description" label="Descripcion">
-            <TextArea />
+          <Form.Item name="description" label="Description">
+            <TextArea placeholder="Insert description here!" />
           </Form.Item>
 
           <Form.Item
@@ -155,7 +151,9 @@ const FormScreen = () => {
             />
           </Form.Item>
 
-          <Button onPress={submit2}>Send</Button>
+          <Button fullWidth onPress={submit2}>
+            Send
+          </Button>
         </Form>
       </View>
       <View style={{ height: 75 }} />

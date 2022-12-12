@@ -7,6 +7,85 @@ url: https://beauty-design.app/docs/components/checkbox
 ```jsx
 import { Checkbox } from 'react-native-beauty-design';
 ```
-# Building, coming soon!
+
+### When To Use
+
+* Used for selecting multiple values from several options.
+* If you use only one checkbox, it is the same as using Switch to toggle between two states. The difference is that Switch will trigger the state change directly, but Checkbox just marks the state as changed and this needs to be submitted.
+
+### Examples
+
+<Playground
+  id="default"
+  title="Default"
+  description="Default checkbox element."
+  code={checkbox.defaultCode}
+/>
 
 <Spacer y={2} />
+
+<Playground
+  id="sizes"
+  title="Sizes"
+  description="Change size to element."
+  code={checkbox.sizes}
+/>
+
+<Spacer y={2} />
+
+<Playground
+  id="type-radio"
+  title="Type Radio"
+  description="Change aspect between `Square` and `Circle`."
+  code={checkbox.type}
+/>
+
+<Spacer y={2} />
+
+<Playground
+  id="required"
+  title="Required"
+  description="Required element."
+  code={checkbox.required}
+/>
+
+<Spacer y={2} />
+
+<Playground
+  id="customize-colors"
+  title="Customize Colors"
+  description="Customize color checkbox."
+  code={checkbox.customize}
+/>
+
+<Spacer y={2} />
+
+<Playground
+  id="error-variant"
+  title="Error Variant"
+  description="Set error in element."
+  code={checkbox.withErrors}
+/>
+
+<Spacer y={2} />
+
+### APIs
+
+<Spacer y={2} />
+
+#### Space Props
+Api props extends from [View](https://reactnative.dev/docs/view)
+
+| Attribute         | Type              | Accepted values                   | Description                                      | Default    |
+|-------------------|-------------------|-----------------------------------|--------------------------------------------------|------------|
+| **activeColor**   | `ThemeColor`      | [ThemeColor](/docs/default-theme) | Active color when value state is `true`          | `primary`  |
+| **inactiveColor** | `ThemeColor`      | [ThemeColor](/docs/default-theme) | Active color when value state is `false`         | `accents2` |
+| **defaultValue**  | `boolean`         | `true` `false`                    | Default value for the element                    | -          |
+| **error**         | `boolean`         | `true` `false`                    | Show error variant                               | -          |
+| **label**         | `string`          | `Text`                            | Required label for the show message              | -          |
+| **onChange**      | `function`        | `(checked: boolean) => void`      | Function trigger when the user press the element | -          |
+| **required**      | `boolean`         | `true` `false`                    | Indicates if element is required                 | -          |
+| **size**          | `SizeRadiousType` | `small` `middle` `large`          | Show size of the element                         | `middle`   |
+| **type**          | `RadioType`       | `circle` `square`                 | Show rounded or circle element                   | `circle`   |
+| **value**         | `boolean`         | `true` `false`                    | Controller value for the element                 | -          |
+
