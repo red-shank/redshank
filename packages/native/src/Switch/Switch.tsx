@@ -25,7 +25,9 @@ export const Switch: React.FC<SwitchProps> = ({
 }) => {
   const { colors, activeOpacity, borderRadius, borderWidth } = useTheme();
   const [isError, setError] = React.useState<undefined | boolean>(false);
-  const [isEnabled, setIsEnabled] = React.useState<boolean>(false);
+  const [isEnabled, setIsEnabled] = React.useState<boolean>(
+    defaultValue ?? false
+  );
 
   const onToggleSwitch = () => {
     setError(false);
@@ -36,16 +38,16 @@ export const Switch: React.FC<SwitchProps> = ({
     });
   };
 
-  React.useEffect(() => {
-    typeof defaultValue === 'boolean' &&
-      setIsEnabled((prev) => {
-        if (prev !== defaultValue) {
-          onChange && onChange(defaultValue);
-          return defaultValue;
-        }
-        return prev;
-      });
-  }, [defaultValue, onChange]);
+  // React.useEffect(() => {
+  //   typeof defaultValue === 'boolean' &&
+  //     setIsEnabled((prev) => {
+  //       if (prev !== defaultValue) {
+  //         onChange && onChange(defaultValue);
+  //         return defaultValue;
+  //       }
+  //       return prev;
+  //     });
+  // }, [defaultValue, onChange]);
 
   React.useEffect(() => {
     if (typeof value === 'boolean') {

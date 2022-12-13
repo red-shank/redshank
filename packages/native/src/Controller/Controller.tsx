@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
+import { Platform, StyleSheet, View } from "react-native";
 
 // components
 import { Icon } from '../Icon';
@@ -7,24 +7,7 @@ import { Text } from '../Text';
 import { Button } from '../Button';
 import useTheme from '../Context/theme/useTheme';
 import { TextError } from '../utils/TextError';
-import type { ColorType } from '../Context/theme/types';
-
-export interface ControllerProps {
-  value?: number;
-  min?: number;
-  max?: number;
-  borderColor?: ColorType;
-  color?: ColorType;
-  width?: number;
-  onChange?: (count: number) => void;
-  onIncrease?: (count: number) => void;
-  onDecrease?: (count: number) => void;
-  minOverflow?: () => void;
-  maxOverflow?: () => void;
-  textError?: string;
-  error?: boolean;
-  style?: StyleProp<ViewStyle>;
-}
+import type { ControllerProps } from './types';
 
 export const Controller: React.FC<ControllerProps> = ({
   value,
@@ -43,7 +26,7 @@ export const Controller: React.FC<ControllerProps> = ({
   borderColor = 'accents4',
 }) => {
   const { colors, borderRadius } = useTheme();
-  const [count, setCount] = React.useState<number>(1);
+  const [count, setCount] = React.useState<number>(min ?? 1);
 
   React.useEffect(() => {
     if (typeof value === 'number') {
@@ -165,7 +148,11 @@ const styles = StyleSheet.create({
     borderWidth: 1,
   },
   icon: {
-    marginTop: 5,
+    marginTop: Platform.select({
+      ios: 5,
+      android: 5,
+      default: 0,
+    }),
   },
   item: {
     width: 42,

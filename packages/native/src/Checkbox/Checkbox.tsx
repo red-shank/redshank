@@ -108,9 +108,14 @@ export const Checkbox: React.FC<CheckboxProps> = ({
         </Animated.View>
       </View>
       {/* label */}
-      <View style={styles.labelView}>
-        {required && <Text color="error">* </Text>}
-        <Text color={error && !active ? 'error' : 'text'}>{label}</Text>
+      <View style={StyleSheet.flatten([styles.labelView, styles.flexOne])}>
+        {required && <Text color="error">*</Text>}
+        <Text
+          style={styles.flexOne}
+          color={error && !active ? 'error' : 'text'}
+        >
+          {label}
+        </Text>
       </View>
     </Ripple>
   );
@@ -137,6 +142,9 @@ const styles = StyleSheet.create({
     paddingRight: 8,
     paddingLeft: 8,
     flexDirection: 'row',
+  },
+  flexOne: {
+    flex: 1,
   },
 });
 

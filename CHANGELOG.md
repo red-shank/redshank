@@ -1,12 +1,28 @@
+## 1.0.0-beta.1.4.13
+
+`2022-12-12`
+
+### Website
+- Added Controller documentation.
+- Added Datepicker documentation.
+- Added Form documentation.
+
+### Package Native
+- Fixed datepicker view in Android
+- Fixed label in FormItem version Android
+- Fixed Height Inputs
+- Fixed checkbox overflow label
+- Added form to context for reduce boilerplate and added isSubmit prop to FormItem
+
 ## 1.0.0-beta.1.4.12
 
 `2022-12-12`
 
 ### Website
-- Added checkbox documentation.
+- Added Checkbox documentation.
 
 ### Package Native
-- Change TouchOpacity for Ripple.
+- Change TouchOpacity for Ripple in checkbox component.
 - Fixed useForm submit.
 - Added marginBottom to Form for bottom to elements fields.
 

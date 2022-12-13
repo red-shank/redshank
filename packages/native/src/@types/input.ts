@@ -1,22 +1,21 @@
 import { StyleSheet } from 'react-native';
-import { scale } from 'react-native-size-matters';
 
 export type SizeType = 'small' | 'middle' | 'large';
 
 export const sizes = StyleSheet.create({
   small: {
-    padding: scale(10),
-    paddingRight: scale(8),
-    paddingLeft: scale(8),
+    padding: 10,
+    paddingRight: 8,
+    paddingLeft: 8,
   },
   middle: {
-    padding: scale(16),
-    paddingRight: scale(14),
-    paddingLeft: scale(14),
+    padding: 16,
+    paddingRight: 14,
+    paddingLeft: 14,
   },
   large: {
-    padding: scale(22),
-    paddingRight: scale(14),
-    paddingLeft: scale(14),
+    padding: 22,
+    paddingRight: 14,
+    paddingLeft: 14,
   },
 });
