@@ -12,6 +12,9 @@ import * as collapseContent from './collapse';
 import * as headerContent from './header';
 import * as space from './space';
 import * as checkbox from './checkbox';
+import * as controller from './controller';
+import * as datePicker from './datePicker';
+import * as form from './form';
 
 export default {
   iconContent,
@@ -25,7 +28,10 @@ export default {
   carouselContent,
   collapseContent,
   headerContent,
+  form,
   space,
   checkbox,
+  controller,
+  datePicker,
   themeColors: colorsLight,
 };

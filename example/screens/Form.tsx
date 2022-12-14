@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
 import {
   Input,
@@ -16,20 +16,36 @@ import {
 const { TextArea } = Input;
 const { useForm } = Form;
 
+const THREE_SECONDS = 3000;
+
 const FormScreen = () => {
-  const [form, submit1] = useForm();
-  const [form2, submit2] = useForm();
+  const [form, submit] = useForm();
 
   const onFinish = (values: any) => {
     console.log('Finish:', values);
   };
+
+  const onSubmitCallback = async () => {
+    form.setErrors([
+      { name: 'email', error: 'Email invalid' },
+      { name: 'password', error: 'Please insert a password' },
+    ]);
+  };
+
+  useEffect(() => {
+    setTimeout(() => {
+      form.setFieldsValue({
+        email: 'example@mail.com',
+      });
+    }, THREE_SECONDS);
+  }, [form]);
 
   return (
     <InputScrollView>
       <View style={styles.container}>
         {/*Basic form*/}
         <Title level={3}>Basic Form</Title>
-        <Form form={form} onFinish={onFinish}>
+        <Form onFinish={onFinish}>
           <Form.Item
             required
             name="email"
@@ -46,10 +62,8 @@ const FormScreen = () => {
           >
             <Input type="password" placeholder="********" />
           </Form.Item>
-          <Form.Item>
-            <Button fullWidth onPress={submit1}>
-              Login
-            </Button>
+          <Form.Item isSubmit>
+            <Button fullWidth>Login</Button>
           </Form.Item>
         </Form>
       </View>
@@ -57,7 +71,7 @@ const FormScreen = () => {
       {/*Form instance*/}
       <View style={styles.container}>
         <Title level={3}>Fields Form</Title>
-        <Form form={form2} onFinish={onFinish}>
+        <Form onFinish={onFinish}>
           <Form.Item
             required
             name="first_name"
@@ -151,8 +165,36 @@ const FormScreen = () => {
             />
           </Form.Item>
 
-          <Button fullWidth onPress={submit2}>
-            Send
+          <Form.Item isSubmit>
+            <Button fullWidth onPress={submit}>
+              Send
+            </Button>
+          </Form.Item>
+        </Form>
+      </View>
+      <View style={styles.container}>
+        {/*Basic form*/}
+        <Title level={3}>Controller Form</Title>
+        <Form form={form} onFinish={onFinish}>
+          <Form.Item
+            required
+            name="email"
+            label="Email"
+            rules={[{ required: true, type: 'email' }]}
+          >
+            <Input placeholder="example@mail.com" />
+          </Form.Item>
+          <Form.Item
+            required
+            name="password"
+            label="Password"
+            rules={[{ required: true }]}
+          >
+            <Input type="password" placeholder="********" />
+          </Form.Item>
+
+          <Button fullWidth onPress={onSubmitCallback}>
+            Login
           </Button>
         </Form>
       </View>

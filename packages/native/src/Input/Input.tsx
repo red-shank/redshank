@@ -13,7 +13,7 @@ import { Icon } from '../Icon';
 import { TextError } from '../utils/TextError';
 import useTheme from '../Context/theme/useTheme';
 import type { ColorType } from '../Context/theme/types';
-import { SizeType, sizes } from '../@types/input';
+import { SizeType } from '../@types/input';
 
 export type InputTypes =
   | 'default'
@@ -77,7 +77,7 @@ export const Input: React.FC<InputProps> = ({
   withMarginBottom = false,
   ...rest
 }) => {
-  const { colors, borderRadius, fontSizes, borderWidth } = useTheme();
+  const { colors, borderRadius, fontSizes, borderWidth, sizes } = useTheme();
 
   // states
   const [show, setShow] = React.useState<boolean>(false);
@@ -110,71 +110,73 @@ export const Input: React.FC<InputProps> = ({
   }, [error]);
 
   return (
-    <View
-      style={StyleSheet.flatten([
-        styles.wrapper,
-        withMarginBottom && styles.withBorder,
-        wrapperStyle,
-      ])}
-    >
-      {/* prefix icon */}
-      {prefix && (
-        <TouchableOpacity
-          style={StyleSheet.flatten([styles.wrapperIcon, { left: 0 }])}
-        >
-          <View style={styles.icon}>
-            {cloneElement(prefix, {
-              color: colors.border,
-              ...prefix.props,
-            })}
-          </View>
-        </TouchableOpacity>
-      )}
-      <TextInput
-        {...rest}
-        value={text}
-        secureTextEntry={type === 'password' && !show}
-        defaultValue={defaultValue || text}
-        keyboardType={type === 'password' ? 'default' : type}
-        placeholder={placeholder}
-        onChangeText={onInternalChange}
-        placeholderTextColor={colors[placeholderColor] || placeholderColor}
+    <View>
+      <View
         style={StyleSheet.flatten([
-          styles.input,
-          {
-            borderWidth,
-            fontSize: fontSizes.base,
-            backgroundColor: colors[background] || background,
-            borderColor: isError
-              ? colors.error
-              : colors[borderInputColor] || borderInputColor,
-            borderRadius: borderRadius.xl,
-            color: colors[color] || color,
-          },
-          prefix && {
-            paddingLeft: 35,
-          },
-          suffix && {
-            paddingRight: 45,
-          },
-          sizes[size],
-          style,
+          styles.wrapper,
+          withMarginBottom && styles.withBorder,
+          wrapperStyle,
         ])}
-      />
+      >
+        {/* prefix icon */}
+        {prefix && (
+          <TouchableOpacity
+            style={StyleSheet.flatten([styles.wrapperIcon, { left: 0 }])}
+          >
+            <View style={styles.icon}>
+              {cloneElement(prefix, {
+                color: colors.border,
+                ...prefix.props,
+              })}
+            </View>
+          </TouchableOpacity>
+        )}
+        <TextInput
+          {...rest}
+          value={text}
+          secureTextEntry={type === 'password' && !show}
+          defaultValue={defaultValue || text}
+          keyboardType={type === 'password' ? 'default' : type}
+          placeholder={placeholder}
+          onChangeText={onInternalChange}
+          placeholderTextColor={colors[placeholderColor] || placeholderColor}
+          style={StyleSheet.flatten([
+            styles.input,
+            {
+              borderWidth,
+              height: sizes[size],
+              fontSize: fontSizes.base,
+              backgroundColor: colors[background] || background,
+              borderColor: isError
+                ? colors.error
+                : colors[borderInputColor] || borderInputColor,
+              borderRadius: borderRadius.xl,
+              color: colors[color] || color,
+            },
+            prefix && {
+              paddingLeft: 35,
+            },
+            suffix && {
+              paddingRight: 45,
+            },
+            style,
+          ])}
+        />
 
-      {suffix && (
-        <TouchableOpacity
-          {...propsPassword}
-          style={StyleSheet.flatten([styles.wrapperIcon, { right: 0 }])}
-        >
-          <View style={styles.icon}>
-            {React.cloneElement(suffix, {
-              color: colors.border,
-              ...suffix.props,
-            })}
-          </View>
-        </TouchableOpacity>
-      )}
+        {suffix && (
+          <TouchableOpacity
+            {...propsPassword}
+            style={StyleSheet.flatten([styles.wrapperIcon, { right: 0 }])}
+          >
+            <View style={styles.icon}>
+              {React.cloneElement(suffix, {
+                color: colors.border,
+                ...suffix.props,
+              })}
+            </View>
+          </TouchableOpacity>
+        )}
+      </View>
       {isError && textError && <TextError>{textError}</TextError>}
     </View>
   );
@@ -185,7 +187,10 @@ export const styles = StyleSheet.create({
     position: 'relative',
   },
   withBorder: { marginBottom: 22 },
-  input: {},
+  input: {
+    paddingRight: 10,
+    paddingLeft: 10,
+  },
   wrapperIcon: {
     position: 'absolute',
     width: 40,

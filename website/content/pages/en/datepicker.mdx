@@ -1,12 +1,86 @@
 ---
 title: 'Datepicker'
-description: 'Datepicker component.'
+description: 'To select or input a date.'
 url: https://beauty-design.app/docs/components/datepicker
 ---
 
 ```jsx
-import { Datepicker } from 'react-native-beauty-design';
+import { DatePicker } from 'react-native-beauty-design';
 ```
-# Building, coming soon!
+
+### When To Use
+By clicking the input box, you can select a date from a popup calendar.
 
 <Spacer y={2} />
+
+### Examples
+
+<Playground
+  id="default"
+  title="Default"
+  description="Default datepicker element."
+  code={datePicker.defaultCode}
+/>
+
+<Spacer y={2} />
+
+<Playground
+  id="picker-modes"
+  title="Picker modes"
+  description="Picker default modes element."
+  code={datePicker.modes}
+/>
+
+<Spacer y={2} />
+
+<Playground
+  id="calendar"
+  title="Calendar (iOS only)"
+  description="Calendar mode only iOS in Android default."
+  code={datePicker.calendaryIOS}
+/>
+
+<Spacer y={2} />
+
+<Playground
+  id="format"
+  title="Format"
+  description="Custom format date."
+  code={datePicker.format}
+/>
+
+<Spacer y={2} />
+
+<Playground
+  id="locales"
+  title="Locales"
+  description="Change locale api."
+  code={datePicker.locales}
+/>
+
+<Spacer y={2} />
+
+### APIs
+
+<Spacer y={2} />
+
+#### DatePicker Props
+Api props extends from [react-native-modal-datetime-picker](https://github.com/mmazzarolo/react-native-modal-datetime-picker)
+
+| Attribute            | Type            | Accepted values                          | Description                                                                    | Default      |
+|----------------------|-----------------|------------------------------------------|--------------------------------------------------------------------------------|--------------|
+| **background**       | `ThemeColor`    | [ThemeColor](/docs/default-theme)        | Background color of the element                                                | `inputColor` |
+| **borderInputColor** | `ThemeColor`    | [ThemeColor](/docs/default-theme)        | Select border color                                                            | `border`     |
+| **color**            | `ThemeColor`    | [ThemeColor](/docs/default-theme)        | Text color                                                                     | `accents2`   |
+| **defaultValue**     | `Date` `string` | `Date` `Text`                            | Default date in date instance or string with some format that format prop      | -            |
+| **display**          | `Enum`          | `spinner` `default` `inline`             | How the modal is displayed                                                     | `spinner`    |
+| **error**            | `boolean`       | `true` `false`                           | Show error variant                                                             | -            |
+| **format**           | `string`        | `Text`                                   | Date format for show in input and format default and value prop when is string | -            |
+| **onChange**         | `function`      | `(date: Date, dateText: string) => void` | On change function, pass to Date object and date text format                   | -            |
+| **placeholder**      | `string`        | `Text`                                   | Placeholder prop                                                               | -            |
+| **prefix**           | `ReactNode`     | `Icon`                                   | Prop for render element to start                                               | -            |
+| **size**             | `SizeType`      | `small` `middle` `large`                 | Size element                                                                   | `middle`     |
+| **suffix**           | `ReactNode`     | `Icon`                                   | Prop for render element to end                                                 | -            |
+| **textError**        | `string`        | `Text`                                   | Message of the error, set with error prop in `true`                            | -            |
+| **value**            | `string` `Date` | `Text` `Date`                            | Value prop for controlled element, if the value is string apply format prop    | -            |
+| **style**            | `object`        | `StyleProp<ViewStyle>`                   | Style for the wrapper element                                                  | -            |
