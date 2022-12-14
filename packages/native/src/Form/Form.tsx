@@ -1,11 +1,12 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect, useMemo } from 'react';
 import FormField, {
   useForm as useFormField,
   FormProps as FormFieldProps,
   FormInstance,
 } from 'rc-field-form';
 import { FormItem, FormItemProps } from './FormItem';
-import { FormProvider, useFormProvider } from './context';
+import { FormProvider, useFormProvider, InternalFormInstance } from './context';
+import { FieldData } from 'rc-field-form/es/interface';
 
 interface GenericValue {
   [key: string]: unknown;
@@ -22,26 +23,28 @@ interface ComponentExport {
 }
 
 const InternalFormInstance = ({
-  onFinishFailed,
+  onFieldsChange,
   onValuesChange,
+  form,
   ...props
 }: FormProps) => {
-  const { setErrors, removeError } = useFormProvider();
+  const { setErrors, removeError, internalForm } = useFormProvider();
 
   const onErrors = React.useCallback(
-    (e: any) => {
-      if (e?.errorFields?.length) {
-        const out = e.errorFields.map((f) => {
-          if (f?.name?.length && f?.errors?.length) {
-            return { name: f.name[0], error: f.errors[0] };
+    (changedFields: FieldData[], allFields: FieldData[]) => {
+      if (allFields.length) {
+        const out = allFields.map((f) => {
+          if ((f?.name || (f?.name as any)?.length) && f?.errors?.length) {
+            const resolveName = Array.isArray(f.name) ? f.name[0] : f.name;
+            return { name: resolveName as string, error: f.errors[0] };
           }
           return null;
         });
         setErrors(out.filter((f) => f !== null));
       }
-      onFinishFailed && onFinishFailed(e);
+      onFieldsChange && onFieldsChange(changedFields, allFields);
     },
-    [onFinishFailed, setErrors]
+    [setErrors, onFieldsChange]
   );
 
   const onInternalValuesChange = React.useCallback(
@@ -56,8 +59,9 @@ const InternalFormInstance = ({
   return (
     <FormField
       component={false}
+      form={internalForm || form}
+      onFieldsChange={onErrors}
       onValuesChange={onInternalValuesChange}
-      onFinishFailed={onErrors}
       {...props}
     />
   );
@@ -68,7 +72,7 @@ const Form: FC<FormProps> & ComponentExport = ({
   ...restProps
 }) => {
   return (
-    <FormProvider marginBottom={marginBottom}>
+    <FormProvider marginBottom={marginBottom} form={restProps?.form}>
       <InternalFormInstance {...restProps} />
     </FormProvider>
   );
@@ -76,9 +80,9 @@ const Form: FC<FormProps> & ComponentExport = ({
 
 function useForm<Values = any>(
   form?: FormInstance<Values>
-): [FormInstance<Values>, () => void] {
+): [InternalFormInstance, () => void] {
   const [newForm] = useFormField<Values>(form);
-  return [newForm, newForm?.submit];
+  return [newForm as InternalFormInstance, newForm?.submit];
 }
 
 Form.useForm = useForm;

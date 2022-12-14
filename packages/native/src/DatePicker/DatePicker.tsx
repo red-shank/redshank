@@ -1,44 +1,15 @@
 import React, { cloneElement, FC, useEffect, useState } from 'react';
 import dayjs from 'dayjs';
-import {
-  StyleProp,
-  StyleSheet,
-  TouchableOpacity,
-  View,
-  ViewStyle,
-} from 'react-native';
+import { Platform, StyleSheet, TouchableOpacity, View } from 'react-native';
 
-import DateTimePickerModal, {
-  DateTimePickerProps,
-} from 'react-native-modal-datetime-picker';
+import DateTimePickerModal from 'react-native-modal-datetime-picker';
 
 import { Icon } from '../Icon';
 import { Text } from '../Text';
 import { TextError } from '../utils/TextError';
 import useTheme from '../Context/theme/useTheme';
-import type { ColorType } from '../Context/theme/types';
-import { SizeType, sizes } from '../@types/input';
-
-export interface DatePickerProps
-  extends Omit<DateTimePickerProps, 'onChange' | 'onCancel' | 'onConfirm'> {
-  size?: SizeType;
-  value?: Date | string;
-  defaultValue?: Date | string;
-  prefix?: JSX.Element;
-  suffix?: JSX.Element | null | false;
-  textError?: string;
-  error?: boolean;
-  placeholder?: string;
-  color?: ColorType;
-  background?: ColorType;
-  borderInputColor?: ColorType;
-  format?: string;
-  style?: StyleProp<ViewStyle>;
-  onChange?: (d: string, date: Date) => void;
-
-  // rest DatePickerModal props https://github.com/mmazzarolo/react-native-modal-datetime-picker
-  [key: string]: unknown;
-}
+import { Ripple } from '../Ripple';
+import type { DatePickerProps } from './types';
 
 export const DatePicker: FC<DatePickerProps> = ({
   textError,
@@ -46,8 +17,12 @@ export const DatePicker: FC<DatePickerProps> = ({
   prefix,
   defaultValue,
   value,
+  locale = 'en_US',
   suffix = <Icon name="clockcircleo" type="antdesign" />,
-  display = 'spinner',
+  display = Platform.select({
+    ios: 'spinner',
+    default: 'default',
+  }),
   mode = 'date',
   format = mode === 'date'
     ? 'YYYY-MM-DD'
@@ -62,7 +37,7 @@ export const DatePicker: FC<DatePickerProps> = ({
   style = {},
   ...rest
 }) => {
-  const { colors, isDark, borderRadius } = useTheme();
+  const { colors, isDark, borderRadius, sizes, borderWidth } = useTheme();
   const [date, setDate] = useState<Date>();
   const [show, setShow] = useState(false);
 
@@ -74,7 +49,7 @@ export const DatePicker: FC<DatePickerProps> = ({
     setDate(currentDate);
     setShow(false);
     if (onChange) {
-      onChange(dayjs(currentDate).format(format), currentDate);
+      onChange(currentDate, dayjs(currentDate).format(format));
     }
   };
 
@@ -83,8 +58,8 @@ export const DatePicker: FC<DatePickerProps> = ({
   };
 
   const dateText = React.useMemo(() => {
-    return dayjs(date).format(format);
-  }, [date, format]);
+    return dayjs(date).locale(locale).format(format);
+  }, [date, format, locale]);
 
   // effects
   useEffect(() => {
@@ -109,97 +84,95 @@ export const DatePicker: FC<DatePickerProps> = ({
   }, [error, textError]);
 
   return (
-    <View
-      style={StyleSheet.flatten([
-        {
-          position: 'relative',
-        },
-      ])}
-    >
-      <TouchableOpacity
-        onPress={onPress}
-        style={StyleSheet.flatten([
-          styles.inputDate,
-          {
-            backgroundColor: colors[background] || background,
-            borderColor: isError
-              ? colors.error
-              : colors[borderInputColor] || borderInputColor,
-            borderRadius: borderRadius.xl,
-          },
-          prefix && {
-            paddingLeft: 35,
-          },
-          suffix && {
-            paddingRight: 45,
-          },
-          sizes[size],
-          style,
-        ])}
-      >
-        {prefix && (
+    <View>
+      <View style={StyleSheet.flatten([styles.wrapper, styles.relative])}>
+        <Ripple
+          onPress={onPress}
+          style={StyleSheet.flatten([
+            styles.inputDate,
+            styles.wrapper,
+            {
+              borderWidth,
+              height: sizes[size],
+              backgroundColor: colors[background] || background,
+              borderColor: isError
+                ? colors.error
+                : colors[borderInputColor] || borderInputColor,
+              borderRadius: borderRadius.xl,
+            },
+            prefix && {
+              paddingLeft: 35,
+            },
+            suffix && {
+              paddingRight: 45,
+            },
+            style,
+          ])}
+        >
+          {prefix && (
+            <TouchableOpacity
+              onPress={onPress}
+              style={StyleSheet.flatten([styles.wrapperIcon, { left: 0 }])}
+            >
+              <View style={styles.icon}>
+                {cloneElement(prefix, {
+                  color: colors.border,
+                  ...prefix.props,
+                })}
+              </View>
+            </TouchableOpacity>
+          )}
+          <Text color={isError ? colors.error : colors[color] || color}>
+            {dateText}
+          </Text>
+        </Ripple>
+
+        <DateTimePickerModal
+          mode={mode}
+          date={date}
+          isVisible={show}
+          display={display as any}
+          locale={locale}
+          onCancel={onPress}
+          isDarkModeEnabled={isDark}
+          onConfirm={onInternalChange}
+          {...rest}
+        />
+
+        {suffix && (
           <TouchableOpacity
             onPress={onPress}
-            style={StyleSheet.flatten([styles.wrapperIcon, { left: 0 }])}
+            style={StyleSheet.flatten([styles.wrapperIcon, { right: 0 }])}
           >
             <View style={styles.icon}>
-              {cloneElement(prefix, {
+              {React.cloneElement(suffix, {
                 color: colors.border,
-                ...prefix.props,
+                ...suffix.props,
               })}
             </View>
           </TouchableOpacity>
         )}
-        <Text color={isError ? colors.error : colors[color] || color}>
-          {dateText}
-        </Text>
-      </TouchableOpacity>
-
-      <DateTimePickerModal
-        mode={mode}
-        date={date}
-        isVisible={show}
-        // @ts-ignore
-        display={display}
-        onCancel={onPress}
-        isDarkModeEnabled={isDark}
-        onConfirm={onInternalChange}
-        {...rest}
-      />
-
-      {suffix && (
-        <TouchableOpacity
-          onPress={onPress}
-          style={StyleSheet.flatten([styles.wrapperIcon, { right: 0 }])}
-        >
-          <View style={styles.icon}>
-            {React.cloneElement(suffix, {
-              color: colors.border,
-              ...suffix.props,
-            })}
-          </View>
-        </TouchableOpacity>
-      )}
+      </View>
       {isError && textError && <TextError>{textError}</TextError>}
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  relative: {
+    position: 'relative',
+  },
+  wrapper: {
+    justifyContent: 'center',
+  },
   inputDate: {
-    borderWidth: 1,
-    marginBottom: 22,
+    paddingRight: 10,
+    paddingLeft: 10,
   },
   wrapperIcon: {
     position: 'absolute',
     width: 40,
-    height: '100%',
-    bottom: 0,
-    alignItems: 'center',
-    justifyContent: 'center',
     backgroundColor: 'transparent',
   },
-  icon: {
-    marginTop: -20,
-  },
+  icon: {},
 });

@@ -43,12 +43,12 @@ const DatePickerScreen = () => {
 
         <View>
           <Title level={3}>Locale ES</Title>
-          <DatePicker format="DD MMM YYYY" locale="es_ES" />
+          <DatePicker format="DD MMM YYYY" locale="es" />
         </View>
 
         <View>
           <Title level={3}>Locale FR</Title>
-          <DatePicker format="DD MMM YYYY" locale="fr_FR" />
+          <DatePicker format="DD MMM YYYY" locale="fr" />
         </View>
 
         <View>
