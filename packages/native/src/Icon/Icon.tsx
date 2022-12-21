@@ -122,7 +122,7 @@ export const Icon: React.FC<IconProps> = ({
           : {},
         containerStyle && containerStyle,
       ])}
-      testID="RNE__ICON__CONTAINER"
+      testID="BD__ICON__CONTAINER"
     >
       <Component
         {...{

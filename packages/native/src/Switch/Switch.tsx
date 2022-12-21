@@ -13,8 +13,9 @@ export const Switch: React.FC<SwitchProps> = ({
   textError,
   bordered,
   type = 'rounded',
+  borderColor = 'primary',
   activeColor = 'inputColor',
-  disabledColor = 'inputColor',
+  deactiveColor = 'inputColor',
   thumbActiveColor = 'primary',
   thumbDisabledColor = 'border',
   error = false,
@@ -65,10 +66,11 @@ export const Switch: React.FC<SwitchProps> = ({
     typeof error === 'boolean' && setError(error);
   }, [error]);
 
+  const _borderColor = colors[borderColor] || borderColor;
   const _thumbActiveColor = colors[thumbActiveColor] || thumbActiveColor;
   const _thumbDisabledColor = colors[thumbDisabledColor] || thumbDisabledColor;
   const _activeColor = colors[activeColor] || activeColor;
-  const _disableColor = colors[disabledColor] || disabledColor;
+  const _deactiveColor = colors[deactiveColor] || deactiveColor;
 
   const { height, width } = styles[size];
 
@@ -91,7 +93,7 @@ export const Switch: React.FC<SwitchProps> = ({
                 ? _thumbActiveColor
                 : _thumbDisabledColor,
             },
-            bordered && { borderColor: _thumbActiveColor },
+            bordered && { borderColor: isError ? colors.error : _borderColor },
             thumbStyle,
           ])}
         >
@@ -103,7 +105,7 @@ export const Switch: React.FC<SwitchProps> = ({
                 height: calcSizeToggle,
                 borderRadius:
                   type === 'rounded' ? calcSizeToggle : borderRadius.xs,
-                backgroundColor: isEnabled ? _activeColor : _disableColor,
+                backgroundColor: isEnabled ? _activeColor : _deactiveColor,
               },
               style,
             ])}

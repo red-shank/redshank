@@ -58,7 +58,7 @@ const LayoutContainer = ({ children, ...props }: LayoutProps) => {
       </AsideStyle>
 
       <BodyStyle className="lg:pl-[17rem]">
-        <ContentStyle className="max-w-3xl mx-auto pt-10 xl:max-w-none xl:ml-7 xl:mr-[13.2rem] xl:pr-4">
+        <ContentStyle className="max-w-3xl mx-auto pt-10 xl:max-w-none xl:ml-7 xl:mr-[15.5rem] xl:pr-4">
           {children}
           <div className="h-20" />
           <div className="flex justify-between items-end">

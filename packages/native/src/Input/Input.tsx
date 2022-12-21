@@ -1,80 +1,37 @@
 import React, { cloneElement, useEffect } from 'react';
 import {
-  StyleProp,
-  TextStyle,
   TextInput,
   StyleSheet,
   View,
   TouchableOpacity,
-  ViewStyle,
+  KeyboardTypeOptions,
 } from 'react-native';
 
 import { Icon } from '../Icon';
 import { TextError } from '../utils/TextError';
 import useTheme from '../Context/theme/useTheme';
-import type { ColorType } from '../Context/theme/types';
-import { SizeType } from '../@types/input';
-
-export type InputTypes =
-  | 'default'
-  | 'numeric'
-  | 'number-pad'
-  | 'decimal-pad'
-  | 'email-address'
-  | 'phone-pad'
-  // only Android
-  | 'visible-password'
-  // only iOS
-  | 'ascii-capable'
-  | 'numbers-and-punctuation'
-  | 'url'
-  | 'name-phone-pad'
-  | 'twitter'
-  | 'web-search'
-  // custom
-  | 'password';
-
-export interface InputProps {
-  type?: InputTypes;
-  prefix?: JSX.Element;
-  suffix?: JSX.Element;
-  value?: string;
-  textError?: string;
-  error?: boolean;
-  defaultValue?: string;
-  placeholder?: string;
-  size?: SizeType;
-  color?: ColorType;
-  background?: ColorType;
-  showIcon?: boolean;
-  borderInputColor?: ColorType;
-  placeholderColor?: ColorType;
-  onChange?: (v: string) => void;
-  style?: StyleProp<TextStyle>;
-  wrapperStyle?: StyleProp<ViewStyle>;
-  withMarginBottom?: boolean;
-}
+import type { InputProps } from './types';
 
 export const Input: React.FC<InputProps> = ({
-  placeholder,
+  background = 'inputColor',
+  borderInputColor = 'border',
+  color = 'accents2',
   defaultValue,
-  value,
+  error = false,
   onChange,
-  textError,
+  placeholder,
+  placeholderColor = 'border',
   prefix,
-  wrapperStyle,
+  size = 'middle',
   style = {},
+  textError,
   type = 'default',
   suffix = type === 'password' ? (
     <Icon name="eye" type="antdesign" />
   ) : undefined,
-  error = false,
-  size = 'middle',
-  color = 'accents2',
-  background = 'inputColor',
-  borderInputColor = 'border',
-  placeholderColor = 'border',
+  value,
   withMarginBottom = false,
+  wrapperStyle,
   ...rest
 }) => {
   const { colors, borderRadius, fontSizes, borderWidth, sizes } = useTheme();
@@ -136,7 +93,9 @@ export const Input: React.FC<InputProps> = ({
           value={text}
           secureTextEntry={type === 'password' && !show}
           defaultValue={defaultValue || text}
-          keyboardType={type === 'password' ? 'default' : type}
+          keyboardType={
+            type === 'password' ? 'default' : (type as KeyboardTypeOptions)
+          }
           placeholder={placeholder}
           onChangeText={onInternalChange}
           placeholderTextColor={colors[placeholderColor] || placeholderColor}
@@ -184,9 +143,10 @@ export const Input: React.FC<InputProps> = ({
 
 export const styles = StyleSheet.create({
   wrapper: {
+    width: '100%',
     position: 'relative',
   },
-  withBorder: { marginBottom: 22 },
+  withBorder: { marginBottom: 15 },
   input: {
     paddingRight: 10,
     paddingLeft: 10,
