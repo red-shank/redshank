@@ -3,7 +3,7 @@
   "version": "0.2.1",
   "private": true,
   "scripts": {
-    "dev": "yarn prepare-server && next dev",
+    "dev": "yarn prepare-server",
     "prepare-server": "node temp/prepare-server.js",
     "build": "next build",
     "start": "yarn prepare-server && next start",
