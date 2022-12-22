@@ -1,3 +1,16 @@
+## 1.0.0-beta.1.4.15
+
+`2022-12-13`
+
+### Website
+- Added Input documentation.
+- Added Radio documentation.
+- Added Select documentation.
+- Added Switch documentation.
+
+# Package Native
+- Fixed Select bug for render in RNPickerSelector
+
 ## 1.0.0-beta.1.4.14
 
 `2022-12-12`

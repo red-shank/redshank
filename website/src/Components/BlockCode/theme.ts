@@ -15,7 +15,7 @@ const makeCodeTheme = (): PrismTheme => ({
     {
       types: ['comment', 'prolog', 'doctype', 'cdata'],
       style: {
-        color: 'var(--nextui-colors-codeComment)'
+        color: 'var(--nextui-colors-accents6)'
       }
     },
     {

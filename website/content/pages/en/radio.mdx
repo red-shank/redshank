@@ -7,6 +7,107 @@ url: https://beauty-design.app/docs/components/radio
 ```jsx
 import { Radio } from 'react-native-beauty-design';
 ```
-# Building, coming soon!
+
+### When To Use
+* Used to select a single state from multiple options.
+* The difference from Select is that Radio is visible to the user and can facilitate the comparison of choice, which means there shouldn't be too many of them.
 
 <Spacer y={2} />
+
+### Examples
+
+<Playground
+  id="default"
+  title="Default"
+  description="Default radio element."
+  code={radio.defaultCode}
+/>
+
+<Spacer y={2} />
+
+<Playground
+  id="orientation"
+  title="Orientation"
+  description="Orientation elements."
+  code={radio.orientation}
+/>
+
+<Spacer y={2} />
+
+<Playground
+  id="types"
+  title="Types"
+  description="Types radio."
+  code={radio.types}
+/>
+
+<Spacer y={2} />
+
+<Playground
+  id="sizes"
+  title="Sizes"
+  description="Size radio."
+  code={radio.sizes}
+/>
+
+<Spacer y={2} />
+
+<Playground
+  id="manual-error"
+  title="Error variant"
+  description="With manual controller error."
+  code={radio.manualError}
+/>
+
+<Spacer y={2} />
+
+<Playground
+  id="customize"
+  title="Customize element."
+  description="Personalize colors to radio elements."
+  code={radio.customize}
+/>
+
+<Spacer y={2} />
+
+### APIs
+
+<Spacer y={2} />
+
+#### Radio Props
+Api props extends from [TouchableOpacity](https://reactnative.dev/docs/touchableopacity)
+
+| Attribute         | Type                | Accepted values                         | Description                     | Default      |
+|-------------------|---------------------|-----------------------------------------|---------------------------------|--------------|
+| **activeColor**   | `ThemeColor`        | [ThemeColor](/docs/default-theme)       | Active color of the element     | `inputColor` |
+| **inactiveColor** | `ThemeColor`        | [ThemeColor](/docs/default-theme)       | Inactive color of the element   | `inputColor` |
+| **label**         | `string`            | `Text`                                  | Required text to show in option | -            |
+| **onPress**       | `function`          | `(value: NumberStringValue) => void`    | onPress function trigger        | -            |
+| **size**          | `SizeType`          | `small` `middle` `large`                | Size of the radio               | `middle`     |
+| **type**          | `RadioType`         | `circle` `square`                       | Circle or square variant        | `circle`     |
+| **value**         | `NumberStringValue` | [NumberStringValue](#numberstringvalue) | Value of the controller input   | -            |
+
+<Spacer y={2} />
+
+#### Radio Group Props
+Api props extends from [View](https://reactnative.dev/docs/view)
+
+| Attribute         | Type                | Accepted values                         | Description                                         | Default      |
+|-------------------|---------------------|-----------------------------------------|-----------------------------------------------------|--------------|
+| **activeColor**   | `ThemeColor`        | [ThemeColor](/docs/default-theme)       | Active color of the element                         | `inputColor` |
+| **align**         | `AlignType`         | `horizontal` `vertical`                 | Orientation type                                    | `horizontal` |
+| **inactiveColor** | `ThemeColor`        | [ThemeColor](/docs/default-theme)       | Inactive color of the element                       | `inputColor` |
+| **defaultValue**  | `NumberStringValue` | [NumberStringValue](#numberstringvalue) | Default Value for element                           | -            |
+| **error**         | `boolean`           | `true` `false`                          | Show error variant                                  | -            |
+| **onChange**      | `function`          | `(value: NumberStringValue) => void`    | On change function trigger                          | -            |
+| **textError**     | `string`            | `Text` `String`                         | Message of the error, set with error prop in `true` | -            |
+| **value**         | `NumberStringValue` | [NumberStringValue](#numberstringvalue) | Value of the controller input                       | -            |
+| **size**          | `SizeType`          | `small` `middle` `large`                | Size of the radio                                   | `middle`     |
+| **type**          | `RadioType`         | `circle` `square`                       | Circle or square variant                            | `circle`     |
+
+<Spacer y={2} />
+
+### NumberStringValue
+```ts
+type NumberStringValue = 'string' | 'number'
+```

@@ -1,6 +1,6 @@
 import React from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
-import { Title, Select } from 'react-native-beauty-design';
+import { Title, Select, Space } from 'react-native-beauty-design';
 
 const items = [
   {
@@ -17,7 +17,7 @@ const SelectScreen = () => {
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.container}>
-        <View>
+        <Space orientation="vertical">
           <Title>Default Select</Title>
           <Select size="small" placeholder="Select text" items={items} />
           <Select size="middle" placeholder="Select text" items={items} />
@@ -30,7 +30,7 @@ const SelectScreen = () => {
             placeholder="Select item..."
             textError="This is error"
           />
-        </View>
+        </Space>
       </View>
     </ScrollView>
   );

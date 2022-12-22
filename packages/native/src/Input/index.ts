@@ -1,6 +1,7 @@
 import React from 'react';
 
-import { Input as InternalInput, InputProps, InputTypes } from './Input';
+import { Input as InternalInput } from './Input';
+import { InputProps, InputTypes } from './types';
 import { TextArea, TextAreaProps } from './TextArea';
 
 interface CompoundedComponent
@@ -14,4 +15,4 @@ const Input = InternalInput as CompoundedComponent;
 
 Input.TextArea = TextArea;
 
-export { Input, TextAreaProps, InputTypes, InputProps };
+export { Input, TextAreaProps, InputProps, InputTypes };

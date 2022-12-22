@@ -17,7 +17,7 @@ export const Radio: React.FC<RadioProps> & ComponentExport = ({
   label,
   isActive,
   activeColor = 'primary',
-  deactiveColor = 'border',
+  inactiveColor = 'border',
   type = 'circle',
   size = 'middle',
 }) => {
@@ -53,6 +53,9 @@ export const Radio: React.FC<RadioProps> & ComponentExport = ({
   };
 
   const { width, height } = styles[size];
+  const internalColor = isActive
+    ? colors[activeColor] || activeColor
+    : 'transparent';
 
   return (
     <TouchableOpacity
@@ -70,7 +73,7 @@ export const Radio: React.FC<RadioProps> & ComponentExport = ({
               type === 'square' ? borderRadius.sm : borderRadius.max,
             borderColor: isActive
               ? colors[activeColor] || activeColor
-              : colors[deactiveColor] || deactiveColor,
+              : colors[inactiveColor] || inactiveColor,
           },
         ])}
       >
@@ -87,9 +90,8 @@ export const Radio: React.FC<RadioProps> & ComponentExport = ({
                 height: height / 2,
                 borderRadius:
                   type === 'square' ? borderRadius.xs : borderRadius.max,
-                backgroundColor: isActive
-                  ? colors[activeColor] || activeColor
-                  : 'transparent',
+                backgroundColor: internalColor,
+                borderColor: internalColor,
               },
             ])}
           />

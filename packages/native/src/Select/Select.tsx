@@ -1,36 +1,14 @@
 import React, { useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
 // TODO: Migrate in the future to nativeComponent and remove lib
-import RNPickerSelect, { PickerSelectProps } from 'react-native-picker-select';
+import RNPickerSelect from 'react-native-picker-select';
 
-import { Icon } from '../Icon';
+import { Icon as InternalIcon } from '../Icon';
 import useTheme from '../Context/theme/useTheme';
 import { TextError } from '../utils/TextError';
-import { SizeType, sizes } from '../@types/input';
-import { getDarken, getLighten } from '../utils/colors';
-import type { ColorType } from '../Context/theme/types';
-
-export interface SelectItemProps {
-  label: string;
-  value: string;
-  key?: string | number;
-}
-
-export interface SelectProps
-  extends Omit<PickerSelectProps, 'onValueChange' | 'items'> {
-  onChange?: (value: any, index: number) => void;
-  items: SelectItemProps[];
-  placeholder?: string;
-  textError?: string;
-  error?: boolean;
-  disabled?: boolean;
-  value?: string;
-  size?: SizeType;
-  color?: ColorType;
-  background?: ColorType;
-  borderInputColor?: ColorType;
-  placeholderColor?: ColorType;
-}
+import { sizes } from '../@types/input';
+import { getDarken, getLighten } from "../utils/colors";
+import type { SelectProps } from './types';
 
 export const Select: React.FC<SelectProps> = ({
   items,
@@ -40,7 +18,7 @@ export const Select: React.FC<SelectProps> = ({
   onChange,
   pickerProps,
   children,
-  Icon: icon,
+  Icon,
   size = 'middle',
   textError,
   error = false,
@@ -50,56 +28,63 @@ export const Select: React.FC<SelectProps> = ({
   placeholderColor = 'border',
   ...rest
 }) => {
+  const [isOpen, setIsOpen] = React.useState<boolean>(false);
   const [isError, setError] = React.useState<undefined | boolean>(false);
-  const { colors, borderRadius, fontSizes, isDark } = useTheme();
+  const { colors, borderRadius, fontSizes, isDark, borderWidth } = useTheme();
 
   const onInternalChange = (_value: string, index: number) => {
     onChange && onChange(_value, index);
   };
 
   const borderModalColor = isDark
-    ? getLighten(colors.foreground, 10)
-    : getDarken(colors.foreground, 0.1);
-
-  const bgModalColor = isDark
-    ? getLighten(colors.foreground, 5)
-    : colors.foreground;
+    ? getDarken(colors.border, 0.6)
+    : getLighten(colors.border, 85);
+  const bgModalColor = isDark ? getLighten(colors.foreground, 5) : colors.white;
 
   useEffect(() => {
     typeof error === 'boolean' && setError(error);
   }, [error]);
 
+  const RenderIcon = () => {
+    if (Icon) {
+      return Icon;
+    }
+    return (
+      <InternalIcon
+        size={20}
+        type="antdesign"
+        name={isOpen ? 'up' : 'down'}
+        color={colors[borderInputColor] || borderInputColor}
+      />
+    );
+  };
+
   return (
     <View style={styles.wrapper}>
       <RNPickerSelect
         {...rest}
+        onOpen={() => setIsOpen(true)}
+        onClose={() => setIsOpen(false)}
         value={value}
         children={children}
         disabled={disabled}
         // Mimic touchable input on both iOS and Android
         useNativeAndroidPickerStyle={false}
-        Icon={
-          icon ?? (
-            <Icon
-              size={20}
-              name="down"
-              type="antdesign"
-              color={colors[borderInputColor] ?? borderInputColor}
-            />
-          )
-        }
+        Icon={RenderIcon as any}
         placeholder={{
           label: placeholder,
           value: null,
           // colors[placeholderColor] ?? placeholderColor
         }}
         onValueChange={onInternalChange}
-        items={items.map(({ value: _value, label, key, ...restItem }) => ({
-          key: key ?? label.trim(),
-          value: _value,
-          label,
-          ...restItem,
-        }))}
+        items={items.map(
+          ({ value: _value, label, key, ...restItem }, index) => ({
+            key: key || index,
+            value: _value,
+            label,
+            ...restItem,
+          })
+        )}
         // IOS props
         pickerProps={{
           itemStyle: {
@@ -112,7 +97,7 @@ export const Select: React.FC<SelectProps> = ({
         touchableWrapperProps={{
           style: {
             ...sizes[size],
-            borderWidth: 1,
+            borderWidth,
             borderStyle: 'solid',
             borderRadius: borderRadius.lg,
             borderColor: isError
@@ -147,7 +132,6 @@ export const Select: React.FC<SelectProps> = ({
 const styles = StyleSheet.create({
   wrapper: {
     position: 'relative',
-    marginBottom: 22,
   },
   arrow: {
     position: 'absolute',

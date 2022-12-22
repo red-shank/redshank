@@ -30,6 +30,7 @@ const SwitchScreen = () => {
         <View>
           <Title level={3}>Bordered</Title>
           <Switch bordered />
+          <Switch bordered borderColor="warning" />
         </View>
         <View>
           <Title level={3}>With Icon</Title>

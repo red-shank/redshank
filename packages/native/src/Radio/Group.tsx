@@ -12,7 +12,7 @@ export const GAP = scale(10);
 export const Group: React.FC<RadioGroupProps> = ({
   align = 'horizontal',
   children: _children,
-  deactiveColor,
+  inactiveColor,
   value,
   error,
   onChange,
@@ -62,7 +62,7 @@ export const Group: React.FC<RadioGroupProps> = ({
         {renderChildren<RadioProps>(children, (child) => ({
           isActive: internalValue === child?.props?.value,
           activeColor: isError ? 'error' : activeColor,
-          deactiveColor: isError ? 'error' : deactiveColor,
+          deactiveColor: isError ? 'error' : inactiveColor,
           size,
           type,
           ...(child?.props || {}),

@@ -1,28 +1,28 @@
 import type { ReactNode } from 'react';
-import type { ViewStyle } from 'react-native';
+import type { StyleProp, ViewStyle } from 'react-native';
 import type { SizeType } from '../@types/input';
 import type { ColorType } from '../Context/theme/types';
 
 export type SwitchType = 'square' | 'rounded';
 
 export interface SwitchProps {
-  textError?: string;
-  error?: boolean;
-  value?: boolean;
-  bordered?: boolean;
-  size?: SizeType;
-  type?: SwitchType;
-  defaultValue?: boolean;
   activeColor?: ColorType;
-  disabledColor?: ColorType;
-  thumbActiveColor?: ColorType;
-  thumbDisabledColor?: ColorType;
   borderColor?: ColorType;
-  onChange?: (value: boolean) => void;
-  thumbStyle?: ViewStyle;
-  style?: ViewStyle;
+  bordered?: boolean;
+  defaultValue?: boolean;
+  deactiveColor?: ColorType;
+  error?: boolean;
   icon?: {
     false?: ReactNode;
     true?: ReactNode;
   };
+  onChange?: (value: boolean) => void;
+  size?: SizeType;
+  style?: StyleProp<ViewStyle>;
+  textError?: string;
+  thumbActiveColor?: ColorType;
+  thumbDisabledColor?: ColorType;
+  thumbStyle?: StyleProp<ViewStyle>;
+  type?: SwitchType;
+  value?: boolean;
 }
