@@ -1,3 +1,5 @@
+import { PACKAGE_NAME } from '@/config';
+
 export const basic = `import React from 'react';
 import { ThemeProvider } from '${PACKAGE_NAME}';
 

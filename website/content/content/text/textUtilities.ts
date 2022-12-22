@@ -1,4 +1,5 @@
 import generateCode from '@/content/utils/generateCode';
+import { PACKAGE_NAME } from '@/config';
 
 export default generateCode(`import { Text, Title } from '${PACKAGE_NAME}';
 

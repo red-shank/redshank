@@ -1,3 +1,5 @@
+import { PACKAGE_NAME } from '@/config';
+
 export const useTheme = `import { useTheme } from '${PACKAGE_NAME}';
 
 const MyApp = () => {

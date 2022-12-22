@@ -1,4 +1,5 @@
 import generateCode from '@/content/utils/generateCode';
+import { PACKAGE_NAME } from '@/config';
 
 export const defaultCode =
   generateCode(`import { Space, Switch } from '${PACKAGE_NAME}';
@@ -46,7 +47,7 @@ export default function App() {
 `);
 
 export const withIcon =
-  generateCode(`import { Space, Switch, Icon } from '${PACKAGE_NAME}';
+  generateCode(`import { Space, Switch, Icon } from "${PACKAGE_NAME}";
 
 export default function App() {
   return (

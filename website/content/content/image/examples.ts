@@ -1,7 +1,8 @@
 import generateCode from '@/content/utils/generateCode';
+import { PACKAGE_NAME } from '@/config';
 
 export const defaultCode =
-  generateCode(`import { Image } from "react-native-beauty-design";
+  generateCode(`import { Image } from "${PACKAGE_NAME}";
 
 export default function App() {
   return (
@@ -15,7 +16,7 @@ export default function App() {
 }`);
 
 export const resizeMode =
-  generateCode(`import { Image, Space } from "react-native-beauty-design";
+  generateCode(`import { Image, Space } from "${PACKAGE_NAME}";
 
 export default function App() {
   return (

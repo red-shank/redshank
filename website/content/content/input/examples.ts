@@ -1,7 +1,8 @@
 import generateCode from '@/content/utils/generateCode';
+import { PACKAGE_NAME } from '@/config';
 
 export const defaultCode =
-  generateCode(`import { Space, Input } from "react-native-beauty-design";
+  generateCode(`import { Space, Input } from "${PACKAGE_NAME}";
 
 export default function App() {
   return (
@@ -16,7 +17,7 @@ export default function App() {
 `);
 
 export const sizes =
-  generateCode(`import { Space, Input } from "react-native-beauty-design";
+  generateCode(`import { Space, Input } from "${PACKAGE_NAME}";
 
 export default function App() {
   return (
@@ -32,7 +33,7 @@ export default function App() {
 `);
 
 export const prefixSuffix =
-  generateCode(`import { Space, Input, Icon } from "react-native-beauty-design";
+  generateCode(`import { Space, Input, Icon } from "${PACKAGE_NAME}";
 
 export default function App() {
   return (
@@ -55,7 +56,7 @@ export default function App() {
 `);
 
 export const errors =
-  generateCode(`import { Space, Input, Title } from "react-native-beauty-design";
+  generateCode(`import { Space, Input, Title } from "${PACKAGE_NAME}";
 
 export default function App() {
   return (
@@ -78,7 +79,7 @@ export default function App() {
 `);
 
 export const number =
-  generateCode(`import { Space, Input } from "react-native-beauty-design";
+  generateCode(`import { Space, Input } from "${PACKAGE_NAME}";
 
 export default function App() {
   return (

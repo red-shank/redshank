@@ -1,7 +1,8 @@
 import generateCode from '@/content/utils/generateCode';
+import { PACKAGE_NAME } from '@/config';
 
 export const defaultCode =
-  generateCode(`import { Collapse, Title, Text } from "react-native-beauty-design";
+  generateCode(`import { Collapse, Title, Text } from "${PACKAGE_NAME}";
 
 export default function App() {
   return (
@@ -31,7 +32,7 @@ export default function App() {
 }`);
 
 export const withoutAccordion =
-  generateCode(`import { Collapse, Title, Text } from "react-native-beauty-design";
+  generateCode(`import { Collapse, Title, Text } from "${PACKAGE_NAME}";
 
 export default function App() {
   return (
@@ -61,7 +62,7 @@ export default function App() {
 }`);
 
 export const withSubTitle =
-  generateCode(`import { Collapse, Title, Text } from "react-native-beauty-design";
+  generateCode(`import { Collapse, Title, Text } from "${PACKAGE_NAME}";
 
 export default function App() {
   return (
@@ -99,7 +100,7 @@ export default function App() {
 }`);
 
 export const nestedCollapse =
-  generateCode(`import { Collapse, Title, Text } from "react-native-beauty-design";
+  generateCode(`import { Collapse, Title, Text } from "${PACKAGE_NAME}";
 
 export default function App() {
   return (
@@ -145,7 +146,7 @@ export default function App() {
 }`);
 
 export const customIcon =
-  generateCode(`import { Collapse, Title, Text, Icon } from "react-native-beauty-design";
+  generateCode(`import { Collapse, Title, Text, Icon } from "${PACKAGE_NAME}";
 
 export default function App() {
   return (
@@ -183,7 +184,7 @@ export default function App() {
 }`);
 
 export const borderless =
-  generateCode(`import { Collapse, Title, Text, Icon } from "react-native-beauty-design";
+  generateCode(`import { Collapse, Title, Text, Icon } from "${PACKAGE_NAME}";
 
 export default function App() {
   return (
@@ -213,7 +214,7 @@ export default function App() {
 }`);
 
 export const showArrow =
-  generateCode(`import { Collapse, Title, Text, Icon } from "react-native-beauty-design";
+  generateCode(`import { Collapse, Title, Text, Icon } from "${PACKAGE_NAME}";
 
 export default function App() {
   return (
@@ -244,7 +245,7 @@ export default function App() {
 
 
 export const openKeys =
-  generateCode(`import { Collapse, Title, Text, Icon } from "react-native-beauty-design";
+  generateCode(`import { Collapse, Title, Text, Icon } from "${PACKAGE_NAME}";
 
 export default function App() {
   const handlerOpenKey = (key: string | number) => {
@@ -278,7 +279,7 @@ export default function App() {
 }`);
 
 export const disabled =
-  generateCode(`import { Collapse, Title, Text, Icon } from "react-native-beauty-design";
+  generateCode(`import { Collapse, Title, Text, Icon } from "${PACKAGE_NAME}";
 
 export default function App() {
   return (

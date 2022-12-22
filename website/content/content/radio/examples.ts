@@ -1,4 +1,5 @@
 import generateCode from '@/content/utils/generateCode';
+import { PACKAGE_NAME } from '@/config';
 
 export const defaultCode =
   generateCode(`import { Space, Radio } from '${PACKAGE_NAME}';
@@ -19,7 +20,7 @@ export default function App() {
 `);
 
 export const orientation =
-  generateCode(`import { Space, Radio } from '${PACKAGE_NAME}';
+  generateCode(`import { Space, Radio } from "${PACKAGE_NAME}";
 
 export default function App() {
   return (

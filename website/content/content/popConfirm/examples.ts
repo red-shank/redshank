@@ -1,7 +1,8 @@
 import generateCode from '@/content/utils/generateCode';
+import { PACKAGE_NAME } from '@/config';
 
 export const defaultCode =
-  generateCode(`import { Button, Modal, PopConfirm, Text } from "react-native-beauty-design";
+  generateCode(`import { Button, Modal, PopConfirm, Text } from "${PACKAGE_NAME}";
 
 export default function App() {
   const [visible, toggleVisible] = Modal.useModal();
@@ -26,7 +27,7 @@ export default function App() {
 }`);
 
 export const confirmDelete =
-  generateCode(`import { Button, Modal, PopConfirm, Text } from "react-native-beauty-design";
+  generateCode(`import { Button, Modal, PopConfirm, Text } from "${PACKAGE_NAME}";
 
 export default function App() {
   const [visible, toggleVisible] = Modal.useModal();
@@ -52,7 +53,7 @@ export default function App() {
 }`);
 
 export const headerContentAndFooter =
-  generateCode(`import { Button, Modal, PopConfirm, Text, Image } from "react-native-beauty-design";
+  generateCode(`import { Button, Modal, PopConfirm, Text, Image } from "${PACKAGE_NAME}";
 
 export default function App() {
   const [visible, toggleVisible] = Modal.useModal();

@@ -1,3 +1,5 @@
+import { PACKAGE_NAME } from '@/config';
+
 export const basic = `import { useTheme, Switch } from '${PACKAGE_NAME}';
 
 export default function App() {

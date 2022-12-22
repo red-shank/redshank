@@ -1,7 +1,8 @@
 import generateCode from '@/content/utils/generateCode';
+import { PACKAGE_NAME } from '@/config';
 
 export const defaultCode =
-  generateCode(`import { Controller } from '${PACKAGE_NAME}';
+  generateCode(`import { Controller } from "${PACKAGE_NAME}";
 
 export default function App() {
   return (
@@ -13,7 +14,7 @@ export default function App() {
 `);
 
 export const maxAndMin =
-  generateCode(`import { Controller, Space } from "react-native-beauty-design";
+  generateCode(`import { Controller, Space } from "${PACKAGE_NAME}";
 
 export default function App() {
   return (
@@ -33,7 +34,7 @@ export default function App() {
 `);
 
 export const customize =
-  generateCode(`import { Controller } from "react-native-beauty-design";
+  generateCode(`import { Controller } from "${PACKAGE_NAME}";
 
 export default function App() {
   return (

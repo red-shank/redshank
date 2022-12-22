@@ -1,7 +1,8 @@
 import generateCode from '@/content/utils/generateCode';
+import { PACKAGE_NAME } from '@/config';
 
 export const defaultCode =
-  generateCode(`import { Carousel, Image } from "react-native-beauty-design";
+  generateCode(`import { Carousel, Image } from "${PACKAGE_NAME}";
 
   const items = [
     {
