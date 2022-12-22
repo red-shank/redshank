@@ -1,7 +1,7 @@
 import generateCode from '@/content/utils/generateCode';
 
 export const defaultCode =
-  generateCode(`import { Space, Radio } from 'react-native-beauty-design';
+  generateCode(`import { Space, Radio } from '${PACKAGE_NAME}';
 
 export default function App() {
   return (
@@ -19,7 +19,7 @@ export default function App() {
 `);
 
 export const orientation =
-  generateCode(`import { Space, Radio } from 'react-native-beauty-design';
+  generateCode(`import { Space, Radio } from '${PACKAGE_NAME}';
 
 export default function App() {
   return (
@@ -37,7 +37,7 @@ export default function App() {
 `);
 
 export const types =
-  generateCode(`import { Space, Radio, Title } from 'react-native-beauty-design';
+  generateCode(`import { Space, Radio, Title } from '${PACKAGE_NAME}';
 
 export default function App() {
   return (
@@ -74,7 +74,7 @@ export default function App() {
 `);
 
 export const sizes =
-  generateCode(`import { Space, Radio, Title } from 'react-native-beauty-design';
+  generateCode(`import { Space, Radio, Title } from '${PACKAGE_NAME}';
 
 export default function App() {
   return (
@@ -111,7 +111,7 @@ export default function App() {
 `);
 
 export const manualError =
-  generateCode(`import { Space, Radio } from 'react-native-beauty-design';
+  generateCode(`import { Space, Radio } from '${PACKAGE_NAME}';
 
 export default function App() {
   return (
@@ -129,7 +129,7 @@ export default function App() {
 `);
 
 export const customize =
-  generateCode(`import { Space, Radio } from 'react-native-beauty-design';
+  generateCode(`import { Space, Radio } from '${PACKAGE_NAME}';
 
 export default function App() {
   return (

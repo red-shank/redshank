@@ -5,7 +5,7 @@ import {
   InputScrollView,
   Avatar,
   Space,
-} from 'react-native-beauty-design';
+} from '@redshank/native';
 
 const AvatarScreen = () => {
   return (

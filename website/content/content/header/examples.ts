@@ -1,7 +1,8 @@
 import generateCode from '@/content/utils/generateCode';
+import { PACKAGE_NAME } from '@/config';
 
 export const defaultCode =
-  generateCode(`import { Header, Title } from "react-native-beauty-design";
+  generateCode(`import { Header, Title } from "${PACKAGE_NAME}";
 
 export default function App() {
   return (
@@ -37,7 +38,7 @@ const styleContent = StyleSheet.create({
 `, ['ScrollView']);
 
 export const onScroll =
-  generateCode(`import { Header, Title, ThemeProvider, useTheme } from "react-native-beauty-design";
+  generateCode(`import { Header, Title, ThemeProvider, useTheme } from "${PACKAGE_NAME}";
 
 function RenderApp() {
   const { onScroll } = useTheme();
@@ -97,7 +98,7 @@ export const usingContext =
   ThemeProvider,
   useTheme,
   useNavigation,
-} from "react-native-beauty-design";
+} from "${PACKAGE_NAME}";
 import React from 'react';
 
 const heightDynamic = Platform.select({

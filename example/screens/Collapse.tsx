@@ -7,7 +7,7 @@ import {
   Collapse,
   Icon,
   Space,
-} from 'react-native-beauty-design';
+} from '@redshank/native';
 
 const CollapseScreen = () => {
   return (

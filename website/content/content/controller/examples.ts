@@ -1,7 +1,7 @@
 import generateCode from '@/content/utils/generateCode';
 
 export const defaultCode =
-  generateCode(`import { Controller } from 'react-native-beauty-design';
+  generateCode(`import { Controller } from '${PACKAGE_NAME}';
 
 export default function App() {
   return (

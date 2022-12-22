@@ -1,3 +1,5 @@
+import { PACKAGE_NAME } from '@/config';
+
 export const basicExample = `import React from 'react';
 import { ScrollView, View, StyleSheet } from 'react-native';
 import {
@@ -7,10 +9,9 @@ import {
   Title,
   Button,
   Text,
-  Icon,
   Image,
   useTheme,
-} from 'react-native-beauty-design';
+} from '${PACKAGE_NAME}';
 
 const MyComponent = () => {
   const { onScroll, borderRadius } = useTheme();

@@ -5,7 +5,7 @@ import {
   InputScrollView,
   Title,
   Icon,
-} from 'react-native-beauty-design';
+} from '@redshank/native';
 
 const SwitchScreen = () => {
   return (

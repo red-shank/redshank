@@ -5,7 +5,7 @@ import {
   InputScrollView,
   Button,
   useNotification,
-} from 'react-native-beauty-design';
+} from '@redshank/native';
 
 const NotificationScreen = () => {
   const notification = useNotification();

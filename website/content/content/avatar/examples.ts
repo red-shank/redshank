@@ -1,7 +1,8 @@
 import generateCode from '@/content/utils/generateCode';
+import { PACKAGE_NAME } from '@/config';
 
 export const text =
-  generateCode(`import { Avatar } from 'react-native-beauty-design';
+  generateCode(`import { Avatar } from '${PACKAGE_NAME}';
 
 export default function App() {
   return (
@@ -12,7 +13,7 @@ export default function App() {
 }`);
 
 export const colorAndSize =
-  generateCode(`import { Avatar } from 'react-native-beauty-design';
+  generateCode(`import { Avatar } from '${PACKAGE_NAME}';
 
 export default function App() {
   return (
@@ -28,7 +29,7 @@ export default function App() {
 }`);
 
 export const type =
-  generateCode(`import { Avatar, Space } from 'react-native-beauty-design';
+  generateCode(`import { Avatar, Space } from '${PACKAGE_NAME}';
 
 export default function App() {
   return (
@@ -42,7 +43,7 @@ export default function App() {
 }`);
 
 export const image =
-  generateCode(`import { Avatar, Space } from 'react-native-beauty-design';
+  generateCode(`import { Avatar, Space } from '${PACKAGE_NAME}';
 
 export default function App() {
   return (
@@ -68,7 +69,7 @@ export default function App() {
 }`);
 
 export const countText =
-  generateCode(`import { Avatar, Space } from 'react-native-beauty-design';
+  generateCode(`import { Avatar, Space } from '${PACKAGE_NAME}';
 
 export default function App() {
   return (
@@ -100,7 +101,7 @@ export default function App() {
 }`);
 
 export const pressable =
-  generateCode(`import { Avatar } from 'react-native-beauty-design';
+  generateCode(`import { Avatar } from '${PACKAGE_NAME}';
 
 export default function App() {
   return (
@@ -115,7 +116,7 @@ export default function App() {
 }`);
 
 export const icons =
-  generateCode(`import { Avatar, Space } from 'react-native-beauty-design';
+  generateCode(`import { Avatar, Space } from '${PACKAGE_NAME}';
 
 export default function App() {
   return (

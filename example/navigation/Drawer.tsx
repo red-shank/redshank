@@ -7,7 +7,7 @@ import {
 } from '@react-navigation/drawer';
 import * as React from 'react';
 import { Image, StyleSheet, View } from 'react-native';
-import { Title, useTheme } from 'react-native-beauty-design';
+import { Title, useTheme } from '@redshank/native';
 
 function CustomDrawerContent(props: any) {
   return (

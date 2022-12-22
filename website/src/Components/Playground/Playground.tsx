@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 
 import { WrapperStyled } from '@/Components/PlaygroundSection/style';
 import formatCode from '@/utils/formatCode';
-import { LIB_VERSION } from '@/config';
+import { LIB_VERSION, PACKAGE_NAME } from '@/config';
 
 type SnackProps = {
   code?: string;
@@ -11,7 +11,7 @@ type SnackProps = {
   snackName?: string;
 };
 
-const dependencies = `@expo/vector-icons@^13.0.0,react-native-beauty-design@${LIB_VERSION},react-native-safe-area-context@4.3.1`;
+const dependencies = `@expo/vector-icons@^13.0.0,${PACKAGE_NAME}@${LIB_VERSION},react-native-safe-area-context@4.3.1`;
 
 const modes = {
   mobile: [

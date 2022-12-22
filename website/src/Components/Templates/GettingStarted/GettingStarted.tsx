@@ -7,38 +7,43 @@ import BlockCode from '@/Components/BlockCode';
 import { WrapperStyle } from './style';
 import TitleLink from '@/Components/TitleLink';
 import { useTranslation } from 'next-i18next';
+import { PACKAGE_NAME } from '@/config';
 
 const HomeTemplate = () => {
   const { t } = useTranslation();
 
   return (
     <WrapperStyle>
-      <Title>
-        {t('docs:home.title', 'Getting started')}
-      </Title>
+      <Title>{t('docs:home.title', 'Getting started')}</Title>
       <Text>
-        {t('docs:home.welcome', ' Welcome to the')} <strong>React Native Beauty Design</strong>{' '}
-        {t('docs:home.description', ' documentation! Beauty Design allows you to make beautiful, modern, and fast mobile/applications regardless of your design experience, created with React and React Native.')}
+        {t('docs:home.welcome', ' Welcome to the')}{' '}
+        <strong>React Native Beauty Design</strong>{' '}
+        {t(
+          'docs:home.description',
+          ' documentation! Beauty Design allows you to make beautiful, modern, and fast mobile/applications regardless of your design experience, created with React and React Native.'
+        )}
       </Text>
 
       <TitleLink className="mt-12">
         {t('docs:home.install', 'Installation:')}
-
       </TitleLink>
 
       <Text>
-        {t('docs:home.instruction', 'Inside your React project directory, install NextUI by running either of the following:')}
+        {t(
+          'docs:home.instruction',
+          'Inside your React project directory, install NextUI by running either of the following:'
+        )}
       </Text>
 
       <BlockCode
         className="mt-4"
         language="bash"
-        code="expo install react-native-beauty-design"
+        code={`expo install ${PACKAGE_NAME}`}
       />
-      <BlockCode language="bash" code="yarn add react-native-beauty-design" />
+      <BlockCode language="bash" code={`yarn add ${PACKAGE_NAME}`} />
       <BlockCode
         language="bash"
-        code="npm install react-native-beauty-design"
+        code={`npm install ${PACKAGE_NAME}`}
       />
     </WrapperStyle>
   );

@@ -1,7 +1,7 @@
 import generateCode from '@/content/utils/generateCode';
 
 export default generateCode(`import { useState } from 'react';
-import { Title, Button, Space } from 'react-native-beauty-design';
+import { Title, Button, Space } from '${PACKAGE_NAME}';
 
 export default function App() {
   const [align, setAlign] = useState('left');

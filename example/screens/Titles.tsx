@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
-import { Title, Space, Button } from 'react-native-beauty-design';
+import { Title, Space, Button } from '@redshank/native';
 
 type AlignType = 'left' | 'right' | 'center';
 type Transform = 'none' | 'capitalize' | 'uppercase' | 'lowercase';

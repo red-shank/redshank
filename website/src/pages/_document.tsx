@@ -6,7 +6,7 @@ const metaInfo = {
   url: 'https://www.beauty-design.app',
   author: 'Kevin Rivas',
   description:
-    'react-native-beauty-design Framework Component for React Native create your apps in React Native in a simple, fast and beautiful way.',
+    '@redshank/native Framework Component for React Native create your apps in React Native in a simple, fast and beautiful way.',
   imgs: {
     shared: 'https://www.beauty-design.app/me/shared.png',
     favicon: '/favicon.ico',

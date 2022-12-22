@@ -8,7 +8,7 @@ import {
   useModal,
   Text,
   Image,
-} from 'react-native-beauty-design';
+} from '@redshank/native';
 
 const PopConfirmScreen = () => {
   const [visibleDefault, toggleDefaultVisible] = useModal();

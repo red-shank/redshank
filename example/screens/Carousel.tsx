@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import { Carousel, Title, Image } from 'react-native-beauty-design';
+import { Carousel, Title, Image } from '@redshank/native';
 
 const items = [
   {

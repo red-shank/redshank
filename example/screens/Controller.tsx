@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import { Title, InputScrollView, Controller } from 'react-native-beauty-design';
+import { Title, InputScrollView, Controller } from '@redshank/native';
 
 const ControllerScreen = () => {
   return (

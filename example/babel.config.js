@@ -11,7 +11,7 @@ module.exports = function (api) {
         'module-resolver',
         {
           alias: {
-            'react-native-beauty-design/dist': path.resolve(
+            '@redshank/native/dist': path.resolve(
               __dirname,
               '..',
               'packages/native/src'

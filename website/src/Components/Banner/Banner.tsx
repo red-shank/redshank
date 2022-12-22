@@ -33,7 +33,7 @@ const Banner = (props: BannerProps) => {
         >
           {t(
             'home:banner.title',
-            'Beauty Design Framework Component for React Native'
+            'Redshank Framework Component for React Native'
           )}
         </Title>
         <Text size="$2xl" weight="semibold" className="text-center w-full mb-4">
@@ -47,7 +47,7 @@ const Banner = (props: BannerProps) => {
           isInline
           className="mt-4"
           language="bash"
-          code="yarn add react-native-beauty-design"
+          code="yarn add @redshank/native"
         />
 
         <Button

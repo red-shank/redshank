@@ -1,4 +1,4 @@
-export const basic = `import { useTheme, Switch } from 'react-native-beauty-design';
+export const basic = `import { useTheme, Switch } from '${PACKAGE_NAME}';
 
 export default function App() {
   const { setTheme, theme } = useTheme();
@@ -16,7 +16,7 @@ export default function App() {
 };`;
 
 export const customColors = `import { Appearance } from 'react-native';
-import { ThemeProvider } from 'react-native-beauty-design';
+import { ThemeProvider } from '${PACKAGE_NAME}';
 
 const colorScheme = Appearance.getColorScheme();
 
@@ -50,7 +50,7 @@ import {
   Switch,
   Icon,
   useTheme,
-} from 'react-native-beauty-design';
+} from '${PACKAGE_NAME}';
 
 const MyScreen = () => {
   const { setTheme, theme } = useTheme();

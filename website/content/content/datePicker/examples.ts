@@ -1,7 +1,7 @@
 import generateCode from '@/content/utils/generateCode';
 
 export const defaultCode =
-  generateCode(`import { DatePicker } from 'react-native-beauty-design';
+  generateCode(`import { DatePicker } from '${PACKAGE_NAME}';
 
 export default function App() {
   return (
@@ -13,7 +13,7 @@ export default function App() {
 `);
 
 export const modes =
-  generateCode(`import { DatePicker } from 'react-native-beauty-design';
+  generateCode(`import { DatePicker } from '${PACKAGE_NAME}';
 
 export default function App() {
   return (
@@ -26,7 +26,7 @@ export default function App() {
 }`);
 
 export const calendaryIOS =
-  generateCode(`import { DatePicker, Title } from 'react-native-beauty-design';
+  generateCode(`import { DatePicker, Title } from '${PACKAGE_NAME}';
 
 export default function App() {
   return (
@@ -38,7 +38,7 @@ export default function App() {
 }`);
 
 export const format =
-  generateCode(`import { DatePicker, Space } from 'react-native-beauty-design';
+  generateCode(`import { DatePicker, Space } from '${PACKAGE_NAME}';
 
 export default function App() {
   return (
@@ -53,7 +53,7 @@ export default function App() {
 }`);
 
 export const locales =
-  generateCode(`import { DatePicker, Title } from 'react-native-beauty-design';
+  generateCode(`import { DatePicker, Title } from '${PACKAGE_NAME}';
 
 export default function App() {
   return (

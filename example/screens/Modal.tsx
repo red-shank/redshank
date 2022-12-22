@@ -7,7 +7,7 @@ import {
   Modal,
   Text,
   Space,
-} from 'react-native-beauty-design';
+} from '@redshank/native';
 
 const { useModal } = Modal;
 
