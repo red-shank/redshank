@@ -1,6 +1,6 @@
 import React from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
-import { Text, Title } from 'react-native-beauty-design';
+import { Text, Title } from '@redshank/native';
 
 const colors = ['primary', 'success', 'warning', 'error', '#af52de'];
 

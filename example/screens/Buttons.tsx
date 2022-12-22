@@ -7,7 +7,7 @@ import {
   Title,
   Icon,
   InputScrollView,
-} from 'react-native-beauty-design';
+} from '@redshank/native';
 
 const colors = ['primary', 'success', 'warning', 'error'];
 

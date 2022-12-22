@@ -1,12 +1,16 @@
 {
-  "name": "react-native-beauty-design",
+  "name": "@redshank/native",
   "version": "1.0.0-beta.1.4.16",
-  "description": "React Native Beauty Design & UI Toolkit",
+  "description": "Red Shank Design component & UI Toolkit",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "react-native": "dist/index.js",
   "source": "src/index.ts",
   "prepublish": "tsc --composite false",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
   "files": [
     "dist"
   ],
@@ -33,7 +37,7 @@
   "author": "Kevin Rivas",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Beauty-Design/react-native-beauty-design/issues"
+    "url": "https://github.com/Beauty-Design/@redshank/issues"
   },
   "homepage": "https://www.beauty-design.app/",
   "dependencies": {
@@ -64,7 +68,7 @@
     "react-native-vector-icons": ">7.0.0"
   },
   "jest": {
-    "displayName": "@react-native-beauty-design/native",
+    "displayName": "@redshank/native",
     "preset": "react-native",
     "timers": "fake",
     "testPathIgnorePatterns": [
@@ -105,6 +109,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Beauty-Design/react-native-beauty-design.git"
+    "url": "git+https://github.com/red-shank/redshank.git"
   }
 }

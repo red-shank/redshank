@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import { InputScrollView, Title, Radio } from 'react-native-beauty-design';
+import { InputScrollView, Title, Radio } from '@redshank/native';
 
 const RadioScreen = () => {
   return (

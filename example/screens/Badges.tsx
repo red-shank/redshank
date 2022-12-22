@@ -9,7 +9,7 @@ import {
   Text,
   Icon,
   useTheme,
-} from 'react-native-beauty-design';
+} from '@redshank/native';
 
 const BadgeScreen = () => {
   const [visibleBadge, setVisibleBadge] = useState(true);

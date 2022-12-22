@@ -1,4 +1,4 @@
-export const useTheme = `import { useTheme } from 'react-native-beauty-design';
+export const useTheme = `import { useTheme } from '${PACKAGE_NAME}';
 
 const MyApp = () => {
   const {
@@ -21,7 +21,7 @@ const App = () => {
 )};`;
 
 export const useModal = `import { View } from 'react-native';
-import { useModal, Modal, Title, Button } from 'react-native-beauty-design';
+import { useModal, Modal, Title, Button } from '${PACKAGE_NAME}';
 
 const MyApp = () => {
   const [visible, toggleVisible, { onVisible, onHidden }] useModal();

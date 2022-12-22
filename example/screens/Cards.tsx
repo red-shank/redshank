@@ -7,7 +7,7 @@ import {
   Text,
   Button,
   Avatar,
-} from 'react-native-beauty-design';
+} from '@redshank/native';
 
 const ExpandContent = () => (
   <View>

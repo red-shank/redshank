@@ -33,7 +33,7 @@ export function generateCodeWithProvider(
   } } from 'react-native';
 import { ThemeProvider${
     importsBeauty ? `, ${importsBeauty.trim()}` : ''
-  } } from 'react-native-beauty-design';
+  } } from '${PACKAGE_NAME}';
 ${code}
 
 export default function Main() {

@@ -8,7 +8,7 @@ import {
   Space,
   Ripple,
   getColorForBackground,
-} from 'react-native-beauty-design';
+} from '@redshank/native';
 
 const ThemeScreen = () => {
   const { colors } = useTheme();

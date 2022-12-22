@@ -1,7 +1,7 @@
 import generateCode from '@/content/utils/generateCode';
 
 export const defaultCode =
-  generateCode(`import { Space, Alert } from 'react-native-beauty-design';
+  generateCode(`import { Space, Alert } from ;
 
 export default function App() {
   return (
@@ -17,7 +17,7 @@ export default function App() {
 }`);
 
 export const withShadow =
-  generateCode(`import { Space, Alert } from 'react-native-beauty-design';
+  generateCode(`import { Space, Alert } from '${PACKAGE_NAME}';
 
 export default function App() {
   return (
@@ -49,7 +49,7 @@ export default function App() {
 }`);
 
 export const closable =
-  generateCode(`import { Space, Alert } from 'react-native-beauty-design';
+  generateCode(`import { Space, Alert } from '${PACKAGE_NAME}';
 
 export default function App() {
   return (

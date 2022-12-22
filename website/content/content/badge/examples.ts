@@ -1,7 +1,8 @@
 import generateCode from '@/content/utils/generateCode';
+import { PACKAGE_NAME } from '@/config';
 
 export const defaultCode =
-  generateCode(`import { Badge, Space } from 'react-native-beauty-design';
+  generateCode(`import { Badge, Space } from '${PACKAGE_NAME}';
 
 export default function App() {
   return (
@@ -15,7 +16,7 @@ export default function App() {
 }`);
 
 export const sizes =
-  generateCode(`import { Badge, Space } from 'react-native-beauty-design';
+  generateCode(`import { Badge, Space } from '${PACKAGE_NAME}';
 
 export default function App() {
   return (
@@ -30,7 +31,7 @@ export default function App() {
 }`);
 
 export const dotVariants =
-  generateCode(`import { Badge, Space, Text } from 'react-native-beauty-design';
+  generateCode(`import { Badge, Space, Text } from '${PACKAGE_NAME}';
 
 export default function App() {
   return (
@@ -51,7 +52,7 @@ export default function App() {
 }`);
 
 export const bordered =
-  generateCode(`import { Badge, Space } from 'react-native-beauty-design';
+  generateCode(`import { Badge, Space } from '${PACKAGE_NAME}';
 
 export default function App() {
   return (
@@ -74,7 +75,7 @@ export default function App() {
 }`);
 
 export const flatAndPressable =
-  generateCode(`import { Badge, Space } from 'react-native-beauty-design';
+  generateCode(`import { Badge, Space } from '${PACKAGE_NAME}';
 
 export default function App() {
   return (
@@ -99,7 +100,7 @@ export default function App() {
 }`);
 
 export const square =
-  generateCode(`import { Badge, Space } from 'react-native-beauty-design';
+  generateCode(`import { Badge, Space } from '${PACKAGE_NAME}';
 
 export default function App() {
   return (
@@ -113,7 +114,7 @@ export default function App() {
 }`);
 
 export const solidBordered =
-  generateCode(`import { Badge, Space } from 'react-native-beauty-design';
+  generateCode(`import { Badge, Space } from '${PACKAGE_NAME}';
 
 export default function App() {
   return (
@@ -136,7 +137,7 @@ export default function App() {
 }`);
 
 export const withChildren =
-  generateCode(`import { Badge, Space, Avatar } from 'react-native-beauty-design';
+  generateCode(`import { Badge, Space, Avatar } from '${PACKAGE_NAME}';
 
 export default function App() {
   return (
@@ -154,7 +155,7 @@ export default function App() {
 }`);
 
 export const placement =
-  generateCode(`import { Badge, Space, Avatar } from 'react-native-beauty-design';
+  generateCode(`import { Badge, Space, Avatar } from '${PACKAGE_NAME}';
 
 export default function App() {
   return (
@@ -228,7 +229,7 @@ export default function App() {
 }`);
 
 export const enableShadow =
-  generateCode(`import { Badge, Space } from 'react-native-beauty-design';
+  generateCode(`import { Badge, Space } from '${PACKAGE_NAME}';
 
 export default function App() {
   return (
@@ -241,9 +242,9 @@ export default function App() {
   );
 }`);
 
-export const withToggle =
-  generateCode(`import { useState } from 'react';
-import { Badge, Icon, Text } from 'react-native-beauty-design';
+export const withToggle = generateCode(
+  `import { useState } from 'react';
+import { Badge, Icon, Text } from '${PACKAGE_NAME}';
 
 export default function App() {
   const [visibleBadge, setVisibleBadge] = useState(true);
@@ -269,4 +270,6 @@ export default function App() {
       <Text size={12}>Press icon of shopping car</Text>
     </View>
   );
-}`, 'TouchableOpacity');
+}`,
+  'TouchableOpacity'
+);

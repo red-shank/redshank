@@ -6,7 +6,7 @@ import {
   InputScrollView,
   Space,
   Icon,
-} from 'react-native-beauty-design';
+} from '@redshank/native';
 
 const { TextArea } = Input;
 

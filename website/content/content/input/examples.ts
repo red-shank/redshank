@@ -98,7 +98,7 @@ export default function App() {
 `);
 
 export const textArea =
-  generateCode(`import { Space, Input } from 'react-native-beauty-design';
+  generateCode(`import { Space, Input } from '${PACKAGE_NAME}';
 
 export default function App() {
   return (

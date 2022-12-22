@@ -1,6 +1,6 @@
 import React from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
-import { Title, Select, Space } from 'react-native-beauty-design';
+import { Title, Select, Space } from '@redshank/native';
 
 const items = [
   {

@@ -11,7 +11,7 @@ import {
   Radio,
   Checkbox,
   Switch,
-} from 'react-native-beauty-design';
+} from '@redshank/native';
 
 const { TextArea } = Input;
 const { useForm } = Form;

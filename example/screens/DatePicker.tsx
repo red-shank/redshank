@@ -5,7 +5,7 @@ import {
   InputScrollView,
   Space,
   DatePicker,
-} from 'react-native-beauty-design';
+} from '@redshank/native';
 
 const DatePickerScreen = () => {
   return (

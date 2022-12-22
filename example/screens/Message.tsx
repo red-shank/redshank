@@ -6,7 +6,7 @@ import {
   Space,
   Button,
   useMessage,
-} from 'react-native-beauty-design';
+} from '@redshank/native';
 
 type Type = 'default' | 'success' | 'error' | 'warning' | 'info';
 

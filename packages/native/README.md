@@ -1,24 +1,26 @@
-# Beauty UI
+# @redshank/native
 
 The objective of this project is to create a complete and advanced framework such as Antd for the web, I want to be able to offer a set of reusable components that are native and beautiful in such a way that we all love to use it in our projects
 
 # Documentation
 
-[Documentation](https://www.beauty-design.app) under construction, launch scheduled for November 30, 2022.
+[Documentation](https://www.redshank.app) under construction, launch scheduled for November 30, 2022.
 
 ## Installation
 
 ```sh
-npm install react-native-beauty-design
+npm install @redshank/native
 ```
 
 # Usage
 
 Make sure you have react-native>=0.65.0
 
-## Components Previews
+## Documentation
 
-<img raw=true alt="demo" src="demo.gif" width="250px"/>
+Documentation [here](https://redshank.app)
+
+![img.png](../../img.png)
 
 ## Code Example
 

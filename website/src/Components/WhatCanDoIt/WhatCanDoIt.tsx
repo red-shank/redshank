@@ -1,6 +1,7 @@
 import { Button, Grid, Image, Text } from '@nextui-org/react';
 import Title from '@/Components/Title';
 import { useTranslation } from 'next-i18next';
+import { REPO_NAME } from '@/config';
 
 type WhatCanDoItProps = {};
 
@@ -33,10 +34,10 @@ const WhatCanDoIt = (props: WhatCanDoItProps) => {
         <Text size="$2xl" className="text-center w-full mb-4">
           {t(
             'home:can-do-it.with',
-            'Con '
+            'With '
           )}
-          <Text as="strong" color="warning">
-            Beauty Design
+          <Text as="strong" color="warning" transform="capitalize">
+            {REPO_NAME}
           </Text>{' '}
           {t(
             'home:can-do-it.description',

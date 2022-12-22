@@ -1,6 +1,6 @@
 import generateCode from '@/content/utils/generateCode';
 
-export default generateCode(`import { Text } from 'react-native-beauty-design';
+export default generateCode(`import { Text } from '${PACKAGE_NAME}';
 
 export default function App() {
   return (

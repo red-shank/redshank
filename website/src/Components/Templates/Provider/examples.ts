@@ -1,5 +1,5 @@
 export const basic = `import React from 'react';
-import { ThemeProvider } from 'react-native-beauty-design';
+import { ThemeProvider } from '${PACKAGE_NAME}';
 
 const App = () => {
   return (
@@ -9,7 +9,7 @@ const App = () => {
 )};`;
 
 export const editingTheme = `import React from 'react';
-import { ThemeProvider } from 'react-native-beauty-design';
+import { ThemeProvider } from '${PACKAGE_NAME}';
 
 const theme = {
   colors: {

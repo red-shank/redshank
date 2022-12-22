@@ -7,7 +7,7 @@ import {
   Button,
   useNavigation,
   HeaderProps,
-} from 'react-native-beauty-design';
+} from '@redshank/native';
 import { useTheme as useNavigationTheme } from '@react-navigation/native';
 import DrawerToggleButton from '@react-navigation/drawer/src/views/DrawerToggleButton';
 

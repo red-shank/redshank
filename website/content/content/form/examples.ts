@@ -1,7 +1,7 @@
 import generateCode from '@/content/utils/generateCode';
 
 export const defaultCode =
-  generateCode(`import { Form, Input, Button } from 'react-native-beauty-design';
+  generateCode(`import { Form, Input, Button } from '${PACKAGE_NAME}';
 
 export default function App() {
 
@@ -49,7 +49,7 @@ import {
     Switch,
     ThemeProvider,
     Checkbox
-} from 'react-native-beauty-design';
+} from '${PACKAGE_NAME}';
 
 function FormExample() {
   const [form, submit] = Form.useForm();
@@ -181,7 +181,7 @@ const styles = StyleSheet.create({
 
 export const controller =
   generateCode(`import { useEffect } from 'react';
-import { Form, Input, Button } from 'react-native-beauty-design';
+import { Form, Input, Button } from '${PACKAGE_NAME}';
 
 const THREE_SECONDS = 3000;
 

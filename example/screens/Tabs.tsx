@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
-import { Tabs, Title, Text, useUIProvider } from 'react-native-beauty-design';
+import { Tabs, Title, Text, useUIProvider } from '@redshank/native';
 
 const tabs = [
   {

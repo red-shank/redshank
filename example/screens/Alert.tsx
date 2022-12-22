@@ -5,7 +5,7 @@ import {
   InputScrollView,
   Space,
   Alert,
-} from 'react-native-beauty-design';
+} from '@redshank/native';
 
 const AlertScreen = () => {
   return (

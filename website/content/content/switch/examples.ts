@@ -1,7 +1,7 @@
 import generateCode from '@/content/utils/generateCode';
 
 export const defaultCode =
-  generateCode(`import { Space, Switch } from 'react-native-beauty-design';
+  generateCode(`import { Space, Switch } from '${PACKAGE_NAME}';
 
 export default function App() {
   return (
@@ -15,7 +15,7 @@ export default function App() {
 `);
 
 export const sizes =
-  generateCode(`import { Space, Switch } from 'react-native-beauty-design';
+  generateCode(`import { Space, Switch } from '${PACKAGE_NAME}';
 
 export default function App() {
   return (
@@ -31,7 +31,7 @@ export default function App() {
 `);
 
 export const bordered =
-  generateCode(`import { Space, Switch } from 'react-native-beauty-design';
+  generateCode(`import { Space, Switch } from '${PACKAGE_NAME}';
 
 export default function App() {
   return (
@@ -46,7 +46,7 @@ export default function App() {
 `);
 
 export const withIcon =
-  generateCode(`import { Space, Switch, Icon } from 'react-native-beauty-design';
+  generateCode(`import { Space, Switch, Icon } from '${PACKAGE_NAME}';
 
 export default function App() {
   return (
@@ -74,7 +74,7 @@ export default function App() {
 `);
 
 export const variants =
-  generateCode(`import { Space, Switch } from 'react-native-beauty-design';
+  generateCode(`import { Space, Switch } from '${PACKAGE_NAME}';
 
 export default function App() {
   return (
@@ -90,7 +90,7 @@ export default function App() {
 `);
 
 export const errorVariant =
-  generateCode(`import { Space, Switch } from 'react-native-beauty-design';
+  generateCode(`import { Space, Switch } from '${PACKAGE_NAME}';
 
 export default function App() {
   return (

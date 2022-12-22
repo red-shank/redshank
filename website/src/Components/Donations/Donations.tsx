@@ -1,7 +1,7 @@
 import { Grid, Text, Tooltip, Image, Modal, Button } from '@nextui-org/react';
 
 import useModal from '@/hooks/useModal';
-import { COINBASE_WALLET, PATREON_LINK, PAYPAL_LINK } from '@/config';
+import { COINBASE_WALLET, PATREON_LINK, PAYPAL_LINK, REPO_NAME } from '@/config';
 import { PlayerStyle } from './style';
 import Title from '@/Components/Title';
 import { useTranslation } from 'next-i18next';
@@ -41,6 +41,7 @@ const Donations = () => {
            <br />
           <Text
             as="span"
+            transform="capitalize"
             size="2.5rem"
             css={{
               '@sm': {
@@ -48,7 +49,7 @@ const Donations = () => {
               }
             }}
           >
-            Beauty Design?
+            {REPO_NAME}?
           </Text>
         </Title>
 

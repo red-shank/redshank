@@ -11,6 +11,7 @@ import Title from '@/Components/Title';
 
 import { WrapperStyle } from './style';
 import { useTranslation } from 'next-i18next';
+import { PACKAGE_NAME, REPO_NAME } from '@/config';
 
 type WhyBeautyDesignProps = {};
 const WhyBeautyDesign = (props: WhyBeautyDesignProps) => {
@@ -24,11 +25,12 @@ const WhyBeautyDesign = (props: WhyBeautyDesignProps) => {
         )}
         <Text
           as="span"
+          transform="capitalize"
           css={{
             textGradient: '45deg, $purple600 -20%, $pink600 100%'
           }}
         >
-          Beauty Design?
+          {REPO_NAME}?
         </Text>
       </Title>
       <Grid.Container gap={2}>
