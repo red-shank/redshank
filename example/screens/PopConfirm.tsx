@@ -67,6 +67,9 @@ const PopConfirmScreen = () => {
                 odit tempora ut?
               </Text>
             </PopConfirm.Content>
+            <PopConfirm.Footer>
+              <Button>Show more</Button>
+            </PopConfirm.Footer>
           </PopConfirm>
         </View>
 

@@ -36,7 +36,7 @@ export const Modal: React.FC<ModalProps> & ExportComponent = ({
   contentStyle,
   contentContainerStyle,
   closable = true,
-  closeProps = {},
+  closeIconProps = {},
   scrollable = false,
   maskClosable = false,
   maskComponent: Component = maskClosable ? TouchableOpacity : View,
@@ -111,7 +111,7 @@ export const Modal: React.FC<ModalProps> & ExportComponent = ({
                 type="ionicon"
                 color="text"
                 size={37}
-                {...closeProps}
+                {...closeIconProps}
               />
             </Button>
           ) : null}

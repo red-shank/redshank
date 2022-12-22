@@ -83,14 +83,14 @@ export const MessageProvider = React.memo(
           removeMessage(messageToRender.id);
         }, messageToRender.duration);
 
-        const onPress = () => {
+        const onPress = (event: any) => {
           if (messageToRender.closable) {
             clearTimeout(ref);
             removeMessage(messageToRender.id);
           }
 
           if (typeof messageToRender.onPress === 'function') {
-            messageToRender.onPress();
+            messageToRender.onPress(event);
           }
         };
 

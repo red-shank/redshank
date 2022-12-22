@@ -1,12 +1,68 @@
 ---
 title: 'Alert'
-description: 'Alert component.'
+description: 'Alert component for feedback.'
 url: https://beauty-design.app/docs/components/alert
 ---
 
 ```jsx
 import { Alert } from 'react-native-beauty-design';
 ```
-# Building, coming soon!
+
+### When To Use
+* When you need to show alert messages to users.
+* When you need a persistent static container which is closable by user actions.
 
 <Spacer y={2} />
+
+### Examples
+
+<Playground
+  id="alert"
+  title="Alert"
+  description="Default Alert element."
+  code={alert.defaultCode}
+/>
+
+<Spacer y={2} />
+
+<Playground
+  id="with-shadow"
+  title="With Shadow"
+  description="With shadow Alert element."
+  code={alert.withShadow}
+/>
+
+<Spacer y={2} />
+
+<Playground
+  id="closable"
+  title="Closable"
+  description="With shadow Alert element."
+  code={alert.closable}
+/>
+
+<Spacer y={2} />
+
+### APIs
+
+<Spacer y={2} />
+
+#### Input
+Api props extends from [View](https://reactnative.dev/docs/view)
+
+| Attribute    | Type        | Accepted values         | Description                        | Default   |
+|--------------|-------------|-------------------------|------------------------------------|-----------|
+| **closable** | `boolean`   | `true` `false`          | Closable alert                     | `false`   |
+| **message**  | `string`    | `Text`                  | Require text for show in the alert | -         |
+| **shadow**   | `boolean`   | `true` `false`          | Show shadow in the element         | `false`   |
+| **sizeIcon** | `number`    | `Number`                | Size of the icon in Alert          | `18`      |
+| **type**     | `AlertType` | [AlertType](#alerttype) | Type alert change color            | `warning` |
+| **withIcon** | `boolean`   | `true` `false`          | Show icon in the start             | `true`    |
+
+<Spacer y={2} />
+
+#### AlertType
+
+```ts
+type AlertType = 'success' | 'warning' | 'error' | 'info';
+```

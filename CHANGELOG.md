@@ -1,6 +1,16 @@
+## 1.0.0-beta.1.4.16
+
+`2022-12-22`
+
+### Website
+- Added Alert documentation.
+- Added Modal documentation.
+- Added Message documentation.
+- Added Pop Confirm documentation.
+
 ## 1.0.0-beta.1.4.15
 
-`2022-12-13`
+`2022-12-21`
 
 ### Website
 - Added Input documentation.

@@ -19,6 +19,10 @@ import * as input from './input';
 import * as radio from './radio';
 import * as select from './select';
 import * as $switch from './switch';
+import * as alert from './alert';
+import * as modal from './modal';
+import * as message from './message';
+import * as popConfirm from './popConfirm';
 
 export default {
   iconContent,
@@ -33,7 +37,10 @@ export default {
   collapseContent,
   headerContent,
   form,
+  modal,
+  alert,
   radio,
+  message,
   $switch,
   select,
   input,
@@ -41,5 +48,6 @@ export default {
   checkbox,
   controller,
   datePicker,
+  popConfirm,
   themeColors: colorsLight,
 };

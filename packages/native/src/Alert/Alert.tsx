@@ -1,25 +1,15 @@
 import React from 'react';
-import { StyleSheet, TouchableOpacity, View } from 'react-native';
+import { Platform, StyleSheet, TouchableOpacity, View } from 'react-native';
 
 import { getOpacity } from '../utils';
 import useTheme from '../Context/theme/useTheme';
 import { Icon } from '../Icon';
 import { Text } from '../Text';
-
-export type AlertType = 'success' | 'warning' | 'error' | 'info';
-
-export interface AlertProps {
-  message: string;
-  type?: AlertType;
-  sizeIcon?: number;
-  closable?: boolean;
-  withIcon?: boolean;
-  shadow?: boolean;
-}
+import type { AlertProps, AlertType } from './types';
 
 export const Alert: React.FC<AlertProps> = ({
   message,
-  sizeIcon,
+  sizeIcon = 18,
   shadow = false,
   closable = false,
   type = 'warning',
@@ -88,11 +78,20 @@ const styles = StyleSheet.create({
     marginRight: 8,
   },
   shadow: {
-    shadowOffset: {
-      width: 0,
-      height: 20,
-    },
-    shadowRadius: 12,
+    shadowOffset: Platform.select({
+      default: {
+        width: 0,
+        height: 20,
+      },
+      web: {
+        width: 0,
+        height: 9,
+      },
+    }),
+    shadowRadius: Platform.select({
+      default: 12,
+      web: 20,
+    }),
   },
 });
 

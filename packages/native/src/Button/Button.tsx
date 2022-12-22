@@ -28,7 +28,7 @@ export const Button: React.FC<ButtonProps> = ({
   suffixOrPrefixStyle,
   prefix = icon,
   textProps,
-  fullWidth = false,
+  fullWidth = true,
   withMarginBottom = false,
   textAlign = 'center',
   Component = Ripple,
