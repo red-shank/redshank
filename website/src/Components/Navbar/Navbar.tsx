@@ -13,7 +13,7 @@ import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import { useTheme as useNextTheme } from 'next-themes';
 
-import { isProd } from '@/config';
+import { isProd, REPO_NAME } from '@/config';
 import ROUTES from '@/config/routes';
 import Aside from '@/Components/Aside';
 import {
@@ -121,8 +121,8 @@ const Navbar = ({ isActive, contentFit, ...props }: NavbarProps) => {
               height={50}
             />
             <Badge color="warning" content="Preview" shape="rectangle">
-              <Text b className="text-2xl">
-                Beauty Design
+              <Text b className="text-2xl" transform="capitalize">
+                {REPO_NAME}
               </Text>
             </Badge>
           </NextNavbar.Brand>

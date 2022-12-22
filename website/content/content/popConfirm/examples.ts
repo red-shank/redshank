@@ -74,7 +74,7 @@ export default function App() {
           description="lorem"
           image={
             <Image
-              source="https://www.beauty-design.app/favicon.png"
+              source="https://www.redshank.app/favicon.png"
               width={50}
               height={50}
             />

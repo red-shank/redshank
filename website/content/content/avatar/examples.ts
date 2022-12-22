@@ -109,7 +109,7 @@ export default function App() {
       <Avatar
         size={65}
         onPress={() => alert("On press here!")}
-        src="https://www.beauty-design.app/brand.svg"
+        src="https://www.redshank.app/brand.svg"
       />
     </View>
   );
