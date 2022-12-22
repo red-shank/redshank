@@ -3,10 +3,10 @@
   "version": "0.2.1",
   "private": true,
   "scripts": {
-    "dev": "yarn prepare-server",
+    "dev": "next dev",
     "prepare-server": "node temp/prepare-server.js",
-    "build": "next build",
-    "start": "yarn prepare-server && next start",
+    "build": "yarn prepare-server && next build",
+    "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
