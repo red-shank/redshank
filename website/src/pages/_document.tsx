@@ -3,12 +3,12 @@ import NextDocument, { Html, Head, Main, NextScript } from 'next/document';
 import { CssBaseline } from '@nextui-org/react';
 
 const metaInfo = {
-  url: 'https://www.beauty-design.app',
+  url: 'https://www.redshank.app',
   author: 'Kevin Rivas',
   description:
     '@redshank/native Framework Component for React Native create your apps in React Native in a simple, fast and beautiful way.',
   imgs: {
-    shared: 'https://www.beauty-design.app/me/shared.png',
+    shared: 'https://www.redshank.app/me/shared.png',
     favicon: '/favicon.ico',
     favicon16: '/favicon-16x16.png',
     favicon32: '/favicon-32x32.png',
