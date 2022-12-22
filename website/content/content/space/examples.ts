@@ -1,7 +1,8 @@
 import generateCode from '@/content/utils/generateCode';
+import { PACKAGE_NAME } from '@/config';
 
 export const defaultCode =
-  generateCode(`import { Space, Button } from "react-native-beauty-design";
+  generateCode(`import { Space, Button } from "${PACKAGE_NAME}";
 
 export default function App() {
   return (
@@ -23,7 +24,7 @@ export default function App() {
 `);
 
 export const gutter =
-  generateCode(`import { Space, Button } from "react-native-beauty-design";
+  generateCode(`import { Space, Button } from "${PACKAGE_NAME}";
 
 export default function App() {
   return (
@@ -46,7 +47,7 @@ export default function App() {
 
 
 export const verticalAlign =
-  generateCode(`import { Space, Button } from "react-native-beauty-design";
+  generateCode(`import { Space, Button } from "${PACKAGE_NAME}";
 
 export default function App() {
   return (
@@ -69,7 +70,7 @@ export default function App() {
 
 
 export const justifyAndAlign =
-  generateCode(`import { Space, Button } from "react-native-beauty-design";
+  generateCode(`import { Space, Button } from "${PACKAGE_NAME}";
 import { useState } from 'react';
 
 export default function App() {

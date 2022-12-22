@@ -1,4 +1,5 @@
 import generateCode from '@/content/utils/generateCode';
+import { PACKAGE_NAME } from '@/config';
 
 const expandContent = `const ExpandContent = () => (
   <View>
@@ -16,7 +17,7 @@ const expandContent = `const ExpandContent = () => (
   </View>
 );`
 export const defaultCode =
-  generateCode(`import { Card, Image, useTheme } from "react-native-beauty-design";
+  generateCode(`import { Card, Image, useTheme } from "${PACKAGE_NAME}";
 
 export default function App() {
   const { borderRadius } = useTheme();
@@ -39,7 +40,7 @@ export default function App() {
   );
 }`);
 export const absoluteCard =
-  generateCode(`import { Card, Image, Title, Text, Button, useTheme } from "react-native-beauty-design";
+  generateCode(`import { Card, Image, Title, Text, Button, useTheme } from "${PACKAGE_NAME}";
 
 export default function App() {
   const { borderRadius } = useTheme();
@@ -73,7 +74,7 @@ export default function App() {
 ${expandContent}`);
 
 export const expandableCard =
-  generateCode(`import { Card, Image, Title, Text, Button, useTheme } from "react-native-beauty-design";
+  generateCode(`import { Card, Image, Title, Text, useTheme } from "${PACKAGE_NAME}";
 
 export default function App() {
   const { borderRadius } = useTheme();
@@ -105,7 +106,7 @@ export default function App() {
 ${expandContent}`);
 
 export const exampleCard =
-  generateCode(`import { Card, Avatar, Title, Text, Button } from "react-native-beauty-design";
+  generateCode(`import { Card, Avatar, Title, Text, Button } from "${PACKAGE_NAME}";
 
 export default function App() {
   return (
@@ -140,7 +141,7 @@ export default function App() {
 }`);
 
 export const withBorder =
-  generateCode(`import { Card, Title, Text } from "react-native-beauty-design";
+  generateCode(`import { Card, Title, Text } from "${PACKAGE_NAME}";
 
 export default function App() {
   return (

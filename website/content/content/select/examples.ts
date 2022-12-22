@@ -1,7 +1,8 @@
 import generateCode from '@/content/utils/generateCode';
+import { PACKAGE_NAME } from '@/config';
 
 export const defaultCode =
-  generateCode(`import { Space, Select } from "react-native-beauty-design";
+  generateCode(`import { Space, Select } from "${PACKAGE_NAME}";
 
 const items = [
   {
@@ -27,7 +28,7 @@ export default function App() {
 `);
 
 export const sizes =
-  generateCode(`import { Space, Select } from "react-native-beauty-design";
+  generateCode(`import { Space, Select } from "${PACKAGE_NAME}";
 
 const items = [
   {
@@ -54,7 +55,7 @@ export default function App() {
 `);
 
 export const errors =
-  generateCode(`import { Space, Select, Title } from "react-native-beauty-design";
+  generateCode(`import { Space, Select, Title } from "${PACKAGE_NAME}";
 
 const items = [
   {

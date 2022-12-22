@@ -1,4 +1,5 @@
 import generateCode from '@/content/utils/generateCode';
+import { PACKAGE_NAME } from '@/config';
 
 export const defaultCode =
   generateCode(`import { Form, Input, Button } from '${PACKAGE_NAME}';
@@ -179,8 +180,7 @@ const styles = StyleSheet.create({
 })
 `;
 
-export const controller =
-  generateCode(`import { useEffect } from 'react';
+export const controller = generateCode(`import { useEffect } from 'react';
 import { Form, Input, Button } from '${PACKAGE_NAME}';
 
 const THREE_SECONDS = 3000;

@@ -1,7 +1,8 @@
 import generateCode from '@/content/utils/generateCode';
+import { PACKAGE_NAME } from '@/config';
 
 export const defaultCode =
-  generateCode(`import { Button, Modal, Title, Text } from "react-native-beauty-design";
+  generateCode(`import { Button, Modal, Title, Text } from "${PACKAGE_NAME}";
 
 export default function App() {
   const [visible, toggleVisible] = Modal.useModal();
@@ -25,7 +26,7 @@ export default function App() {
 }`);
 
 export const scrollModal =
-  generateCode(`import { Button, Modal, Title, Text } from "react-native-beauty-design";
+  generateCode(`import { Button, Modal, Title, Text } from "${PACKAGE_NAME}";
 
 export default function App() {
   const [isFull, toggleFull] = Modal.useModal();
@@ -130,14 +131,13 @@ export default function App() {
   );
 }`);
 
-export const topBottom =
-  generateCode(`import {
+export const topBottom = generateCode(`import {
   Button,
   Modal,
   Title,
   Text,
   Space,
-} from "react-native-beauty-design";
+} from "${PACKAGE_NAME}";
 
 export default function App() {
   const [visibleTop, toggleModalTop] = Modal.useModal();
@@ -169,13 +169,12 @@ export default function App() {
   );
 }`);
 
-export const hiddenStatusBar =
-  generateCode(`import {
+export const hiddenStatusBar = generateCode(`import {
   Button,
   Modal,
   Title,
   Text,
-} from "react-native-beauty-design";
+} from "${PACKAGE_NAME}";
 
 export default function App() {
   const [visible, toggleModal] = Modal.useModal();
@@ -204,13 +203,12 @@ export default function App() {
   );
 }`);
 
-export const closableMask =
-  generateCode(`import {
+export const closableMask = generateCode(`import {
   Button,
   Modal,
   Title,
   Text,
-} from "react-native-beauty-design";
+} from "${PACKAGE_NAME}";
 
 export default function App() {
   const [visible, toggleModal] = Modal.useModal();
@@ -232,13 +230,12 @@ export default function App() {
   );
 }`);
 
-export const withExtraContent =
-  generateCode(`import {
+export const withExtraContent = generateCode(`import {
   Button,
   Modal,
   Title,
   Text,
-} from "react-native-beauty-design";
+} from "${PACKAGE_NAME}";
 
 export default function App() {
   const [visible, toggleModal] = Modal.useModal();

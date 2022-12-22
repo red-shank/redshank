@@ -1,4 +1,5 @@
 import { globalStyles } from './constants';
+import { PACKAGE_NAME } from '@/config';
 
 export default function generateCode(
   code: string,

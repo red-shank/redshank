@@ -1,7 +1,8 @@
 import generateCode from '@/content/utils/generateCode';
+import { PACKAGE_NAME } from '@/config';
 
 export const defaultCode =
-  generateCode(`import { Space, Checkbox } from "react-native-beauty-design";
+  generateCode(`import { Space, Checkbox } from "${PACKAGE_NAME}";
 
 export default function App() {
   return (
@@ -16,7 +17,7 @@ export default function App() {
 `);
 
 export const type =
-  generateCode(`import { Space, Checkbox } from "react-native-beauty-design";
+  generateCode(`import { Space, Checkbox } from "${PACKAGE_NAME}";
 
 export default function App() {
   return (
@@ -39,7 +40,7 @@ export default function App() {
 `);
 
 export const required =
-  generateCode(`import { Space, Checkbox } from "react-native-beauty-design";
+  generateCode(`import { Space, Checkbox } from "${PACKAGE_NAME}";
 
 export default function App() {
   return (
@@ -56,7 +57,7 @@ export default function App() {
 `);
 
 export const sizes =
-  generateCode(`import { Space, Checkbox } from "react-native-beauty-design";
+  generateCode(`import { Space, Checkbox } from "${PACKAGE_NAME}";
 
 export default function App() {
   return (
@@ -81,7 +82,7 @@ export default function App() {
 `);
 
 export const customize =
-  generateCode(`import { Space, Checkbox } from "react-native-beauty-design";
+  generateCode(`import { Space, Checkbox } from "${PACKAGE_NAME}";
 
 export default function App() {
   return (
@@ -99,7 +100,7 @@ export default function App() {
 `);
 
 export const withErrors =
-  generateCode(`import { Space, Checkbox } from "react-native-beauty-design";
+  generateCode(`import { Space, Checkbox } from "${PACKAGE_NAME}";
 
 export default function App() {
   return (

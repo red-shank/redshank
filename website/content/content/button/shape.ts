@@ -1,6 +1,7 @@
 import generateCode from '@/content/utils/generateCode';
+import { PACKAGE_NAME } from '@/config';
 
-export default generateCode(`import { Button, Space } from '${PACKAGE_NAME}';
+export default generateCode(`import { Button, Space } from "${PACKAGE_NAME}";
 
 export default function App() {
   return (

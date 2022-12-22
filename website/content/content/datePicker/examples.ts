@@ -1,7 +1,8 @@
 import generateCode from '@/content/utils/generateCode';
+import { PACKAGE_NAME } from '@/config';
 
 export const defaultCode =
-  generateCode(`import { DatePicker } from '${PACKAGE_NAME}';
+  generateCode(`import { DatePicker } from "${PACKAGE_NAME}";
 
 export default function App() {
   return (
