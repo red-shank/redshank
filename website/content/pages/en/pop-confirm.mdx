@@ -1,12 +1,95 @@
 ---
 title: 'Pop Confirm'
-description: 'Pop Confirm component.'
+description: 'A simple and compact confirmation dialog of an action.'
 url: https://beauty-design.app/docs/components/pop-confirm
 ---
 
 ```jsx
 import { PopConfirm } from 'react-native-beauty-design';
 ```
-# Building, coming soon!
+
+### When To Use
+A simple and compact dialog used for asking for user confirmation.
+The difference with the `confirm` modal dialog is that it's more lightweight than the static popped full-screen confirm modal.
 
 <Spacer y={2} />
+
+### Examples
+
+<Playground
+  id="pop-confirm"
+  title="Pop Confirm"
+  description="Default Pop Confirm element."
+  code={popConfirm.defaultCode}
+/>
+
+<Spacer y={2} />
+
+<Playground
+  id="complete-example"
+  title="Complete Example"
+  description="Complete example using Header, Content and Footer element."
+  code={popConfirm.headerContentAndFooter}
+/>
+
+<Spacer y={2} />
+
+<Playground
+  id="confirm-delete"
+  title="Confirm delete"
+  description="Confirm action example."
+  code={popConfirm.confirmDelete}
+/>
+
+<Spacer y={2} />
+
+#### PopConfirm
+Api props
+
+| Attribute      | Type        | Accepted values    | Description                                         | Default    |
+|----------------|-------------|--------------------|-----------------------------------------------------|------------|
+| **cancelText** | `string`    | `Text`             | Cancel text button                                  | `Cancel`   |
+| **children**   | `ReactNode` | `Component`        | Content of the modal, recommended `Header``Content` | -          |
+| **extra**      | `ReactNode` | `Component`        | Extra content for show bottom modal                 | -          |
+| **okText**     | `string`    | `Text`             | Ok text button                                      | `Continue` |
+| **onClose**    | `function`  | `() => void`       | Required function for close pop                     | -          |
+| **onOk**       | `function`  | `() => void`       | Optional function for continue button               | -          |
+| **type**       | `function`  | `default` `delete` | Optional function for continue button               | `default`  |
+| **visible**    | `boolean`   | `true` `false`     | Show or hidden pop                                  | `false`    |
+
+<Spacer y={2} />
+
+#### Header
+Header Api props
+
+| Attribute       | Type        | Accepted values        | Description                       | Default |
+|-----------------|-------------|------------------------|-----------------------------------|---------|
+| **description** | `string`    | `Text`                 | Required description text content | -       |
+| **image**       | `ReactNode` | `Component`            | Image for show icon in pop        | -       |
+| **style**       | `object`    | `StyleProp<ViewStyle>` | Style for wrapper element         | -       |
+| **title**       | `string`    | `Text`                 | Required title header text        | -       |
+
+<Spacer y={2} />
+
+#### Content
+Content Api props
+
+| Attribute      | Type        | Accepted values        | Description                              | Default |
+|----------------|-------------|------------------------|------------------------------------------|---------|
+| **children**   | `ReactNode` | `Component`            | Content of the pop                       | -       |
+| **style**      | `object`    | `StyleProp<ViewStyle>` | Style for wrapper element                | -       |
+| **withBorder** | `boolean`   | `true` `false`         | Show or hidden border top in the element | `false` |
+
+
+<Spacer y={2} />
+
+#### Footer
+Footer Api props
+
+| Attribute      | Type        | Accepted values        | Description                              | Default               |
+|----------------|-------------|------------------------|------------------------------------------|-----------------------|
+| **children**   | `ReactNode` | `Component`            | Content of the pop                       | -                     |
+| **noPadding**  | `boolean`   | `true` `false`         | Add or remove padding                    | `paddingSizes.md` `0` |
+| **style**      | `object`    | `StyleProp<ViewStyle>` | Style for wrapper element                | -                     |
+| **withBorder** | `boolean`   | `true` `false`         | Show or hidden border top in the element | `false`               |
+

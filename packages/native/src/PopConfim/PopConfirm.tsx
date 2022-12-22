@@ -37,6 +37,7 @@ export const PopConfirm: React.FC<PopConfirmProps> & ExportComponent = ({
         extra || (
           <View style={styles.extra}>
             <Button
+              fullWidth
               color="modal"
               textAlign="center"
               textColor="primary"
@@ -53,6 +54,7 @@ export const PopConfirm: React.FC<PopConfirmProps> & ExportComponent = ({
         {onOk ? (
           <Footer noPadding>
             <Button
+              fullWidth
               color="modal"
               onPress={onClose}
               textAlign="center"

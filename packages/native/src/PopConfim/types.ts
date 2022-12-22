@@ -4,32 +4,32 @@ import { StyleProp, ViewStyle } from 'react-native';
 type PopConfirmType = 'default' | 'delete';
 
 export type PopConfirmProps = {
+  cancelText?: string;
   children?: ReactNode;
   extra?: ReactNode;
   okText?: string;
-  cancelText?: string;
-  type?: PopConfirmType;
-  visible?: boolean;
   onClose: () => void;
   onOk?: () => void;
+  type?: PopConfirmType;
+  visible?: boolean;
 };
 
 export type PropHeaderProps = {
-  title: string;
   description: string;
   image?: ReactNode;
   style?: StyleProp<ViewStyle>;
+  title: string;
 };
 
 export type PropContentProps = {
   children?: ReactNode;
-  withBorder?: boolean;
   style?: StyleProp<ViewStyle>;
+  withBorder?: boolean;
 };
 
 export type PropFooterProps = {
   children?: ReactNode;
-  withBorder?: boolean;
   noPadding?: boolean;
   style?: StyleProp<ViewStyle>;
+  withBorder?: boolean;
 };

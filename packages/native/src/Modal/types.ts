@@ -1,25 +1,25 @@
 import { StyleProp, ViewStyle } from 'react-native';
-import type { ReactNode, Component } from 'react';
+import type { ReactNode, Component, FunctionComponent } from 'react';
 import type { IconProps } from '../Icon';
 
 type PositionType = 'top' | 'bottom' | 'center';
 
 export type ModalProps = {
-  children?: ReactNode;
-  extra?: ReactNode;
-  hiddenBar?: boolean;
-  closable?: boolean;
-  fullScreen?: boolean;
-  scrollable?: boolean;
-  maskClosable?: boolean;
-  maskComponent?: typeof Component;
-  position?: PositionType;
-  visible?: boolean;
-  onClose?: () => void;
-  maskStyle?: StyleProp<ViewStyle>;
-  contentStyle?: StyleProp<ViewStyle>;
-  contentContainerStyle?: StyleProp<ViewStyle>;
-  buttonCloseStyle?: StyleProp<ViewStyle>;
-  closeProps?: IconProps;
   animationType?: 'fade' | 'slide' | 'none';
+  buttonCloseStyle?: StyleProp<ViewStyle>;
+  children?: ReactNode;
+  closable?: boolean;
+  closeIconProps?: IconProps;
+  contentContainerStyle?: StyleProp<ViewStyle>;
+  contentStyle?: StyleProp<ViewStyle>;
+  extra?: ReactNode;
+  fullScreen?: boolean;
+  hiddenBar?: boolean;
+  maskClosable?: boolean;
+  maskComponent?: typeof Component | FunctionComponent;
+  maskStyle?: StyleProp<ViewStyle>;
+  onClose?: () => void;
+  position?: PositionType;
+  scrollable?: boolean;
+  visible?: boolean;
 };
