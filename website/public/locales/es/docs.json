@@ -11,7 +11,7 @@
   },
   "darkMode": {
     "title": "Modo Oscuro",
-    "description": "Beauty Design atomaticamente maneja tema claro y oscuro, puedes cambiarlo usando una functiona llamada:  useTheme.",
+    "description": "Redshank atomaticamente maneja tema claro y oscuro, puedes cambiarlo usando una functiona llamada:  useTheme.",
     "changeTheme": "Cambiar tema:",
     "customColor": "Colores personalizados:",
     "sample": "Ejemplo completo:"
@@ -26,13 +26,13 @@
     "install": "Instalacion",
     "instruction": "Dentro del directorio de el proyecto, instala NextUI ejecutando lo siguiente:",
     "welcome": "Bienvenido a",
-    "description": " documentacion! Beauty Design permite hacer bonitas, modernas y rapidas mobile/aplicaciones sin importar tu experiencia en diseño, creado con React y React Native."
+    "description": " documentacion! Redshank permite hacer bonitas, modernas y rapidas mobile/aplicaciones sin importar tu experiencia en diseño, creado con React y React Native."
   },
   "defaultTheme": {
     "title": "Tema por defecto",
-    "description": "El tema por defecto de Beauty Design  es basado en la API React Context.",
+    "description": "El tema por defecto de Redshank  es basado en la API React Context.",
     "colors": "Colores:",
-    "instruction": "Beauty Design incluye una paleta de colores por defecto fuera-de-la-caja es un buen punto de partida si tu no tienes tu propia marca en especifico en mente. puedes acceder a los colores por medio del objeto del tema , ver el ",
+    "instruction": "Redshank incluye una paleta de colores por defecto fuera-de-la-caja es un buen punto de partida si tu no tienes tu propia marca en especifico en mente. puedes acceder a los colores por medio del objeto del tema , ver el ",
     "themeObject": "objeto del tema",
     "info": " para mas informacion.",
     "padding": "Rellenos:",

@@ -1,3 +1,19 @@
+## 1.0.1
+`2022-12-23`
+
+### Website
+- Fixed errors and performance
+
+### Package Native
+- Fixed Pop confirm okButton margin Bottom
+- Fixed Shadow opacity in Web alert
+- Fixed Select styles in web
+
+## 1.0.0
+`2022-12-23`
+
+We released our first stable version
+
 ## 1.0.0-beta.1.4.16
 
 `2022-12-22`

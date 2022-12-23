@@ -32,18 +32,25 @@ const LayoutContainer = ({ children, ...props }: LayoutProps) => {
   }, [routes]);
 
   const title = useMemo<string>(() => {
-    const isComponent = routes.pathname.includes('components');
+    const isComponent = routes.asPath.includes('components');
+
     if (isComponent) {
-      const [_, key] = routes.pathname.split('components');
+      const [_, key] = routes.asPath.split('components');
       return key.replace('/', '');
     }
 
-    const [_, key] = routes.pathname.split('docs');
+    const [_, key] = routes.asPath.split('docs');
     return key.replace('/', '');
-  }, [routes.pathname]);
+  }, [routes.asPath]);
 
-  const { previousComponent, nextComponent, currentComponent } =
+  const { previousComponent, nextComponent, currentComponent, items } =
     useComponent(title);
+
+  console.log({
+    title,
+    items,
+    nextComponent
+  });
 
   return (
     <WrapperStyle

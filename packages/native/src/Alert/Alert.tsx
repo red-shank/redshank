@@ -37,7 +37,10 @@ export const Alert: React.FC<AlertProps> = ({
         shadow && {
           ...styles.shadow,
           shadowColor: colors[internalColor],
-          shadowOpacity: isDark ? 0.9 : 0.5,
+          shadowOpacity: Platform.select({
+            default: isDark ? 0.9 : 0.5,
+            web: 0.4,
+          }),
         },
       ])}
     >
