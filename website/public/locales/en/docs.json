@@ -11,7 +11,7 @@
   },
   "darkMode": {
     "title": "Dark Mode",
-    "description": "Beauty Design automatically handles the dark and light theme you can change using a useTheme function.",
+    "description": "Redshank automatically handles the dark and light theme you can change using a useTheme function.",
     "changeTheme": "Change Theme:",
     "customColor": "Custom colors:",
     "sample": " Complete example:"
@@ -26,14 +26,14 @@
     "install": "Installation",
     "instruction": "Inside your React project directory, install NextUI by running either of the following:",
     "welcome": "Welcome to the",
-    "description": " documentation! Beauty Design allows you to make beautiful, modern, and\n        fast mobile/applications regardless of your design experience, created\n        with React and React Native."
+    "description": " documentation! Redshank allows you to make beautiful, modern, and\n        fast mobile/applications regardless of your design experience, created\n        with React and React Native."
   },
   "defaultTheme": {
     "title": "Default Theme",
     "baseProperties": "Base Properties:",
-    "description": "Beauty Design default theme is based on React Context API.",
+    "description": "Redshank default theme is based on React Context API.",
     "colors": "Colors:",
-    "instruction": "Beauty Design includes a default color palette out-of-the-box that is a great starting point if you don't have your own specific branding in mind. You can access the colors through the theme object, see the ",
+    "instruction": "Redshank includes a default color palette out-of-the-box that is a great starting point if you don't have your own specific branding in mind. You can access the colors through the theme object, see the ",
     "themeObject": "theme object",
     "info": " for more information.",
     "padding": "Paddings:",

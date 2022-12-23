@@ -79,7 +79,5 @@ const styles = StyleSheet.create({
   extra: {
     marginTop: 10,
   },
-  okButton: {
-    marginBottom: 7,
-  },
+  okButton: {},
 });

@@ -17,7 +17,7 @@ const HomeTemplate = () => {
       <Title>{t('docs:home.title', 'Getting started')}</Title>
       <Text>
         {t('docs:home.welcome', ' Welcome to the')}{' '}
-        <strong>React Native Beauty Design</strong>{' '}
+        <Text as="strong">{PACKAGE_NAME}</Text>{' '}
         {t(
           'docs:home.description',
           ' documentation! Beauty Design allows you to make beautiful, modern, and fast mobile/applications regardless of your design experience, created with React and React Native.'

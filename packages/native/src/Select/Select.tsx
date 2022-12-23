@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { Platform, StyleSheet, View } from 'react-native';
 // TODO: Migrate in the future to nativeComponent and remove lib
 import RNPickerSelect from 'react-native-picker-select';
 
@@ -7,7 +7,7 @@ import { Icon as InternalIcon } from '../Icon';
 import useTheme from '../Context/theme/useTheme';
 import { TextError } from '../utils/TextError';
 import { sizes } from '../@types/input';
-import { getDarken, getLighten } from "../utils/colors";
+import { getDarken, getLighten } from '../utils/colors';
 import type { SelectProps } from './types';
 
 export const Select: React.FC<SelectProps> = ({
@@ -70,7 +70,12 @@ export const Select: React.FC<SelectProps> = ({
         disabled={disabled}
         // Mimic touchable input on both iOS and Android
         useNativeAndroidPickerStyle={false}
-        Icon={RenderIcon as any}
+        Icon={
+          Platform.select({
+            web: undefined,
+            default: RenderIcon,
+          }) as any
+        }
         placeholder={{
           label: placeholder,
           value: null,
@@ -114,6 +119,18 @@ export const Select: React.FC<SelectProps> = ({
           inputIOS: {
             fontSize: fontSizes.base,
             color: isError ? colors.error : colors[color] ?? color,
+          },
+          inputWeb: {
+            fontSize: fontSizes.base,
+            color: isError ? colors.error : colors[color] ?? color,
+            ...sizes[size],
+            borderWidth,
+            borderStyle: 'solid',
+            borderRadius: borderRadius.lg,
+            borderColor: isError
+              ? colors.error
+              : colors[borderInputColor] ?? borderInputColor,
+            backgroundColor: colors[background] ?? background,
           },
           modalViewMiddle: {
             borderBottomWidth: 1,

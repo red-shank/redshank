@@ -9,31 +9,33 @@ import BlockCode from '@/Components/BlockCode';
 import * as examples from './examples';
 import { WrapperStyle } from './style';
 import { useTranslation } from 'next-i18next';
+import { PACKAGE_NAME } from '@/config';
 
 const ProviderTemplate = () => {
   const { t } = useTranslation();
 
   return (
     <WrapperStyle>
-      <Title>
-        {t('docs:provider.title', 'Provider')}
-      </Title>
+      <Title>{t('docs:provider.title', 'Provider')}</Title>
       <Text>
-        {t('docs:provider.for', 'For')}  <strong>React Native Beauty Design</strong>
-        {t('docs:provider.mainInstruction', ' to work correctly, you need to set up the ThemeProvider at the root of your application.')}
+        {t('docs:provider.for', 'For')} <Text as="strong">{PACKAGE_NAME}</Text>
+        {t(
+          'docs:provider.mainInstruction',
+          ' to work correctly, you need to set up the ThemeProvider at the root of your application.'
+        )}
       </Text>
 
-      <TitleLink>
-        Setup:
-      </TitleLink>
+      <TitleLink>Setup:</TitleLink>
 
       <Text>
-        {t('docs:provider.instruction', ' Go to the root of your application and do this:')}</Text>
+        {t(
+          'docs:provider.instruction',
+          ' Go to the root of your application and do this:'
+        )}
+      </Text>
 
       <BlockCode className="mt-5" code={examples.basic} />
-      <TitleLink>
-        {t('docs:provider.edit', 'Editing theme:')}
-      </TitleLink>
+      <TitleLink>{t('docs:provider.edit', 'Editing theme:')}</TitleLink>
 
       <Text>
         {t('docs:provider.override', 'You can override all ')}
@@ -46,9 +48,7 @@ const ProviderTemplate = () => {
 
       <BlockCode className="mt-5" code={examples.editingTheme} />
 
-      <TitleLink>
-        {t('docs:provider.themeObject', 'Theme object:')}
-      </TitleLink>
+      <TitleLink>{t('docs:provider.themeObject', 'Theme object:')}</TitleLink>
 
       <BlockCode className="mt-5" code={examples.themeObject} />
     </WrapperStyle>

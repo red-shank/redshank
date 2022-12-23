@@ -20,7 +20,7 @@ Make sure you have react-native>=0.65.0
 
 Documentation [here](https://redshank.app)
 
-![img.png](../../img.png)
+![img.png](img.png)
 
 ## Code Example
 
