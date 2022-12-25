@@ -1,102 +1,175 @@
 import { PACKAGE_NAME } from '@/config';
 
-export const basicExample = `import React from 'react';
-import { ScrollView, View, StyleSheet } from 'react-native';
+export const basicExample = `import { useState, useEffect } from 'react';
+import { View, ScrollView, StyleSheet, Platform } from 'react-native';
 import {
   ThemeProvider,
-  Header,
-  Card,
-  Title,
+  Space,
+  Icon,
   Button,
+  Title,
   Text,
-  Image,
+  Input,
+  Alert,
+  useMessage,
   useTheme,
-} from '${PACKAGE_NAME}';
+} from '@redshank/native';
+
+const Orientation = {
+  RECEIVED: 1,
+  SEND: 2,
+}
+
+const defaultValues = [
+  {
+    content: 'Hello, welcome to @redshank',
+    type: Orientation.RECEIVED
+  },
+  {
+    content: 'How to help you?',
+    type: Orientation.RECEIVED
+  },
+];
+
+const heightBottom = Platform.select({
+  web: 60,
+  default: 85
+});
 
 const MyComponent = () => {
-  const { onScroll, borderRadius } = useTheme();
+  const { message } = useMessage();
+  const [list, setList] = useState(defaultValues);
+  const [text, setText] = useState('');
+  const { borderRadius, colors, height, width } = useTheme();
+
+  const onAddMessage = () => {
+    if (!text) return message.error(
+      'Please insert text before',
+      { withIcon: true }
+    )
+
+    return setList(prev => {
+      const content = String(text);
+      setText('');
+      message.success(
+        'Successfully',
+        { withIcon: true, duration: 1000 }
+      )
+      return [...prev, { content, type: Orientation.SEND }]
+    })
+  }
+
+  useEffect(() => {
+    let time = setInterval(() => {
+      setList(prev => {
+        return [
+          ...prev,
+          {
+            content: 'Pining test...',
+            type: Orientation.RECEIVED
+          }
+        ]
+      })
+    }, 7000)
+
+    return () => time !== undefined && clearInterval(time);
+  }, [])
 
   return (
     <View style={styles.content}>
-      <Header
-        heightDynamic={25}
-        titlePosition="left"
-        title="Beauty Design"
-        titleOnScroll="Welcome"
-        backgroundSticky="primary"
-      />
-
       <ScrollView
-        onScroll={onScroll}
-        scrollEventThrottle={16}
-        contentContainerStyle={styles.wrapperScroll}
+        bottom={() => <View><Text>Hola</Text></View>}
+        style={{height: height - heightBottom}}
+          contentContainerStyle={StyleSheet.flatten([
+            styles.wrapperScroll,
+            {height: height - heightBottom}
+        ])}
       >
         <View style={styles.container}>
-          <Title level={2}>Demo</Title>
+          <Title>@redshank</Title>
+          <Space orientation="vertical">
+            <Alert message="Insert text in TextField for show more elements"/>
+            {list.map((message, i) => {
+              const isReceived = message.type === Orientation.RECEIVED;
+              return (
+                <Text
+                  key={i}
+                  containerStyle={StyleSheet.flatten([
+                    styles.message,
+                    {
+                      backgroundColor: !isReceived ? colors.primary : colors.accents8,
+                      borderRadius: borderRadius.lg,
+                      alignSelf: isReceived ? 'flex-start' : 'flex-end'
+                    }
+                  ])}
+                  align={isReceived ? 'left' : 'right'}
+                >
+                  {message.content}
+                </Text>
+              );
+            })}
+          </Space>
         </View>
-        <Card style={styles.card} expandContent={<ExpandContent />}>
-          <Card.Header isAbsolute>
-            <Title marginBottom={0} level={3}>
-              Absolute
-            </Title>
-            <Text>This is a Fox</Text>
-          </Card.Header>
-          <Card.Body>
-            <Image
-              style={{ borderRadius: borderRadius.card, height: 250 }}
-              source={{
-                uri: 'https://i.pinimg.com/736x/8b/28/c8/8b28c857a9103b63efe150977668674a.jpg',
-              }}
-            />
-          </Card.Body>
-          <Card.Footer isAbsolute>
-            <Text>This is a footer</Text>
-          </Card.Footer>
-        </Card>
-
-        <View style={{ height: 10000 }} />
       </ScrollView>
+
+      <View style={StyleSheet.flatten([
+        styles.footer,
+        { backgroundColor: colors.accents8 }
+      ])}>
+        <View style={{ width: width - 60, marginRight: 5 }}>
+          <Input
+            size="small"
+            value={text}
+            onChange={setText}
+          />
+        </View>
+        <Button shape="circle" size="small" onPress={onAddMessage}>
+          <Icon
+            color="white"
+            type="antdesign"
+            name="caretright"
+            size={14}
+            style={{ marginTop: Platform.select({
+              web: 0,
+              default: 5
+            }) }}
+          />
+        </Button>
+      </View>
     </View>
   )
 }
 
 export default function App() {
   return (
-    <ThemeProvider>
+    <ThemeProvider theme={{ theme: 'dark' }}>
       <MyComponent />
     </ThemeProvider>
   );
 }
 
-const ExpandContent = () => (
-  <View>
-    <Title marginBottom={0} level={3}>
-      Title here
-    </Title>
-    <Text>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab aliquid
-      assumenda blanditiis distinctio dolore dolorem eum hic illum ipsa laborum
-      nam nemo nesciunt optio, quasi quo sequi similique soluta tempora!
-    </Text>
-    <Button style={{ marginVertical: 20 }}>Start up</Button>
-  </View>
-);
-
 const styles = StyleSheet.create({
   content: {
-    flex: 1,
-    overflow: 'hidden',
     position: 'relative',
   },
   wrapperScroll: {
     paddingHorizontal: 10,
   },
   container: {
-    paddingTop: 70,
+    paddingTop: 40,
     paddingBottom: 10,
   },
-  card: {
-    marginBottom: 20,
+  message: {
+    padding: 7,
   },
-});
-`;
+  footer: {
+    width: '100%',
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    height: heightBottom,
+    flexDirection: 'row',
+    paddingTop: 5,
+    paddingHorizontal: 10
+  }
+});`;

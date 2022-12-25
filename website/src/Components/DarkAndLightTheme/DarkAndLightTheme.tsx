@@ -70,7 +70,7 @@ const DarkAndLightTheme = () => {
       </Grid>
 
       <Grid xs={12} sm={4} justify="center">
-        <Frame isVideo src="https://strike.me/assets/videos/pay.mp4" />
+        <Frame isVideo src="/assets/redshank-dark-mode-v1.mp4" />
       </Grid>
     </Grid.Container>
   );

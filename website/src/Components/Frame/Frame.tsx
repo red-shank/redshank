@@ -50,7 +50,7 @@ const Frame = ({ isVideo, src, css }: FrameProps) => {
         onClick={onToggle}
         width="100%"
         height="100%"
-        src="/iphone-frame.png"
+        src="/assets/frame-i14.png"
       />
 
       {isVideo ? (

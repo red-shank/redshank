@@ -6,6 +6,7 @@ import ROUTES from '@/config/routes';
 import Title from '@/Components/Title';
 import Frame from '@/Components/Frame';
 import BlockCode from '@/Components/BlockCode';
+import { REPO_NAME } from '@/config';
 
 type BannerProps = {};
 
@@ -31,10 +32,8 @@ const Banner = (props: BannerProps) => {
             }
           }}
         >
-          {t(
-            'home:banner.title',
-            'Redshank Framework Component for React Native'
-          )}
+          @{REPO_NAME}{' '}
+          {t('home:banner.title', 'Framework Component for React Native')}
         </Title>
         <Text size="$2xl" weight="semibold" className="text-center w-full mb-4">
           {t(
@@ -63,7 +62,7 @@ const Banner = (props: BannerProps) => {
       </Grid>
 
       <Grid xs={12} sm={4} justify="center">
-        <Frame isVideo src="https://strike.me/assets/videos/pay.mp4" />
+        <Frame isVideo src="/assets/redshank-v1.mp4" />
       </Grid>
     </Grid.Container>
   );

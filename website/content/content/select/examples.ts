@@ -18,7 +18,7 @@ const items = [
 export default function App() {
   return (
     <View style={styles.center}>
-      <Space>
+      <Space orientation="vertical">
         <Select items={items} />
         <Select items={items} placeholder="Select a element" />
       </Space>
@@ -44,7 +44,7 @@ const items = [
 export default function App() {
   return (
     <View style={styles.center}>
-      <Space>
+      <Space orientation="vertical">
         <Select items={items} size="small" placeholder="Small" />
         <Select items={items} size="middle" placeholder="Middle" />
         <Select items={items} size="large" placeholder="Large" />
@@ -71,7 +71,7 @@ const items = [
 export default function App() {
   return (
     <View style={styles.center}>
-      <Space>
+      <Space orientation="vertical">
         <Select
           error
           items={items}
