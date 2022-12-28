@@ -1,3 +1,14 @@
+## 1.0.3
+`2022-12-27`
+
+### Package Native
+- Fixed Prefix icons in inputs
+
+## 1.0.2
+`2022-12-25`
+
+- Fixed errors and improve performance
+
 ## 1.0.1
 `2022-12-23`
 

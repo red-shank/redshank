@@ -6,7 +6,7 @@ import { TextArea, TextAreaProps } from './TextArea';
 
 interface CompoundedComponent
   extends React.ForwardRefExoticComponent<
-    InputProps & React.RefAttributes<unknown>
+    InputProps & React.RefAttributes<any>
   > {
   TextArea: typeof TextArea;
 }
