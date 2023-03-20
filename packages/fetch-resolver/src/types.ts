@@ -1,10 +1,18 @@
-import { AxiosRequestConfig } from 'axios';
+import { AxiosRequestConfig, AxiosError } from 'axios';
 
 export type ParamType = AxiosRequestConfig['params'];
 
 export type Path = string | (() => string);
 
-export type Method = 'GET' | 'POST' | 'PUT' | 'DELETE';
+export type Method =
+  | 'post'
+  | 'put'
+  | 'patch'
+  | 'delete'
+  | 'POST'
+  | 'PUT'
+  | 'PATCH'
+  | 'DELETE';
 
 export interface FetchOption {
   skip?: boolean;
@@ -27,5 +35,5 @@ export type FetchMutationOptions<Request> = MutationOption<Request> & {
 
 export type FetchQueryReturn<Response> = Promise<{
   data: Response | null;
-  errors: Error | null;
+  errors: AxiosError | null;
 }>;

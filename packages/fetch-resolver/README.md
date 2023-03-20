@@ -168,7 +168,7 @@ import {useFetchMutation} from '@redshank/fetch-resolver';
 
 export default function App() {
   const [createUser, {data, errors, isLoading}] = useFetchMutation('/users', {
-    method: 'POST'
+    method: 'post'
   });
 
   const onSubmit = (event) => {
@@ -218,7 +218,7 @@ const itemID = 12540;
 
 export default function App() {
   const [deleteUser, {data, errors, isLoading}] = useFetchMutation('/users', {
-    method: 'DELETE'
+    method: 'delete'
   });
 
   const onDelete = () => {

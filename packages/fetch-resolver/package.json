@@ -1,6 +1,6 @@
 {
   "name": "@redshank/fetch-resolver",
-  "version": "1.0.5",
+  "version": "1.0.7",
   "description": "Redshank fetch hooks for request GET, POST, PUT and DELETE",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

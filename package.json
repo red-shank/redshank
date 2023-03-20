@@ -15,6 +15,7 @@
     "package:install": "cd ./packages/native && yarn install",
     "package:build": "cd ./packages/native && npm run build",
     "package:publish": "cd ./packages/native && npm publish",
+    "package:fetch-resolver:publish": "cd ./packages/fetch-resolver && yarn build && npm publish",
     "clean-install": "rimraf node_modules && yarn",
     "example:install": "cd ./example && yarn install",
     "example:start": "cd ./example && yarn start",

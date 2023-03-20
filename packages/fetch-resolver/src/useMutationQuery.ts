@@ -1,3 +1,4 @@
+import { AxiosError } from 'axios';
 import { useCallback, useMemo, useState } from 'react';
 import { useQueryInstance } from './instance';
 import {
@@ -13,7 +14,7 @@ type ReturnHook<Response = any, Request = any> = [
   ) => Promise<FetchQueryReturn<Response>>,
   {
     isLoading: boolean;
-    errors: Error | null;
+    errors: AxiosError | null;
     data: Response;
   }
 ];
@@ -34,7 +35,7 @@ export function useFetchMutation<Response = any, Request = any>(
 
   const [isLoading, setLoading] = useState<boolean>(false);
   const [data, setData] = useState<Response | null>(null);
-  const [errors, setErrors] = useState<Error | null>(null);
+  const [errors, setErrors] = useState<AxiosError | null>(null);
 
   const applyMutation = useCallback(
     async <InternalResponse = Response, InternalRequest = Response>(
@@ -42,6 +43,8 @@ export function useFetchMutation<Response = any, Request = any>(
     ): Promise<FetchQueryReturn<InternalResponse>> => {
       setErrors(null);
       setLoading(true);
+
+      const resolveMethod = (opts?.method || method).toLowerCase();
       const resolveAddToPath = opts?.addToPath || addToPath;
       const payload = opts?.variables || variables;
 
@@ -51,9 +54,11 @@ export function useFetchMutation<Response = any, Request = any>(
       };
 
       try {
-        const { data: responseData } = await instance[method]<Response>(
+        const { data: responseData } = await instance[
+          resolveMethod
+        ]<InternalResponse>(
           `${path}/${resolveAddToPath}`,
-          method === 'DELETE'
+          resolveMethod === 'delete'
             ? {
                 ...internalOptions,
                 data: payload,

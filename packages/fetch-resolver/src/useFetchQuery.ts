@@ -1,3 +1,4 @@
+import { AxiosError } from 'axios';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useQueryInstance } from './instance';
 import type {
@@ -9,7 +10,7 @@ import type {
 
 type ReturnHook<Response = any> = {
   isLoading: boolean;
-  errors: Error | null;
+  errors: AxiosError | null;
   data: Response;
   fetchData: (
     options?: FetchQueryOptions
@@ -27,7 +28,7 @@ export function useFetchQuery<Response = any>(
 
   const [isLoading, setLoading] = useState<boolean>(true);
   const [data, setData] = useState<Response | null>(null);
-  const [errors, setErrors] = useState<Error | null>(null);
+  const [errors, setErrors] = useState<AxiosError | null>(null);
 
   const fetchData = useCallback(
     async (opts?: FetchQueryOptions): Promise<FetchQueryReturn<Response>> => {
