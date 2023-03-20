@@ -1,0 +1,57 @@
+{
+  "name": "@redshank/fetch-resolver",
+  "version": "1.0.5",
+  "description": "Redshank fetch hooks for request GET, POST, PUT and DELETE",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "react-native": "dist/index.js",
+  "source": "src/index.ts",
+  "prepublish": "tsc --composite false",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "react",
+    "native",
+    "fetch",
+    "axios",
+    "react native",
+    "react native ui",
+    "react native components",
+    "ui library",
+    "ios",
+    "android",
+    "bootstrap"
+  ],
+  "scripts": {
+    "build": "tsc --composite false",
+    "test": "jest",
+    "test:update": "jest -u",
+    "test:ci": "jest --runInBand",
+    "test:watch": "jest --watch",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "clean-install": "rimraf node_modules && yarn"
+  },
+  "author": "Kevin Rivas",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/red-shank/redshank/issues"
+  },
+  "homepage": "https://www.redshank.app/",
+  "devDependencies": {
+    "@types/color": "^3.0.3",
+    "typescript": "4.8.3",
+    "utility-types": "^3.10.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/red-shank/redshank.git"
+  },
+  "dependencies": {
+    "axios": "^1.3.4"
+  }
+}
