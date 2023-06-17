@@ -1,0 +1,3 @@
+{   
+  "ignore": ["packages/native/dist/*", "packages/native/node_modules/*"] 
+}

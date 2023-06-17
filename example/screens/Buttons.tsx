@@ -1,13 +1,7 @@
 /* eslint-disable no-alert */
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import {
-  Button,
-  Space,
-  Title,
-  Icon,
-  InputScrollView,
-} from '@redshank/native';
+import { Button, Space, Title, Icon, InputScrollView } from '@redshank/native';
 
 const colors = ['primary', 'success', 'warning', 'error'];
 

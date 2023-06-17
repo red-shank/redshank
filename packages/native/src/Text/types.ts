@@ -1,4 +1,9 @@
-import type { StyleProp, TextStyle, ViewStyle } from 'react-native';
+import type {
+  DimensionValue,
+  StyleProp,
+  TextStyle,
+  ViewStyle,
+} from 'react-native';
 
 import type { ButtonProps } from '../Button';
 import type { AlignType, TransformType } from '../@types/typography';
@@ -9,11 +14,11 @@ export interface TextProps {
   color?: ColorType;
   lines?: number;
   transform?: TransformType;
-  margin?: number | 'string';
-  marginTop?: number | 'string';
-  marginBottom?: number | 'string';
-  marginVertical?: number | 'string';
-  marginHorizontal?: number | 'string';
+  margin?: DimensionValue;
+  marginTop?: DimensionValue;
+  marginBottom?: DimensionValue;
+  marginVertical?: DimensionValue;
+  marginHorizontal?: DimensionValue;
   readMore?: boolean;
   textReadMore?: string;
   textReadLess?: string;

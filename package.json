@@ -1,30 +1,35 @@
 {
   "private": true,
   "packageManager": "yarn@3.1.1",
-  "workspaces": {
-    "packages": [
-      "packages/*"
-    ]
+  "workspaces": [
+    "packages/*"
+  ],
+  "config": {
+    "sui-mono": {
+      "access": "public"
+    },
+    "validate-commit-msg": {
+      "types": "@s-ui/mono/src/types"
+    }
   },
   "scripts": {
     "lint": "eslint ./packages --ext .js,.jsx,.ts,.tsx",
     "typescript": "tsc --noEmit --composite false",
     "format": "prettier --check ./packages",
-    "test": "lerna run test",
-    "build": "lerna run build",
     "package:install": "cd ./packages/native && yarn install",
     "package:build": "cd ./packages/native && npm run build",
     "package:publish": "cd ./packages/native && npm publish",
+    "package:watch": "nodemon -e ts,tsx --watch packages/native --exec \"yarn package:build\"",
     "package:fetch-resolver:publish": "cd ./packages/fetch-resolver && yarn build && npm publish",
     "clean-install": "rimraf node_modules && yarn",
-    "example:install": "cd ./example && yarn install",
+    "example:install": "cd ./example && expo install",
     "example:start": "cd ./example && yarn start",
     "docs:build": "cd website && yarn build",
     "docs:install": "cd website && yarn run prepare-server && yarn install",
     "docs:start": "cd website && yarn start",
     "docs:dev": "cd website && yarn dev",
-    "postinstall": "husky install",
-    "lint-staged": "lint-staged"
+    "lint-staged": "lint-staged",
+    "co": "sui-mono commit"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.11.10",
@@ -33,18 +38,15 @@
     "@types/jest": "^27.4.0",
     "@types/react-native": "*",
     "babel-jest": "^27.4.6",
-    "codecov": "^3.8.3",
     "eslint": "^7.9.0",
-    "husky": "^7.0.4",
-    "jest": "^27.4.7",
-    "lerna": "^4.0.0",
     "lint-staged": "^12.1.7",
     "prettier": "^2.5.1",
     "react": "^17.0.2",
     "react-native": "^0.64.3",
-    "react-test-renderer": "^16.13.1",
     "rimraf": "^3.0.2",
-    "typescript": "^4.3.5"
+    "typescript": "^4.3.5",
+    "@s-ui/mono": "^2.35.0",
+    "nodemon": "^2.0.22"
   },
   "author": "rivaslive",
   "license": "MIT",
@@ -70,16 +72,6 @@
     "type": "git",
     "url": "git+https://github.com/Beauty-Design/react-native-beauty-design.git"
   },
-  "changelog": {
-    "nextVersion": "TODO version name",
-    "cacheDir": ".changelog",
-    "labels": {
-      "PR: Breaking Change :boom:": ":boom: Breaking Change",
-      "PR: New Feature :tada:": ":rocket: New Feature",
-      "PR: Docs :memo:": ":memo: Documentation",
-      "PR: Bug Fix :bug:": ":bug: Bug Fix",
-      "PR: Deprecation: :loudspeaker:": ":loudspeaker: Deprecation"
-    }
-  },
-  "dependencies": {}
+  "dependencies": {
+  }
 }

@@ -11,6 +11,7 @@ import {
   Text,
   Input,
   Alert,
+  InputScrollView,
   useMessage,
   useTheme,
 } from '@redshank/native';
@@ -77,12 +78,10 @@ const MyComponent = () => {
 
   return (
     <View style={styles.content}>
-      <ScrollView
-        bottom={() => <View><Text>Hola</Text></View>}
+      <InputScrollView
         style={{height: height - heightBottom}}
           contentContainerStyle={StyleSheet.flatten([
             styles.wrapperScroll,
-            {height: height - heightBottom}
         ])}
       >
         <View style={styles.container}>
@@ -110,7 +109,7 @@ const MyComponent = () => {
             })}
           </Space>
         </View>
-      </ScrollView>
+      </InputScrollView>
 
       <View style={StyleSheet.flatten([
         styles.footer,
@@ -151,13 +150,15 @@ export default function App() {
 const styles = StyleSheet.create({
   content: {
     position: 'relative',
+    flex: 1,
   },
   wrapperScroll: {
-    paddingHorizontal: 10,
+    flexGrow: 1,
+    paddingBottom: 80,
   },
   container: {
-    paddingTop: 40,
-    paddingBottom: 10,
+    paddingTop: 30,
+    paddingHorizontal: 10
   },
   message: {
     padding: 7,
@@ -169,7 +170,7 @@ const styles = StyleSheet.create({
     left: 0,
     height: heightBottom,
     flexDirection: 'row',
-    paddingTop: 5,
+    paddingTop: 10,
     paddingHorizontal: 10
   }
 });`;

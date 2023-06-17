@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, TextProps, StyleSheet } from 'react-native';
+import { Text, TextProps, StyleSheet, DimensionValue } from 'react-native';
 
 import useTheme from '../Context/theme/useTheme';
 import type { ColorType, FontType } from '../Context/theme/types';
@@ -10,7 +10,7 @@ export interface TitleProps extends TextProps {
   color?: ColorType;
   font?: FontType;
   align?: AlignType;
-  marginBottom?: string | number;
+  marginBottom?: DimensionValue;
   transform?: TransformType;
 }
 

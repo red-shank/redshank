@@ -11,7 +11,7 @@ import type {
   MessageOptions,
 } from './types';
 
-const DEFAULT_DURATION = 7000; // 5s
+const DEFAULT_DURATION = 10000; // 10s
 
 const MessageContext = createContext<MessageContextType>({
   message: {

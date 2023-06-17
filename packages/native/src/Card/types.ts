@@ -1,5 +1,5 @@
 import type { Component, ReactNode } from 'react';
-import type { StyleProp, ViewStyle } from 'react-native';
+import type { DimensionValue, StyleProp, ViewStyle } from 'react-native';
 
 import type { RippleProps } from '../Ripple/type';
 import type { ColorType } from '../Context/theme/types';
@@ -44,6 +44,6 @@ export interface CardBodyProps {
 
 export interface CardDividerProps {
   background?: ColorType;
-  height?: number | string;
+  height?: DimensionValue;
   style?: StyleProp<ViewStyle>;
 }

@@ -16,6 +16,7 @@ import { onAnimationSet } from './utils';
 import { styles, radius } from './styles';
 import useTheme from '../Context/theme/useTheme';
 import type { RippleProps, StateType } from './type';
+import WithAnimatedObject = Animated.WithAnimatedObject;
 
 export const Ripple: React.FC<RippleProps> = ({
   nativeID,
@@ -183,6 +184,7 @@ export const Ripple: React.FC<RippleProps> = ({
     >
       <Animated.View
         {...props}
+        hitSlop={props.hitSlop as WithAnimatedObject<any>}
         style={StyleSheet.flatten([
           {
             transform: [

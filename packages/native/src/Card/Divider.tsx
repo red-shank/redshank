@@ -15,7 +15,7 @@ const Divider: React.FC<CardDividerProps> = ({
     <View
       style={StyleSheet.flatten([
         {
-          height,
+          height: height,
           backgroundColor: colors[background] || background,
         },
         style,
