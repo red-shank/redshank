@@ -4,7 +4,7 @@ import { Animated, Platform, StyleSheet, View, ViewStyle } from 'react-native';
 import useTheme from '../Context/theme/useTheme';
 import useHeaderHeight from '../hooks/useHeaderHeight';
 import type { HeaderProps } from './types';
-import { useNavigation } from 'react-native-beauty-design/native';
+import { useNavigation } from '../Context/navigation';
 
 const defaultTitlePosition = Platform.select<'center' | 'left'>({
   ios: 'center',

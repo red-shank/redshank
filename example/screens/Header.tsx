@@ -27,8 +27,8 @@ const defaultValues = (color) =>
   } as HeaderProps);
 
 const HeaderScreen = () => {
-  const { onScroll, colors } = useTheme();
-  const { header, setValues } = useNavigation();
+  const { colors } = useTheme();
+  const { header, setValues, scrollViewProps } = useNavigation();
   const navigationTheme = useNavigationTheme();
 
   useEffect(() => {
@@ -88,8 +88,7 @@ const HeaderScreen = () => {
         />
       )}
       <ScrollView
-        onScroll={onScroll}
-        scrollEventThrottle={16}
+        {...scrollViewProps}
         contentContainerStyle={styles.wrapperScroll}
       >
         <View style={styles.container}>

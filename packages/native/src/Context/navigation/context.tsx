@@ -6,24 +6,19 @@ const NavigationContext = React.createContext<
   NavigationContextProps | undefined
 >(undefined);
 
-type DefaultValueType = Omit<
-  NavigationContextProps,
-  'setValues' | 'scrollOffsetY'
->;
+export type DefaultValueType = {
+  header: null | NavigationContextProps['header'];
+};
 
 export const defaultNavigation: DefaultValueType = {
   header: null,
-  scrollViewProps: {
-    onScroll: () => {},
-    scrollEventThrottle: 16,
-  },
 };
 
 export const NavigationProvider = ({
   children,
   defaultValue = defaultNavigation,
 }: {
-  defaultValue?: DefaultValueType | null;
+  defaultValue?: DefaultValueType;
   children?: React.ReactNode;
 }) => {
   let scrollOffsetY = React.useRef(new Animated.Value(0)).current;
@@ -31,12 +26,9 @@ export const NavigationProvider = ({
   const [settings, setSettings] =
     React.useState<DefaultValueType>(defaultValue);
 
-  const setValues = React.useCallback(
-    (value: Omit<NavigationContextProps, 'setValues'>) => {
-      setSettings(value);
-    },
-    []
-  );
+  const setValues = React.useCallback((value: DefaultValueType) => {
+    setSettings(value);
+  }, []);
 
   const onScroll = React.useMemo(
     () =>

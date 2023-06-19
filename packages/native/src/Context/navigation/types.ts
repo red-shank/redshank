@@ -8,5 +8,5 @@ export type NavigationContextProps = {
     scrollEventThrottle: number;
     onScroll: () => void;
   };
-  setValues: (value: Omit<NavigationContextProps, 'setValues'>) => void;
+  setValues: (value: Pick<NavigationContextProps, 'header'>) => void;
 };
