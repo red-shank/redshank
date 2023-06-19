@@ -34,6 +34,7 @@ export const Input = forwardRef<TextInput, InputProps>(
       value,
       withMarginBottom = false,
       wrapperStyle,
+      Component = TextInput,
       ...rest
     },
     _ref
@@ -96,7 +97,7 @@ export const Input = forwardRef<TextInput, InputProps>(
               </View>
             </TouchableOpacity>
           )}
-          <TextInput
+          <Component
             {...rest}
             value={text}
             ref={_ref}

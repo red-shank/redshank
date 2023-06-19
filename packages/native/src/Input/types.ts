@@ -1,3 +1,4 @@
+import { Component, FunctionComponent } from 'react';
 import { TextInputProps, StyleProp, ViewStyle } from 'react-native';
 import { SizeType } from '../@types/input';
 import { ColorType } from '../Context/theme/types';
@@ -33,6 +34,7 @@ export interface InputProps extends Omit<TextInputProps, 'type' | 'onChange'> {
   suffix?: JSX.Element;
   textError?: string;
   type?: InputTypes;
+  Component?: typeof Component | FunctionComponent;
   withMarginBottom?: boolean;
   wrapperStyle?: StyleProp<ViewStyle>;
 }
