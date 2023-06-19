@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
 import { Field } from 'rc-field-form';
 import type { FieldProps } from 'rc-field-form/lib/Field';
@@ -20,6 +20,7 @@ export const FormItem = ({
   children,
   style,
   isSubmit,
+  rules = [],
   ...rest
 }: FormItemProps) => {
   const [textError, setTextError] = React.useState<string>();
@@ -33,6 +34,13 @@ export const FormItem = ({
       setTextError(undefined);
     }
   }, [errors, name]);
+
+  const internalRules = useMemo(() => {
+    if (required) {
+      return [{ required: true, message: `${label} is required` }, ...rules];
+    }
+    return rules;
+  }, [label, required, rules]);
 
   return (
     <View style={StyleSheet.flatten([styles.wrapper, { marginBottom }, style])}>
@@ -48,7 +56,7 @@ export const FormItem = ({
           onPress: internalForm.submit,
         })
       ) : (
-        <Field name={name} {...rest}>
+        <Field {...rest} name={name} rules={internalRules}>
           {(childProps) => {
             return React.cloneElement(children as JSX.Element, {
               ...childProps,
