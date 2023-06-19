@@ -34,27 +34,6 @@ export const FormItem = ({
     }
   }, [errors, name]);
 
-  const RenderField = React.useCallback(() => {
-    if (isSubmit) {
-      return (
-        <>
-          {React.cloneElement(children as JSX.Element, {
-            onPress: internalForm.submit,
-          })}
-        </>
-      );
-    }
-
-    return (
-      <Field name={name} {...rest}>
-        {React.cloneElement(children as JSX.Element, {
-          error: !!textError,
-          textError,
-        })}
-      </Field>
-    );
-  }, [children, internalForm.submit, isSubmit, name, rest, textError]);
-
   return (
     <View style={StyleSheet.flatten([styles.wrapper, { marginBottom }, style])}>
       {label && (
@@ -63,7 +42,22 @@ export const FormItem = ({
           <Text>{label}</Text>
         </View>
       )}
-      <RenderField />
+
+      {isSubmit ? (
+        React.cloneElement(children as JSX.Element, {
+          onPress: internalForm.submit,
+        })
+      ) : (
+        <Field name={name} {...rest}>
+          {(childProps) => {
+            return React.cloneElement(children as JSX.Element, {
+              ...childProps,
+              error: !!textError,
+              textError,
+            });
+          }}
+        </Field>
+      )}
     </View>
   );
 };

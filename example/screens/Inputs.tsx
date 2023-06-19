@@ -1,12 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, Platform } from 'react-native';
-import {
-  Input,
-  Title,
-  InputScrollView,
-  Space,
-  Icon,
-} from '@redshank/native';
+import { Input, Title, InputScrollView, Space, Icon } from '@redshank/native';
 
 const { TextArea } = Input;
 
@@ -80,6 +74,13 @@ const InputScreen = () => {
               type="numeric"
               placeholder="Insert only numbers"
             />
+          </Space>
+        </View>
+
+        <View>
+          <Title level={3}>Textarea</Title>
+          <Space orientation="vertical">
+            <TextArea placeholder="Insert text" />
           </Space>
         </View>
       </View>

@@ -46,9 +46,13 @@ export const Input = forwardRef<TextInput, InputProps>(
     const [text, setText] = React.useState<undefined | string>(defaultValue);
 
     const onInternalChange = (v: string) => {
-      setText(v);
       setError(false);
-      onChange && onChange(v);
+      if (value === null || value === undefined) {
+        setText(v);
+      }
+      if (onChange) {
+        onChange(v);
+      }
     };
 
     const propsPassword = React.useMemo(() => {

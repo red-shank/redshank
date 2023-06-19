@@ -1,6 +1,6 @@
 {
   "name": "@redshank/native",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Red Shank Design component & UI Toolkit",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -45,7 +45,7 @@
     "@types/react-native-vector-icons": "6.4.12",
     "color": "4.2.3",
     "dayjs": "1.10.7",
-    "rc-field-form": "1.24.0",
+    "rc-field-form": "1.32.2",
     "react-native-input-scroll-view": "1.11.0",
     "react-native-modal-datetime-picker": "13.0.1",
     "react-native-picker-select": "8.0.4",
@@ -66,46 +66,6 @@
   "peerDependencies": {
     "react-native-safe-area-context": ">3.1.9",
     "react-native-vector-icons": ">7.0.0"
-  },
-  "jest": {
-    "displayName": "@redshank/native",
-    "preset": "react-native",
-    "timers": "fake",
-    "testPathIgnorePatterns": [
-      "./src/SearchBar/__tests__/common.tsx",
-      "<rootDir>/node_modules",
-      "<rootDir>/dist"
-    ],
-    "transformIgnorePatterns": [
-      "<rootDir>/../../node_modules/(?!(@react-native|react-native)/)"
-    ],
-    "coveragePathIgnorePatterns": [
-      "./src/searchbar/__tests__/common.tsx"
-    ],
-    "collectCoverageFrom": [
-      "src/**/*.tsx",
-      "!src/index.tsx",
-      "!src/helpers/*.tsx"
-    ],
-    "collectCoverage": true,
-    "globals": {
-      "__DEV__": true
-    },
-    "setupFilesAfterEnv": [
-      "<rootDir>/.ci/setupTests.ts"
-    ],
-    "testRegex": "/__tests__/.*\\.(ts|tsx|js)$",
-    "transform": {
-      ".+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$": "jest-transform-stub"
-    },
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js",
-      "jsx",
-      "json",
-      "node"
-    ]
   },
   "repository": {
     "type": "git",
