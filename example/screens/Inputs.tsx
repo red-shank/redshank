@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Platform } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { Input, Title, InputScrollView, Space, Icon } from '@redshank/native';
 
 const { TextArea } = Input;

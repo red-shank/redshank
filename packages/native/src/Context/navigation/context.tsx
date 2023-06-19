@@ -1,19 +1,35 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { NavigationContextProps } from './types';
+import { Animated } from 'react-native';
 
 const NavigationContext = React.createContext<
   NavigationContextProps | undefined
 >(undefined);
 
+type DefaultValueType = Omit<
+  NavigationContextProps,
+  'setValues' | 'scrollOffsetY'
+>;
+
+export const defaultNavigation: DefaultValueType = {
+  header: null,
+  scrollViewProps: {
+    onScroll: () => {},
+    scrollEventThrottle: 16,
+  },
+};
+
 export const NavigationProvider = ({
   children,
-  defaultValue = { header: null },
+  defaultValue = defaultNavigation,
 }: {
-  defaultValue?: Omit<NavigationContextProps, 'setValues'> | null;
+  defaultValue?: DefaultValueType | null;
   children?: React.ReactNode;
 }) => {
+  let scrollOffsetY = React.useRef(new Animated.Value(0)).current;
+
   const [settings, setSettings] =
-    React.useState<Omit<NavigationContextProps, 'setValues'>>(defaultValue);
+    React.useState<DefaultValueType>(defaultValue);
 
   const setValues = React.useCallback(
     (value: Omit<NavigationContextProps, 'setValues'>) => {
@@ -22,8 +38,30 @@ export const NavigationProvider = ({
     []
   );
 
+  const onScroll = React.useMemo(
+    () =>
+      Animated.event(
+        [{ nativeEvent: { contentOffset: { y: scrollOffsetY } } }],
+        { useNativeDriver: false }
+      ),
+    [scrollOffsetY]
+  );
+
+  const output = useMemo<NavigationContextProps>(
+    () => ({
+      ...settings,
+      scrollOffsetY,
+      setValues,
+      scrollViewProps: {
+        onScroll,
+        scrollEventThrottle: 16,
+      },
+    }),
+    [onScroll, scrollOffsetY, setValues, settings]
+  );
+
   return (
-    <NavigationContext.Provider value={{ ...settings, setValues }}>
+    <NavigationContext.Provider value={output}>
       {children}
     </NavigationContext.Provider>
   );

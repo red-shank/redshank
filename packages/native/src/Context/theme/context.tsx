@@ -1,6 +1,5 @@
 import React, { createContext, useEffect, useState } from 'react';
 import {
-  Animated,
   Appearance,
   Dimensions,
   StyleSheet,
@@ -53,16 +52,12 @@ export interface ThemeContextProps extends ThemeProps {
   setTheme?: (newTheme: OptionalThemeProps) => void;
   width: number;
   height: number;
-  scrollOffsetY: Animated.Value;
-  onScroll: () => void;
 }
 
 export const ThemeContext = createContext<ThemeContextProps>({
   ...initialValue,
   width: dimensions.width,
   height: dimensions.height,
-  scrollOffsetY: new Animated.Value(0),
-  onScroll() {},
 });
 
 export interface ThemeProviderProps {
@@ -76,7 +71,6 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = React.memo(
   ({ children, theme, navigationSettings, disableDarkMode = false }) => {
     const _colorSchema = useColorScheme();
     const { width, height } = useWindowDimensions();
-    let scrollOffsetY = React.useRef(new Animated.Value(0)).current;
 
     const [internalTheme, setInternalTheme] = useState<ThemeProps>(
       JSON.parse(JSON.stringify(initialValue))
@@ -87,15 +81,6 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = React.memo(
       : theme?.theme
       ? theme?.theme === 'dark'
       : _colorSchema === 'dark';
-
-    const onScroll = React.useMemo(
-      () =>
-        Animated.event(
-          [{ nativeEvent: { contentOffset: { y: scrollOffsetY } } }],
-          { useNativeDriver: false }
-        ),
-      [scrollOffsetY]
-    );
 
     const setTheme = React.useCallback(
       (_theme: OptionalThemeProps) => {
@@ -165,18 +150,8 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = React.memo(
         width,
         height,
         isDark,
-        scrollOffsetY,
-        onScroll,
       };
-    }, [
-      internalTheme,
-      setTheme,
-      width,
-      height,
-      isDark,
-      scrollOffsetY,
-      onScroll,
-    ]);
+    }, [internalTheme, setTheme, width, height, isDark]);
 
     return (
       <ThemeContext.Provider value={output}>

@@ -4,6 +4,7 @@ import { Animated, Platform, StyleSheet, View, ViewStyle } from 'react-native';
 import useTheme from '../Context/theme/useTheme';
 import useHeaderHeight from '../hooks/useHeaderHeight';
 import type { HeaderProps } from './types';
+import { useNavigation } from 'react-native-beauty-design/native';
 
 const defaultTitlePosition = Platform.select<'center' | 'left'>({
   ios: 'center',
@@ -11,19 +12,20 @@ const defaultTitlePosition = Platform.select<'center' | 'left'>({
 });
 export const Header: React.FC<HeaderProps> = ({
   title,
-  titleOnScroll,
   leftIcon,
   rightIcon,
   titleStyle,
   style,
   statusBarHeight,
   heightDynamic = 0,
+  titleOnScroll = title,
   titlePosition = defaultTitlePosition,
   titleOnScrollPosition = 'center',
   background = 'background',
   backgroundSticky = background,
 }) => {
-  const { scrollOffsetY, width, colors, zIndices } = useTheme();
+  const { width, colors, zIndices } = useTheme();
+  const { scrollOffsetY } = useNavigation();
   const [fadeInOpacity] = React.useState(new Animated.Value(0));
   const [opacityNumber, setOpacityNumber] = React.useState(0);
 
