@@ -54,7 +54,7 @@ const DefaultThemeTemplate = () => {
         {' '}
         {t(
           'docs:defaultTheme.description',
-          'Beauty Design default theme is based on React Context API.'
+          '@redshank default theme is based on React Context API.'
         )}
       </Text>
       <TitleLink>{t('docs:defaultTheme.colors', 'Colors:')}</TitleLink>
@@ -62,7 +62,7 @@ const DefaultThemeTemplate = () => {
       <Text>
         {t(
           'docs:defaultTheme.instruction',
-          'Beauty Design includes a default color palette out-of-the-box that is a\n' +
+          '@redshank includes a default color palette out-of-the-box that is a\n' +
             "        great starting point if you don't have your own specific branding in\n" +
             '        mind. You can access the colors through the theme object, see the '
         )}

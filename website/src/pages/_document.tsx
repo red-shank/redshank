@@ -85,7 +85,7 @@ export default class Document extends NextDocument {
 
           <meta
             name="keywords"
-            content="react-native, React Native, npm, docs, beauty-design, react native beauty-design, beauty design, provider, title, button, tabs, cards, api"
+            content="react-native, React Native, npm, docs, beauty-design, @redshank, redshank, @redshank/native, redshank/native react, native beauty-design, beauty design, provider, title, button, tabs, cards, api"
           />
         </Head>
         <body>

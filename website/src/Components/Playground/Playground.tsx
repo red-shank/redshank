@@ -28,7 +28,7 @@ const Playground = ({
   code,
   mode = 'all',
   snackId,
-  snackName = 'Beauty Design'
+  snackName = '@redshank'
 }: SnackProps) => {
   const snackRef = useRef<any>(null);
 

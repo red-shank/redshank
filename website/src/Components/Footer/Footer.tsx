@@ -95,7 +95,7 @@ const Footer = ({ completeFooter = true, className = '' }: FooterProps) => {
 
         <Grid xs={12} justify="center">
           <Text b>
-            Copyright © {new Date().getFullYear()} React Native Beauty Design.
+            Copyright © {new Date().getFullYear()} @redshank.
           </Text>
         </Grid>
       </Grid.Container>

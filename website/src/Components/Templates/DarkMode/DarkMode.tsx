@@ -17,7 +17,7 @@ const DarkThemeTemplate = () => {
         {t('docs:darkMode.title', 'Dark Mode')}
       </Title>
       <Text>
-        {t('docs:darkMode.description', 'Beauty Design automatically handles the dark and light theme you can change using a useTheme function.')}
+        {t('docs:darkMode.description', '@redshank automatically handles the dark and light theme you can change using a useTheme function.')}
 
       </Text>
 

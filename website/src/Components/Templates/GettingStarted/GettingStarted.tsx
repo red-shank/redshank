@@ -20,7 +20,7 @@ const HomeTemplate = () => {
         <Text as="strong">{PACKAGE_NAME}</Text>{' '}
         {t(
           'docs:home.description',
-          ' documentation! Beauty Design allows you to make beautiful, modern, and fast mobile/applications regardless of your design experience, created with React and React Native.'
+          ' documentation! @redshank allows you to make beautiful, modern, and fast mobile/applications regardless of your design experience, created with React and React Native.'
         )}
       </Text>
 

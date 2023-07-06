@@ -10,20 +10,20 @@ type HeadingSeoProps = {
 const HeadSeo = ({ description, title, image }: HeadingSeoProps) => {
   return (
     <Head>
-      {title ? <title>Beauty Design - {title}</title> : <></>}
+      {title ? <title>@redshank - {title}</title> : <></>}
       {description ? (
         <>
           <meta
             property="description"
-            content={`${description} fro Beauty Design.`}
+            content={`${description} from @redshank.`}
           />
           <meta
             property="og:description"
-            content={`${description} fro Beauty Design.`}
+            content={`${description} from @redshank.`}
           />
           <meta
             property="twitter:description"
-            content={`${description} fro Beauty Design.`}
+            content={`${description} from @redshank.`}
           />
         </>
       ) : (
