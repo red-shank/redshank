@@ -26,7 +26,7 @@ Documentation [here](https://redshank.app)
 
 ```js
 import {
-  Button,
+  GoogleButton,
   Space,
   SpaceItem,
   Text,
@@ -51,38 +51,38 @@ export default function App() {
             <Text>Buttons</Text>
             <Text level={4}>Default buttons</Text>
             <Space justify="center">
-              <Button>Primary</Button>
-              <Button color="success">Success</Button>
-              <Button type="link" color="warning">
+              <GoogleButton>Primary</GoogleButton>
+              <GoogleButton color="success">Success</GoogleButton>
+              <GoogleButton type="link" color="warning">
                 Warning
-              </Button>
-              <Button type="outline" color="error">
+              </GoogleButton>
+              <GoogleButton type="outline" color="error">
                 Error
-              </Button>
+              </GoogleButton>
             </Space>
           </View>
           <View>
             <Text level={4}>Circle buttons</Text>
             <Space justify="center">
-              <Button shape="circle">Primary</Button>
-              <Button shape="circle" color="success">
+              <GoogleButton shape="circle">Primary</GoogleButton>
+              <GoogleButton shape="circle" color="success">
                 Success
-              </Button>
-              <Button type="link" shape="circle" color="warning">
+              </GoogleButton>
+              <GoogleButton type="link" shape="circle" color="warning">
                 Warning
-              </Button>
-              <Button type="outline" shape="circle" color="error">
+              </GoogleButton>
+              <GoogleButton type="outline" shape="circle" color="error">
                 Error
-              </Button>
+              </GoogleButton>
             </Space>
           </View>
           <View>
             <Text level={4}>Custom color buttons</Text>
             <Space justify="center">
-              <Button color="magenta">Magenta</Button>
-              <Button color="orangered">Orangered</Button>
-              <Button color="green">Green</Button>
-              <Button color="purple">Purple</Button>
+              <GoogleButton color="magenta">Magenta</GoogleButton>
+              <GoogleButton color="orangered">Orangered</GoogleButton>
+              <GoogleButton color="green">Green</GoogleButton>
+              <GoogleButton color="purple">Purple</GoogleButton>
             </Space>
           </View>
         </View>

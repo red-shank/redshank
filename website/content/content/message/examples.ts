@@ -29,7 +29,7 @@ function App() {
   );
 }`,
   {
-    beauty: 'Button, Space, useMessage'
+    beauty: 'GoogleButton, Space, useMessage'
   }
 );
 
@@ -62,7 +62,7 @@ function App() {
   );
 }`,
   {
-    beauty: 'Button, Space, useMessage'
+    beauty: 'GoogleButton, Space, useMessage'
   }
 );
 
@@ -96,7 +96,7 @@ function App() {
   );
 }`,
   {
-    beauty: 'Button, Space, useMessage'
+    beauty: 'GoogleButton, Space, useMessage'
   }
 );
 
@@ -133,6 +133,6 @@ function App() {
   );
 }`,
   {
-    beauty: 'Button, Space, useMessage'
+    beauty: 'GoogleButton, Space, useMessage'
   }
 );

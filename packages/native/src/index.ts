@@ -9,6 +9,9 @@ export * from './Avatar';
 // Button export
 export * from './Button';
 
+// SocialButton export
+export * from './SocialButton';
+
 // Badge export
 export * from './Badge';
 

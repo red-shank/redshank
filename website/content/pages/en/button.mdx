@@ -1,11 +1,11 @@
 ---
-title: 'Button'
+title: 'GoogleButton'
 description: 'A button means an operation (or a series of operations). Clicking a button will trigger corresponding business logic.'
 url: https://redshank.app/docs/components/button
 ---
 
 ```jsx
-import { Button } from '@redshank/native';
+import { GoogleButton } from '@redshank/native';
 ```
 
 ### How to use
@@ -87,7 +87,7 @@ In @redshank we provide 4 types of button ready for use.
 
 <Spacer y={2} />
 
-#### Button Props
+#### GoogleButton Props
 Api props extends from [Touchable](https://reactnative.dev/docs/touchableopacity)
 
 | Attribute               | Type                   | Accepted values                                      | Description                                           | Default                           |
@@ -114,7 +114,7 @@ Api props extends from [Touchable](https://reactnative.dev/docs/touchableopacity
 | **textColor**           | `ThemeColor`           | [ThemeColor](/docs/default-theme)                    | Color for the text of the button                      | automatic `white` or `black`      |
 | **textProps**           | `object`               | [TextProps](https://reactnative.dev/docs/text)       | Text accessories props                                | -                                 |
 | **textStyle**           | `StyleProp<TextStyle>` | [TextStyle](https://reactnative.dev/docs/text#style) | Text style                                            | -                                 |
-| **type**                | `ButtonType`           | [ButtonType](#button-type)                           | Button variant type                                   | `solid`                           |
+| **type**                | `ButtonType`           | [ButtonType](#button-type)                           | GoogleButton variant type                                   | `solid`                           |
 | **withMarginBottom**    | `boolean`              | `true` `false`                                       | Margin bottom in the element for separate views       | `false`                           |
 | **Other Props**         | `any`                  | [Other props](#base-properties)                      | Interactive props for element                         | -                                 |
 
@@ -135,7 +135,7 @@ type ButtonSize =
 
 <Spacer y={2} />
 
-### Button Type
+### GoogleButton Type
 ```ts
 type ButtonType =
   'solid'

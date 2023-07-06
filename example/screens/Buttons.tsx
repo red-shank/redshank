@@ -1,7 +1,14 @@
 /* eslint-disable no-alert */
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import { Button, Space, Title, Icon, InputScrollView } from '@redshank/native';
+import {
+  Button,
+  Space,
+  Title,
+  Icon,
+  InputScrollView,
+  GoogleButton,
+} from '@redshank/native';
 
 const colors = ['primary', 'success', 'warning', 'error'];
 
@@ -9,6 +16,14 @@ const ButtonsScreen = () => {
   return (
     <InputScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.container}>
+        <View>
+          <Title level={4}>Social buttons</Title>
+          <Title level={5}>Google</Title>
+          <GoogleButton />
+
+          <View style={styles.space} />
+        </View>
+
         <View>
           <Title level={4}>Default buttons</Title>
           <Space>

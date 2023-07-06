@@ -30,3 +30,7 @@ export const getRandomId = (prefix = 'idx') => {
   const random = Date.now() + Math.random().toString().replace('.', '-');
   return `${prefix}-${random}`;
 };
+
+export function resolveAssetUrl(path: string) {
+  return `https://www.redshank.app/assets${path}`;
+}
