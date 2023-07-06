@@ -17,14 +17,6 @@ const ButtonsScreen = () => {
     <InputScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.container}>
         <View>
-          <Title level={4}>Social buttons</Title>
-          <Title level={5}>Google</Title>
-          <GoogleButton />
-
-          <View style={styles.space} />
-        </View>
-
-        <View>
           <Title level={4}>Default buttons</Title>
           <Space>
             {colors.map((c, i) => (
@@ -157,6 +149,15 @@ const ButtonsScreen = () => {
         </View>
 
         <View style={styles.space} />
+
+        <View>
+          <Title level={4} marginBottom={10}>
+            Social buttons
+          </Title>
+          <GoogleButton />
+
+          <View style={styles.space} />
+        </View>
 
         <View>
           <Title level={4}>Custom color buttons</Title>
