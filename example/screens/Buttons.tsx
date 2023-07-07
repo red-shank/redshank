@@ -7,7 +7,7 @@ import {
   Title,
   Icon,
   InputScrollView,
-  GoogleButton,
+  SocialButton,
 } from '@redshank/native';
 
 const colors = ['primary', 'success', 'warning', 'error'];
@@ -154,7 +154,12 @@ const ButtonsScreen = () => {
           <Title level={4} marginBottom={10}>
             Social buttons
           </Title>
-          <GoogleButton />
+          <Space>
+            <SocialButton provider="google" />
+            <SocialButton provider="twitter" />
+            <SocialButton provider="apple" />
+            <SocialButton provider="facebook" />
+          </Space>
 
           <View style={styles.space} />
         </View>

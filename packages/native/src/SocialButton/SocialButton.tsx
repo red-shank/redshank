@@ -6,6 +6,8 @@ import { resolveAssetUrl } from '../utils';
 import type { ButtonProps } from '../Button/types';
 import useTheme from '../Context/theme/useTheme';
 
+export type SocialButtonProvider = 'google' | 'facebook' | 'apple' | 'twitter';
+
 export interface SocialButtonProps
   extends Pick<
     ButtonProps,
@@ -16,17 +18,21 @@ export interface SocialButtonProps
     | 'withMarginBottom'
     | 'style'
   > {
-  provider?: 'google' | 'facebook' | 'apple' | 'twitter';
+  provider?: SocialButtonProvider;
   text?: string;
 }
 
-const SwitchProvidersTextMap = {
+const SwitchProvidersTextMap: Record<SocialButtonProvider, string> = {
   google: 'Continues with Google',
   facebook: 'Continues with Facebook',
   apple: 'Continues with Apple',
+  twitter: 'Continues with Twitter',
 } as const;
 
-const SwitchProvidersImageMap = {
+const SwitchProvidersImageMap: Record<
+  SocialButtonProvider,
+  { light: string; dark: string }
+> = {
   google: {
     light: '/social/google-dark.png',
     dark: '/social/google-light.png',
@@ -34,6 +40,10 @@ const SwitchProvidersImageMap = {
   facebook: {
     light: '/social/facebook-dark.png',
     dark: '/social/facebook-light.png',
+  },
+  twitter: {
+    light: '/social/twitter-dark.png',
+    dark: '/social/twitter-light.png',
   },
   apple: {
     light: '/social/apple-dark.png',
@@ -55,6 +65,10 @@ export const SocialButton: React.FC<SocialButtonProps> = ({
     return SwitchProvidersTextMap[provider];
   }, [provider, text]);
 
+  const uri = useMemo(() => {
+    return resolveAssetUrl(SwitchProvidersImageMap?.[provider]?.[theme] || '');
+  }, [provider, theme]);
+
   return (
     <Button
       shape="circle"
@@ -67,9 +81,7 @@ export const SocialButton: React.FC<SocialButtonProps> = ({
           width={25}
           height={25}
           source={{
-            uri: resolveAssetUrl(
-              SwitchProvidersImageMap?.[provider]?.[theme] || ''
-            ),
+            uri,
           }}
         />
       }

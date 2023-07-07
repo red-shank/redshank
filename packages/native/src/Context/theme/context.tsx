@@ -71,15 +71,10 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = React.memo(
     const _colorSchema = useColorScheme();
     const { width, height } = useWindowDimensions();
 
+    const [isDark, setIsDark] = useState(colorScheme === 'dark');
     const [internalTheme, setInternalTheme] = useState<ThemeProps>(
       JSON.parse(JSON.stringify(initialValue))
     );
-
-    const isDark = disableDarkMode
-      ? false
-      : theme?.theme
-      ? theme?.theme === 'dark'
-      : _colorSchema === 'dark';
 
     const setTheme = React.useCallback(
       (_theme: OptionalThemeProps) => {
@@ -127,6 +122,27 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = React.memo(
       },
       [disableDarkMode]
     );
+
+    useEffect(() => {
+      const isInternalDark = disableDarkMode
+        ? false
+        : theme?.theme
+        ? theme?.theme === 'dark'
+        : _colorSchema === 'dark';
+
+      setInternalTheme((prev) => {
+        if (prev.isDark === isInternalDark) {
+          return prev;
+        }
+        setIsDark(isInternalDark);
+
+        return {
+          ...prev,
+          isDark: isInternalDark,
+          theme: isInternalDark ? 'dark' : 'light',
+        };
+      });
+    }, [_colorSchema, disableDarkMode, theme?.theme]);
 
     useEffect(() => {
       if (theme) {
