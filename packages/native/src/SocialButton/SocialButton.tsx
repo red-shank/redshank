@@ -34,16 +34,16 @@ const SwitchProvidersImageMap: Record<
   { light: string; dark: string }
 > = {
   google: {
-    light: '/social/google-dark.png',
-    dark: '/social/google-light.png',
+    light: '/social/google.png',
+    dark: '/social/google.png',
   },
   facebook: {
-    light: '/social/facebook-dark.png',
-    dark: '/social/facebook-light.png',
+    light: '/social/facebook.png',
+    dark: '/social/facebook.png',
   },
   twitter: {
-    light: '/social/twitter-dark.png',
-    dark: '/social/twitter-light.png',
+    light: '/social/twitter.png',
+    dark: '/social/twitter.png',
   },
   apple: {
     light: '/social/apple-dark.png',
@@ -76,15 +76,7 @@ export const SocialButton: React.FC<SocialButtonProps> = ({
       color="text"
       textColor="text"
       textAlign="left"
-      prefix={
-        <Image
-          width={25}
-          height={25}
-          source={{
-            uri,
-          }}
-        />
-      }
+      prefix={<Image width={25} height={25} source={uri} />}
       textStyle={{
         flex: 1,
         textAlign: 'center',

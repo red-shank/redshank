@@ -31,6 +31,23 @@ export const getRandomId = (prefix = 'idx') => {
   return `${prefix}-${random}`;
 };
 
-export function resolveAssetUrl(path: string) {
-  return `https://www.redshank.app/assets${path}`;
+export function resolveAssetUrl(dynamicPath: string) {
+  const assets = {
+    social: {
+      'facebook.png': require('../@assets/social/facebook.png'),
+      'google.png': require('../@assets/social/google.png'),
+      'twitter.png': require('../@assets/social/twitter.png'),
+      'apple-dark.png': require('../@assets/social/apple-dark.png'),
+      'apple-light.png': require('../@assets/social/apple-light.png'),
+    },
+  };
+
+  const splitPath = dynamicPath.split('/');
+
+  return splitPath.reduce((acc, path) => {
+    if (!path) {
+      return acc;
+    }
+    return acc[path];
+  }, assets);
 }

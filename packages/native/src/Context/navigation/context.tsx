@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { NavigationContextProps } from './types';
 import { Animated } from 'react-native';
 
@@ -23,8 +23,7 @@ export const NavigationProvider = ({
 }) => {
   let scrollOffsetY = React.useRef(new Animated.Value(0)).current;
 
-  const [settings, setSettings] =
-    React.useState<DefaultValueType>(defaultValue);
+  const [settings, setSettings] = React.useState<DefaultValueType>();
 
   const setValues = React.useCallback((value: DefaultValueType) => {
     setSettings(value);
@@ -38,6 +37,16 @@ export const NavigationProvider = ({
       ),
     [scrollOffsetY]
   );
+
+  useEffect(() => {
+    setSettings((prev) => {
+      if (!prev) {
+        return defaultValue;
+      }
+
+      return prev;
+    });
+  }, [defaultValue]);
 
   const output = useMemo<NavigationContextProps>(
     () => ({

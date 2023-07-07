@@ -1,6 +1,6 @@
 {
   "name": "@redshank/native",
-  "version": "1.2.6",
+  "version": "1.2.7",
   "description": "Red Shank Design component & UI Toolkit",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -26,7 +26,8 @@
     "bootstrap"
   ],
   "scripts": {
-    "build": "tsc --composite false",
+    "build:dev": "tsc --composite false",
+    "build": "tsc --composite false && node afterBuild.js",
     "test": "jest",
     "test:update": "jest -u",
     "test:ci": "jest --runInBand",
