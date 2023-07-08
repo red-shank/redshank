@@ -10,7 +10,6 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { fonts, fontSizes, titleFontSizes } from './fonts';
 import useColorScheme from '../../hooks/useColorScheme';
-import { DefaultValueType, NavigationProvider } from '../navigation/context';
 import {
   colorsDark,
   colorsLight,
@@ -63,11 +62,10 @@ export interface ThemeProviderProps {
   children: React.ReactNode;
   disableDarkMode?: boolean;
   theme?: OptionalThemeProps;
-  navigationSettings?: DefaultValueType;
 }
 
 export const ThemeProvider: React.FC<ThemeProviderProps> = React.memo(
-  ({ children, theme, navigationSettings, disableDarkMode = false }) => {
+  ({ children, theme, disableDarkMode = false }) => {
     const _colorSchema = useColorScheme();
     const { width, height } = useWindowDimensions();
 
@@ -179,9 +177,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = React.memo(
               },
             ])}
           >
-            <NavigationProvider defaultValue={navigationSettings}>
-              {children}
-            </NavigationProvider>
+            {children}
           </View>
         </SafeAreaProvider>
       </ThemeContext.Provider>

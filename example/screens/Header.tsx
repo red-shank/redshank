@@ -5,8 +5,9 @@ import {
   Header,
   Title,
   Button,
-  useNavigation,
+  useHeaderNavigation,
   HeaderProps,
+  HeaderNavigationProvider,
 } from '@redshank/native';
 import { useTheme as useNavigationTheme } from '@react-navigation/native';
 import DrawerToggleButton from '@react-navigation/drawer/src/views/DrawerToggleButton';
@@ -26,67 +27,44 @@ const defaultValues = (color) =>
     leftIcon: <DrawerToggleButton tintColor={color} />,
   } as HeaderProps);
 
-const HeaderScreen = () => {
+const HeaderRender = () => {
   const { colors } = useTheme();
-  const { header, setValues, scrollViewProps } = useNavigation();
+  const { setValues, scrollViewProps } = useHeaderNavigation();
   const navigationTheme = useNavigationTheme();
 
   useEffect(() => {
-    setValues({
-      header: defaultValues(colors.text),
-    });
+    setValues(defaultValues(colors.text));
   }, [colors.text, setValues]);
 
   const onDefaultValues = () => {
-    setValues({
-      header: defaultValues(colors.text),
-    });
+    setValues(defaultValues(colors.text));
   };
 
   const onWithRightIcon = () => {
     setValues({
-      header: {
-        title: 'Right header',
-        heightDynamic,
-        titleOnScroll: 'Left scroll',
-        titlePosition: 'right',
-        titleOnScrollPosition: 'left',
-        rightIcon: <DrawerToggleButton tintColor={colors.text} />,
-      },
+      title: 'Right header',
+      heightDynamic,
+      titleOnScroll: 'Left scroll',
+      titlePosition: 'right',
+      titleOnScrollPosition: 'left',
+      rightIcon: <DrawerToggleButton tintColor={colors.text} />,
     });
   };
 
   const onWithCustomBackground = () => {
     setValues({
-      header: {
-        title: 'Custom',
-        heightDynamic: heightDynamic,
-        titleOnScroll: 'Header custom',
-        titlePosition: 'center',
-        backgroundSticky: colors.yellow500,
-        background: colors.primary,
-        leftIcon: <DrawerToggleButton tintColor={colors.text} />,
-      },
+      title: 'Custom',
+      heightDynamic: heightDynamic,
+      titleOnScroll: 'Header custom',
+      titlePosition: 'center',
+      backgroundSticky: colors.yellow500,
+      background: colors.primary,
+      leftIcon: <DrawerToggleButton tintColor={colors.text} />,
     });
   };
 
   return (
     <View style={styles.header}>
-      {header && (
-        <Header
-          background={header?.background}
-          backgroundSticky={
-            header?.backgroundSticky || navigationTheme.colors.card
-          }
-          heightDynamic={header?.heightDynamic}
-          leftIcon={header?.leftIcon}
-          rightIcon={header?.rightIcon}
-          title={header?.title}
-          titleOnScroll={header?.titleOnScroll}
-          titleOnScrollPosition={header?.titleOnScrollPosition}
-          titlePosition={header?.titlePosition}
-        />
-      )}
       <ScrollView
         {...scrollViewProps}
         contentContainerStyle={styles.wrapperScroll}
@@ -161,4 +139,10 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HeaderScreen;
+export default function HeaderScreen() {
+  return (
+    <HeaderNavigationProvider>
+      <HeaderRender />
+    </HeaderNavigationProvider>
+  );
+}

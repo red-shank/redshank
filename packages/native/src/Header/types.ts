@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+import { Animated } from 'react-native';
 import type { ColorType } from '../Context/theme/types';
 import type { StyleProp, TextStyle, ViewStyle } from 'react-native';
 
@@ -10,6 +11,7 @@ export interface HeaderProps {
   heightDynamic?: number;
   leftIcon?: ReactNode;
   statusBarHeight?: number;
+  scrollOffsetY: Animated.Value;
   rightIcon?: ReactNode;
   style?: StyleProp<ViewStyle>;
   title: ReactNode | string;

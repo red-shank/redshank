@@ -33,8 +33,8 @@ export * from './Controller';
 // Context export
 export * from './Context';
 
-// Context navigation export
-export * from './Context/navigation';
+// Context headerNavigation export
+export * from './Context/headerNavigation';
 
 // Context export
 export { default as useTheme } from './Context/theme/useTheme';
