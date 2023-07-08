@@ -23,6 +23,7 @@ import {
   DiscordIcon
 } from '@/Components/Icons';
 import { AStyle, onlyDesk, onlyMdMobile, onlyMobile } from './style';
+import * as process from 'process';
 
 type NavbarProps = {
   isActive?: string;
@@ -210,17 +211,19 @@ const Navbar = ({ isActive, contentFit, ...props }: NavbarProps) => {
         </NextNavbar.Content>
 
         <Grid.Container css={onlyMobile} gap={2}>
-          <Button
-            auto
-            onClick={toggleLanguage}
-            className="h-auto bg-transparent p-0 px-2"
-            css={{
-              color: '$text',
-              fontSize: '1.1rem'
-            }}
-          >
-            <strong>{router.locale === 'es' ? 'EN' : 'ES'}</strong>
-          </Button>
+          {process.env.NODE_ENV === 'development' && (
+            <Button
+              auto
+              onClick={toggleLanguage}
+              className="h-auto bg-transparent p-0 px-2"
+              css={{
+                color: '$text',
+                fontSize: '1.1rem'
+              }}
+            >
+              <strong>{router.locale === 'es' ? 'EN' : 'ES'}</strong>
+            </Button>
+          )}
 
           <RenderLink href={ROUTES.DISCORD.path} css={onlyMdMobile}>
             <Button

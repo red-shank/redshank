@@ -1,14 +1,14 @@
 import { Animated } from 'react-native';
 import { HeaderProps } from '../../Header/types';
 
-type Header = HeaderProps | null;
+export type SettingsHeaderProps = HeaderProps | null;
 
 export type NavigationContextProps = {
-  header?: Header;
+  settings?: SettingsHeaderProps;
   scrollOffsetY: Animated.Value;
   scrollViewProps: {
     scrollEventThrottle: number;
     onScroll: () => void;
   };
-  setValues: (value: Omit<Header, 'scrollOffsetY'>) => void;
+  setValues: (value: Omit<SettingsHeaderProps, 'scrollOffsetY'>) => void;
 };

@@ -7,7 +7,7 @@ const NavigationContext = React.createContext<
   NavigationContextProps | undefined
 >(undefined);
 
-export type DefaultValueType = null | NavigationContextProps['header'];
+export type DefaultValueType = null | NavigationContextProps['settings'];
 
 export const defaultNavigation: DefaultValueType = null;
 
@@ -22,7 +22,8 @@ export const HeaderNavigationProvider = ({
 }) => {
   let scrollOffsetY = React.useRef(new Animated.Value(0)).current;
 
-  const [settings, setSettings] = React.useState<DefaultValueType>();
+  const [settings, setSettings] =
+    React.useState<DefaultValueType>(defaultValue);
 
   const setValues = React.useCallback((value: DefaultValueType) => {
     setSettings(value);
@@ -49,7 +50,10 @@ export const HeaderNavigationProvider = ({
 
   const output = useMemo<NavigationContextProps>(
     () => ({
-      ...settings,
+      settings: {
+        ...settings,
+        scrollOffsetY,
+      },
       scrollOffsetY,
       setValues,
       scrollViewProps: {
