@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo } from 'react';
-import { NavigationContextProps } from './types';
+import { NavigationContextProps, SettingsHeaderProps } from './types';
 import { Animated, View } from 'react-native';
 import { Header } from '../../Header/Header';
 
@@ -7,7 +7,7 @@ const NavigationContext = React.createContext<
   NavigationContextProps | undefined
 >(undefined);
 
-export type DefaultValueType = null | NavigationContextProps['settings'];
+export type DefaultValueType = Omit<SettingsHeaderProps, 'scrollOffsetY'>;
 
 export const defaultNavigation: DefaultValueType = null;
 
