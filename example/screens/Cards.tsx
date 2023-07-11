@@ -28,27 +28,27 @@ const CardScreen = () => {
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.container}>
-        <Card isPressable style={styles.card}>
-          <Image
-            style={{ borderRadius: borderRadius.card, height: 150 }}
-            source={{
-              uri: 'https://i.pinimg.com/736x/8b/28/c8/8b28c857a9103b63efe150977668674a.jpg',
-            }}
-          />
-        </Card>
+        {/*<Card isPressable style={styles.card}>*/}
+        {/*  <Image*/}
+        {/*    style={{ borderRadius: borderRadius.card, height: 150 }}*/}
+        {/*    source={{*/}
+        {/*      uri: 'https://images.pexels.com/photos/16873016/pexels-photo-16873016/free-photo-of-camara-lente-nikon-mesa-negra.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',*/}
+        {/*    }}*/}
+        {/*  />*/}
+        {/*</Card>*/}
 
         <Card style={styles.card} expandContent={<ExpandContent />}>
           <Card.Header isAbsolute>
             <Title marginBottom={0} level={3}>
               Absolute
             </Title>
-            <Text>This is a Fox</Text>
+            <Text>This is a Camera</Text>
           </Card.Header>
           <Card.Body>
             <Image
               style={{ borderRadius: borderRadius.card, height: 250 }}
               source={{
-                uri: 'https://i.pinimg.com/736x/8b/28/c8/8b28c857a9103b63efe150977668674a.jpg',
+                uri: 'https://images.pexels.com/photos/7858126/pexels-photo-7858126.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
               }}
             />
           </Card.Body>
@@ -62,12 +62,12 @@ const CardScreen = () => {
             <Title marginBottom={0} level={3}>
               Default
             </Title>
-            <Text>This is a Fox</Text>
+            <Text>This is a Camera</Text>
           </Card.Header>
           <Image
             style={{ height: 250 }}
             source={{
-              uri: 'https://i.pinimg.com/736x/8b/28/c8/8b28c857a9103b63efe150977668674a.jpg',
+              uri: 'https://images.pexels.com/photos/17383711/pexels-photo-17383711/free-photo-of-fondo-de-pantalla-de-la-camara.jpeg?auto=compress&cs=tinysrgb&w=1600',
             }}
           />
           <Card.Footer>
@@ -84,12 +84,12 @@ const CardScreen = () => {
             <Title marginBottom={0} level={3}>
               With Ripple
             </Title>
-            <Text>This is a Fox</Text>
+            <Text>This is a other Camera</Text>
           </Card.Header>
           <Image
             style={{ height: 250 }}
             source={{
-              uri: 'https://i.pinimg.com/736x/8b/28/c8/8b28c857a9103b63efe150977668674a.jpg',
+              uri: 'https://images.pexels.com/photos/16873016/pexels-photo-16873016/free-photo-of-camara-lente-nikon-mesa-negra.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
             }}
           />
           <Card.Footer>
