@@ -26,68 +26,59 @@ Documentation [here](https://redshank.app)
 
 ```js
 import {
-  GoogleButton,
+  Button,
   Space,
-  SpaceItem,
   Text,
-  DesignProvider,
-} from 'react-native-ui-components';
-
-const configProviderUI = {
-  colors: {
-    magenta: '#E5097F',
-    orangered: '#ff4500',
-    green: '#00FF00',
-    purple: '#800080',
-  },
-};
+  ThemeProvider,
+} from '@redshank/native';
 
 export default function App() {
+  // automic dark mode
   return (
-    <DesignProvider initialState={configProviderUI}>
+    <ThemeProvider>
       <ScrollView contentContainerStyle={styles.view}>
         <View style={styles.container}>
           <View>
             <Text>Buttons</Text>
             <Text level={4}>Default buttons</Text>
             <Space justify="center">
-              <GoogleButton>Primary</GoogleButton>
-              <GoogleButton color="success">Success</GoogleButton>
-              <GoogleButton type="link" color="warning">
+              <Button>Primary</Button>
+              <Button color="success">Success</Button>
+              <Button type="link" color="warning">
                 Warning
-              </GoogleButton>
-              <GoogleButton type="outline" color="error">
+              </Button>
+              <Button type="outline" color="error">
                 Error
-              </GoogleButton>
+              </Button>
             </Space>
           </View>
           <View>
             <Text level={4}>Circle buttons</Text>
             <Space justify="center">
-              <GoogleButton shape="circle">Primary</GoogleButton>
-              <GoogleButton shape="circle" color="success">
+              <Button shape="circle">Primary</Button>
+              <Button shape="circle" color="success">
                 Success
-              </GoogleButton>
-              <GoogleButton type="link" shape="circle" color="warning">
+              </Button>
+              <Button type="link" shape="circle" color="warning">
                 Warning
-              </GoogleButton>
-              <GoogleButton type="outline" shape="circle" color="error">
+              </Button>
+              <Button type="outline" shape="circle" color="error">
                 Error
-              </GoogleButton>
+              </Button>
             </Space>
           </View>
           <View>
             <Text level={4}>Custom color buttons</Text>
             <Space justify="center">
-              <GoogleButton color="magenta">Magenta</GoogleButton>
-              <GoogleButton color="orangered">Orangered</GoogleButton>
-              <GoogleButton color="green">Green</GoogleButton>
-              <GoogleButton color="purple">Purple</GoogleButton>
+              <Button color="magenta">Magenta</Button>
+              <Button color="orangered">Orangered</Button>
+              <Button color="green">Green</Button>
+              <Button color="purple">Purple</Button>
             </Space>
           </View>
         </View>
       </ScrollView>
-    </DesignProvider>
+    </ThemeProvider>
   );
 }
 ```
