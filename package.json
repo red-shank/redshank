@@ -19,7 +19,7 @@
     "package:install": "cd ./packages/native && yarn install",
     "package:build-dev": "cd ./packages/native && npm run build:dev",
     "package:build": "cd ./packages/native && npm run build",
-    "package:publish": "cd ./packages/native && npm publish",
+    "package:publish": "cd ./packages/native && npm run build && npm publish",
     "package:watch": "nodemon -e ts,tsx --watch packages/native --exec \"yarn package:build-dev\"",
     "package:fetch-resolver:publish": "cd ./packages/fetch-resolver && yarn build && npm publish",
     "clean-install": "rimraf node_modules && yarn",
