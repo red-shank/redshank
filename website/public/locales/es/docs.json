@@ -24,7 +24,7 @@
   "home": {
     "title": "Empezar",
     "install": "Instalacion",
-    "instruction": "Dentro del directorio de el proyecto, instala NextUI ejecutando lo siguiente:",
+    "instruction": "Dentro del directorio de el proyecto, instala @redshank/native ejecutando lo siguiente:",
     "welcome": "Bienvenido a",
     "description": " documentacion! Redshank permite hacer bonitas, modernas y rapidas mobile/aplicaciones sin importar tu experiencia en diseño, creado con React y React Native."
   },

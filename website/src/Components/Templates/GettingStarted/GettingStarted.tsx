@@ -31,7 +31,7 @@ const HomeTemplate = () => {
       <Text>
         {t(
           'docs:home.instruction',
-          'Inside your React project directory, install NextUI by running either of the following:'
+          `Inside your React project directory, install ${PACKAGE_NAME} by running either of the following:`
         )}
       </Text>
 
@@ -41,10 +41,7 @@ const HomeTemplate = () => {
         code={`expo install ${PACKAGE_NAME}`}
       />
       <BlockCode language="bash" code={`yarn add ${PACKAGE_NAME}`} />
-      <BlockCode
-        language="bash"
-        code={`npm install ${PACKAGE_NAME}`}
-      />
+      <BlockCode language="bash" code={`npm install ${PACKAGE_NAME}`} />
     </WrapperStyle>
   );
 };
