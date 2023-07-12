@@ -23,7 +23,7 @@
     "package:watch": "nodemon -e ts,tsx --watch packages/native --exec \"yarn package:build-dev\"",
     "package:fetch-resolver:publish": "cd ./packages/fetch-resolver && yarn build && npm publish",
     "clean-install": "rimraf node_modules && yarn",
-    "example:install": "cd ./example && expo install",
+    "example:install": "cd ./example && npx expo install",
     "example:start": "cd ./example && yarn start",
     "docs:build": "cd website && yarn build",
     "docs:install": "cd website && yarn run prepare-server && yarn install",

@@ -43,8 +43,6 @@ export type IconObject = {
   iconStyle?: StyleProp<TextStyle>;
 };
 
-export type IconNode = boolean | React.ReactElement<{}> | Partial<IconProps>;
-
 export type IconProps = Omit<IconButtonProps, 'color'> & {
   type?: IconType;
   Component?: typeof React.Component;
