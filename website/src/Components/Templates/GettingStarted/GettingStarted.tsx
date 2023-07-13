@@ -5,17 +5,17 @@ import BlockCode from '@/Components/BlockCode';
 
 import { WrapperStyle } from './style';
 import TitleLink from '@/Components/TitleLink';
-import { PACKAGE_NAME } from '@/config';
+import { PACKAGE_NAME, REPO_NAME } from '@/config';
 
 const HomeTemplate = () => {
   return (
     <WrapperStyle>
       <Title>Getting started</Title>
       <Text>
-        Welcome to the <Text as="strong">{PACKAGE_NAME}</Text>documentation!
-        @redshank allows you to make beautiful, modern, and fast
-        mobile/applications regardless of your design experience, created with
-        React and React Native.
+        Welcome to the <Text as="strong">{PACKAGE_NAME}</Text> documentation!{' '}
+        <Text as="strong">@{REPO_NAME}</Text> allows you to make beautiful,
+        modern, and fast mobile/applications regardless of your design
+        experience, created with React and React Native.
       </Text>
 
       <TitleLink className="mt-12">Installation:</TitleLink>

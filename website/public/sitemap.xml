@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+
+<url>
+  <loc>https://www.redshank.app/</loc>
+  <lastmod>2023-07-13T03:26:21+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://www.redshank.app/docs/getting-started</loc>
+  <lastmod>2023-07-13T03:26:21+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.redshank.app/docs/components/icon</loc>
+  <lastmod>2023-07-13T03:26:21+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.redshank.app/docs/provider</loc>
+  <lastmod>2023-07-13T03:26:21+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.redshank.app/docs/default-theme</loc>
+  <lastmod>2023-07-13T03:26:21+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.redshank.app/docs/dark-mode</loc>
+  <lastmod>2023-07-13T03:26:21+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.redshank.app/docs/hooks</loc>
+  <lastmod>2023-07-13T03:26:21+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.redshank.app/docs/components/title</loc>
+  <lastmod>2023-07-13T03:26:21+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.redshank.app/docs/components/text</loc>
+  <lastmod>2023-07-13T03:26:21+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.redshank.app/docs/components/button</loc>
+  <lastmod>2023-07-13T03:26:21+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.redshank.app/docs/components/avatar</loc>
+  <lastmod>2023-07-13T03:26:21+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.redshank.app/docs/components/badge</loc>
+  <lastmod>2023-07-13T03:26:21+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.redshank.app/docs/components/card</loc>
+  <lastmod>2023-07-13T03:26:21+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.redshank.app/docs/components/carousel</loc>
+  <lastmod>2023-07-13T03:26:21+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.redshank.app/docs/components/collapse</loc>
+  <lastmod>2023-07-13T03:26:21+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.redshank.app/docs/components/image</loc>
+  <lastmod>2023-07-13T03:26:21+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.redshank.app/docs/components/header</loc>
+  <lastmod>2023-07-13T03:26:21+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.redshank.app/docs/components/space</loc>
+  <lastmod>2023-07-13T03:26:21+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.redshank.app/docs/components/checkbox</loc>
+  <lastmod>2023-07-13T03:26:21+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.redshank.app/docs/components/controller</loc>
+  <lastmod>2023-07-13T03:26:21+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.redshank.app/docs/components/datepicker</loc>
+  <lastmod>2023-07-13T03:26:21+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.redshank.app/docs/components/form</loc>
+  <lastmod>2023-07-13T03:26:21+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.redshank.app/docs/components/input</loc>
+  <lastmod>2023-07-13T03:26:21+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.redshank.app/docs/components/radio</loc>
+  <lastmod>2023-07-13T03:26:21+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.redshank.app/docs/components/select</loc>
+  <lastmod>2023-07-13T03:26:21+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.redshank.app/docs/components/switch</loc>
+  <lastmod>2023-07-13T03:26:21+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.redshank.app/docs/components/alert</loc>
+  <lastmod>2023-07-13T03:26:21+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.redshank.app/docs/components/modal</loc>
+  <lastmod>2023-07-13T03:26:21+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.redshank.app/docs/components/message</loc>
+  <lastmod>2023-07-13T03:26:21+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.redshank.app/docs/components/pop-confirm</loc>
+  <lastmod>2023-07-13T03:26:21+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.redshank.app/docs/components/ripple</loc>
+  <lastmod>2023-07-13T03:26:21+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+
+
+</urlset>
