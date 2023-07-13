@@ -9,6 +9,7 @@ import {
 } from '@nextui-org/react';
 import Link from 'next/link';
 import { ReactNode } from 'react';
+import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import { useTheme as useNextTheme } from 'next-themes';
@@ -25,6 +26,10 @@ import {
 import { AStyle, onlyDesk, onlyMdMobile, onlyMobile } from './style';
 import * as process from 'process';
 
+const RenderItem = dynamic(() => import('@/Components/Navbar/RenderItem'), {
+  ssr: false
+});
+
 type NavbarProps = {
   isActive?: string;
   contentFit?: boolean;
@@ -35,19 +40,6 @@ type NavbarItemProps = {
   href: string;
   children: ReactNode;
   [key: string]: any;
-};
-
-const RenderItem = ({
-  Component,
-  href,
-  children,
-  ...rest
-}: NavbarItemProps) => {
-  return (
-    <Link href={href} passHref>
-      <Component {...rest}>{children}</Component>
-    </Link>
-  );
 };
 
 const RenderLink = ({

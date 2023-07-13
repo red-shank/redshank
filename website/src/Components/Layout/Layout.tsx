@@ -1,5 +1,4 @@
 import { ReactNode } from 'react';
-import dynamic from 'next/dynamic';
 import { useTranslation } from 'next-i18next';
 import { Image, Link, Text } from '@nextui-org/react';
 
@@ -7,8 +6,7 @@ import ROUTES from '@/config/routes';
 import Title from '@/Components/Title';
 import Footer from '@/Components/Footer';
 import LayoutContainer from '@/Components/LayoutContainer';
-
-const Navbar = dynamic(() => import('@/Components/Navbar'), { ssr: false })
+import Navbar from '@/Components/Navbar';
 
 type LayoutProps = {
   children?: ReactNode;
@@ -56,9 +54,12 @@ const Layout = ({
                 {t('common:footer.community', 'Community:')}
               </Title>
               <Text>
-                {t('common:layout.description', 'We\'re excited to see the community adopt Redshank, raise\n' +
-                  '                issues, and provide feedback. Whether it\'s a feature request,\n' +
-                  '                bug report, or a project to showcase, please get involved!')}
+                {t(
+                  'common:layout.description',
+                  "We're excited to see the community adopt Redshank, raise\n" +
+                    "                issues, and provide feedback. Whether it's a feature request,\n" +
+                    '                bug report, or a project to showcase, please get involved!'
+                )}
               </Text>
 
               <Link
@@ -82,11 +83,20 @@ const Layout = ({
                 {t('common:layout.contribute', 'Contributing:')}
               </Title>
               <Text>
-                {t('common:layout.contribuiteDescription1', 'PR\'s on Redshank are always welcome, please see our ')}
+                {t(
+                  'common:layout.contribuiteDescription1',
+                  "PR's on Redshank are always welcome, please see our "
+                )}
                 <Link href="#" className="inline">
-                  {t('common:layout.contribuiteDescription2', ' contribution guidelines ')}
+                  {t(
+                    'common:layout.contribuiteDescription2',
+                    ' contribution guidelines '
+                  )}
                 </Link>
-                {t('common:layout.contribuiteDescription3', 'to learn how you can contribute to this project.')}
+                {t(
+                  'common:layout.contribuiteDescription3',
+                  'to learn how you can contribute to this project.'
+                )}
               </Text>
             </>
           )}

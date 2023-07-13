@@ -1,10 +1,12 @@
+import dynamic from 'next/dynamic';
 import { Text } from '@nextui-org/react';
 
 import menu from '@/assets/v1.json';
-import NavLink from '@/Components/NavLink';
 import * as icons from '@/Components/Icons';
 
 import { CollapseItemStyle, CollapseStyle } from './style';
+
+const NavLink = dynamic(() => import('@/Components/NavLink'), { ssr: false });
 
 const RenderIcon = ({ Component }: { Component?: any }) => {
   if (!Component) return null;

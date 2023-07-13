@@ -11,7 +11,7 @@ type SnackProps = {
   snackName?: string;
 };
 
-const dependencies = `@expo/vector-icons@^13.0.0,${PACKAGE_NAME}@${LIB_VERSION},react-native-safe-area-context@4.3.1`;
+const dependencies = `@expo/vector-icons@^13.0.0,${PACKAGE_NAME}@${LIB_VERSION},react-native-safe-area-context@4.5.0`;
 
 const modes = {
   mobile: [
