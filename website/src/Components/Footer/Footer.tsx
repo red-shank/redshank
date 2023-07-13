@@ -4,7 +4,6 @@ import { Grid, Text } from '@nextui-org/react';
 
 import { DEFAULT_VERSION } from '@/config';
 import { StyleButton, StyleCol, StyleFooter } from './style';
-import { useTranslation } from 'next-i18next';
 
 type FooterProps = {
   completeFooter?: boolean;
@@ -12,8 +11,6 @@ type FooterProps = {
 };
 
 const Footer = ({ completeFooter = true, className = '' }: FooterProps) => {
-  const { t } = useTranslation();
-
   return (
     <StyleFooter className={`relative ${className}`}>
       <Grid.Container>
@@ -25,21 +22,21 @@ const Footer = ({ completeFooter = true, className = '' }: FooterProps) => {
                 <div>
                   <StyleButton light auto>
                     <Link href={`/${DEFAULT_VERSION}/getting-started`}>
-                      {t('common:footer.start', 'Getting started')}
+                      Getting started
                     </Link>
                   </StyleButton>
                 </div>
                 <div>
                   <StyleButton light auto>
                     <Link href={`/${DEFAULT_VERSION}/components`}>
-                      {t('common:components', 'Components')}
+                      Components
                     </Link>
                   </StyleButton>
                 </div>
                 <div>
                   <StyleButton light auto>
                     <Link href={`/${DEFAULT_VERSION}/components`}>
-                    {t('common:footer.templates', 'Templates (Coming soon)')}
+                      Templates (Coming soon)
                     </Link>
                   </StyleButton>
                 </div>
@@ -50,9 +47,7 @@ const Footer = ({ completeFooter = true, className = '' }: FooterProps) => {
 
             <Grid xs={12} md={completeFooter ? 4 : 6} justify="center">
               <StyleCol className="block">
-                <Text b>
-                {t('common:footer.community', 'Community')}
-                </Text>
+                <Text b>Community</Text>
                 <div>
                   <StyleButton light auto>
                     <Link href={`/${DEFAULT_VERSION}/getting-started`}>
@@ -71,9 +66,7 @@ const Footer = ({ completeFooter = true, className = '' }: FooterProps) => {
             </Grid>
             <Grid xs={12} md={completeFooter ? 4 : 6} justify="center">
               <StyleCol className="block">
-                <Text b>
-                {t('common:footer.code', 'Code')}
-                </Text>
+                <Text b>Code</Text>
                 <div>
                   <StyleButton light auto>
                     <Link href={`/${DEFAULT_VERSION}/getting-started`}>
@@ -94,9 +87,7 @@ const Footer = ({ completeFooter = true, className = '' }: FooterProps) => {
         )}
 
         <Grid xs={12} justify="center">
-          <Text b>
-            Copyright © {new Date().getFullYear()} @redshank.
-          </Text>
+          <Text b>Copyright © {new Date().getFullYear()} @redshank.</Text>
         </Grid>
       </Grid.Container>
     </StyleFooter>
