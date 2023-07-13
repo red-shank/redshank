@@ -1,5 +1,4 @@
 import { IconType } from '../Icon';
-import { Platform } from 'react-native';
 
 const customIcons: any = {};
 
@@ -71,9 +70,6 @@ export default (type: IconType): any => {
       );
     case 'antdesign':
     case 'ant-design':
-      if (Platform.OS === 'web') {
-        return require('react-native-vector-icons/dist/AntDesign').default;
-      }
       return (
         require('react-native-vector-icons/AntDesign').default ||
         require('@expo/vector-icons/AntDesign').default

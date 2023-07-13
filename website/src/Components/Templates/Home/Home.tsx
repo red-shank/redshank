@@ -1,5 +1,4 @@
-import dynamic from 'next/dynamic';
-import { Suspense } from 'react';
+import { lazy, Suspense } from 'react';
 import { Loading } from '@nextui-org/react';
 
 import Dots from '@/Components/Dots';
@@ -12,10 +11,7 @@ import WhyBeautyDesign from '@/Components/WhyBeautyDesign';
 
 import { WrapperStyle } from './style';
 
-const PlaygroundSection = dynamic(
-  () => import('@/Components/PlaygroundSection'),
-  { suspense: true }
-);
+const PlaygroundSection = lazy(() => import('@/Components/PlaygroundSection'));
 
 const HomeTemplate = () => {
   return (

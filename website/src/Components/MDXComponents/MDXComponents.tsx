@@ -1,12 +1,11 @@
 /* eslint-disable react/display-name */
 import * as React from 'react';
-import { styled, Text, useTheme } from '@nextui-org/react';
+import { Loading, styled, Text, useTheme } from '@nextui-org/react';
 
 import Anchor from '@/Components/Anchor';
-import Playground from '@/Components/Playground';
 import CodeBlock, { CodeBlockSnippet } from '@/Components/BlockCode';
-import BlockCode from '@/Components/BlockCode';
-import TitleLink from '@/Components/TitleLink';
+
+const Playground = React.lazy(() => import('@/Components/Playground'));
 
 const Table: React.FC<React.PropsWithChildren<unknown>> = ({ children }) => {
   return (
@@ -169,7 +168,18 @@ const MDXComponents = {
           {props.title}
         </LinkedHeading>
         <Text>{props.description}</Text>
-        <Playground code={props.code} mode={props?.mode} />
+        <React.Suspense
+          fallback={
+            <div className="h-96 bg-[#151718] w-full flex items-center justify-center">
+              <div className="text-center flex flex-col">
+                <Loading />
+                Loading example...
+              </div>
+            </div>
+          }
+        >
+          <Playground code={props.code} mode={props?.mode} />
+        </React.Suspense>
       </div>
     );
   },

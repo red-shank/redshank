@@ -3,8 +3,8 @@
   "version": "0.2.1",
   "private": true,
   "scripts": {
-    "dev": "next dev",
     "prepare-server": "node temp/prepare-server.js",
+    "dev": "yarn prepare-server && next dev",
     "build": "yarn prepare-server && next build",
     "start": "next start",
     "lint": "next lint"

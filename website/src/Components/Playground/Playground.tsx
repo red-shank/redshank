@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef } from 'react';
 
 import { WrapperStyled } from '@/Components/PlaygroundSection/style';
 import formatCode from '@/utils/formatCode';
