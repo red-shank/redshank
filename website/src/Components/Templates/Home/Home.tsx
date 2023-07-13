@@ -1,5 +1,6 @@
 import dynamic from 'next/dynamic';
 import { Suspense } from 'react';
+import { Loading } from '@nextui-org/react';
 
 import Dots from '@/Components/Dots';
 import Container from '@/Components/Container';
@@ -23,7 +24,16 @@ const HomeTemplate = () => {
         <Dots />
         <Banner />
         <WhyBeautyDesign />
-        <Suspense>
+        <Suspense
+          fallback={
+            <div className="h-96 bg-[#151718] w-full flex items-center justify-center">
+              <div className="text-center flex flex-col">
+                <Loading />
+                Loading example...
+              </div>
+            </div>
+          }
+        >
           <PlaygroundSection />
         </Suspense>
         <WhatCanDoIt />
