@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { useTranslation } from 'next-i18next';
 import { Button, Grid, Text } from '@nextui-org/react';
 
 import ROUTES from '@/config/routes';
@@ -8,11 +7,7 @@ import Frame from '@/Components/Frame';
 import BlockCode from '@/Components/BlockCode';
 import { REPO_NAME } from '@/config';
 
-type BannerProps = {};
-
-const Banner = (props: BannerProps) => {
-  const { t } = useTranslation();
-
+const Banner = () => {
   return (
     <Grid.Container
       gap={4}
@@ -32,14 +27,10 @@ const Banner = (props: BannerProps) => {
             }
           }}
         >
-          @{REPO_NAME}{' '}
-          {t('home:banner.title', 'Framework Component for React Native')}
+          @{REPO_NAME} Framework Component for React Native
         </Title>
         <Text size="$2xl" weight="semibold" className="text-center w-full mb-4">
-          {t(
-            'home:banner.description',
-            'Create your apps in React Native in a simple, fast and beautiful way.'
-          )}
+          Create your apps in React Native in a simple, fast and beautiful way.
         </Text>
 
         <BlockCode
@@ -56,7 +47,7 @@ const Banner = (props: BannerProps) => {
           }}
         >
           <Link href={ROUTES.DOCS.path} passHref>
-            <a className="text-current">{t('getStarted', 'Get started')}</a>
+            <a className="text-current">Get started</a>
           </Link>
         </Button>
       </Grid>

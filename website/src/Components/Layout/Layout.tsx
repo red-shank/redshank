@@ -1,5 +1,4 @@
 import { ReactNode } from 'react';
-import { useTranslation } from 'next-i18next';
 import { Image, Link, Text } from '@nextui-org/react';
 
 import ROUTES from '@/config/routes';
@@ -25,7 +24,6 @@ const Layout = ({
   withAside = true,
   contentFit = false
 }: LayoutProps) => {
-  const { t } = useTranslation();
   return (
     <>
       <Navbar contentFit={contentFit} isActive={isActive} />
@@ -51,15 +49,12 @@ const Layout = ({
           {!withFooter && (
             <>
               <Title level={2} className="mt-12">
-                {t('common:footer.community', 'Community:')}
+                Community:
               </Title>
               <Text>
-                {t(
-                  'common:layout.description',
-                  "We're excited to see the community adopt Redshank, raise\n" +
-                    "                issues, and provide feedback. Whether it's a feature request,\n" +
-                    '                bug report, or a project to showcase, please get involved!'
-                )}
+                We're excited to see the community adopt Redshank, raise issues,
+                and provide feedback. Whether it's a feature request, bug
+                report, or a project to showcase, please get involved!
               </Text>
 
               <Link
@@ -80,23 +75,15 @@ const Layout = ({
               </Link>
 
               <Title level={2} className="mt-12">
-                {t('common:layout.contribute', 'Contributing:')}
+                Contributing:
               </Title>
               <Text>
-                {t(
-                  'common:layout.contribuiteDescription1',
-                  "PR's on Redshank are always welcome, please see our "
-                )}
+                PR's on Redshank are always welcome, please see our
                 <Link href="#" className="inline">
-                  {t(
-                    'common:layout.contribuiteDescription2',
-                    ' contribution guidelines '
-                  )}
-                </Link>
-                {t(
-                  'common:layout.contribuiteDescription3',
-                  'to learn how you can contribute to this project.'
-                )}
+                  {' '}
+                  contribution guidelines
+                </Link>{' '}
+                to learn how you can contribute to this project.
               </Text>
             </>
           )}

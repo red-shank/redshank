@@ -39,52 +39,5 @@
     "padding": "Paddings:",
     "margin": "Margins:",
     "borderRadius": "Border Radius:"
-  },
-  "aside": {
-    "title": "Documentation",
-     "started": {
-       "name": "Started",
-       "getting-started": "Getting started",
-       "provider": "Provider",
-       "default-theme": "Default theme",
-       "dark-mode": "Dark mode",
-       "hooks": "Hooks"
-     },
-    "general": {
-      "name": "General",
-      "icon": "Icon",
-      "title": "Title",
-      "text": "Text",
-      "button": "Button"
-    },
-    "data-display": {
-      "name": "Data Display",
-      "avatar": "Avatar",
-      "badge": "Badge",
-      "card": "Card",
-      "carousel": "Carrousel",
-      "collapse": "Collapse",
-      "image": "Image",
-      "header": "Header",
-      "space": "Space"
-    },
-    "data-entry": {
-      "name": "Data Entry",
-      "checkbox": "Checkbox",
-      "controller": "Controller",
-      "datepicker": "Date Picker",
-      "form": "Form",
-      "input": "Input",
-      "radio": "Radio",
-      "select": "Select",
-      "switch": "Switch"
-    },
-    "feedback": {
-      "name": "Feedback",
-      "alert": "Alert",
-      "modal": "Modal",
-      "message": "Message",
-      "pop-confirm": "Pop Confirm"
-    }
   }
 }

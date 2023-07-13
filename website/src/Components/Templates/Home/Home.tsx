@@ -1,6 +1,8 @@
 import dynamic from 'next/dynamic';
 
+import Dots from '@/Components/Dots';
 import Container from '@/Components/Container';
+import WhatCanDoIt from '@/Components/WhatCanDoIt';
 
 import { WrapperStyle } from './style';
 
@@ -8,14 +10,10 @@ const DarkAndLightTheme = dynamic(
   () => import('@/Components/DarkAndLightTheme'),
   { suspense: true }
 );
-const WhatCanDoIt = dynamic(() => import('@/Components/WhatCanDoIt'), {
-  suspense: true
-});
 const Donations = dynamic(() => import('@/Components/Donations'), {
   suspense: true
 });
 const Banner = dynamic(() => import('@/Components/Banner'), { suspense: true });
-const Dots = dynamic(() => import('@/Components/Dots'), { suspense: true });
 const WhyBeautyDesign = dynamic(() => import('@/Components/WhyBeautyDesign'), {
   suspense: true
 });

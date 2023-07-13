@@ -8,25 +8,19 @@ import {
   HappyIcon
 } from '@/Components/Icons';
 import Title from '@/Components/Title';
+import { REPO_NAME } from '@/config';
 
 import { WrapperStyle } from './style';
-import { useTranslation } from 'next-i18next';
-import { PACKAGE_NAME, REPO_NAME } from '@/config';
 
-type WhyBeautyDesignProps = {};
-const WhyBeautyDesign = (props: WhyBeautyDesignProps) => {
-  const { t } = useTranslation();
+const WhyBeautyDesign = () => {
   return (
     <WrapperStyle className="mt-8 mb-8">
       <Title className="text-center">
-        {t(
-          'home:why-section.title',
-          'Why '
-        )}
+        Why{' '}
         <Text
           as="span"
-          transform="capitalize"
           css={{
+            textTransform: 'capitalize',
             textGradient: '45deg, $purple600 -20%, $pink600 100%'
           }}
         >
@@ -37,54 +31,37 @@ const WhyBeautyDesign = (props: WhyBeautyDesignProps) => {
         <Grid xs={12} sm={6} md={4} lg={3}>
           <CardWhy
             icon={<DesktopIcon />}
-            title={t(
-              'home:why-section.card1.title',
-              'Beautiful Design'
-            )}
-            content={t(
-              'home:why-section.card1.description',
+            title={'Beautiful Design'}
+            content={
               'Create bright, beautiful and full of life apps, we have 25+ reusable components.'
-              )}
+            }
           />
         </Grid>
         <Grid xs={12} sm={6} md={4} lg={3}>
           <CardWhy
             icon={<CodeIcon />}
-            title={t(
-              'home:why-section.card2.title',
-              'Easy to use'
-              )}
-            content={t(
-              'home:why-section.card2.description',
+            title={'Easy to use'}
+            content={
               'Beautiful and vibrant applications with just one import, reduce development times and let us design for you.'
-            )}
+            }
           />
         </Grid>
         <Grid xs={12} sm={6} md={4} lg={3}>
           <CardWhy
             icon={<PaletteIcon />}
-            title={t(
-              'home:why-section.card3.title',
-              'Customizable'
-            )}
-
-            content={t(
-              'home:why-section.card3.description',
+            title={'Customizable'}
+            content={
               'Customize each element of the components and change their appearance in dark and light mode.'
-            )}
+            }
           />
         </Grid>
         <Grid xs={12} sm={6} md={4} lg={3}>
           <CardWhy
             icon={<HappyIcon />}
-            title={t(
-              'home:why-section.card4.title',
-              'Progressive updates'
-            )}
-            content={t(
-              'home:why-section.card4.description',
+            title={'Progressive updates'}
+            content={
               'We try to keep the library up to date and compatible with the latest versions of React, React Native and Expo.'
-            )}
+            }
           />
         </Grid>
       </Grid.Container>

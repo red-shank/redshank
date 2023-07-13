@@ -74,7 +74,7 @@ export async function getStaticProps({ locale, params }: any) {
     props: {
       meta,
       source: mdxSource,
-      ...(await serverSideTranslations(locale, ['common', 'docs']))
+      ...(await serverSideTranslations(locale, ['docs']))
     }
   };
 }

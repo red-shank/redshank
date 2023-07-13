@@ -3,10 +3,13 @@ import { Text } from '@nextui-org/react';
 
 import menu from '@/assets/v1.json';
 import * as icons from '@/Components/Icons';
+import { isProd } from '@/config';
 
 import { CollapseItemStyle, CollapseStyle } from './style';
 
-const NavLink = dynamic(() => import('@/Components/NavLink'), { ssr: false });
+const NavLink = dynamic(() => import('@/Components/NavLink'), {
+  ssr: isProd
+});
 
 const RenderIcon = ({ Component }: { Component?: any }) => {
   if (!Component) return null;
@@ -15,15 +18,13 @@ const RenderIcon = ({ Component }: { Component?: any }) => {
 
 type AsideProps = {
   titleClass?: string;
-  t: (key: string, defaultValue?: string) => string | undefined;
 };
 
-const Aside = ({ titleClass, t }: AsideProps) => {
-  const docName = t('docs:aside.title', 'Documentation');
+const Aside = ({ titleClass }: AsideProps) => {
   return (
     <div>
       <Text weight="bold" size="$xl" className={titleClass}>
-        {docName}
+        Documentation
       </Text>
 
       {menu.map(({ children, name, key, icon }) => {
@@ -38,12 +39,10 @@ const Aside = ({ titleClass, t }: AsideProps) => {
           >
             <CollapseItemStyle
               expanded
-              title={t(titleKey, name)}
-              // @ts-ignore
-              contentLeft={<RenderIcon Component={icons[icon]} />}
+              title={name}
+              contentLeft={<RenderIcon Component={(icons as any)[icon]} />}
             >
               {children.map(({ key: secondaryKey, name, path }) => {
-                const keyName = `docs:aside.${key}.${secondaryKey}`;
                 return (
                   <NavLink
                     key={secondaryKey}
@@ -54,7 +53,7 @@ const Aside = ({ titleClass, t }: AsideProps) => {
                       fontWeight: '$bold'
                     }}
                   >
-                    {t(keyName, name)}
+                    {name}
                   </NavLink>
                 );
               })}

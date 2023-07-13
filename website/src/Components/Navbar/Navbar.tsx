@@ -11,7 +11,6 @@ import Link from 'next/link';
 import { ReactNode } from 'react';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
-import { useTranslation } from 'next-i18next';
 import { useTheme as useNextTheme } from 'next-themes';
 
 import { isProd, REPO_NAME } from '@/config';
@@ -24,10 +23,9 @@ import {
   DiscordIcon
 } from '@/Components/Icons';
 import { AStyle, onlyDesk, onlyMdMobile, onlyMobile } from './style';
-import * as process from 'process';
 
 const RenderItem = dynamic(() => import('@/Components/Navbar/RenderItem'), {
-  ssr: false
+  ssr: isProd
 });
 
 type NavbarProps = {
@@ -66,24 +64,23 @@ const menu = [ROUTES.HOME, ROUTES.DOCS, ROUTES.COMPONENTS, ROUTES.ABOUT];
 const Navbar = ({ isActive, contentFit, ...props }: NavbarProps) => {
   const { setTheme, theme } = useNextTheme();
   const router = useRouter();
-  const { t, i18n } = useTranslation();
 
   const toggleTheme = () => {
     setTheme(theme === 'dark' ? 'light' : 'dark');
   };
 
-  const toggleLanguage = () => {
-    router
-      .replace(
-        {
-          pathname: router.pathname,
-          query: router.query
-        },
-        undefined,
-        { locale: router.locale === 'es' ? 'en' : 'es' }
-      )
-      .then();
-  };
+  // const toggleLanguage = () => {
+  //   router
+  //     .replace(
+  //       {
+  //         pathname: router.pathname,
+  //         query: router.query
+  //       },
+  //       undefined,
+  //       { locale: router.locale === 'es' ? 'en' : 'es' }
+  //     )
+  //     .then();
+  // };
 
   return (
     <NextNavbar
@@ -123,7 +120,7 @@ const Navbar = ({ isActive, contentFit, ...props }: NavbarProps) => {
       </Link>
       <NextNavbar.Content css={onlyDesk} variant="underline">
         {menu.map((item) => {
-          const showName = item[i18n.language as LocaleType] || item.name;
+          const showName = item.en || item.name;
 
           return (
             <RenderItem
@@ -150,19 +147,19 @@ const Navbar = ({ isActive, contentFit, ...props }: NavbarProps) => {
       <NextNavbar.Content>
         <NextNavbar.Content css={onlyDesk}>
           <Grid.Container gap={2} className="w-auto">
-            {!isProd && (
-              <Button
-                auto
-                onClick={toggleLanguage}
-                className="h-auto bg-transparent p-0 px-2"
-                css={{
-                  color: '$text',
-                  fontSize: '1.1rem'
-                }}
-              >
-                <strong>{router.locale === 'es' ? 'EN' : 'ES'}</strong>
-              </Button>
-            )}
+            {/*{!isProd && (*/}
+            {/*  <Button*/}
+            {/*    auto*/}
+            {/*    onClick={toggleLanguage}*/}
+            {/*    className="h-auto bg-transparent p-0 px-2"*/}
+            {/*    css={{*/}
+            {/*      color: '$text',*/}
+            {/*      fontSize: '1.1rem'*/}
+            {/*    }}*/}
+            {/*  >*/}
+            {/*    <strong>{router.locale === 'es' ? 'EN' : 'ES'}</strong>*/}
+            {/*  </Button>*/}
+            {/*)}*/}
 
             <RenderLink href={ROUTES.DISCORD.path}>
               <Button
@@ -197,25 +194,25 @@ const Navbar = ({ isActive, contentFit, ...props }: NavbarProps) => {
           </Grid.Container>
           <Input
             bordered
-            placeholder={t('common:navbar.search', 'Search...')}
+            placeholder={'Search...'}
             contentRight={<SearchIcon />}
           />
         </NextNavbar.Content>
 
         <Grid.Container css={onlyMobile} gap={2}>
-          {process.env.NODE_ENV === 'development' && (
-            <Button
-              auto
-              onClick={toggleLanguage}
-              className="h-auto bg-transparent p-0 px-2"
-              css={{
-                color: '$text',
-                fontSize: '1.1rem'
-              }}
-            >
-              <strong>{router.locale === 'es' ? 'EN' : 'ES'}</strong>
-            </Button>
-          )}
+          {/*{process.env.NODE_ENV === 'development' && (*/}
+          {/*  <Button*/}
+          {/*    auto*/}
+          {/*    onClick={toggleLanguage}*/}
+          {/*    className="h-auto bg-transparent p-0 px-2"*/}
+          {/*    css={{*/}
+          {/*      color: '$text',*/}
+          {/*      fontSize: '1.1rem'*/}
+          {/*    }}*/}
+          {/*  >*/}
+          {/*    <strong>{router.locale === 'es' ? 'EN' : 'ES'}</strong>*/}
+          {/*  </Button>*/}
+          {/*)}*/}
 
           <RenderLink href={ROUTES.DISCORD.path} css={onlyMdMobile}>
             <Button
@@ -260,7 +257,7 @@ const Navbar = ({ isActive, contentFit, ...props }: NavbarProps) => {
             />
           </NextNavbar.CollapseItem>
 
-          <Aside t={t} titleClass="mt-3" />
+          <Aside titleClass="mt-3" />
         </NextNavbar.Collapse>
       </NextNavbar.Content>
     </NextNavbar>
