@@ -75,6 +75,7 @@ export const SocialButton: React.FC<SocialButtonProps> = ({
       type="outline"
       color="text"
       textColor="text"
+      fullWidth
       textAlign="left"
       prefix={<Image width={25} height={25} source={uri} />}
       textStyle={{

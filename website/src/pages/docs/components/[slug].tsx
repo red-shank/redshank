@@ -3,7 +3,6 @@ import remarkSlug from 'remark-slug';
 import mapboxPrism from '@mapbox/rehype-prism';
 import remarkAutoLink from 'remark-autolink-headings';
 import { serialize } from 'next-mdx-remote/serialize';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import v1 from '@/assets/v1.json';
 import { isProd } from '@/config';
@@ -47,15 +46,15 @@ export async function getStaticPaths() {
   };
 }
 
-export async function getStaticProps({ locale, params }: any) {
+export async function getStaticProps({ params }: any) {
   const { slug } = params;
 
   let meta, doc, rawFileSource;
 
   if (isProd) {
-    rawFileSource = await fetchRawDoc(slug, 'v1', locale);
+    rawFileSource = await fetchRawDoc(slug, 'v1');
   } else {
-    rawFileSource = fetchRawDocLocal(slug, 'v1', locale);
+    rawFileSource = fetchRawDocLocal(slug, 'v1');
   }
 
   const { content, data } = matter(rawFileSource);
@@ -73,8 +72,7 @@ export async function getStaticProps({ locale, params }: any) {
     // fetching to mdx in github for get pages component
     props: {
       meta,
-      source: mdxSource,
-      ...(await serverSideTranslations(locale, ['docs']))
+      source: mdxSource
     }
   };
 }

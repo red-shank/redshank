@@ -10,7 +10,7 @@ const MyApp = () => {
     paddings,
     margins,
     borderRadius
-  } useTheme();
+  } = useTheme();
 
   return null;
 }
@@ -26,7 +26,7 @@ export const useModal = `import { View } from 'react-native';
 import { useModal, Modal, Title, Button } from '${PACKAGE_NAME}';
 
 const MyApp = () => {
-  const [visible, toggleVisible, { onVisible, onHidden }] useModal();
+  const [visible, toggleVisible, { onVisible, onHidden }] = useModal();
 
   return (
     <View>
@@ -41,6 +41,29 @@ const MyApp = () => {
           dolore iste optio!
         </Text>
       </Modal>
+    </View>
+  );
+}
+
+const App = () => {
+  return (
+    <ThemeProvider>
+      <MyApp />
+    </ThemeProvider>
+)};`;
+
+export const useHeaderHeight = `import { View } from 'react-native';
+import { useHeaderHeight, Title, Text } from '${PACKAGE_NAME}';
+
+const MyApp = () => {
+  const headerHeight = useHeaderHeight();
+
+  return (
+    <View>
+      <Title>Header Height</Title>
+      <Text>
+        {headerHeight}
+      </Text>
     </View>
   );
 }

@@ -8,7 +8,7 @@ import {
 } from '@nextui-org/react';
 import Link from 'next/link';
 
-import { libTheme } from '@/config';
+import { libTheme, PACKAGE_NAME } from '@/config';
 import ROUTES from '@/config/routes';
 import Title from '@/Components/Title';
 import TitleLink from '@/Components/TitleLink';
@@ -17,10 +17,8 @@ import processColor, { isLight } from '@/utils/processColor';
 
 import { ColorStyle, WrapperStyle } from './style';
 import processObject from '@/utils/processObject';
-import { useTranslation } from 'next-i18next';
 
 const DefaultThemeTemplate = () => {
-  const { t } = useTranslation();
   const { isDark } = useTheme();
 
   const colors = useMemo(() => {
@@ -49,29 +47,21 @@ const DefaultThemeTemplate = () => {
 
   return (
     <WrapperStyle>
-      <Title>{t('docs:defaultTheme.title', 'Default Theme')}</Title>
+      <Title>Default Theme</Title>
       <Text>
-        {' '}
-        {t(
-          'docs:defaultTheme.description',
-          '@redshank default theme is based on React Context API.'
-        )}
+        <b>{PACKAGE_NAME}</b> default theme is based on React Context API.
       </Text>
-      <TitleLink>{t('docs:defaultTheme.colors', 'Colors:')}</TitleLink>
+      <TitleLink>Colors:</TitleLink>
 
       <Text>
-        {t(
-          'docs:defaultTheme.instruction',
-          '@redshank includes a default color palette out-of-the-box that is a\n' +
-            "        great starting point if you don't have your own specific branding in\n" +
-            '        mind. You can access the colors through the theme object, see the '
-        )}
+        <b>{PACKAGE_NAME}</b> includes a default color palette out-of-the-box
+        that is a great starting point if you don't have your own specific
+        branding in mind. You can access the colors through the theme object,
+        see the{' '}
         <Link href={ROUTES.PROVIDER.path + '#theme-object'}>
-          <NLink className="inline">
-            {t('docs:defaultTheme.themeObject', 'theme object')}
-          </NLink>
-        </Link>
-        {t('docs:defaultTheme.info', 'for more information.')}
+          <NLink className="inline">theme object</NLink>
+        </Link>{' '}
+        for more information.
       </Text>
 
       {colors.map(({ colors, name }) => {
@@ -108,16 +98,14 @@ const DefaultThemeTemplate = () => {
         );
       })}
 
-      <TitleLink>{t('docs:defaultTheme.padding', 'Paddings:')}</TitleLink>
+      <TitleLink>Paddings:</TitleLink>
 
       <BlockCode language="JSON" code={paddingObjectString} />
 
-      <TitleLink>{t('docs:defaultTheme.margin', 'Margins:')}</TitleLink>
+      <TitleLink>Margins:</TitleLink>
       <BlockCode language="JSON" code={marginObjectString} />
 
-      <TitleLink>
-        {t('docs:defaultTheme.borderRadius', 'Border Radius:')}
-      </TitleLink>
+      <TitleLink>Border Radius:</TitleLink>
       <BlockCode language="JSON" code={borderRadiusObjectString} />
 
       <TitleLink>zIndex:</TitleLink>

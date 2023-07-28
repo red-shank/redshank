@@ -1,13 +1,16 @@
 import { Grid, Text, Tooltip, Image, Modal, Button } from '@nextui-org/react';
 
 import useModal from '@/hooks/useModal';
-import { COINBASE_WALLET, PATREON_LINK, PAYPAL_LINK, REPO_NAME } from '@/config';
+import {
+  COINBASE_WALLET,
+  PATREON_LINK,
+  PAYPAL_LINK,
+  REPO_NAME
+} from '@/config';
 import { PlayerStyle } from './style';
 import Title from '@/Components/Title';
-import { useTranslation } from 'next-i18next';
 
 const Donations = () => {
-  const { t } = useTranslation();
   const [visible, toggleVisible] = useModal();
 
   return (
@@ -34,11 +37,8 @@ const Donations = () => {
             }
           }}
         >
-          {t(
-            'home:donations.title',
-            'Do you like'
-          )}
-           <br />
+          Do you like
+          <br />
           <Text
             as="span"
             transform="capitalize"
@@ -54,10 +54,8 @@ const Donations = () => {
         </Title>
 
         <Text size="$2xl" weight="semibold" className="text-center w-full mb-4">
-          {t(
-            'home:donations.description',
-            'You can help us to continue maintaining this incredible library, you can give me your financial support from the following platforms.'
-          )}
+          You can help us to continue maintaining this incredible library, you
+          can give me your financial support from the following platforms.
         </Text>
 
         <Grid.Container gap={2} justify="center">

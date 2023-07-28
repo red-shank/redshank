@@ -31,6 +31,36 @@ const HomeTemplate = () => {
       />
       <BlockCode language="bash" code={`yarn add ${PACKAGE_NAME}`} />
       <BlockCode language="bash" code={`npm install ${PACKAGE_NAME}`} />
+
+      <TitleLink className="mt-12">Dependencies:</TitleLink>
+      <ul>
+        <li>
+          <a
+            target="_blank"
+            href="https://github.com/th3rdwave/react-native-safe-area-context"
+            rel="noreferrer noopener"
+          >
+            react-native-safe-area-context@&gt;3.1.9
+          </a>
+        </li>
+        <li>
+          <a
+            target="_blank"
+            href="https://github.com/oblador/react-native-vector-icons"
+            rel="noreferrer noopener"
+          >
+            react-native-vector-icons@&gt;7.0.0
+          </a>{' '}
+          or Expo{' '}
+          <a
+            target="_blank"
+            href="https://docs.expo.dev/guides/icons/"
+            rel="noreferrer noopener"
+          >
+            @expo/vector-icons
+          </a>
+        </li>
+      </ul>
     </WrapperStyle>
   );
 };

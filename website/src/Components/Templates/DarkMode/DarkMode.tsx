@@ -7,36 +7,26 @@ import BlockCode from '@/Components/BlockCode';
 
 import * as examples from './examples';
 import { WrapperStyle } from './style';
-import { useTranslation } from 'next-i18next';
+import { PACKAGE_NAME } from '@/config';
 
 const DarkThemeTemplate = () => {
-  const { t } = useTranslation();
   return (
     <WrapperStyle>
-      <Title>
-        {t('docs:darkMode.title', 'Dark Mode')}
-      </Title>
+      <Title>Dark Mode</Title>
       <Text>
-        {t('docs:darkMode.description', '@redshank automatically handles the dark and light theme you can change using a useTheme function.')}
-
+        <b>{PACKAGE_NAME}</b> automatically handles the dark and light theme you can
+        change using a useTheme function.
       </Text>
 
-      <TitleLink>
-        {t('docs:darkMode.changeTheme', 'Change Theme:')}
-
-      </TitleLink>
+      <TitleLink>Change Theme:</TitleLink>
 
       <BlockCode code={examples.basic} />
 
-      <TitleLink>
-        {t('docs:darkMode.customColor', 'Custom colors:')}
-      </TitleLink>
+      <TitleLink>Custom colors:</TitleLink>
 
       <BlockCode code={examples.customColors} />
 
-      <TitleLink>
-        {t('docs:darkMode.sample', 'Complete example:')}
-      </TitleLink>
+      <TitleLink>Complete example:</TitleLink>
       <Playground code={examples.basicExpo} />
     </WrapperStyle>
   );

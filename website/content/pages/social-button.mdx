@@ -1,0 +1,55 @@
+---
+title: 'Social Button'
+description: 'Social buttons for login or signup apps.'
+url: https://redshank.app/docs/components/button
+---
+
+```jsx
+import { SocialButton } from '@redshank/native';
+```
+
+### How to use
+In @redshank we provide 4 types of Social Button ready for use.
+
+* google
+* facebook
+* twitter
+* apple
+
+<Spacer y={2} />
+
+### Examples
+
+<Playground
+  id="default"
+  title="Default"
+  description="You can display an button"
+  code={socialButtonContent.initial}
+/>
+
+<Spacer y={2} />
+
+### APIs
+
+<Spacer y={2} />
+
+#### SocialButton Props
+Api props extends from [Touchable](https://reactnative.dev/docs/touchableopacity)
+
+| Attribute            | Type        | Accepted values                                | Description                                     | Default                           |
+|----------------------|-------------|------------------------------------------------|-------------------------------------------------|-----------------------------------|
+| **Component**        | `Component` | React Component                                | Change the element base                         | [Ripple](/docs/components/ripple) |
+| **loading**          | `boolean`   | `true` `false`                                 | Show loading state for the button               | `false`                           |
+| **disabled**         | `boolean`   | `true` `false`                                 | Enable or disable state for the button          | `false`                           |
+| **onPress**          | `function`  | `() => any`                                    | Callback when you press button                  | `-`                               |
+| **withMarginBottom** | `boolean`   | `true` `false`                                 | Margin bottom in the element for separate views | `false`                           |
+| **style**            | `object`    | `StyleProp<ViewStyle>`                         | Style button wrapper                            | -                                 |
+| **provider**         | `enum`      | [SocialButtonProvider](#socialbutton-provider) | Required provider for render UI                 | `-`                               |
+| **text**             | `string`    | `Text` `String`                                | Custom string to show                           | `Continues with *Provider*`       |
+
+<Spacer y={2} />
+
+### SocialButton Provider
+```ts
+type SocialButtonProvider = 'google' | 'facebook' | 'twitter' | 'apple'
+```

@@ -25,38 +25,23 @@ export interface Carry {
   params: { slug: any };
 }
 
-export async function fetchRawDoc(
-  slug: string,
-  _tag: string,
-  locale: LocaleType
-) {
+export async function fetchRawDoc(slug: string, _tag: string) {
   const tag = _tag === 'v1' ? TAG : 'v1';
   try {
-    return await getRawFileFromRepo(
-      `/${tag}/${PROPS_PATH}/${locale}/${slug}.mdx`
-    );
+    return await getRawFileFromRepo(`/${tag}/${PROPS_PATH}/${slug}.mdx`);
   } catch (e) {
-    if (locale === 'es') {
-      console.log('Get in English doc');
-      return await getRawFileFromRepo(`/${tag}/${PROPS_PATH}/en/${slug}.mdx`);
-    }
     return '';
   }
 }
 
-export function fetchRawDocLocal(
-  slug: string,
-  _tag: string,
-  locale: LocaleType
-) {
+export function fetchRawDocLocal(slug: string, _tag: string) {
   const folderPath = path.join(process.cwd(), 'content', 'pages');
-  const filePath = path.join(folderPath, `${locale}/${slug}.mdx`);
+  const filePath = path.join(folderPath, `${slug}.mdx`);
 
   try {
     return fs.readFileSync(filePath);
   } catch (e) {
-    const newFilePath = path.join(folderPath, `en/${slug}.mdx`);
-    return fs.readFileSync(newFilePath);
+    return '';
   }
 }
 

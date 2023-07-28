@@ -4,6 +4,7 @@ import { Grid, Text } from '@nextui-org/react';
 
 import { DEFAULT_VERSION } from '@/config';
 import { StyleButton, StyleCol, StyleFooter } from './style';
+import ROUTES from '@/config/routes';
 
 type FooterProps = {
   completeFooter?: boolean;
@@ -21,21 +22,19 @@ const Footer = ({ completeFooter = true, className = '' }: FooterProps) => {
                 <Text b>Docs</Text>
                 <div>
                   <StyleButton light auto>
-                    <Link href={`/${DEFAULT_VERSION}/getting-started`}>
-                      Getting started
-                    </Link>
+                    <Link href={ROUTES.DOCS.path}>Getting started</Link>
                   </StyleButton>
                 </div>
                 <div>
                   <StyleButton light auto>
-                    <Link href={`/${DEFAULT_VERSION}/components`}>
+                    <Link href={ROUTES.COMPONENTS.path}>
                       Components
                     </Link>
                   </StyleButton>
                 </div>
                 <div>
                   <StyleButton light auto>
-                    <Link href={`/${DEFAULT_VERSION}/components`}>
+                    <Link href={'#'}>
                       Templates (Coming soon)
                     </Link>
                   </StyleButton>

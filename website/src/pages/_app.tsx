@@ -2,7 +2,6 @@ import '@/styles/global.css';
 import Head from 'next/head';
 import type { AppProps } from 'next/app';
 import { ThemeProvider } from 'next-themes';
-import { appWithTranslation } from 'next-i18next';
 import React, { useEffect, useState } from 'react';
 import { NextUIProvider } from '@nextui-org/react';
 
@@ -54,4 +53,4 @@ function MyApp({ Component, pageProps }: AppProps) {
   );
 }
 
-export default appWithTranslation(MyApp);
+export default MyApp;

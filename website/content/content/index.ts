@@ -2,6 +2,7 @@ import iconContent from './icon';
 import titleContent from './title';
 import textContent from './text';
 import buttonContent from './button';
+import socialButtonContent from './socialButton';
 import { colorsLight } from '../../temp/defaultValues'
 import * as avatarContent from './avatar';
 import * as badgeContent from './badge';
@@ -29,6 +30,7 @@ export default {
   titleContent,
   textContent,
   buttonContent,
+  socialButtonContent,
   avatarContent,
   badgeContent,
   cardContent,

@@ -57,6 +57,11 @@
         "key": "button",
         "path": "/docs/components/button",
         "name": "Button"
+      },
+      {
+        "key": "social-button",
+        "path": "/docs/components/social-button",
+        "name": "Social Button"
       }
     ]
   },

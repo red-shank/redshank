@@ -69,19 +69,6 @@ const Navbar = ({ isActive, contentFit, ...props }: NavbarProps) => {
     setTheme(theme === 'dark' ? 'light' : 'dark');
   };
 
-  // const toggleLanguage = () => {
-  //   router
-  //     .replace(
-  //       {
-  //         pathname: router.pathname,
-  //         query: router.query
-  //       },
-  //       undefined,
-  //       { locale: router.locale === 'es' ? 'en' : 'es' }
-  //     )
-  //     .then();
-  // };
-
   return (
     <NextNavbar
       variant="floating"
@@ -147,20 +134,6 @@ const Navbar = ({ isActive, contentFit, ...props }: NavbarProps) => {
       <NextNavbar.Content>
         <NextNavbar.Content css={onlyDesk}>
           <Grid.Container gap={2} className="w-auto">
-            {/*{!isProd && (*/}
-            {/*  <Button*/}
-            {/*    auto*/}
-            {/*    onClick={toggleLanguage}*/}
-            {/*    className="h-auto bg-transparent p-0 px-2"*/}
-            {/*    css={{*/}
-            {/*      color: '$text',*/}
-            {/*      fontSize: '1.1rem'*/}
-            {/*    }}*/}
-            {/*  >*/}
-            {/*    <strong>{router.locale === 'es' ? 'EN' : 'ES'}</strong>*/}
-            {/*  </Button>*/}
-            {/*)}*/}
-
             <RenderLink href={ROUTES.DISCORD.path}>
               <Button
                 auto
@@ -200,20 +173,6 @@ const Navbar = ({ isActive, contentFit, ...props }: NavbarProps) => {
         </NextNavbar.Content>
 
         <Grid.Container css={onlyMobile} gap={2}>
-          {/*{process.env.NODE_ENV === 'development' && (*/}
-          {/*  <Button*/}
-          {/*    auto*/}
-          {/*    onClick={toggleLanguage}*/}
-          {/*    className="h-auto bg-transparent p-0 px-2"*/}
-          {/*    css={{*/}
-          {/*      color: '$text',*/}
-          {/*      fontSize: '1.1rem'*/}
-          {/*    }}*/}
-          {/*  >*/}
-          {/*    <strong>{router.locale === 'es' ? 'EN' : 'ES'}</strong>*/}
-          {/*  </Button>*/}
-          {/*)}*/}
-
           <RenderLink href={ROUTES.DISCORD.path} css={onlyMdMobile}>
             <Button
               auto

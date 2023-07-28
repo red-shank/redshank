@@ -6,6 +6,7 @@ import Title from '@/Components/Title';
 import Footer from '@/Components/Footer';
 import LayoutContainer from '@/Components/LayoutContainer';
 import Navbar from '@/Components/Navbar';
+import { PACKAGE_NAME } from '@/config';
 
 type LayoutProps = {
   children?: ReactNode;
@@ -52,9 +53,10 @@ const Layout = ({
                 Community:
               </Title>
               <Text>
-                We're excited to see the community adopt Redshank, raise issues,
-                and provide feedback. Whether it's a feature request, bug
-                report, or a project to showcase, please get involved!
+                We're excited to see the community adopt <b>{PACKAGE_NAME}</b>,
+                raise issues, and provide feedback. Whether it's a feature
+                request, bug report, or a project to showcase, please get
+                involved!
               </Text>
 
               <Link
@@ -78,7 +80,7 @@ const Layout = ({
                 Contributing:
               </Title>
               <Text>
-                PR's on Redshank are always welcome, please see our
+                PR's on <b>{PACKAGE_NAME}</b> are always welcome, please see our
                 <Link href="#" className="inline">
                   {' '}
                   contribution guidelines
