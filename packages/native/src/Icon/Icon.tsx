@@ -33,6 +33,7 @@ export type IconType =
   | 'entypo'
   | 'antdesign'
   | 'font-awesome-5'
+  | 'font-awesome-6'
   | string;
 
 export type IconObject = {

@@ -55,7 +55,9 @@ export const Alert: React.FC<AlertProps> = ({
             <SelectIcon type={type} size={sizeIcon} />
           </View>
         )}
-        <Text containerStyle={{ width: '100%' }}>{message}</Text>
+        <Text testID="RN_TEXT_MESSAGE" containerStyle={{ width: '100%' }}>
+          {message}
+        </Text>
       </View>
 
       {closable && (

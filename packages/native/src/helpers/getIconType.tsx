@@ -58,6 +58,11 @@ export default (type: IconType): any => {
         require('react-native-vector-icons/FontAwesome5').default ||
         require('@expo/vector-icons/FontAwesome5').default
       );
+    case 'font-awesome-6':
+      return (
+        require('react-native-vector-icons/FontAwesome6').default ||
+        require('@expo/vector-icons/FontAwesome6').default
+      );
     case 'simple-line-icon':
       return (
         require('react-native-vector-icons/SimpleLineIcons').default ||
