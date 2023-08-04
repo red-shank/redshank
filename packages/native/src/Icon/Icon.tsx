@@ -33,7 +33,6 @@ export type IconType =
   | 'entypo'
   | 'antdesign'
   | 'font-awesome-5'
-  | 'font-awesome-6'
   | string;
 
 export type IconObject = {
@@ -50,7 +49,7 @@ export type IconProps = Omit<IconButtonProps, 'color'> & {
   reverse?: boolean;
   raised?: boolean;
   containerStyle?: StyleProp<ViewStyle>;
-  iconProps?: VectorIconProps;
+  iconProps?: Partial<VectorIconProps>;
   reverseColor?: string;
   disabled?: boolean;
   disabledStyle?: StyleProp<ViewStyle>;

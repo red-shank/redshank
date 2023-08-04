@@ -13,17 +13,18 @@ import ROUTES from '@/config/routes';
 import Title from '@/Components/Title';
 import TitleLink from '@/Components/TitleLink';
 import BlockCode from '@/Components/BlockCode';
-import processColor, { isLight } from '@/utils/processColor';
+import processColor from '@/utils/processColor';
 
-import { ColorStyle, WrapperStyle } from './style';
+import { WrapperStyle } from './style';
 import processObject from '@/utils/processObject';
 
 const DefaultThemeTemplate = () => {
-  const { isDark } = useTheme();
-
-  const colors = useMemo(() => {
-    return processColor(libTheme[isDark ? 'colorsDark' : 'colorsLight']);
-  }, [isDark]);
+  const palette = useMemo(() => {
+    return {
+      dark: processColor(libTheme.colorsDark),
+      light: processColor(libTheme.colorsLight)
+    };
+  }, []);
 
   const paddingObjectString = useMemo(() => {
     return processObject(libTheme.paddingSizes);
@@ -64,32 +65,56 @@ const DefaultThemeTemplate = () => {
         for more information.
       </Text>
 
-      {colors.map(({ colors, name }) => {
+      {palette.dark.map(({ colors, name }, indexPalette) => {
         return (
           <div key={name}>
             <TitleLink>{name}</TitleLink>
 
             <Grid.Container gap={2}>
-              {colors.map(({ value: color, name: nameColor }) => {
-                const isWhiteText = isLight(color)
-                  ? 'text-black'
-                  : 'text-white';
+              {colors.map(({ value: darkColor, name: nameColor }, index) => {
+                const lightColor =
+                  palette.light?.[indexPalette]?.colors?.[index].value;
+
                 return (
                   <Grid key={nameColor}>
-                    <Tooltip trigger="click" content="Copied!">
-                      <ColorStyle
-                        onClick={() => onCopy(color)}
-                        className="h-28 w-28 rounded-2xl grid place-items-center cursor-pointer"
-                        style={{ background: color }}
-                      >
-                        <div className="text-center">
-                          <p className={`text-sm ${isWhiteText}`}>
-                            {nameColor}
-                          </p>
-                          <p className={`font-bold ${isWhiteText}`}>{color}</p>
+                    <div className="rounded-2xl grid place-items-center">
+                      <Tooltip trigger="click" content="Copied key color!">
+                        <div
+                          onClick={() => onCopy(nameColor)}
+                          className="h-28 w-28 rounded-2xl cursor-pointer relative overflow-hidden"
+                        >
+                          <div
+                            className="absolute top-0 left-0 w-[50%] h-full"
+                            style={{ background: lightColor }}
+                          />
+
+                          <div
+                            className="absolute top-0 left-[50%] w-[50%] h-full"
+                            style={{ background: darkColor }}
+                          />
                         </div>
-                      </ColorStyle>
-                    </Tooltip>
+                      </Tooltip>
+
+                      <div className="text-center">
+                        <p className={`font-bold`}>{nameColor}</p>
+                        <Tooltip trigger="click" content="Copied Light!">
+                          <p
+                            onClick={() => onCopy(lightColor)}
+                            className={`text-sm cursor-pointer`}
+                          >
+                            Light: <span className="font-bold">{lightColor}</span>
+                          </p>
+                        </Tooltip>
+                        <Tooltip trigger="click" content="Copied Dark!">
+                          <p
+                            onClick={() => onCopy(darkColor)}
+                            className={`text-sm cursor-pointer`}
+                          >
+                            Dark: <span className="font-bold">{darkColor}</span>
+                          </p>
+                        </Tooltip>
+                      </div>
+                    </div>
                   </Grid>
                 );
               })}

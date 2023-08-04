@@ -131,6 +131,8 @@ export const colorsBase = {
   gray700: '#444444',
   gray800: '#333333',
   gray900: '#111111',
+  white: '#ffffff',
+  black: '#000000',
 };
 
 export const colorsLight = {
@@ -153,8 +155,6 @@ export const colorsLight = {
   foreground: '#000000',
   text: '#333333',
   border: '#a1a1a1',
-  white: '#ffffff',
-  black: '#000000',
   link: '#3D9CF7',
   selection: '#461491',
   code: '#6cc0e1',

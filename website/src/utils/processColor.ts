@@ -43,7 +43,9 @@ const layoutNames = [
   'border',
   'text',
   'modalMask',
-  'card'
+  'card',
+  'white',
+  'black'
 ];
 const hightlighNames = ['link', 'selection', 'code', 'hover'];
 
