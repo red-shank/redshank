@@ -4,6 +4,7 @@ import type { AppProps } from 'next/app';
 import { ThemeProvider } from 'next-themes';
 import React, { useEffect, useState } from 'react';
 import { NextUIProvider } from '@nextui-org/react';
+import { Analytics } from '@vercel/analytics/react';
 
 import { darkTheme, lightTheme } from '@/styles/stitches.config';
 import menuComponents from '@/assets/v1.json';
@@ -46,6 +47,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         >
           <NextUIProvider>
             <Component {...pageProps} />
+            <Analytics />
           </NextUIProvider>
         </ThemeProvider>
       </ComponentProvider>
