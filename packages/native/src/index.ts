@@ -64,6 +64,9 @@ export * from './Modal';
 // PopConfirm export
 export * from './PopConfim';
 
+// Progress export
+export * from './Progress';
+
 // Radio export
 export * from './Radio';
 

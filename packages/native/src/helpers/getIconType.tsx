@@ -30,7 +30,11 @@ export default (type: IconType): any => {
     case 'font-awesome-5':
       return require('react-native-vector-icons/FontAwesome5').default;
     case 'font-awesome-6':
-      return require('react-native-vector-icons/FontAwesome6').default;
+      try {
+        return require('react-native-vector-icons/FontAwesome6').default;
+      } catch (e) {
+        return require('react-native-vector-icons/Ionicons').default;
+      }
     case 'simple-line-icon':
       return require('react-native-vector-icons/SimpleLineIcons').default;
     case 'feather':

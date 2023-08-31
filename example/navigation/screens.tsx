@@ -18,6 +18,7 @@ import FormScreen from '../screens/Form';
 import BadgeScreen from '../screens/Badges';
 import CollapseScreen from '../screens/Collapse';
 import SelectScreen from '../screens/Select';
+import ProgressScreen from '../screens/Progress';
 import RadioScreen from '../screens/Radio';
 import SwitchScreen from '../screens/Switch';
 import HeaderScreen from '../screens/Header';
@@ -58,6 +59,10 @@ export const itemsDrawer = [
   {
     name: 'Input',
     component: InputScreen,
+  },
+  {
+    name: 'Progress',
+    component: ProgressScreen,
   },
   {
     name: 'Radio',

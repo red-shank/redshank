@@ -19,8 +19,9 @@
     "@react-navigation/native": "6.1.7",
     "@react-navigation/stack": "6.3.17",
     "@redshank/native": "latest",
+    "@types/react-native-vector-icons": "^6.4.14",
     "babel-plugin-react-native-web": "^0.19.6",
-    "expo": "^49.0.2",
+    "expo": "^49.0.8",
     "expo-app-loading": "^2.1.1",
     "expo-asset": "^8.10.1",
     "expo-font": "^11.4.0",
@@ -38,6 +39,7 @@
     "react-native-screens": "3.22.1",
     "react-native-svg": "13.9.0",
     "react-native-tab-view": "3.5.2",
+    "react-native-vector-icons": "10.0.0",
     "react-native-web": "0.19.6"
   },
   "devDependencies": {
