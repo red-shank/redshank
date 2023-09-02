@@ -30,6 +30,7 @@ export interface AvatarGroupProps
     AvatarProps,
     'size' | 'type' | 'textColor' | 'color' | 'showCountText' | 'imageProps'
   > {
+  separatePercentage?: number;
   max?: number;
   style?: StyleProp<ViewStyle>;
   itemStyle?: StyleProp<ViewStyle>;

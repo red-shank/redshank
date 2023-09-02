@@ -14,6 +14,7 @@ export const AvatarGroup: React.FC<AvatarGroupProps> = ({
   max,
   itemStyle,
   onMoreItems,
+  separatePercentage,
   imageProps = {}
 }) => {
   const internalItems = max ? items?.splice(0, max + 1) : items;
@@ -21,14 +22,21 @@ export const AvatarGroup: React.FC<AvatarGroupProps> = ({
   return (
     <View style={StyleSheet.flatten([styles.container, style])}>
       {internalItems.map((item, index) => {
-        const marginLeft = (item?.size || 40) * 0.35;
+        const sizeFull = item?.size || size;
+        let percentage = separatePercentage;
+
+        if (typeof percentage === 'undefined') {
+          percentage = sizeFull <= 25 ? 0.25 : 0.35;
+        }
+
+        const marginLeft = (sizeFull || 40) * percentage;
 
         if (index === max) {
           return (
             <Avatar
               key={index}
-              size={size}
               type={type}
+              size={sizeFull}
               bordered
               color="border"
               textColor="text"
@@ -51,7 +59,7 @@ export const AvatarGroup: React.FC<AvatarGroupProps> = ({
         return (
           <Avatar
             key={index}
-            size={size}
+            size={sizeFull}
             showCountText={showCountText}
             textColor={textColor}
             type={type}

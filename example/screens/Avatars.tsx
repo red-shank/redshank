@@ -14,9 +14,40 @@ const AvatarScreen = () => {
       <View style={styles.container}>
         <View>
           <Title level={3}>Avatar Group</Title>
-          <Space>
+          <Space orientation="vertical">
             <AvatarGroup
               size={50}
+              max={3}
+              items={[
+                {
+                  src: 'https://i.imgur.com/bnip2HZ.png',
+                },
+                {
+                  src: 'https://i.imgur.com/bnip2HZ.png',
+                },
+                {
+                  src: 'https://i.imgur.com/bnip2HZ.png',
+                },
+                {
+                  src: 'https://i.imgur.com/bnip2HZ.png',
+                },
+                {
+                  src: 'https://i.imgur.com/bnip2HZ.png',
+                },
+                {
+                  src: 'https://i.imgur.com/bnip2HZ.png',
+                },
+                {
+                  src: 'https://i.imgur.com/bnip2HZ.png',
+                },
+                {
+                  src: 'https://i.imgur.com/bnip2HZ.png',
+                },
+              ]}
+            />
+
+            <AvatarGroup
+              size={25}
               max={3}
               items={[
                 {
