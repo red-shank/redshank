@@ -41,6 +41,13 @@ export const Avatar: React.FC<AvatarProps> = ({
   const baseSize = size - (showCountText === 1 ? 12 : 8);
   const fontSize = baseSize / (textShow?.length ?? 1);
 
+  const fatherBackgroundColor = React.useMemo(() => {
+    if (bordered) {
+      return colors.background;
+    }
+    return 'transparent';
+  }, [color, colors, src, bordered]);
+
   const backgroundColor = React.useMemo(() => {
     if (bordered) {
       return colors[color] || colors.background;
@@ -62,8 +69,10 @@ export const Avatar: React.FC<AvatarProps> = ({
       style={StyleSheet.flatten([
         styles.container,
         { width: size, height: size },
-        { backgroundColor: backgroundColor },
-        { borderRadius: borderRadiusElement },
+        {
+          borderRadius: borderRadiusElement,
+          backgroundColor: fatherBackgroundColor
+        },
         bordered && {
           borderWidth: 2,
           borderStyle: 'solid',
@@ -78,42 +87,56 @@ export const Avatar: React.FC<AvatarProps> = ({
       onLongPress={onLongPress}
       {...restTouchProps}
     >
-      {isShowText ? (
-        <Text
-          style={StyleSheet.flatten([
-            { color: colorText || getColorForBackground(backgroundColor) },
-            {
-              fontSize: fontSize,
-              lineHeight: fontSize + 7
-            },
-            textStyle
-          ])}
-        >
-          {textShow}
-        </Text>
-      ) : icon ? (
-        <Icon
-          color={textColor || getColorForBackground(backgroundColor)}
-          {...((icon || {}) as AvatarIcon)}
-        />
-      ) : (
-        <Image
-          source={sourceImage}
-          resizeMode="cover"
-          width={size}
-          height={size}
-          {...imageProps}
-          style={StyleSheet.flatten([
-            {
-              width: size - internalPaddingImage,
-              height: size - internalPaddingImage
-            },
-            { borderRadius: borderRadiusElement },
-            imageProps && imageProps.style
-          ])}
-          ImageComponent={ImageComponent}
-        />
-      )}
+      <View
+        style={StyleSheet.flatten([
+          styles.container,
+          {
+            overflow: 'hidden',
+            backgroundColor,
+            padding: internalPaddingImage,
+            borderRadius: borderRadiusElement,
+            width: bordered ? (size - internalPaddingImage) : size,
+            height: bordered ? (size - internalPaddingImage) : size
+          }
+        ])}
+      >
+        {isShowText ? (
+          <Text
+            style={StyleSheet.flatten([
+              { color: colorText || getColorForBackground(backgroundColor) },
+              {
+                fontSize: fontSize,
+                lineHeight: fontSize + 7
+              },
+              textStyle
+            ])}
+          >
+            {textShow}
+          </Text>
+        ) : icon ? (
+          <Icon
+            color={textColor || getColorForBackground(backgroundColor)}
+            {...((icon || {}) as AvatarIcon)}
+          />
+        ) : (
+          <Image
+            source={sourceImage}
+            resizeMode="cover"
+            width={size}
+            height={size}
+            {...imageProps}
+            style={StyleSheet.flatten([
+              {
+                width: size - internalPaddingImage,
+                height: size - internalPaddingImage
+              },
+              { borderRadius: borderRadiusElement },
+              imageProps && imageProps.style
+            ])}
+            ImageComponent={ImageComponent}
+          />
+        )}
+      </View>
     </Component>
   );
 };

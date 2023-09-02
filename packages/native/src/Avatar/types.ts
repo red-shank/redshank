@@ -28,7 +28,13 @@ export interface AvatarProps extends BaseProperties {
 export interface AvatarGroupProps
   extends Pick<
     AvatarProps,
-    'size' | 'type' | 'textColor' | 'color' | 'showCountText' | 'imageProps'
+    | 'size'
+    | 'type'
+    | 'textColor'
+    | 'color'
+    | 'showCountText'
+    | 'imageProps'
+    | 'textStyle'
   > {
   separatePercentage?: number;
   max?: number;
