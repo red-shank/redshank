@@ -1,6 +1,6 @@
+import { Title, InputScrollView, Progress } from '@redshank/native';
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import { Title, InputScrollView, Progress } from '@redshank/native';
 
 const ProgressScreen = () => {
   return (
@@ -8,14 +8,9 @@ const ProgressScreen = () => {
       <View style={styles.container}>
         <View style={{ gap: 10 }}>
           <Title level={3}>Progress</Title>
-          <Progress
-            style={{ width: '65%' }}
-            current={10}
-            count={100}
-            size={2}
-          />
+          <Progress style={{ width: '65%' }} current={50} count={100} />
           <Progress activeColor="success" current={50} count={75} />
-          <Progress activeColor="error" current={10} count={45} />
+          <Progress activeColor="error" current={10} count={45} size={8} />
         </View>
       </View>
     </InputScrollView>

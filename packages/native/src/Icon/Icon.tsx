@@ -7,11 +7,11 @@ import {
   StyleProp,
   TextStyle,
   Pressable,
-  ColorValue,
+  ColorValue
 } from 'react-native';
 import {
   IconButtonProps,
-  IconProps as VectorIconProps,
+  IconProps as VectorIconProps
 } from 'react-native-vector-icons/Icon';
 import Color from 'color';
 import getIconType from '../helpers/getIconType';
@@ -19,6 +19,7 @@ import getIconStyle from '../helpers/getIconStyle';
 import androidRipple from '../helpers/androidRipple';
 import useTheme from '../Context/theme/useTheme';
 import { ColorType } from '../Context/theme/types';
+import { Text } from '../Text';
 
 export type IconType =
   | 'material'
@@ -33,6 +34,7 @@ export type IconType =
   | 'entypo'
   | 'antdesign'
   | 'font-awesome-5'
+  | 'font-awesome-6'
   | string;
 
 export type IconObject = {
@@ -101,7 +103,7 @@ export const Icon: React.FC<IconProps> = ({
     () => ({
       borderRadius: size + 4,
       height: size * 2 + 4,
-      width: size * 2 + 4,
+      width: size * 2 + 4
     }),
     [size]
   );
@@ -115,10 +117,10 @@ export const Icon: React.FC<IconProps> = ({
         raised && styles.raised,
         iconStyle && iconStyle.borderRadius
           ? {
-              borderRadius: iconStyle.borderRadius,
+              borderRadius: iconStyle.borderRadius
             }
           : {},
-        containerStyle && containerStyle,
+        containerStyle && containerStyle
       ])}
       testID="BD__ICON__CONTAINER"
     >
@@ -136,7 +138,7 @@ export const Icon: React.FC<IconProps> = ({
           onPressOut,
           disabled,
           accessibilityRole: 'button',
-          ...rest,
+          ...rest
         }}
         testID="RNE__ICON__CONTAINER_ACTION"
       >
@@ -146,25 +148,29 @@ export const Icon: React.FC<IconProps> = ({
             {
               backgroundColor: getBackgroundColor as ColorValue,
               alignItems: 'center',
-              justifyContent: 'center',
+              justifyContent: 'center'
             },
             disabled && styles.disabled,
-            disabled && disabledStyle,
+            disabled && disabledStyle
           ])}
           testID="RNE__ICON"
         >
-          <IconComponent
-            testID="RNE__ICON__Component"
-            style={StyleSheet.flatten([
-              { backgroundColor: 'transparent' },
-              iconStyle && iconStyle,
-            ])}
-            size={size}
-            name={name}
-            color={reverse ? reverseColor : color}
-            {...iconSpecificStyle}
-            {...iconProps}
-          />
+          {IconComponent ? (
+            <IconComponent
+              testID="RNE__ICON__Component"
+              style={StyleSheet.flatten([
+                { backgroundColor: 'transparent' },
+                iconStyle && iconStyle
+              ])}
+              size={size}
+              name={name}
+              color={reverse ? reverseColor : color}
+              {...iconSpecificStyle}
+              {...iconProps}
+            />
+          ) : (
+            <Text>?</Text>
+          )}
         </View>
       </Component>
     </View>
@@ -173,27 +179,27 @@ export const Icon: React.FC<IconProps> = ({
 
 const styles = StyleSheet.create({
   container: {
-    overflow: 'hidden',
+    overflow: 'hidden'
   },
   button: {
-    margin: 7,
+    margin: 7
   },
   raised: {
     ...Platform.select({
       android: {
-        elevation: 2,
+        elevation: 2
       },
       default: {
         shadowColor: 'rgba(0,0,0, .4)',
         shadowOffset: { height: 1, width: 1 },
         shadowOpacity: 1,
-        shadowRadius: 1,
-      },
-    }),
+        shadowRadius: 1
+      }
+    })
   },
   disabled: {
-    backgroundColor: '#D1D5D8',
-  },
+    backgroundColor: '#D1D5D8'
+  }
 });
 
 Icon.displayName = 'Icon';

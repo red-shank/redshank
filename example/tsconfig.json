@@ -1,12 +1,11 @@
 {
-  "extends": "../tsconfig",
+  "extends": "expo/tsconfig.base",
   "references": [
     {
       "path": "../packages/native"
     }
   ],
   "compilerOptions": {
-    // Avoid expo-cli auto-generating a tsconfig
   },
   "exclude": [
     "node_modules",

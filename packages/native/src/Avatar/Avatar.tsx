@@ -7,7 +7,7 @@ import { Icon } from '../Icon';
 import {
   getColorForBackground,
   getRandomColor,
-  getTextForAvatar,
+  getTextForAvatar
 } from '../utils';
 import { AvatarIcon, AvatarProps } from './types';
 
@@ -16,12 +16,14 @@ export const Avatar: React.FC<AvatarProps> = ({
   text,
   showCountText = 2,
   textColor,
-  color,
   icon,
   onPress,
   onPressIn,
   onPressOut,
   onLongPress,
+  bordered,
+  color,
+  textStyle,
   Component = onPress || onPressIn || onPressOut || onLongPress ? Ripple : View,
   ImageComponent = ImageRN,
   size = 40,
@@ -40,8 +42,11 @@ export const Avatar: React.FC<AvatarProps> = ({
   const fontSize = baseSize / (textShow?.length ?? 1);
 
   const backgroundColor = React.useMemo(() => {
+    if (bordered) {
+      return colors[color] || colors.background;
+    }
     return src ? colors.accents7 : colors[color] || getRandomColor();
-  }, [color, colors, src]);
+  }, [color, colors, src, bordered]);
 
   const colorText = React.useMemo<string | undefined>(() => {
     return colors[textColor] || textColor;
@@ -50,6 +55,8 @@ export const Avatar: React.FC<AvatarProps> = ({
   const borderRadiusElement = type === 'circle' ? size / 2 : borderRadius.lg;
   const sourceImage = typeof src === 'string' ? { uri: src } : src;
 
+  const internalPaddingImage = !bordered ? 0 : size * 0.15;
+
   return (
     <Component
       style={StyleSheet.flatten([
@@ -57,7 +64,12 @@ export const Avatar: React.FC<AvatarProps> = ({
         { width: size, height: size },
         { backgroundColor: backgroundColor },
         { borderRadius: borderRadiusElement },
-        style,
+        bordered && {
+          borderWidth: 2,
+          borderStyle: 'solid',
+          borderColor: colors.border
+        },
+        style
       ])}
       // @ts-ignore
       onPress={onPress}
@@ -72,8 +84,9 @@ export const Avatar: React.FC<AvatarProps> = ({
             { color: colorText || getColorForBackground(backgroundColor) },
             {
               fontSize: fontSize,
-              lineHeight: fontSize + 7,
+              lineHeight: fontSize + 7
             },
+            textStyle
           ])}
         >
           {textShow}
@@ -91,9 +104,12 @@ export const Avatar: React.FC<AvatarProps> = ({
           height={size}
           {...imageProps}
           style={StyleSheet.flatten([
-            { width: size, height: size },
+            {
+              width: size - internalPaddingImage,
+              height: size - internalPaddingImage
+            },
             { borderRadius: borderRadiusElement },
-            imageProps && imageProps.style,
+            imageProps && imageProps.style
           ])}
           ImageComponent={ImageComponent}
         />
@@ -105,14 +121,14 @@ export const Avatar: React.FC<AvatarProps> = ({
 const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   title: {
     color: '#ffffff',
     backgroundColor: 'transparent',
-    textAlign: 'center',
+    textAlign: 'center'
   },
   hiddenPlaceholderStyle: {
-    backgroundColor: 'transparent',
-  },
+    backgroundColor: 'transparent'
+  }
 });

@@ -1,5 +1,5 @@
-import React, { useMemo } from 'react';
-import { StyleSheet, View } from 'react-native';
+import React, {useEffect, useMemo} from "react";
+import { StyleSheet, View, Animated } from 'react-native';
 import useTheme from '../Context/theme/useTheme';
 import { ProgressProps } from './types';
 
@@ -14,9 +14,11 @@ export const Progress: React.FC<ProgressProps> = ({
   onLongPress,
   style,
   Component = View,
-  size = 5,
+  size = 3,
   ...restTouchProps
 }) => {
+  const animation = new Animated.Value(0);
+
   const { colors } = useTheme();
 
   const backgroundColor = React.useMemo(() => {
@@ -30,21 +32,34 @@ export const Progress: React.FC<ProgressProps> = ({
   const calcWidth = useMemo(() => {
     const progress = (current / count) * 100;
     if (progress >= 100) {
-      return 100;
+      return 1;
     }
     if (progress <= 0) {
       return 0;
     }
-    return progress;
+    return progress / 100;
   }, [count, current]);
+
+
+  useEffect(() => {
+    Animated.timing(animation, {
+      toValue: calcWidth,
+      duration: 750,
+      useNativeDriver: false,
+    }).start();
+  }, [calcWidth]);
 
   return (
     <Component
       style={StyleSheet.flatten([
         styles.container,
-        { width: '100%', height: size, borderRadius: size },
+        {
+          width: '100%',
+          height: size,
+          borderRadius: size
+        },
         { backgroundColor: backgroundColor },
-        style,
+        style
       ])}
       // @ts-ignore
       onPress={onPress}
@@ -53,14 +68,17 @@ export const Progress: React.FC<ProgressProps> = ({
       onLongPress={onLongPress}
       {...restTouchProps}
     >
-      <View
+      <Animated.View
         style={StyleSheet.flatten([
           {
             backgroundColor: backgroundActiveColor,
-            width: `${calcWidth}%`,
+            width: animation.interpolate({
+              inputRange: [0, 1],
+              outputRange: ['0%', '100%'],
+            }),
             height: size,
-            borderRadius: size,
-          },
+            borderRadius: size
+          }
         ])}
       />
     </Component>
@@ -70,6 +88,6 @@ export const Progress: React.FC<ProgressProps> = ({
 const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
-    alignItems: 'flex-start',
-  },
+    alignItems: 'flex-start'
+  }
 });

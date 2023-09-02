@@ -1,6 +1,4 @@
 /* eslint-disable no-alert */
-import React from 'react';
-import { StyleSheet, View } from 'react-native';
 import {
   Button,
   Space,
@@ -9,6 +7,8 @@ import {
   InputScrollView,
   SocialButton,
 } from '@redshank/native';
+import React from 'react';
+import { StyleSheet, View } from 'react-native';
 
 const colors = ['primary', 'success', 'warning', 'error'];
 
@@ -132,17 +132,17 @@ const ButtonsScreen = () => {
           <Space>
             <Button
               icon={
-                <Icon color="yellow400" type="antdesign" name="smile-circle" />
+                <Icon color="yellow400" type="ant-design" name="smile-circle" />
               }
             >
               Icon
             </Button>
             <Button
-              prefix={<Icon color="error" type="antdesign" name="heart" />}
+              prefix={<Icon color="error" type="ant-design" name="heart" />}
             >
               Prefix
             </Button>
-            <Button suffix={<Icon size={25} type="antdesign" name="like1" />}>
+            <Button suffix={<Icon size={25} type="antdesign" name="like" />}>
               Suffix
             </Button>
           </Space>

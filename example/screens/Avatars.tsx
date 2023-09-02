@@ -4,6 +4,7 @@ import {
   Title,
   InputScrollView,
   Avatar,
+  AvatarGroup,
   Space,
 } from '@redshank/native';
 
@@ -11,6 +12,42 @@ const AvatarScreen = () => {
   return (
     <InputScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.container}>
+        <View>
+          <Title level={3}>Avatar Group</Title>
+          <Space>
+            <AvatarGroup
+              size={50}
+              max={3}
+              items={[
+                {
+                  src: 'https://i.imgur.com/bnip2HZ.png',
+                },
+                {
+                  src: 'https://i.imgur.com/bnip2HZ.png',
+                },
+                {
+                  src: 'https://i.imgur.com/bnip2HZ.png',
+                },
+                {
+                  src: 'https://i.imgur.com/bnip2HZ.png',
+                },
+                {
+                  src: 'https://i.imgur.com/bnip2HZ.png',
+                },
+                {
+                  src: 'https://i.imgur.com/bnip2HZ.png',
+                },
+                {
+                  src: 'https://i.imgur.com/bnip2HZ.png',
+                },
+                {
+                  src: 'https://i.imgur.com/bnip2HZ.png',
+                },
+              ]}
+            />
+          </Space>
+        </View>
+
         <View>
           <Title level={3}>Sizes Avatar</Title>
           <Space>

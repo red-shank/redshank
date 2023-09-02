@@ -21,6 +21,7 @@ export default (type: IconType, extraProps: any) => {
     case 'font-awesome':
       return {};
     case 'font-awesome-5':
+    case 'font-awesome-6':
       return {
         solid: extraProps.solid || false,
         brand: extraProps.brand || false,

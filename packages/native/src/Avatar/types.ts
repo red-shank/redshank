@@ -1,5 +1,5 @@
 import { ComponentClass, FunctionComponent } from 'react';
-import { StyleProp, ViewStyle } from 'react-native';
+import { StyleProp, TextStyle, ViewStyle } from 'react-native';
 import { IconObject } from '../Icon';
 import { ImageProps } from '../Image';
 import { ImageSrcType } from '../@types/image';
@@ -13,6 +13,7 @@ export interface AvatarProps extends BaseProperties {
   ImageComponent?: ComponentClass;
   color?: ColorType;
   icon?: AvatarIcon;
+  bordered?: boolean;
   imageProps?: Partial<ImageProps>;
   showCountText?: number | 'all';
   size?: number;
@@ -20,5 +21,18 @@ export interface AvatarProps extends BaseProperties {
   style?: StyleProp<ViewStyle>;
   text?: string;
   textColor?: ColorType;
+  textStyle?: StyleProp<TextStyle>;
   type?: 'circle' | 'square';
+}
+
+export interface AvatarGroupProps
+  extends Pick<
+    AvatarProps,
+    'size' | 'type' | 'textColor' | 'color' | 'showCountText' | 'imageProps'
+  > {
+  max?: number;
+  style?: StyleProp<ViewStyle>;
+  itemStyle?: StyleProp<ViewStyle>;
+  items: AvatarProps[];
+  onMoreItems?: () => void | Promise<any>;
 }
