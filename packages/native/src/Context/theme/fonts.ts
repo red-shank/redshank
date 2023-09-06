@@ -33,13 +33,15 @@ export const fonts = {
 };
 
 export const fontSizes: FontSizesProps = {
-  tiny: 12,
+  tiny: 9,
+  xxs: 12,
   xs: 14,
   base: 16,
   sm: 18,
   md: 20,
   lg: 22,
   xl: 24,
+  xxl: 32,
 };
 
 export const titleFontSizes: TitleFontSizesProps = {

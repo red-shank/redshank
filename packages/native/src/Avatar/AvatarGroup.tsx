@@ -16,6 +16,7 @@ export const AvatarGroup: React.FC<AvatarGroupProps> = ({
   itemStyle,
   onMoreItems,
   separatePercentage,
+  bordered = true,
   imageProps = {}
 }) => {
   const internalItems = max ? [...items].splice(0, max + 1) : items;
@@ -48,7 +49,7 @@ export const AvatarGroup: React.FC<AvatarGroupProps> = ({
               key={index}
               type={type}
               size={sizeFull}
-              bordered
+              bordered={bordered}
               color="border"
               textColor="text"
               showCountText="all"
@@ -77,7 +78,7 @@ export const AvatarGroup: React.FC<AvatarGroupProps> = ({
             showCountText={showCountText}
             textColor={textColor}
             type={type}
-            bordered
+            bordered={bordered}
             color={color}
             textStyle={textStyle}
             {...item}

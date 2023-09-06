@@ -16,7 +16,6 @@ const AvatarScreen = () => {
           <Title level={3}>Avatar Group</Title>
           <Space orientation="vertical">
             <AvatarGroup
-              size={50}
               max={3}
               items={[
                 {

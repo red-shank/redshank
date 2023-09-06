@@ -38,6 +38,7 @@ export interface AvatarGroupProps
   > {
   separatePercentage?: number;
   max?: number;
+  bordered?: boolean;
   style?: StyleProp<ViewStyle>;
   itemStyle?: StyleProp<ViewStyle>;
   items: AvatarProps[];

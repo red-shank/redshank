@@ -44,12 +44,14 @@ export interface FontTypes {
 
 export interface FontSizesProps {
   tiny: number;
+  xxs: number;
   xs: number;
   base: number;
   sm: number;
   md: number;
   lg: number;
   xl: number;
+  xxl: number;
 }
 
 export interface TitleFontSizesProps {
