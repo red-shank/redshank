@@ -12,6 +12,7 @@ export interface CardProps extends BaseProperties {
   children?: ReactNode;
   expandContent?: ReactNode;
   isExpandCard?: boolean;
+  onlyExpandContent?: boolean;
   isPressable?: boolean;
   onClose?: (event: any) => void;
   rippleProps?: RippleProps;

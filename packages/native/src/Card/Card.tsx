@@ -8,7 +8,7 @@ import {
   StatusBar,
   Platform,
   ScrollView,
-  RefreshControl,
+  RefreshControl
 } from 'react-native';
 
 import Body from './Body';
@@ -43,14 +43,18 @@ const CardRender: React.FC<CardProps> = React.memo(
     withBorder = false,
     background = 'card',
     rippleProps = {
-      disableRipple: true,
+      disableRipple: true
     },
     style = {},
     ...restProps
   }) => {
     const { colors, activeOpacity, borderRadius, zIndices, paddingSizes } =
       useTheme();
-    const { isOpen, toggle: toggleAction } = useCardProvider();
+    const {
+      isOpen,
+      toggle: toggleAction,
+      onlyExpandContent
+    } = useCardProvider();
 
     const onInternalPress = React.useCallback(
       (event) => {
@@ -81,12 +85,12 @@ const CardRender: React.FC<CardProps> = React.memo(
             style={StyleSheet.flatten([
               {
                 borderRadius: isOpen ? 0 : borderRadius.card,
-                backgroundColor: colors[background] || background,
+                backgroundColor: colors[background] || background
               },
               withBorder && {
                 borderWidth,
-                borderColor: colors.border,
-              },
+                borderColor: colors.border
+              }
             ])}
             disableRipple={rippleProps?.disableRipple}
             disableTransform={rippleProps?.disableTransform}
@@ -113,8 +117,8 @@ const CardRender: React.FC<CardProps> = React.memo(
             style={StyleSheet.flatten([
               styles.openCard,
               {
-                backgroundColor: colors.background,
-              },
+                backgroundColor: colors.background
+              }
             ])}
             disableRipple={true}
             disableTransform={true}
@@ -126,13 +130,17 @@ const CardRender: React.FC<CardProps> = React.memo(
               color="text"
               style={StyleSheet.flatten([
                 styles.closeButton,
-                { zIndex: zIndices.max },
+                { zIndex: zIndices.max }
               ])}
               onPress={onInternalClose}
             >
               <Icon name="close-circle" type="ionicon" color="text" size={37} />
             </Button>
-            <View style={styles.openCard}>{children}</View>
+            {!onlyExpandContent && (
+              <View style={StyleSheet.flatten([styles.openCard])}>
+                {children}
+              </View>
+            )}
             {isOpen ? (
               <Animated.View style={[{ padding: paddingSizes.card }]}>
                 {expandContent}
@@ -147,10 +155,14 @@ const CardRender: React.FC<CardProps> = React.memo(
 
 export const Card: React.FC<CardProps> & ComponentExport = ({
   expandContent,
+  onlyExpandContent,
   ...props
 }) => {
   return (
-    <CardProvider expandContent={expandContent}>
+    <CardProvider
+      expandContent={expandContent}
+      onlyExpandContent={onlyExpandContent}
+    >
       <CardRender {...props} expandContent={expandContent} />
     </CardProvider>
   );
@@ -166,18 +178,18 @@ const styles = StyleSheet.create({
     flex: 1,
     borderStyle: 'solid',
     flexDirection: 'column',
-    position: 'relative',
+    position: 'relative'
   },
   openCard: {
     position: 'relative',
-    borderRadius: 0,
+    borderRadius: 0
   },
   closeButton: {
     position: 'absolute',
     top: Platform.select({
       ios: scale(20),
-      default: scale(20),
+      default: scale(20)
     }),
-    right: 20,
-  },
+    right: 20
+  }
 });

@@ -6,6 +6,7 @@ import { StatusBarHeight } from '../utils/header';
 
 export type CardContext = {
   isOpen: boolean;
+  onlyExpandContent?: boolean;
   statusBarHeight: number;
   toggle: () => void;
   expandContent?: React.ReactNode;
@@ -14,19 +15,21 @@ export type CardContext = {
 const defaultValues: CardContext = {
   statusBarHeight: 0,
   isOpen: false,
-  toggle() {},
+  toggle() {}
 };
 
 const CardContext = React.createContext<CardContext>(defaultValues);
 
 type CardProviderType = {
   children: React.ReactNode;
+  onlyExpandContent?: boolean;
   expandContent?: React.ReactNode;
 };
 
 export const CardProvider: React.FC<CardProviderType> = ({
   children,
-  expandContent,
+  onlyExpandContent,
+  expandContent
 }) => {
   const [isOpen, toggle] = useModal();
 
@@ -34,8 +37,9 @@ export const CardProvider: React.FC<CardProviderType> = ({
     return {
       isOpen,
       toggle,
+      onlyExpandContent,
       expandContent,
-      statusBarHeight: StatusBarHeight + scale(0),
+      statusBarHeight: StatusBarHeight + scale(0)
     };
   }, [expandContent, isOpen, toggle]);
 

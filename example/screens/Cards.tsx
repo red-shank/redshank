@@ -1,13 +1,6 @@
 import React from 'react';
 import { ScrollView, StyleSheet, View, Image } from 'react-native';
-import {
-  Card,
-  Title,
-  useTheme,
-  Text,
-  Button,
-  Avatar,
-} from '@redshank/native';
+import { Card, Title, useTheme, Text, Button, Avatar } from '@redshank/native';
 
 const ExpandContent = () => (
   <View>
@@ -68,6 +61,28 @@ const CardScreen = () => {
             style={{ height: 250 }}
             source={{
               uri: 'https://images.pexels.com/photos/17383711/pexels-photo-17383711/free-photo-of-fondo-de-pantalla-de-la-camara.jpeg?auto=compress&cs=tinysrgb&w=1600',
+            }}
+          />
+          <Card.Footer>
+            <Text>This is a footer</Text>
+          </Card.Footer>
+        </Card>
+
+        <Card
+          style={styles.card}
+          onlyExpandContent
+          expandContent={<ExpandContent />}
+        >
+          <Card.Header>
+            <Title marginBottom={0} level={3}>
+              Only Expand Content
+            </Title>
+            <Text>This is a other Camera</Text>
+          </Card.Header>
+          <Image
+            style={{ height: 250 }}
+            source={{
+              uri: 'https://images.pexels.com/photos/16873016/pexels-photo-16873016/free-photo-of-camara-lente-nikon-mesa-negra.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
             }}
           />
           <Card.Footer>
