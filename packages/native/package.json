@@ -1,6 +1,6 @@
 {
   "name": "@redshank/native",
-  "version": "1.4.4",
+  "version": "1.4.5",
   "description": "Red Shank Design component & UI Toolkit",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -43,14 +43,14 @@
   },
   "homepage": "https://www.redshank.app/",
   "dependencies": {
-    "@react-native-community/datetimepicker": "5.1.0",
+    "@react-native-community/datetimepicker": "7.6.1",
     "@types/react-native-vector-icons": "6.4.12",
     "color": "4.2.3",
     "dayjs": "1.10.7",
     "nodemon": "^3.0.1",
     "rc-field-form": "1.32.2",
     "react-native-input-scroll-view": "1.11.0",
-    "react-native-modal-datetime-picker": "13.0.1",
+    "react-native-modal-datetime-picker": "17.1.0",
     "react-native-picker-select": "8.0.4",
     "react-native-size-matters": "0.4.0"
   },

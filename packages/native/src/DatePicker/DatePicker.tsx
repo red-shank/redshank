@@ -21,7 +21,7 @@ export const DatePicker: FC<DatePickerProps> = ({
   suffix = <Icon name="clockcircleo" type="antdesign" />,
   display = Platform.select({
     ios: 'spinner',
-    default: 'default',
+    default: undefined
   }),
   mode = 'date',
   format = mode === 'date'
@@ -38,16 +38,16 @@ export const DatePicker: FC<DatePickerProps> = ({
   ...rest
 }) => {
   const { colors, isDark, borderRadius, sizes, borderWidth } = useTheme();
-  const [date, setDate] = useState<Date>();
+  const [date, setDate] = useState<Date>(dayjs().locale(locale).toDate());
   const [show, setShow] = useState(false);
 
   // states
   const [isError, setError] = React.useState<undefined | boolean>(false);
 
   const onInternalChange = (selectedDate: any) => {
+    setShow(false);
     const currentDate = selectedDate || date;
     setDate(currentDate);
-    setShow(false);
     if (onChange) {
       onChange(currentDate, dayjs(currentDate).format(format));
     }
@@ -98,15 +98,15 @@ export const DatePicker: FC<DatePickerProps> = ({
               borderColor: isError
                 ? colors.error
                 : colors[borderInputColor] || borderInputColor,
-              borderRadius: borderRadius.xl,
+              borderRadius: borderRadius.xl
             },
             prefix && {
-              paddingLeft: 35,
+              paddingLeft: 35
             },
             suffix && {
-              paddingRight: 45,
+              paddingRight: 45
             },
-            style,
+            style
           ])}
         >
           {prefix && (
@@ -117,7 +117,7 @@ export const DatePicker: FC<DatePickerProps> = ({
               <View style={styles.icon}>
                 {cloneElement(prefix, {
                   color: colors.border,
-                  ...prefix.props,
+                  ...prefix.props
                 })}
               </View>
             </TouchableOpacity>
@@ -127,18 +127,6 @@ export const DatePicker: FC<DatePickerProps> = ({
           </Text>
         </Ripple>
 
-        <DateTimePickerModal
-          mode={mode}
-          date={date}
-          isVisible={show}
-          display={display as any}
-          locale={locale}
-          onCancel={onPress}
-          isDarkModeEnabled={isDark}
-          onConfirm={onInternalChange}
-          {...rest}
-        />
-
         {suffix && (
           <TouchableOpacity
             onPress={onPress}
@@ -147,32 +135,44 @@ export const DatePicker: FC<DatePickerProps> = ({
             <View style={styles.icon}>
               {React.cloneElement(suffix, {
                 color: colors.border,
-                ...suffix.props,
+                ...suffix.props
               })}
             </View>
           </TouchableOpacity>
         )}
       </View>
       {isError && textError && <TextError>{textError}</TextError>}
+
+      <DateTimePickerModal
+        mode={mode}
+        date={date}
+        isVisible={show}
+        display={display}
+        locale={locale}
+        onCancel={onPress}
+        isDarkModeEnabled={isDark}
+        onConfirm={onInternalChange}
+        {...rest}
+      />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   relative: {
-    position: 'relative',
+    position: 'relative'
   },
   wrapper: {
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   inputDate: {
     paddingRight: 10,
-    paddingLeft: 10,
+    paddingLeft: 10
   },
   wrapperIcon: {
     position: 'absolute',
     width: 40,
-    backgroundColor: 'transparent',
+    backgroundColor: 'transparent'
   },
-  icon: {},
+  icon: {}
 });

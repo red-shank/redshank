@@ -41,7 +41,8 @@
     "react-native-svg": "13.9.0",
     "react-native-tab-view": "3.5.2",
     "react-native-vector-icons": "9.2.0",
-    "react-native-web": "0.19.6"
+    "react-native-web": "0.19.6",
+    "@react-native-community/datetimepicker": "7.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
