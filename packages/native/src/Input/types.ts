@@ -25,6 +25,7 @@ export interface InputProps extends Omit<TextInputProps, 'type' | 'onChange'> {
   background?: ColorType;
   borderInputColor?: ColorType;
   color?: ColorType;
+  isDisabled?: boolean;
   error?: boolean;
   onChange?: (v: any) => void;
   placeholderColor?: ColorType;

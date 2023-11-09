@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   ThemeProviderProps,
-  ThemeProvider as InternalThemeProvider,
+  ThemeProvider as InternalThemeProvider
 } from './theme/context';
 import {
   colorsDark,
@@ -9,18 +9,25 @@ import {
   paddingSizes,
   marginSizes,
   zIndices,
-  borderRadius,
+  borderRadius
 } from './theme/defaultValues';
 import { MessageProvider, useMessage } from './message/context';
+import {
+  ScreenLoadingProvider,
+  useScreenLoading,
+  ScreenLoadingProps
+} from './screen-loading/ScreenLoading';
 
-const ThemeProvider: React.FC<ThemeProviderProps> = ({
-  children,
-  theme,
-  disableDarkMode = false,
-}) => {
+const ThemeProvider: React.FC<
+  ThemeProviderProps & {
+    screenLoadingProps?: ScreenLoadingProps;
+  }
+> = ({ children, theme, screenLoadingProps, disableDarkMode = false }) => {
   return (
     <InternalThemeProvider theme={theme} disableDarkMode={disableDarkMode}>
-      <MessageProvider>{children}</MessageProvider>
+      <ScreenLoadingProvider {...screenLoadingProps}>
+        <MessageProvider>{children}</MessageProvider>
+      </ScreenLoadingProvider>
     </InternalThemeProvider>
   );
 };
@@ -34,4 +41,5 @@ export {
   marginSizes,
   zIndices,
   borderRadius,
+  useScreenLoading
 };

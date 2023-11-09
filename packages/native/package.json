@@ -1,6 +1,6 @@
 {
   "name": "@redshank/native",
-  "version": "1.4.5",
+  "version": "1.4.6",
   "description": "Red Shank Design component & UI Toolkit",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

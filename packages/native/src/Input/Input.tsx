@@ -4,7 +4,7 @@ import {
   StyleSheet,
   View,
   TouchableOpacity,
-  KeyboardTypeOptions,
+  KeyboardTypeOptions
 } from 'react-native';
 
 import { Icon } from '../Icon';
@@ -19,8 +19,10 @@ export const Input = forwardRef<TextInput, InputProps>(
       borderInputColor = 'border',
       color = 'accents2',
       defaultValue,
-      error = false,
       onChange,
+      error,
+      editable = true,
+      isDisabled,
       placeholder,
       placeholderColor = 'border',
       prefix,
@@ -32,7 +34,7 @@ export const Input = forwardRef<TextInput, InputProps>(
         <Icon name="eye" type="antdesign" />
       ) : undefined,
       value,
-      withMarginBottom = false,
+      withMarginBottom,
       wrapperStyle,
       Component = TextInput,
       ...rest
@@ -62,7 +64,7 @@ export const Input = forwardRef<TextInput, InputProps>(
       }
 
       return {
-        onPress: () => setShow((prev) => !prev),
+        onPress: () => setShow((prev) => !prev)
       };
     }, [type]);
 
@@ -81,7 +83,8 @@ export const Input = forwardRef<TextInput, InputProps>(
           style={StyleSheet.flatten([
             styles.wrapper,
             withMarginBottom && styles.withBorder,
-            wrapperStyle,
+            isDisabled && editable && { opacity: 0.5 },
+            wrapperStyle
           ])}
         >
           {/* prefix icon */}
@@ -92,7 +95,7 @@ export const Input = forwardRef<TextInput, InputProps>(
               <View style={styles.icon}>
                 {cloneElement(prefix, {
                   color: colors.border,
-                  ...prefix.props,
+                  ...prefix.props
                 })}
               </View>
             </TouchableOpacity>
@@ -101,6 +104,7 @@ export const Input = forwardRef<TextInput, InputProps>(
             {...rest}
             value={text}
             ref={_ref}
+            editable={!isDisabled && editable}
             secureTextEntry={type === 'password' && !show}
             defaultValue={defaultValue || text}
             keyboardType={
@@ -120,15 +124,15 @@ export const Input = forwardRef<TextInput, InputProps>(
                   ? colors.error
                   : colors[borderInputColor] || borderInputColor,
                 borderRadius: borderRadius.xl,
-                color: colors[color] || color,
+                color: colors[color] || color
               },
               prefix && {
-                paddingLeft: 35,
+                paddingLeft: 35
               },
               suffix && {
-                paddingRight: 45,
+                paddingRight: 45
               },
-              style,
+              style
             ])}
           />
 
@@ -140,7 +144,7 @@ export const Input = forwardRef<TextInput, InputProps>(
               <View style={styles.icon}>
                 {React.cloneElement(suffix, {
                   color: colors.border,
-                  ...suffix.props,
+                  ...suffix.props
                 })}
               </View>
             </TouchableOpacity>
@@ -155,12 +159,12 @@ export const Input = forwardRef<TextInput, InputProps>(
 export const styles = StyleSheet.create({
   wrapper: {
     width: '100%',
-    position: 'relative',
+    position: 'relative'
   },
   withBorder: { marginBottom: 15 },
   input: {
     paddingRight: 10,
-    paddingLeft: 10,
+    paddingLeft: 10
   },
   wrapperIcon: {
     position: 'absolute',
@@ -170,7 +174,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: 'transparent',
-    zIndex: 2,
+    zIndex: 2
   },
-  icon: {},
+  icon: {}
 });

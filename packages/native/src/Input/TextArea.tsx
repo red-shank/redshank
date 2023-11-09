@@ -1,23 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import {
-  StyleProp,
-  StyleSheet,
-  TextInput,
-  TextStyle,
-  View,
-} from 'react-native';
+import React, { useState } from 'react';
+import { StyleProp, StyleSheet, TextStyle } from 'react-native';
 
-import { styles } from './Input';
-import { TextError } from '../utils/TextError';
-import useTheme from '../Context/theme/useTheme';
-import { sizes } from '../@types/input';
+import { Input } from './Input';
+import { SizeType } from '../@types/input';
 
 export interface TextAreaProps {
   numberOfLines?: number;
   value?: string;
   defaultValue?: string;
   placeholder?: string;
-  editable?: boolean;
+  isDisabled?: boolean;
   color?: string;
   background?: string;
   minHeight?: number;
@@ -25,6 +17,7 @@ export interface TextAreaProps {
   error?: boolean;
   borderInputColor?: string;
   placeholderColor?: string;
+  size?: SizeType;
   onChange?: (v: string) => void;
   style?: StyleProp<TextStyle>;
 
@@ -32,79 +25,35 @@ export interface TextAreaProps {
   [key: string]: unknown;
 }
 
+const sizesMinHeight: Record<SizeType, number> = {
+  small: 45,
+  middle: 60,
+  large: 85
+};
+
 export const TextArea: React.FC<TextAreaProps> = ({
-  value,
-  onChange,
-  defaultValue,
-  placeholder,
-  textError,
+  minHeight,
   style = {},
-  error = false,
-  minHeight = 100,
-  editable = true,
   numberOfLines = 3,
-  color = 'accents2',
-  borderInputColor = 'border',
-  background = 'inputColor',
-  placeholderColor = 'border',
+  size = 'middle',
   ...rest
 }) => {
-  const { colors, borderRadius, paddingSizes } = useTheme();
-
-  // states
-  const [isError, setError] = useState<undefined | boolean>(false);
-  const [text, setText] = useState<undefined | string>(defaultValue);
-
-  // handlers
-  const onInternalChange = (val: string) => {
-    setText(val);
-    setError(false);
-    onChange && onChange(val);
-  };
-
-  // effects
-  useEffect(() => {
-    setText(value);
-  }, [value]);
-
-  useEffect(() => {
-    setError(error);
-  }, [error, textError]);
+  const [height, setHeight] = useState(minHeight || sizesMinHeight[size]);
 
   return (
-    <View style={styles.wrapper}>
-      <TextInput
-        {...rest}
-        multiline
-        value={text}
-        editable={editable}
-        placeholder={placeholder}
-        defaultValue={defaultValue}
-        numberOfLines={numberOfLines}
-        onChangeText={onInternalChange}
-        placeholderTextColor={colors[placeholderColor] || placeholderColor}
-        style={StyleSheet.flatten([
-          styles.input,
-          sizes.middle,
-          {
-            paddingTop: paddingSizes.sm,
-            paddingBottom: paddingSizes.sm,
-          },
-          {
-            minHeight: minHeight,
-          },
-          {
-            backgroundColor: colors[background] || background,
-            borderColor: isError
-              ? colors.error
-              : colors[borderInputColor] || borderInputColor,
-            borderRadius: borderRadius.xl,
-            color: colors[color] || color,
-          },
-          style,
-        ])}
-      />
-      {isError && textError && <TextError>{textError}</TextError>}
-    </View>
+    <Input
+      {...rest}
+      multiline
+      numberOfLines={numberOfLines}
+      onContentSizeChange={(event) => {
+        setHeight(event.nativeEvent.contentSize.height);
+      }}
+      style={StyleSheet.flatten([
+        {
+          height: Math.max(minHeight || sizesMinHeight[size], height)
+        },
+        style
+      ])}
+    />
   );
 };

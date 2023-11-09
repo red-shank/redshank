@@ -83,6 +83,16 @@ const InputScreen = () => {
             <TextArea placeholder="Insert text" />
           </Space>
         </View>
+
+
+
+        <View>
+          <Title level={3}>Disabled</Title>
+          <Space orientation="vertical">
+            <Input isDisabled placeholder="Insert text" />
+            <TextArea isDisabled placeholder="Insert text" />
+          </Space>
+        </View>
       </View>
       <View style={{ height: 75 }} />
     </InputScrollView>

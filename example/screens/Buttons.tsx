@@ -6,6 +6,7 @@ import {
   Icon,
   InputScrollView,
   SocialButton,
+  useScreenLoading,
 } from '@redshank/native';
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
@@ -13,11 +14,15 @@ import { StyleSheet, View } from 'react-native';
 const colors = ['primary', 'success', 'warning', 'error'];
 
 const ButtonsScreen = () => {
+  const screenLoading = useScreenLoading();
   return (
     <InputScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.container}>
         <View>
           <Title level={4}>Default buttons</Title>
+          <Button onPress={screenLoading.onVisible}>
+            Open
+          </Button>
           <Space>
             {colors.map((c, i) => (
               <Button key={i} color={c}>
