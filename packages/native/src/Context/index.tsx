@@ -20,8 +20,8 @@ import {
 
 const ThemeProvider: React.FC<
   ThemeProviderProps & {
-    screenLoadingProps?: ScreenLoadingProps;
-  }
+  screenLoadingProps?: Partial<ScreenLoadingProps>;
+}
 > = ({ children, theme, screenLoadingProps, disableDarkMode = false }) => {
   return (
     <InternalThemeProvider theme={theme} disableDarkMode={disableDarkMode}>

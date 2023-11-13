@@ -75,7 +75,7 @@ export function ScreenLoadingProvider({
           <OverlayComponent
             style={StyleSheet.flatten([
               styles.overlay,
-              { zIndex: zIndices.max, backgroundColor: colors.foreground }
+              { zIndex: zIndices.max, backgroundColor: colors.background }
             ])}
           />
           <LoadingComponent />
