@@ -60,6 +60,7 @@ export interface TitleFontSizesProps {
   level3: number;
   level4: number;
   level5: number;
+  level6: number;
 }
 
 interface ZIndexType {

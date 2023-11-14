@@ -64,4 +64,7 @@ const stylesLevel = StyleSheet.create({
   5: {
     marginBottom: 0,
   },
+  6: {
+    marginBottom: 0,
+  },
 });
