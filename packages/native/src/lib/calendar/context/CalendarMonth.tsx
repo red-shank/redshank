@@ -46,7 +46,7 @@ const CalendarMonthProvider = ({ children }: PropsWithChildren) => {
   const onToggleYearList = useCallback(() => {
     if (openYearList && inInternalYear) {
       toggleYearList();
-      onSelectDate(selectedDate.set('year', inInternalYear.year()));
+      onSelectDate(selectedDate.set('year', inInternalYear.year()), false);
     } else {
       toggleYearList();
     }
