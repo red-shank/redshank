@@ -18,6 +18,9 @@ export * from './Badge';
 // Carousel export
 export * from './Carousel';
 
+// Calendar export
+export * from './lib/calendar/locales';
+
 // Card export
 export * from './Card';
 

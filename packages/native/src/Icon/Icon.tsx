@@ -169,7 +169,14 @@ export const Icon: React.FC<IconProps> = ({
               {...iconProps}
             />
           ) : (
-            <Text>?</Text>
+            <Text
+              size={size}
+              color={(reverse ? reverseColor : color) as any}
+              {...iconSpecificStyle}
+              {...iconProps}
+            >
+              ?
+            </Text>
           )}
         </View>
       </Component>

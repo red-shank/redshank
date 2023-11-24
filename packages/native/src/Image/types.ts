@@ -10,7 +10,7 @@ export type ImageProps = Omit<RNImageProps, 'source'> &
     children?: ReactNode;
     childrenContainerStyle?: StyleProp<ViewStyle>;
     containerStyle?: StyleProp<ViewStyle>;
-    height: number | string;
+    height?: number | string;
     placeholderContent?: ReactElement;
     placeholderStyle?: StyleProp<ViewStyle>;
     source: ImageSrcType;

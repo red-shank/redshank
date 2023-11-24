@@ -6,7 +6,7 @@ import {
   NativeSyntheticEvent,
   StyleSheet,
   View,
-  Text,
+  Text
 } from 'react-native';
 import { Ripple } from '../Ripple';
 import { ImageProps } from './types';
@@ -27,7 +27,7 @@ export const Image: React.FC<ImageProps> = ({
   transition,
   height,
   width,
-  transitionDuration = 360,
+  transitionDuration = 200,
   ...props
 }) => {
   const placeholderOpacity = React.useRef(new Animated.Value(1));
@@ -38,7 +38,7 @@ export const Image: React.FC<ImageProps> = ({
         Animated.timing(placeholderOpacity.current, {
           toValue: 0,
           duration: transitionDuration,
-          useNativeDriver: true,
+          useNativeDriver: true
         }).start();
       } else {
         placeholderOpacity.current.setValue(0);
@@ -65,8 +65,8 @@ export const Image: React.FC<ImageProps> = ({
         onLoad={onLoadHandler}
         style={StyleSheet.flatten([
           StyleSheet.absoluteFill,
-          { width, height },
-          style,
+          { width, height, aspectRatio: 1 },
+          style
         ])}
       />
       {/* Transition placeholder */}
@@ -77,8 +77,8 @@ export const Image: React.FC<ImageProps> = ({
         style={[
           StyleSheet.absoluteFillObject,
           {
-            opacity: hasImage ? placeholderOpacity.current : 1,
-          },
+            opacity: hasImage ? placeholderOpacity.current : 1
+          }
         ]}
       >
         <View
@@ -86,7 +86,7 @@ export const Image: React.FC<ImageProps> = ({
             { width, height },
             style,
             styles.placeholder,
-            placeholderStyle,
+            placeholderStyle
           ])}
         >
           {React.isValidElement(placeholderContent)
@@ -98,7 +98,7 @@ export const Image: React.FC<ImageProps> = ({
       <View
         style={StyleSheet.flatten([
           { width, height },
-          childrenContainerStyle ?? style,
+          childrenContainerStyle ?? style
         ])}
       >
         {children}
@@ -111,13 +111,13 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: 'transparent',
     position: 'relative',
-    overflow: 'hidden',
+    overflow: 'hidden'
   },
   placeholder: {
     backgroundColor: '#bdbdbd',
     alignItems: 'center',
-    justifyContent: 'center',
-  },
+    justifyContent: 'center'
+  }
 });
 
 Image.displayName = 'Image';

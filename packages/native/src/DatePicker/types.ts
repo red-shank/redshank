@@ -1,16 +1,15 @@
 import { StyleProp, ViewStyle } from 'react-native';
-import { DateTimePickerProps } from 'react-native-modal-datetime-picker';
 import { SizeType } from '../@types/input';
 import { ColorType } from '../Context/theme/types';
 
 // rest DatePickerModal props https://github.com/mmazzarolo/react-native-modal-datetime-picker
-export interface DatePickerProps
-  extends Omit<DateTimePickerProps, 'onChange' | 'onCancel' | 'onConfirm'> {
+export interface DatePickerProps {
   background?: ColorType;
   borderInputColor?: ColorType;
   color?: ColorType;
   defaultValue?: Date | string;
-  display?: 'spinner' | 'default' | 'inline';
+  locale?: string;
+  mode?: 'date' | 'time' | 'datetime';
   error?: boolean;
   format?: string;
   onChange?: (date: Date, dateText: string) => void;

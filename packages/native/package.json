@@ -1,6 +1,6 @@
 {
   "name": "@redshank/native",
-  "version": "1.4.11",
+  "version": "1.4.14",
   "description": "Red Shank Design component & UI Toolkit",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -46,7 +46,7 @@
     "@react-native-community/datetimepicker": "7.6.1",
     "@types/react-native-vector-icons": "6.4.12",
     "color": "4.2.3",
-    "dayjs": "1.10.7",
+    "dayjs": "^1.11.10",
     "nodemon": "^3.0.1",
     "rc-field-form": "1.32.2",
     "react-native-input-scroll-view": "1.11.0",

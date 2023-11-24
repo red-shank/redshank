@@ -22,7 +22,7 @@ type ExportComponent = {
   useModal: (initial?: boolean) => UseModalType;
 };
 
-const MIN_PADDING_VERTICAL = 20;
+export const MIN_PADDING_VERTICAL = 20;
 
 export const Modal: React.FC<ModalProps> & ExportComponent = ({
   children,
