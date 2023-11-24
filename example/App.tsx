@@ -1,7 +1,8 @@
 import 'react-native-gesture-handler';
-import React from 'react';
-import { StatusBar } from 'expo-status-bar';
 import { ThemeProvider } from '@redshank/native';
+import { StatusBar } from 'expo-status-bar';
+import React from 'react';
+import { View } from 'react-native';
 
 import useCachedResources from './hooks/useCachedResources';
 import useColorScheme from './hooks/useColorScheme';
@@ -14,17 +15,17 @@ const colors = {
 };
 
 export default function App() {
-  const isLoadingComplete = useCachedResources();
+  const { onLayoutRootView, fontsLoaded } = useCachedResources();
   const colorScheme = useColorScheme();
 
-  if (!isLoadingComplete) {
-    return null;
-  } else {
-    return (
-      <ThemeProvider theme={{ colors }}>
-        <StatusBar />
+  if (!fontsLoaded) return null;
+
+  return (
+    <ThemeProvider theme={{ colors }}>
+      <StatusBar />
+      <View style={{ flex: 1 }} onLayout={onLayoutRootView}>
         <Navigation colorScheme={colorScheme} />
-      </ThemeProvider>
-    );
-  }
+      </View>
+    </ThemeProvider>
+  );
 }

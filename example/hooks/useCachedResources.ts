@@ -1,33 +1,36 @@
-import { Ionicons } from '@expo/vector-icons';
-import * as Font from 'expo-font';
+import {
+  Ionicons,
+  AntDesign,
+  FontAwesome,
+  Entypo,
+  Fontisto,
+  SimpleLineIcons,
+  MaterialIcons,
+  MaterialCommunityIcons,
+} from '@expo/vector-icons';
+import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
-import * as React from 'react';
+import { useCallback } from 'react';
+
+SplashScreen.preventAutoHideAsync();
 
 export default function useCachedResources() {
-  const [isLoadingComplete, setLoadingComplete] = React.useState(false);
+  const [fontsLoaded] = useFonts({
+    ...FontAwesome.font,
+    ...Ionicons.font,
+    ...Entypo.font,
+    ...SimpleLineIcons.font,
+    ...MaterialIcons.font,
+    ...MaterialCommunityIcons.font,
+    ...AntDesign.font,
+    ...Fontisto.font,
+  });
 
-  // Load any resources or data that we need prior to rendering the app
-  React.useEffect(() => {
-    async function loadResourcesAndDataAsync() {
-      try {
-        SplashScreen.preventAutoHideAsync();
-
-        // Load fonts
-        await Font.loadAsync({
-          ...Ionicons.font,
-          'space-mono': require('../assets/fonts/SpaceMono-Regular.ttf'),
-        });
-      } catch (e) {
-        // We might want to provide this error information to an error reporting service
-        console.warn(e);
-      } finally {
-        setLoadingComplete(true);
-        SplashScreen.hideAsync();
-      }
+  const onLayoutRootView = useCallback(async () => {
+    if (fontsLoaded) {
+      await SplashScreen.hideAsync();
     }
+  }, [fontsLoaded]);
 
-    loadResourcesAndDataAsync();
-  }, []);
-
-  return isLoadingComplete;
+  return { onLayoutRootView, fontsLoaded };
 }

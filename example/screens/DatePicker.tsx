@@ -1,11 +1,6 @@
+import { Title, InputScrollView, Space, DatePicker } from '@redshank/native';
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import {
-  Title,
-  InputScrollView,
-  Space,
-  DatePicker,
-} from '@redshank/native';
 
 const DatePickerScreen = () => {
   return (

@@ -17,6 +17,7 @@ const TitleScreen = () => {
           <Title level={3}>Best And The Chuck Norris Effect.</Title>
           <Title level={4}>Best And The Chuck Norris Effect.</Title>
           <Title level={5}>Best And The Chuck Norris Effect.</Title>
+          <Title level={6}>Best And The Chuck Norris Effect.</Title>
 
           <Title level={2} align={align}>
             Align {align}
