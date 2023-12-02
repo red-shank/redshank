@@ -92,6 +92,8 @@ type CustomStyleKeys = {
   borderTopColor: ColorType;
   shadowColor: ColorType;
   textShadowColor: ColorType;
+  background: ColorType;
+  bg: ColorType;
   zIndex: ZIndexType;
   fontSize: FontSizesProps;
   borderBottomLeftRadius: SizingType;
@@ -207,6 +209,8 @@ const styleDictionary: StyleKeysSupported = {
     borderTopColor: { type: 'color' },
     shadowColor: { type: 'color' },
     textShadowColor: { type: 'color' },
+    background: { type: 'color' },
+    bg: { type: 'color' },
     fontSize: { type: 'string' },
     fontFamily: { type: 'string' }
   }
@@ -242,7 +246,9 @@ export const resolverDictionaryKey: Record<keyof CustomStyleKeys, string> = {
   py: 'paddingVertical',
   zIndex: 'zIndex',
   shadowColor: 'shadowColor',
-  textShadowColor: 'textShadowColor'
+  textShadowColor: 'textShadowColor',
+  background: 'backgroundColor',
+  bg: 'backgroundColor'
 };
 
 export default styleDictionary;
