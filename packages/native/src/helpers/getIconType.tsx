@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react";
-import { IconType } from "../Icon";
+import { IconType } from "../components/Icon";
 
 const customIcons: Record<string, FunctionComponent> = {};
 

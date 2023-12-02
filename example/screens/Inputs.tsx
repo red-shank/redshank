@@ -84,8 +84,6 @@ const InputScreen = () => {
           </Space>
         </View>
 
-
-
         <View>
           <Title level={3}>Disabled</Title>
           <Space orientation="vertical">

@@ -17,9 +17,13 @@ const AvatarScreen = () => {
           <Space orientation="vertical">
             <AvatarGroup
               max={3}
+              moreProps={{
+                backgroundColor: 'primary',
+              }}
               items={[
                 {
                   src: 'https://i.imgur.com/bnip2HZ.png',
+                  borderColor: 'primary',
                 },
                 {
                   src: 'https://i.imgur.com/bnip2HZ.png',

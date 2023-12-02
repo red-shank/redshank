@@ -26,11 +26,16 @@ import MessageScreen from '../screens/Message';
 import AlertScreen from '../screens/Alert';
 import ModalScreen from '../screens/Modal';
 import PopConfirmScreen from '../screens/PopConfirm';
+import AlignmentScreen from '../screens/Alignment';
 
 export const itemsDrawer = [
   {
     name: 'Theme',
     component: ThemeScreen,
+  },
+  {
+    name: 'Alignment',
+    component: AlignmentScreen,
   },
   {
     name: 'Button',

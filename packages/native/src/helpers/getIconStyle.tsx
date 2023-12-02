@@ -1,4 +1,4 @@
-import { IconType } from '../Icon';
+import { IconType } from '../components/Icon';
 
 export default (type: IconType, extraProps: any) => {
   switch (type) {

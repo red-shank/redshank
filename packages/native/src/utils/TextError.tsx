@@ -1,8 +1,8 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
 
-import { Text } from '../Text/Text';
-import useTheme from '../Context/theme/useTheme';
+import { Text } from '../components/Text/Text';
+import useTheme from '../context/theme/useTheme';
 
 export const TextError: React.FC<{ children: string }> = ({ children }) => {
   const { colors } = useTheme();

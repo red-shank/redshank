@@ -799,13 +799,6 @@
     "@jridgewell/resolve-uri" "^3.1.0"
     "@jridgewell/sourcemap-codec" "^1.4.14"
 
-"@react-native-community/datetimepicker@7.6.1":
-  version "7.6.1"
-  resolved "https://registry.yarnpkg.com/@react-native-community/datetimepicker/-/datetimepicker-7.6.1.tgz#98bdee01e3df490526ee1125e438c2030becac1f"
-  integrity sha512-g66Q2Kd9Uw3eRL7kkrTsGhi+eXxNoPDRFYH6z78sZQuYjPkUQgJDDMUYgBmaBsQx/fKMtemPrCj1ulGmyi0OSw==
-  dependencies:
-    invariant "^2.2.4"
-
 "@react-native-community/eslint-config@^2.0.0":
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@react-native-community/eslint-config/-/eslint-config-2.0.0.tgz#35dcc529a274803fc4e0a6b3d6c274551fb91774"
@@ -2900,13 +2893,6 @@ react-native-input-scroll-view@1.11.0:
   dependencies:
     prop-types "^15.7.2"
 
-react-native-modal-datetime-picker@17.1.0:
-  version "17.1.0"
-  resolved "https://registry.yarnpkg.com/react-native-modal-datetime-picker/-/react-native-modal-datetime-picker-17.1.0.tgz#74291bf92b830be285752f437841f52885c90e0b"
-  integrity sha512-jfTwfaCLtBffYbQ+pOGFLM+J5HmUh3vb9rT0JrrQPjxzecdc8pNYreB1c96+mVuq8bDCvaCdIeuEsslTqLJL0Q==
-  dependencies:
-    prop-types "^15.7.2"
-
 react-native-picker-select@8.0.4:
   version "8.0.4"
   resolved "https://registry.yarnpkg.com/react-native-picker-select/-/react-native-picker-select-8.0.4.tgz#3f7f1f42df69b06e7d2c10338288332a6c40fd10"
@@ -2915,10 +2901,10 @@ react-native-picker-select@8.0.4:
     "@react-native-picker/picker" "^1.8.3"
     lodash.isequal "^4.5.0"
 
-react-native-safe-area-context@^3.1.9:
-  version "3.4.1"
-  resolved "https://registry.yarnpkg.com/react-native-safe-area-context/-/react-native-safe-area-context-3.4.1.tgz#c967a52903d55fe010b2428e5368b42f1debc0a7"
-  integrity sha512-xfpVd0CiZR7oBhuwJ2HcZMehg5bjha1Ohu1XHpcT+9ykula0TgovH2BNU0R5Krzf/jBR1LMjR6VabxdlUjqxcA==
+react-native-safe-area-context@>3.1.9:
+  version "4.7.4"
+  resolved "https://registry.yarnpkg.com/react-native-safe-area-context/-/react-native-safe-area-context-4.7.4.tgz#3dd8438971e70043d76f2428ede75b8a9639265e"
+  integrity sha512-3LR3DCq9pdzlbq6vsHGWBFehXAKDh2Ljug6jWhLWs1QFuJHM6AS2+mH2JfKlB2LqiSFZOBcZfHQFz0sGaA3uqg==
 
 react-native-size-matters@0.4.0:
   version "0.4.0"

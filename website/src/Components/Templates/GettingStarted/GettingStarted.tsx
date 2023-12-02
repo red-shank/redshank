@@ -37,15 +37,6 @@ const HomeTemplate = () => {
         <li>
           <a
             target="_blank"
-            href="https://github.com/th3rdwave/react-native-safe-area-context"
-            rel="noreferrer noopener"
-          >
-            react-native-safe-area-context@&gt;3.1.9
-          </a>
-        </li>
-        <li>
-          <a
-            target="_blank"
             href="https://github.com/oblador/react-native-vector-icons"
             rel="noreferrer noopener"
           >
