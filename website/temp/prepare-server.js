@@ -6,7 +6,7 @@ const root = process.cwd();
 
 function copyFiles() {
   const pkgDir = `${rootLib}/package.json`;
-  const defaultValuesDir = `${rootLib}/src/Context/theme/defaultValues.ts`;
+  const defaultValuesDir = `${rootLib}/src/context/theme/defaultValues.ts`;
 
   console.log(`Copying the package.json file from ${pkgDir}`);
   fs.copyFile(pkgDir, `${root}/temp/_package.json`, (err) => {
