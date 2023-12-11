@@ -25,7 +25,7 @@ export const PopConfirm: React.FC<PopConfirmProps> & ExportComponent = ({
   extra,
   okText = 'Continue',
   cancelText = 'Cancel',
-  type = 'default',
+  type = 'default'
 }) => {
   return (
     <Modal
@@ -56,7 +56,7 @@ export const PopConfirm: React.FC<PopConfirmProps> & ExportComponent = ({
             <Button
               fullWidth
               color="modal"
-              onPress={onClose}
+              onPress={onOk}
               textAlign="center"
               style={styles.okButton}
               textStyle={{ fontWeight: '400' }}
@@ -77,7 +77,7 @@ PopConfirm.Footer = Footer;
 
 const styles = StyleSheet.create({
   extra: {
-    marginTop: 10,
+    marginTop: 10
   },
-  okButton: {},
+  okButton: {}
 });

@@ -40,6 +40,9 @@ export * from './components/Collapse';
 // Controller export
 export * from './components/Controller';
 
+// container export
+export * from './components/Container';
+
 // context export
 export * from './context';
 

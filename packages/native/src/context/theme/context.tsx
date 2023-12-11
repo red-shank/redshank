@@ -34,7 +34,7 @@ const initialValue: ThemeProps = {
   activeOpacity: 0.6,
   zIndices,
   sizes,
-  spacing: 4,
+  spacing: 8,
   borderWidth: 1,
   borderRadius,
   paddingSizes,

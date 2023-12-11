@@ -84,6 +84,7 @@ type CustomStyleKeys = {
   mr: number;
   mx: number;
   my: number;
+  gap: number;
   backgroundColor: ColorType;
   borderBottomColor: ColorType;
   borderColor: ColorType;
@@ -201,6 +202,7 @@ const styleDictionary: StyleKeysSupported = {
     mt: { type: 'number' },
     mx: { type: 'number' },
     my: { type: 'number' },
+    gap: { type: 'number' },
     backgroundColor: { type: 'color' },
     borderColor: { type: 'color' },
     borderBottomColor: { type: 'color' },
@@ -244,6 +246,7 @@ export const resolverDictionaryKey: Record<keyof CustomStyleKeys, string> = {
   pt: 'paddingTop',
   px: 'paddingHorizontal',
   py: 'paddingVertical',
+  gap: 'gap',
   zIndex: 'zIndex',
   shadowColor: 'shadowColor',
   textShadowColor: 'textShadowColor',
