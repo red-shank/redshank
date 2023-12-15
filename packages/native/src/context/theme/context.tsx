@@ -138,12 +138,10 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = React.memo(
     // }, [_colorSchema, disableDarkMode, theme?.theme]);
 
     useEffect(() => {
-      if (theme) {
-        setTheme({
-          ...theme,
-          theme: theme?.theme || _colorSchema === 'dark' ? 'dark' : 'light'
-        });
-      }
+      setTheme({
+        ...(theme || {}),
+        theme: theme?.theme || _colorSchema === 'dark' ? 'dark' : 'light'
+      });
     }, [setTheme, theme, _colorSchema]);
 
     return (
