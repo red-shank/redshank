@@ -54,13 +54,20 @@ const DummyLoadingComponent: FunctionComponent = (props) => {
   );
 };
 
+export type ScreenLoadingProviderProps = Partial<
+  Pick<ScreenLoadingProps, 'LoadingComponent' | 'OverlayComponent'>
+> & {
+  initialIsOpen?: boolean;
+};
+
 export function ScreenLoadingProvider({
   children,
+  initialIsOpen,
   OverlayComponent = DummyOverlay,
   LoadingComponent = DummyLoadingComponent
-}: PropsWithChildren<Partial<ScreenLoadingProps>>) {
+}: PropsWithChildren<ScreenLoadingProviderProps>) {
   const { zIndices, colors } = useTheme();
-  const [isOpen, _, { onVisible, onHidden }] = useModal();
+  const [isOpen, _, { onVisible, onHidden }] = useModal(initialIsOpen);
 
   return (
     <ScreenLoadingContext.Provider

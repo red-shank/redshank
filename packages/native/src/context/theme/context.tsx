@@ -4,7 +4,7 @@ import {
   Dimensions,
   StyleSheet,
   View,
-  useWindowDimensions,
+  useWindowDimensions
 } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
@@ -17,7 +17,7 @@ import {
   marginSizes,
   zIndices,
   sizes,
-  borderRadius,
+  borderRadius
 } from './defaultValues';
 import type { FontTypes, ThemeProps } from './types';
 
@@ -39,7 +39,7 @@ const initialValue: ThemeProps = {
   borderRadius,
   paddingSizes,
   marginSizes,
-  colors: colorScheme === 'dark' ? colorsDark : colorsLight,
+  colors: colorScheme === 'dark' ? colorsDark : colorsLight
 };
 
 type OptionalThemeProps = Omit<
@@ -56,7 +56,7 @@ export interface ThemeContextProps extends ThemeProps {
 export const ThemeContext = createContext<ThemeContextProps>({
   ...initialValue,
   width: dimensions.width,
-  height: dimensions.height,
+  height: dimensions.height
 });
 
 export interface ThemeProviderProps {
@@ -70,7 +70,6 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = React.memo(
     const _colorSchema = useColorScheme();
     const { width, height } = useWindowDimensions();
 
-    const [isDark, setIsDark] = useState(colorScheme === 'dark');
     const [internalTheme, setInternalTheme] = useState<ThemeProps>(
       JSON.parse(JSON.stringify(initialValue))
     );
@@ -78,105 +77,94 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = React.memo(
     const setTheme = React.useCallback(
       (_theme: OptionalThemeProps) => {
         setInternalTheme((prevTheme) => {
-          let colors = Object.assign(prevTheme?.colors, _theme?.colors);
-          if (!disableDarkMode && _theme?.theme) {
-            const defaultColors =
-              _theme.theme === 'dark' ? colorsDark : colorsLight;
+          const isInternalDark = !disableDarkMode
+            ? _theme?.theme === 'dark'
+            : false;
 
-            colors = {
-              ...prevTheme?.colors,
-              ...defaultColors,
-              ...(_theme?.colors ?? {}),
-            };
-          }
+          const colors = Object.assign(
+            isInternalDark ? colorsDark : colorsLight,
+            _theme?.colors
+          );
 
           return {
-            isDark: _theme.theme === 'dark' || prevTheme.isDark,
+            colors,
+            isDark: _theme?.theme === 'dark' || prevTheme.isDark,
             theme: _theme?.theme ?? prevTheme.theme,
             borderWidth: _theme?.borderWidth ?? prevTheme.borderWidth,
             activeOpacity: _theme?.activeOpacity ?? prevTheme.activeOpacity,
-            colors,
             spacing: _theme?.spacing ?? prevTheme.spacing,
-            fonts: Object.assign(prevTheme.fonts, _theme?.fonts),
-            sizes: Object.assign(prevTheme.sizes, _theme?.sizes),
-            fontSizes: Object.assign(prevTheme.fontSizes, _theme?.fontSizes),
+            fonts: Object.assign(prevTheme?.fonts, _theme?.fonts),
+            sizes: Object.assign(prevTheme?.sizes, _theme?.sizes),
+            fontSizes: Object.assign(prevTheme?.fontSizes, _theme?.fontSizes),
             titleFontSizes: Object.assign(
-              prevTheme.titleFontSizes,
+              prevTheme?.titleFontSizes,
               _theme?.titleFontSizes
             ),
             marginSizes: Object.assign(
-              prevTheme.marginSizes,
+              prevTheme?.marginSizes,
               _theme?.marginSizes
             ),
             paddingSizes: Object.assign(
-              prevTheme.paddingSizes,
+              prevTheme?.paddingSizes,
               _theme?.paddingSizes
             ),
-            zIndices: Object.assign(prevTheme.zIndices, _theme?.zIndices),
+            zIndices: Object.assign(prevTheme?.zIndices, _theme?.zIndices),
             borderRadius: Object.assign(
-              prevTheme.borderRadius,
+              prevTheme?.borderRadius,
               _theme?.borderRadius
-            ),
+            )
           };
         });
       },
       [disableDarkMode]
     );
 
-    useEffect(() => {
-      const isInternalDark = disableDarkMode
-        ? false
-        : theme?.theme
-        ? theme?.theme === 'dark'
-        : _colorSchema === 'dark';
-
-      setInternalTheme((prev) => {
-        if (prev.isDark === isInternalDark) {
-          return prev;
-        }
-        setIsDark(isInternalDark);
-
-        return {
-          ...prev,
-          isDark: isInternalDark,
-          theme: isInternalDark ? 'dark' : 'light',
-        };
-      });
-    }, [_colorSchema, disableDarkMode, theme?.theme]);
+    // useEffect(() => {
+    //   let isInternalDark = theme?.theme === 'dark' || _colorSchema === 'dark';
+    //   if (disableDarkMode) isInternalDark = false;
+    //
+    //   setInternalTheme((prev) => {
+    //     if (prev.isDark === isInternalDark) {
+    //       return prev;
+    //     }
+    //     setIsDark(isInternalDark);
+    //
+    //     return {
+    //       ...prev,
+    //       isDark: isInternalDark,
+    //       theme: isInternalDark ? 'dark' : 'light'
+    //     };
+    //   });
+    // }, [_colorSchema, disableDarkMode, theme?.theme]);
 
     useEffect(() => {
       if (theme) {
-        setTheme(theme);
+        setTheme({
+          ...theme,
+          theme: theme?.theme || _colorSchema === 'dark' ? 'dark' : 'light'
+        });
       }
-    }, [setTheme, theme]);
-
-    useEffect(() => {
-      const colors = isDark ? colorsDark : colorsLight;
-      setInternalTheme((prevTheme) => ({
-        ...prevTheme,
-        colors: Object.assign(colors, theme?.colors),
-      }));
-    }, [isDark, theme]);
-
-    const output = React.useMemo(() => {
-      return {
-        ...internalTheme,
-        setTheme,
-        width,
-        height,
-        isDark,
-      };
-    }, [internalTheme, setTheme, width, height, isDark]);
+    }, [setTheme, theme, _colorSchema]);
 
     return (
-      <ThemeContext.Provider value={output}>
+      <ThemeContext.Provider
+        value={React.useMemo(() => {
+          return {
+            ...internalTheme,
+            setTheme,
+            width,
+            height,
+            isDark: internalTheme.theme === 'dark'
+          };
+        }, [internalTheme, setTheme, width, height])}
+      >
         <SafeAreaProvider>
           <View
             style={StyleSheet.flatten([
               styles.wrapper,
               {
-                backgroundColor: internalTheme.colors.background,
-              },
+                backgroundColor: internalTheme.colors.background
+              }
             ])}
           >
             {children}
@@ -189,6 +177,6 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = React.memo(
 
 const styles = StyleSheet.create({
   wrapper: {
-    flex: 1,
-  },
+    flex: 1
+  }
 });

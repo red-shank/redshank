@@ -15,13 +15,13 @@ import { MessageProvider, useMessage } from './message/context';
 import {
   ScreenLoadingProvider,
   useScreenLoading,
-  ScreenLoadingProps
+  ScreenLoadingProviderProps
 } from './screen-loading/ScreenLoading';
 
 const ThemeProvider: React.FC<
   ThemeProviderProps & {
-  screenLoadingProps?: Partial<ScreenLoadingProps>;
-}
+    screenLoadingProps?: ScreenLoadingProviderProps;
+  }
 > = ({ children, theme, screenLoadingProps, disableDarkMode = false }) => {
   return (
     <InternalThemeProvider theme={theme} disableDarkMode={disableDarkMode}>

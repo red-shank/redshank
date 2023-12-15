@@ -30,7 +30,9 @@ export const Image: React.FC<ImageProps> = ({
   transitionDuration = 200,
   ...props
 }) => {
-  const placeholderOpacity = React.useRef(new Animated.Value(1));
+  const placeholderOpacity = React.useRef(
+    new Animated.Value(transition ? 1 : 0)
+  );
 
   const onLoadHandler = useCallback(
     (event: NativeSyntheticEvent<ImageLoadEventData>) => {
@@ -83,9 +85,9 @@ export const Image: React.FC<ImageProps> = ({
       >
         <View
           style={StyleSheet.flatten([
-            { width, height },
-            style,
             styles.placeholder,
+            style,
+            { width, height },
             placeholderStyle
           ])}
         >
