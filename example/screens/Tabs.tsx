@@ -1,94 +1,75 @@
 import React from 'react';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
-import { Tabs, Title, Text, useUIProvider } from '@redshank/native';
+import { Tabs, Title, Text, useTheme } from '@redshank/native';
+
+const MyCustomTab = ({ label }: { label: string }) => <Text>{label}</Text>;
 
 const tabs = [
   {
     key: 'tab-1',
-    name: '123 calificaciones',
-    value: '4.7',
-    summary: 'estrellas',
+    label: 'Tab 1',
+    children: <Text>Tab 1</Text>,
   },
   {
     key: 'tab-2',
-    name: 'edad',
-    value: '14+',
-    summary: 'años',
+    label: 'Tab 2',
+    children: <Text>Tab 2</Text>,
   },
   {
     key: 'tab-3',
-    name: 'lugar',
-    value: '#14',
-    summary: 'rompecabezas',
-  },
-  {
-    key: 'tab-4',
-    name: 'idioma',
-    value: 'ES',
-    summary: 'y 10 mas',
-  },
-  {
-    key: 'tab-6',
-    name: 'text',
-    value: 'Text',
-    summary: 'y 10 mas',
-  },
-  {
-    key: 'tab-5',
-    name: 'tamaño',
-    value: '100',
-    summary: 'MB',
+    label: 'Tab 3',
+    children: <MyCustomTab label="Tab 3" />,
   },
 ];
 
 const TabScreen = () => {
-  const { isDark } = useUIProvider();
+  const { isDark, colors } = useTheme();
   return (
     <View style={styles.container}>
       <View>
         <Title level={1}>Tabs Menu</Title>
-        <Tabs items={tabs} onChange={(key: string) => alert(key)} />
+        <Tabs defaultActiveKey={tabs[0].key} items={tabs} />
 
         <Title level={1}>With prefix</Title>
         <Tabs
+          defaultActiveKey={tabs[0].key}
           prefix={<Text>This is a prefix</Text>}
           items={tabs}
-          onChange={(key: string) => alert(key)}
         />
 
         <Title level={1}>With suffix</Title>
         <Tabs
+          defaultActiveKey={tabs[0].key}
           suffix={<Text>This is a suffix</Text>}
           items={tabs}
-          onChange={(key: string) => alert(key)}
         />
 
         <Title level={1}>Tabs Custom Render</Title>
         <Tabs
-          noBorder
+          defaultActiveKey={tabs[0].key}
           items={tabs}
-          render={({ value, key, name, summary }) => (
+          renderTabItem={({ key, label, onPress, isActive }) => (
             <TouchableOpacity
               key={key}
-              style={styles.card}
-              onPress={() => alert(`${name}: ${value}`)}
+              style={StyleSheet.flatten([
+                styles.card,
+                {
+                  backgroundColor: isActive
+                    ? colors.primary
+                    : 'rgba(100, 100, 100, .3)',
+                },
+              ])}
+              onPress={onPress}
             >
               <Text
-                color={isDark ? 'opaityBlackText' : 'opaityWhiteText'}
                 align="center"
                 style={styles.cardTitle}
+                color={isDark ? 'opacityBlackText' : 'opacityWhiteText'}
               >
-                {name}
+                {label}
               </Text>
               <Text align="center" style={styles.cardValue}>
-                {value}
-              </Text>
-              <Text
-                color={isDark ? 'opaityBlackText' : 'opaityWhiteText'}
-                align="center"
-                style={styles.cardSubTitle}
-              >
-                {summary}
+                {key}
               </Text>
             </TouchableOpacity>
           )}

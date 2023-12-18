@@ -66,6 +66,7 @@ type ViewStyleKeys = {
   borderRightWidth: ViewStyle['borderRightWidth'];
   borderTopWidth: ViewStyle['borderTopWidth'];
   borderWidth: ViewStyle['borderWidth'];
+  borderStyle: ViewStyle['borderStyle'];
 };
 
 // Custom Keys
@@ -97,12 +98,11 @@ type CustomStyleKeys = {
   bg: ColorType;
   zIndex: ZIndexType;
   fontSize: FontSizesProps;
-  borderBottomLeftRadius: SizingType;
-  borderBottomRightRadius: SizingType;
-  borderRadius: SizingType;
-  borderStyle: SizingType;
-  borderTopLeftRadius: SizingType;
-  borderTopRightRadius: SizingType;
+  borderBottomLeftRadius: keyof SizingType;
+  borderBottomRightRadius: keyof SizingType;
+  borderRadius: keyof SizingType;
+  borderTopLeftRadius: keyof SizingType;
+  borderTopRightRadius: keyof SizingType;
 };
 
 type ViewStyleValue = {
@@ -153,15 +153,10 @@ const styleDictionary: StyleKeysSupported = {
     zIndex: { type: 'inherit' },
     display: { type: 'inherit' },
     backfaceVisibility: { type: 'inherit' },
-    borderBottomLeftRadius: { type: 'inherit' },
-    borderBottomRightRadius: { type: 'inherit' },
     borderBottomWidth: { type: 'inherit' },
     borderLeftWidth: { type: 'inherit' },
     borderStyle: { type: 'inherit' },
-    borderRadius: { type: 'inherit' },
     borderRightWidth: { type: 'inherit' },
-    borderTopLeftRadius: { type: 'inherit' },
-    borderTopRightRadius: { type: 'inherit' },
     borderTopWidth: { type: 'inherit' },
     borderWidth: { type: 'inherit' },
     decomposedMatrix: { type: 'inherit' },
@@ -187,7 +182,7 @@ const styleDictionary: StyleKeysSupported = {
     shadowRadius: { type: 'inherit' },
     shadowOpacity: { type: 'inherit' },
     shadowOffset: { type: 'inherit' },
-    // custom values
+    // Number values
     p: { type: 'number' },
     pb: { type: 'number' },
     pl: { type: 'number' },
@@ -203,6 +198,12 @@ const styleDictionary: StyleKeysSupported = {
     mx: { type: 'number' },
     my: { type: 'number' },
     gap: { type: 'number' },
+    borderBottomLeftRadius: { type: 'number' },
+    borderRadius: { type: 'number' },
+    borderBottomRightRadius: { type: 'number' },
+    borderTopLeftRadius: { type: 'number' },
+    borderTopRightRadius: { type: 'number' },
+    // Color values
     backgroundColor: { type: 'color' },
     borderColor: { type: 'color' },
     borderBottomColor: { type: 'color' },
@@ -227,7 +228,6 @@ export const resolverDictionaryKey: Record<keyof CustomStyleKeys, string> = {
   borderColor: 'borderColor',
   borderLeftColor: 'borderLeftColor',
   borderRightColor: 'borderRightColor',
-  borderStyle: 'borderStyle',
   borderTopColor: 'borderTopColor',
   borderTopLeftRadius: 'borderTopLeftRadius',
   borderTopRightRadius: 'borderTopRightRadius',

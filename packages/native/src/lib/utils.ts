@@ -24,7 +24,7 @@ export function extractSxProps({
   };
 }
 
-const radiousKeys = [
+const radiusKeys = [
   'borderBottomLeftRadius',
   'borderBottomRightRadius',
   'borderRadius',
@@ -48,7 +48,7 @@ export function createStyleFromSx({
     if (styleType.type === 'color') {
       acc[key] = colors[value as keyof typeof colors];
     } else if (styleType.type === 'number') {
-      if (radiousKeys.includes(key)) {
+      if (radiusKeys.includes(key)) {
         acc[key] = borderRadius[value as keyof typeof borderRadius];
       } else if (key === 'zIndex') {
         acc[key] = zIndices[value as keyof typeof zIndices];

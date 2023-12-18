@@ -1,15 +1,17 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { scale } from 'react-native-size-matters';
 
 import { TextError } from '../../utils/TextError';
 import { useChildren } from '../../hooks/useChildren';
 import { renderChildren } from '../../utils/render';
 import type { NumberStringValue, RadioGroupProps, RadioProps } from './types';
+import { SxProps } from '../../lib/styleDictionary';
+import { Box } from '../Box';
 
 export const GAP = scale(10);
 
-export const Group: React.FC<RadioGroupProps> = ({
+export const Group: React.FC<RadioGroupProps & SxProps> = ({
   align = 'horizontal',
   children: _children,
   inactiveColor,
@@ -21,6 +23,7 @@ export const Group: React.FC<RadioGroupProps> = ({
   textError,
   defaultValue,
   activeColor,
+  ...sxProps
 }) => {
   const [internalValue, setInternalValue] =
     React.useState<NumberStringValue>('');
@@ -57,8 +60,12 @@ export const Group: React.FC<RadioGroupProps> = ({
   }, [error]);
 
   return (
-    <View style={styles.wrapper}>
-      <View style={StyleSheet.flatten([styles.content, styles[align]])}>
+    <Box style={StyleSheet.flatten([styles.wrapper])} {...sxProps}>
+      <Box
+        gap={1}
+        mb={0.1}
+        style={StyleSheet.flatten([styles.content, styles[align]])}
+      >
         {renderChildren<RadioProps>(children, (child) => ({
           isActive: internalValue === child?.props?.value,
           activeColor: isError ? 'error' : activeColor,
@@ -66,26 +73,26 @@ export const Group: React.FC<RadioGroupProps> = ({
           size,
           type,
           ...(child?.props || {}),
-          onPress: onInternalChange,
+          onPress: onInternalChange
         }))}
-      </View>
+      </Box>
       {isError && textError && <TextError>{textError}</TextError>}
-    </View>
+    </Box>
   );
 };
 
 const styles = StyleSheet.create({
   wrapper: {
-    marginBottom: 10,
+    marginBottom: 10
   },
   content: {
     marginVertical: -(GAP / 2),
-    marginHorizontal: -(GAP / 2),
+    marginHorizontal: -(GAP / 2)
   },
   vertical: {
-    flexDirection: 'column',
+    flexDirection: 'column'
   },
   horizontal: {
-    flexDirection: 'row',
-  },
+    flexDirection: 'row'
+  }
 });

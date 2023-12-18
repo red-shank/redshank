@@ -83,6 +83,9 @@ export * from './components/Progress';
 // Radio export
 export * from './components/Radio';
 
+// RadioButton export
+export * from './components/RadioButton';
+
 // Ripple export
 export * from './components/Ripple';
 
@@ -94,6 +97,9 @@ export * from './components/Space';
 
 // Badge export
 export * from './components/Switch';
+
+// Tabs export
+export * from './components/Tabs';
 
 // TitleLink export
 export * from './components/Title';

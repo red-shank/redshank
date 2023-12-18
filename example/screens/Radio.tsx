@@ -1,16 +1,24 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import { InputScrollView, Title, Radio } from '@redshank/native';
+import {
+  InputScrollView,
+  Title,
+  Radio,
+  Box,
+  RadioButton,
+} from '@redshank/native';
 
 const RadioScreen = () => {
   return (
     <InputScrollView showsVerticalScrollIndicator={false}>
-      <View style={styles.container}>
-        <View>
+      <Box gap={2} style={styles.container}>
+        <Box gap={1}>
           <Title level={3}>Default Radio</Title>
           <Radio label="No Select" value="hi" />
-          <Radio isActive={true} label="Select" value="hi" />
-        </View>
+          <Radio isActive label="Select" value="hi" />
+          <Radio type="square" label="Select" value="hi" />
+          <Radio type="square" isActive label="Select" value="hi" />
+        </Box>
 
         <View>
           <Title level={3}>Group Radio</Title>
@@ -55,7 +63,28 @@ const RadioScreen = () => {
             <Radio label="Select" value="selected" />
           </Radio.Group>
         </View>
-      </View>
+
+        <View>
+          <Title level={3}>Radio Button</Title>
+          <RadioButton
+            defaultValue="opt-2"
+            options={[
+              {
+                label: 'Option 1',
+                value: 'opt-1',
+              },
+              {
+                label: 'Option 2',
+                value: 'opt-2',
+              },
+              {
+                label: 'Option 3',
+                value: 'opt-3',
+              },
+            ]}
+          />
+        </View>
+      </Box>
       <View style={{ height: 75 }} />
     </InputScrollView>
   );

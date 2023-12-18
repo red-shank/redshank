@@ -27,6 +27,7 @@ import AlertScreen from '../screens/Alert';
 import ModalScreen from '../screens/Modal';
 import PopConfirmScreen from '../screens/PopConfirm';
 import AlignmentScreen from '../screens/Alignment';
+import TabsScreen from '../screens/Tabs';
 
 export const itemsDrawer = [
   {
@@ -100,6 +101,10 @@ export const itemsDrawer = [
   {
     name: 'Collapse',
     component: CollapseScreen,
+  },
+  {
+    name: 'Tabs',
+    component: TabsScreen,
   },
   {
     name: 'Header',

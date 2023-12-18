@@ -5,7 +5,7 @@ export const zIndices = {
   4: 400,
   5: 500,
   10: 1000,
-  max: 9999,
+  max: 9999
 };
 
 export const borderRadius = {
@@ -18,7 +18,7 @@ export const borderRadius = {
   lg: 8,
   xl: 12,
   xxl: 14,
-  max: 20,
+  max: 20
 };
 
 export const paddingSizes = {
@@ -31,7 +31,7 @@ export const paddingSizes = {
   lg: 14,
   xl: 20,
   xxl: 24,
-  max: 30,
+  max: 30
 };
 
 export const marginSizes = {
@@ -44,7 +44,7 @@ export const marginSizes = {
   lg: 14,
   xl: 20,
   xxl: 24,
-  max: 30,
+  max: 30
 };
 
 export const colorsBase = {
@@ -132,7 +132,7 @@ export const colorsBase = {
   gray800: '#333333',
   gray900: '#111111',
   white: '#ffffff',
-  black: '#000000',
+  black: '#000000'
 };
 
 export const colorsLight = {
@@ -159,6 +159,10 @@ export const colorsLight = {
   link: '#3D9CF7',
   selection: '#461491',
   code: '#6cc0e1',
+  radioButtonInactiveBackground: '#e1e1e1',
+  radioButtonActiveBackground: colorsBase.primary,
+  radioButtonInactiveLabel: '#333333',
+  radioButtonActiveText: colorsBase.white
 };
 
 export const colorsDark = {
@@ -181,11 +185,15 @@ export const colorsDark = {
   link: '#0070F3',
   selection: '#98D5FD',
   code: '#DB39BD',
+  radioButtonInactiveBackground: '#252525',
+  radioButtonActiveBackground: colorsBase.primary,
+  radioButtonInactiveLabel: '#ffffff',
+  radioButtonActiveText: colorsBase.white
 };
 
 export const sizes = {
   small: 32,
   middle: 45,
   large: 50,
-  xLarge: 55,
+  xLarge: 55
 };

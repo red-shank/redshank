@@ -1,6 +1,7 @@
 import { ReactElement } from 'react';
 import { SizeType } from '../../@types/input';
 import { ColorType } from '../../context/theme/types';
+import { SxProps } from '../../lib/styleDictionary';
 
 type RadioType = 'circle' | 'square';
 
@@ -15,6 +16,7 @@ export interface RadioProps {
   size?: SizeType;
   type?: RadioType;
   value: NumberStringValue;
+  sx?: SxProps;
 }
 
 type AlignType = 'horizontal' | 'vertical';
@@ -31,4 +33,5 @@ export interface RadioGroupProps {
   value?: NumberStringValue;
   size?: SizeType;
   type?: RadioType;
+  sx?: SxProps;
 }
