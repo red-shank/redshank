@@ -39,6 +39,10 @@ export const Text: FC<TextProps> = ({
 
   const font = bold ? 'bold' : 'regular';
 
+  const default_fonts = Object.entries(fonts);
+  const find_index = fontWeight && default_fonts.findIndex(item => item[1].fontWeight == fontWeight);
+  const fontFamilyName = (fontWeight && find_index >= 0 && default_fonts[find_index][1].fontFamily) || fonts[font].fontFamily;
+
   return (
     <View style={StyleSheet.flatten([containerStyle, styles.container])}>
       <TextNative
@@ -51,7 +55,7 @@ export const Text: FC<TextProps> = ({
             marginBottom,
             marginVertical,
             marginHorizontal,
-            fontFamily: fonts[font].fontFamily,
+            fontFamily: fontFamilyName,
             fontWeight: fontWeight || fonts[font].fontWeight,
             textAlign: align,
             fontSize: fontSizes[size] || size,
