@@ -89,16 +89,12 @@ export function Tabs({
                 ...itemSx
               }}
               backgroundColors={{
-                activeColor:
-                  backgroundColors?.activeColor ||
-                  'radioButtonActiveBackground',
-                inactiveColor: backgroundColors?.inactiveColor
+                activeColor: backgroundColors?.activeColor || 'primary',
+                inactiveColor: backgroundColors?.inactiveColor || 'transparent'
               }}
               labelColors={{
-                activeColor:
-                  labelColors?.activeColor || 'radioButtonActiveText',
-                inactiveColor:
-                  labelColors?.inactiveColor || 'radioButtonInactiveLabel'
+                activeColor: labelColors?.activeColor || 'primary',
+                inactiveColor: labelColors?.inactiveColor || 'text'
               }}
             />
           );

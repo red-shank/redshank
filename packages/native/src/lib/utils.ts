@@ -46,7 +46,7 @@ export function createStyleFromSx({
     const styleType = styleDictionary.properties[keyProp];
 
     if (styleType.type === 'color') {
-      acc[key] = colors[value as keyof typeof colors];
+      acc[key] = colors[value as keyof typeof colors] || value;
     } else if (styleType.type === 'number') {
       if (radiusKeys.includes(key)) {
         acc[key] = borderRadius[value as keyof typeof borderRadius];
