@@ -2,6 +2,7 @@ import { ReactNode } from 'react';
 import { SizeType } from '../../@types/input';
 import { ColorType } from '../../context/theme/types';
 import { SxProps } from '../../lib/styleDictionary';
+import { TextProps } from '../Text';
 
 export type NumberStringValue = string | number;
 
@@ -22,6 +23,7 @@ export interface TabItemProps {
   borderRadius?: SxProps['borderRadius'];
   sx?: SxProps;
   label: string;
+  labelProps?: Partial<Omit<TextProps, 'children'>>;
   key: NumberStringValue;
   children?: ReactNode;
 }
@@ -52,4 +54,5 @@ export type TabsProps = Partial<
   itemSx?: SxProps;
   wrapperSx?: SxProps;
   containerSx?: SxProps;
+  labelProps?: TabItemProps['labelProps'];
 };

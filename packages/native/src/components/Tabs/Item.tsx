@@ -17,6 +17,7 @@ export function Item({
   labelColors,
   size,
   sx,
+  labelProps,
   borderRadius: borderRadiusProp
 }: Omit<TabItemProps, 'key' | 'children'> & { id: NumberStringValue }) {
   const { activeOpacity } = useTheme();
@@ -66,7 +67,7 @@ export function Item({
         px={1}
         gap={0.5}
         flex={1}
-        borderBottomWidth={1}
+        borderBottomWidth={2}
         borderRadius={isActive ? borderRadiusProp : undefined}
         borderBottomColor={
           isActive
@@ -82,7 +83,9 @@ export function Item({
       >
         {startAdornment}
         <Text
+          bold
           color={isActive ? labelColors.activeColor : labelColors.inactiveColor}
+          {...labelProps}
         >
           {label}
         </Text>

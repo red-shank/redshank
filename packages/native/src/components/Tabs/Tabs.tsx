@@ -19,6 +19,7 @@ export function Tabs({
   itemSx = {},
   wrapperSx = {},
   containerSx = {},
+  labelProps = {},
   size = 'middle',
   ...sxProps
 }: TabsProps & SxProps) {
@@ -80,6 +81,7 @@ export function Tabs({
               startAdornment={item?.startAdornment}
               size={size}
               key={item.key}
+              labelProps={labelProps}
               id={item.key}
               borderRadius={borderRadiusProp}
               isActive={internalValue?.key === item.key}
