@@ -10,6 +10,7 @@
   "scripts": {
     "co": "sui-mono commit",
     "release": "sui-mono release",
+    "check": "sui-mono check",
     "example:start": "yarn workspace native_examples_basic run start",
     "watch:native": "yarn workspace @redshank/native run build:watch",
     "deploy:native": "yarn workspace @redshank/native run deploy"
