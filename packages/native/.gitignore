@@ -8,5 +8,6 @@ jsconfig.json
 .idea/
 package-lock.json
 build
+dist
 *.orig
 .docgen/
