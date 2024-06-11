@@ -13,10 +13,27 @@
     "watch:native": "yarn workspace @redshank/native run build:watch",
     "deploy:native": "yarn workspace @redshank/native run deploy"
   },
+  "dependencies": {
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  },
   "devDependencies": {
+    "@babel/core": "^7.20.0",
     "@react-native-community/eslint-config": "^3.2.0",
     "@s-ui/mono": "^2.45.0",
+    "@types/jest": "^29.5.12",
+    "@types/node": "^20.14.2",
+    "@types/react-test-renderer": "^18.3.0",
+    "@testing-library/jest-dom": "^6.4.6",
+    "@testing-library/react": "^16.0.0",
+    "@testing-library/react-native": "^12.5.1",
+    "@types/react": "~18.2.45",
     "eslint": "^9.4.0",
-    "eslint-plugin-react-hooks": "^4.6.2"
+    "eslint-plugin-react-hooks": "^4.6.2",
+    "jest": "^29.2.1",
+    "nodemon": "^3.0.1",
+    "prettier": "^3.3.2",
+    "react-test-renderer": "^18.3.1",
+    "typescript": "^5.4.5"
   }
 }
