@@ -1,14 +1,14 @@
 {
   "name": "redshank",
   "private": true,
-  "version": "0.0.1",
+  "version": "1.0.0",
   "workspaces": [
     "packages/*",
     "examples/**/*",
     "apps/*"
   ],
   "scripts": {
-    "co": "sui-mono commit",
+    "sui-mono": "sui-mono",
     "example:start": "yarn workspace native_examples_basic run start",
     "watch:native": "yarn workspace @redshank/native run build:watch",
     "deploy:native": "yarn workspace @redshank/native run deploy"
