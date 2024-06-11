@@ -1,0 +1,22 @@
+{
+  "name": "redshank",
+  "private": true,
+  "version": "0.0.1",
+  "workspaces": [
+    "packages/*",
+    "examples/**/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "co": "sui-mono commit",
+    "example:start": "yarn workspace native_examples_basic run start",
+    "watch:native": "yarn workspace @redshank/native run build:watch",
+    "deploy:native": "yarn workspace @redshank/native run deploy"
+  },
+  "devDependencies": {
+    "@react-native-community/eslint-config": "^3.2.0",
+    "@s-ui/mono": "^2.45.0",
+    "eslint": "^9.4.0",
+    "eslint-plugin-react-hooks": "^4.6.2"
+  }
+}

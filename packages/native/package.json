@@ -1,0 +1,80 @@
+{
+  "name": "@redshank/native",
+  "version": "2.3.1",
+  "description": "@redshank/native is a UI components library specifically designed for React Native. This library is not only aesthetically pleasing but also extremely powerful, allowing developers to create stunning and highly functional mobile applications with ease. Just like in MUI, redshank allows you to style your components using the sxProps property. This makes it easy to apply custom styles directly to the components without the need for additional style files.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "react-native": "dist/index.js",
+  "source": "src/index.ts",
+  "prepublish": "tsc --composite false",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "react",
+    "native",
+    "react native",
+    "react native ui",
+    "react native components",
+    "ui library",
+    "ios",
+    "android",
+    "bootstrap"
+  ],
+  "scripts": {
+    "build:dev": "tsc --composite false",
+    "build": "tsc --composite false && node afterBuild.js",
+    "build:watch": "nodemon -e ts,tsx --watch . --exec \"yarn build\"",
+    "test": "jest",
+    "test:update": "jest -u",
+    "test:ci": "jest --runInBand",
+    "test:watch": "jest --watch",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "clean-install": "rimraf node_modules && yarn",
+    "deploy": "yarn build && npm publish --access public"
+  },
+  "author": "Kevin Rivas",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/red-shank/redshank/issues"
+  },
+  "homepage": "https://www.redshank.app/",
+  "dependencies": {
+    "@types/react-native-vector-icons": "6.4.12",
+    "color": "4.2.3",
+    "dayjs": "^1.11.10",
+    "nodemon": "^3.0.1",
+    "rc-field-form": "1.32.2",
+    "react-native-input-scroll-view": "1.11.0",
+    "react-native-picker-select": "8.0.4",
+    "react-native-size-matters": "0.4.0"
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-numeric-separator": "7.16.7",
+    "@testing-library/jest-dom": "^5.11.10",
+    "@testing-library/react": "^11.2.6",
+    "@testing-library/react-native": "^7.0.2",
+    "@types/color": "^3.0.3",
+    "@types/jest": "^27.4.0",
+    "@types/node": "^20.5.7",
+    "@types/react-test-renderer": "^17.0.0",
+    "babel-jest": "^27.4.6",
+    "metro-react-native-babel-preset": "^0.63.0",
+    "prettier": "^3.0.3",
+    "react-native-vector-icons": "^10.0.0",
+    "react-test-renderer": "^16.13.1",
+    "typescript": "4.8.3",
+    "utility-types": "^3.10.0"
+  },
+  "peerDependencies": {
+    "react-native-vector-icons": ">7.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/red-shank/redshank.git"
+  }
+}
