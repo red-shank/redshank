@@ -9,7 +9,7 @@ import {
   Image,
 } from "@redshank/native";
 import { useTheme as useNavigationTheme } from "@react-navigation/native";
-import DrawerToggleButton from "@react-navigation/drawer/src/views/DrawerToggleButton";
+import MenuToggleButton from '@/components/MenuToggleButton';
 
 const defaultValues = (color: string): StickyHeaderProps => ({
   title: {
@@ -17,7 +17,7 @@ const defaultValues = (color: string): StickyHeaderProps => ({
     sticky: "Header",
   },
   icon: {
-    left: <DrawerToggleButton tintColor={color} />,
+    left: <MenuToggleButton tintColor={color} />,
   },
 });
 
@@ -47,7 +47,7 @@ const HeaderScreen = () => {
         sticky: "left",
       },
       icon: {
-        right: <DrawerToggleButton tintColor={colors.text} />,
+        right: <MenuToggleButton tintColor={colors.text} />,
       },
     });
   };
@@ -67,7 +67,7 @@ const HeaderScreen = () => {
       },
       animateInHeight: 250,
       icon: {
-        left: <DrawerToggleButton tintColor={colors.text} />,
+        left: <MenuToggleButton tintColor={colors.text} />,
       },
     });
   };

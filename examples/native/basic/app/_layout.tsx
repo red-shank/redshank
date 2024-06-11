@@ -2,47 +2,53 @@ import {
   Dimensions,
   DimensionValue,
   Platform,
-  useColorScheme,
-} from "react-native";
+  useColorScheme
+} from 'react-native';
 import {
   DarkTheme,
   DefaultTheme,
-  ThemeProvider,
-} from "@react-navigation/native";
-import { Drawer } from "expo-router/drawer";
-import { PropsWithChildren } from "react";
+  ThemeProvider
+} from '@react-navigation/native';
+import { Drawer } from 'expo-router/drawer';
+import React, { PropsWithChildren } from 'react';
 import {
   Box,
   MessageProvider,
   ThemeProvider as RThemeProvider,
-  useTheme,
-} from "@redshank/native";
+  useTheme
+} from '@redshank/native';
+import DrawerToggleButton from '@react-navigation/drawer/src/views/DrawerToggleButton';
+import MenuToggleButton from '@/components/MenuToggleButton';
 
-const dimension = Dimensions.get("window");
+const dimension = Dimensions.get('window');
 
 const App = (props: PropsWithChildren) => {
   const { theme } = useTheme();
 
   const width = Platform.select<DimensionValue>({
-    default: "100%",
-    web: dimension.width <= 720 ? "100%" : 720,
+    default: '100%',
+    web: dimension.width <= 720 ? '100%' : 720
   });
 
   return (
     <Box flex={1} width={width} mx="auto">
       <MessageProvider>
         <ThemeProvider
-          value={theme === "dark" ? DarkTheme : DefaultTheme}
+          value={theme === 'dark' ? DarkTheme : DefaultTheme}
           {...props}
         >
           <Drawer
             screenOptions={(props) => {
-              if (props?.route?.name === "Header") {
+              if (props?.route?.name === 'Header') {
                 return {
-                  headerShown: false,
+                  headerShown: false
                 };
               }
-              return {};
+              return {
+                headerLeft: (props) => (
+                  <MenuToggleButton {...props} />
+                )
+              };
             }}
           />
         </ThemeProvider>
@@ -57,7 +63,7 @@ export default function RootLayout() {
   return (
     <RThemeProvider
       theme={{
-        theme: colorSchema || "light",
+        theme: colorSchema || 'light'
       }}
     >
       <App />
