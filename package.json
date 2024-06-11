@@ -8,7 +8,8 @@
     "apps/*"
   ],
   "scripts": {
-    "sui-mono": "sui-mono",
+    "co": "sui-mono commit",
+    "release": "sui-mono release",
     "example:start": "yarn workspace native_examples_basic run start",
     "watch:native": "yarn workspace @redshank/native run build:watch",
     "deploy:native": "yarn workspace @redshank/native run deploy"

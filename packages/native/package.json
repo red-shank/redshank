@@ -35,7 +35,8 @@
     "test:watch": "jest --watch",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "clean-install": "rimraf node_modules && yarn",
-    "deploy": "yarn build && npm publish --access public"
+    "deploy": "yarn build && npm publish --access public",
+    "prepublish": "yarn run deploy"
   },
   "author": "Kevin Rivas",
   "license": "MIT",
