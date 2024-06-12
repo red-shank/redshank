@@ -51,6 +51,16 @@ const HomeTemplate = () => {
             @expo/vector-icons
           </a>
         </li>
+        <li>
+          <a
+            target="_blank"
+            href="https://www.npmjs.com/package/react-native-safe-area-context"
+            rel="noreferrer noopener"
+          >
+            react-native-safe-area-context@&gt;4.0.0
+          </a>{' '}
+          Optional if you are using the Expo or react-native-navigation
+        </li>
       </ul>
     </WrapperStyle>
   );

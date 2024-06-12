@@ -1,12 +1,15 @@
-import { Grid, Text, Tooltip, Image, Modal, Button } from '@nextui-org/react';
+import {
+  Grid,
+  Text,
+  Tooltip,
+  Image,
+  Modal,
+  Button,
+  Snippet
+} from '@nextui-org/react';
 
 import useModal from '@/hooks/useModal';
-import {
-  COINBASE_WALLET,
-  PATREON_LINK,
-  PAYPAL_LINK,
-  REPO_NAME
-} from '@/config';
+import { COINBASE_WALLET, PAYPAL_LINK, REPO_NAME } from '@/config';
 import { PlayerStyle } from './style';
 import Title from '@/Components/Title';
 
@@ -60,16 +63,6 @@ const Donations = () => {
 
         <Grid.Container gap={2} justify="center">
           <Grid>
-            <Tooltip content="Patreon">
-              <a href={PATREON_LINK} target="_blank" rel="noreferrer noopener">
-                <Button auto light className="h-auto p-0">
-                  <Image alt="" width={50} height={50} src="/patreon.png" />
-                </Button>
-              </a>
-            </Tooltip>
-          </Grid>
-
-          <Grid>
             <Tooltip content="Paypal">
               <a href={PAYPAL_LINK} target="_blank" rel="noreferrer noopener">
                 <Button auto light className="h-auto p-0">
@@ -80,9 +73,14 @@ const Donations = () => {
           </Grid>
 
           <Grid>
-            <Tooltip content="Coinbase">
+            <Tooltip content="Send BTC">
               <Button auto light className="h-auto p-0" onClick={toggleVisible}>
-                <Image alt="" width={50} height={50} src="/coinbase.png" />
+                <Image
+                  alt=""
+                  width={50}
+                  height={50}
+                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Bitcoin.svg/800px-Bitcoin.svg.png"
+                />
               </Button>
             </Tooltip>
           </Grid>
@@ -92,13 +90,13 @@ const Donations = () => {
       <Modal blur closeButton open={visible} onClose={toggleVisible}>
         <Modal.Header>
           <Text size={18} b>
-            Coinbase Wallet
+            BTC Wallet
           </Text>
         </Modal.Header>
-        <Modal.Body className="mb-8">
-          <Text blockquote css={{ background: '$gray200' }}>
+        <Modal.Body className="mb-8 max-w-full">
+          <div className="bg-gray-200 p-2 rounded text-wrap w-full break-words">
             {COINBASE_WALLET}
-          </Text>
+          </div>
         </Modal.Body>
       </Modal>
     </Grid.Container>

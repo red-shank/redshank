@@ -10,7 +10,6 @@ import {
 import Link from 'next/link';
 import { ReactNode } from 'react';
 import dynamic from 'next/dynamic';
-import { useRouter } from 'next/router';
 import { useTheme as useNextTheme } from 'next-themes';
 
 import { isProd, REPO_NAME } from '@/config';
@@ -62,7 +61,6 @@ const menu = [ROUTES.HOME, ROUTES.DOCS, ROUTES.COMPONENTS, ROUTES.ABOUT];
 
 const Navbar = ({ isActive, contentFit, ...props }: NavbarProps) => {
   const { setTheme, theme } = useNextTheme();
-  const router = useRouter();
 
   const toggleTheme = () => {
     setTheme(theme === 'dark' ? 'light' : 'dark');
@@ -126,16 +124,16 @@ const Navbar = ({ isActive, contentFit, ...props }: NavbarProps) => {
       <NextNavbar.Content>
         <NextNavbar.Content css={onlyDesk}>
           <Grid.Container gap={2} className="w-auto">
-            <RenderLink href={ROUTES.DISCORD.path}>
-              <Button
-                auto
-                icon={<DiscordIcon />}
-                className="h-auto bg-transparent text-2xl"
-                css={{
-                  color: '$text'
-                }}
-              />
-            </RenderLink>
+            {/*<RenderLink href={ROUTES.DISCORD.path}>*/}
+            {/*  <Button*/}
+            {/*    auto*/}
+            {/*    icon={<DiscordIcon />}*/}
+            {/*    className="h-auto bg-transparent text-2xl"*/}
+            {/*    css={{*/}
+            {/*      color: '$text'*/}
+            {/*    }}*/}
+            {/*  />*/}
+            {/*</RenderLink>*/}
 
             <RenderLink href={ROUTES.GITHUB.path}>
               <Button

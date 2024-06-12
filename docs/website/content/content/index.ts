@@ -10,7 +10,7 @@ import * as cardContent from './card';
 import * as imageContent from './image';
 import * as carouselContent from './carrousel';
 import * as collapseContent from './collapse';
-import * as headerContent from './header';
+import * as headerContent from './stickyHeader';
 import * as space from './space';
 import * as checkbox from './checkbox';
 import * as controller from './controller';

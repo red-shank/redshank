@@ -1,43 +1,53 @@
 ---
-title: 'Header'
-description: 'Header component.'
-url: https://redshank.app/docs/components/header
+title: 'Sticky Header'
+description: 'Sticky Header component.'
+url: https://redshank.app/docs/components/sticky-header
 ---
 
 ```jsx
-import { Header } from "@redshank/native";
+import { StickyHeader } from "@redshank/native";
 ```
+
+Please added ```SafeAreaProvider``` before using StickyHeader component.
+
+```jsx
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+
+function App() {
+  return <SafeAreaProvider>...</SafeAreaProvider>;
+}
+```
+
+> **_NOTE:_**  If you are using `@react-navigation/native` you don't need to add `SafeAreaProvider` because it is already included in the library.
+
 ### Examples
 
 <Playground
   id="default"
   title="Default"
-  mode="mobile"
   description="Default header element."
   code={headerContent.defaultCode}
 />
 
-<Spacer y={2} />
+<Spacer y={2}/>
 
 <Playground
   id="scroll-effect"
   title="Scroll Effect"
-  mode="mobile"
   description="Scroll animation in header, manipulation title, color, background, etc."
   code={headerContent.onScroll}
 />
 
-<Spacer y={2} />
+<Spacer y={2}/>
 
 <Playground
   id="using-context"
   title="Using context"
-  mode="mobile"
   description="Using `useHeaderNavigation` for set props to header values."
-  code={headerContent.usingContext}
+  code={headerContent.customNavbar}
 />
 
-<Spacer y={2} />
+<Spacer y={2}/>
 
 ### APIs
 
@@ -59,7 +69,7 @@ Api props
 | **titlePosition**         | `TitlePosition`        | [TitlePosition](#title-position)  | Position for title when header is initial or static                      | iOS: `center` Other: `left` |
 | **titleStyle**            | `StyleProp<TextStyle>` | `object`                          | Style object for title prop                                              | -                           |
 
-<Spacer y={2} />
+<Spacer y={2}/>
 
 #### useHeaderNavigation
 Api props for `useHeaderNavigation()` hook, useful to use a single header component and change it according to your screen
@@ -69,7 +79,7 @@ Api props for `useHeaderNavigation()` hook, useful to use a single header compon
 | **setValues** | `(values: HeaderProps or null) => void;` | [HeaderProps](#header) | Change context value for set values to header | -       |
 | **header**    | `HeaderProps` `null`                     | [HeaderProps](#header) | Some header props                             | `null`  |
 
-<Spacer y={2} />
+<Spacer y={2}/>
 
 #### Title Position
 ```ts

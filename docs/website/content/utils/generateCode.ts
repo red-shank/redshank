@@ -3,8 +3,10 @@ import { PACKAGE_NAME } from '@/config';
 
 export default function generateCode(
   code: string,
-  _imports?: string | string[]
+  _imports?: string | string[],
+  options?: { withStyles?: boolean }
 ) {
+  const opts = { withStyles: true, ...options };
   const imports =
     typeof _imports === 'string' ? _imports : _imports?.join(', ');
 
@@ -13,7 +15,7 @@ export default function generateCode(
   } } from 'react-native';
 ${code}
 
-${globalStyles}
+${opts?.withStyles ? globalStyles : ''}
 `;
 }
 
@@ -22,12 +24,16 @@ export function generateCodeWithProvider(
   _imports?: {
     native?: string | string[];
     beauty?: string | string[];
-  },
+  }
 ) {
   const importsNative =
-    typeof _imports?.native === 'string' ? _imports?.native : _imports?.native?.join(', ');
+    typeof _imports?.native === 'string'
+      ? _imports?.native
+      : _imports?.native?.join(', ');
   const importsBeauty =
-    typeof _imports?.beauty === 'string' ? _imports?.beauty : _imports?.beauty?.join(', ');
+    typeof _imports?.beauty === 'string'
+      ? _imports?.beauty
+      : _imports?.beauty?.join(', ');
 
   return `import { View, StyleSheet${
     importsNative ? `, ${importsNative.trim()}` : ''
