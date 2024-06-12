@@ -43,7 +43,7 @@
   "bugs": {
     "url": "https://github.com/red-shank/redshank/issues"
   },
-  "homepage": "https://www.redshank.app/",
+  "homepage": "https://www.redshank.app",
   "dependencies": {
     "color": "4.2.3",
     "dayjs": "^1.11.10",
