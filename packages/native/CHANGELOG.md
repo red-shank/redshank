@@ -1,5 +1,14 @@
 # CHANGELOG
 
+# 2.19.0 (2024-06-11)
+
+
+### Bug Fixes
+
+* remove styles and replace for sx ([5a811c1](https://github.com/red-shank/redshank/commit/5a811c182b0b2d1240e7f68b7c761b84f8b91d77))
+
+
+
 # 2.18.0 (2024-06-11)
 
 
