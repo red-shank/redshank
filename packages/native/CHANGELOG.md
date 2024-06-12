@@ -1,5 +1,14 @@
 # CHANGELOG
 
+# 2.21.0 (2024-06-11)
+
+
+### Features
+
+* relaunch test ([a3d91c5](https://github.com/red-shank/redshank/commit/a3d91c5f4b914afe47e31bd3ab0fbcac51c552c6))
+
+
+
 # 2.20.0 (2024-06-11)
 
 
