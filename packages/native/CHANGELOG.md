@@ -1,5 +1,14 @@
 # CHANGELOG
 
+# 2.20.0 (2024-06-11)
+
+
+### Features
+
+* added sxProps to Space ([e19f65a](https://github.com/red-shank/redshank/commit/e19f65a633078ed715ceeb39becf69050d6c10ed))
+
+
+
 # 2.19.0 (2024-06-11)
 
 
