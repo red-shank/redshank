@@ -92,6 +92,12 @@ const commit = async ({ pkg, code, skipCi }) => {
   const isMonoPackage = checkIsMonoPackage();
   const cwd = getCwd({ pkg });
 
+  console.log({
+    pkg,
+    code,
+    skipCi
+  });
+
   const tagPrefix = isMonoPackage ? '' : `${pkg}-`;
   const packageScope = isMonoPackage ? 'Root' : pkg.replace(path.sep, '/');
 

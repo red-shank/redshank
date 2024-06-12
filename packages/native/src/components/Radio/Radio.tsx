@@ -127,8 +127,8 @@ const styles = StyleSheet.create({
     height: 16
   },
   middle: {
-    width: 18,
-    height: 18
+    width: 20,
+    height: 20
   },
   large: {
     width: 34,
