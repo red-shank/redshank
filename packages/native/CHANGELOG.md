@@ -1,5 +1,14 @@
 # CHANGELOG
 
+# 2.14.0 (2024-06-11)
+
+
+### Features
+
+* added sui mono config ([220aa0d](https://github.com/red-shank/redshank/commit/220aa0d18142fdaaabca44efe3c7f286e8deb3ad))
+
+
+
 # 2.13.0 (2024-06-11)
 
 
