@@ -2581,7 +2581,7 @@
     nanoid "^3.1.23"
 
 "@redshank/native@*", "@redshank/native@file:/Users/rivaslive/Documentos/npm/redshank/packages/native":
-  version "2.13.0"
+  version "2.14.0"
   resolved "file:packages/native"
   dependencies:
     color "4.2.3"
