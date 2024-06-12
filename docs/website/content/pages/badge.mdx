@@ -1,0 +1,172 @@
+---
+title: 'Badge'
+description: 'Badges are used as a small numerical value or status descriptor for UI elements.'
+url: https://redshank.app/docs/components/badge
+---
+
+```jsx
+import { Badge } from '@redshank/native';
+```
+### Examples
+
+<Playground
+  id="default"
+  title="Default"
+  description="Badge with default styles, used in standalone when content prop is empty."
+  code={badgeContent.defaultCode}
+/>
+
+<Spacer y={2} />
+
+<Playground
+  id="sizes"
+  title="Sizes"
+  description="Badge with different sizes."
+  code={badgeContent.sizes}
+/>
+
+<Spacer y={2} />
+
+<Playground
+  id="dot-variant"
+  title="Dot variant"
+  description="Badge with dot Variant."
+  code={badgeContent.dotVariants}
+/>
+
+<Spacer y={2} />
+
+<Playground
+  id="bordered"
+  title="Bordered"
+  description="Bordered badge."
+  code={badgeContent.bordered}
+/>
+
+<Spacer y={2} />
+
+<Playground
+  id="flat"
+  title="Flat / Pressable"
+  description="Badge flat variant and pressable element."
+  code={badgeContent.flatAndPressable}
+/>
+
+<Spacer y={2} />
+
+<Playground
+  id="square"
+  title="Square"
+  description="Badge square type."
+  code={badgeContent.square}
+/>
+
+<Spacer y={2} />
+
+<Playground
+  id="solid-bordered"
+  title="Solid Bordered"
+  description="Badge with solid Bordered."
+  code={badgeContent.solidBordered}
+/>
+
+<Spacer y={2} />
+
+<Playground
+  id="with-children"
+  title="With children"
+  description="Badge with children element."
+  code={badgeContent.withChildren}
+/>
+
+<Spacer y={2} />
+
+<Playground
+  id="placement"
+  title="Placement"
+  description="Badge with different placement positions."
+  code={badgeContent.placement}
+/>
+
+<Spacer y={2} />
+
+<Playground
+  id="enable-shadow"
+  title="Enable Shadow"
+  description="Badge with shadow enable."
+  code={badgeContent.enableShadow}
+/>
+
+<Spacer y={2} />
+
+<Playground
+  id="toggle-badge"
+  title="Toggle Badge"
+  description="Badge control visibility."
+  code={badgeContent.withToggle}
+/>
+
+<Spacer y={2} />
+
+### APIs
+
+<Spacer y={2} />
+
+#### Badge Props
+Api props extends from [View](https://reactnative.dev/docs/view) or [Touchable Opacity](https://reactnative.dev/docs/touchableopacity)
+
+| Attribute          | Type                  | Accepted values                   | Description                            | Default             |
+|--------------------|-----------------------|-----------------------------------|----------------------------------------|---------------------|
+| **background**     | `ThemeColor` `string` | [ThemeColor](/docs/default-theme) | Change background color                | `border`            |
+| **bold**           | `boolean`             | `true` `false`                    | Text bold in the badge                 | `true`              |
+| **children**       | `StyleProp<any>`      | `object`                          | Accessory as a child for the component | -                   |
+| **childrenStyle**  | `string`  `ReactNode` | `any`                             | Style for children wrapper             | -                   |
+| **color**          | `ThemeColor` `string` | [ThemeColor](/docs/default-theme) | Change icon color                      | `primrary`          |
+| **content**        | `number` `string`     | `Number` `Text`                   | Number or text for show in badge       | -                   |
+| **disableOutline** | `boolean`             | `true` `false`                    | Disable outline border to badge        | `false`             |
+| **enableShadow**   | `boolean`             | `true` `false`                    | Enable shadow badge effect             | `false`             |
+| **isInvisible**    | `boolean`             | `true` `false`                    | Hidden or Show badge                   | -                   |
+| **isPressable**    | `boolean`             | `true` `false`                    | Pressable effect animation             | `false`             |
+| **placement**      | `Placement`           | [Placement](#placement-type)      | The position of the badge              | `top-right`         |
+| **size**           | `SizeType`            | [SizeType](#size-type)            | Size element for show                  | `small` or `middle` |
+| **style**          | `object`              | `StyleProp<ViewStyle>`            | Style for bbadge                       | -                   |
+| **type**           | `BadgeType`           | [BadgeType](#badge-type)          | Badge shape type                       | `rounded`           |
+| **variant**        | `BadgeVariant`        | [BadgeVariant](#badge-variant)    | Variant to show badge                  | `default`           |
+| **wrapperStyle**   | `object`              | `StyleProp<ViewStyle>`            | Style for wrapper component            | -                   |
+| **Other Props**    | `any`                 | [Other props](#base-properties)   | Interactive props for element          | -                   |
+
+<Spacer y={2} />
+
+<BaseProperties />
+
+<Spacer y={2} />
+
+### Placement Type
+```ts
+type PlacementType =
+  | 'top-right'
+  | 'top-left'
+  | 'bottom-right'
+  | 'bottom-left';
+```
+
+<Spacer y={2} />
+
+### Size Type
+```ts
+type SizeType = 'small' | 'middle' | 'large';
+```
+
+<Spacer y={2} />
+
+### Badge Type
+```ts
+type BadgeType = 'rounded' | 'square'
+```
+
+<Spacer y={2} />
+
+### Badge Variant
+```ts
+type BadgeVariant = 'default' | 'flat' | 'dot' | 'bordered';
+```

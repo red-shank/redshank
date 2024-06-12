@@ -1,0 +1,66 @@
+---
+title: 'Controller'
+description: 'Controller component.'
+url: https://redshank.app/docs/components/controller
+---
+
+```jsx
+import { Controller } from '@redshank/native';
+```
+
+### When To Use
+
+* Used for change values for steps in cards or shopping car.
+
+### Examples
+
+<Playground
+  id="default"
+  title="Default"
+  description="Default controller element."
+  code={controller.defaultCode}
+/>
+
+<Spacer y={2} />
+
+<Playground
+  id="max-and-min"
+  title="Max and Min"
+  description="Max and Min values for the controller."
+  code={controller.maxAndMin}
+/>
+
+<Spacer y={2} />
+
+<Playground
+  id="customize"
+  title="Customize"
+  description="Customize colors."
+  code={controller.customize}
+/>
+
+<Spacer y={2} />
+
+### APIs
+
+<Spacer y={2} />
+
+#### Space Props
+Api props extends from [View](https://reactnative.dev/docs/view)
+
+| Attribute       | Type         | Accepted values                   | Description                                    | Default    |
+|-----------------|--------------|-----------------------------------|------------------------------------------------|------------|
+| **borderColor** | `ThemeColor` | [ThemeColor](/docs/default-theme) | Border color of the element                    | `accents4` |
+| **color**       | `ThemeColor` | [ThemeColor](/docs/default-theme) | Text color in current text                     | `text`     |
+| **error**       | `boolean`    | `true` `false`                    | Show error variant                             | -          |
+| **max**         | `number`     | `Number`                          | Set max value                                  | -          |
+| **maxOverflow** | `function`   | `() => void`                      | Trigger when it reaches the maximum value      | -          |
+| **min**         | `number`     | `Number`                          | Set min value                                  | -          |
+| **minOverflow** | `function`   | `() => void`                      | Trigger when it reaches the minimum value      | -          |
+| **onChange**    | `function`   | `(current: number) => void`       | Trigger when a value is increased or decreased | -          |
+| **onDecrease**  | `function`   | `(current: number) => void`       | Trigger when a press decrease button           | -          |
+| **onIncrease**  | `function`   | `(current: number) => void`       | Trigger when a press increase button           | -          |
+| **style**       | `object`     | `StyleProp<ViewStyle>`            | Style for container                            | -          |
+| **textError**   | `string`     | `Text`                            | Message error, used with error prop            | -          |
+| **value**       | `number`     | `Number`                          | Value for the controller                       | -          |
+| **width**       | `number`     | `Number`                          | Width of the element                           | -          |

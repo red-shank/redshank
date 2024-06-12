@@ -1,0 +1,70 @@
+---
+title: 'Space'
+description: 'Space component.'
+url: https://redshank.app/docs/components/-space
+---
+
+```jsx
+import { Space } from '@redshank/native';
+```
+
+### Examples
+
+<Playground
+  id="default"
+  title="Default"
+  description="Default space element."
+  code={space.defaultCode}
+/>
+
+<Spacer y={2} />
+
+<Playground
+  id="gutter"
+  title="Gutter"
+  description="Gutter spacing children elements."
+  code={space.gutter}
+/>
+
+<Spacer y={2} />
+
+<Playground
+  id="vertical-orientation"
+  title="Vertical Orientation"
+  description="Vertical orientation elements."
+  code={space.verticalAlign}
+/>
+
+<Spacer y={2} />
+
+<Playground
+  id="justify-align"
+  title="Justify And Align"
+  description="Justify and align positions elements."
+  code={space.justifyAndAlign}
+/>
+
+<Spacer y={2} />
+
+### APIs
+
+<Spacer y={2} />
+
+#### Space Props
+Api props extends from [View](https://reactnative.dev/docs/view)
+
+| Attribute       | Type                  | Accepted values          | Description                             | Default      |
+|-----------------|-----------------------|--------------------------|-----------------------------------------|--------------|
+| **align**       | `AlignType`           | [AlignType](#align-type) | Vertical align items                    | `start`      |
+| **children**    | `string`  `ReactNode` | React Element            | Required. Items to space                | -            |
+| **gutter**      | `[number, number]`    | `[right, bottom]`        | Define the space right and space bottom | `[10, 10]`   |
+| **justify**     | `AlignType`           | [AlignType](#align-type) | Horizontal align items                  | `start`      |
+| **orientation** | `OrientationType`     | `vertical` `horizontal`  | Show vertical or horizontal elements    | `horizontal` |
+| **style**       | `object`              | `StyleProp<ViewStyle>`   | Style button wrapper                    | -            |
+
+<Spacer y={2} />
+
+#### Align Type
+```ts
+type AlignType = 'start' | 'end' | 'center';
+```

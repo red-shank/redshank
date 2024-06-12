@@ -199,9 +199,9 @@ checkShouldRelease()
           await exec(
             'yarn install --ignore-engines --no-lockfile --no-progress --no-bin-links --production=false'
           );
-          await exec('git add package-lock.json');
+          await exec('git add yarn.lock');
           await exec(
-            'git commit -m "chore(Root): update package-lock.json [skip ci]" --no-verify'
+            'git commit -m "chore(Root): update yarn.lock [skip ci]" --no-verify'
           );
         }
 

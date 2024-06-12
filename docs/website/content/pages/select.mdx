@@ -1,0 +1,73 @@
+---
+title: 'Select'
+description: 'Select component.'
+url: https://redshank.app/docs/components/select
+---
+
+```jsx
+import { Select } from '@redshank/native';
+```
+
+### When To Use
+* A dropdown menu for displaying choices - an elegant alternative to the native ```select``` element.
+* Utilizing Radio is recommended when there are fewer total options (less than 5).
+
+<Spacer y={2} />
+
+### Examples
+
+<Playground
+  id="default"
+  title="Default"
+  description="Default select element."
+  code={select.defaultCode}
+/>
+
+<Spacer y={2} />
+
+<Playground
+  id="sizes"
+  title="Sizes"
+  description="Sizes select element."
+  code={select.sizes}
+/>
+
+<Spacer y={2} />
+
+<Playground
+  id="error-variant"
+  title="Error select variant."
+  code={select.errors}
+/>
+
+<Spacer y={2} />
+
+### APIs
+
+<Spacer y={2} />
+
+#### Select Props
+Api props extends from [RNPickerSelect](https://github.com/lawnstarter/react-native-picker-select)
+
+| Attribute            | Type           | Accepted values                   | Description                     | Default      |
+|----------------------|----------------|-----------------------------------|---------------------------------|--------------|
+| **background**       | `ThemeColor`   | [ThemeColor](/docs/default-theme) | Background color of the element | `inputColor` |
+| **borderInputColor** | `ThemeColor`   | [ThemeColor](/docs/default-theme) | Border color of the element     | `border`     |
+| **color**            | `ThemeColor`   | [ThemeColor](/docs/default-theme) | Color of the element selected   | `accents2`   |
+| **disabled**         | `boolean`      | `true` `false`                    | Disabled or enable component    | -            |
+| **error**            | `boolean`      | `true` `false`                    | Show error variant              | -            |
+| **items**            | `SelectItem[]` | [SelectItem](#selectitem)         | Required list of the options    | -            |
+| **onChange**         | `function`     | `(value, index) => void`          | On change function trigger      | -            |
+| **size**             | `SizeType`     | `small` `middle` `large`          | Size of the select input        | `middle`     |
+| **type**             | `RadioType`    | `circle` `square`                 | Circle or square variant        | `circle`     |
+| **value**            | `string`       | `Text`                            | Value of the select input       | -            |
+
+<Spacer y={2} />
+
+#### SelectItem
+
+| Attribute | Type              | Accepted values | Description                          | Default |
+|-----------|-------------------|-----------------|--------------------------------------|---------|
+| **key**   | `string` `number` | `Text` `Number` | Optional key for identify the option | -       |
+| **label** | `string`          | `Text`          | Text for show in the spinner         | -       |
+| **value** | `string`          | `Text`          | Value for the select element         | -       |

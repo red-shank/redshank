@@ -1,0 +1,145 @@
+---
+title: 'Collapse'
+description: 'A content area which can be collapsed and expanded.'
+url: https://redshank.app/docs/components/collapse
+---
+
+```jsx
+import { Collapse } from '@redshank/native';
+```
+
+### Examples
+
+<Playground
+  id="default"
+  title="Default"
+  description="Default collapse view."
+  code={collapseContent.defaultCode}
+/>
+
+<Spacer y={2} />
+
+<Playground
+  id="without-accordion"
+  title="Without Accordion"
+  description="Without accordion in collapse."
+  code={collapseContent.withoutAccordion}
+/>
+
+<Spacer y={2} />
+
+<Playground
+  id="without-accordion"
+  title="Without Accordion"
+  description="Without accordion in collapse."
+  code={collapseContent.withoutAccordion}
+/>
+
+<Spacer y={2} />
+
+<Playground
+  id="with-subTitle"
+  title="With SubTitle"
+  description="With subtitle in panel header."
+  code={collapseContent.withSubTitle}
+/>
+
+<Spacer y={2} />
+
+<Playground
+  id="nested-collapse"
+  title="Nested Collapse"
+  description="Nested collapse."
+  code={collapseContent.nestedCollapse}
+/>
+
+<Spacer y={2} />
+
+<Playground
+  id="custom-icon"
+  title="Custom Icon"
+  description="Custom icon in panel."
+  code={collapseContent.customIcon}
+/>
+
+<Spacer y={2} />
+
+<Playground
+  id="borderless"
+  title="Borderless"
+  description="Borderless variant."
+  code={collapseContent.borderless}
+/>
+
+<Spacer y={2} />
+
+<Playground
+  id="show-arrow"
+  title="Show arrow"
+  description="Show icon arrow."
+  code={collapseContent.showArrow}
+/>
+
+<Spacer y={2} />
+
+<Playground
+  id="open-keys"
+  title="Open Keys"
+  description="Set open keys for total control."
+  code={collapseContent.openKeys}
+/>
+
+
+<Spacer y={2} />
+
+<Playground
+  id="disable-panels"
+  title="Disable Panels"
+  description="Disable panels for not extend content."
+  code={collapseContent.disabled}
+/>
+
+<Spacer y={2} />
+
+### APIs
+
+#### Collapse
+Api props extends from [View](https://reactnative.dev/docs/view)
+
+| Attribute           | Type                   | Accepted values                   | Description                               | Default                                               |
+|---------------------|------------------------|-----------------------------------|-------------------------------------------|-------------------------------------------------------|
+| **accordion**       | `boolean`              | `true` `false`                    | Show accordion effect                     | `true`                                                |
+| **borderColor**     | `ThemeColor`           | [ThemeColor](/docs/default-theme) | Border color of the elements              | `accents7`                                            |
+| **borderless**      | `boolean`              | `true` `false`                    | Show or hidden borders                    | `true`                                                |
+| **children**        | `ReactNode`            | `ReactNode`                       | Accessory as a child for the component    | -                                                     |
+| **contentColor**    | `ThemeColor`           | [ThemeColor](/docs/default-theme) | Panel color of the elements               | `card`                                                |
+| **defaultOpenKeys** | `KeyType[]`            | [KeyType](#key-type)              | Default keys for open panels              | -                                                     |
+| **headerColor**     | `ThemeColor`           | [ThemeColor](/docs/default-theme) | Header color of the elements              | `card`                                                |
+| **icon**            | `ReactNode`            | `ReactNode`                       | Custom icon arrow                         | `<Icon type="antdesign" name="right" color="text" />` |
+| **iconPosition**    | `IconPosition`         | `right` `left`                    | Position of the arrow icon                | `right`                                               |
+| **onChange**        | `function`             | `(key: KeyType) => void`          | Function trigger when open or close panel | -                                                     |
+| **openKeys**        | `KeyType[]`            | [KeyType](#key-type)              | Open keys for open panels                 | -                                                     |
+| **showArrow**       | `boolean`              | `true` `false`                    | Show or hidden arrow icon                 | `true`                                                |
+| **style**           | `StyleProp<ViewStyle>` | `object`                          | Style object for base element             | `true`                                                |
+
+<Spacer y={2} />
+
+#### Panel
+Api props extends from [Ripple](/docs/components/ripple)
+
+| Attribute        | Type                   | Accepted values      | Description                                                   | Default |
+|------------------|------------------------|----------------------|---------------------------------------------------------------|---------|
+| **children**     | `ReactNode`            | `ReactNode`          | Accessory as a child for the component                        | -       |
+| **disabled**     | `boolean`              | `true` `false`       | Disabled panel                                                | `false` |
+| **id**           | `KeyType[]`            | [KeyType](#key-type) | Key panel identify, util with `openKeys` or `defaultOpenKeys` | -       |
+| **styleContent** | `StyleProp<ViewStyle>` | `object`             | Style object for content body element                         | -       |
+| **styleHeader**  | `StyleProp<ViewStyle>` | `object`             | Style object for header element                               | -       |
+| **subTitle**     | `ReactNode` `string`   | `ReactNode` `text`   | Accessory as a subtitle                                       | -       |
+| **title**        | `ReactNode` `string`   | `ReactNode` `text`   | Accessory as a title                                          | -       |
+
+<Spacer y={2} />
+
+### Key Type
+```ts
+type KeyType = string | number;
+```

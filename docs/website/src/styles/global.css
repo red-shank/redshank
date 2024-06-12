@@ -1,0 +1,15 @@
+@tailwind components;
+@tailwind utilities;
+
+html {
+  padding: 0;
+  margin: 0;
+}
+
+html, body {
+  scroll-behavior: smooth;
+}
+
+.max-w-8xl {
+  max-width: 110rem;
+}

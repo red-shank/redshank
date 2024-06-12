@@ -1,0 +1,69 @@
+---
+title: 'Message'
+description: 'Display global messages as feedback in response to user operations.'
+url: https://redshank.app/docs/components/message
+---
+
+```jsx
+import { Message } from '@redshank/native';
+```
+
+### When To Use
+* To provide feedback such as success, warning, error etc.
+* A message is displayed at top and center and will be dismissed automatically, as a non-interrupting light-weighted prompt.
+
+<Spacer y={2} />
+
+### Examples
+
+<Playground
+  id="message"
+  title="Message"
+  description="Default Message element."
+  code={message.defaultCode}
+/>
+
+<Spacer y={2} />
+
+<Playground
+  id="with-icon"
+  title="With Icon"
+  description="With icon message element."
+  code={message.withIcon}
+/>
+
+<Spacer y={2} />
+
+<Playground
+  id="with-shadow-box"
+  title="With Shadow Box"
+  description="With shadow box message element."
+  code={message.withBoxShadow}
+/>
+
+<Spacer y={2} />
+
+<Playground
+  id="with-shadow-opacity"
+  title="With Shadow Opacity"
+  description="With shadow opacity message element."
+  code={message.shadowAndOpacity}
+/>
+
+<Spacer y={2} />
+
+#### Message
+Options Api props
+
+| Attribute         | Type                            | Accepted values           | Description                                  | Default                                                   |
+|-------------------|---------------------------------|---------------------------|----------------------------------------------|-----------------------------------------------------------|
+| **Component**     | `Component` `FunctionComponent` | `JSX.Element` `Component` | Change component Message                     | `View` if `onPress` then `Ripple`                         |
+| **content**       | `string`                        | `Text`                    | Content message                              | -                                                         |
+| **iconLeft**      | `ReactNode`                     | `Component`               | Icon left                                    | if `showIcon` is `true` then `closecircle` of `antdesign` |
+| **iconRight**     | `ReactNode`                     | `Component`               | Icon right                                   | -                                                         |
+| **onPress**       | `function`                      | `(event) => void`         | Optional function when trigger press message | -                                                         |
+| **style**         | `object`                        | `StyleProp<ViewStyle>`    | Style for component                          | -                                                         |
+| **styleText**     | `object`                        | `StyleProp<ViewStyle>`    | Style for text content                       | -                                                         |
+| **type**          | `MessageType`                   | `defautl` `shadow`        | Background opacity or solid color            | `default`                                                 |
+| **withBoxShadow** | `boolean`                       | `true` `false`            | Show shadown outsite message                 | `false`                                                   |
+| **withIcon**      | `boolean`                       | `true` `false`            | Show or hidden icon                          | `false`                                                   |

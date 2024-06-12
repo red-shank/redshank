@@ -1,0 +1,116 @@
+---
+title: 'Modal'
+description: 'Modal dialogs.'
+url: https://redshank.app/docs/components/modal
+---
+
+```jsx
+import { Modal } from '@redshank/native';
+```
+
+### When To Use
+When requiring users to interact with the application, but without jumping to a new page and interrupting the user's workflow, you can use Modal to create a new floating layer over the current page to get user feedback or display information. Additionally, if you need show a simple confirmation dialog, you can use [Pop Confirm](/docs/components/pop-confirm), and so on.
+
+<Spacer y={2} />
+
+### Examples
+
+<Playground
+  id="modal"
+  title="Modal"
+  description="Default Modal element."
+  code={modal.defaultCode}
+/>
+
+<Spacer y={2} />
+
+<Playground
+  id="positionTopAndBottom"
+  title="Position Top/Bottom"
+  description="Position Modal element."
+  code={modal.topBottom}
+/>
+
+<Spacer y={2} />
+
+<Playground
+  id="scroll-modal"
+  title="Scroll Modal"
+  description="Scroll in Modal element."
+  code={modal.scrollModal}
+/>
+
+<Spacer y={2} />
+
+<Playground
+  id="hidden-statusbar"
+  title="Hidden StatusBar"
+  description="Hidden StatusBar in iOS and Android."
+  code={modal.hiddenStatusBar}
+/>
+
+<Spacer y={2} />
+
+<Playground
+  id="mask-closable"
+  title="Mask Closable"
+  description="Closable modal when press outside Modal content."
+  code={modal.closableMask}
+/>
+
+<Spacer y={2} />
+
+<Playground
+  id="with-extra-content"
+  title="With Extra Content"
+  description="With extra content prop."
+  code={modal.withExtraContent}
+/>
+
+<Spacer y={2} />
+
+### APIs
+
+<Spacer y={2} />
+
+#### Modal
+Api props extends from [Modal](https://reactnative.dev/docs/modal)
+
+| Attribute                 | Type                            | Accepted values           | Description                                         | Default                                          |
+|---------------------------|---------------------------------|---------------------------|-----------------------------------------------------|--------------------------------------------------|
+| **animationType**         | `Enum`                          | `fade`                    | `slide`                                             | `none`                                           | Change background color of the input                | `inputColor`                            |
+| **buttonCloseStyle**      | `object`                        | `StyleProp<ViewStyle>`    | Style for close button                              | -                                                |
+| **children**              | `ReactNode`                     | `Component` `JSX.ELement` | Content for show in the modal                       | -                                                |
+| **closable**              | `boolean`                       | `true` `false`            | Show or hidden close button                         | `false`                                          |
+| **closeIconProps**        | `object`                        | `IconProps`               | Props for Icon close, change name or type icon      | -                                                |
+| **contentContainerStyle** | `object`                        | `StyleProp<ViewStyle>`    | Style for scrollview in modal                       | -                                                |
+| **contentStyle**          | `object`                        | `StyleProp<ViewStyle>`    | Style of the scrollView                             | -                                                |
+| **extra**                 | `ReactNode` `JSX.Element`       | `Component`               | Extra content in bottom modal                       | -                                                |
+| **fullScreen**            | `boolean`                       | `true` `false`            | Show content in full screen                         | `false`                                          |
+| **hiddenBar**             | `boolean`                       | `true` `false`            | Show or hidden statusbar in mobiles                 | `false`                                          |
+| **maskClosable**          | `boolean`                       | `true` `false`            | Allow close modal when press outside modal          | `false`                                          |
+| **maskComponent**         | `Component` `FunctionComponent` | `JSX.Element` `Component` | Change component mask modal                         | `View` if `maskClosable` then `TouchableOpacity` |
+| **maskStyle**             | `object`                        | `StyleProp<ViewStyle>`    | Style of the mask component                         | -                                                |
+| **onClose**               | `function`                      | `() => void`              | Required function for close modal                   | -                                                |
+| **position**              | `PositionType`                  | `top` `center` `bottom`   | Position of the modal, when `fullScreen` is `false` | `center`                                         |
+| **scrollable**            | `boolean`                       | `true` `false`            | Can scroll in modal content                         | `false`                                          |
+| **visible**               | `boolean`                       | `true` `false`            | Required controller show or hidden modal            | -                                                |
+
+<Spacer y={2} />
+
+#### useModal
+Api for show or hidden modal with hook.
+
+##### Basic use
+```tsx
+const [visible, toggleModal] = Modal.useModal();
+```
+
+##### Completed use
+```tsx
+const [
+  visible,
+  toggleModal,
+  { onVisible, onHidden }
+] = Modal.useModal();
+```

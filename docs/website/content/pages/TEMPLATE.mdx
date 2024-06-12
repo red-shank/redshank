@@ -1,0 +1,48 @@
+---
+title: 'Component'
+description: 'Component description.'
+url: https://redshank.app/docs/components/icon
+---
+
+```jsx
+import { Component } from '${PACKAGE_NAME}';
+```
+
+<Spacer y={2} />
+
+<Playground
+  title="Component"
+  desc="You can display an icon with just text or image"
+  files={iconContent.initial}
+/>
+
+<Spacer y={3} />
+
+### APIs
+
+<Spacer y={2} />
+
+#### Icon Props
+
+| Attribute | Type                    | Accepted values                | Description         | Default   |
+|-----------|-------------------------|--------------------------------|---------------------|-----------|
+| **color** | `NormalColors` `string` | [NormalColors](#normal-colors) | Change avatar color | `default` |
+
+<Spacer y={2} />
+
+### Component types
+
+<Spacer y={1} />
+
+#### Normal Colors
+
+```ts
+type NormalColors =
+  | 'default'
+  | 'primary'
+  | 'secondary'
+  | 'success'
+  | 'warning'
+  | 'error'
+  | 'gradient';
+```

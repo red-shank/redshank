@@ -1,0 +1,92 @@
+---
+title: 'Text'
+description: 'Display text for show information, description, and others texts.'
+url: https://redshank.app/docs/components/text
+---
+
+```jsx
+import { Text } from '@redshank/native';
+```
+
+<Spacer y={2} />
+
+<Playground
+  id="default"
+  title="Default"
+  description="You can display an Text"
+  code={textContent.initial}
+/>
+
+<Spacer y={2} />
+
+<Playground
+  id="text-align"
+  title="Text Align"
+  description="Align text options"
+  code={textContent.textAlign}
+/>
+
+<Spacer y={2} />
+
+<Playground
+  id="max-lines"
+  title="Max Lines"
+  description="Use the lines prop for to set the number of lines of text to"
+  code={textContent.maxLines}
+/>
+
+<Spacer y={2} />
+
+<Playground
+  id="text-utilities"
+  title="Text Utilities"
+  description="Displays a list of options to play"
+  code={textContent.textUtilities}
+/>
+
+<Spacer y={2} />
+
+### APIs
+
+<Spacer y={2} />
+
+#### Text Props
+More props in [Text props from React Native](https://reactnative.dev/docs/text)
+
+| Attribute               | Type                     | Accepted values                       | Description                                                                                    | Default |
+|-------------------------|--------------------------|---------------------------------------|------------------------------------------------------------------------------------------------|---------|
+| **align**               | `string`                 | [Align](#align)                       | Align title text                                                                               | `left`  |
+| **children**            | `string`  `ReactNode`    | `any`                                 | Accessory as a child for the component                                                         | -       |
+| **containerStyle**      | `object`                 | `StyleProp<ViewStyle>`                | Style for wrapper text                                                                         | -       |
+| **bold**                | `boolean`                | `true` `false`                        | Make text bold                                                                                 | -       |
+| **color**               | `ThemeColor` `string`    | [ThemeColor](/docs/default-theme)     | Change icon color                                                                              | `text`  |
+| **fontWeight**          | `number` `bold` `normal` | `100` to `900`                        | Weight property                                                                                | -       |
+| **italic**              | `boolean`                | `true` `false`                        | Make text italic                                                                               | `false` |
+| **lines**               | `number`                 | `number`                              | Number of lines you want to show on the screen                                                 | -       |
+| **lineHeight**          | `number`                 | `number`                              | Line height property                                                                           | -       |
+| **margin**              | `number` `string`        | `number` `string`                     | Element margin                                                                                 | -       |
+| **marginBottom**        | `number` `string`        | `number` `string`                     | Element margin bottom                                                                          | -       |
+| **marginHorizontal**    | `number` `string`        | `number` `string`                     | Element margin horizontal, left and right                                                      | -       |
+| **marginVertical**      | `number` `string`        | `number` `string`                     | Element margin vertical, top and bottom                                                        | -       |
+| **marginTop**           | `number` `string`        | `number` `string`                     | Element margin top                                                                             | -       |
+| **readMore**            | `boolean`                | `true` `false`                        | Shows a small message to show the rest of the content, it works in conjunction with lines prop | -       |
+| **readMoreButtonProps** | `object`                 | [ButtonProps](/components/button#API) | Extra properties that can be passed to the read more/less GoogleButton                               | -       |
+| **style**               | `object`                 | `StyleProp<ViewStyle>`                | Style text                                                                                     | -       |
+| **textLessMore**        | `string`                 | `string`                              | Text for text to display when readMore is true and text state NOT is collapsed                 | `none`  |
+| **textReadMore**        | `string`                 | `string`                              | Text for text to display when readMore is true and text state NOT is collapsed                 | `none`  |
+| **transform**           | `string`                 | [Transform](#transform)               | Transform title text                                                                           | `none`  |
+| **underline**           | `boolean`                | `true` `false`                        | Underline style                                                                                | -       |
+
+<Spacer y={2} />
+
+#### Align
+```typescript
+type AlignType = 'left' | 'center' | 'right' | 'justify';
+```
+
+<Spacer y={2} />
+
+#### Transform
+```typescript
+type TransformType = 'none' | 'uppercase' | 'lowercase' | 'capitalize';
+```

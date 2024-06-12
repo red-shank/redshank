@@ -1,0 +1,78 @@
+---
+title: 'Header'
+description: 'Header component.'
+url: https://redshank.app/docs/components/header
+---
+
+```jsx
+import { Header } from "@redshank/native";
+```
+### Examples
+
+<Playground
+  id="default"
+  title="Default"
+  mode="mobile"
+  description="Default header element."
+  code={headerContent.defaultCode}
+/>
+
+<Spacer y={2} />
+
+<Playground
+  id="scroll-effect"
+  title="Scroll Effect"
+  mode="mobile"
+  description="Scroll animation in header, manipulation title, color, background, etc."
+  code={headerContent.onScroll}
+/>
+
+<Spacer y={2} />
+
+<Playground
+  id="using-context"
+  title="Using context"
+  mode="mobile"
+  description="Using `useHeaderNavigation` for set props to header values."
+  code={headerContent.usingContext}
+/>
+
+<Spacer y={2} />
+
+### APIs
+
+#### Header
+Api props
+
+| Attribute                 | Type                   | Accepted values                   | Description                                                              | Default                     |
+|---------------------------|------------------------|-----------------------------------|--------------------------------------------------------------------------|-----------------------------|
+| **background**            | `ThemeColor` `string`  | [ThemeColor](/docs/default-theme) | Background header in static state                                        | `background`                |
+| **backgroundSticky**      | `ThemeColor` `string`  | [ThemeColor](/docs/default-theme) | Background header when apply animation scroll                            | `background prop`           |
+| **heightDynamic**         | `number`               | `Number`                          | Height where the scroll animation will begin to be applied               | `0`                         |
+| **leftIcon**              | `ReactNode`            | React Element                     | Optional icon or element left                                            | -                           |
+| **statusBarHeight**       | `number`               | `Number`                          | Status bar height, by default it is calculated based on safe area and OS | `calculated`                |
+| **rightIcon**             | `ReactNode`            | React Element                     | Optional icon or element right                                           | -                           |
+| **style**                 | `StyleProp<ViewStyle>` | `object`                          | Style object for wrapper children element                                | -                           |
+| **title**                 | `ReactNode` `string`   | `ReactNode` `Text`                | Required. Title to header                                                | -                           |
+| **titleOnScroll**         | `ReactNode` `string`   | `ReactNode` `Text`                | Title to header when make scroll animation                               | -                           |
+| **titleOnScrollPosition** | `TitlePosition`        | [TitlePosition](#title-position)  | Position for title when scroll is applied                                | `center`                    |
+| **titlePosition**         | `TitlePosition`        | [TitlePosition](#title-position)  | Position for title when header is initial or static                      | iOS: `center` Other: `left` |
+| **titleStyle**            | `StyleProp<TextStyle>` | `object`                          | Style object for title prop                                              | -                           |
+
+<Spacer y={2} />
+
+#### useHeaderNavigation
+Api props for `useHeaderNavigation()` hook, useful to use a single header component and change it according to your screen
+
+| Attribute     | Type                                     | Accepted values        | Description                                   | Default |
+|---------------|------------------------------------------|------------------------|-----------------------------------------------|---------|
+| **setValues** | `(values: HeaderProps or null) => void;` | [HeaderProps](#header) | Change context value for set values to header | -       |
+| **header**    | `HeaderProps` `null`                     | [HeaderProps](#header) | Some header props                             | `null`  |
+
+<Spacer y={2} />
+
+#### Title Position
+```ts
+type TitlePosition = 'left' | 'center' | 'right';
+```
+

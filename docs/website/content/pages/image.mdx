@@ -1,0 +1,53 @@
+---
+title: 'Image'
+description: 'Image component.'
+url: https://redshank.app/docs/components/image
+---
+
+```jsx
+import { Image } from '@redshank/native';
+```
+### Examples
+
+<Playground
+  id="default"
+  title="Default"
+  description="Default image element."
+  code={imageContent.defaultCode}
+/>
+
+<Spacer y={2} />
+
+<Playground
+  id="resize-mode"
+  title="Resize Mode"
+  description="Object Fit mode."
+  code={imageContent.resizeMode}
+/>
+
+<Spacer y={2} />
+
+### APIs
+
+#### Image
+Api props extends from [Image](https://reactnative.dev/docs/image)
+
+| Attribute                  | Type                   | Accepted values                 | Description                                          | Default                                       |
+|----------------------------|------------------------|---------------------------------|------------------------------------------------------|-----------------------------------------------|
+| **Component**              | `Component`            | React Component                 | Change the element warpper base                      | [Ripple](/docs/components/ripple) or `View`   |
+| **ImageComponent**         | `Component`            | React Component                 | Change the element of the image base                 | [RNImage](https://reactnative.dev/docs/image) |
+| **children**               | `ReactNode`            | `ReactNode`                     | Accessory as a child for the component               | -                                             |
+| **childrenContainerStyle** | `StyleProp<ViewStyle>` | `object`                        | Style object for wrapper children element            | -                                             |
+| **containerStyle**         | `StyleProp<ViewStyle>` | `object`                        | Style object for container element                   | -                                             |
+| **height**                 | `number`               | `Number`                        | Height of the image                                  | -                                             |
+| **placeholderContent**     | `ReactNode`            | React Element                   | Placeholder of the image when not find a source prop | -                                             |
+| **placeholderStyle**       | `StyleProp<ViewStyle>` | `object`                        | Style object for container element                   | -                                             |
+| **source**                 | `ImageSourcePropType`  | `absoluteImport` `string`       | URI of the picture, can be an import or string       | -                                             |
+| **transition**             | `boolean`              | `true` `false`                  | Activate animation effect fadeIn                     | `false`                                       |
+| **transitionDuration**     | `number`               | `Number`                        | Transition duration effect                           | `360`ms                                       |
+| **width**                  | `number`               | `Number`                        | Width of the image                                   | -                                             |
+| **Other Props**            | `any`                  | [Other props](#base-properties) | Interactive props for element                        | -                                             |
+
+<Spacer y={2} />
+
+<BaseProperties />

@@ -1,0 +1,164 @@
+---
+title: 'Form'
+description: 'High performance Form component with data scope management. Including data collection, verification, and styles.'
+url: https://redshank.app/docs/components/form
+---
+
+```jsx
+import { Form } from '@redshank/native';
+```
+
+### When To Use
+* When you need to create an instance or collect information.
+* When you need to validate fields in certain rules.
+
+<Spacer y={2} />
+
+### Examples
+
+<Playground
+  id="default"
+  title="Default"
+  description="Default form element."
+  code={form.defaultCode}
+/>
+
+<Spacer y={2} />
+
+<Playground
+  id="completed-example"
+  title="Completed example"
+  description="Complete form example."
+  code={form.completed}
+/>
+
+<Spacer y={2} />
+
+<Playground
+  id="manipulation"
+  title="Manipulation"
+  description="Manipulation form example."
+  code={form.controller}
+/>
+
+<Spacer y={2} />
+
+### APIs
+
+<Spacer y={2} />
+
+#### Form
+Api props extends from [rc-field-form](https://www.npmjs.com/package/rc-field-form)
+
+| Attribute            | Type                         | Accepted values                                | Description                                        | Default |
+|----------------------|------------------------------|------------------------------------------------|----------------------------------------------------|---------|
+| **component**        | `string` `Component` `false` | `Component`                                    | Customize Form render component                    | `View`  |
+| **fields**           | `FieldData[]`                | [FieldData](#fielddata)                        | Control Form fields status. Only use when in Redux | -       |
+| **form**             | `FormInstance`               | [FormInstance](#forminstance)                  | Set form instance created by `useForm`             | -       |
+| **initialValues**    | `object`                     | `{ [key]: value }`                             | Initial value of Form                              | -       |
+| **preserve**         | `boolean`                    | `true` `false`                                 | Preserve value when field removed                  | `false` |
+| **validateMessages** | `ValidateMessage`            | [FormInstance](#validatemessage)               | Set validate message template                      | -       |
+| **onFieldsChange**   | `function`                   | `(changedFields, allFields) => void`           | Trigger when any value of Field changed            | -       |
+| **onFinish**         | `function`                   | `(values) => void`                             | Trigger when form submit and success               | -       |
+| **onFinishFailed**   | `function`                   | `({ values, errorFields, outOfDate }) => void` | Trigger when form submit and failed                | -       |
+| **onValuesChange**   | `function`                   | `(changedValues, values) => void`              | Trigger when any value of Field changed            | -       |
+| **borderBottom**     | `number`                     | `true` `false`                                 | Set the bottom margin into fields                  | `15`    |
+
+<Spacer y={2} />
+
+#### Form.Item
+Api props extends from [Field](https://www.npmjs.com/package/rc-field-form#field)
+
+| Attribute             | Type                 | Accepted values                                 | Description                                                                   | Default    |
+|-----------------------|----------------------|-------------------------------------------------|-------------------------------------------------------------------------------|------------|
+| **dependencies**      | `NamePath[]`         | [NamePath](#namepath)                           | Will re-render if dependencies changed                                        | -          |
+| **getValueFromEvent** | `function`           | `(..args: any[]) => any`                        | Specify how to get value from event                                           | -          |
+| **getValueProps**     | `function`           | `(value) => any`                                | Customize additional props with value. This prop will disable `valuePropName` | -          |
+| **initialValue**      | `any`                | `any`                                           | Field initial value                                                           | -          |
+| **isSubmit**          | `boolean`            | `boolean`                                       | Pass onPress works like submit to child                                       | -          |
+| **label**             | `string` `ReactNode` | `Text` `Component`                              | Field label                                                                   | -          |
+| **name**              | `any`                | [NamePath](#namepath)                           | Field name path                                                               | -          |
+| **normalize**         | `function`           | `(value, prevValue, prevValues) => any`         | Normalize value before update                                                 | -          |
+| **preserve**          | `boolean`            | `true` `false`                                  | Preserve value when field removed                                             | -          |
+| **required**          | `boolean`            | `boolean`                                       | Field required                                                                | -          |
+| **rules**             | `Rule[]`             | [rule](#rule)                                   | Validate rules                                                                | -          |
+| **shouldUpdate**      | `boolean` `function` | `boolean` `(prevValues, nextValues) => boolean` | Check if Field should update                                                  | -          |
+| **trigger**           | `string`             | `Text`                                          | Collect value update by event trigger                                         | `onChange` |
+| **validateTrigger**   | `string` `string[]`  | `Text` `Text Array`                             | Config trigger point with rule validate                                       | `onChange` |
+| **valuePropName**     | `string`             | `Text`                                          | Config value mapping prop with element                                        | `value`    |
+| **style**             | `object`             | `StyleProp<ViewStyle>`                          | Style for the wrapper element                                                 | `value`    |
+
+<Spacer y={2} />
+
+#### Form.useForm
+Form component default create an form instance by Form.useForm. But you can create it and pass to Form also. This allow you to call some function on the form instance.
+Api props extends from [useForm](https://www.npmjs.com/package/rc-field-form#useForm).
+
+```tsx
+const Demo = () => {
+  const [form, onSubmit] = Form.useForm();
+  return <Form form={form} />;
+};
+```
+
+<Spacer y={2} />
+
+#### FormInstance
+Api props extends from [useForm](https://www.npmjs.com/package/rc-field-form#useForm).
+
+| Attribute             | Type                                                            | Accepted values         | Description                                | Default |
+|-----------------------|-----------------------------------------------------------------|-------------------------|--------------------------------------------|---------|
+| **getFieldValue**     | `(name: NamePath) => any`                                       | [NamePath](#namepath)   | Get field value by name path               | -       |
+| **getFieldsValue**    | `(nameList: NamePath[]) => any`                                 | [NamePath](#namepath)   | Get list of field values by name path list | -       |
+| **getFieldError**     | `(name: NamePath) => string[]`                                  | [NamePath](#namepath)   | Get field errors by name path              | -       |
+| **getFieldsError**    | `(nameList: NamePath) => FieldError[]`                          | [NamePath](#namepath)   | Get list of field errors by name path list | -       |
+| **isFieldsTouched**   | `(nameList?: NamePath[], allTouched?: boolean) => boolean`      | [NamePath](#namepath)   | Check if list of fields are touched        | -       |
+| **isFieldTouched**    | `(name: NamePath) => boolean`                                   | [NamePath](#namepath)   | Check if a field is touched                | -       |
+| **isFieldValidating** | `(name: NamePath) => boolean`                                   | [NamePath](#namepath)   | Check if a field is validating             | -       |
+| **resetFields**       | `(fields?: NamePath[]) => void`                                 | [NamePath](#namepath)   | Reset fields status                        | -       |
+| **setFields**         | `(fields: FieldData[]) => void`                                 | [FieldData](#fielddata) | Set fields status                          | -       |
+| **setFieldsValue**    | `function`                                                      | `(values) => void`      | Set fields value                           | -       |
+| **submit**            | `function`                                                      | `() => void`            | Trigger form submit                        | -       |
+| **validateFields**    | `(nameList?: NamePath[], options?: ValidateOptions) => Promise` | [NamePath](#namepath)   | Trigger fields to validate                 | -       |
+
+<Spacer y={2} />
+
+#### NamePath
+Api props extends from [NamePath](https://www.npmjs.com/package/rc-field-form#NamePath).
+
+```ts
+type NamePath = string | number | (string | number)[]
+```
+
+<Spacer y={2} />
+
+#### FieldData
+Api props extends from [FieldData](https://www.npmjs.com/package/rc-field-form#FieldData).
+
+| Prop           | Type                                    |
+|----------------|-----------------------------------------|
+| **touched**    | `boolean`                               |
+| **validating** | `boolean`                               |
+| **errors**     | `string[]`                              |
+| **name**       | `string` `number` `string[]` `number[]` |
+| **value**      | `any`                                   |
+
+<Spacer y={2} />
+
+#### Rule
+Api props extends from [Rule](https://www.npmjs.com/package/rc-field-form#Rule).
+
+| Prop                | Type                                                                         |
+|---------------------|------------------------------------------------------------------------------|
+| **enum**            | `any[]`                                                                      |
+| **len**             | `number`                                                                     |
+| **max**             | `number`                                                                     |
+| **message**         | `string`                                                                     |
+| **min**             | `number`                                                                     |
+| **pattern**         | `RegExp`                                                                     |
+| **required**        | `boolean`                                                                    |
+| **transform**       | `(value) => any`                                                             |
+| **type**            | `string`                                                                     |
+| **validator**       | `(rule, value, callback: (error?: string) => void, form) => Promise or void` |
+| **whitespace**      | `boolean`                                                                    |
+| **validateTrigger** | `string` `string[]`                                                          |

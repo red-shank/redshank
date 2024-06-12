@@ -1,0 +1,192 @@
+[
+  {
+    "key": "started",
+    "name": "Started",
+    "icon": "PaletteIcon",
+    "type": "doc",
+    "children": [
+      {
+        "key": "getting-started",
+        "path": "/docs/getting-started",
+        "name": "Getting started"
+      },
+      {
+        "key": "provider",
+        "path": "/docs/provider",
+        "name": "Provider"
+      },
+      {
+        "key": "default-theme",
+        "path": "/docs/default-theme",
+        "name": "Default theme"
+      },
+      {
+        "key": "dark-mode",
+        "path": "/docs/dark-mode",
+        "name": "Dark mode"
+      },
+      {
+        "key": "hooks",
+        "path": "/docs/hooks",
+        "name": "Hooks"
+      }
+    ]
+  },
+  {
+    "key": "general",
+    "name": "General",
+    "type": "component",
+    "icon": "BookIcon",
+    "children": [
+      {
+        "key": "icon",
+        "path": "/docs/components/icon",
+        "name": "Icon"
+      },
+      {
+        "key": "title",
+        "path": "/docs/components/title",
+        "name": "Title"
+      },
+      {
+        "key": "text",
+        "path": "/docs/components/text",
+        "name": "Text"
+      },
+      {
+        "key": "button",
+        "path": "/docs/components/button",
+        "name": "Button"
+      },
+      {
+        "key": "social-button",
+        "path": "/docs/components/social-button",
+        "name": "Social Button"
+      }
+    ]
+  },
+  {
+    "key": "data-display",
+    "name": "Data Display",
+    "type": "component",
+    "icon": "LayoutIcon",
+    "children": [
+      {
+        "key": "avatar",
+        "path": "/docs/components/avatar",
+        "name": "Avatar"
+      },
+      {
+        "key": "badge",
+        "path": "/docs/components/badge",
+        "name": "Badge"
+      },
+      {
+        "key": "card",
+        "path": "/docs/components/card",
+        "name": "Card"
+      },
+      {
+        "key": "carousel",
+        "path": "/docs/components/carousel",
+        "name": "Carousel"
+      },
+      {
+        "key": "collapse",
+        "path": "/docs/components/collapse",
+        "name": "Collapse"
+      },
+      {
+        "key": "image",
+        "path": "/docs/components/image",
+        "name": "Image"
+      },
+      {
+        "key": "header",
+        "path": "/docs/components/header",
+        "name": "Header"
+      },
+      {
+        "key": "space",
+        "path": "/docs/components/space",
+        "name": "Space"
+      }
+    ]
+  },
+  {
+    "key": "data-entry",
+    "name": "Data Entry",
+    "type": "component",
+    "icon": "FontIcon",
+    "children": [
+      {
+        "key": "checkbox",
+        "path": "/docs/components/checkbox",
+        "name": "Checkbox"
+      },
+      {
+        "key": "controller",
+        "path": "/docs/components/controller",
+        "name": "Controller"
+      },
+      {
+        "key": "datepicker",
+        "path": "/docs/components/datepicker",
+        "name": "Date Picker"
+      },
+      {
+        "key": "form",
+        "path": "/docs/components/form",
+        "name": "Form"
+      },
+      {
+        "key": "input",
+        "path": "/docs/components/input",
+        "name": "Input"
+      },
+      {
+        "key": "radio",
+        "path": "/docs/components/radio",
+        "name": "Radio"
+      },
+      {
+        "key": "select",
+        "path": "/docs/components/select",
+        "name": "Select"
+      },
+      {
+        "key": "switch",
+        "path": "/docs/components/switch",
+        "name": "Switch"
+      }
+    ]
+  },
+  {
+    "key": "feedback",
+    "name": "Feedback",
+    "type": "component",
+    "icon": "FeedBackIcon",
+    "children": [
+      {
+        "key": "alert",
+        "path": "/docs/components/alert",
+        "name": "Alert"
+      },
+      {
+        "key": "modal",
+        "path": "/docs/components/modal",
+        "name": "Modal"
+      },
+      {
+        "key": "message",
+        "path": "/docs/components/message",
+        "name": "Message"
+      },
+      {
+        "key": "pop-confirm",
+        "path": "/docs/components/pop-confirm",
+        "name": "Pop Confirm"
+      }
+    ]
+  }
+]
