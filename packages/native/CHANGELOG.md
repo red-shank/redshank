@@ -1,5 +1,14 @@
 # CHANGELOG
 
+# 2.23.0 (2024-06-12)
+
+
+### Bug Fixes
+
+* fixed flex 1 card generate bug in web ([c619039](https://github.com/red-shank/redshank/commit/c619039e3d67e930cc1122680742dfec9d39cc45))
+
+
+
 # 2.22.0 (2024-06-11)
 
 
