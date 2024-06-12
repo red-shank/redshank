@@ -79,24 +79,12 @@ const releasesByPackages = ({ status }) => {
 
 const getCwd = ({ pkg }) => {
   const isMonoPackage = checkIsMonoPackage();
-  console.log({
-    isMonoPackage,
-    BASE_DIR,
-    pkg,
-    cwd: isMonoPackage ? BASE_DIR : path.join(process.cwd(), pkg)
-  });
   return isMonoPackage ? BASE_DIR : path.join(process.cwd(), pkg);
 };
 
 const commit = async ({ pkg, code, skipCi }) => {
   const isMonoPackage = checkIsMonoPackage();
   const cwd = getCwd({ pkg });
-
-  console.log({
-    pkg,
-    code,
-    skipCi
-  });
 
   const tagPrefix = isMonoPackage ? '' : `${pkg}-`;
   const packageScope = isMonoPackage ? 'Root' : pkg.replace(path.sep, '/');
@@ -123,8 +111,13 @@ const commit = async ({ pkg, code, skipCi }) => {
 
 const publish = async ({ pkg }) => {
   const cwd = getCwd({ pkg });
-  const { private: isPrivatePackage, config: localPackageConfig } =
-    getPackageJson(cwd, true);
+  const {
+    private: isPrivatePackage,
+    config: localPackageConfig,
+    ...rest
+  } = getPackageJson(cwd, true);
+
+  console.log({ localPackageConfig, rest });
 
   if (!isPrivatePackage) {
     const publishAccess = getPublishAccess({ localPackageConfig });

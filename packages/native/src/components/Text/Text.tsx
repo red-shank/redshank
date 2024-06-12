@@ -14,7 +14,6 @@ export const Text: FC<TextProps> = ({
   lineHeight,
   fontSize,
   sx,
-  styles,
   transformText = 'none',
   size = 'base',
   color = 'text',
@@ -40,7 +39,7 @@ export const Text: FC<TextProps> = ({
   const font = bold ? 'bold' : 'regular';
 
   return (
-    <Box sx={styles?.root} position="relative">
+    <Box sx={sx?.root} position="relative">
       <TextNative
         numberOfLines={showMore ? 0 : lines}
         style={StyleSheet.flatten([
@@ -63,7 +62,7 @@ export const Text: FC<TextProps> = ({
               style,
               sx: {
                 ...sx,
-                ...styles?.text
+                ...sx?.text
               }
             },
             theme

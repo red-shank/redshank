@@ -11,7 +11,6 @@ export interface TextProps extends SxProps {
   lines?: number;
   transformText?: TransformType;
   readMore?: boolean;
-  sx?: SxProps;
   textReadMore?: string;
   textReadLess?: string;
   fontWeight?:
@@ -32,7 +31,7 @@ export interface TextProps extends SxProps {
   bold?: boolean;
   align?: AlignType;
   style?: StyleProp<TextStyle>;
-  styles?: {
+  sx?: SxProps & {
     root?: SxProps;
     text?: SxProps;
   };
