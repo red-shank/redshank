@@ -1,5 +1,23 @@
 # CHANGELOG
 
+# 2.13.0 (2024-06-11)
+
+
+### Features
+
+* added new version ([c4bd33a](https://github.com/red-shank/redshank/commit/c4bd33a2c115097e5589dc3627aeb2158a64d5a7))
+
+
+
+# 2.11.0 (2024-06-11)
+
+
+### Features
+
+* added sx props to avatar ([cdbda75](https://github.com/red-shank/redshank/commit/cdbda75c76eb90351a314d9a79a5c73e9a001b08))
+
+
+
 # 2.11.0 (2024-06-11)
 
 
