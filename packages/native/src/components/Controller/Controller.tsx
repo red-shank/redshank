@@ -1,10 +1,10 @@
 import React from 'react';
-import { Platform, StyleSheet, View } from "react-native";
+import { Platform, StyleSheet, View } from 'react-native';
 
 // components
 import { Icon } from '../Icon';
-import { Text } from '../Text';
-import { Button } from '../Button';
+import { Text } from '../Text/Text';
+import { Button } from '../Button/Button';
 import useTheme from '../../context/theme/useTheme';
 import { TextError } from '../../utils/TextError';
 import type { ControllerProps } from './types';
@@ -23,7 +23,7 @@ export const Controller: React.FC<ControllerProps> = ({
   width = 135,
   error = false,
   color = 'text',
-  borderColor = 'accents4',
+  borderColor = 'accents4'
 }) => {
   const { colors, borderRadius } = useTheme();
   const [count, setCount] = React.useState<number>(min ?? 1);
@@ -74,9 +74,9 @@ export const Controller: React.FC<ControllerProps> = ({
             borderRadius: borderRadius.lg,
             borderColor: error
               ? colors.error
-              : colors[borderColor] || borderColor,
+              : colors[borderColor] || borderColor
           },
-          style,
+          style
         ])}
       >
         <View style={styles.item}>
@@ -85,13 +85,13 @@ export const Controller: React.FC<ControllerProps> = ({
             type="link"
             color="black"
             onPress={onPrev}
-            contentStyle={styles.button}
-            textStyle={StyleSheet.flatten([
-              {
-                color: colors.accents3,
-              },
-              styles.icon,
-            ])}
+            sx={{
+              container: buttonSx,
+              icon: {
+                color: 'accents3',
+                mt: iconMtSx
+              }
+            }}
           >
             <Icon
               size={18}
@@ -114,13 +114,13 @@ export const Controller: React.FC<ControllerProps> = ({
             type="link"
             color="black"
             onPress={onAdd}
-            contentStyle={styles.button}
-            textStyle={StyleSheet.flatten([
-              {
-                color: colors.accents3,
-              },
-              styles.icon,
-            ])}
+            sx={{
+              container: buttonSx,
+              icon: {
+                color: 'accents3',
+                mt: iconMtSx
+              }
+            }}
           >
             <Icon
               size={18}
@@ -136,34 +136,33 @@ export const Controller: React.FC<ControllerProps> = ({
   );
 };
 
+const buttonSx = {
+  flex: 1,
+  px: 1,
+  m: 0
+};
+
+const iconMtSx = Platform.select({
+  ios: 5,
+  android: 5,
+  default: 0
+});
+
 const styles = StyleSheet.create({
   wrapper: {
-    position: 'relative',
+    position: 'relative'
   },
   content: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     padding: 0,
-    borderWidth: 1,
-  },
-  icon: {
-    marginTop: Platform.select({
-      ios: 5,
-      android: 5,
-      default: 0,
-    }),
+    borderWidth: 1
   },
   item: {
     width: 42,
     height: 42,
     alignItems: 'center',
-    justifyContent: 'center',
-  },
-  button: {
-    flex: 1,
-    paddingLeft: 9,
-    paddingRight: 9,
-    margin: 0,
-  },
+    justifyContent: 'center'
+  }
 });

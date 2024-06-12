@@ -1,12 +1,13 @@
 import React from 'react';
-import { StyleSheet, Text, ActivityIndicator, View } from 'react-native';
+import { StyleSheet, ActivityIndicator, Text } from 'react-native';
 
 import { Ripple } from '../Ripple';
 import useTheme from '../../context/theme/useTheme';
 import { getColorForBackground, getOpacity } from '../../utils';
 
 import type { ButtonProps } from './types';
-import { getSxStyleAndProps } from '../../lib/sx';
+import createSxStyle, { getSxStyleAndProps } from '../../lib/sx';
+import { Box } from '../Box';
 
 export const Button: React.FC<ButtonProps> = ({
   children,
@@ -14,26 +15,25 @@ export const Button: React.FC<ButtonProps> = ({
   onPressIn,
   onPressOut,
   onLongPress,
-  textColor,
   disabled,
   loading,
   style,
-  textStyle,
-  contentStyle,
   disableTransform,
   disableRipple,
   shadow,
   icon,
   suffix,
-  suffixOrPrefixStyle,
+  sx,
   prefix = icon,
   textProps,
+  bg,
   fullWidth = true,
   withMarginBottom = false,
   textAlign = 'center',
   Component = Ripple,
   size = 'middle',
-  color = 'primary',
+  color = 'white',
+  backgroundColor = bg || 'primary',
   type = 'solid',
   shape = 'round',
   ...rest
@@ -52,11 +52,11 @@ export const Button: React.FC<ButtonProps> = ({
   const isSolid = type === 'solid';
   const isLink = type === 'link';
   const isCircle = shape === 'circle';
-  const internalColor = colors[color] || color;
-  const colorText = textColor || getColorForBackground(internalColor);
+  const internalColor = colors[backgroundColor] || backgroundColor;
+  const colorText = colors[color] || getColorForBackground(internalColor);
   const textAlignWrapper = `text_${textAlign}`;
 
-  const sxResult = getSxStyleAndProps(
+  const resolveProps = getSxStyleAndProps(
     {
       ...StyleSheet.flatten([
         styles.button,
@@ -100,6 +100,8 @@ export const Button: React.FC<ButtonProps> = ({
           ]),
         style
       ]),
+      ...sx,
+      sx: sx?.root,
       ...rest
     },
     theme
@@ -115,57 +117,58 @@ export const Button: React.FC<ButtonProps> = ({
       onPressIn={loading || disabled ? undefined : onPressIn}
       onPressOut={loading || disabled ? undefined : onPressOut}
       onLongPress={loading || disabled ? undefined : onLongPress}
-      {...sxResult.props}
-      style={sxResult.style}
+      {...resolveProps.props}
+      style={resolveProps.style}
     >
-      <View style={StyleSheet.flatten([styles.button, contentStyle])}>
+      <Box sx={sx?.container} style={styles.button}>
         {loading && (
           <ActivityIndicator
             style={styles.loading}
             size={fontSizes.sm}
             color={
               type === 'flat'
-                ? colors[textColor] || internalColor
+                ? colors[color] || color || internalColor
                 : colors[colorText] || colorText
             }
           />
         )}
         {!loading && prefix && (
-          <View
-            style={StyleSheet.flatten([styles.prefix, suffixOrPrefixStyle])}
-          >
+          <Box sx={sx?.icon} style={[styles.prefix]}>
             {prefix}
-          </View>
+          </Box>
         )}
         <Text
           {...textProps}
-          style={StyleSheet.flatten([
-            fonts.bold,
+          style={createSxStyle(
             {
-              fontSize: fontSizes.base,
-              color: !isSolid ? internalColor : colors[colorText] || colorText
+              sx: sx?.text,
+              style: StyleSheet.flatten([
+                fonts.bold,
+                {
+                  fontSize: fontSizes.base,
+                  color: !isSolid ? internalColor : colorText
+                },
+                type === 'flat' && {
+                  color: colorText || internalColor
+                },
+                disabled &&
+                  !isSolid && {
+                    color: colors.accents5
+                  }
+              ])
             },
-            type === 'flat' && {
-              color: colors[textColor] || internalColor
-            },
-            disabled &&
-              !isSolid && {
-                color: colors.accents5
-              },
-            textStyle
-          ])}
+            theme
+          )}
         >
           {children}
         </Text>
 
         {!loading && suffix && (
-          <View
-            style={StyleSheet.flatten([styles.suffix, suffixOrPrefixStyle])}
-          >
+          <Box sx={sx?.icon} style={styles.suffix}>
             {suffix}
-          </View>
+          </Box>
         )}
-      </View>
+      </Box>
     </Component>
   );
 };

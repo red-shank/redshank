@@ -15,17 +15,14 @@ import createSxStyle from '../../lib/sx';
 
 export const Badge: React.FC<BadgeProps> = ({
   content,
-  wrapperStyle,
   style,
   isInvisible,
   enableShadow,
   children,
-  childrenStyle,
   onPress,
   borderColor,
   offset,
   sx,
-  styles,
   isPressable = !!onPress,
   placement = 'top-right',
   bold = true,
@@ -49,7 +46,7 @@ export const Badge: React.FC<BadgeProps> = ({
       return getOpacity(colors[background] || background, 0.3);
     }
     return background;
-  }, [bordered, isFlat, colors, background]);
+  }, [isFlat, colors, background]);
 
   const borderInternalColor = React.useMemo(() => {
     if (!bordered) return 'transparent';
@@ -72,9 +69,8 @@ export const Badge: React.FC<BadgeProps> = ({
       alignSelf="flex-start"
       sx={{
         ...sx,
-        ...styles?.root
+        ...sx?.root
       }}
-      style={wrapperStyle}
     >
       {!isInvisible && (
         <Animated.View
@@ -100,7 +96,7 @@ export const Badge: React.FC<BadgeProps> = ({
               left: offset?.left ?? placementStyle?.left,
               right: offset?.right ?? placementStyle?.right,
               bottom: offset?.bottom ?? placementStyle?.bottom,
-              sx: styles?.badge,
+              sx: sx?.badge,
               style
             },
             theme
@@ -116,7 +112,7 @@ export const Badge: React.FC<BadgeProps> = ({
               size={fontSize}
               height={fontSizes[fontSize] - 1}
               lineHeight={fontSizes[fontSize]}
-              sx={styles?.text}
+              sx={sx?.text}
               style={{
                 includeFontPadding: false
               }}
@@ -127,7 +123,7 @@ export const Badge: React.FC<BadgeProps> = ({
         </Animated.View>
       )}
 
-      <Box zIndex={1} style={childrenStyle} sx={styles?.content}>
+      <Box zIndex={1} sx={sx?.content}>
         {children}
       </Box>
     </Component>

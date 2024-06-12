@@ -22,8 +22,7 @@ export interface AvatarProps extends BaseProperties {
   size?: number;
   src?: ImageSrcType;
   style?: StyleProp<ViewStyle>;
-  sx?: SxProps;
-  styles?: {
+  sx?: SxProps & {
     root?: SxProps;
     container?: SxProps;
     icon?: SxProps;

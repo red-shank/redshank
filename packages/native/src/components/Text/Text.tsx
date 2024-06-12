@@ -1,7 +1,7 @@
 import React, { FC, useState } from 'react';
 import { StyleSheet, Text as TextNative } from 'react-native';
 
-import { Button } from '../Button';
+import { Button } from '../Button/Button';
 import useTheme from '../../context/theme/useTheme';
 import type { TextProps } from './types';
 import createSxStyle from '../../lib/sx';

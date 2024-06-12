@@ -28,7 +28,6 @@ export const Avatar: React.FC<AvatarProps> = ({
   textStyle,
   innerBorderColor,
   sx,
-  styles,
   showCountText = 2,
   bordered = !!borderColor,
   Component = onPress || onPressIn || onPressOut || onLongPress ? Ripple : Box,
@@ -83,7 +82,7 @@ export const Avatar: React.FC<AvatarProps> = ({
 
   const resolveProps = getSxStyleAndProps(
     {
-      sx: styles?.root,
+      sx: sx?.root,
       ...sx,
       ...restTouchProps
     },
@@ -121,7 +120,7 @@ export const Avatar: React.FC<AvatarProps> = ({
         borderRadius={borderRadiusElement}
         justifyContent="center"
         alignItems="center"
-        sx={styles?.container}
+        sx={sx?.container}
         style={StyleSheet.flatten([
           _styles.container,
           !bordered && {
@@ -131,7 +130,7 @@ export const Avatar: React.FC<AvatarProps> = ({
       >
         {isShowText ? (
           <Text
-            sx={styles?.text}
+            sx={sx?.text}
             style={StyleSheet.flatten([
               { color: colorText || getColorForBackground(_backgroundColor) },
               {
@@ -149,7 +148,7 @@ export const Avatar: React.FC<AvatarProps> = ({
             {...((icon || {}) as AvatarIcon)}
             style={createSxStyle(
               {
-                sx: styles?.icon
+                sx: sx?.icon
               },
               theme
             )}
@@ -170,7 +169,7 @@ export const Avatar: React.FC<AvatarProps> = ({
               imageProps && imageProps.style,
               createSxStyle(
                 {
-                  sx: styles?.image
+                  sx: sx?.image
                 },
                 theme
               )

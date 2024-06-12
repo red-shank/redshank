@@ -1,5 +1,5 @@
 import React from 'react';
-import { Platform, StyleSheet, TouchableOpacity } from 'react-native';
+import { Platform, StyleSheet } from 'react-native';
 
 import { getOpacity } from '../../utils';
 import useTheme from '../../context/theme/useTheme';
@@ -8,11 +8,11 @@ import { Text } from '../Text';
 import type { AlertProps, AlertType } from './types';
 import { Box } from '../Box';
 import createSxStyle, { getSxStyleAndProps } from '../../lib/sx';
+import { Ripple } from '../Ripple';
 
 export const Alert: React.FC<AlertProps> = ({
   message,
   sx,
-  styles,
   sizeIcon = 18,
   shadow = false,
   closable = false,
@@ -33,14 +33,15 @@ export const Alert: React.FC<AlertProps> = ({
   const internalColor = type === 'info' ? 'primary' : type;
 
   const resolveProps = getSxStyleAndProps(
-    { ...sx, sx: styles?.root, ...restProps },
+    { ...sx, sx: sx?.root, ...restProps },
     theme
   );
 
   return (
     <Box
-      p={16}
-      borderRadius={2}
+      p={2}
+      gap={1}
+      borderRadius={1}
       flexDirection="row"
       justifyContent="space-between"
       backgroundColor={getOpacity(colors[internalColor], 0.2)}
@@ -58,41 +59,34 @@ export const Alert: React.FC<AlertProps> = ({
       {...resolveProps.props}
     >
       <Box
-        flexDirection="row"
+        gap={1}
         flex={1}
-        p={closable ? 8 : 0}
-        sx={styles?.container}
+        sx={sx?.container}
+        flexDirection="row"
+        pr={closable ? 2.2 : 0}
       >
         {withIcon && (
-          <Box mr={1} sx={styles?.icon}>
+          <Box sx={sx?.icon}>
             <SelectIcon type={type} size={sizeIcon} />
           </Box>
         )}
-        <Text
-          styles={{
-            root: {
-              width: '100%'
-            }
-          }}
-          sx={styles?.text}
-          testID="RN_TEXT_MESSAGE"
-        >
+        <Text sx={sx?.text} testID="RN_TEXT_MESSAGE">
           {message}
         </Text>
       </Box>
 
       {closable && (
-        <TouchableOpacity
+        <Ripple
           onPress={onClose}
           style={createSxStyle(
             {
-              sx: styles?.button
+              sx: sx?.button
             },
             theme
           )}
         >
           <Icon name="close" type="antdesign" color="text" size={18} />
-        </TouchableOpacity>
+        </Ripple>
       )}
     </Box>
   );

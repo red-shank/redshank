@@ -9,8 +9,7 @@ export interface AlertProps extends SxProps {
   sizeIcon?: number;
   type?: AlertType;
   withIcon?: boolean;
-  sx?: SxProps;
-  styles?: {
+  sx?: SxProps & {
     root?: SxProps;
     container?: SxProps;
     icon?: SxProps;

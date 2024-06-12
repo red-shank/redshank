@@ -17,7 +17,6 @@ import {
   ThemeProvider as RThemeProvider,
   useTheme
 } from '@redshank/native';
-import DrawerToggleButton from '@react-navigation/drawer/src/views/DrawerToggleButton';
 import MenuToggleButton from '@/components/MenuToggleButton';
 
 const dimension = Dimensions.get('window');
@@ -45,9 +44,7 @@ const App = (props: PropsWithChildren) => {
                 };
               }
               return {
-                headerLeft: (props) => (
-                  <MenuToggleButton {...props} />
-                )
+                headerLeft: (props) => <MenuToggleButton {...props} />
               };
             }}
           />

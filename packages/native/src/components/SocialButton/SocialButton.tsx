@@ -2,8 +2,8 @@ import React, { useMemo } from 'react';
 
 import { Image } from '../Image/Image';
 import { Button } from '../Button/Button';
+import { ButtonProps } from '../Button/types';
 import { resolveAssetUrl } from '../../utils';
-import type { ButtonProps } from '../Button/types';
 import useTheme from '../../context/theme/useTheme';
 
 export type SocialButtonProvider = 'google' | 'facebook' | 'apple' | 'twitter';
@@ -26,7 +26,7 @@ const SwitchProvidersTextMap: Record<SocialButtonProvider, string> = {
   google: 'Continues with Google',
   facebook: 'Continues with Facebook',
   apple: 'Continues with Apple',
-  twitter: 'Continues with Twitter',
+  twitter: 'Continues with Twitter'
 } as const;
 
 const SwitchProvidersImageMap: Record<
@@ -35,20 +35,20 @@ const SwitchProvidersImageMap: Record<
 > = {
   google: {
     light: '/social/google.png',
-    dark: '/social/google.png',
+    dark: '/social/google.png'
   },
   facebook: {
     light: '/social/facebook.png',
-    dark: '/social/facebook.png',
+    dark: '/social/facebook.png'
   },
   twitter: {
     light: '/social/twitter.png',
-    dark: '/social/twitter.png',
+    dark: '/social/twitter.png'
   },
   apple: {
     light: '/social/apple-dark.png',
-    dark: '/social/apple-light.png',
-  },
+    dark: '/social/apple-light.png'
+  }
 } as const;
 
 export const SocialButton: React.FC<SocialButtonProps> = ({
@@ -73,15 +73,17 @@ export const SocialButton: React.FC<SocialButtonProps> = ({
     <Button
       shape="circle"
       type="outline"
+      bg="text"
       color="text"
-      textColor="text"
       fullWidth
       textAlign="left"
       prefix={<Image width={25} height={25} source={uri} />}
-      textStyle={{
-        flex: 1,
-        textAlign: 'center',
-        alignItems: 'flex-end',
+      sx={{
+        text: {
+          flex: 1,
+          textAlign: 'center',
+          alignItems: 'flex-end'
+        }
       }}
       {...rest}
     >

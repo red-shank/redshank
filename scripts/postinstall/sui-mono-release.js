@@ -169,7 +169,7 @@ checkShouldRelease()
       if (packagesToRelease.length > 0) {
         if (lock) {
           await exec(
-            'npm install --package-lock-only --legacy-peer-deps --no-audit --no-fund --ignore-scripts --production=false'
+            'yarn install --ignore-engines --no-lockfile --no-progress --no-bin-links --production=false'
           )
           await exec('git add package-lock.json')
           await exec('git commit -m "chore(Root): update package-lock.json [skip ci]" --no-verify')

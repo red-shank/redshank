@@ -3,7 +3,7 @@ import type { StyleProp, ViewStyle } from 'react-native';
 import type { SizeType } from '../../@types/input';
 import type { ColorType } from '../../context/theme/types';
 import { BaseProperties } from '../../@types/utilities';
-import {SxProps} from '../../lib/styleDictionary';
+import { SxProps } from '../../lib/styleDictionary';
 
 export type BadgeVariant = 'default' | 'flat';
 export type BadgeType = 'rounded' | 'square';
@@ -18,7 +18,6 @@ export interface BadgeProps extends BaseProperties {
   borderColor?: ColorType;
   bold?: boolean;
   children?: ReactNode;
-  childrenStyle?: StyleProp<any>;
   color?: ColorType;
   content?: number | string;
   bordered?: boolean;
@@ -30,9 +29,7 @@ export interface BadgeProps extends BaseProperties {
   style?: StyleProp<ViewStyle>;
   type?: BadgeType;
   variant?: BadgeVariant;
-  wrapperStyle?: StyleProp<ViewStyle>;
-  sx?: SxProps;
-  styles?: {
+  sx?: SxProps & {
     root?: SxProps;
     badge?: SxProps;
     text?: SxProps;
@@ -43,5 +40,5 @@ export interface BadgeProps extends BaseProperties {
     right?: number;
     bottom?: number;
     left?: number;
-  }
+  };
 }

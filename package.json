@@ -44,9 +44,5 @@
     "react-test-renderer": {
       "react": "^18.2.0"
     }
-  },
-  "sui-mono": {
-    "access": "public",
-    "registry": "https://registry.npmjs.org/"
   }
 }

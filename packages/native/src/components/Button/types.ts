@@ -1,19 +1,18 @@
 import type { ReactNode, Component } from 'react';
-import type { StyleProp, TextStyle, ViewStyle } from 'react-native';
+import type { StyleProp, ViewStyle } from 'react-native';
 
 import type { ColorType } from '../../context/theme/types';
 import type { TextProps } from '../Text';
 import { BaseProperties } from '../../@types/utilities';
-import { BaseProps } from '../../@types/base';
+import { SxProps } from '../../lib/styleDictionary';
 
 export type ButtonSize = 'small' | 'middle' | 'large' | 'xLarge';
 export type ButtonType = 'solid' | 'link' | 'flat' | 'outline';
 
-export interface ButtonProps extends BaseProperties, BaseProps {
+export interface ButtonProps extends BaseProperties, SxProps {
   Component?: typeof Component;
   children: string | ReactNode;
   color?: ColorType;
-  contentStyle?: StyleProp<ViewStyle>;
   disableRipple?: boolean;
   disableTransform?: boolean;
   disabled?: boolean;
@@ -26,11 +25,14 @@ export interface ButtonProps extends BaseProperties, BaseProps {
   size?: ButtonSize;
   style?: StyleProp<ViewStyle>;
   suffix?: ReactNode;
-  suffixOrPrefixStyle?: StyleProp<ViewStyle>;
   textAlign?: 'left' | 'center' | 'right';
-  textColor?: ColorType;
   textProps?: Omit<TextProps, 'children' | 'style'>;
-  textStyle?: StyleProp<TextStyle>;
   type?: ButtonType;
   withMarginBottom?: boolean;
+  sx?: SxProps & {
+    root?: SxProps;
+    container?: SxProps;
+    icon?: SxProps;
+    text?: SxProps;
+  };
 }
