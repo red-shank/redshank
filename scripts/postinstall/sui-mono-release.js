@@ -114,13 +114,11 @@ const publish = async ({ pkg }) => {
   const {
     private: isPrivatePackage,
     config: localPackageConfig,
-    ...rest
+    ...packageConfig
   } = getPackageJson(cwd, true);
 
-  console.log({ localPackageConfig, rest });
-
   if (!isPrivatePackage) {
-    const publishAccess = getPublishAccess({ localPackageConfig });
+    const publishAccess = getPublishAccess({ localPackageConfig: packageConfig });
     await exec(`npm publish --access=${publishAccess}`, { cwd });
   }
 };
