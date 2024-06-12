@@ -7,17 +7,8 @@ const {showError} = require('@s-ui/helpers/cli')
 const {getPackageJson} = require('@s-ui/helpers/packages')
 const exec = promisify(require('child_process').exec)
 const gitUrlParse = require('git-url-parse')
-const {checkIsMonoPackage, getChangelogFilename} = require('../src/config.js')
+const {checkIsMonoPackage, getChangelogFilename, getPublishAccess} = require('../src/config.js')
 const checker = require('../src/check.js')
-
-const getPublishAccess = ({localPackageConfig = {}, packageConfig = {}}) => {
-  const publishAccess =
-    (localPackageConfig['publishConfig'] && localPackageConfig['publishConfig'].access) ||
-    (packageConfig['publishConfig'] && packageConfig['publishConfig'].access) ||
-    'restricted'
-
-  return publishAccess
-}
 
 program
   .option('-S, --scope <scope>', 'release a single scope')

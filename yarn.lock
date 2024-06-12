@@ -2581,7 +2581,7 @@
     nanoid "^3.1.23"
 
 "@redshank/native@*", "@redshank/native@file:/Users/rivaslive/Documentos/npm/redshank/packages/native":
-  version "2.11.0"
+  version "2.13.0"
   resolved "file:packages/native"
   dependencies:
     color "4.2.3"
@@ -9186,7 +9186,7 @@ react-test-renderer@18.2.0:
     react-shallow-renderer "^16.15.0"
     scheduler "^0.23.0"
 
-react@*, "react@^16.6.0 || ^17.0.0 || ^18.0.0", "react@^16.8 || ^17.0 || ^18.0", react@^18.0.0, react@^18.2.0, react@>=16.8, react@>=16.8.0, react@>=16.9.0, react@>=17.0.0, "react@16 || 17", react@18.2.0:
+react@*, "react@^16.0.0 || ^17.0.0 || ^18.0.0", "react@^16.6.0 || ^17.0.0 || ^18.0.0", "react@^16.8 || ^17.0 || ^18.0", react@^18.0.0, react@^18.2.0, react@>=16.8, react@>=16.8.0, react@>=16.9.0, react@>=17.0.0, "react@16 || 17", react@18.2.0:
   version "18.2.0"
   resolved "https://registry.npmjs.org/react/-/react-18.2.0.tgz"
   integrity sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ==

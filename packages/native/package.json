@@ -7,7 +7,7 @@
   "react-native": "dist/index.js",
   "source": "src/index.ts",
   "prepublish": "tsc --composite false",
-  "publishConfig": {
+  "sui-mono": {
     "access": "public",
     "registry": "https://registry.npmjs.org/"
   },
