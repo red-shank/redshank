@@ -1,5 +1,14 @@
 # CHANGELOG
 
+# 2.16.0 (2024-06-11)
+
+
+### Features
+
+* rollback publish config ([6f5e77c](https://github.com/red-shank/redshank/commit/6f5e77c6ca4faceef5948cc3bd4cef770b1aa75d))
+
+
+
 # 2.15.0 (2024-06-11)
 
 
