@@ -1,5 +1,14 @@
 # CHANGELOG
 
+# 2.18.0 (2024-06-11)
+
+
+### Bug Fixes
+
+* change size medium radio ([a2065d3](https://github.com/red-shank/redshank/commit/a2065d3c1040ae64b94faf06b7855353351914a0))
+
+
+
 # 2.17.0 (2024-06-11)
 
 
