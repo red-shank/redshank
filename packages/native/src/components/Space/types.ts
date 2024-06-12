@@ -4,8 +4,9 @@ import {
   AlignType,
   GutterType,
   JustifyType,
-  OrientationType,
+  OrientationType
 } from '../../@types/utilities';
+import { SxProps } from '../../lib/styleDictionary';
 
 export interface SpaceProps {
   align?: AlignType;
@@ -14,6 +15,7 @@ export interface SpaceProps {
   justify?: JustifyType;
   orientation?: OrientationType;
   style?: ViewStyle;
+  sx?: SxProps;
 }
 
 export interface SpaceItemProps {
