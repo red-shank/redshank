@@ -1,10 +1,11 @@
 import React, { FC, useState } from 'react';
-import { StyleSheet, Text as TextNative, View } from 'react-native';
+import { StyleSheet, Text as TextNative } from 'react-native';
 
 import { Button } from '../Button';
 import useTheme from '../../context/theme/useTheme';
 import type { TextProps } from './types';
 import createSxStyle from '../../lib/sx';
+import { Box } from '../Box';
 
 export const Text: FC<TextProps> = ({
   children,
@@ -13,6 +14,7 @@ export const Text: FC<TextProps> = ({
   lineHeight,
   fontSize,
   sx,
+  styles,
   transformText = 'none',
   size = 'base',
   color = 'text',
@@ -23,7 +25,6 @@ export const Text: FC<TextProps> = ({
   bold = false,
   underline = false,
   italic = false,
-  containerStyle = {},
   style = {},
   readMoreButtonProps = {},
   ...restSxProps
@@ -39,15 +40,15 @@ export const Text: FC<TextProps> = ({
   const font = bold ? 'bold' : 'regular';
 
   return (
-    <View style={StyleSheet.flatten([containerStyle, styles.container])}>
+    <Box sx={styles?.root} position="relative">
       <TextNative
         numberOfLines={showMore ? 0 : lines}
         style={StyleSheet.flatten([
-          transformText !== 'none' && styles[transformText],
-          italic && styles.italic,
-          underline && styles.underline,
+          transformText !== 'none' && _styles[transformText],
+          italic && _styles.italic,
+          underline && _styles.underline,
           {
-            fontSize: fontSizes[size] || size
+            fontSize: fontSizes[size] || size || fontSize
           },
           lineHeight && {
             lineHeight: lineHeight
@@ -60,7 +61,10 @@ export const Text: FC<TextProps> = ({
               textAlign: align,
               color,
               style,
-              sx
+              sx: {
+                ...sx,
+                ...styles?.text
+              }
             },
             theme
           )
@@ -75,17 +79,17 @@ export const Text: FC<TextProps> = ({
           {...readMoreButtonProps}
           style={StyleSheet.flatten([
             readMoreButtonProps?.style,
-            styles.readMore
+            _styles.readMore
           ])}
         >
           {showMore ? textReadLess : textReadMore}
         </Button>
       )}
-    </View>
+    </Box>
   );
 };
 
-const styles = StyleSheet.create({
+const _styles = StyleSheet.create({
   container: {
     position: 'relative'
   },

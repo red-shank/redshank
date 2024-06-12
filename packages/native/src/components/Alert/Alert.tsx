@@ -1,21 +1,27 @@
 import React from 'react';
-import { Platform, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { Platform, StyleSheet, TouchableOpacity } from 'react-native';
 
 import { getOpacity } from '../../utils';
 import useTheme from '../../context/theme/useTheme';
 import { Icon } from '../Icon';
 import { Text } from '../Text';
 import type { AlertProps, AlertType } from './types';
+import { Box } from '../Box';
+import createSxStyle, { getSxStyleAndProps } from '../../lib/sx';
 
 export const Alert: React.FC<AlertProps> = ({
   message,
+  sx,
+  styles,
   sizeIcon = 18,
   shadow = false,
   closable = false,
   type = 'warning',
   withIcon = true,
+  ...restProps
 }) => {
-  const { colors, borderRadius, isDark } = useTheme();
+  const theme = useTheme();
+  const { colors, isDark } = useTheme();
   const [show, setShow] = React.useState<boolean>(true);
 
   const onClose = React.useCallback(() => setShow(false), []);
@@ -26,83 +32,94 @@ export const Alert: React.FC<AlertProps> = ({
 
   const internalColor = type === 'info' ? 'primary' : type;
 
+  const resolveProps = getSxStyleAndProps(
+    { ...sx, sx: styles?.root, ...restProps },
+    theme
+  );
+
   return (
-    <View
+    <Box
+      p={16}
+      borderRadius={2}
+      flexDirection="row"
+      justifyContent="space-between"
+      backgroundColor={getOpacity(colors[internalColor], 0.2)}
       style={StyleSheet.flatten([
-        styles.alert,
-        {
-          borderRadius: borderRadius.xxl,
-          backgroundColor: getOpacity(colors[internalColor], 0.2),
-        },
         shadow && {
-          ...styles.shadow,
+          ..._styles.shadow,
           shadowColor: colors[internalColor],
           shadowOpacity: Platform.select({
             default: isDark ? 0.9 : 0.5,
-            web: 0.4,
-          }),
+            web: 0.4
+          })
         },
+        resolveProps.style
       ])}
+      {...resolveProps.props}
     >
-      <View
-        style={StyleSheet.flatten([
-          styles.content,
-          { paddingRight: closable ? 35 : 0 },
-        ])}
+      <Box
+        flexDirection="row"
+        flex={1}
+        p={closable ? 8 : 0}
+        sx={styles?.container}
       >
         {withIcon && (
-          <View style={styles.prefix}>
+          <Box mr={1} sx={styles?.icon}>
             <SelectIcon type={type} size={sizeIcon} />
-          </View>
+          </Box>
         )}
-        <Text testID="RN_TEXT_MESSAGE" containerStyle={{ width: '100%' }}>
+        <Text
+          styles={{
+            root: {
+              width: '100%'
+            }
+          }}
+          sx={styles?.text}
+          testID="RN_TEXT_MESSAGE"
+        >
           {message}
         </Text>
-      </View>
+      </Box>
 
       {closable && (
-        <TouchableOpacity onPress={onClose}>
+        <TouchableOpacity
+          onPress={onClose}
+          style={createSxStyle(
+            {
+              sx: styles?.button
+            },
+            theme
+          )}
+        >
           <Icon name="close" type="antdesign" color="text" size={18} />
         </TouchableOpacity>
       )}
-    </View>
+    </Box>
   );
 };
 
-const styles = StyleSheet.create({
-  alert: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    padding: 16,
-  },
-  content: {
-    flexDirection: 'row',
-    flex: 1,
-  },
-  prefix: {
-    marginRight: 8,
-  },
+const _styles = StyleSheet.create({
   shadow: {
     shadowOffset: Platform.select({
       default: {
         width: 0,
-        height: 20,
+        height: 20
       },
       web: {
         width: 0,
-        height: 9,
-      },
+        height: 9
+      }
     }),
     shadowRadius: Platform.select({
       default: 12,
-      web: 20,
-    }),
-  },
+      web: 20
+    })
+  }
 });
 
 const SelectIcon = ({
   type,
-  size = 18,
+  size = 18
 }: {
   type: AlertType;
   size?: number;

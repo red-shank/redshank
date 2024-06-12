@@ -32,7 +32,10 @@ export interface TextProps extends SxProps {
   bold?: boolean;
   align?: AlignType;
   style?: StyleProp<TextStyle>;
-  containerStyle?: StyleProp<ViewStyle>;
+  styles?: {
+    root?: SxProps;
+    text?: SxProps;
+  };
   readMoreButtonProps?: Partial<ButtonProps>;
 
   [key: string]: unknown;
