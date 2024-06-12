@@ -199,7 +199,7 @@ export const colorsDark = {
 
 export const sizes = {
   small: 32,
-  middle: 45,
+  middle: 40,
   large: 50,
   xLarge: 55
 };

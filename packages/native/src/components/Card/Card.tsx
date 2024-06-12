@@ -178,7 +178,6 @@ Card.Divider = Divider;
 
 const styles = StyleSheet.create({
   wrapper: {
-    flex: 1,
     borderStyle: 'solid',
     flexDirection: 'column',
     position: 'relative'
