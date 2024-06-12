@@ -2,7 +2,7 @@ import {
   GestureResponderEvent,
   LayoutChangeEvent,
   NativeSyntheticEvent,
-  TargetedEvent,
+  TargetedEvent
 } from 'react-native';
 
 export type JustifyType = 'start' | 'end' | 'center';

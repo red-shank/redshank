@@ -1,7 +1,7 @@
 import React from 'react';
-import { StyleSheet, Text, Image as ImageRN } from 'react-native';
+import { StyleSheet } from 'react-native';
 import useTheme from '../../context/theme/useTheme';
-import { Image } from '../Image';
+import { Image as RImage } from '../Image';
 import { Box } from '../Box';
 import { Ripple } from '../Ripple';
 import { Icon } from '../Icon';
@@ -11,6 +11,8 @@ import {
   getTextForAvatar
 } from '../../utils';
 import { AvatarIcon, AvatarProps } from './types';
+import createSxStyle, { getSxStyleAndProps } from '../../lib/sx';
+import { Text } from '../Text';
 
 export const Avatar: React.FC<AvatarProps> = ({
   src,
@@ -24,17 +26,20 @@ export const Avatar: React.FC<AvatarProps> = ({
   backgroundColor,
   borderColor,
   textStyle,
-  showCountText = 2,
   innerBorderColor,
+  sx,
+  styles,
+  showCountText = 2,
   bordered = !!borderColor,
   Component = onPress || onPressIn || onPressOut || onLongPress ? Ripple : Box,
-  ImageComponent = ImageRN,
+  ImageComponent = RImage,
   size = 40,
   type = 'circle',
   style = {},
   imageProps = {},
   ...restTouchProps
 }) => {
+  const theme = useTheme();
   const { colors } = useTheme();
 
   const isShowText = !src && Boolean(text);
@@ -76,6 +81,15 @@ export const Avatar: React.FC<AvatarProps> = ({
 
   const internalPaddingImage = !bordered ? 0 : size * 0.15;
 
+  const resolveProps = getSxStyleAndProps(
+    {
+      sx: styles?.root,
+      ...sx,
+      ...restTouchProps
+    },
+    theme
+  );
+
   return (
     <Component
       width={size}
@@ -83,13 +97,14 @@ export const Avatar: React.FC<AvatarProps> = ({
       borderRadius={borderRadiusElement}
       bg={innerBorderColorResolve}
       style={StyleSheet.flatten([
-        styles.container,
+        _styles.container,
         bordered && {
           borderWidth: 2,
           borderStyle: 'solid',
           borderColor: borderColorResolve
         },
-        style
+        style,
+        resolveProps.style
       ])}
       // @ts-ignore
       onPress={onPress}
@@ -106,8 +121,9 @@ export const Avatar: React.FC<AvatarProps> = ({
         borderRadius={borderRadiusElement}
         justifyContent="center"
         alignItems="center"
+        sx={styles?.container}
         style={StyleSheet.flatten([
-          styles.container,
+          _styles.container,
           !bordered && {
             padding: internalPaddingImage
           }
@@ -115,6 +131,7 @@ export const Avatar: React.FC<AvatarProps> = ({
       >
         {isShowText ? (
           <Text
+            sx={styles?.text}
             style={StyleSheet.flatten([
               { color: colorText || getColorForBackground(_backgroundColor) },
               {
@@ -130,9 +147,15 @@ export const Avatar: React.FC<AvatarProps> = ({
           <Icon
             color={textColor || getColorForBackground(_backgroundColor)}
             {...((icon || {}) as AvatarIcon)}
+            style={createSxStyle(
+              {
+                sx: styles?.icon
+              },
+              theme
+            )}
           />
         ) : (
-          <Image
+          <ImageComponent
             source={sourceImage}
             resizeMode="cover"
             width={size}
@@ -144,9 +167,14 @@ export const Avatar: React.FC<AvatarProps> = ({
                 height: size - internalPaddingImage
               },
               { borderRadius: borderRadiusElement },
-              imageProps && imageProps.style
+              imageProps && imageProps.style,
+              createSxStyle(
+                {
+                  sx: styles?.image
+                },
+                theme
+              )
             ])}
-            ImageComponent={ImageComponent}
           />
         )}
       </Box>
@@ -154,7 +182,7 @@ export const Avatar: React.FC<AvatarProps> = ({
   );
 };
 
-const styles = StyleSheet.create({
+const _styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
     alignItems: 'center'

@@ -5,6 +5,7 @@ import { ImageProps } from '../Image';
 import { ImageSrcType } from '../../@types/image';
 import { BaseProperties } from '../../@types/utilities';
 import { ColorType } from '../../context/theme/types';
+import { SxProps } from '../../lib/styleDictionary';
 
 export type AvatarIcon = Omit<IconObject, 'iconStyle'>;
 
@@ -21,6 +22,14 @@ export interface AvatarProps extends BaseProperties {
   size?: number;
   src?: ImageSrcType;
   style?: StyleProp<ViewStyle>;
+  sx?: SxProps;
+  styles?: {
+    root?: SxProps;
+    container?: SxProps;
+    icon?: SxProps;
+    text?: SxProps;
+    image?: SxProps;
+  };
   text?: string;
   textColor?: ColorType;
   textStyle?: StyleProp<TextStyle>;
