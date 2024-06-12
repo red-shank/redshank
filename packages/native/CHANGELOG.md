@@ -1,5 +1,14 @@
 # CHANGELOG
 
+# 2.17.0 (2024-06-11)
+
+
+### Features
+
+* added alert sx props ([efb1fac](https://github.com/red-shank/redshank/commit/efb1fac5d622bd4bf288ecd1be11eb8dae4b9859))
+
+
+
 # 2.16.0 (2024-06-11)
 
 
