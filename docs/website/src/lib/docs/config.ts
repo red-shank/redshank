@@ -1,7 +1,7 @@
 // Tag to use if FORCE_TAG is enabled (only for production build)
 export const TAG = 'master'; // Github branch
 
-export const PROPS_PATH = 'website/content/pages';
+export const PROPS_PATH = 'docs/website/content/pages';
 
 export const ASSETS_PATH = '/content/public';
 
