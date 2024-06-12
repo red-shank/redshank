@@ -1,5 +1,14 @@
 # CHANGELOG
 
+# 2.15.0 (2024-06-11)
+
+
+### Features
+
+* added rebuild ([977ee81](https://github.com/red-shank/redshank/commit/977ee816038640efdd37b50dce40a104912a2c37))
+
+
+
 # 2.14.0 (2024-06-11)
 
 
