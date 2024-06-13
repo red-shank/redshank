@@ -2,6 +2,7 @@ import React, { PropsWithChildren } from 'react';
 import { BaseProps } from '../../@types/base';
 import { Box } from '../Box';
 import { FontSizesProps } from '../../context/theme/types';
+import { SxProps } from '../../lib/styleDictionary';
 
 export type ContainerSize = Pick<
   FontSizesProps,
@@ -9,8 +10,12 @@ export type ContainerSize = Pick<
 >;
 
 export type ContainerProps = PropsWithChildren<
-  Omit<BaseProps, 'flexDirection' | 'justifyContent'> & {
+  Omit<BaseProps, 'flexDirection' | 'justifyContent' | 'sx'> & {
     size?: keyof ContainerSize;
+    sx?: SxProps & {
+      root?: SxProps;
+      container?: SxProps;
+    };
   }
 >;
 
@@ -22,10 +27,22 @@ const paddingSizes: ContainerSize = {
   xl: 5
 };
 
-export function Container({ children, size = 'sm', ...rest }: ContainerProps) {
+export function Container({
+  children,
+  size = 'sm',
+  sx,
+  ...rest
+}: ContainerProps) {
   return (
-    <Box {...rest} px={paddingSizes[size]}>
-      {children}
+    <Box
+      {...rest}
+      sx={{
+        ...sx,
+        ...sx?.root
+      }}
+      p={paddingSizes[size]}
+    >
+      <Box sx={sx?.container}>{children}</Box>
     </Box>
   );
 }
