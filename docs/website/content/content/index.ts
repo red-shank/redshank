@@ -12,6 +12,11 @@ import * as carouselContent from './carrousel';
 import * as collapseContent from './collapse';
 import * as headerContent from './stickyHeader';
 import * as space from './space';
+import * as boxContent from './box';
+import * as centerContent from './center';
+import * as horizontalCenterContent from './horizontalCenter';
+import * as verticalCenterContent from './verticalCenter';
+import * as containerContent from './container';
 import * as checkbox from './checkbox';
 import * as controller from './controller';
 import * as datePicker from './datePicker';
@@ -38,6 +43,11 @@ export default {
   carouselContent,
   collapseContent,
   headerContent,
+  centerContent,
+  horizontalCenterContent,
+  verticalCenterContent,
+  containerContent,
+  boxContent,
   form,
   modal,
   alert,

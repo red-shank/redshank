@@ -1,0 +1,42 @@
+---
+title: 'Container'
+description: 'A Container component used as a wrapper to group and organize other components within the application. It helps control layout, styling, and alignment of elements, enhancing the user interface and user experience.'
+url: https://redshank.app/docs/components/container
+---
+
+```jsx
+import { Container } from '@redshank/native';
+```
+
+<Spacer y={2}/>
+
+<Playground
+  title="Default Container"
+  desc="Added padding in vertical and horizontal."
+  code={containerContent.defaultCode}
+/>
+
+<Spacer y={2}/>
+
+<Playground
+  title="Sizing"
+  desc="You can change the size padding in container."
+  code={containerContent.size}
+/>
+
+<Spacer y={3}/>
+
+### APIs
+
+<Spacer y={2}/>
+
+#### Props
+
+You can pass other props from [Box](/docs/components/box#apis) to the Center component.
+
+| Attribute    | Type                  | Accepted values          | Description           | Default |
+|--------------|-----------------------|--------------------------|-----------------------|---------|
+| **children** | `string`  `ReactNode` | any                      | Component to center   |         |
+| **size**     | `ContainerSize`       | `xs` `sm` `md` `lg` `xl` | Spacing padding added | `sm`    |
+
+<Spacer y={2}/>

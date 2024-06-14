@@ -20,6 +20,7 @@ const HomeTemplate = () => {
         <Dots />
         <Banner />
         <WhyBeautyDesign />
+        <WhatCanDoIt />
         <Suspense
           fallback={
             <div className="h-96 bg-[#151718] w-full flex items-center justify-center">
@@ -32,7 +33,6 @@ const HomeTemplate = () => {
         >
           <PlaygroundSection />
         </Suspense>
-        <WhatCanDoIt />
         <DarkAndLightTheme />
         <Donations />
       </Container>

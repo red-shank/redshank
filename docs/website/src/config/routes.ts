@@ -25,6 +25,12 @@ const ROUTES = {
     en: "Default theme",
     path: '/docs/default-theme'
   },
+  SX_PROPS: {
+    name: 'The sx props',
+    es: "La sx prop",
+    en: "The sx prop",
+    path: '/docs/the-sx-prop'
+  },
   PROVIDER: {
     name: 'Provider',
     es: "Proveedor",

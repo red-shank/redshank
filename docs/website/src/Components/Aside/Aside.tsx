@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic';
 import { Text } from '@nextui-org/react';
 
-import menu from '@/assets/v1.json';
+import menu from '@/versions/v1.json';
 import * as icons from '@/Components/Icons';
 import { isProd } from '@/config';
 

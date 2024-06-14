@@ -17,7 +17,7 @@ import {
 
 const ExpandContent = () => (
   <Box>
-    <Title marginBottom={0} level={3}>
+    <Title mb={0} level={3}>
       Title here
     </Title>
     <Text>
@@ -25,7 +25,7 @@ const ExpandContent = () => (
       assumenda blanditiis distinctio dolore dolorem eum hic illum ipsa laborum
       nam nemo nesciunt optio, quasi quo sequi similique soluta tempora!
     </Text>
-    <Button style={{ marginVertical: 20 }}>Start up</Button>
+    <Button my={2}>Start up</Button>
   </Box>
 );
 
@@ -37,14 +37,15 @@ const MyComponent = () => {
       <Container gap={1.5}>
         <Card expandContent={<ExpandContent />}>
           <Card.Header isAbsolute>
-            <Title marginBottom={0} level={3}>
+            <Title mb={0} level={3}>
               Absolute
             </Title>
             <Text>This is a Camera</Text>
           </Card.Header>
           <Card.Body>
             <Image
-              style={{ borderRadius: borderRadius.card, height: 250 }}
+            height={250}
+              style={{ borderRadius: borderRadius.card }}
               source={{
                 uri: "https://images.pexels.com/photos/7858126/pexels-photo-7858126.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
               }}
@@ -57,13 +58,13 @@ const MyComponent = () => {
 
         <Card expandContent={<ExpandContent />}>
           <Card.Header>
-            <Title marginBottom={0} level={3}>
+            <Title mb={0} level={3}>
               Default
             </Title>
             <Text>This is a Camera</Text>
           </Card.Header>
           <Image
-            style={{ height: 250 }}
+            height={200}
             source={{
               uri: "https://images.pexels.com/photos/17383711/pexels-photo-17383711/free-photo-of-fondo-de-pantalla-de-la-camara.jpeg?auto=compress&cs=tinysrgb&w=1600"
             }}
@@ -78,13 +79,13 @@ const MyComponent = () => {
           rippleProps={{ disableRipple: false }}
         >
           <Card.Header>
-            <Title marginBottom={0} level={3}>
+            <Title mb={0} level={3}>
               With Ripple
             </Title>
             <Text>This is a other Camera</Text>
           </Card.Header>
           <Image
-            style={{ height: 250 }}
+            height={200}
             source={{
               uri: "https://images.pexels.com/photos/16873016/pexels-photo-16873016/free-photo-of-camara-lente-nikon-mesa-negra.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
             }}
@@ -98,7 +99,7 @@ const MyComponent = () => {
           <Card.Header isAbsolute={false} style={styles.contentHead}>
             <Avatar text="Avatar" />
             <Box ml={1}>
-              <Title marginBottom={0} level={3}>
+              <Title mb={0} level={3}>
                 Fox
               </Title>
               <Text>This is an Animal</Text>
@@ -116,7 +117,7 @@ const MyComponent = () => {
 
         <Card withBorder>
           <Card.Header isAbsolute={false}>
-            <Title marginBottom={0} level={3}>
+            <Title mb={0} level={3}>
               With Border
             </Title>
             <Text>This is an Animal</Text>
@@ -129,7 +130,6 @@ const MyComponent = () => {
           </Card.Body>
         </Card>
       </Container>
-      <Box height={75} />
     </ScrollView>
   );
 };

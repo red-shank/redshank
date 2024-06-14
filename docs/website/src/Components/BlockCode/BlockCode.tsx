@@ -62,7 +62,7 @@ const BlockCode = ({
   };
 
   return (
-    <div className={`relative ${className}`}>
+    <div className={`relative mt-2 ${className}`}>
       <TextCodeStyle
         isInline={isInline}
         className="mb-4 pr-11 text-white"

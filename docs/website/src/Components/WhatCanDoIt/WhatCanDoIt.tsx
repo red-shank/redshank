@@ -24,19 +24,20 @@ const WhatCanDoIt = () => {
       </Grid>
       <Grid xs={12} sm={8} alignItems="center" direction="column">
         <Title className="text-center">
-          Reusable Components and easy to implement
+          <code className="text-6xl">Sx</code> props for create beautiful apps very fast
         </Title>
         <Text size="$2xl" className="text-center w-full mb-4">
           With{' '}
           <Text as="strong" color="warning" transform="capitalize">
             {REPO_NAME}
           </Text>{' '}
-          you can use any component with few lines of code and with great
-          customization, and most importantly very easy to use and understand.
+          You can build UI by directly passing the styles to the root of the
+          components or by sx prop these styles use customizable spacing and can
+          access the theme, such as for the color palette.
         </Text>
         <Button className="mb-5">
-          <Link href={ROUTES.COMPONENTS.path} className="text-current">
-            Components
+          <Link href={ROUTES.SX_PROPS.path} className="text-current">
+            View More
           </Link>
         </Button>
       </Grid>

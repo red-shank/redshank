@@ -9,6 +9,7 @@ type SnackProps = {
   mode?: 'mobile' | 'all';
   snackId?: string;
   snackName?: string;
+  className?: string;
 };
 
 const dependencies = `@expo/vector-icons@^14.0.0,${PACKAGE_NAME}@${LIB_VERSION}`;
@@ -28,6 +29,7 @@ const Playground = ({
   code,
   mode = 'all',
   snackId,
+  className = '',
   snackName = '@redshank'
 }: SnackProps) => {
   const snackRef = useRef<any>(null);
@@ -65,17 +67,15 @@ const Playground = ({
   }, [updateIframeContent]);
 
   return (
-    <>
-      <WrapperStyled className="overflow-hidden border-none w-full">
-        <iframe
-          ref={snackRef}
-          frameBorder={0}
-          width="100%"
-          height="100%"
-          id={`expo-snack-${snackId}`}
-        />
-      </WrapperStyled>
-    </>
+    <WrapperStyled className={`overflow-hidden border-none w-full ${className}`}>
+      <iframe
+        ref={snackRef}
+        frameBorder={0}
+        width="100%"
+        height="100%"
+        id={`expo-snack-${snackId}`}
+      />
+    </WrapperStyled>
   );
 };
 

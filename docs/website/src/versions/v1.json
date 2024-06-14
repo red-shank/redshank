@@ -11,14 +11,19 @@
         "name": "Getting started"
       },
       {
-        "key": "provider",
-        "path": "/docs/provider",
-        "name": "Provider"
+        "key": "the-sx-prop",
+        "path": "/docs/the-sx-prop",
+        "name": "The sx prop"
       },
       {
         "key": "default-theme",
         "path": "/docs/default-theme",
         "name": "Default theme"
+      },
+      {
+        "key": "provider",
+        "path": "/docs/provider",
+        "name": "Provider"
       },
       {
         "key": "dark-mode",
@@ -66,6 +71,34 @@
     ]
   },
   {
+    "key": "alignments",
+    "name": "Alignment",
+    "type": "component",
+    "icon": "LayoutIcon",
+    "children": [
+      {
+        "key": "center",
+        "path": "/docs/components/center",
+        "name": "Center"
+      },
+      {
+        "key": "container",
+        "path": "/docs/components/container",
+        "name": "Container"
+      },
+      {
+        "key": "horizontal-center",
+        "path": "/docs/components/horizontal-center",
+        "name": "Horizontal Center"
+      },
+      {
+        "key": "vertical-center",
+        "path": "/docs/components/vertical-center",
+        "name": "Vertical Center"
+      }
+    ]
+  },
+  {
     "key": "data-display",
     "name": "Data Display",
     "type": "component",
@@ -80,6 +113,11 @@
         "key": "badge",
         "path": "/docs/components/badge",
         "name": "Badge"
+      },
+      {
+        "key": "box",
+        "path": "/docs/components/box",
+        "name": "Box"
       },
       {
         "key": "card",
@@ -102,14 +140,14 @@
         "name": "Image"
       },
       {
-        "key": "sticky-header",
-        "path": "/docs/components/sticky-header",
-        "name": "Sticky Header"
-      },
-      {
         "key": "space",
         "path": "/docs/components/space",
         "name": "Space"
+      },
+      {
+        "key": "sticky-header",
+        "path": "/docs/components/sticky-header",
+        "name": "Sticky Header"
       }
     ]
   },
@@ -119,6 +157,11 @@
     "type": "component",
     "icon": "FontIcon",
     "children": [
+      {
+        "key": "calendar",
+        "path": "/docs/components/calendar",
+        "name": "Calendar"
+      },
       {
         "key": "checkbox",
         "path": "/docs/components/checkbox",
@@ -158,6 +201,29 @@
         "key": "switch",
         "path": "/docs/components/switch",
         "name": "Switch"
+      }
+    ]
+  },
+  {
+    "key": "navigation",
+    "name": "Navigation",
+    "type": "component",
+    "icon": "LayoutIcon",
+    "children": [
+      {
+        "key": "screen-loading",
+        "path": "/docs/components/screen-loading",
+        "name": "Screen Loading"
+      },
+      {
+        "key": "scroll-view",
+        "path": "/docs/components/scroll-view",
+        "name": "Scroll View"
+      },
+      {
+        "key": "tabs",
+        "path": "/docs/components/tabs",
+        "name": "Tabs"
       }
     ]
   },

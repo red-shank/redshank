@@ -7,7 +7,7 @@ import CodeBlock, { CodeBlockSnippet } from '@/Components/BlockCode';
 
 const Playground = React.lazy(() => import('@/Components/Playground'));
 
-const Table: React.FC<React.PropsWithChildren<unknown>> = ({ children }) => {
+export const Table: React.FC<React.PropsWithChildren<unknown>> = ({ children }) => {
   return (
     <div className="docs-table-container">
       <table className="docs-table">{children}</table>
@@ -26,7 +26,7 @@ const Table: React.FC<React.PropsWithChildren<unknown>> = ({ children }) => {
     </div>
   );
 };
-const Thead: React.FC<React.PropsWithChildren<unknown>> = ({ children }) => {
+export const Thead: React.FC<React.PropsWithChildren<unknown>> = ({ children }) => {
   const { theme } = useTheme();
 
   return (
@@ -60,10 +60,10 @@ const Thead: React.FC<React.PropsWithChildren<unknown>> = ({ children }) => {
     </thead>
   );
 };
-const Trow: React.FC<React.PropsWithChildren<unknown>> = ({ children }) => {
+export const Trow: React.FC<React.PropsWithChildren<unknown>> = ({ children }) => {
   return <tr className="docs-tr">{children}</tr>;
 };
-const Tcol: React.FC<React.PropsWithChildren<unknown>> = ({ children }) => {
+export const Tcol: React.FC<React.PropsWithChildren<unknown>> = ({ children }) => {
   const { theme } = useTheme();
 
   return (

@@ -1,0 +1,36 @@
+---
+title: 'Box'
+description: 'The Box element is a wrapper that allows applying styles using the "sx" property, which can access the global theme of the application.'
+url: https://redshank.app/docs/components/center
+---
+
+> **_NOTE:_**  More information in [The Sx Prop](/docs/the-sx-prop).
+
+```jsx
+import { Box } from '@redshank/native';
+```
+
+<Spacer y={2}/>
+
+<Playground
+  title="Center"
+  desc="You can center a element using the Center component."
+  code={boxContent.defaultCode}
+/>
+
+<Spacer y={3}/>
+
+### APIs
+
+<Spacer y={2}/>
+
+#### Props
+
+You can pass other props from [Sx](/docs/the-sx-prop) or pass in sx prop.
+
+| Attribute    | Type        | Accepted values    | Description         | Default |
+|--------------|-------------|--------------------|---------------------|---------|
+| **children** | `ReactNode` | any                | Component to center |         |
+| **sx**       | `SxProps`   | `object` `sxProps` | styles for apply    |         |
+
+<Spacer y={2}/>

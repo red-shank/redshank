@@ -4,7 +4,7 @@ import mapboxPrism from '@mapbox/rehype-prism';
 import remarkAutoLink from 'remark-autolink-headings';
 import { serialize } from 'next-mdx-remote/serialize';
 
-import v1 from '@/assets/v1.json';
+import v1 from '@/versions/v1.json';
 import { isProd } from '@/config';
 import ROUTES from '@/config/routes';
 import Layout from '@/Components/Layout';

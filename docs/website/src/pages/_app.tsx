@@ -7,7 +7,7 @@ import { NextUIProvider } from '@nextui-org/react';
 import { Analytics } from '@vercel/analytics/react';
 
 import { darkTheme, lightTheme } from '@/styles/stitches.config';
-import menuComponents from '@/assets/v1.json';
+import menuComponents from '@/versions/v1.json';
 import { ComponentProvider, ComponentProps } from '@/context/components';
 
 function MyApp({ Component, pageProps }: AppProps) {
