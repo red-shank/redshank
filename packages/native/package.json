@@ -61,7 +61,6 @@
     "utility-types": "^3.10.0"
   },
   "peerDependencies": {
-    "dayjs": "^1.11.10",
     "react-native-vector-icons": ">7.0.0"
   },
   "repository": {
