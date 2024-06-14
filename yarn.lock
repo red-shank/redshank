@@ -3351,11 +3351,10 @@
     "@react-types/shared" "^3.23.1"
 
 "@redshank/native@*", "@redshank/native@file:/Users/rivaslive/Documentos/npm/redshank/packages/native":
-  version "2.25.0"
+  version "2.26.0"
   resolved "file:packages/native"
   dependencies:
     color "4.2.3"
-    dayjs "^1.11.10"
     rc-field-form "1.32.2"
     react-native-input-scroll-view "1.11.0"
     react-native-picker-select "8.0.4"
