@@ -1,5 +1,14 @@
 # CHANGELOG
 
+# 2.26.0 (2024-06-14)
+
+
+### Features
+
+* remove dayjs with peer dependency ([41ff8b6](https://github.com/red-shank/redshank/commit/41ff8b69946018006d92858534eba82ff5fcdba6))
+
+
+
 # 2.25.0 (2024-06-13)
 
 
