@@ -8,7 +8,7 @@ export const Carousel: FC<CarouselProps> = ({
   widthChild,
   children = [],
   showScroll = false,
-  scrollViewProps = {},
+  scrollViewProps = {}
 }) => {
   const ref = useRef<ScrollView>(null);
   const { width } = useTheme();
@@ -33,7 +33,7 @@ export const Carousel: FC<CarouselProps> = ({
         top: 0,
         left: 30,
         bottom: 0,
-        right: 30,
+        right: 30
       }}
       {...scrollViewProps}
     >
@@ -43,8 +43,8 @@ export const Carousel: FC<CarouselProps> = ({
             style={StyleSheet.flatten([
               styles.view,
               {
-                width: widthChild ?? width - 60,
-              },
+                width: widthChild ?? width - 60
+              }
             ])}
           >
             {child}
@@ -57,9 +57,9 @@ export const Carousel: FC<CarouselProps> = ({
 
 const styles = StyleSheet.create({
   container: {
-    paddingBottom: 10,
+    paddingBottom: 10
   },
   view: {
-    margin: 5,
-  },
+    margin: 5
+  }
 });

@@ -9,7 +9,7 @@ const Footer: React.FC<PropFooterProps> = ({
   children,
   style,
   withBorder = false,
-  noPadding = false,
+  noPadding = false
 }) => {
   const { haveContent } = usePopConfirm();
   const { paddingSizes, colors } = useTheme();
@@ -21,9 +21,9 @@ const Footer: React.FC<PropFooterProps> = ({
         {
           padding: noPadding ? 0 : paddingSizes.md,
           borderTopColor:
-            withBorder || haveContent ? colors.border : 'transparent',
+            withBorder || haveContent ? colors.border : 'transparent'
         },
-        style,
+        style
       ])}
     >
       {children}
@@ -34,8 +34,8 @@ const Footer: React.FC<PropFooterProps> = ({
 const styles = StyleSheet.create({
   wrapper: {
     borderColor: 'transparent',
-    borderTopWidth: 0.5,
-  },
+    borderTopWidth: 0.5
+  }
 });
 
 export default Footer;

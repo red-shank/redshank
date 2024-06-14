@@ -1,6 +1,6 @@
 import dayjs from 'dayjs';
 import { StyleSheet, View } from 'react-native';
-import { memo, ReactNode, useMemo } from 'react';
+import React, { memo, ReactNode, useMemo } from 'react';
 
 import Cell from './Cell';
 import { useCalendarContext } from '../../context/calendar';
@@ -25,7 +25,7 @@ function WeekDaysNumber({ days, id }: WeekDaysProps) {
 
   const checkSelected = useMemo(() => {
     return days.find(
-      day => day.id === selectedDate?.format(FORMAT_COMPARE_DATE),
+      (day) => day.id === selectedDate?.format(FORMAT_COMPARE_DATE)
     );
   }, [days, selectedDate]);
 
@@ -40,7 +40,6 @@ function WeekDaysNumber({ days, id }: WeekDaysProps) {
         weeks.push(
           <Cell
             key={formatDate}
-            fontSize="md"
             selected={checkSelected?.date?.isSame?.(formatDate)}
             style={StyleSheet.flatten([styles?.daysOfWeekItem])}
             content={date.format('D')}
@@ -48,7 +47,7 @@ function WeekDaysNumber({ days, id }: WeekDaysProps) {
             isNow={date.isSame(now.format('YYYY-MM-DD'))}
             disabledRipple={isAfterMonth || isBeforeMonth}
             textColor={isAfterMonth || isBeforeMonth ? 'accents6' : 'text'}
-          />,
+          />
         );
       }
     });
@@ -59,7 +58,8 @@ function WeekDaysNumber({ days, id }: WeekDaysProps) {
   return (
     <Target name={id}>
       <View
-        style={StyleSheet.flatten([style.wrapper, styles?.daysOfWeekWrapper])}>
+        style={StyleSheet.flatten([style.wrapper, styles?.daysOfWeekWrapper])}
+      >
         {render}
       </View>
     </Target>
@@ -70,8 +70,8 @@ const style = StyleSheet.create({
   wrapper: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center',
-  },
+    alignItems: 'center'
+  }
 });
 
 export default memo(WeekDaysNumber);

@@ -22,13 +22,13 @@ const initialValues = {
   marginBottom: 15,
   errors: [],
   setErrors: () => {},
-  removeError: () => {},
+  removeError: () => {}
 };
 
 type FormInternalContext = {
   children: React.ReactNode;
   marginBottom?: number;
-  form?: InternalFormInstance
+  form?: InternalFormInstance;
 };
 
 export const FormContext =
@@ -37,7 +37,7 @@ export const FormContext =
 export const FormProvider = ({
   children,
   form: _form,
-  marginBottom = 15,
+  marginBottom = 15
 }: FormInternalContext) => {
   const [internalForm] = Form.useForm(_form);
   const [errors, setErrors] = React.useState<ErrorProps[]>([]);
@@ -63,7 +63,7 @@ export const FormProvider = ({
         removeError,
         marginBottom,
         internalForm,
-        setErrors: onChangeError,
+        setErrors: onChangeError
       }}
     >
       {children}

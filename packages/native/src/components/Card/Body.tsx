@@ -21,9 +21,9 @@ const Body: React.FC<CardBodyProps> = ({
       style={StyleSheet.flatten([
         styles.wrapper,
         {
-          padding: isOpen || !withPadding ? 0 : paddingSizes.card,
+          padding: isOpen || !withPadding ? 0 : paddingSizes.card
         },
-        style,
+        style
       ])}
       {...restProps}
     >
@@ -34,8 +34,8 @@ const Body: React.FC<CardBodyProps> = ({
 
 const styles = StyleSheet.create({
   wrapper: {
-    width: '100%',
-  },
+    width: '100%'
+  }
 });
 
 export default React.memo(Body);

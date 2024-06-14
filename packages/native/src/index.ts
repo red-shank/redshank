@@ -119,5 +119,8 @@ export * from './context/screen-loading';
 // Colors utilities
 export * from './utils/colors';
 
+// Calendar
+export * from './components/Calendar';
+
 // useModal
 export { useModal };

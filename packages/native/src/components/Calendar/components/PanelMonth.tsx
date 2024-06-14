@@ -1,15 +1,15 @@
 import React, { memo, useMemo } from 'react';
-import { View } from 'react-native';
 
 import Month from './Render/Month';
 import { useCalendarMonthContext } from '../context/CalendarMonth';
 import { Button } from '../../Button';
 import { useCalendarContext } from '../context/calendar';
+import { Box } from '../../Box';
 
 export type MonthProps = {};
 
 function PanelMonth({}: MonthProps) {
-  const { onClose } = useCalendarContext();
+  const { onCancel, onSelectedDate, okText, cancelText } = useCalendarContext();
   const { currentMonth, onApplyDate, onToggleYearList, openYearList } =
     useCalendarMonthContext();
 
@@ -21,32 +21,34 @@ function PanelMonth({}: MonthProps) {
     <>
       <Month key={label} withoutMarginBottom />
 
-      <View
-        style={{
-          gap: 10,
-          flexDirection: 'row',
-          paddingHorizontal: 15,
-          marginTop: 10,
-          marginBottom: 20,
-          justifyContent: 'flex-end'
-        }}
+      <Box
+        px={2}
+        mt={1}
+        mb={2}
+        gap={1}
+        flexDirection="row"
+        justifyContent="flex-end"
       >
-        <Button
-          type="link"
-          color="text"
-          onPress={onClose}
-          style={{ height: 35, paddingHorizontal: 10 }}
-        >
-          Cancel
-        </Button>
-        <Button
-          type="link"
-          style={{ height: 35, paddingHorizontal: 10 }}
-          onPress={openYearList ? onToggleYearList : onApplyDate}
-        >
-          Ok
-        </Button>
-      </View>
+        {onCancel && (
+          <Button
+            type="link"
+            color="text"
+            onPress={onCancel}
+            sx={{ height: 35, paddingHorizontal: 10 }}
+          >
+            {cancelText ?? 'Cancel'}
+          </Button>
+        )}
+        {onSelectedDate && (
+          <Button
+            type="link"
+            sx={{ height: 35, paddingHorizontal: 10 }}
+            onPress={() => (openYearList ? onToggleYearList() : onApplyDate())}
+          >
+            {okText ?? 'Ok'}
+          </Button>
+        )}
+      </Box>
     </>
   );
 }

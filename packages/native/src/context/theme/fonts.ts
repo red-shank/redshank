@@ -50,5 +50,5 @@ export const titleFontSizes: TitleFontSizesProps = {
   level3: 24,
   level4: 22,
   level5: 18,
-  level6: 16,
+  level6: 16
 };

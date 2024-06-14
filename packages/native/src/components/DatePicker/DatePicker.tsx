@@ -172,7 +172,7 @@ export const DatePicker: FC<DatePickerProps> = ({
               backgroundColor={background}
               selected={date.toISOString()}
               onSelectedDate={onApplyDate}
-              onClose={() => setShow(false)}
+              onCancel={() => setShow(false)}
               styles={{
                 layout: {
                   paddingTop: 20,

@@ -7,7 +7,7 @@ import type { CardDividerProps } from './types';
 const Divider: React.FC<CardDividerProps> = ({
   height = 1,
   background = 'border',
-  style = {},
+  style = {}
 }) => {
   const { colors } = useTheme();
 
@@ -16,9 +16,9 @@ const Divider: React.FC<CardDividerProps> = ({
       style={StyleSheet.flatten([
         {
           height: height,
-          backgroundColor: colors[background] || background,
+          backgroundColor: colors[background] || background
         },
-        style,
+        style
       ])}
     />
   );

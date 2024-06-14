@@ -9,13 +9,13 @@ type PopConfirmContext = {
 const defaultValue: PopConfirmContext = {
   haveHeader: false,
   haveContent: false,
-  addElement() {},
+  addElement() {}
 };
 
 const PopConfirmContext = React.createContext<PopConfirmContext>(defaultValue);
 
 export const PopConfirmProvider = ({
-  children,
+  children
 }: {
   children?: React.ReactNode;
 }) => {
@@ -27,14 +27,14 @@ export const PopConfirmProvider = ({
       if (type === 'Header' && !prev.haveHeader) {
         return {
           ...prev,
-          haveHeader: true,
+          haveHeader: true
         };
       }
 
       if (type === 'Content' && !prev.haveContent) {
         return {
           ...prev,
-          haveContent: true,
+          haveContent: true
         };
       }
       return prev;
@@ -46,7 +46,7 @@ export const PopConfirmProvider = ({
       value={{
         addElement,
         haveHeader: state.haveHeader,
-        haveContent: state.haveContent,
+        haveContent: state.haveContent
       }}
     >
       {children}

@@ -10,7 +10,7 @@ export const Space: React.FC<SpaceProps> = ({
   align = 'start',
   orientation = 'horizontal',
   gutter = [10, 10],
-  style,
+  style
 }) => {
   const renderChildren = React.useMemo(() => {
     if (children) {
@@ -30,9 +30,9 @@ export const Space: React.FC<SpaceProps> = ({
         orientation === 'vertical' ? styles.vertical : styles.horizontal,
         {
           justifyContent: justifies[justify],
-          alignItems: justifies[align],
+          alignItems: justifies[align]
         },
-        style,
+        style
       ])}
     >
       {renderChildren}
@@ -43,13 +43,13 @@ export const Space: React.FC<SpaceProps> = ({
 const SpaceItem: React.FC<SpaceItemProps> = ({
   children,
   orientation,
-  gutter,
+  gutter
 }) => (
   <View
     style={StyleSheet.flatten({
       marginRight: gutter[0],
       marginBottom: gutter[1],
-      width: orientation === 'vertical' ? '100%' : 'auto',
+      width: orientation === 'vertical' ? '100%' : 'auto'
     })}
   >
     {children}
@@ -59,10 +59,10 @@ const SpaceItem: React.FC<SpaceItemProps> = ({
 export const styles = StyleSheet.create({
   vertical: {
     flexWrap: 'nowrap',
-    flexDirection: 'column',
+    flexDirection: 'column'
   },
   horizontal: {
     flexWrap: 'wrap',
-    flexDirection: 'row',
-  },
+    flexDirection: 'row'
+  }
 });

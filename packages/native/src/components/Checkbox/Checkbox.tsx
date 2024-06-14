@@ -16,26 +16,26 @@ export const Checkbox: React.FC<CheckboxProps> = ({
   defaultValue = false,
   type = 'circle',
   size = 'middle',
-  error = false,
+  error = false
 }) => {
   const { colors, borderRadius } = useTheme();
 
   const [active, setActive] = React.useState<boolean>(false);
   const [state] = React.useState({
-    fadeAnim: new Animated.Value(0),
+    fadeAnim: new Animated.Value(0)
   });
 
   const fadeInAnimation = React.useCallback(() => {
     Animated.timing(state.fadeAnim, {
       toValue: 0,
       duration: 0,
-      useNativeDriver: true,
+      useNativeDriver: true
     }).start(() => {
       Animated.timing(state.fadeAnim, {
         toValue: 1,
         duration: 500,
         delay: 10,
-        useNativeDriver: true,
+        useNativeDriver: true
       }).start();
     });
   }, [state.fadeAnim]);
@@ -80,13 +80,13 @@ export const Checkbox: React.FC<CheckboxProps> = ({
             borderColor: active
               ? colors[activeColor] || activeColor
               : error
-              ? colors.error
-              : colors[inactiveColor] || inactiveColor,
+                ? colors.error
+                : colors[inactiveColor] || inactiveColor
           },
           {
-            borderRadius: borderR,
+            borderRadius: borderR
           },
-          sizes[size],
+          sizes[size]
         ])}
       >
         <Animated.View style={styleAnimation(active, state.fadeAnim)}>
@@ -100,9 +100,9 @@ export const Checkbox: React.FC<CheckboxProps> = ({
                   : 'transparent',
                 borderColor: active
                   ? colors[activeColor] || activeColor
-                  : 'transparent',
+                  : 'transparent'
               },
-              internalSizes[size],
+              internalSizes[size]
             ])}
           />
         </Animated.View>
@@ -130,50 +130,50 @@ const styles = StyleSheet.create({
     position: 'relative',
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 22,
+    marginBottom: 22
   },
   radioButton: {
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 1,
-    borderStyle: 'solid',
+    borderStyle: 'solid'
   },
   labelView: {
     paddingRight: 8,
     paddingLeft: 8,
-    flexDirection: 'row',
+    flexDirection: 'row'
   },
   flexOne: {
-    flex: 1,
-  },
+    flex: 1
+  }
 });
 
 const sizes = StyleSheet.create({
   small: {
     width: 16,
-    height: 16,
+    height: 16
   },
   middle: {
     width: 24,
-    height: 24,
+    height: 24
   },
   large: {
     width: 34,
-    height: 34,
-  },
+    height: 34
+  }
 });
 
 const internalSizes = StyleSheet.create({
   small: {
     width: 8,
-    height: 8,
+    height: 8
   },
   middle: {
     width: 12,
-    height: 12,
+    height: 12
   },
   large: {
     width: 17,
-    height: 17,
-  },
+    height: 17
+  }
 });

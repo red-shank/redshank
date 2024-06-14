@@ -2,7 +2,7 @@ import { memo } from 'react';
 
 export type PickerProps = {};
 
-function PanelPicker({ }: PickerProps) {
+function PanelPicker({}: PickerProps) {
   // const { yearsWithMonth } = useMemo(
   //   () => getListYears(yearProp, options),
   //   [options, yearProp],

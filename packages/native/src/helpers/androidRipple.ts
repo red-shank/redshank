@@ -6,7 +6,7 @@ const androidRipple = (
   return {
     borderless: false,
     color: rippleColor,
-    radius: -5,
+    radius: -5
   };
 };
 

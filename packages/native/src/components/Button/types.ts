@@ -11,7 +11,7 @@ export type ButtonType = 'solid' | 'link' | 'flat' | 'outline';
 
 export interface ButtonProps extends BaseProperties, SxProps {
   Component?: typeof Component;
-  children: string | ReactNode;
+  children?: ReactNode;
   color?: ColorType;
   disableRipple?: boolean;
   disableTransform?: boolean;

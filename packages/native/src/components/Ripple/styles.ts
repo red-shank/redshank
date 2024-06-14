@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
     ...StyleSheet.absoluteFillObject,
 
     backgroundColor: 'transparent',
-    overflow: 'hidden',
+    overflow: 'hidden'
   },
 
   ripple: {
@@ -14,8 +14,8 @@ const styles = StyleSheet.create({
     height: radius * 2,
     borderRadius: radius,
     overflow: 'hidden',
-    position: 'absolute',
-  },
+    position: 'absolute'
+  }
 });
 
 export { styles, radius };

@@ -1,5 +1,5 @@
 import dayjs from 'dayjs';
-import {
+import React, {
   createContext,
   memo,
   PropsWithChildren,
@@ -21,7 +21,7 @@ export interface CalendarMonthContextProps {
   onNextMonth: () => void;
   onApplyDate: () => void;
   openYearList: boolean;
-  onToggleYearList: () => void;
+  onToggleYearList: (year?: number) => void;
 }
 
 const CalendarMonthContext = createContext<CalendarMonthContextProps | null>(
@@ -43,14 +43,21 @@ const CalendarMonthProvider = ({ children }: PropsWithChildren) => {
     setCurrentMonth((prev) => prev.startOf('month').add(1, 'month'));
   }, []);
 
-  const onToggleYearList = useCallback(() => {
-    if (openYearList && inInternalYear) {
-      toggleYearList();
-      onSelectDate(selectedDate.set('year', inInternalYear.year()), false);
-    } else {
-      toggleYearList();
-    }
-  }, [selectedDate, openYearList, inInternalYear]);
+  const onToggleYearList = useCallback(
+    (year?: number) => {
+      if (openYearList) {
+        if (year) {
+          const newDate = inInternalYear.set('year', year);
+          setInternalYear(newDate);
+          onSelectDate(newDate, false);
+        }
+        toggleYearList();
+      } else {
+        toggleYearList();
+      }
+    },
+    [inInternalYear, onSelectDate, openYearList, toggleYearList]
+  );
 
   const onApplyDate = useCallback(() => {
     if (openYearList) {
@@ -65,10 +72,16 @@ const CalendarMonthProvider = ({ children }: PropsWithChildren) => {
     } else {
       onSelectDate(selectedDate);
     }
-  }, [selectedDate, inInternalYear, openYearList]);
+  }, [
+    openYearList,
+    inInternalYear,
+    selectedDate,
+    toggleYearList,
+    onSelectDate
+  ]);
 
   useEffect(() => {
-    if (!!selectedDate) {
+    if (selectedDate) {
       setCurrentMonth(selectedDate);
       setInternalYear(selectedDate);
     }

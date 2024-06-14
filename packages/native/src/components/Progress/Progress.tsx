@@ -1,4 +1,4 @@
-import React, {useEffect, useMemo} from "react";
+import React, { useEffect, useMemo } from 'react';
 import { StyleSheet, View, Animated } from 'react-native';
 import useTheme from '../../context/theme/useTheme';
 import { ProgressProps } from './types';
@@ -40,12 +40,11 @@ export const Progress: React.FC<ProgressProps> = ({
     return progress / 100;
   }, [count, current]);
 
-
   useEffect(() => {
     Animated.timing(animation, {
       toValue: calcWidth,
       duration: 750,
-      useNativeDriver: false,
+      useNativeDriver: false
     }).start();
   }, [calcWidth]);
 
@@ -74,7 +73,7 @@ export const Progress: React.FC<ProgressProps> = ({
             backgroundColor: backgroundActiveColor,
             width: animation.interpolate({
               inputRange: [0, 1],
-              outputRange: ['0%', '100%'],
+              outputRange: ['0%', '100%']
             }),
             height: size,
             borderRadius: size

@@ -8,7 +8,7 @@ import type { PropContentProps } from './types';
 const Content: React.FC<PropContentProps> = ({
   children,
   style,
-  withBorder = false,
+  withBorder = false
 }) => {
   const { addElement, haveHeader } = usePopConfirm();
   const { colors, paddingSizes } = useTheme();
@@ -24,9 +24,9 @@ const Content: React.FC<PropContentProps> = ({
         {
           padding: paddingSizes.md,
           borderTopColor:
-            withBorder || haveHeader ? colors.border : 'transparent',
+            withBorder || haveHeader ? colors.border : 'transparent'
         },
-        style,
+        style
       ])}
     >
       {children}
@@ -37,8 +37,8 @@ const Content: React.FC<PropContentProps> = ({
 const styles = StyleSheet.create({
   wrapper: {
     borderColor: 'transparent',
-    borderTopWidth: 0.5,
-  },
+    borderTopWidth: 0.5
+  }
 });
 
 export default Content;

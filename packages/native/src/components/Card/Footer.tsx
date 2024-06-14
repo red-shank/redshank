@@ -49,14 +49,14 @@ const Footer: React.FC<CardFooterProps> = ({
             backgroundColor,
             position: isAbsolute ? 'absolute' : 'relative',
             borderBottomLeftRadius: borderRadius.card,
-            borderBottomRightRadius: borderRadius.card,
+            borderBottomRightRadius: borderRadius.card
           },
           isAbsolute && {
             bottom,
             left,
-            right,
+            right
           },
-          style,
+          style
         ])}
         {...restProps}
       >
@@ -68,8 +68,8 @@ const Footer: React.FC<CardFooterProps> = ({
 
 const styles = StyleSheet.create({
   wrapper: {
-    width: '100%',
-  },
+    width: '100%'
+  }
 });
 
 export default React.memo(Footer);

@@ -1,7 +1,7 @@
 import type { StyleProp, TextStyle, ViewStyle } from 'react-native';
 
 import type { ButtonProps } from '../Button';
-import type {AlignType, TransformType} from '../../@types/typography';
+import type { AlignType, TransformType } from '../../@types/typography';
 import type { FontSizesProps } from '../../context/theme/types';
 import { SxProps } from '../../lib/styleDictionary';
 import { ReactNode } from 'react';

@@ -1,9 +1,9 @@
+import { DimensionValue } from 'react-native';
 import { ThemeProps } from '../context/theme/types';
 import styleDictionary, {
   resolverDictionaryKey,
   SxProps
 } from './styleDictionary';
-import { DimensionValue, Animated } from 'react-native';
 
 export function extractSxProps({
   otherProps,
@@ -56,9 +56,10 @@ export function createStyleFromSx({
   return Object.entries(sx).reduce((acc, [keyProp, value]) => {
     const key = resolverDictionaryKey[keyProp] ?? keyProp;
     const propertyDictionary = styleDictionary.properties[keyProp];
+    if (!propertyDictionary) return acc;
 
     if (!propertyDictionary?.resolve) {
-      propertyDictionary.resolve = (value: DimensionValue) => value;
+      propertyDictionary.resolve = (_value: DimensionValue) => _value;
     }
 
     if (propertyDictionary.type === 'color') {

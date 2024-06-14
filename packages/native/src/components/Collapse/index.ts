@@ -9,7 +9,7 @@ type ComponentExport = FC<CollapseProps> & {
   Panel: typeof Panel;
 };
 
-(C as ComponentExport).Panel = Panel
+(C as ComponentExport).Panel = Panel;
 const Collapse = C as ComponentExport;
 
 export { Collapse };

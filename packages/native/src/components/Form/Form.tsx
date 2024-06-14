@@ -2,7 +2,7 @@ import React, { FC, useEffect, useMemo } from 'react';
 import FormField, {
   useForm as useFormField,
   FormProps as FormFieldProps,
-  FormInstance,
+  FormInstance
 } from 'rc-field-form';
 import { FormItem, FormItemProps } from './FormItem';
 import { FormProvider, useFormProvider, InternalFormInstance } from './context';

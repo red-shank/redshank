@@ -7,7 +7,7 @@ import {
   StatusBar,
   TouchableOpacity,
   StyleSheet,
-  View,
+  View
 } from 'react-native';
 
 import { Icon } from '../Icon';
@@ -41,7 +41,7 @@ export const Modal: React.FC<ModalProps> & ExportComponent = ({
   maskClosable = false,
   maskComponent: Component = maskClosable ? TouchableOpacity : View,
   position = 'center',
-  animationType = 'fade',
+  animationType = 'fade'
 }) => {
   const { zIndices, colors, paddingSizes, borderRadius, activeOpacity } =
     useTheme();
@@ -65,10 +65,10 @@ export const Modal: React.FC<ModalProps> & ExportComponent = ({
             backgroundColor: colors.modalMask,
             paddingHorizontal: paddingSizes.card,
             paddingVertical:
-              position === 'top' ? height : MIN_PADDING_VERTICAL * 1.5,
+              position === 'top' ? height : MIN_PADDING_VERTICAL * 1.5
           },
           fullScreen && styles.fullScreen,
-          maskStyle,
+          maskStyle
         ])}
       >
         <ComponentChild
@@ -87,10 +87,10 @@ export const Modal: React.FC<ModalProps> & ExportComponent = ({
             {
               borderRadius: borderRadius.modal,
               padding: paddingSizes.modal,
-              backgroundColor: colors.modal,
+              backgroundColor: colors.modal
             },
             fullScreen && !scrollable && styles.fullContent,
-            contentStyle,
+            contentStyle
           ])}
         >
           {closable ? (
@@ -103,7 +103,7 @@ export const Modal: React.FC<ModalProps> & ExportComponent = ({
                 scrollable && styles.closeButtonScroll,
                 fullScreen && styles.closeButtonFull,
                 { zIndex: zIndices.max },
-                buttonCloseStyle,
+                buttonCloseStyle
               ])}
             >
               <Icon
@@ -127,42 +127,42 @@ Modal.useModal = useModal;
 
 const styles = StyleSheet.create({
   wrapper: {
-    flex: 1,
+    flex: 1
   },
   content: {
-    position: 'relative',
+    position: 'relative'
   },
   fullScreen: {
     paddingHorizontal: 0,
-    paddingVertical: 0,
+    paddingVertical: 0
   },
   fullContent: {
     flex: 1,
-    padding: 0,
+    padding: 0
   },
   top: {
-    justifyContent: 'flex-start',
+    justifyContent: 'flex-start'
   },
   center: {
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   bottom: {
-    justifyContent: 'flex-end',
+    justifyContent: 'flex-end'
   },
   closeButton: {
     position: 'absolute',
     top: Platform.select({
       ios: 15,
-      default: 15,
+      default: 15
     }),
-    right: 15,
+    right: 15
   },
   closeButtonFull: {
     top: 30,
-    right: 20,
+    right: 20
   },
   closeButtonScroll: {
     top: 0,
-    right: 0,
-  },
+    right: 0
+  }
 });

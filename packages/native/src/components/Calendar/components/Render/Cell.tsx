@@ -1,4 +1,4 @@
-import { useMemo, useRef } from 'react';
+import React, { useMemo, useRef } from 'react';
 import { Animated, StyleSheet } from 'react-native';
 import { Text, TextProps } from '../../../Text';
 import { Ripple } from '../../../Ripple';
@@ -27,7 +27,7 @@ export default function Cell({
   isLabel,
   style
 }: CellProps) {
-  const { width, borderRadius, colors, zIndices } = useTheme();
+  const { width, borderRadius, colors } = useTheme();
   const fadeAnimation = useRef(new Animated.Value(1)).current;
 
   const handlePress = () => {
@@ -59,6 +59,7 @@ export default function Cell({
 
   return (
     <Ripple
+      p={1.1}
       onPress={handlePress}
       disabled={disabledRipple}
       style={StyleSheet.flatten([styles.content, style])}
@@ -77,7 +78,7 @@ export default function Cell({
               opacity: fadeAnimation,
               borderRadius: borderRadius.max,
               backgroundColor: colors.primary,
-              zIndex: zIndices['1']
+              zIndex: 1
             }
           ])}
         />
@@ -92,12 +93,13 @@ export default function Cell({
         containerStyle={StyleSheet.flatten([
           styleSize,
           isLabel && styles.textHeightAuto,
-          styles.textWrapper,
-          {
-            zIndex: zIndices['2'],
-            width: '100%'
-          }
+          styles.textWrapper
         ])}
+        sx={{
+          root: {
+            zIndex: 2
+          }
+        }}
       >
         {content}
       </Text>
@@ -109,7 +111,6 @@ const styles = StyleSheet.create({
   content: {
     position: 'relative',
     flex: 1 / 7,
-    paddingVertical: 5,
     overflow: 'hidden',
     alignItems: 'center'
   },
@@ -128,15 +129,15 @@ const styles = StyleSheet.create({
     height: 'auto'
   },
   textSm: {
-    width: 20,
-    height: 20
+    width: 14,
+    height: 14
   },
   textMd: {
-    width: 28,
-    height: 28
+    width: 18,
+    height: 18
   },
   textLg: {
-    width: 32,
-    height: 32
+    width: 27,
+    height: 27
   }
 });

@@ -11,7 +11,7 @@ const Header: React.FC<PropHeaderProps> = ({
   image,
   title,
   description,
-  style,
+  style
 }) => {
   const { addElement } = usePopConfirm();
   const { paddingSizes } = useTheme();
@@ -25,9 +25,9 @@ const Header: React.FC<PropHeaderProps> = ({
       style={StyleSheet.flatten([
         styles.wrapper,
         {
-          padding: paddingSizes.md,
+          padding: paddingSizes.md
         },
-        style,
+        style
       ])}
     >
       {image ? <View style={styles.image}>{image}</View> : null}
@@ -47,14 +47,14 @@ const Header: React.FC<PropHeaderProps> = ({
 
 const styles = StyleSheet.create({
   wrapper: {
-    flexDirection: 'row',
+    flexDirection: 'row'
   },
   image: {
-    marginRight: 10,
+    marginRight: 10
   },
   content: {
-    flex: 1,
-  },
+    flex: 1
+  }
 });
 
 export default Header;

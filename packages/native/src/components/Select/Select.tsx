@@ -73,12 +73,12 @@ export const Select: React.FC<SelectProps> = ({
         Icon={
           Platform.select({
             web: undefined,
-            default: RenderIcon,
+            default: RenderIcon
           }) as any
         }
         placeholder={{
           label: placeholder,
-          value: null,
+          value: null
           // colors[placeholderColor] ?? placeholderColor
         }}
         onValueChange={onInternalChange}
@@ -87,16 +87,16 @@ export const Select: React.FC<SelectProps> = ({
             key: key || index,
             value: _value,
             label,
-            ...restItem,
+            ...restItem
           })
         )}
         // IOS props
         pickerProps={{
           itemStyle: {
             backgroundColor: colors[background] ?? background,
-            color: colors[color] ?? color,
+            color: colors[color] ?? color
           },
-          ...pickerProps,
+          ...pickerProps
         }}
         // general props
         touchableWrapperProps={{
@@ -108,17 +108,17 @@ export const Select: React.FC<SelectProps> = ({
             borderColor: isError
               ? colors.error
               : colors[borderInputColor] ?? borderInputColor,
-            backgroundColor: colors[background] ?? background,
-          },
+            backgroundColor: colors[background] ?? background
+          }
         }}
         style={{
           inputAndroid: {
             fontSize: fontSizes.base,
-            color: isError ? colors.error : colors[color] ?? color,
+            color: isError ? colors.error : colors[color] ?? color
           },
           inputIOS: {
             fontSize: fontSizes.base,
-            color: isError ? colors.error : colors[color] ?? color,
+            color: isError ? colors.error : colors[color] ?? color
           },
           inputWeb: {
             fontSize: fontSizes.base,
@@ -130,14 +130,14 @@ export const Select: React.FC<SelectProps> = ({
             borderColor: isError
               ? colors.error
               : colors[borderInputColor] ?? borderInputColor,
-            backgroundColor: colors[background] ?? background,
+            backgroundColor: colors[background] ?? background
           },
           modalViewMiddle: {
             borderBottomWidth: 1,
             borderTopColor: borderModalColor,
             borderBottomColor: borderModalColor,
-            backgroundColor: bgModalColor,
-          },
+            backgroundColor: bgModalColor
+          }
         }}
       />
 
@@ -148,7 +148,7 @@ export const Select: React.FC<SelectProps> = ({
 
 const styles = StyleSheet.create({
   wrapper: {
-    position: 'relative',
+    position: 'relative'
   },
   arrow: {
     position: 'absolute',
@@ -157,7 +157,7 @@ const styles = StyleSheet.create({
     bottom: 0,
     alignItems: 'center',
     justifyContent: 'center',
-    right: 0,
+    right: 0
   },
-  icon: {},
+  icon: {}
 });

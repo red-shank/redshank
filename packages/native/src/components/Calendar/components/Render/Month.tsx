@@ -1,5 +1,5 @@
 import dayjs from 'dayjs';
-import { memo, ReactNode, useMemo } from 'react';
+import React, { memo, ReactNode, useMemo } from 'react';
 import duration from 'dayjs/plugin/duration';
 import { StyleSheet, View } from 'react-native';
 

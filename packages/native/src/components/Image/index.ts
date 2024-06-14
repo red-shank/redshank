@@ -9,7 +9,7 @@ const DefaultImage = Object.assign(Image, {
   prefetch: ImageNative.prefetch,
   abortPrefetch: ImageNative.abortPrefetch,
   queryCache: ImageNative.queryCache,
-  resolveAssetSource: ImageNative.resolveAssetSource,
+  resolveAssetSource: ImageNative.resolveAssetSource
 });
 
 export { DefaultImage as Image };

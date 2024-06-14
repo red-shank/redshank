@@ -19,7 +19,7 @@ export const Base: React.FC<MessageProps> = ({
   internalType = 'default',
   Component = onPress ? Ripple : View,
   style = {},
-  styleText = {},
+  styleText = {}
 }) => {
   const { colors, activeOpacity, paddingSizes, marginSizes, isDark } =
     useTheme();
@@ -64,13 +64,13 @@ export const Base: React.FC<MessageProps> = ({
           styles.paddingBottom,
           {
             backgroundColor,
-            paddingHorizontal: paddingSizes.md,
+            paddingHorizontal: paddingSizes.md
           },
           withBoxShadow && styles.shadowStyle,
           withBoxShadow && {
-            shadowColor: boxShadowColor,
+            shadowColor: boxShadowColor
           },
-          style,
+          style
         ])}
       >
         {withIcon && iconLeft ? iconLeft : null}
@@ -83,7 +83,7 @@ export const Base: React.FC<MessageProps> = ({
             style={StyleSheet.flatten([
               styles.contentText,
               { marginHorizontal: marginSizes.xxs, marginVertical: 0 },
-              styleText,
+              styleText
             ])}
           >
             {content}
@@ -97,30 +97,30 @@ export const Base: React.FC<MessageProps> = ({
 
 const styles = StyleSheet.create({
   wrapper: {
-    flex: 1,
+    flex: 1
   },
   content: {
     flex: 1,
     position: 'relative',
     alignItems: 'flex-end',
     flexDirection: 'row',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   shadowStyle: {
     shadowOpacity: 0.5,
     shadowOffset: {
       width: 0,
-      height: 8,
+      height: 8
     },
-    shadowRadius: 20,
+    shadowRadius: 20
   },
   paddingBottom: Platform.select({
     ios: {
-      paddingBottom: 12,
+      paddingBottom: 12
     },
     default: {
-      paddingBottom: 14,
-    },
+      paddingBottom: 14
+    }
   }),
-  contentText: {},
+  contentText: {}
 });

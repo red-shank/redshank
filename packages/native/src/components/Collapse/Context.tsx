@@ -11,7 +11,7 @@ export const defaultContextCollapse: CollapseContextProps = {
   contentColor: 'card',
   onChange: () => {},
   iconPosition: 'right',
-  showArrow: true,
+  showArrow: true
 };
 
 export const CollapseContext = createContext<CollapseContextProps>(

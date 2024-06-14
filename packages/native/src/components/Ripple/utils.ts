@@ -12,6 +12,6 @@ export const onAnimationSet = (
   return Animated.timing(state, {
     toValue,
     duration: 250,
-    useNativeDriver: true,
+    useNativeDriver: true
   }).start();
 };

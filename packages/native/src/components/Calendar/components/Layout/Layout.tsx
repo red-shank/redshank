@@ -1,19 +1,13 @@
+import React, { memo, PropsWithChildren, useEffect } from 'react';
 import useTheme from '../../../../context/theme/useTheme';
 import { Animated, StyleSheet, View } from 'react-native';
-import { memo, PropsWithChildren, ReactNode, useEffect } from 'react';
 
 import { ScrollView, useScrollTo } from '../../scrollTo';
 import { useCalendarContext } from '../../context/calendar';
 import { getWeekOfMonthFromDay } from '../../utils';
 import { useCalendarMonthContext } from '../../context/CalendarMonth';
 
-export type CalendarLayoutProps = {
-  renderCalendar: ReactNode;
-};
-
-function CalendarLayout({
-  renderCalendar
-}: PropsWithChildren<CalendarLayoutProps>) {
+function CalendarLayout({ children }: PropsWithChildren) {
   const { colors } = useTheme();
   const { openYearList } = useCalendarMonthContext();
   const { styles: stylesProp, backgroundColor } = useCalendarContext();
@@ -21,11 +15,10 @@ function CalendarLayout({
   const Component = openYearList ? View : ScrollView;
 
   return (
-    <View style={StyleSheet.flatten([styles.wrapper])}>
+    <View style={StyleSheet.flatten([styles.wrapper, stylesProp?.layout])}>
       <Animated.View
         style={StyleSheet.flatten([
           styles.wrapper,
-          stylesProp?.layout,
           !!backgroundColor && {
             backgroundColor: colors?.[backgroundColor] || backgroundColor
           }
@@ -36,7 +29,7 @@ function CalendarLayout({
           showsVerticalScrollIndicator={false}
           showsHorizontalScrollIndicator={false}
         >
-          {renderCalendar}
+          {children}
 
           <CustomButton />
         </Component>

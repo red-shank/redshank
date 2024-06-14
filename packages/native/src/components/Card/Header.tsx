@@ -49,15 +49,15 @@ const Header: React.FC<CardHeaderProps> = ({
           backgroundColor,
           position: isAbsolute ? 'absolute' : 'relative',
           borderTopLeftRadius: borderRadius.card,
-          borderTopRightRadius: borderRadius.card,
+          borderTopRightRadius: borderRadius.card
         },
         isAbsolute && {
           top,
           left,
-          right,
+          right
         },
         isOpen && { paddingTop: statusBarHeight },
-        style,
+        style
       ])}
       {...restProps}
     >
@@ -68,8 +68,8 @@ const Header: React.FC<CardHeaderProps> = ({
 
 const styles = StyleSheet.create({
   wrapper: {
-    width: '100%',
-  },
+    width: '100%'
+  }
 });
 
 export default React.memo(Header);

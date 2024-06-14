@@ -1,75 +1,36 @@
-import { StyleSheet, View } from 'react-native';
+import React from 'react';
+import { StyleSheet } from 'react-native';
 import { useCalendarContext } from '../../context/calendar';
 
 import Cell from './Cell';
-import { locales } from '../../locales';
+import { Box } from '../../../Box';
+import dayjs from 'dayjs';
+import localeData from 'dayjs/plugin/localeData';
+
+dayjs.extend(localeData);
 
 interface WeekLabelProps {}
 
 export default function WeekDaysLabel({}: WeekLabelProps) {
   const { styles, locale } = useCalendarContext();
 
+  const weekdays = dayjs().locale(locale).localeData().weekdaysShort();
+
   return (
-    <View
+    <Box
       style={StyleSheet.flatten([style.wrapper, styles?.daysNameWeekWrapper])}
     >
-      <Cell
-        isLabel
-        content={locales[locale].week.sun}
-        textColor="accents5"
-        fontSize="base"
-        disabledRipple
-        style={StyleSheet.flatten([styles?.daysNameWeekItem])}
-      />
-      <Cell
-        isLabel
-        content={locales[locale].week.mon}
-        textColor="accents5"
-        fontSize="base"
-        disabledRipple
-        style={StyleSheet.flatten([styles?.daysNameWeekItem])}
-      />
-      <Cell
-        isLabel
-        content={locales[locale].week.tue}
-        textColor="accents5"
-        fontSize="base"
-        disabledRipple
-        style={StyleSheet.flatten([styles?.daysNameWeekItem])}
-      />
-      <Cell
-        isLabel
-        content={locales[locale].week.wed}
-        textColor="accents5"
-        fontSize="base"
-        disabledRipple
-        style={StyleSheet.flatten([styles?.daysNameWeekItem])}
-      />
-      <Cell
-        isLabel
-        content={locales[locale].week.thu}
-        textColor="accents5"
-        fontSize="base"
-        disabledRipple
-        style={StyleSheet.flatten([styles?.daysNameWeekItem])}
-      />
-      <Cell
-        isLabel
-        content={locales[locale].week.fri}
-        textColor="accents5"
-        fontSize="base"
-        disabledRipple
-        style={StyleSheet.flatten([styles?.daysNameWeekItem])}
-      />
-      <Cell
-        isLabel
-        content={locales[locale].week.sat}
-        textColor="accents5"
-        fontSize="base"
-        disabledRipple
-        style={StyleSheet.flatten([styles?.daysNameWeekItem])}
-      />
-    </View>
+      {weekdays.map((day) => (
+        <Cell
+          isLabel
+          key={day}
+          content={day}
+          textColor="accents5"
+          disabledRipple
+          style={StyleSheet.flatten([styles?.daysNameWeekItem])}
+        />
+      ))}
+    </Box>
   );
 }
 

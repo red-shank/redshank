@@ -53,7 +53,7 @@ export const FormItem = ({
 
       {isSubmit ? (
         React.cloneElement(children as JSX.Element, {
-          onPress: internalForm.submit,
+          onPress: internalForm.submit
         })
       ) : (
         <Field {...rest} name={name} rules={internalRules}>
@@ -61,7 +61,7 @@ export const FormItem = ({
             return React.cloneElement(children as JSX.Element, {
               ...childProps,
               error: !!textError,
-              textError,
+              textError
             });
           }}
         </Field>
@@ -72,12 +72,12 @@ export const FormItem = ({
 
 const styles = StyleSheet.create({
   wrapper: {
-    position: 'relative',
+    position: 'relative'
   },
   labelWrapper: {
     flexDirection: 'row',
     marginBottom: 12,
     marginTop: 0,
-    lineHeight: 0,
-  },
+    lineHeight: 0
+  }
 });

@@ -46,7 +46,6 @@
   "homepage": "https://www.redshank.app",
   "dependencies": {
     "color": "4.2.3",
-    "dayjs": "^1.11.10",
     "rc-field-form": "1.32.2",
     "react-native-input-scroll-view": "1.11.0",
     "react-native-picker-select": "8.0.4",
@@ -62,6 +61,7 @@
     "utility-types": "^3.10.0"
   },
   "peerDependencies": {
+    "dayjs": "^1.11.10",
     "react-native-vector-icons": ">7.0.0"
   },
   "repository": {

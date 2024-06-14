@@ -9,14 +9,9 @@ const path = require('path');
   console.log(`FROM: ${from}`);
   console.log(`TO: ${to}`);
 
-  fs.cp(
-    from,
-    to,
-    { recursive: true },
-    (err) => {
-      if (err) {
-        console.error(err);
-      }
+  fs.cp(from, to, { recursive: true }, (err) => {
+    if (err) {
+      console.error(err);
     }
-  );
+  });
 })();

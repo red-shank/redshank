@@ -21,7 +21,7 @@ export const isIPhoneX = () => {
 export const StatusBarHeight = Platform.select({
   ios: isIPhoneX() ? 44 : 20,
   android: StatusBar.currentHeight,
-  default: 20,
+  default: 20
 });
 
 export type LayoutType = { width: number; height: number };

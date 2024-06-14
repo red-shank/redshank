@@ -47,12 +47,12 @@ export const Collapse: React.FC<CollapseProps> = ({
         if (prev.openKeys.includes(key)) {
           newValue = {
             ...prev,
-            openKeys: [],
+            openKeys: []
           };
         } else {
           newValue = {
             ...prev,
-            openKeys: [key],
+            openKeys: [key]
           };
         }
         onStateChange?.(newValue.openKeys);

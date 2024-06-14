@@ -77,7 +77,7 @@ export function Tabs({
         }}
       >
         {items.map((item) => {
-          if (!!renderTabItem) {
+          if (renderTabItem) {
             return renderTabItem({
               key: item.key,
               label: item.label,

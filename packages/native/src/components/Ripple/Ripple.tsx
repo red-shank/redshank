@@ -16,7 +16,7 @@ import { styles, radius } from './styles';
 import useTheme from '../../context/theme/useTheme';
 import type { RippleProps, StateType } from './type';
 import WithAnimatedObject = Animated.WithAnimatedObject;
-import createSxStyle, {getSxStyleAndProps} from '../../lib/sx';
+import createSxStyle, { getSxStyleAndProps } from '../../lib/sx';
 
 export const Ripple: React.FC<RippleProps> = ({
   nativeID,
@@ -64,7 +64,7 @@ export const Ripple: React.FC<RippleProps> = ({
       ...props
     },
     theme
-  )
+  );
 
   const onLayout = (event) => {
     const { width, height } = event.nativeEvent.layout;

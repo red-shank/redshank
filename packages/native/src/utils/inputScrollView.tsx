@@ -1,6 +1,6 @@
 import React from 'react';
 import ScrollView, {
-  InputScrollViewProps,
+  InputScrollViewProps
 } from 'react-native-input-scroll-view';
 
 export const InputScrollView: React.FC<InputScrollViewProps> = ({

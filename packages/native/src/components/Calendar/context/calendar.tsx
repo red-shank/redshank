@@ -1,5 +1,5 @@
 import dayjs from 'dayjs';
-import {
+import React, {
   createContext,
   memo,
   PropsWithChildren,
@@ -11,11 +11,19 @@ import {
 import { CalendarProps, CommonCalendarProps } from '../type';
 
 export interface CalendarContextProps
-  extends Pick<CommonCalendarProps, 'styles' | 'backgroundColor' | 'onClose'> {
+  extends Pick<
+    CommonCalendarProps,
+    | 'styles'
+    | 'backgroundColor'
+    | 'onCancel'
+    | 'onSelectedDate'
+    | 'cancelText'
+    | 'okText'
+    | 'locale'
+  > {
   now: dayjs.Dayjs;
   selectedDate: dayjs.Dayjs;
   onSelectDate: (date: dayjs.Dayjs, changeDate?: boolean) => void;
-  locale: string;
 }
 
 const now = dayjs();
@@ -37,7 +45,7 @@ const CalendarProvider = ({
           'Selected must be a valid date string or date same month and year'
         );
       }
-      return dayjs(selected);
+      return selectedValidDate;
     }
     return now;
   });
@@ -52,6 +60,7 @@ const CalendarProvider = ({
 
   return (
     <CalendarContext.Provider
+      key={locale}
       value={{
         now,
         selectedDate,

@@ -8,7 +8,7 @@ const es: LocaleKeys = {
     wed: 'Mie',
     thu: 'Jue',
     fri: 'Vie',
-    sat: 'Sab',
+    sat: 'Sab'
   },
   month: {
     jan: 'Enero',
@@ -22,8 +22,8 @@ const es: LocaleKeys = {
     sep: 'Septiembre',
     oct: 'Octubre',
     nov: 'Noviembre',
-    dec: 'Diciembre',
-  },
+    dec: 'Diciembre'
+  }
 };
 
 export default es;

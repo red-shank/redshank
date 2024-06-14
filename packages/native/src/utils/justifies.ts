@@ -7,5 +7,5 @@ interface Justifies {
 export const justifies: Justifies = {
   start: 'flex-start',
   center: 'center',
-  end: 'flex-end',
+  end: 'flex-end'
 };
