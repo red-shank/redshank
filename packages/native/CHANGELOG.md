@@ -1,5 +1,14 @@
 # CHANGELOG
 
+# 2.25.0 (2024-06-13)
+
+
+### Bug Fixes
+
+* added fixed to calendar component ([4a192f3](https://github.com/red-shank/redshank/commit/4a192f3ba90ad39ce4595044c2f235503aada6ee))
+
+
+
 # 2.24.0 (2024-06-13)
 
 
