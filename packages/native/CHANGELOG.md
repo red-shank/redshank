@@ -1,5 +1,14 @@
 # CHANGELOG
 
+# 2.27.0 (2024-06-15)
+
+
+### Features
+
+* added correct props in Calendar and DatePicker ([4349e64](https://github.com/red-shank/redshank/commit/4349e64a709f4d4221a48c376b5ee4d282b69663))
+
+
+
 # 2.26.0 (2024-06-14)
 
 
