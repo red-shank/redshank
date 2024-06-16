@@ -9,6 +9,7 @@ interface CellProps {
   textColor?: TextProps['color'];
   fontSize?: TextProps['size'];
   selected?: boolean;
+  disabled?: boolean;
   isNow?: boolean;
   disabledRipple?: boolean;
   onPress?: () => void;
@@ -89,7 +90,15 @@ export default function Cell({
         size={fontSize}
         marginBottom={0}
         fontWeight={selected ? '400' : '300'}
-        color={selected ? 'white' : isNow ? 'primary' : textColor}
+        color={
+          selected
+            ? 'white'
+            : disabledRipple
+              ? 'accents5'
+              : isNow
+                ? 'primary'
+                : textColor
+        }
         containerStyle={StyleSheet.flatten([
           styleSize,
           isLabel && styles.textHeightAuto,

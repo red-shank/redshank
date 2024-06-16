@@ -20,7 +20,6 @@ export interface ButtonProps extends BaseProperties, SxProps {
   icon?: ReactNode;
   loading?: boolean;
   prefix?: ReactNode;
-  shadow?: boolean;
   shape?: 'circle' | 'round';
   size?: ButtonSize;
   style?: StyleProp<ViewStyle>;

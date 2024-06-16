@@ -131,14 +131,14 @@ export const Badge: React.FC<BadgeProps> = ({
 };
 
 const sizesPadding: Record<SizeType, number> = {
-  small: 0.5,
-  middle: 0.85,
+  small: 0.4,
+  middle: 0.65,
   large: 1
 };
 
 const fonts: Record<SizeType, keyof FontSizesProps> = {
-  small: 'xs',
-  middle: 'sm',
+  small: 'xxs',
+  middle: 'xs',
   large: 'md'
 };
 

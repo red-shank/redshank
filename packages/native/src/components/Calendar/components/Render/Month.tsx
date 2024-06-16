@@ -1,4 +1,6 @@
 import dayjs from 'dayjs';
+import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
+import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
 import React, { memo, ReactNode, useMemo } from 'react';
 import duration from 'dayjs/plugin/duration';
 import { StyleSheet, View } from 'react-native';
@@ -10,8 +12,11 @@ import { FORMAT_COMPARE_DATE, FORMAT_COMPARE_MONTH } from '../../constants';
 import { getWeeksInMonth } from '../../utils';
 import YearPicker from './YearPicker';
 import { useCalendarMonthContext } from '../../context/CalendarMonth';
+import { useCalendarContext } from '../../context/calendar';
 
 dayjs.extend(duration);
+dayjs.extend(isSameOrAfter);
+dayjs.extend(isSameOrBefore);
 
 export interface MonthProps {
   withoutMarginBottom?: boolean;
@@ -22,8 +27,8 @@ const getWeeksIndex = (size: number) => Array.from(new Array(size).keys());
 const daysOfWeekIndex = Array.from(new Array(7).keys());
 
 function Month({ withoutMarginBottom }: MonthProps) {
-  const { currentMonth } = useCalendarMonthContext();
-  const { openYearList } = useCalendarMonthContext();
+  const { min, max } = useCalendarContext();
+  const { currentMonth, openYearList } = useCalendarMonthContext();
 
   const render = useMemo(() => {
     const startMonth = dayjs(currentMonth).startOf('month');
@@ -49,6 +54,8 @@ function Month({ withoutMarginBottom }: MonthProps) {
             startMonth.format(FORMAT_COMPARE_MONTH);
 
         const isValidDate = !(isAfterMonth || isBeforeMonth);
+        const isMin = min && date.isSameOrBefore(min, 'day');
+        const isMax = max && date.isSameOrAfter(max, 'day');
 
         days.push({
           date: date,
@@ -56,7 +63,9 @@ function Month({ withoutMarginBottom }: MonthProps) {
             ? date.format(FORMAT_COMPARE_DATE)
             : `${startMonth.format('MMMM')}-${week}-${day}`,
           isBeforeMonth,
-          isAfterMonth
+          isAfterMonth,
+          isMin,
+          isMax
         });
       });
 
@@ -70,7 +79,7 @@ function Month({ withoutMarginBottom }: MonthProps) {
     }
 
     return weeks;
-  }, [currentMonth]);
+  }, [currentMonth, min, max]);
 
   return (
     <View style={StyleSheet.flatten([!withoutMarginBottom && styles.panel])}>

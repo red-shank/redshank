@@ -25,7 +25,6 @@ export default function WeekDaysLabel({}: WeekLabelProps) {
           isLabel
           key={day}
           content={day}
-          textColor="accents5"
           disabledRipple
           style={StyleSheet.flatten([styles?.daysNameWeekItem])}
         />

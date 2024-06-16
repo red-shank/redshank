@@ -9,7 +9,7 @@ import { Box } from '../../Box';
 export type MonthProps = {};
 
 function PanelMonth({}: MonthProps) {
-  const { onCancel, onSelectedDate, okText, cancelText } = useCalendarContext();
+  const { onCancel, onChange, okText, cancelText } = useCalendarContext();
   const { currentMonth, onApplyDate, onToggleYearList, openYearList } =
     useCalendarMonthContext();
 
@@ -34,15 +34,23 @@ function PanelMonth({}: MonthProps) {
             type="link"
             color="text"
             onPress={onCancel}
-            sx={{ height: 35, paddingHorizontal: 10 }}
+            sx={{
+              height: 35,
+              paddingHorizontal: 10,
+              opacity: openYearList ? 0 : 1
+            }}
           >
             {cancelText ?? 'Cancel'}
           </Button>
         )}
-        {onSelectedDate && (
+        {onChange && (
           <Button
             type="link"
-            sx={{ height: 35, paddingHorizontal: 10 }}
+            sx={{
+              height: 35,
+              paddingHorizontal: 10,
+              opacity: openYearList ? 0 : 1
+            }}
             onPress={() => (openYearList ? onToggleYearList() : onApplyDate())}
           >
             {okText ?? 'Ok'}

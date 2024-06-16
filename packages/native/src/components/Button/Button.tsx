@@ -20,7 +20,6 @@ export const Button: React.FC<ButtonProps> = ({
   style,
   disableTransform,
   disableRipple,
-  shadow,
   icon,
   suffix,
   sx,
@@ -38,15 +37,8 @@ export const Button: React.FC<ButtonProps> = ({
   shape = 'round',
   ...rest
 }) => {
-  const {
-    colors,
-    isDark,
-    fonts,
-    sizes,
-    fontSizes,
-    activeOpacity,
-    marginSizes
-  } = useTheme();
+  const { colors, fonts, sizes, fontSizes, activeOpacity, marginSizes } =
+    useTheme();
   const theme = useTheme();
 
   const isSolid = type === 'solid';
@@ -76,13 +68,6 @@ export const Button: React.FC<ButtonProps> = ({
           borderWidth: 1,
           borderColor: internalColor
         },
-        shadow && [
-          styles.shadow,
-          {
-            shadowColor: internalColor,
-            shadowOpacity: isDark ? 0.9 : 0.5
-          }
-        ],
         disabled &&
           isSolid && {
             backgroundColor: colors.accents5
@@ -128,7 +113,7 @@ export const Button: React.FC<ButtonProps> = ({
             color={
               type === 'flat'
                 ? colors[color] || color || internalColor
-                : colors[colorText] || colorText
+                : colorText
             }
           />
         )}

@@ -34,15 +34,16 @@ export function Container({
   ...rest
 }: ContainerProps) {
   return (
-    <Box
-      {...rest}
-      sx={{
-        ...sx,
-        ...sx?.root
-      }}
-      p={paddingSizes[size]}
-    >
-      <Box sx={sx?.container}>{children}</Box>
+    <Box sx={sx?.root} p={paddingSizes[size]}>
+      <Box
+        sx={{
+          ...sx,
+          ...sx?.container
+        }}
+        {...rest}
+      >
+        {children}
+      </Box>
     </Box>
   );
 }

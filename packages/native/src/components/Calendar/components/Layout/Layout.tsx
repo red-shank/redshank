@@ -15,13 +15,13 @@ function CalendarLayout({ children }: PropsWithChildren) {
   const Component = openYearList ? View : ScrollView;
 
   return (
-    <View style={StyleSheet.flatten([styles.wrapper, stylesProp?.layout])}>
+    <View style={StyleSheet.flatten([stylesProp?.layout])}>
       <Animated.View
         style={StyleSheet.flatten([
-          styles.wrapper,
           !!backgroundColor && {
             backgroundColor: colors?.[backgroundColor] || backgroundColor
-          }
+          },
+          stylesProp?.container
         ])}
       >
         <Component
@@ -52,9 +52,3 @@ function CustomButton({ trigger }: { trigger?: boolean }) {
 }
 
 export default memo(CalendarLayout);
-
-const styles = StyleSheet.create({
-  wrapper: {
-    position: 'relative'
-  }
-});

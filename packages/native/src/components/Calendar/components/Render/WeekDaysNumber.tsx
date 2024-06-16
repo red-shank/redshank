@@ -11,6 +11,8 @@ export type DayProps = {
   date: dayjs.Dayjs | null;
   id: string;
   selected?: boolean;
+  isMin?: boolean;
+  isMax?: boolean;
   isBeforeMonth?: boolean;
   isAfterMonth?: boolean;
 };
@@ -21,7 +23,8 @@ export interface WeekDaysProps {
 }
 
 function WeekDaysNumber({ days, id }: WeekDaysProps) {
-  const { now, selectedDate, onSelectDate, styles } = useCalendarContext();
+  const { now, selectedDate, onSelectDate, styles, disabled } =
+    useCalendarContext();
 
   const checkSelected = useMemo(() => {
     return days.find(
@@ -33,7 +36,7 @@ function WeekDaysNumber({ days, id }: WeekDaysProps) {
     const weeks: ReactNode[] = [];
 
     days.forEach((day, index) => {
-      const { date, isAfterMonth, isBeforeMonth } = day;
+      const { date, isAfterMonth, isBeforeMonth, isMin, isMax } = day;
       if (!date) weeks.push(<Cell key={index} content="" disabledRipple />);
       else {
         const formatDate = date.format(FORMAT_COMPARE_DATE);
@@ -45,15 +48,24 @@ function WeekDaysNumber({ days, id }: WeekDaysProps) {
             content={date.format('D')}
             onPress={() => onSelectDate(date, false)}
             isNow={date.isSame(now.format('YYYY-MM-DD'))}
-            disabledRipple={isAfterMonth || isBeforeMonth}
             textColor={isAfterMonth || isBeforeMonth ? 'accents6' : 'text'}
+            disabledRipple={
+              disabled || isMin || isMax || isAfterMonth || isBeforeMonth
+            }
           />
         );
       }
     });
 
     return weeks;
-  }, [days, checkSelected?.date, styles?.daysOfWeekItem, now, onSelectDate]);
+  }, [
+    days,
+    checkSelected?.date,
+    styles?.daysOfWeekItem,
+    now,
+    disabled,
+    onSelectDate
+  ]);
 
   return (
     <Target name={id}>

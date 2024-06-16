@@ -31,14 +31,19 @@ export interface LocaleKeys {
 
 export interface CommonCalendarProps {
   selected?: string;
+  defaultSelected?: string;
   locale?: string;
+  min?: string;
+  max?: string;
+  disabled?: boolean;
   backgroundColor?: ColorType;
   onCancel?: () => void;
   cancelText?: string;
   okText?: string;
-  onSelectedDate?: (date: string) => void;
+  onChange?: (date: string) => void;
   styles?: {
     layout?: StyleProp<ViewStyle>;
+    container?: StyleProp<ViewStyle>;
     daysNameWeekWrapper?: StyleProp<ViewStyle>;
     daysNameWeekItem?: StyleProp<ViewStyle>;
     daysOfWeekWrapper?: StyleProp<ViewStyle>;

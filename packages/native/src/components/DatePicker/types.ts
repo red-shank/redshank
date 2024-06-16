@@ -9,7 +9,6 @@ export interface DatePickerProps {
   color?: ColorType;
   defaultValue?: Date | string;
   locale?: string;
-  mode?: 'date' | 'time' | 'datetime';
   error?: boolean;
   format?: string;
   onChange?: (date: Date, dateText: string) => void;

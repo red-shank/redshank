@@ -5,6 +5,7 @@ import { useCalendarMonthContext } from '../../context/CalendarMonth';
 import { Ripple } from '../../../Ripple';
 import { Text } from '../../../Text';
 import { Box } from '../../../Box';
+import { useCalendarContext } from '../../context/calendar';
 
 export interface YearProps {}
 
@@ -12,6 +13,7 @@ const now = dayjs();
 const OFFSET_YEAR = 12;
 
 function YearPicker({}: YearProps) {
+  const { min, max, disabled } = useCalendarContext();
   const { inInternalYear, onToggleYearList } = useCalendarMonthContext();
   const [yearList, setYearList] = React.useState<number[]>(() => {
     const year = inInternalYear?.get('year') || now.get('year');
@@ -83,6 +85,14 @@ function YearPicker({}: YearProps) {
         })}
         renderItem={({ item }) => {
           const isSelected = item === inInternalYear.year();
+          const minYear = min && dayjs(min).year();
+          const maxYear = max && dayjs(max).year();
+
+          const isDisabled =
+            disabled ||
+            (minYear && item < minYear) ||
+            (maxYear && item > maxYear);
+
           return (
             <Ripple
               px={2}
@@ -90,11 +100,17 @@ function YearPicker({}: YearProps) {
               key={item}
               alignItems="center"
               justifyContent="center"
+              disabled={isDisabled}
               onPress={() => {
                 onToggleYearList(item);
               }}
             >
-              <Text bold={isSelected} color={isSelected ? 'primary' : 'text'}>
+              <Text
+                bold={isSelected}
+                color={
+                  isSelected ? 'primary' : isDisabled ? 'accents5' : 'text'
+                }
+              >
                 {item}
               </Text>
             </Ripple>

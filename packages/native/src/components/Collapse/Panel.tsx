@@ -50,7 +50,7 @@ const Panel: React.FC<CollapseItemProps> = (props) => {
         useNativeDriver: false
       })
     ]).start();
-  }, [contentHeight]);
+  }, [contentHeight, fadeAnimation, heightAnimation]);
 
   const startOutAnimation = React.useCallback(() => {
     Animated.parallel([
@@ -66,7 +66,7 @@ const Panel: React.FC<CollapseItemProps> = (props) => {
         useNativeDriver: false
       })
     ]).start();
-  }, []);
+  }, [fadeAnimation, heightAnimation]);
 
   const onInternalChange = () => {
     onChange(id);

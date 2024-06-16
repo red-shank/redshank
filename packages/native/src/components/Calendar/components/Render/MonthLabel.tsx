@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { Animated, Easing, StyleSheet, View } from 'react-native';
 import { Title } from '../../../Title';
 import useTheme from '../../../../context/theme/useTheme';
 import { useCalendarContext } from '../../context/calendar';
@@ -15,6 +15,8 @@ const buttonProps = {
 };
 
 export default function MonthLabel({}: MonthLabelProps) {
+  const rotateAnimation = React.useRef(new Animated.Value(0)).current;
+  const fadeAnimation = React.useRef(new Animated.Value(0)).current;
   const { marginSizes } = useTheme();
   const { locale } = useCalendarContext();
   const {
@@ -25,6 +27,34 @@ export default function MonthLabel({}: MonthLabelProps) {
     onToggleYearList
   } = useCalendarMonthContext();
 
+  const spin = rotateAnimation.interpolate({
+    inputRange: [0, 1],
+    outputRange: ['0deg', '90deg']
+  });
+
+  const fadeIn = fadeAnimation.interpolate({
+    inputRange: [0, 1],
+    outputRange: [0, 1]
+  });
+
+  React.useEffect(() => {
+    Animated.timing(rotateAnimation, {
+      toValue: openYearList ? 1 : 0,
+      duration: 150,
+      easing: Easing.linear, // Easing is an additional import from react-native
+      useNativeDriver: true // To make use of native driver for performance
+    }).start();
+  }, [openYearList, rotateAnimation]);
+
+  React.useEffect(() => {
+    Animated.timing(fadeAnimation, {
+      toValue: 1,
+      duration: 150,
+      easing: Easing.linear, // Easing is an additional import from react-native
+      useNativeDriver: true // To make use of native driver for performance
+    }).start();
+  }, [fadeAnimation]);
+
   return (
     <View
       style={StyleSheet.flatten([
@@ -34,19 +64,28 @@ export default function MonthLabel({}: MonthLabelProps) {
         }
       ])}
     >
-      <View style={style.title}>
-        <Title level={5} align="left">
-          {`${currentMonth.locale(locale).format('MMM')} ${currentMonth.format('YYYY')}`}
-        </Title>
-
-        <Button
-          {...buttonProps}
-          onPress={() => onToggleYearList()}
-          icon={
-            <Icon name="right" color="primary" type="antdesign" size={18} />
+      <Button
+        {...buttonProps}
+        onPress={() => onToggleYearList()}
+        sx={{
+          container: {
+            gap: 1,
+            flexDirection: 'row',
+            alignItems: 'center'
           }
-        />
-      </View>
+        }}
+        suffix={
+          <Animated.View style={{ transform: [{ rotate: spin }] }}>
+            <Icon name="right" color="primary" type="antdesign" size={18} />
+          </Animated.View>
+        }
+      >
+        <Animated.View style={[{ opacity: fadeIn }]}>
+          <Title level={5} align="left" pt={0.5}>
+            {`${currentMonth.locale(locale).format('MMM')} ${currentMonth.format('YYYY')}`}
+          </Title>
+        </Animated.View>
+      </Button>
 
       {!openYearList && (
         <View style={style.actions}>
@@ -76,12 +115,11 @@ const style = StyleSheet.create({
     width: '100%',
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
-    paddingHorizontal: 18
+    justifyContent: 'space-between'
   },
   title: {
-    flexDirection: 'row',
     gap: 8,
+    flexDirection: 'row',
     alignItems: 'center'
   },
   actions: {

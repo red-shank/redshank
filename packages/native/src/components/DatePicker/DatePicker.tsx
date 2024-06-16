@@ -16,7 +16,6 @@ import useTheme from '../../context/theme/useTheme';
 import { Ripple } from '../Ripple';
 import type { DatePickerProps } from './types';
 import { Calendar } from '../Calendar';
-import { MIN_PADDING_VERTICAL } from '../Modal';
 import { Box } from '../Box';
 
 export const DatePicker: FC<DatePickerProps> = ({
@@ -27,12 +26,7 @@ export const DatePicker: FC<DatePickerProps> = ({
   value,
   locale = 'en',
   suffix = <Icon name="clockcircleo" type="ant-design" />,
-  mode = 'date',
-  format = mode === 'date'
-    ? 'YYYY-MM-DD'
-    : mode === 'time'
-      ? 'hh:mm A'
-      : 'YYYY-MM-DD hh:mm A',
+  format = 'YYYY-MM-DD',
   error = false,
   size = 'middle',
   color = 'accents2',
@@ -41,9 +35,10 @@ export const DatePicker: FC<DatePickerProps> = ({
   style = {},
   placeholder
 }) => {
-  const { colors, borderRadius, sizes, width, paddingSizes, borderWidth } =
-    useTheme();
-  const [date, setDate] = useState<dayjs.Dayjs>(dayjs().locale(locale));
+  const { colors, borderRadius, sizes, width, borderWidth } = useTheme();
+  const [date, setDate] = useState<dayjs.Dayjs>(
+    dayjs(defaultValue, format).locale(locale)
+  );
   const [show, setShow] = useState(false);
 
   // states
@@ -74,17 +69,6 @@ export const DatePicker: FC<DatePickerProps> = ({
   }, [format, value]);
 
   useEffect(() => {
-    if (defaultValue) {
-      setDate((prev) => {
-        if (prev) {
-          return prev;
-        }
-        return dayjs(defaultValue, format);
-      });
-    }
-  }, [defaultValue, format]);
-
-  useEffect(() => {
     setError(error);
   }, [error, textError]);
 
@@ -92,6 +76,7 @@ export const DatePicker: FC<DatePickerProps> = ({
     <View>
       <View style={StyleSheet.flatten([styles.wrapper, styles.relative])}>
         <Ripple
+          disableTransform
           onPress={onPress}
           style={StyleSheet.flatten([
             styles.inputDate,
@@ -149,33 +134,27 @@ export const DatePicker: FC<DatePickerProps> = ({
       {isError && textError && <TextError>{textError}</TextError>}
 
       <Modal visible={show} transparent>
-        <Box
-          style={StyleSheet.flatten([
-            styles.modal,
-            {
-              backgroundColor: colors.modalMask,
-              paddingHorizontal: paddingSizes.card,
-              paddingVertical: MIN_PADDING_VERTICAL * 1.5
-            }
-          ])}
-        >
+        <Box bg="modalMask" style={StyleSheet.flatten([styles.modal])}>
           <Box
+            mx="auto"
             width={Platform.select<DimensionValue>({
               android: '100%',
               ios: '100%',
               default: width <= 450 ? '100%' : 450
             })}
-            mx="auto"
           >
             <Calendar
               locale={locale}
               backgroundColor={background}
               selected={date.toISOString()}
-              onSelectedDate={onApplyDate}
+              onChange={onApplyDate}
               onCancel={() => setShow(false)}
               styles={{
                 layout: {
-                  paddingTop: 20,
+                  padding: 12
+                },
+                container: {
+                  paddingTop: 16,
                   borderRadius: borderRadius.modal
                 }
               }}

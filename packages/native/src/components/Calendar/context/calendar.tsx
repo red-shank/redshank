@@ -16,10 +16,13 @@ export interface CalendarContextProps
     | 'styles'
     | 'backgroundColor'
     | 'onCancel'
-    | 'onSelectedDate'
+    | 'onChange'
     | 'cancelText'
     | 'okText'
+    | 'disabled'
     | 'locale'
+    | 'min'
+    | 'max'
   > {
   now: dayjs.Dayjs;
   selectedDate: dayjs.Dayjs;
@@ -32,14 +35,15 @@ const CalendarContext = createContext<CalendarContextProps | null>(null);
 
 const CalendarProvider = ({
   children,
-  onSelectedDate,
+  onChange,
   selected,
+  defaultSelected,
   locale = 'en',
   ...rest
 }: PropsWithChildren<CalendarProps>) => {
   const [selectedDate, setSelectedDate] = useState<dayjs.Dayjs>(() => {
-    if (selected) {
-      const selectedValidDate = dayjs(selected);
+    if (selected || defaultSelected) {
+      const selectedValidDate = dayjs(defaultSelected || selected);
       if (!selectedValidDate.isValid()) {
         throw new Error(
           'Selected must be a valid date string or date same month and year'
@@ -53,9 +57,9 @@ const CalendarProvider = ({
   const onSelectDate = useCallback(
     (date: dayjs.Dayjs, changeDate = true) => {
       setSelectedDate(date);
-      !!changeDate && onSelectedDate?.(date.toISOString());
+      !!changeDate && onChange?.(date.format('YYYY-MM-DD'));
     },
-    [onSelectedDate]
+    [onChange]
   );
 
   return (
@@ -65,6 +69,7 @@ const CalendarProvider = ({
         now,
         selectedDate,
         onSelectDate,
+        onChange,
         locale,
         ...rest
       }}
