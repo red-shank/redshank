@@ -31,11 +31,13 @@ export function Container({
   children,
   size = 'sm',
   sx,
+  flex,
   ...rest
 }: ContainerProps) {
   return (
-    <Box sx={sx?.root} p={paddingSizes[size]}>
+    <Box sx={sx?.root} flex={flex} p={paddingSizes[size]}>
       <Box
+        flex={flex}
         sx={{
           ...sx,
           ...sx?.container
