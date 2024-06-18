@@ -1,5 +1,14 @@
 # CHANGELOG
 
+# 2.28.0 (2024-06-18)
+
+
+### Bug Fixes
+
+* fixed flex in Container ([166a019](https://github.com/red-shank/redshank/commit/166a01919221abd3ca6f163868102a8830e75abd))
+
+
+
 # 2.27.0 (2024-06-15)
 
 
