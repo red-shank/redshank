@@ -6,9 +6,10 @@ export type CenterProps = PropsWithChildren<
   Omit<BaseProps, 'alignItems' | 'justifyContent'>
 >;
 
-export function Center({ children, ...rest }: CenterProps) {
+export function Center({ children, flex = 1, ...rest }: CenterProps) {
   return (
     <Box
+      flex={flex}
       alignItems="center"
       flexDirection="column"
       justifyContent="center"

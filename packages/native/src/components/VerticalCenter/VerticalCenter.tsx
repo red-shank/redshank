@@ -8,9 +8,15 @@ export type VerticalCenterProps = PropsWithChildren<
 >;
 
 export const VerticalCenter = forwardRef<View, VerticalCenterProps>(
-  ({ children, ...rest }, ref) => {
+  ({ children, flex = 1, ...rest }, ref) => {
     return (
-      <Box flexDirection="column" justifyContent="center" ref={ref} {...rest}>
+      <Box
+        flex={flex}
+        flexDirection="column"
+        justifyContent="center"
+        ref={ref}
+        {...rest}
+      >
         {children}
       </Box>
     );

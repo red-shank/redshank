@@ -28,10 +28,10 @@ const paddingSizes: ContainerSize = {
 };
 
 export function Container({
-  children,
-  size = 'sm',
   sx,
-  flex,
+  children,
+  flex = 1,
+  size = 'sm',
   ...rest
 }: ContainerProps) {
   return (

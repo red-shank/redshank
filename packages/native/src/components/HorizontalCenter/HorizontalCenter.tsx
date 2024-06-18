@@ -8,9 +8,15 @@ export type HorizontalCenterProps = PropsWithChildren<
 >;
 
 export const HorizontalCenter = forwardRef<View, HorizontalCenterProps>(
-  ({ children, ...rest }, ref) => {
+  ({ children, flex = 1, ...rest }, ref) => {
     return (
-      <Box flexDirection="column" alignItems="center" ref={ref} {...rest}>
+      <Box
+        flex={flex}
+        flexDirection="column"
+        alignItems="center"
+        ref={ref}
+        {...rest}
+      >
         {children}
       </Box>
     );
