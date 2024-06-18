@@ -1,5 +1,14 @@
 # CHANGELOG
 
+# 2.30.0 (2024-06-18)
+
+
+### Performance Improvements
+
+* added fix in Contianer and Button ([2088469](https://github.com/red-shank/redshank/commit/208846961922c34f42fef116b9983a9b0bfcba17))
+
+
+
 # 2.29.0 (2024-06-18)
 
 
