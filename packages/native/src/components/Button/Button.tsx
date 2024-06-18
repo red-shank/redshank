@@ -131,7 +131,10 @@ export const Button: React.FC<ButtonProps> = ({
                 fonts.bold,
                 {
                   fontSize: fontSizes.base,
-                  color: !isSolid ? internalColor : colorText
+                  color: colorText
+                },
+                isSolid && {
+                  color: internalColor
                 },
                 type === 'flat' && {
                   color: colorText || internalColor

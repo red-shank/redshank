@@ -35,7 +35,7 @@ export function Container({
   ...rest
 }: ContainerProps) {
   return (
-    <Box sx={sx?.root} flex={flex} p={paddingSizes[size]}>
+    <Box flex={flex} p={paddingSizes[size]} sx={sx?.root}>
       <Box
         flex={flex}
         sx={{

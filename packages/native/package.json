@@ -27,7 +27,7 @@
   ],
   "scripts": {
     "build:dev": "tsc --composite false",
-    "build": "tsc --composite false && node afterBuild.js",
+    "build": "node scripts/beforeBuild.js && tsc --composite false && node scripts/afterBuild.js",
     "build:watch": "nodemon -e ts,tsx --watch . --exec \"yarn build\"",
     "test": "jest",
     "test:update": "jest -u",
