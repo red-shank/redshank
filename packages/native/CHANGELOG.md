@@ -1,5 +1,14 @@
 # CHANGELOG
 
+# 2.31.0 (2024-06-18)
+
+
+### Features
+
+* added sx props in calendar and fix buttons ([2273834](https://github.com/red-shank/redshank/commit/2273834935a526e6e59a9ef4e25a85872fcee2b4))
+
+
+
 # 2.30.0 (2024-06-18)
 
 
