@@ -1,8 +1,6 @@
 import { PACKAGE_NAME } from '@/config';
-import generateCode from '@/content/utils/generateCode';
 
-export const BASIC_EXAMPLE = generateCode(
-  `import { Box, Text, ThemeProvider, Title } from "${PACKAGE_NAME}";
+export const BASIC_EXAMPLE = `import { Box, Text, ThemeProvider, Title } from "${PACKAGE_NAME}";
 
 export default function App() {
   return (
@@ -29,12 +27,7 @@ export default function App() {
       </Box>
     </ThemeProvider>
   );
-}`,
-  [],
-  {
-    withStyles: false
-  }
-);
+}`;
 
 export const BORDER_BASIC = `<Box sx={{ borderWidth: 1, borderColor: "primary" }} />
 // equivalent to border: '1px solid #0070F3'
@@ -60,13 +53,11 @@ export const SPACING_BASIC = `<Box sx={{ m: 2 }} />
 // equivalent to marginVertical and marginHorizontal: 16
 `;
 
-
 export const SX_BASIC = `<Box p={1} bg="card" borderRadius={1} />
 
 // equivalent to: <Box sx={{ p: 1, bg: 'card', borderRadius: 1 }} />
 // equivalent to: <View style={{ paddingVertical: 8, paddingHorizontal: 8, backgroundColor: '#222222', borderRadius: 8 }} />
 `;
-
 
 export const SX_AND_STYLE = `<Box p={1} style={{ alignItems: "center" }} />`;
 

@@ -1,23 +1,4 @@
-import { globalStyles } from './constants';
 import { PACKAGE_NAME } from '@/config';
-
-export default function generateCode(
-  code: string,
-  _imports?: string | string[],
-  options?: { withStyles?: boolean }
-) {
-  const opts = { withStyles: true, ...options };
-  const imports =
-    typeof _imports === 'string' ? _imports : _imports?.join(', ');
-
-  return `import { View, StyleSheet${
-    imports ? `, ${imports.trim()}` : ''
-  } } from 'react-native';
-${code}
-
-${opts?.withStyles ? globalStyles : ''}
-`;
-}
 
 export function generateCodeWithProvider(
   code: string,
