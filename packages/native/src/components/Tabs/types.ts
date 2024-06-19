@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import { StyleProp, ViewStyle } from 'react-native';
 import { SizeType } from '../../@types/input';
 import { ColorType } from '../../context/theme/types';
 import { SxProps } from '../../lib/styleDictionary';
@@ -14,6 +15,7 @@ export interface TabItemProps {
   size?: SizeType;
   borderRadius?: SxProps['borderRadius'];
   sx?: SxProps;
+  style?: StyleProp<ViewStyle>;
   backgroundColors?: {
     activeColor?: ColorType;
     inactiveColor?: ColorType;
@@ -55,24 +57,26 @@ export type TabsProps = Partial<Pick<TabItemProps, 'size' | 'sx'>> &
     ) => ReactNode;
     activeKey?: NumberStringValue;
     defaultActiveKey?: NumberStringValue;
-    error?: boolean;
     scrollable?: boolean;
     onChange?: (item: TabsProps['items'][0]) => void;
-    textError?: string;
-    itemSx?: SxProps;
-    wrapperSx?: SxProps;
-    containerSx?: SxProps;
     labelProps?: TabItemProps['labelProps'];
     variant?: TabsVariant;
     backgroundColors?: {
       borderColor?: ColorType;
       background?: ColorType;
     };
-    styles?: {
+    sx?: {
       root?: SxProps;
       tab_container?: SxProps;
       tab_scroll_view?: SxProps;
       content?: SxProps;
       item?: SxProps;
+    };
+    styles?: {
+      root?: StyleProp<ViewStyle>;
+      tab_container?: StyleProp<ViewStyle>;
+      tab_scroll_view?: StyleProp<ViewStyle>;
+      content?: StyleProp<ViewStyle>;
+      item?: StyleProp<ViewStyle>;
     };
   };

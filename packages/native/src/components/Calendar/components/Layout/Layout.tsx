@@ -6,23 +6,32 @@ import { ScrollView, useScrollTo } from '../../scrollTo';
 import { useCalendarContext } from '../../context/calendar';
 import { getWeekOfMonthFromDay } from '../../utils';
 import { useCalendarMonthContext } from '../../context/CalendarMonth';
+import { Box } from '../../../Box';
+import createSxStyle from '../../../../lib/sx';
 
 function CalendarLayout({ children }: PropsWithChildren) {
+  const theme = useTheme();
   const { colors } = useTheme();
   const { openYearList } = useCalendarMonthContext();
-  const { styles: stylesProp, backgroundColor } = useCalendarContext();
+  const { styles: stylesProp, sx, backgroundColor } = useCalendarContext();
 
   const Component = openYearList ? View : ScrollView;
 
   return (
-    <View style={StyleSheet.flatten([stylesProp?.layout])}>
+    <Box sx={sx?.layout} style={stylesProp?.layout}>
       <Animated.View
-        style={StyleSheet.flatten([
-          !!backgroundColor && {
-            backgroundColor: colors?.[backgroundColor] || backgroundColor
+        style={createSxStyle(
+          {
+            sx: sx?.container,
+            style: StyleSheet.flatten([
+              !!backgroundColor && {
+                backgroundColor: colors?.[backgroundColor] || backgroundColor
+              },
+              stylesProp?.container
+            ])
           },
-          stylesProp?.container
-        ])}
+          theme
+        )}
       >
         <Component
           bounces={false}
@@ -34,7 +43,7 @@ function CalendarLayout({ children }: PropsWithChildren) {
           <CustomButton />
         </Component>
       </Animated.View>
-    </View>
+    </Box>
   );
 }
 

@@ -3,6 +3,7 @@ import { Animated, StyleSheet } from 'react-native';
 import { Text, TextProps } from '../../../Text';
 import { Ripple } from '../../../Ripple';
 import useTheme from '../../../../context/theme/useTheme';
+import { SxProps } from '../../../../lib/styleDictionary';
 
 interface CellProps {
   content: string | number;
@@ -10,6 +11,7 @@ interface CellProps {
   fontSize?: TextProps['size'];
   selected?: boolean;
   disabled?: boolean;
+  sx?: SxProps;
   isNow?: boolean;
   disabledRipple?: boolean;
   onPress?: () => void;
@@ -26,7 +28,8 @@ export default function Cell({
   textColor,
   onPress,
   isLabel,
-  style
+  style,
+  sx
 }: CellProps) {
   const { width, borderRadius, colors } = useTheme();
   const fadeAnimation = useRef(new Animated.Value(1)).current;
@@ -61,6 +64,7 @@ export default function Cell({
   return (
     <Ripple
       p={1.1}
+      sx={sx}
       onPress={handlePress}
       disabled={disabledRipple}
       style={StyleSheet.flatten([styles.content, style])}

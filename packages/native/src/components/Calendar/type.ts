@@ -2,6 +2,7 @@ import { StyleProp, ViewStyle } from 'react-native';
 import { ColorType } from '../../context/theme/types';
 
 import { MonthProps } from './components/PanelMonth';
+import { SxProps } from '../../lib/styleDictionary';
 
 export interface LocaleKeys {
   week: {
@@ -30,26 +31,37 @@ export interface LocaleKeys {
 }
 
 export interface CommonCalendarProps {
-  selected?: string;
-  defaultSelected?: string;
-  locale?: string;
-  min?: string;
-  max?: string;
-  disabled?: boolean;
   backgroundColor?: ColorType;
-  onCancel?: () => void;
   cancelText?: string;
+  defaultSelected?: string;
+  disabled?: boolean;
+  locale?: string;
+  max?: string;
+  min?: string;
   okText?: string;
+  onCancel?: () => void;
   onChange?: (date: string) => void;
+  onSelected?: (date: string) => void;
+  selected?: string;
+  sx?: {
+    container?: SxProps;
+    daysNameWeekItem?: SxProps;
+    daysNameWeekWrapper?: SxProps;
+    daysOfWeekWrapper?: SxProps;
+    daysOfWeekItem?: SxProps;
+    daySelected?: SxProps;
+    dayNow?: SxProps;
+    layout?: SxProps;
+  };
   styles?: {
-    layout?: StyleProp<ViewStyle>;
     container?: StyleProp<ViewStyle>;
-    daysNameWeekWrapper?: StyleProp<ViewStyle>;
     daysNameWeekItem?: StyleProp<ViewStyle>;
+    daysNameWeekWrapper?: StyleProp<ViewStyle>;
     daysOfWeekWrapper?: StyleProp<ViewStyle>;
     daysOfWeekItem?: StyleProp<ViewStyle>;
     daySelected?: StyleProp<ViewStyle>;
     dayNow?: StyleProp<ViewStyle>;
+    layout?: StyleProp<ViewStyle>;
   };
 }
 

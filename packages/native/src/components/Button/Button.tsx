@@ -26,12 +26,12 @@ export const Button: React.FC<ButtonProps> = ({
   prefix = icon,
   textProps,
   bg,
+  color,
   fullWidth = true,
   withMarginBottom = false,
   textAlign = 'center',
   Component = Ripple,
   size = 'middle',
-  color = 'white',
   backgroundColor = bg || 'primary',
   type = 'solid',
   shape = 'round',
@@ -42,11 +42,25 @@ export const Button: React.FC<ButtonProps> = ({
   const theme = useTheme();
 
   const isSolid = type === 'solid';
+  const isOutline = type === 'outline';
+  const isFlat = type === 'flat';
   const isLink = type === 'link';
   const isCircle = shape === 'circle';
   const internalColor = colors[backgroundColor] || backgroundColor;
-  const colorText = colors[color] || getColorForBackground(internalColor);
   const textAlignWrapper = `text_${textAlign}`;
+
+  const colorText = React.useMemo(() => {
+    if (isFlat && !color) {
+      return internalColor;
+    }
+    if (isOutline && !color) {
+      return internalColor;
+    }
+
+    return !color
+      ? getColorForBackground(internalColor)
+      : colors[color] || color;
+  }, [isFlat, color, isOutline, colors, internalColor]);
 
   const resolveProps = getSxStyleAndProps(
     {
@@ -110,11 +124,7 @@ export const Button: React.FC<ButtonProps> = ({
           <ActivityIndicator
             style={styles.loading}
             size={fontSizes.sm}
-            color={
-              type === 'flat'
-                ? colors[color] || color || internalColor
-                : colorText
-            }
+            color={colorText}
           />
         )}
         {!loading && prefix && (
@@ -132,12 +142,6 @@ export const Button: React.FC<ButtonProps> = ({
                 {
                   fontSize: fontSizes.base,
                   color: colorText
-                },
-                isSolid && {
-                  color: internalColor
-                },
-                type === 'flat' && {
-                  color: colorText || internalColor
                 },
                 disabled &&
                   !isSolid && {

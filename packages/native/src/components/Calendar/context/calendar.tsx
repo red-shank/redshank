@@ -13,6 +13,7 @@ import { CalendarProps, CommonCalendarProps } from '../type';
 export interface CalendarContextProps
   extends Pick<
     CommonCalendarProps,
+    | 'sx'
     | 'styles'
     | 'backgroundColor'
     | 'onCancel'
@@ -37,6 +38,7 @@ const CalendarProvider = ({
   children,
   onChange,
   selected,
+  onSelected,
   defaultSelected,
   locale = 'en',
   ...rest
@@ -56,10 +58,12 @@ const CalendarProvider = ({
 
   const onSelectDate = useCallback(
     (date: dayjs.Dayjs, changeDate = true) => {
+      const formatDate = date.format('YYYY-MM-DD');
       setSelectedDate(date);
-      !!changeDate && onChange?.(date.format('YYYY-MM-DD'));
+      onSelected?.(formatDate);
+      !!changeDate && onChange?.(formatDate);
     },
-    [onChange]
+    [onChange, onSelected]
   );
 
   return (
@@ -69,7 +73,6 @@ const CalendarProvider = ({
         now,
         selectedDate,
         onSelectDate,
-        onChange,
         locale,
         ...rest
       }}

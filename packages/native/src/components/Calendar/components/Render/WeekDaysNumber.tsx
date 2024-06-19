@@ -1,11 +1,12 @@
 import dayjs from 'dayjs';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 import React, { memo, ReactNode, useMemo } from 'react';
 
 import Cell from './Cell';
 import { useCalendarContext } from '../../context/calendar';
 import { FORMAT_COMPARE_DATE } from '../../constants';
 import { Target } from '../../scrollTo';
+import { Box } from '../../../Box';
 
 export type DayProps = {
   date: dayjs.Dayjs | null;
@@ -23,7 +24,7 @@ export interface WeekDaysProps {
 }
 
 function WeekDaysNumber({ days, id }: WeekDaysProps) {
-  const { now, selectedDate, onSelectDate, styles, disabled } =
+  const { now, selectedDate, onSelectDate, styles, sx, disabled } =
     useCalendarContext();
 
   const checkSelected = useMemo(() => {
@@ -43,8 +44,9 @@ function WeekDaysNumber({ days, id }: WeekDaysProps) {
         weeks.push(
           <Cell
             key={formatDate}
+            sx={sx?.daysOfWeekItem}
+            style={styles?.daysOfWeekItem}
             selected={checkSelected?.date?.isSame?.(formatDate)}
-            style={StyleSheet.flatten([styles?.daysOfWeekItem])}
             content={date.format('D')}
             onPress={() => onSelectDate(date, false)}
             isNow={date.isSame(now.format('YYYY-MM-DD'))}
@@ -69,11 +71,12 @@ function WeekDaysNumber({ days, id }: WeekDaysProps) {
 
   return (
     <Target name={id}>
-      <View
+      <Box
+        sx={sx?.daysOfWeekWrapper}
         style={StyleSheet.flatten([style.wrapper, styles?.daysOfWeekWrapper])}
       >
         {render}
-      </View>
+      </Box>
     </Target>
   );
 }

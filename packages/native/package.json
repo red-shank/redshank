@@ -26,9 +26,9 @@
     "bootstrap"
   ],
   "scripts": {
-    "build:dev": "tsc --composite false",
+    "build:dev": "tsc --composite false && node scripts/afterBuild.js",
     "build": "node scripts/beforeBuild.js && tsc --composite false && node scripts/afterBuild.js",
-    "build:watch": "nodemon -e ts,tsx --watch . --exec \"yarn build\"",
+    "build:watch": "nodemon -e ts,tsx --watch . --exec \"yarn build:dev\"",
     "test": "jest",
     "test:update": "jest -u",
     "test:ci": "jest --runInBand",

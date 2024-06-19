@@ -9,15 +9,14 @@ import { ScrollView } from '../ScrollView';
 export function Tabs({
   items,
   activeKey,
-  error,
   onChange,
-  textError,
   defaultActiveKey,
   backgroundColors,
   renderTabItem,
+  sx,
+  styles,
   scrollable = false,
   variant = 'solid',
-  styles = {},
   labelProps = {},
   size = 'middle',
   ...sxProps
@@ -48,20 +47,22 @@ export function Tabs({
         }
         return prev;
       });
-  }, [defaultActiveKey]);
+  }, [defaultActiveKey, items]);
 
   const variants = getVariantStyles({
     backgroundColors
   });
 
   return (
-    <Box sx={styles?.root} {...sxProps}>
+    <Box sx={sx?.root} style={styles?.root} {...sxProps}>
       <ScrollView
         horizontal
         bounces={scrollable}
         bouncesZoom={scrollable}
         showsHorizontalScrollIndicator={scrollable}
-        sx={styles?.tab_scroll_view}
+        sx={sx?.tab_scroll_view}
+        style={styles?.tab_scroll_view}
+        contentContainerStyle={styles?.tab_container}
         contentContainerSx={{
           gap: 0,
           p: 0.4,
@@ -71,9 +72,9 @@ export function Tabs({
           flexDirection: 'row',
           borderStyle: 'solid',
           flexWrap: 'nowrap',
-          flex: scrollable ? 0 : 1,
+          flex: scrollable ? undefined : 1,
           ...variants[variant],
-          ...styles?.tab_container
+          ...sx?.tab_container
         }}
       >
         {items.map((item) => {
@@ -101,16 +102,17 @@ export function Tabs({
               onPress={() => onInternalChange(item)}
               labelColors={item?.labelColors}
               backgroundColors={item?.backgroundColors}
+              style={styles?.item}
               sx={{
                 flex: 1 / (items?.length || 0),
-                ...styles?.item
+                ...sx?.item
               }}
             />
           );
         })}
       </ScrollView>
 
-      <Box pt={1} sx={styles?.content}>
+      <Box pt={1} sx={sx?.content} style={styles?.content}>
         {internalValue?.children}
       </Box>
     </Box>

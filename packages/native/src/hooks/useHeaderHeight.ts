@@ -19,9 +19,8 @@ export default function useHeaderHeight() {
     );
 
     return Platform.select({
-      ios: 50,
       android: 70,
-      default: 0
+      default: 50
     });
   }
 }

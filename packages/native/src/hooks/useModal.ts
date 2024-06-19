@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import React from 'react';
 
 type VoidFunc = () => void;
 
@@ -10,18 +10,18 @@ export type UseModalType = [
 
 export default function useModal(initialState = false): UseModalType {
   // State
-  const [visible, setVisible] = useState<boolean>(initialState);
+  const [visible, setVisible] = React.useState<boolean>(initialState);
 
   // Handlers
-  const onVisible = useCallback(() => {
+  const onVisible = React.useCallback(() => {
     setVisible(true);
   }, []);
 
-  const onHidden = useCallback(() => {
+  const onHidden = React.useCallback(() => {
     setVisible(false);
   }, []);
 
-  const onToggle = useCallback(() => {
+  const onToggle = React.useCallback(() => {
     setVisible((s) => !s);
   }, []);
 

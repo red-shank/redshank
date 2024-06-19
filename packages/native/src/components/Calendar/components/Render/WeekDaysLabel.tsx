@@ -12,12 +12,13 @@ dayjs.extend(localeData);
 interface WeekLabelProps {}
 
 export default function WeekDaysLabel({}: WeekLabelProps) {
-  const { styles, locale } = useCalendarContext();
+  const { styles, sx, locale } = useCalendarContext();
 
   const weekdays = dayjs().locale(locale).localeData().weekdaysShort();
 
   return (
     <Box
+      sx={sx?.daysNameWeekWrapper}
       style={StyleSheet.flatten([style.wrapper, styles?.daysNameWeekWrapper])}
     >
       {weekdays.map((day) => (
@@ -26,6 +27,7 @@ export default function WeekDaysLabel({}: WeekLabelProps) {
           key={day}
           content={day}
           disabledRipple
+          sx={sx?.daysNameWeekItem}
           style={StyleSheet.flatten([styles?.daysNameWeekItem])}
         />
       ))}

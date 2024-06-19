@@ -19,6 +19,7 @@ export function Item({
   labelColors,
   sx,
   size,
+  style,
   labelProps,
   variant
 }: Omit<TabItemProps, 'key' | 'children'> & {
@@ -68,6 +69,7 @@ export function Item({
           ...variantStyle?.container,
           flexDirection: 'row',
           alignItems: 'center',
+          style,
           sx
         },
         theme

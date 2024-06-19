@@ -23,10 +23,10 @@ export interface SocialButtonProps
 }
 
 const SwitchProvidersTextMap: Record<SocialButtonProvider, string> = {
-  google: 'Continues with Google',
-  facebook: 'Continues with Facebook',
-  apple: 'Continues with Apple',
-  twitter: 'Continues with Twitter'
+  google: 'Continue with Google',
+  facebook: 'Continue with Facebook',
+  apple: 'Continue with Apple',
+  twitter: 'Continue with Twitter'
 } as const;
 
 const SwitchProvidersImageMap: Record<
