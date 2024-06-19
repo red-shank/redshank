@@ -10,7 +10,7 @@ export interface Props {
 export const virtualAnchorEncode = (text?: string) => {
   if (!text) return undefined;
 
-  return text.toLowerCase().replace(/ /g, '-');
+  return text?.toLowerCase?.()?.replace?.(/ /g, '-');
 };
 
 const VirtualAnchor: React.FC<React.PropsWithChildren<Props>> = ({

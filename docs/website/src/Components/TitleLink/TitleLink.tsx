@@ -8,7 +8,7 @@ type TitleProps = {
 
 const TitleLink = ({ children, className = '', ...props }: TitleProps) => {
   const text = useMemo(() => {
-    return children.replace(':', '');
+    return children?.replace?.(':', '');
   }, [children]);
 
   const id = useMemo(() => {

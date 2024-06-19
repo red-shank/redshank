@@ -34,11 +34,11 @@ const LayoutContainer = ({ children, ...props }: LayoutProps) => {
 
     if (isComponent) {
       const [_, key] = routes.asPath.split('components');
-      return key.replace('/', '');
+      return key?.replace?.('/', '');
     }
 
     const [_, key] = routes.asPath.split('docs');
-    return key.replace('/', '');
+    return key?.replace?.('/', '');
   }, [routes.asPath]);
 
   const { previousComponent, nextComponent, currentComponent } =

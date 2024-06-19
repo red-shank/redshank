@@ -1,7 +1,7 @@
+import { Text } from '@nextui-org/react';
 import ROUTES from '@/config/routes';
 import Layout from '@/Components/Layout';
 import Title from '@/Components/Title';
-import { Text } from '@nextui-org/react';
 
 export default function Page() {
   return (

@@ -25,7 +25,7 @@ const NavLink = ({
       return pathname.startsWith(href);
     }
 
-    const newPathname = `${pathname.replace('[slug]', query.slug as string)}`;
+    const newPathname = `${pathname?.replace?.('[slug]', query.slug as string)}`;
 
     return newPathname.startsWith(href);
   }, [pathname, query, href]);
