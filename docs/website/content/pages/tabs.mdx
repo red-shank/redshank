@@ -1,0 +1,105 @@
+---
+title: 'Tabs'
+description: 'Tabs make it easy to explore and switch between different views. Tabs organize and allow navigation between groups of content that are related and at the same level of hierarchy.'
+url: https://redshank.app/docs/components/scroll-view
+---
+
+```jsx
+import { Tabs } from '@redshank/native';
+```
+
+### When to use
+
+Tabs are implemented using a collection of related components:
+
+* `<Tab/>` - the container that houses the tabs. Responsible for handling focus and keyboard navigation between tabs.
+* `children` - the tab element itself. Clicking on a tab displays its corresponding panel.
+
+<Spacer y={2}/>
+
+<Playground
+  title="Tabs"
+  description="Default tabs component."
+  code={tabsContent.defaultCode}
+/>
+
+<Spacer y={2}/>
+
+<Playground
+  title="Sizes"
+  description="Sizes tabs."
+  code={tabsContent.sizes}
+/>
+
+<Spacer y={2}/>
+
+<Playground
+  title="With icons"
+  description="With start or end content."
+  code={tabsContent.withIcons}
+/>
+
+<Spacer y={2}/>
+
+<Playground
+  title="Custom"
+  description="Custom render item."
+  code={tabsContent.custom}
+/>
+
+<Spacer y={3}/>
+
+### APIs
+
+<Spacer y={2}/>
+
+#### Props
+
+Pass all props to the ScrollView component from React Native.
+More info about `SxProps` in [The sx prop](/docs/the-sx-prop)
+
+| Attribute              | Type                | Accepted values                                       | Description                        | Default |
+|------------------------|---------------------|-------------------------------------------------------|------------------------------------|---------|
+| **items**              | `array`             | [TabItemProps](#tab-item-props)                       | Array of element to render in tabs |         |
+| **activeKey**          | `NumberStringValue` | `string`, `number`                                    | Controller tabs active tab         |         |
+| **defaultActiveKey**   | `NumberStringValue` | `string`, `number`                                    | Default active tab                 |         |
+| **scrollable**         | `boolean`           | `true`, `false`                                       | Enabled scroll horizontal          | `false` |
+| **onChange**           | `function`          | (item: [TabItemProps](#tab-item-props)) => `void`     | On callback when item is pressed   |         |
+| **labelProps**         | `object`            | [Text Props](/docs/components/text)                   | Label props for item               |         |
+| **variant**            | `Enum`              | [TabsVariant](#tabs-variant)                          | Variant for UI                     |         |
+| **backgroundColors**   | `object`            | { background: `ColorType`, borderColor: `ColorType` } | Props for custom item tabs         |         |
+| **sx**                 | `object`            | [Sx customization](#sx-customization)                 | Sx props to elements               |         |
+| **contentContainerSx** | `object`            | [Styles customization](#styles-customization)         | Styles props to element            |         |
+
+<Spacer y={2}/>
+
+### Sx Customization
+More info about `SxProps` in [The sx prop](/docs/the-sx-prop)
+
+
+```ts
+type Sx = {
+  root?: SxProps;
+  tab_container?: SxProps;
+  tab_scroll_view?: SxProps;
+  content?: SxProps;
+  item?: SxProps;
+}
+```
+
+<Spacer y={2}/>
+
+### Styles Customization
+More info about `StyleProp` in [styles](https://reactnative.dev/docs/style)
+
+```ts
+type Styles = {
+  root?: StyleProp<ViewStyle>;
+  tab_container?: StyleProp<ViewStyle>;
+  tab_scroll_view?: StyleProp<ViewStyle>;
+  content?: StyleProp<ViewStyle>;
+  item?: StyleProp<ViewStyle>;
+}
+```
+
+<Spacer y={2}/>

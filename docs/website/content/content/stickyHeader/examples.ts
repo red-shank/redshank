@@ -1,41 +1,30 @@
-import generateCode from '@/content/utils/generateCode';
 import { PACKAGE_NAME } from '@/config';
 
-export const defaultCode = generateCode(
-  `import { StickyHeader, Title, ThemeProvider, Box } from "${PACKAGE_NAME}";
+export const defaultCode = `import { StickyHeader, Title, ThemeProvider, Box } from "${PACKAGE_NAME}";
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-
-function StickyHeaderScreen() {
-  return (
-    <StickyHeader
-      background={["background", "primary"]}
-      titlePosition={["left", "center"]}
-      title={{ initial: "Hello Header!", sticky: "Sticky" }}
-    >
-      <Box px={1}>
-        <Title level={2}>Default Header</Title>
-      </Box>
-
-      <Box height={1500} />
-    </StickyHeader>
-  );
-}
 
 export default function App() {
   return (
     <SafeAreaProvider>
       <ThemeProvider>
-        <StickyHeaderScreen />
+        <StickyHeader
+          background={["background", "primary"]}
+          titlePosition={["left", "center"]}
+          title={{ initial: "Hello Header!", sticky: "Sticky" }}
+        >
+          <Box px={1}>
+            <Title level={2}>Default Header</Title>
+          </Box>
+
+          <Box height={1500} />
+        </StickyHeader>
       </ThemeProvider>
     </SafeAreaProvider>
   )
 };
-`,
-  []
-);
+`;
 
-export const onScroll = generateCode(
-  `import {
+export const onScroll = `import {
   Title,
   ThemeProvider,
   StickyHeader,
@@ -44,40 +33,33 @@ export const onScroll = generateCode(
 } from "${PACKAGE_NAME}";
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-function StickyHeaderScreen() {
-  return (
-    <StickyHeader animateInHeight={100} title={["Header", "Beauty Design"]}>
-      <Box px={1}>
-        <Title level={2}>Default Header</Title>
-        <Text>Please scroll to 100px down</Text>
-      </Box>
-
-      <Box height={1500} />
-    </StickyHeader>
-  );
-}
-
 export default function App() {
   return (
     <SafeAreaProvider>
       <ThemeProvider>
-        <StickyHeaderScreen />
+        <StickyHeader animateInHeight={100} title={["Header", "Beauty Design"]}>
+          <Box px={1}>
+            <Title level={2}>Default Header</Title>
+            <Text>Please scroll to 100px down</Text>
+          </Box>
+
+          <Box height={1500} />
+        </StickyHeader>
       </ThemeProvider>
     </SafeAreaProvider>
   )
 };
-`,
-  []
-);
+`
 
-export const customNavbar = generateCode(
-  `import {
+export const customNavbar = `import { StyleSheet } from "react-native";
+import {
   StickyHeader,
   Title,
   Icon,
   Image,
   ThemeProvider,
   Button,
+  Box,
   useTheme,
 } from "${PACKAGE_NAME}";
 import React from "react";
@@ -93,7 +75,7 @@ const defaultValues = {
   },
 };
 
-function StickyHeaderScreen() {
+export default function App() {
   const { colors } = useTheme();
   const [config, setConfig] = React.useState(defaultValues);
 
@@ -138,63 +120,55 @@ function StickyHeaderScreen() {
   };
 
   return (
-    <StickyHeader {...config}>
-      <View style={styles.container}>
-        <Title level={2}>Header</Title>
-      </View>
-
-      {config?.title?.initial === "Custom" && (
-        <Image
-          height={300}
-          source={{
-            uri: "https://images.pexels.com/photos/7858126/pexels-photo-7858126.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-          }}
-        />
-      )}
-
-      <View
-        style={[
-          styles.headContent,
-          styles.marginTop,
-          { backgroundColor: colors.card },
-        ]}
-      >
-        <Title level={4}>Default Header</Title>
-        <Button onPress={onDefaultValues}>Restore</Button>
-      </View>
-
-      <View
-        style={[
-          styles.headContent,
-          styles.marginTop,
-          { backgroundColor: colors.card },
-        ]}
-      >
-        <Title level={4}>With Right Icon</Title>
-        <Button onPress={onWithRightIcon}>Try</Button>
-      </View>
-
-      <View
-        style={[
-          styles.headContent,
-          styles.marginTop,
-          { backgroundColor: colors.card },
-        ]}
-      >
-        <Title level={4}>Header with custom backgrounds</Title>
-        <Button onPress={onWithCustomBackground}>Try</Button>
-      </View>
-
-      <View style={{ height: 1500 }} />
-    </StickyHeader>
-  );
-};
-
-export default function App() {
-  return (
     <SafeAreaProvider>
       <ThemeProvider>
-        <StickyHeaderScreen />
+        <StickyHeader {...config}>
+          <Box style={styles.container}>
+            <Title level={2}>Header</Title>
+          </Box>
+
+          {config?.title?.initial === "Custom" && (
+            <Image
+              height={300}
+              source="https://images.pexels.com/photos/7858126/pexels-photo-7858126.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+            />
+          )}
+
+          <Box
+            style={[
+              styles.headContent,
+              styles.marginTop,
+              { backgroundColor: colors.card },
+            ]}
+          >
+            <Title level={4}>Default Header</Title>
+            <Button onPress={onDefaultValues}>Restore</Button>
+          </Box>
+
+          <Box
+            style={[
+              styles.headContent,
+              styles.marginTop,
+              { backgroundColor: colors.card },
+            ]}
+          >
+            <Title level={4}>With Right Icon</Title>
+            <Button onPress={onWithRightIcon}>Try</Button>
+          </Box>
+
+          <Box
+            style={[
+              styles.headContent,
+              styles.marginTop,
+              { backgroundColor: colors.card },
+            ]}
+          >
+            <Title level={4}>Header with custom backgrounds</Title>
+            <Button onPress={onWithCustomBackground}>Try</Button>
+          </Box>
+
+          <Box style={{ height: 1500 }} />
+        </StickyHeader>
       </ThemeProvider>
     </SafeAreaProvider>
   )
@@ -226,10 +200,4 @@ const styles = StyleSheet.create({
     marginTop: 50,
   },
 });
-
-`,
-  ['Platform'],
-  {
-    withStyles: false
-  }
-);
+`

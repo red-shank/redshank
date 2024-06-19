@@ -1,113 +1,68 @@
-import generateCode from '@/content/utils/generateCode';
-import { PACKAGE_NAME } from '@/config';
+import { withThemeProvider } from '@/content/utils/generateCode';
 
-export const defaultCode =
-  generateCode(`import { Space, Input } from "${PACKAGE_NAME}";
+export const defaultCode = withThemeProvider(
+  `<Input />
+          <Input placeholder="First name" />`,
+  {
+    package: ['Input']
+  }
+);
 
-export default function App() {
-  return (
-    <View style={styles.center}>
-      <Space>
-        <Input />
-        <Input placeholder="First name" />
-      </Space>
-    </View>
-  );
-}
-`);
+export const sizes = withThemeProvider(
+  `<Input placeholder="Small input" size="small" />
+          <Input placeholder="Middle input" size="middle" />
+          <Input placeholder="Large input" size="large" />`,
+  {
+    package: ['Input']
+  }
+);
 
-export const sizes =
-  generateCode(`import { Space, Input } from "${PACKAGE_NAME}";
+export const prefixSuffix = withThemeProvider(
+  `<Input
+            placeholder="Email or username"
+            prefix={<Icon name="mail" type="antdesign" />}
+          />
+          <Input type="password" placeholder="Insert password" />
+          <Input
+            placeholder="Prefix and Suffix"
+            prefix={<Icon name="lock" type="antdesign" />}
+            suffix={<Icon name="mail" type="antdesign" />}
+          />`,
+  {
+    package: ['Input', 'Icon']
+  }
+);
 
-export default function App() {
-  return (
-    <View style={styles.center}>
-      <Space>
-        <Input placeholder="Small input" size="small" />
-        <Input placeholder="Middle input" size="middle" />
-        <Input placeholder="Large input" size="large" />
-      </Space>
-    </View>
-  );
-}
-`);
+export const errors = withThemeProvider(
+  `<Input
+              error
+              placeholder="Placeholder color Primary"
+            />
+            <Box>
+              <Title level={5}>With message error</Title>
+              <Input
+                error
+                textError="This is required field"
+                placeholder="Placeholder color Primary"
+              />
+            </Box>`,
+  {
+    package: ['Input', 'Box', 'Title']
+  }
+);
 
-export const prefixSuffix =
-  generateCode(`import { Space, Input, Icon } from "${PACKAGE_NAME}";
+export const number = withThemeProvider(
+  `<Input type="numeric" placeholder="Insert only numbers" />
+          <Input
+            error
+            type="numeric"
+            textError="This is required field"
+            placeholder="Insert only numbers"
+          />`,
+  { package: ['Input'] }
+);
 
-export default function App() {
-  return (
-    <View style={styles.center}>
-      <Space>
-        <Input
-          placeholder="Email or username"
-          prefix={<Icon name="mail" type="antdesign" />}
-        />
-        <Input type="password" placeholder="Insert password" />
-        <Input
-          placeholder="Prefix and Suffix"
-          prefix={<Icon name="lock" type="antdesign" />}
-          suffix={<Icon name="mail" type="antdesign" />}
-        />
-      </Space>
-    </View>
-  );
-}
-`);
-
-export const errors =
-  generateCode(`import { Space, Input, Title } from "${PACKAGE_NAME}";
-
-export default function App() {
-  return (
-    <View style={styles.center}>
-      <Space>
-        <Input
-          error
-          placeholder="Placeholder color Primary"
-        />
-        <Title level={5}>With message error</Title>
-        <Input
-          error
-          textError="This is required field"
-          placeholder="Placeholder color Primary"
-        />
-      </Space>
-    </View>
-  );
-}
-`);
-
-export const number =
-  generateCode(`import { Space, Input } from "${PACKAGE_NAME}";
-
-export default function App() {
-  return (
-    <View style={styles.center}>
-      <Space>
-        <Input type="numeric" placeholder="Insert only numbers" />
-        <Input
-          error
-          type="numeric"
-          textError="This is required field"
-          placeholder="Insert only numbers"
-        />
-      </Space>
-    </View>
-  );
-}
-`);
-
-export const textArea =
-  generateCode(`import { Space, Input } from '${PACKAGE_NAME}';
-
-export default function App() {
-  return (
-    <View style={styles.center}>
-      <Space>
-        <Input.TextArea placeholder="Textarea placeholder" />
-      </Space>
-    </View>
-  );
-}
-`);
+export const textArea = withThemeProvider(
+  `<Input.TextArea placeholder="Textarea placeholder" />`,
+  { package: ['Input'] }
+);

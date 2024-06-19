@@ -1,148 +1,105 @@
-import generateCode from '@/content/utils/generateCode';
-import { PACKAGE_NAME } from '@/config';
+import { withThemeProvider } from '@/content/utils/generateCode';
 
-export const defaultCode =
-  generateCode(`import { Space, Radio } from '${PACKAGE_NAME}';
-
-export default function App() {
-  return (
-    <View style={styles.center}>
-      <Space>
-        <Radio.Group>
-          <Radio label="Yes" value="yes" />
-          <Radio label="No" value="no" />
-          <Radio label="Maybe" value="maybe" />
-        </Radio.Group>
-      </Space>
-    </View>
-  );
-}
-`);
-
-export const orientation =
-  generateCode(`import { Space, Radio } from "${PACKAGE_NAME}";
-
-export default function App() {
-  return (
-    <View style={styles.center}>
-      <Space>
-        <Radio.Group align="vertical">
-          <Radio label="Yes" value="yes" />
-          <Radio label="No" value="no" />
-          <Radio label="Maybe" value="maybe" />
-        </Radio.Group>
-      </Space>
-    </View>
-  );
-}
-`);
-
-export const types =
-  generateCode(`import { Space, Radio, Title } from '${PACKAGE_NAME}';
-
-export default function App() {
-  return (
-    <View style={styles.center}>
-      <Space>
-        <View>
-          <Title>Circle</Title>
-          <Radio.Group type="circle">
+export const defaultCode = withThemeProvider(
+  `<Radio.Group>
             <Radio label="Yes" value="yes" />
             <Radio label="No" value="no" />
             <Radio label="Maybe" value="maybe" />
-          </Radio.Group>
-        </View>
-        <View>
-          <Title>Square</Title>
-          <Radio.Group type="square">
+          </Radio.Group>`,
+  {
+    package: ['Radio']
+  }
+);
+
+export const orientation = withThemeProvider(
+  `<Radio.Group align="vertical">
             <Radio label="Yes" value="yes" />
             <Radio label="No" value="no" />
             <Radio label="Maybe" value="maybe" />
-          </Radio.Group>
-        </View>
-        <View>
-          <Title>Mix</Title>
-          <Radio.Group>
-            <Radio label="Yes" value="yes" type="circle" />
-            <Radio label="No" value="no" type="square"/>
-            <Radio label="Maybe" value="maybe" />
-          </Radio.Group>
-        </View>
-      </Space>
-    </View>
-  );
-}
-`);
+          </Radio.Group>`,
+  {
+    package: ['Radio']
+  }
+);
 
-export const sizes =
-  generateCode(`import { Space, Radio, Title } from '${PACKAGE_NAME}';
+export const types = withThemeProvider(
+  `<Box>
+            <Title level={3}>Circle</Title>
+            <Radio.Group type="circle">
+              <Radio label="Yes" value="yes" />
+              <Radio label="No" value="no" />
+              <Radio label="Maybe" value="maybe" />
+            </Radio.Group>
+          </Box>
+          <Box>
+            <Title level={3}>Square</Title>
+            <Radio.Group type="square">
+              <Radio label="Yes" value="yes" />
+              <Radio label="No" value="no" />
+              <Radio label="Maybe" value="maybe" />
+            </Radio.Group>
+          </Box>
+          <Box>
+            <Title level={3}>Mix</Title>
+            <Radio.Group>
+              <Radio label="Yes" value="yes" type="circle" />
+              <Radio label="No" value="no" type="square"/>
+              <Radio label="Maybe" value="maybe" />
+            </Radio.Group>
+          </Box>`,
+  {
+    package: ['Radio', 'Box', 'Title']
+  }
+);
 
-export default function App() {
-  return (
-    <View style={styles.center}>
-      <Space>
-        <View>
-          <Title>Small</Title>
-          <Radio.Group size="small">
+export const sizes = withThemeProvider(
+  `<Box>
+            <Title level={3}>Small</Title>
+            <Radio.Group size="small">
+              <Radio label="Yes" value="yes" />
+              <Radio label="No" value="no" />
+              <Radio label="Maybe" value="maybe" />
+            </Radio.Group>
+          </Box>
+          <Box>
+            <Title level={3}>Middle</Title>
+            <Radio.Group size="middle">
+              <Radio label="Yes" value="yes" />
+              <Radio label="No" value="no" />
+              <Radio label="Maybe" value="maybe" />
+            </Radio.Group>
+          </Box>
+          <Box>
+            <Title level={3}>Large</Title>
+            <Radio.Group size="large">
+              <Radio label="Yes" value="yes" />
+              <Radio label="No" value="no" />
+              <Radio label="Maybe" value="maybe" />
+            </Radio.Group>
+          </Box>`,
+  {
+    package: ['Radio', 'Box', 'Title']
+  }
+);
+
+export const manualError = withThemeProvider(
+  `<Radio.Group error textError="This is a error">
             <Radio label="Yes" value="yes" />
             <Radio label="No" value="no" />
             <Radio label="Maybe" value="maybe" />
-          </Radio.Group>
-        </View>
-        <View>
-          <Title>Middle</Title>
-          <Radio.Group size="middle">
+          </Radio.Group>`,
+  {
+    package: ['Radio']
+  }
+);
+
+export const customize = withThemeProvider(
+  `<Radio.Group activeColor="success" inactiveColor="warning" >
             <Radio label="Yes" value="yes" />
             <Radio label="No" value="no" />
             <Radio label="Maybe" value="maybe" />
-          </Radio.Group>
-        </View>
-        <View>
-          <Title>Large</Title>
-          <Radio.Group size="large">
-            <Radio label="Yes" value="yes" />
-            <Radio label="No" value="no" />
-            <Radio label="Maybe" value="maybe" />
-          </Radio.Group>
-        </View>
-      </Space>
-    </View>
-  );
-}
-`);
-
-export const manualError =
-  generateCode(`import { Space, Radio } from '${PACKAGE_NAME}';
-
-export default function App() {
-  return (
-    <View style={styles.center}>
-      <Space>
-        <Radio.Group error textError="This is a error">
-          <Radio label="Yes" value="yes" />
-          <Radio label="No" value="no" />
-          <Radio label="Maybe" value="maybe" />
-        </Radio.Group>
-      </Space>
-    </View>
-  );
-}
-`);
-
-export const customize =
-  generateCode(`import { Space, Radio } from '${PACKAGE_NAME}';
-
-export default function App() {
-  return (
-    <View style={styles.center}>
-      <Space>
-        <Radio.Group activeColor="success" inactiveColor="warning" >
-          <Radio label="Yes" value="yes" />
-          <Radio label="No" value="no" />
-          <Radio label="Maybe" value="maybe" />
-        </Radio.Group>
-      </Space>
-    </View>
-  );
-}
-`);
+          </Radio.Group>`,
+  {
+    package: ['Radio']
+  }
+);

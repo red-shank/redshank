@@ -1,64 +1,66 @@
-import generateCode from '@/content/utils/generateCode';
-import { PACKAGE_NAME } from '@/config';
+import { generateCodeWithProvider } from '@/content/utils/generateCode';
 
-export const defaultCode = generateCode(
-  `import { Container, Text } from "${PACKAGE_NAME}";
-
-export default function App() {
+export const defaultCode = generateCodeWithProvider(
+  `
+function RenderApp() {
   return (
     <Container
       mb={2}
       flex={1}
       sx={{
         container: {
+          bg: "card"
+        },
+        root: {
           bg: "primary"
         }
       }}>
       <Text>Container</Text>
     </Container>
-  );
+  )
 }`,
-  [],
-  { withStyles: false }
+  {
+    package: ['Container', 'Text']
+  }
 );
 
+export const size = generateCodeWithProvider(
+  `import { useState } from 'react';
 
-export const size = generateCode(
-  `import { Container, Select, ThemeProvider } from "${PACKAGE_NAME}";
-import { useState } from 'react';
-
-export default function App() {
+function RenderApp() {
   // xs, sm, md, lg, xl
   const [size, setSize] = useState('sm');
 
   return (
-    <ThemeProvider>
-      <Container
-        size={size}
-        mb={2}
-        flex={1}
-        sx={{
-          container: {
-            bg: "primary"
-          }
-        }}
-      >
-          <Select
-            mt={1}
-            value={size}
-            onChange={setSize}
-            items={[
-              { label: "xs", value: "xs" },
-              { label: "sm", value: "sm" },
-              { label: "md", value: "md" },
-              { label: "lg", value: "lg" },
-              { label: "xl", value: "xl" }
-            ]}
-          />
-      </Container>
-    </ThemeProvider>
+    <Container
+      size={size}
+      mb={2}
+      flex={1}
+      sx={{
+        container: {
+          bg: "card"
+        },
+        root: {
+          bg: "primary"
+        }
+      }}
+    >
+        <Select
+          mt={1}
+          value={size}
+          onChange={setSize}
+          items={[
+            { label: "xs", value: "xs" },
+            { label: "sm", value: "sm" },
+            { label: "md", value: "md" },
+            { label: "lg", value: "lg" },
+            { label: "xl", value: "xl" }
+          ]}
+        />
+    </Container>
   );
 }`,
-  [],
-  { withStyles: false }
+  {
+    package: ['Container', 'Select']
+  }
 );

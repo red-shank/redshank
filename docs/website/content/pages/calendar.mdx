@@ -1,25 +1,121 @@
 ---
 title: 'Calendar'
-description: 'Calendar description.'
+description: 'The Date Calendar component lets users select a date without any input or popper / modal.'
 url: https://redshank.app/docs/components/calendar
 ---
 
 ```jsx
-import { Calendar } from '${PACKAGE_NAME}';
+import { Calendar } from '@redshank/native';
 ```
 
-<Spacer y={2} />
+> **_NOTE:_**  Please added [dayjs](https://day.js.org/) to dependencies using `expo install dayjs` or `npm i dayjs`.
 
-<Spacer y={3} />
+<Spacer y={2}/>
+
+### Examples
+
+<Playground
+  id="default"
+  title="Default"
+  description="You can display an calendar"
+  code={calendarContent.defaultCode}
+/>
+
+<Playground
+  id="selected"
+  title="Controlled"
+  description="You can control the selected date"
+  code={calendarContent.selectedDate}
+/>
+
+<Spacer y={2}/>
+
+<Playground
+  id="min_max"
+  title="Min and max date"
+  dependencies="dayjs@^1.10.4"
+  description="You can control the range for selected date"
+  code={calendarContent.minAndMax}
+/>
+
+<Spacer y={2}/>
+
+<Playground
+  id="disabled"
+  title="Disabled"
+  description="You can disabled the calendar"
+  code={calendarContent.disabled}
+/>
+
+<Spacer y={2}/>
+
+<h4>Locales</h4>
+You can change the language of the calendar by passing the `locales` prop.
+
+<BlockCode
+  code={calendarContent.locales}
+/>
+
+<Spacer y={3}/>
 
 ### APIs
 
-<Spacer y={2} />
+<Spacer y={2}/>
 
 #### Props
 
-| Attribute | Type                    | Accepted values                | Description         | Default   |
-|-----------|-------------------------|--------------------------------|---------------------|-----------|
-| **color** | `NormalColors` `string` | [NormalColors](#normal-colors) | Change avatar color | `default` |
+| Attribute           | Type                    | Accepted values                               | Description                                        | Default      |
+|---------------------|-------------------------|-----------------------------------------------|----------------------------------------------------|--------------|
+| **backgroundColor** | `ThemeColor` `string`   | [ThemeColor](/docs/default-theme)             | Background calendar color                          | `background` |
+| **cancelText**      | `string`                | `Text`                                        | Cancel text for button footer                      | `Cancel`     |
+| **defaultSelected** | `string`                | `YYYY-MM-DD`                                  | Default selected date in calendar                  | `now`        |
+| **disabled**        | `boolean`               | `true`, `false`                               | Disabled the calendar                              |              |
+| **locale**          | `string` `dayjs.locale` | `en`, `es`, `fr`, `etc`                       | Valid locale for dayjs                             | `en`         |
+| **max**             | `string`                | `YYYY-MM-DD`                                  | Valid string date for max posible selected date    |              |
+| **min**             | `string`                | `YYYY-MM-DD`                                  | Valid string date for min posible selected date    |              |
+| **okText**          | `string`                | `Text`                                        | Ok text for button footer                          | `Ok`         |
+| **onCancel**        | `function`              | `() => void`                                  | Function for Cancel button in footer               |              |
+| **onChange**        | `function`              | `(date: string) => void`                      | Function for  ok button in footer                  |              |
+| **onSelected**      | `function`              | `(date: string) => void`                      | Trigger when user select a day                     |              |
+| **selected**        | `string`                | `YYYY-MM-DD`                                  | Selected date in calendar for controller component |              |
+| **sx**              | `object`                | [Sx customization](#sx-customization)         | Sx props for components                            |              |
+| **styles**          | `object`                | [Styles customization](#styles-customization) | Styles props for components                        |              |
 
-<Spacer y={2} />
+<Spacer y={2}/>
+
+### Sx Customization
+
+More info about `SxProps` in [The sx prop](/docs/the-sx-prop)
+
+```ts
+type Sx = {
+  container?: SxProps;
+  daysNameWeekItem?: SxProps;
+  daysNameWeekWrapper?: SxProps;
+  daysOfWeekWrapper?: SxProps;
+  daysOfWeekItem?: SxProps;
+  daySelected?: SxProps;
+  dayNow?: SxProps;
+  layout?: SxProps;
+};
+```
+
+<Spacer y={2}/>
+
+### Styles Customization
+
+More info about `StyleProp` in [styles](https://reactnative.dev/docs/style)
+
+```ts
+type Styles = {
+  container?: StyleProp<ViewStyle>;
+  daysNameWeekItem?: StyleProp<ViewStyle>;
+  daysNameWeekWrapper?: StyleProp<ViewStyle>;
+  daysOfWeekWrapper?: StyleProp<ViewStyle>;
+  daysOfWeekItem?: StyleProp<ViewStyle>;
+  daySelected?: StyleProp<ViewStyle>;
+  dayNow?: StyleProp<ViewStyle>;
+  layout?: StyleProp<ViewStyle>;
+}
+```
+<Spacer y={2}/>

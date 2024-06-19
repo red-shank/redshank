@@ -10,9 +10,10 @@ type SnackProps = {
   snackId?: string;
   snackName?: string;
   className?: string;
+  dependencies?: string;
 };
 
-const dependencies = `@expo/vector-icons@^14.0.0,${PACKAGE_NAME}@${LIB_VERSION}`;
+const _dependencies = `@expo/vector-icons@^14.0.0,${PACKAGE_NAME}@${LIB_VERSION}`;
 
 const modes = {
   mobile: [
@@ -29,6 +30,7 @@ const Playground = ({
   code,
   mode = 'all',
   snackId,
+  dependencies = '',
   className = '',
   snackName = '@redshank'
 }: SnackProps) => {
@@ -45,7 +47,7 @@ const Playground = ({
     if (code && !snackId) {
       propsSnack = [
         `data-snack-code="${formatCode(code)}"`,
-        `data-snack-dependencies="${dependencies}"`,
+        `data-snack-dependencies="${dependencies ? `${_dependencies},${dependencies}` : _dependencies}"`,
         `data-snack-name="${snackName}"`
       ];
     } else {
@@ -67,7 +69,9 @@ const Playground = ({
   }, [updateIframeContent]);
 
   return (
-    <WrapperStyled className={`overflow-hidden border-none w-full ${className}`}>
+    <WrapperStyled
+      className={`overflow-hidden border-none w-full ${className}`}
+    >
       <iframe
         ref={snackRef}
         frameBorder={0}

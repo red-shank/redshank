@@ -140,11 +140,6 @@
         "name": "Image"
       },
       {
-        "key": "space",
-        "path": "/docs/components/space",
-        "name": "Space"
-      },
-      {
         "key": "sticky-header",
         "path": "/docs/components/sticky-header",
         "name": "Sticky Header"

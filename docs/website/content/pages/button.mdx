@@ -90,33 +90,34 @@ In @redshank we provide 4 types of button ready for use.
 #### Button Props
 Api props extends from [Touchable](https://reactnative.dev/docs/touchableopacity)
 
-| Attribute               | Type                   | Accepted values                                      | Description                                           | Default                           |
-|-------------------------|------------------------|------------------------------------------------------|-------------------------------------------------------|-----------------------------------|
-| **Component**           | `Component`            | React Component                                      | Change the element base                               | [Ripple](/docs/components/ripple) |
-| **borderRadius**        | `number`               | `number`                                             | Defined border radius in components                   | `8` or `20`                       |
-| **children**            | `string`  `ReactNode`  | `any`                                                | Accessory as a child for the component                | -                                 |
-| **color**               | `ThemeColor` `string`  | [ThemeColor](/docs/default-theme)                    | Change icon color                                     | `primrary`                        |
-| **contentStyle**        | `object`               | `StyleProp<ViewStyle>`                               | Style for wrapper text                                | -                                 |
-| **disableRipple**       | `boolean`              | `true` `false`                                       | Disable ripple animation effect                       | `false`                           |
-| **disableTransform**    | `boolean`              | `true` `false`                                       | Disable transform scale animation effect              | `false`                           |
-| **disabled**            | `boolean`              | `true` `false`                                       | Disable element, prevent click in element             | `false`                           |
-| **fullWidth**           | `boolean`              | `true` `false`                                       | The button gets the width of 100% of the container    | `true`                            |
-| **icon**                | `ReactNode`            | `ReactNode`                                          | The prefix icon for the element                       | -                                 |
-| **loading**             | `boolean`              | `true` `false`                                       | Show loading state for the button                     | `false`                           |
-| **prefix**              | `ReactNode`            | `ReactNode`                                          | The prefix icon for the element, related to icon prop | -                                 |
-| **shadow**              | `boolean`              | `true` `false`                                       | Show shadow effect in the button                      | `false`                           |
-| **shape**               | `Enum`                 | `circle` `round`                                     | Border type between circle or rounded                 | `round`                           |
-| **size**                | `ButtonSize`           | [ButtonSize](#size-type)                             | Size element for show                                 | `middle`                          |
-| **style**               | `object`               | `StyleProp<ViewStyle>`                               | Style button wrapper                                  | -                                 |
-| **suffix**              | `ReactNode`            | `ReactNode`                                          | Show icon on the other side of the button             | -                                 |
-| **suffixOrPrefixStyle** | `object`               | `StyleProp<ViewStyle>`                               | Style for prefix or suffix element                    | -                                 |
-| **textAlign**           | `object`               | `left` `center` `right`                              | Position of the children                              | `center`                          |
-| **textColor**           | `ThemeColor`           | [ThemeColor](/docs/default-theme)                    | Color for the text of the button                      | automatic `white` or `black`      |
-| **textProps**           | `object`               | [TextProps](https://reactnative.dev/docs/text)       | Text accessories props                                | -                                 |
-| **textStyle**           | `StyleProp<TextStyle>` | [TextStyle](https://reactnative.dev/docs/text#style) | Text style                                            | -                                 |
-| **type**                | `ButtonType`           | [ButtonType](#button-type)                           | Button variant type                                   | `solid`                           |
-| **withMarginBottom**    | `boolean`              | `true` `false`                                       | Margin bottom in the element for separate views       | `false`                           |
-| **Other Props**         | `any`                  | [Other props](#base-properties)                      | Interactive props for element                         | -                                 |
+| Attribute               | Type                   | Accepted values                                      | Description                                                            | Default                           |
+|-------------------------|------------------------|------------------------------------------------------|------------------------------------------------------------------------|-----------------------------------|
+| **borderRadius**        | `number`               | `number`                                             | Defined border radius in components                                    | `8` or `20`                       |
+| **bg**                  | `ThemeColor` `string`  | [ThemeColor](/docs/default-theme)                    | Change background color and set automatic color text in black or white | `primrary`                        |
+| **color**               | `ThemeColor` `string`  | [ThemeColor](/docs/default-theme)                    | Change text color                                                      | `automatic`                       |
+| **Component**           | `Component`            | React Component                                      | Change the element base                                                | [Ripple](/docs/components/ripple) |
+| **children**            | `string`  `ReactNode`  | `any`                                                | Accessory as a child for the component                                 | -                                 |
+| **contentStyle**        | `object`               | `StyleProp<ViewStyle>`                               | Style for wrapper text                                                 | -                                 |
+| **disableRipple**       | `boolean`              | `true` `false`                                       | Disable ripple animation effect                                        | `false`                           |
+| **disableTransform**    | `boolean`              | `true` `false`                                       | Disable transform scale animation effect                               | `false`                           |
+| **disabled**            | `boolean`              | `true` `false`                                       | Disable element, prevent click in element                              | `false`                           |
+| **fullWidth**           | `boolean`              | `true` `false`                                       | The button gets the width of 100% of the container                     | `true`                            |
+| **icon**                | `ReactNode`            | `ReactNode`                                          | The prefix icon for the element                                        | -                                 |
+| **loading**             | `boolean`              | `true` `false`                                       | Show loading state for the button                                      | `false`                           |
+| **prefix**              | `ReactNode`            | `ReactNode`                                          | The prefix icon for the element, related to icon prop                  | -                                 |
+| **shadow**              | `boolean`              | `true` `false`                                       | Show shadow effect in the button                                       | `false`                           |
+| **shape**               | `Enum`                 | `circle` `round`                                     | Border type between circle or rounded                                  | `round`                           |
+| **size**                | `ButtonSize`           | [ButtonSize](#size-type)                             | Size element for show                                                  | `middle`                          |
+| **style**               | `object`               | `StyleProp<ViewStyle>`                               | Style button wrapper                                                   | -                                 |
+| **suffix**              | `ReactNode`            | `ReactNode`                                          | Show icon on the other side of the button                              | -                                 |
+| **suffixOrPrefixStyle** | `object`               | `StyleProp<ViewStyle>`                               | Style for prefix or suffix element                                     | -                                 |
+| **textAlign**           | `object`               | `left` `center` `right`                              | Position of the children                                               | `center`                          |
+| **textColor**           | `ThemeColor`           | [ThemeColor](/docs/default-theme)                    | Color for the text of the button                                       | automatic `white` or `black`      |
+| **textProps**           | `object`               | [TextProps](https://reactnative.dev/docs/text)       | Text accessories props                                                 | -                                 |
+| **textStyle**           | `StyleProp<TextStyle>` | [TextStyle](https://reactnative.dev/docs/text#style) | Text style                                                             | -                                 |
+| **type**                | `ButtonType`           | [ButtonType](#button-type)                           | Button variant type                                                    | `solid`                           |
+| **withMarginBottom**    | `boolean`              | `true` `false`                                       | Margin bottom in the element for separate views                        | `false`                           |
+| **Other Props**         | `any`                  | [Other props](#base-properties)                      | Interactive props for element                                          | -                                 |
 
 <Spacer y={2} />
 

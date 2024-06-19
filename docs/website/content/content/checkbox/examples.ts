@@ -1,117 +1,74 @@
-import generateCode from '@/content/utils/generateCode';
-import { PACKAGE_NAME } from '@/config';
+import { withThemeProvider } from '@/content/utils/generateCode';
 
-export const defaultCode =
-  generateCode(`import { Space, Checkbox } from "${PACKAGE_NAME}";
+export const defaultCode = withThemeProvider(
+  `<Checkbox value={true} />
+          <Checkbox label="I'm agree" />`,
+  {
+    package: ['Checkbox']
+  }
+);
 
-export default function App() {
-  return (
-    <View style={styles.center}>
-      <Space>
-        <Checkbox value={true} />
-        <Checkbox label="I'm agree" />
-      </Space>
-    </View>
-  );
-}
-`);
+export const type = withThemeProvider(
+  `<Checkbox
+            label="Check"
+            type="square"
+            defaultValue={true}
+          />
+          <Checkbox
+           label="Check"
+           type="circle"
+           defaultValue={true}
+         />`,
+  {
+    package: ['Checkbox']
+  }
+);
 
-export const type =
-  generateCode(`import { Space, Checkbox } from "${PACKAGE_NAME}";
+export const required = withThemeProvider(
+  `<Checkbox
+            required
+            label="Required field"
+          />`,
+  {
+    package: ['Checkbox']
+  }
+);
 
-export default function App() {
-  return (
-    <View style={styles.center}>
-      <Space>
-        <Checkbox
-          label="Check"
-          type="square"
-          defaultValue={true}
-        />
-        <Checkbox
-         label="Check"
-         type="circle"
-         defaultValue={true}
-       />
-      </Space>
-    </View>
-  );
-}
-`);
+export const sizes = withThemeProvider(
+  `<Checkbox
+            size="small"
+            label="Small"
+          />
+          <Checkbox
+            size="middle"
+            label="Middle (Default)"
+          />
+          <Checkbox
+            size="large"
+            label="Large"
+          />`,
+  {
+    package: ['Checkbox']
+  }
+);
 
-export const required =
-  generateCode(`import { Space, Checkbox } from "${PACKAGE_NAME}";
+export const customize = withThemeProvider(
+  `<Checkbox
+            activeColor="warning"
+            inactiveColor="secondary"
+            label="Customize Colors"
+          />`,
+  {
+    package: ['Checkbox']
+  }
+);
 
-export default function App() {
-  return (
-    <View style={styles.center}>
-      <Space>
-        <Checkbox
-          required
-          label="Required field"
-        />
-      </Space>
-    </View>
-  );
-}
-`);
-
-export const sizes =
-  generateCode(`import { Space, Checkbox } from "${PACKAGE_NAME}";
-
-export default function App() {
-  return (
-    <View style={styles.center}>
-      <Space>
-        <Checkbox
-          size="small"
-          label="Small"
-        />
-        <Checkbox
-          size="middle"
-          label="Middle (Default)"
-        />
-        <Checkbox
-          size="large"
-          label="Large"
-        />
-      </Space>
-    </View>
-  );
-}
-`);
-
-export const customize =
-  generateCode(`import { Space, Checkbox } from "${PACKAGE_NAME}";
-
-export default function App() {
-  return (
-    <View style={styles.center}>
-      <Space>
-        <Checkbox
-          activeColor="warning"
-          inactiveColor="secondary"
-          label="Customize Colors"
-        />
-      </Space>
-    </View>
-  );
-}
-`);
-
-export const withErrors =
-  generateCode(`import { Space, Checkbox } from "${PACKAGE_NAME}";
-
-export default function App() {
-  return (
-    <View style={styles.center}>
-      <Space>
-        <Checkbox
-          label="Check"
-          error="Please checked field."
-        />
-      </Space>
-    </View>
-  );
-}
-`);
+export const withErrors = withThemeProvider(
+  `<Checkbox
+            label="Check"
+            error="Please checked field."
+          />`,
+  {
+    package: ['Checkbox']
+  }
+);

@@ -1,112 +1,115 @@
-import { generateCodeWithProvider } from '@/content/utils/generateCode';
+import { PACKAGE_NAME } from '@/config';
 
-export const defaultCode = generateCodeWithProvider(
-  `type Type = "default" | "success" | "error" | "warning" | "info";
+const header = `type Type = "default" | "success" | "error" | "warning" | "info";
 
 const types: Type[] = ["default", "success", "error", "warning", "info"];
+`;
 
-function App() {
-  const { message } = useMessage();
+const onGenerateCode = (code: string) => `
+import {
+  useMessage,
+  Button,
+  MessageProvider,
+  ScrollView,
+  ThemeProvider,
+  Container
+} from '${PACKAGE_NAME}';
+
+${header}
+${code}
+export default function App() {
+  return (
+    <ThemeProvider>
+      <MessageProvider>
+        <ScrollView>
+          <Container gap={2}>
+            <RenderApp />
+          </Container>
+        </ScrollView>
+      </MessageProvider>
+    </ThemeProvider>
+  )
+}
+`;
+
+export const defaultCode = onGenerateCode(`
+function RenderApp() {
+  const [message] = useMessage();
 
   const onPress = (type: Type) => {
     message[type](type);
   };
 
   return (
-    <View style={styles.center}>
-      <Space>
-        {types.map((f) => (
-          <Button
-            key={f}
-            onPress={() => onPress(f)}
-            color={f === "default" ? "gray800" : f}
-          >
-            {f}
-          </Button>
-        ))}
-      </Space>
-    </View>
+    <>
+      {types.map((f) => (
+        <Button
+          key={f}
+          onPress={() => onPress(f)}
+          color={f === "default" ? "gray800" : f}
+        >
+          {f}
+        </Button>
+      ))}
+    </>
   );
-}`,
-  {
-    beauty: 'Space, useMessage, Button'
-  }
-);
+}
+`);
 
-export const withIcon = generateCodeWithProvider(
-  `type Type = "default" | "success" | "error" | "warning" | "info";
-
-const types: Type[] = ["default", "success", "error", "warning", "info"];
-
-function App() {
-  const { message } = useMessage();
+export const withIcon = onGenerateCode(
+  `
+function RenderApp() {
+  const [message] = useMessage();
 
   const onPress = (type: Type) => {
     message[type](type, { withIcon: true });
   };
 
   return (
-    <View style={styles.center}>
-      <Space>
-        {types.map((f) => (
-          <Button
-            key={f}
-            onPress={() => onPress(f)}
-            color={f === "default" ? "gray800" : f}
-          >
-            {f}
-          </Button>
-        ))}
-      </Space>
-    </View>
+    <>
+     {types.map((f) => (
+        <Button
+          key={f}
+          onPress={() => onPress(f)}
+          color={f === "default" ? "gray800" : f}
+        >
+          {f}
+        </Button>
+      ))}
+    </>
   );
-}`,
-  {
-    beauty: 'Space, useMessage, Button'
-  }
+}
+`
 );
 
-
-export const withBoxShadow = generateCodeWithProvider(
-  `type Type = "default" | "success" | "error" | "warning" | "info";
-
-const types: Type[] = ["default", "success", "error", "warning", "info"];
-
-function App() {
-  const { message } = useMessage();
+export const withBoxShadow = onGenerateCode(
+  `function RenderApp() {
+  const [message] = useMessage();
 
   const onPress = (type: Type) => {
     message[type](type, { withIcon: true, withBoxShadow: true });
   };
 
   return (
-    <View style={styles.center}>
-      <Space>
-        {types.map((f) => (
-          <Button
-            key={f}
-            onPress={() => onPress(f)}
-            color={f === "default" ? "gray800" : f}
-          >
-            {f}
-          </Button>
-        ))}
-      </Space>
-    </View>
+    <>
+      {types.map((f) => (
+        <Button
+          key={f}
+          onPress={() => onPress(f)}
+          color={f === "default" ? "gray800" : f}
+        >
+          {f}
+        </Button>
+      ))}
+    </>
   );
-}`,
-  {
-    beauty: 'Space, useMessage, Button'
-  }
+}
+`
 );
 
-export const shadowAndOpacity = generateCodeWithProvider(
-  `type Type = "default" | "success" | "error" | "warning" | "info";
-
-const types: Type[] = ["default", "success", "error", "warning", "info"];
-
-function App() {
-  const { message } = useMessage();
+export const shadowAndOpacity = onGenerateCode(
+  `function RenderApp() {
+  const [message] = useMessage();
 
   const onPress = (type: Type) => {
     message[type](type, {
@@ -117,22 +120,18 @@ function App() {
   };
 
   return (
-    <View style={styles.center}>
-      <Space>
-        {types.map((f) => (
-          <Button
-            key={f}
-            onPress={() => onPress(f)}
-            color={f === "default" ? "gray800" : f}
-          >
-            {f}
-          </Button>
-        ))}
-      </Space>
-    </View>
+    <>
+      {types.map((f) => (
+        <Button
+          key={f}
+          onPress={() => onPress(f)}
+          color={f === "default" ? "gray800" : f}
+        >
+          {f}
+        </Button>
+      ))}
+    </>
   );
-}`,
-  {
-    beauty: 'Space, useMessage, Button'
-  }
+}
+`
 );

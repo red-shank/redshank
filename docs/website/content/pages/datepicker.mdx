@@ -1,3 +1,4 @@
+import BlockCode from '../../src/Components/BlockCode';
 ---
 title: 'Datepicker'
 description: 'To select or input a date.'
@@ -10,11 +11,9 @@ url: https://redshank.app/docs/components/datepicker
 expo install @react-native-community/datetimepicker
 ```
 
-** NOTE: **
+> **_NOTE:_**  Please added [dayjs](https://day.js.org/) to dependencies using `expo install dayjs` or `npm i dayjs`.
 
-if not is Expo project, please complete the installation [here](https://github.com/react-native-datetimepicker/datetimepicker/blob/master/docs/manual-installation.md)
-
-<Spacer y={2} />
+<Spacer y={2}/>
 
 ### When To Use
 By clicking the input box, you can select a date from a popup calendar.
@@ -23,58 +22,57 @@ By clicking the input box, you can select a date from a popup calendar.
 import { DatePicker } from '@redshank/native';
 ```
 
-<Spacer y={2} />
+<Spacer y={2}/>
 
 ### Examples
 
 <Playground
   id="default"
   title="Default"
+  dependencies="dayjs@^1.10.4"
   description="Default datepicker element."
   code={datePicker.defaultCode}
 />
 
-<Spacer y={2} />
+[//]  # (<Spacer y={2} />)
 
-<Playground
-  id="picker-modes"
-  title="Picker modes"
-  description="Picker default modes element."
-  code={datePicker.modes}
-/>
+[//]  # ()
+[//]  # (<Playground)
 
-<Spacer y={2} />
+[//]  # (  id="picker-modes")
 
-<Playground
-  id="calendar"
-  title="Calendar (iOS only)"
-  description="Calendar mode only iOS in Android default."
-  code={datePicker.calendaryIOS}
-/>
+[//]  # (  title="Picker modes")
 
-<Spacer y={2} />
+[//]  # (  description="Picker default modes element.")
+
+[//]  # (  code={datePicker.modes})
+
+[//]  # (/>)
+
+<Spacer y={2}/>
 
 <Playground
   id="format"
   title="Format"
+  dependencies="dayjs@^1.10.4"
   description="Custom format date."
   code={datePicker.format}
 />
 
-<Spacer y={2} />
+<Spacer y={2}/>
 
-<Playground
-  id="locales"
-  title="Locales"
-  description="Change locale api."
+
+<h4>Locales</h4>
+You can change the language of the calendar by passing the `locales` prop.
+<BlockCode
   code={datePicker.locales}
 />
 
-<Spacer y={2} />
+<Spacer y={2}/>
 
 ### APIs
 
-<Spacer y={2} />
+<Spacer y={2}/>
 
 #### DatePicker Props
 Api props extends from [react-native-modal-datetime-picker](https://github.com/mmazzarolo/react-native-modal-datetime-picker)

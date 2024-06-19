@@ -20,7 +20,7 @@ const PopConfirmScreen = () => {
       <View style={styles.container}>
         <View>
           <Title level={3}>Pop confirm</Title>
-          <Button color="primary" onPress={toggleDefaultVisible}>
+          <Button onPress={toggleDefaultVisible}>
             show
           </Button>
 
@@ -38,7 +38,7 @@ const PopConfirmScreen = () => {
 
         <View>
           <Title level={3}>Pop confirm Header/Body/Footer</Title>
-          <Button color="primary" onPress={toggleWithoutImage}>
+          <Button onPress={toggleWithoutImage}>
             show
           </Button>
 
@@ -75,7 +75,7 @@ const PopConfirmScreen = () => {
 
         <View>
           <Title level={3}>Pop confirm delete</Title>
-          <Button color="primary" onPress={toggleVisibleConfirm}>
+          <Button onPress={toggleVisibleConfirm}>
             show
           </Button>
 

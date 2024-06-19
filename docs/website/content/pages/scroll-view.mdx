@@ -1,0 +1,37 @@
+---
+title: 'Scroll View'
+description: 'It is the same React Native component with the difference that you can pass Sx props'
+url: https://redshank.app/docs/components/scroll-view
+---
+
+```jsx
+import { ScrollView } from '@redshank/native';
+```
+
+Additionally, by default it adds a flex 1 to the ScrollView container.
+
+<Spacer y={2}/>
+
+<Playground
+  title="ScrollView"
+  description="Default ScrollView component."
+  code={scrollViewContent.defaultCode}
+/>
+
+<Spacer y={3}/>
+
+### APIs
+
+<Spacer y={2}/>
+
+#### Props
+
+Pass all props to the ScrollView component from React Native.
+More info about `SxProps` in [The sx prop](/docs/the-sx-prop)
+
+| Attribute              | Type     | Accepted values | Description        | Default |
+|------------------------|----------|-----------------|--------------------|---------|
+| **sx**                 | `object` | `SxProps`       | Root sx props      |         |
+| **contentContainerSx** | `object` | `SxProps`       | Container sx props |         |
+
+<Spacer y={2}/>

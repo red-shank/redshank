@@ -1,9 +1,6 @@
-import generateCode from '@/content/utils/generateCode';
-import { PACKAGE_NAME } from '@/config';
+import { withThemeProvider } from '@/content/utils/generateCode';
 
-export const defaultCode =
-  generateCode(`import { Space, Select } from "${PACKAGE_NAME}";
-
+const header = `
 const items = [
   {
     label: 'One option',
@@ -14,76 +11,42 @@ const items = [
     value: 'two'
   }
 ]
+`;
 
-export default function App() {
-  return (
-    <View style={styles.center}>
-      <Space orientation="vertical">
-        <Select items={items} />
-        <Select items={items} placeholder="Select a element" />
-      </Space>
-    </View>
-  );
-}
-`);
-
-export const sizes =
-  generateCode(`import { Space, Select } from "${PACKAGE_NAME}";
-
-const items = [
+export const defaultCode = withThemeProvider(
+  `<Select items={items} />
+          <Select items={items} placeholder="Select a element" />`,
   {
-    label: 'One option',
-    value: 'one'
-  },
-  {
-    label: 'Two option',
-    value: 'two'
+    header,
+    package: ['Select']
   }
-]
+);
 
-export default function App() {
-  return (
-    <View style={styles.center}>
-      <Space orientation="vertical">
-        <Select items={items} size="small" placeholder="Small" />
-        <Select items={items} size="middle" placeholder="Middle" />
-        <Select items={items} size="large" placeholder="Large" />
-      </Space>
-    </View>
-  );
-}
-`);
-
-export const errors =
-  generateCode(`import { Space, Select, Title } from "${PACKAGE_NAME}";
-
-const items = [
+export const sizes = withThemeProvider(
+  `<Select items={items} size="small" placeholder="Small" />
+          <Select items={items} size="middle" placeholder="Middle" />
+          <Select items={items} size="large" placeholder="Large" />`,
   {
-    label: 'One option',
-    value: 'one'
-  },
-  {
-    label: 'Two option',
-    value: 'two'
+    header,
+    package: ['Select']
   }
-]
+);
 
-export default function App() {
-  return (
-    <View style={styles.center}>
-      <Space orientation="vertical">
-        <Select
-          error
-          items={items}
-        />
-        <Title level={5}>With message error</Title>
-        <Select
-          error
-          items={items}
-          textError="This is required field"
-        />
-      </Space>
-    </View>
-  );
-}
-`);
+export const errors = withThemeProvider(
+  `<Select
+            error
+            items={items}
+          />
+          <Box>
+            <Title level={5}>With message error</Title>
+            <Select
+              error
+              items={items}
+              textError="This is required field"
+            />
+          </Box>`,
+  {
+    header,
+    package: ['Select', 'Box', 'Title']
+  }
+);

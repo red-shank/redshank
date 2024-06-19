@@ -57,6 +57,8 @@ export async function getStaticProps({ params }: any) {
     rawFileSource = fetchRawDocLocal(slug, 'v1');
   }
 
+  if (!rawFileSource) return { notFound: true };
+
   const { content, data } = matter(rawFileSource);
   doc = content.toString();
   meta = data;

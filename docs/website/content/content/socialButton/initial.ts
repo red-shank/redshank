@@ -1,17 +1,11 @@
-import generateCode from '@/content/utils/generateCode';
-import { PACKAGE_NAME } from '@/config';
+import { withThemeProvider } from '@/content/utils/generateCode';
 
-export default generateCode(`import { SocialButton, Space } from "${PACKAGE_NAME}";
-
-export default function App() {
-  return (
-    <View style={styles.center}>
-      <Space>
-        <SocialButton provider="google" />
-        <SocialButton provider="facebook" />
-        <SocialButton provider="twitter" />
-        <SocialButton provider="apple" />
-      </Space>
-    </View>
-  );
-}`);
+export default withThemeProvider(
+  `<SocialButton provider="google" />
+          <SocialButton provider="facebook" />
+          <SocialButton provider="twitter" />
+          <SocialButton provider="apple" />`,
+  {
+    package: ['SocialButton']
+  }
+);

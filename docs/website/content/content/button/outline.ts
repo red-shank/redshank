@@ -1,22 +1,12 @@
-import generateCode from '@/content/utils/generateCode';
-import { PACKAGE_NAME } from '@/config';
+import { withThemeProvider } from '@/content/utils/generateCode';
 
-export default generateCode(`import { Button, Space } from '${PACKAGE_NAME}';
-
-export default function App() {
-  return (
-    <View style={styles.center}>
-      <Space orientation="vertical">
-        <Button type="outline">Outline</Button>
-        <Button type="outline" color="error">Outline</Button>
-        <Button
-          fullWidth
-          type="outline"
-          color="secondary"
-        >
-          Outline
-        </Button>
-      </Space>
-    </View>
-  );
-}`);
+export default withThemeProvider(
+  `<Button type="outline">Outline</Button>
+          <Button type="outline" bg="error">Outline</Button>
+          <Button type="outline" bg="secondary">
+            Outline
+          </Button>`,
+  {
+    package: ['Button']
+  }
+);

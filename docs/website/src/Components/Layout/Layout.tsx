@@ -59,14 +59,14 @@ const Layout = ({
                 involved!
               </Text>
 
-              <Link
-                isExternal
-                target="_blank"
-                href={ROUTES.DISCORD.path}
-                className="mt-4 mb-2 before:block before:content-[''] before:mr-3 before:bg-zinc-500 before:w-[4px] before:h-[4px] before:rounded"
-              >
-                Discord
-              </Link>
+              {/*<Link*/}
+              {/*  isExternal*/}
+              {/*  target="_blank"*/}
+              {/*  href={ROUTES.DISCORD.path}*/}
+              {/*  className="mt-4 mb-2 before:block before:content-[''] before:mr-3 before:bg-zinc-500 before:w-[4px] before:h-[4px] before:rounded"*/}
+              {/*>*/}
+              {/*  Discord*/}
+              {/*</Link>*/}
               <Link
                 isExternal
                 target="_blank"

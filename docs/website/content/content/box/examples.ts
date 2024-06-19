@@ -1,19 +1,24 @@
-import generateCode from '@/content/utils/generateCode';
-import { PACKAGE_NAME } from '@/config';
+import { withThemeProvider } from '@/content/utils/generateCode';
 
-export const defaultCode = generateCode(
-  `import { Box, Avatar } from "${PACKAGE_NAME}";
+export const defaultCode = withThemeProvider(
+  `<Box
+            p={1}
+            gap={2}
+            bg="card"
+            borderRadius={1}
+            flexDirection="row"
+          >
+            <Avatar
+              size={75}
+              src={"https://i.pinimg.com/736x/8b/28/c8/8b28c857a9103b63efe150977668674a.jpg"}
+            />
 
-export default function App() {
-  return (
-    <Box flex={1} bg="secondary" borderRadius={1}>
-        <Avatar
-          size={75}
-          src={"https://i.pinimg.com/736x/8b/28/c8/8b28c857a9103b63efe150977668674a.jpg"}
-        />
-    </Box>
-  );
-}`,
-  [],
-  { withStyles: false }
+            <Box>
+              <Text bold>John Doe</Text>
+              <Text>Software Engineer</Text>
+            </Box>
+          </Box>`,
+  {
+    package: ['Box', 'Avatar', 'Text']
+  }
 );

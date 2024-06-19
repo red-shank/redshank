@@ -1,31 +1,27 @@
 /* eslint-disable no-alert */
+import React from 'react';
 import {
   Button,
   Space,
   Title,
   Icon,
   InputScrollView,
-  SocialButton,
-  useScreenLoading,
-} from "@redshank/native";
-import React from "react";
-import { StyleSheet, View } from "react-native";
+  SocialButton
+} from '@redshank/native';
+import { StyleSheet, View } from 'react-native';
 
-const colors = ["primary", "success", "warning", "error"];
+const colors = ['primary', 'success', 'warning', 'error'];
 
 const ButtonsScreen = () => {
-  const screenLoading = useScreenLoading();
   return (
     <InputScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.container}>
         <View>
           <Title level={4}>Default buttons</Title>
-          <Button mb={1} onPress={screenLoading.onVisible}>
-            Open
-          </Button>
+          <Button mb={1}>Open</Button>
           <Space>
             {colors.map((c, i) => (
-              <Button key={i} color={c}>
+              <Button key={i} bg={c}>
                 {c}
               </Button>
             ))}
@@ -38,7 +34,7 @@ const ButtonsScreen = () => {
           <Title level={4}>Circle buttons</Title>
           <Space>
             {colors.map((c, i) => (
-              <Button key={i} shape="circle" color={c}>
+              <Button key={i} shape="circle" bg={c}>
                 {c}
               </Button>
             ))}
@@ -51,20 +47,7 @@ const ButtonsScreen = () => {
           <Title level={4}>Flat buttons</Title>
           <Space>
             {colors.map((c, i) => (
-              <Button key={i} shape="circle" type="flat" color={c}>
-                {c}
-              </Button>
-            ))}
-          </Space>
-        </View>
-
-        <View style={styles.space} />
-
-        <View>
-          <Title level={4}>Shadow buttons</Title>
-          <Space>
-            {colors.map((c, i) => (
-              <Button key={i} shape="circle" type="flat" color={c} shadow>
+              <Button key={i} shape="circle" type="flat" bg={c}>
                 {c}
               </Button>
             ))}
@@ -77,7 +60,7 @@ const ButtonsScreen = () => {
           <Title level={4}>Outline buttons</Title>
           <Space>
             {colors.map((c, i) => (
-              <Button key={i} shape="circle" type="outline" color={c}>
+              <Button key={i} shape="circle" type="outline" bg={c}>
                 {c}
               </Button>
             ))}
@@ -93,9 +76,9 @@ const ButtonsScreen = () => {
               shape="circle"
               type="flat"
               size="small"
-              color="gray500"
-              textColor="primary"
-              textProps={{ style: { textTransform: "uppercase" } }}
+              bg="gray500"
+              color="primary"
+              textProps={{ style: { textTransform: 'uppercase' } }}
             >
               Obtener
             </Button>
@@ -106,7 +89,7 @@ const ButtonsScreen = () => {
                 type="flat"
                 size="small"
                 color={c}
-                textProps={{ style: { textTransform: "uppercase" } }}
+                textProps={{ style: { textTransform: 'uppercase' } }}
               >
                 Obtener
               </Button>
@@ -116,9 +99,9 @@ const ButtonsScreen = () => {
             <Button
               type="flat"
               size="small"
-              color="gray500"
-              textColor="primary"
-              textProps={{ style: { textTransform: "uppercase" } }}
+              bg="gray500"
+              color="primary"
+              textProps={{ style: { textTransform: 'uppercase' } }}
             >
               Obtener
             </Button>
@@ -180,10 +163,10 @@ const ButtonsScreen = () => {
         <View>
           <Title level={4}>Custom color buttons</Title>
           <Space>
-            <Button color="#E5097F">Magenta</Button>
-            <Button color="#30b0c7">Orangered</Button>
-            <Button color="#ffcc00">Green</Button>
-            <Button color="#af52de">Purple</Button>
+            <Button bg="#E5097F">Magenta</Button>
+            <Button bg="#30b0c7">Orangered</Button>
+            <Button bg="#ffcc00">Green</Button>
+            <Button bg="#af52de">Purple</Button>
           </Space>
         </View>
 
@@ -203,7 +186,7 @@ const ButtonsScreen = () => {
         <View>
           <Title level={4}>Disabled buttons</Title>
           <Space align="center">
-            <Button size="small" disabled onPress={() => alert("onPress")}>
+            <Button size="small" disabled onPress={() => alert('onPress')}>
               Disabled
             </Button>
 
@@ -211,7 +194,7 @@ const ButtonsScreen = () => {
               size="middle"
               type="outline"
               disabled
-              onPress={() => alert("onPress")}
+              onPress={() => alert('onPress')}
             >
               Disabled
             </Button>
@@ -220,7 +203,7 @@ const ButtonsScreen = () => {
               size="large"
               disabled
               type="link"
-              onPress={() => alert("onPress")}
+              onPress={() => alert('onPress')}
             >
               Disabled
             </Button>
@@ -232,15 +215,15 @@ const ButtonsScreen = () => {
         <View>
           <Title level={4}>Loading buttons</Title>
           <Space align="center">
-            <Button size="small" loading onPress={() => alert("onPress")}>
+            <Button size="small" loading onPress={() => alert('onPress')}>
               Loading
             </Button>
 
-            <Button size="middle" loading onPress={() => alert("onPress")}>
+            <Button size="middle" loading onPress={() => alert('onPress')}>
               Loading
             </Button>
 
-            <Button size="large" loading onPress={() => alert("onPress")}>
+            <Button size="large" loading onPress={() => alert('onPress')}>
               Loading
             </Button>
           </Space>
@@ -253,7 +236,7 @@ const ButtonsScreen = () => {
           <Title level={5}>Small</Title>
           <Space>
             {colors.map((c, i) => (
-              <Button key={i} size="small" color={c}>
+              <Button key={i} size="small" bg={c}>
                 {c}
               </Button>
             ))}
@@ -261,7 +244,7 @@ const ButtonsScreen = () => {
           <Title level={5}>Middle(default)</Title>
           <Space>
             {colors.map((c, i) => (
-              <Button key={i} color={c}>
+              <Button key={i} bg={c}>
                 {c}
               </Button>
             ))}
@@ -269,7 +252,7 @@ const ButtonsScreen = () => {
           <Title level={5}>Large</Title>
           <Space>
             {colors.map((c, i) => (
-              <Button key={i} size="large" color={c}>
+              <Button key={i} size="large" bg={c}>
                 {c}
               </Button>
             ))}
@@ -277,7 +260,7 @@ const ButtonsScreen = () => {
           <Title level={5}>XLarge</Title>
           <Space>
             {colors.map((c, i) => (
-              <Button key={i} size="xLarge" color={c}>
+              <Button key={i} size="xLarge" bg={c}>
                 {c}
               </Button>
             ))}
@@ -293,29 +276,29 @@ const ButtonsScreen = () => {
 const styles = StyleSheet.create({
   view: {
     flex: 1,
-    padding: 20,
+    padding: 20
   },
   container: {
     flex: 1,
-    padding: 15,
+    padding: 15
   },
   box: {
     width: 60,
     height: 60,
-    marginVertical: 20,
+    marginVertical: 20
   },
   button: {},
   headTitle: {
     paddingLeft: 20,
     paddingRight: 20,
     borderWidth: 1,
-    borderColor: "transparent",
-    borderBottomColor: "rgba(100, 100, 100, .3)",
+    borderColor: 'transparent',
+    borderBottomColor: 'rgba(100, 100, 100, .3)'
   },
-  darkView: { backgroundColor: "rgb(0, 0, 0)", padding: 20 },
+  darkView: { backgroundColor: 'rgb(0, 0, 0)', padding: 20 },
   space: {
-    marginTop: 25,
-  },
+    marginTop: 25
+  }
 });
 
 export default ButtonsScreen;

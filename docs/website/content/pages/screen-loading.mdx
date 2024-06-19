@@ -1,0 +1,43 @@
+---
+title: 'Screen Loading'
+description: 'Screen Loading allows you to have a loading page that is superimposed on your app, perfect for loading states such as authentication or when starting the app, it can also be useful for loading states'
+url: https://redshank.app/docs/components/screen-loading
+---
+
+```jsx
+import { ScreenLoadingProvider } from '@redshank/native';
+```
+
+<Spacer y={2}/>
+
+<Playground
+  title="Screen Loading"
+  description="Default Screen loading."
+  code={screenLoadingContent.defaultCode}
+/>
+
+
+<Spacer y={2}/>
+
+<Playground
+  title="Custom Component"
+  description="You can customizer screen."
+  code={screenLoadingContent.custom}
+/>
+
+<Spacer y={3}/>
+
+### APIs
+
+<Spacer y={2}/>
+
+#### Props
+
+| Attribute            | Type        | Accepted values | Description                     | Default |
+|----------------------|-------------|-----------------|---------------------------------|---------|
+| **children**         | `ReactNode` | `Children`      | Rest of the app                 |         |
+| **initialIsOpen**    | `boolean`   | `false`, `true` | Initial state false for default | `false` |
+| **OverlayComponent** | `ReactNode` | `Children`      | Optional overlay layout         |         |
+| **LoadingComponent** | `ReactNode` | `Children`      | Optional loading component      |         |
+
+<Spacer y={2}/>

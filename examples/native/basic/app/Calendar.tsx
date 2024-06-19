@@ -1,7 +1,11 @@
 import React from 'react';
 import 'dayjs/locale/es';
 import 'dayjs/locale/fr';
+import 'dayjs/locale/pt';
+import dayjs from 'dayjs';
 import { Box, Calendar, Container, ScrollView, Title } from '@redshank/native';
+
+const now = dayjs();
 
 const CardScreen = () => {
   return (
@@ -18,12 +22,28 @@ const CardScreen = () => {
         </Box>
 
         <Box gap={1}>
-          <Title level={4}>Locales</Title>
-          <Title level={6}>ES</Title>
+          <Title level={4}>Disabled</Title>
+          <Calendar disabled />
+        </Box>
+
+        <Box gap={1}>
+          <Title level={4}>Min / Max</Title>
+          <Calendar
+            min={now.subtract(5, 'years').toISOString()}
+            max={now.add(5, 'days').toISOString()}
+          />
+        </Box>
+
+        <Box gap={1}>
+          <Title level={4}>Localization</Title>
+          <Title level={6}>Spanish</Title>
           <Calendar locale="es" selected="1997-12-23" />
 
-          <Title level={6}>FR</Title>
+          <Title level={6}>France</Title>
           <Calendar locale="fr" />
+
+          <Title level={6}>Portuguese</Title>
+          <Calendar locale="pt" />
         </Box>
       </Container>
     </ScrollView>

@@ -7,7 +7,9 @@ import CodeBlock, { CodeBlockSnippet } from '@/Components/BlockCode';
 
 const Playground = React.lazy(() => import('@/Components/Playground'));
 
-export const Table: React.FC<React.PropsWithChildren<unknown>> = ({ children }) => {
+export const Table: React.FC<React.PropsWithChildren<unknown>> = ({
+  children
+}) => {
   return (
     <div className="docs-table-container">
       <table className="docs-table">{children}</table>
@@ -26,7 +28,9 @@ export const Table: React.FC<React.PropsWithChildren<unknown>> = ({ children }) 
     </div>
   );
 };
-export const Thead: React.FC<React.PropsWithChildren<unknown>> = ({ children }) => {
+export const Thead: React.FC<React.PropsWithChildren<unknown>> = ({
+  children
+}) => {
   const { theme } = useTheme();
 
   return (
@@ -60,10 +64,14 @@ export const Thead: React.FC<React.PropsWithChildren<unknown>> = ({ children }) 
     </thead>
   );
 };
-export const Trow: React.FC<React.PropsWithChildren<unknown>> = ({ children }) => {
+export const Trow: React.FC<React.PropsWithChildren<unknown>> = ({
+  children
+}) => {
   return <tr className="docs-tr">{children}</tr>;
 };
-export const Tcol: React.FC<React.PropsWithChildren<unknown>> = ({ children }) => {
+export const Tcol: React.FC<React.PropsWithChildren<unknown>> = ({
+  children
+}) => {
   const { theme } = useTheme();
 
   return (
@@ -160,6 +168,7 @@ const MDXComponents = {
     title: string;
     description: string;
     code: string;
+    dependencies: string;
     mode?: 'mobile' | 'all';
   }) => {
     return (
@@ -178,7 +187,11 @@ const MDXComponents = {
             </div>
           }
         >
-          <Playground code={props.code} mode={props?.mode} />
+          <Playground
+            code={props.code}
+            mode={props?.mode}
+            dependencies={props?.dependencies}
+          />
         </React.Suspense>
       </div>
     );
