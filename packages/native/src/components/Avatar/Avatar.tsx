@@ -72,10 +72,6 @@ export const Avatar: React.FC<AvatarProps> = ({
   }, [backgroundColor, colors, src, bordered]);
 
   const colorText = React.useMemo<string | undefined>(() => {
-    console.log({
-      _backgroundColor,
-      textColor
-    });
     return textColor
       ? colors[textColor] || textColor
       : getColorForBackground(_backgroundColor);

@@ -3457,7 +3457,7 @@
     "@react-types/shared" "^3.23.1"
 
 "@redshank/native@*", "@redshank/native@file:/Users/rivaslive/Documentos/npm/redshank/packages/native":
-  version "2.33.0"
+  version "2.34.0"
   resolved "file:packages/native"
   dependencies:
     color "4.2.3"
