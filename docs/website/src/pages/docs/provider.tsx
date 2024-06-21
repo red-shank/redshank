@@ -1,10 +1,11 @@
-import type { NextPage } from 'next';
-
 import ROUTES from '@/config/routes';
 import Layout from '@/Components/Layout';
 import ProviderTemplate from '@/Components/Templates/Provider';
+import { isProd } from '@/config';
+import { saveAlgoliaObject } from '@/lib/docs/algolia';
+import extractTextFromJSX from '@/lib/docs/extractTextFromJSX';
 
-const Provider: NextPage = () => {
+const Provider = () => {
   return (
     <Layout
       contentFit
@@ -16,5 +17,11 @@ const Provider: NextPage = () => {
     </Layout>
   );
 };
+
+if (isProd) {
+  saveAlgoliaObject('provider', extractTextFromJSX(ProviderTemplate())).then(
+    (result) => result && console.log('provider saved to Algolia.')
+  );
+}
 
 export default Provider;

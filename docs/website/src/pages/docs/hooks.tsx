@@ -3,8 +3,11 @@ import type { NextPage } from 'next';
 import ROUTES from '@/config/routes';
 import Layout from '@/Components/Layout';
 import HooksTemplate from '@/Components/Templates/Hooks';
+import { isProd } from '@/config';
+import { saveAlgoliaObject } from '@/lib/docs/algolia';
+import extractTextFromJSX from '@/lib/docs/extractTextFromJSX';
 
-const HooksPage: NextPage = () => {
+const HooksPage = () => {
   return (
     <Layout
       contentFit
@@ -16,5 +19,11 @@ const HooksPage: NextPage = () => {
     </Layout>
   );
 };
+
+if (isProd) {
+  saveAlgoliaObject('hooks', extractTextFromJSX(HooksTemplate())).then(
+    (result) => result && console.log('hooks saved to Algolia.')
+  );
+}
 
 export default HooksPage;

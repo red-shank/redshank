@@ -18,6 +18,33 @@ import processColor from '@/utils/processColor';
 import { WrapperStyle } from './style';
 import processObject from '@/utils/processObject';
 
+export const content = {
+  header: (
+    <>
+      <Title>Default Theme</Title>
+      <Text>
+        <b>{PACKAGE_NAME}</b> default theme is based on React Context API.
+      </Text>
+      <TitleLink>Colors:</TitleLink>
+
+      <Text>
+        <b>{PACKAGE_NAME}</b> includes a default color palette out-of-the-box
+        that is a great starting point if you don't have your own specific
+        branding in mind. You can access the colors through the theme object,
+        see the{' '}
+        <Link href={ROUTES.PROVIDER.path + '#theme-object'}>
+          <NLink className="inline">theme object</NLink>
+        </Link>{' '}
+        for more information.
+      </Text>
+    </>
+  ),
+  padding: <TitleLink>Paddings:</TitleLink>,
+  margins: <TitleLink>Margins:</TitleLink>,
+  borderRadius: <TitleLink>Border Radius:</TitleLink>,
+  zIndex: <TitleLink>zIndex:</TitleLink>
+};
+
 const DefaultThemeTemplate = () => {
   const palette = useMemo(() => {
     return {
@@ -48,22 +75,7 @@ const DefaultThemeTemplate = () => {
 
   return (
     <WrapperStyle>
-      <Title>Default Theme</Title>
-      <Text>
-        <b>{PACKAGE_NAME}</b> default theme is based on React Context API.
-      </Text>
-      <TitleLink>Colors:</TitleLink>
-
-      <Text>
-        <b>{PACKAGE_NAME}</b> includes a default color palette out-of-the-box
-        that is a great starting point if you don't have your own specific
-        branding in mind. You can access the colors through the theme object,
-        see the{' '}
-        <Link href={ROUTES.PROVIDER.path + '#theme-object'}>
-          <NLink className="inline">theme object</NLink>
-        </Link>{' '}
-        for more information.
-      </Text>
+      {content.header}
 
       {palette.dark.map(({ colors, name }, indexPalette) => {
         return (
@@ -102,7 +114,8 @@ const DefaultThemeTemplate = () => {
                             onClick={() => onCopy(lightColor)}
                             className={`text-sm cursor-pointer`}
                           >
-                            Light: <span className="font-bold">{lightColor}</span>
+                            Light:{' '}
+                            <span className="font-bold">{lightColor}</span>
                           </p>
                         </Tooltip>
                         <Tooltip trigger="click" content="Copied Dark!">
@@ -123,17 +136,16 @@ const DefaultThemeTemplate = () => {
         );
       })}
 
-      <TitleLink>Paddings:</TitleLink>
-
+      {content.padding}
       <BlockCode language="JSON" code={paddingObjectString} />
 
-      <TitleLink>Margins:</TitleLink>
+      {content.margins}
       <BlockCode language="JSON" code={marginObjectString} />
 
-      <TitleLink>Border Radius:</TitleLink>
+      {content.borderRadius}
       <BlockCode language="JSON" code={borderRadiusObjectString} />
 
-      <TitleLink>zIndex:</TitleLink>
+      {content.zIndex}
       <BlockCode language="JSON" code={zIndicesObjectString} />
     </WrapperStyle>
   );

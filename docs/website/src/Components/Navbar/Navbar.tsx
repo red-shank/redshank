@@ -22,6 +22,7 @@ import {
   DiscordIcon
 } from '@/Components/Icons';
 import { AStyle, onlyDesk, onlyMdMobile, onlyMobile } from './style';
+import ModalSearch from '@/Components/ModalSearch';
 
 const RenderItem = dynamic(() => import('@/Components/Navbar/RenderItem'), {
   ssr: isProd
@@ -123,7 +124,7 @@ const Navbar = ({ isActive, contentFit, ...props }: NavbarProps) => {
 
       <NextNavbar.Content>
         <NextNavbar.Content css={onlyDesk}>
-          <Grid.Container gap={2} className="w-auto">
+          <Grid.Container gap={2} className="w-auto flex-shrink-0">
             {/*<RenderLink href={ROUTES.DISCORD.path}>*/}
             {/*  <Button*/}
             {/*    auto*/}
@@ -155,24 +156,22 @@ const Navbar = ({ isActive, contentFit, ...props }: NavbarProps) => {
               }}
             />
           </Grid.Container>
-          <Input
-            bordered
-            placeholder={'Search...'}
-            contentRight={<SearchIcon />}
-          />
+
+          {/* Search algolia */}
+          <ModalSearch />
         </NextNavbar.Content>
 
         <Grid.Container css={onlyMobile} gap={2}>
-          <RenderLink href={ROUTES.DISCORD.path} css={onlyMdMobile}>
-            <Button
-              auto
-              icon={<DiscordIcon />}
-              className="h-auto bg-transparent text-2xl"
-              css={{
-                color: '$text'
-              }}
-            />
-          </RenderLink>
+          {/*<RenderLink href={ROUTES.DISCORD.path} css={onlyMdMobile}>*/}
+          {/*  <Button*/}
+          {/*    auto*/}
+          {/*    icon={<DiscordIcon />}*/}
+          {/*    className="h-auto bg-transparent text-2xl"*/}
+          {/*    css={{*/}
+          {/*      color: '$text'*/}
+          {/*    }}*/}
+          {/*  />*/}
+          {/*</RenderLink>*/}
           <RenderLink href={ROUTES.GITHUB.path} css={onlyMdMobile}>
             <Button
               auto
@@ -196,14 +195,11 @@ const Navbar = ({ isActive, contentFit, ...props }: NavbarProps) => {
         </Grid.Container>
 
         <NextNavbar.Collapse css={{ background: '$background' }}>
-          <NextNavbar.CollapseItem></NextNavbar.CollapseItem>
+          <NextNavbar.CollapseItem />
+
+          {/* Search mobile algolia */}
           <NextNavbar.CollapseItem className="w-full">
-            <Input
-              bordered
-              css={{ width: '100%' }}
-              placeholder="Search..."
-              contentRight={<SearchIcon />}
-            />
+            <ModalSearch />
           </NextNavbar.CollapseItem>
 
           <Aside titleClass="mt-3" />

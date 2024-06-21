@@ -26,4 +26,13 @@ export const libTheme = {
   marginSizes,
   zIndices
 };
-export const isProd = process.env.NODE_ENV === "production";
+export const isProd = process.env.NODE_ENV === 'production';
+
+export const ALGOLIA_APP_ID = process.env.NEXT_PUBLIC_ALGOLIA_APP_ID ?? '';
+
+export const ALGOLIA_APP_READ_API_KEY =
+  process.env.NEXT_PUBLIC_ALGOLIA_APP_READ_API_KEY ?? '';
+
+// use server
+export const ALGOLIA_APP_WRITE_API_KEY =
+  process.env.ALGOLIA_APP_WRITE_API_KEY ?? '';

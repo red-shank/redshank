@@ -65,4 +65,5 @@ const HomeTemplate = () => {
     </WrapperStyle>
   );
 };
+
 export default HomeTemplate;

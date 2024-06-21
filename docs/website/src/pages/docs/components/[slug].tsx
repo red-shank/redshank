@@ -10,6 +10,7 @@ import ROUTES from '@/config/routes';
 import Layout from '@/Components/Layout';
 import { fetchRawDoc, fetchRawDocLocal } from '@/lib/docs/page';
 import ComponentTemplate from '@/Components/Templates/Component';
+import { saveAlgoliaObject } from '@/lib/docs/algolia';
 
 export default function Component({ meta, source }: any) {
   return (
@@ -48,8 +49,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }: any) {
   const { slug } = params;
-
-  let meta, doc, rawFileSource;
+  let rawFileSource;
 
   if (isProd) {
     rawFileSource = await fetchRawDoc(slug, 'v1');
@@ -60,20 +60,21 @@ export async function getStaticProps({ params }: any) {
   if (!rawFileSource) return { notFound: true };
 
   const { content, data } = matter(rawFileSource);
-  doc = content.toString();
-  meta = data;
-
-  const mdxSource = await serialize(doc, {
+  const mdxSource = await serialize(content.toString(), {
     mdxOptions: {
-      remarkPlugins: [remarkAutoLink, remarkSlug],
+      remarkPlugins: [remarkAutoLink as any, remarkSlug],
       rehypePlugins: [mapboxPrism as any]
     }
   });
 
+  if (isProd) {
+    await saveAlgoliaObject(slug, content.toString() || '');
+  }
+
   return {
     // fetching to mdx in github for get pages component
     props: {
-      meta,
+      meta: data,
       source: mdxSource
     }
   };

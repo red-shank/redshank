@@ -1,10 +1,11 @@
-import type { NextPage } from 'next';
-
 import ROUTES from '@/config/routes';
 import Layout from '@/Components/Layout';
 import TheSxPropTemplate from '@/Components/Templates/TheSxProp';
+import { isProd } from '@/config';
+import { saveAlgoliaObject } from '@/lib/docs/algolia';
+import extractTextFromJSX from '@/lib/docs/extractTextFromJSX';
 
-const Docs: NextPage = () => {
+const Docs = () => {
   return (
     <Layout
       contentFit
@@ -16,5 +17,12 @@ const Docs: NextPage = () => {
     </Layout>
   );
 };
+
+if (isProd) {
+  saveAlgoliaObject(
+    'the-sx-prop',
+    extractTextFromJSX(TheSxPropTemplate())
+  ).then((result) => result && console.log('the-sx-prop saved to Algolia.'));
+}
 
 export default Docs;

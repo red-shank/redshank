@@ -1,10 +1,13 @@
-import type { NextPage } from 'next';
-
 import ROUTES from '@/config/routes';
 import Layout from '@/Components/Layout';
-import DefaultThemeTemplate from '@/Components/Templates/DefaultTheme';
+import DefaultThemeTemplate, {
+  content
+} from '@/Components/Templates/DefaultTheme';
+import { isProd } from '@/config';
+import { saveAlgoliaObject } from '@/lib/docs/algolia';
+import extractTextFromJSX from '@/lib/docs/extractTextFromJSX';
 
-const DefaultTheme: NextPage = () => {
+const DefaultTheme = () => {
   return (
     <Layout
       contentFit
@@ -16,5 +19,17 @@ const DefaultTheme: NextPage = () => {
     </Layout>
   );
 };
+
+if (isProd) {
+  const contentString = Object.values(content)
+    .map((value) => {
+      return extractTextFromJSX(value);
+    })
+    .join('\n ');
+
+  saveAlgoliaObject('default-theme', contentString).then(
+    (result) => result && console.log('default-theme saved to Algolia.')
+  );
+}
 
 export default DefaultTheme;
