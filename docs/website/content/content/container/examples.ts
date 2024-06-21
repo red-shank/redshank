@@ -4,23 +4,18 @@ export const defaultCode = generateCodeWithProvider(
   `
 function RenderApp() {
   return (
-    <Container
-      mb={2}
-      flex={1}
-      sx={{
-        container: {
-          bg: "card"
-        },
-        root: {
-          bg: "primary"
-        }
-      }}>
-      <Text>Container</Text>
-    </Container>
-  )
+    <Box bg="primary">
+      <Container
+        mb={2}
+        bg="card"
+      >
+        <Text>Container</Text>
+      </Container>
+    </Box>
+  );
 }`,
   {
-    package: ['Container', 'Text']
+    package: ['Container', 'Box', 'Text']
   }
 );
 
@@ -32,19 +27,12 @@ function RenderApp() {
   const [size, setSize] = useState('sm');
 
   return (
-    <Container
-      size={size}
-      mb={2}
-      flex={1}
-      sx={{
-        container: {
-          bg: "card"
-        },
-        root: {
-          bg: "primary"
-        }
-      }}
-    >
+    <Box bg="primary">
+      <Container
+        mb={2}
+        bg="card"
+        size={size}
+      >
         <Select
           mt={1}
           value={size}
@@ -57,7 +45,8 @@ function RenderApp() {
             { label: "xl", value: "xl" }
           ]}
         />
-    </Container>
+      </Container>
+    </Box>
   );
 }`,
   {
