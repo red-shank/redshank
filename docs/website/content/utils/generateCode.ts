@@ -69,7 +69,7 @@ export function withThemeProvider(
       ? `
 import { ${importsReact.trim()} } from 'react';`
       : ''
-  }
+  };
 import { ThemeProvider, Container, ScrollView${
     importsBeauty ? `, ${importsBeauty.trim()}` : ''
   } } from '${PACKAGE_NAME}';
@@ -77,18 +77,18 @@ ${
   params?.header ||
   `
 `
-}
+};
 export default function App() {
-  ${params?.hooks || ''}
+  ${params?.hooks || ''};
   return (
     <ThemeProvider>
-      <ScrollView>
+      <ScrollView contentContainerSx={{ flex: 1 }}>
         <Container gap={2}>
           ${code}
         </Container>
       </ScrollView>
     </ThemeProvider>
-  )
+  );
 }
-${params?.footer || ''}`;
+${params?.footer || ''};`;
 }
