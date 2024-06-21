@@ -1,5 +1,14 @@
 # CHANGELOG
 
+# 2.35.0 (2024-06-21)
+
+
+### Bug Fixes
+
+* remove console.log ([7e66fb1](https://github.com/red-shank/redshank/commit/7e66fb1774f478cc01c4e1e570ca0c214c5bb82e))
+
+
+
 # 2.34.0 (2024-06-21)
 
 
