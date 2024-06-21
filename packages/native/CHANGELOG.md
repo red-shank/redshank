@@ -1,5 +1,14 @@
 # CHANGELOG
 
+# 2.32.0 (2024-06-20)
+
+
+### Bug Fixes
+
+* fixed avatars and color button links ([5532ce6](https://github.com/red-shank/redshank/commit/5532ce6d583d8ae7ff98464f6a6dcec3f48aff42))
+
+
+
 # 2.31.0 (2024-06-18)
 
 
