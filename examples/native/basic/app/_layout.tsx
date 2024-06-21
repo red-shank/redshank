@@ -60,7 +60,7 @@ export default function RootLayout() {
   return (
     <RThemeProvider
       theme={{
-        theme: colorSchema || 'light'
+        theme: colorSchema || 'light',
       }}
     >
       <App />

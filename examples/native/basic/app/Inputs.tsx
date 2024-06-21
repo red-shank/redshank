@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import { Input, Title, InputScrollView, Space, Icon } from '@redshank/native';
+import { Input, Title, InputScrollView, Box, Icon } from '@redshank/native';
 
 const { TextArea } = Input;
 
@@ -10,7 +10,7 @@ const InputScreen = () => {
       <View style={styles.container}>
         <View>
           <Title level={3}>Default Input</Title>
-          <Space orientation="vertical">
+          <Box gap={1}>
             <Input placeholder="Default input" />
             <Title level={3}>Sizes</Title>
             <Input placeholder="Small input" size="small" />
@@ -26,10 +26,10 @@ const InputScreen = () => {
               prefix={<Icon name="lock" type="antdesign" />}
               suffix={<Icon name="mail" type="antdesign" />}
             />
-          </Space>
+          </Box>
 
           <Title level={3}>Placeholder color</Title>
-          <Space orientation="vertical">
+          <Box gap={1}>
             <Input
               placeholder="Placeholder color Primary"
               placeholderColor="primary"
@@ -43,7 +43,7 @@ const InputScreen = () => {
               placeholderColor="#A569BD"
               borderInputColor="#A569BD"
             />
-          </Space>
+          </Box>
 
           <Title level={3}>Error input</Title>
           <Input
@@ -66,7 +66,7 @@ const InputScreen = () => {
         </View>
         <View>
           <Title level={3}>Input Number</Title>
-          <Space orientation="vertical">
+          <Box gap={1}>
             <Input type="numeric" placeholder="Insert only numbers" />
             <Input
               error
@@ -74,22 +74,22 @@ const InputScreen = () => {
               type="numeric"
               placeholder="Insert only numbers"
             />
-          </Space>
+          </Box>
         </View>
 
         <View>
           <Title level={3}>Textarea</Title>
-          <Space orientation="vertical">
+          <Box gap={1}>
             <TextArea placeholder="Insert text" />
-          </Space>
+          </Box>
         </View>
 
         <View>
           <Title level={3}>Disabled</Title>
-          <Space orientation="vertical">
+          <Box gap={1}>
             <Input isDisabled placeholder="Insert text" />
             <TextArea isDisabled placeholder="Insert text" />
-          </Space>
+          </Box>
         </View>
       </View>
       <View style={{ height: 75 }} />

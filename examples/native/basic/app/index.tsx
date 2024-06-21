@@ -5,7 +5,7 @@ import {
   Text,
   Title,
   InputScrollView,
-  Space,
+  Box,
   Ripple,
   getColorForBackground,
   Container,
@@ -30,7 +30,7 @@ const ThemeScreen = () => {
         </Button>
 
         <Title mt={4}>Colors</Title>
-        <Space orientation="vertical">
+        <Box gap={1}>
           {Object.keys(colors).map((color) => (
             <Ripple
               key={color}
@@ -47,7 +47,7 @@ const ThemeScreen = () => {
               </Text>
             </Ripple>
           ))}
-        </Space>
+        </Box>
       </Container>
     </InputScrollView>
   );

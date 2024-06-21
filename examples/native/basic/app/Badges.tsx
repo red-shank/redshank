@@ -1,16 +1,16 @@
-import React, { useState } from "react";
-import { StyleSheet, View } from "react-native";
+import React, { useState } from 'react';
+import { StyleSheet, View } from 'react-native';
 import {
   Title,
   InputScrollView,
   Badge,
-  Space,
+  Box,
   Avatar,
   Text,
   Icon,
   useTheme,
-  Ripple,
-} from "@redshank/native";
+  Ripple
+} from '@redshank/native';
 
 const BadgeScreen = () => {
   const [visibleBadge, setVisibleBadge] = useState(true);
@@ -21,24 +21,29 @@ const BadgeScreen = () => {
       <View style={styles.container}>
         <View>
           <Title level={3}>Default Badge</Title>
-          <Space>
-            <Badge content="DEFAULT" />
-            <Badge content="999+" background="error" />
-          </Space>
+          <Box gap={1} flexDirection="row">
+            <Badge content="Default" bordered={false} />
+            <Badge content="Primary" background="primary" bordered={false} />
+            <Badge
+              bordered={false}
+              content="Secondary"
+              background="secondary"
+            />
+          </Box>
         </View>
 
         <View>
           <Title level={3}>Sizes</Title>
-          <Space>
+          <Box gap={1} flexDirection="row">
             <Badge content="Small" size="small" />
             <Badge content="Middle" />
             <Badge content="Large" size="large" />
-          </Space>
+          </Box>
         </View>
 
         <View>
           <Title level={3}>Dot Variant</Title>
-          <Space orientation="vertical">
+          <Box gap={1} flexDirection="row">
             <Text>
               <Badge content="" /> Default
             </Text>
@@ -48,25 +53,12 @@ const BadgeScreen = () => {
             <Text>
               <Badge content="" background="success" /> Success
             </Text>
-          </Space>
+          </Box>
         </View>
 
         <View>
-          <Title level={3}>Borderless Variant</Title>
-          <Space>
-            <Badge content="Default" bordered={false} />
-            <Badge content="Primary" background="primary" bordered={false} />
-            <Badge
-              bordered={false}
-              content="Secondary"
-              background="secondary"
-            />
-          </Space>
-        </View>
-
-        <View>
-          <Title level={3}>Flat Variant / Pressables</Title>
-          <Space>
+          <Title level={3}>Flat Variant</Title>
+          <Box gap={1} flexDirection="row">
             <Badge isPressable content="Default" variant="flat" />
             <Badge
               isPressable
@@ -80,41 +72,41 @@ const BadgeScreen = () => {
               content="Secondary"
               background="secondary"
             />
-          </Space>
+          </Box>
         </View>
 
         <View>
           <Title level={3}>Square</Title>
-          <Space>
+          <Box gap={1} flexDirection="row">
             <Badge content="999+" background="error" type="square" />
             <Badge content="PRIMARY" background="primary" type="square" />
-          </Space>
+          </Box>
         </View>
 
         <View>
           <Title level={3}>Solid Bordered</Title>
-          <Space style={{ backgroundColor: colors.gray300 }} align="center">
+          <Box bg="gray300" gap={1}>
             <Badge content="" />
             <Badge content="999+" background="error" />
             <Badge content="PRIMARY" background="primary" />
-          </Space>
+          </Box>
         </View>
 
         <View>
           <Title level={3}>With Children</Title>
-          <Space>
-            <Badge content="999+" background="error">
+          <Box gap={1} flexDirection="row">
+            <Badge content="9+" background="error">
               <Avatar text="Hello World" />
             </Badge>
             <Badge background="error" size="small" content="">
               <Avatar text="Hello World" />
             </Badge>
-          </Space>
+          </Box>
         </View>
 
         <View>
           <Title level={3}>Placement</Title>
-          <Space>
+          <Box gap={1} flexDirection="row">
             <Badge background="error" size="small">
               <Avatar text="Hello World" />
             </Badge>
@@ -128,8 +120,8 @@ const BadgeScreen = () => {
             <Badge background="error" placement="bottom-left" size="small">
               <Avatar text="Hello World" />
             </Badge>
-          </Space>
-          <Space>
+          </Box>
+          <Box gap={1} flexDirection="row">
             <Badge background="error" size="small">
               <Avatar text="Hello World" />
             </Badge>
@@ -143,15 +135,15 @@ const BadgeScreen = () => {
             <Badge background="error" placement="bottom-left" size="small">
               <Avatar text="Hello World" />
             </Badge>
-          </Space>
+          </Box>
         </View>
 
         <View>
           <Title level={3}>Enable Shadow</Title>
-          <Space>
+          <Box gap={1} flexDirection="row">
             <Badge content="With Shadow" enableShadow />
             <Badge content="999+" background="error" enableShadow />
-          </Space>
+          </Box>
         </View>
 
         <View>
@@ -177,18 +169,18 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 10,
-    height: "100%",
+    height: '100%'
   },
   headTitle: {
     paddingLeft: 20,
     paddingRight: 20,
     borderWidth: 1,
-    borderColor: "transparent",
-    borderBottomColor: "rgba(100, 100, 100, .3)",
+    borderColor: 'transparent',
+    borderBottomColor: 'rgba(100, 100, 100, .3)'
   },
   space: {
-    marginTop: 50,
-  },
+    marginTop: 50
+  }
 });
 
 export default BadgeScreen;

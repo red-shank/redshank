@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
-import { Title, Space, Button, useMessage, ScrollView } from "@redshank/native";
+import { Title, Box, Button, useMessage, ScrollView } from "@redshank/native";
 
 type Type = "default" | "success" | "error" | "warning" | "info";
 
@@ -35,46 +35,46 @@ const MessageScreen = () => {
       <View style={styles.container}>
         <View style={{ alignItems: "center" }}>
           <Title level={3}>Default Message</Title>
-          <Space>
+          <Box gap={1} flexDirection="row" flexWrap="wrap">
             {types.map((f) => (
               <Button key={f} onPress={() => onPressDefault(f)}>
                 {f}
               </Button>
             ))}
-          </Space>
+          </Box>
         </View>
 
         <View style={{ alignItems: "center" }}>
           <Title level={3}>With icon</Title>
-          <Space>
+          <Box gap={1} flexDirection="row" flexWrap="wrap">
             {types.map((f) => (
               <Button key={f} onPress={() => onPressIcon(f)}>
                 {f}
               </Button>
             ))}
-          </Space>
+          </Box>
         </View>
 
         <View style={{ alignItems: "center" }}>
           <Title level={3}>With Shadow Box</Title>
-          <Space>
+          <Box gap={1} flexDirection="row" flexWrap="wrap">
             {types.map((f) => (
               <Button key={f} onPress={() => onPressShadowBox(f)}>
                 {f}
               </Button>
             ))}
-          </Space>
+          </Box>
         </View>
 
         <View style={{ alignItems: "center" }}>
           <Title level={3}>Shadow</Title>
-          <Space>
+          <Box gap={1} flexDirection="row" flexWrap="wrap">
             {types.map((f) => (
               <Button key={f} onPress={() => onPressShadow(f)}>
                 {f}
               </Button>
             ))}
-          </Space>
+          </Box>
         </View>
 
         {/* END */}

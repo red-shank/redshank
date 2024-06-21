@@ -1,6 +1,6 @@
 import React from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
-import { Title, Select, Space } from '@redshank/native';
+import { Title, Select, Box } from '@redshank/native';
 
 const items = [
   {
@@ -17,7 +17,7 @@ const SelectScreen = () => {
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.container}>
-        <Space orientation="vertical">
+        <Box gap={1}>
           <Title>Default Select</Title>
           <Select size="small" placeholder="Select text" items={items} />
           <Select size="middle" placeholder="Select text" items={items} />
@@ -30,7 +30,7 @@ const SelectScreen = () => {
             placeholder="Select item..."
             textError="This is error"
           />
-        </Space>
+        </Box>
       </View>
     </ScrollView>
   );

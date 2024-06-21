@@ -2,7 +2,7 @@
 import React from 'react';
 import {
   Button,
-  Space,
+  Box,
   Title,
   Icon,
   InputScrollView,
@@ -18,60 +18,59 @@ const ButtonsScreen = () => {
       <View style={styles.container}>
         <View>
           <Title level={4}>Default buttons</Title>
-          <Button mb={1}>Open</Button>
-          <Space>
+          <Box gap={1} flexDirection="row" flexWrap="wrap">
             {colors.map((c, i) => (
               <Button key={i} bg={c}>
                 {c}
               </Button>
             ))}
-          </Space>
+          </Box>
         </View>
 
         <View style={styles.space} />
 
         <View>
           <Title level={4}>Circle buttons</Title>
-          <Space>
+          <Box gap={1} flexDirection="row" flexWrap="wrap">
             {colors.map((c, i) => (
               <Button key={i} shape="circle" bg={c}>
                 {c}
               </Button>
             ))}
-          </Space>
+          </Box>
         </View>
 
         <View style={styles.space} />
 
         <View>
           <Title level={4}>Flat buttons</Title>
-          <Space>
+          <Box gap={1} flexDirection="row" flexWrap="wrap">
             {colors.map((c, i) => (
               <Button key={i} shape="circle" type="flat" bg={c}>
                 {c}
               </Button>
             ))}
-          </Space>
+          </Box>
         </View>
 
         <View style={styles.space} />
 
         <View>
           <Title level={4}>Outline buttons</Title>
-          <Space>
+          <Box gap={1} flexDirection="row" flexWrap="wrap">
             {colors.map((c, i) => (
               <Button key={i} shape="circle" type="outline" bg={c}>
                 {c}
               </Button>
             ))}
-          </Space>
+          </Box>
         </View>
 
         <View style={styles.space} />
 
         <View>
           <Title level={4}>iOS tag buttons</Title>
-          <Space>
+          <Box gap={1} flexDirection="row" flexWrap="wrap">
             <Button
               shape="circle"
               type="flat"
@@ -94,8 +93,7 @@ const ButtonsScreen = () => {
                 Obtener
               </Button>
             ))}
-          </Space>
-          <Space>
+
             <Button
               type="flat"
               size="small"
@@ -110,14 +108,14 @@ const ButtonsScreen = () => {
                 Obtener
               </Button>
             ))}
-          </Space>
+          </Box>
         </View>
 
         <View style={styles.space} />
 
         <View>
           <Title level={4}>Icon, Prefix and Suffix Buttons</Title>
-          <Space>
+          <Box gap={1} flexDirection="row" flexWrap="wrap">
             <Button
               icon={
                 <Icon color="yellow400" type="ant-design" name="smile-circle" />
@@ -141,7 +139,7 @@ const ButtonsScreen = () => {
             >
               Both
             </Button>
-          </Space>
+          </Box>
         </View>
 
         <View style={styles.space} />
@@ -150,42 +148,42 @@ const ButtonsScreen = () => {
           <Title level={4} marginBottom={10}>
             Social buttons
           </Title>
-          <Space>
+          <Box gap={1} flexDirection="row" flexWrap="wrap">
             <SocialButton provider="google" />
             <SocialButton provider="twitter" />
             <SocialButton provider="apple" />
             <SocialButton provider="facebook" />
-          </Space>
+          </Box>
 
           <View style={styles.space} />
         </View>
 
         <View>
           <Title level={4}>Custom color buttons</Title>
-          <Space>
+          <Box gap={1} flexDirection="row" flexWrap="wrap">
             <Button bg="#E5097F">Magenta</Button>
             <Button bg="#30b0c7">Orangered</Button>
             <Button bg="#ffcc00">Green</Button>
             <Button bg="#af52de">Purple</Button>
-          </Space>
+          </Box>
         </View>
 
         <View style={styles.space} />
 
         <Title level={5}>Link Buttons</Title>
-        <Space>
+        <Box gap={1} flexDirection="row" flexWrap="wrap">
           {colors.map((c, i) => (
             <Button key={i} type="link" color={c}>
               {c}
             </Button>
           ))}
-        </Space>
+        </Box>
 
         <View style={styles.space} />
 
         <View>
           <Title level={4}>Disabled buttons</Title>
-          <Space align="center">
+          <Box gap={1} flexDirection="row" flexWrap="wrap">
             <Button size="small" disabled onPress={() => alert('onPress')}>
               Disabled
             </Button>
@@ -207,14 +205,14 @@ const ButtonsScreen = () => {
             >
               Disabled
             </Button>
-          </Space>
+          </Box>
         </View>
 
         <View style={styles.space} />
 
         <View>
           <Title level={4}>Loading buttons</Title>
-          <Space align="center">
+          <Box gap={1} flexDirection="row" flexWrap="wrap">
             <Button size="small" loading onPress={() => alert('onPress')}>
               Loading
             </Button>
@@ -226,7 +224,7 @@ const ButtonsScreen = () => {
             <Button size="large" loading onPress={() => alert('onPress')}>
               Loading
             </Button>
-          </Space>
+          </Box>
         </View>
 
         <View style={styles.space} />
@@ -234,37 +232,37 @@ const ButtonsScreen = () => {
         <View>
           <Title level={4}>Size buttons</Title>
           <Title level={5}>Small</Title>
-          <Space>
+          <Box gap={1} flexDirection="row" flexWrap="wrap">
             {colors.map((c, i) => (
               <Button key={i} size="small" bg={c}>
                 {c}
               </Button>
             ))}
-          </Space>
+          </Box>
           <Title level={5}>Middle(default)</Title>
-          <Space>
+          <Box gap={1} flexDirection="row" flexWrap="wrap">
             {colors.map((c, i) => (
               <Button key={i} bg={c}>
                 {c}
               </Button>
             ))}
-          </Space>
+          </Box>
           <Title level={5}>Large</Title>
-          <Space>
+          <Box gap={1} flexDirection="row" flexWrap="wrap">
             {colors.map((c, i) => (
               <Button key={i} size="large" bg={c}>
                 {c}
               </Button>
             ))}
-          </Space>
+          </Box>
           <Title level={5}>XLarge</Title>
-          <Space>
+          <Box gap={1} flexDirection="row" flexWrap="wrap">
             {colors.map((c, i) => (
               <Button key={i} size="xLarge" bg={c}>
                 {c}
               </Button>
             ))}
-          </Space>
+          </Box>
 
           <View style={styles.space} />
         </View>

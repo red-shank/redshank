@@ -1,11 +1,6 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import {
-  Switch,
-  ScrollView,
-  Title,
-  Icon,
-} from '@redshank/native';
+import { Switch, ScrollView, Title, Icon, Box } from '@redshank/native';
 
 const SwitchScreen = () => {
   return (
@@ -13,9 +8,11 @@ const SwitchScreen = () => {
       <View style={styles.container}>
         <View>
           <Title level={3}>Default Switch</Title>
-          <Switch size="small" />
-          <Switch />
-          <Switch size="large" />
+          <Box flexDirection="row" gap={1}>
+            <Switch size="large" />
+            <Switch />
+            <Switch size="small" />
+          </Box>
         </View>
 
         <View>
@@ -29,26 +26,30 @@ const SwitchScreen = () => {
         </View>
         <View>
           <Title level={3}>Bordered</Title>
-          <Switch bordered />
-          <Switch bordered borderColor="warning" />
+          <Box flexDirection="row" gap={1}>
+            <Switch bordered />
+            <Switch bordered borderColor="warning" />
+          </Box>
         </View>
         <View>
           <Title level={3}>With Icon</Title>
-          <Switch
-            icon={{
-              false: <Icon name="sunny" type="ionicon" color="text" />,
-              true: <Icon name="moon" type="ionicon" color="text" />,
-            }}
-          />
-          <Switch
-            thumbActiveColor="error"
-            icon={{
-              false: (
-                <Icon name="microphone" type="font-awesome-5" color="error" />
-              ),
-              true: <Icon name="microphone-slash" type="font-awesome-5" />,
-            }}
-          />
+          <Box flexDirection="row" gap={1}>
+            <Switch
+              icon={{
+                false: <Icon name="sunny" type="ionicon" color="text" />,
+                true: <Icon name="moon" type="ionicon" color="text" />
+              }}
+            />
+            <Switch
+              thumbActiveColor="error"
+              icon={{
+                false: (
+                  <Icon name="microphone" type="font-awesome-5" color="error" />
+                ),
+                true: <Icon name="microphone-slash" type="font-awesome-5" />
+              }}
+            />
+          </Box>
         </View>
         <View>
           <Title level={3}>With Error</Title>
@@ -57,9 +58,11 @@ const SwitchScreen = () => {
 
         <View>
           <Title level={3}>Square Switch</Title>
-          <Switch size="small" type="square" />
-          <Switch type="square" />
-          <Switch size="large" type="square" />
+          <Box flexDirection="row" gap={1}>
+            <Switch size="large" type="square" />
+            <Switch type="square" />
+            <Switch size="small" type="square" />
+          </Box>
         </View>
       </View>
       <View style={{ height: 75 }} />
@@ -71,18 +74,18 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 10,
-    height: '100%',
+    height: '100%'
   },
   headTitle: {
     paddingLeft: 20,
     paddingRight: 20,
     borderWidth: 1,
     borderColor: 'transparent',
-    borderBottomColor: 'rgba(100, 100, 100, .3)',
+    borderBottomColor: 'rgba(100, 100, 100, .3)'
   },
   space: {
-    marginTop: 50,
-  },
+    marginTop: 50
+  }
 });
 
 export default SwitchScreen;

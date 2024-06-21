@@ -5,7 +5,7 @@ import {
   InputScrollView,
   Avatar,
   AvatarGroup,
-  Space,
+  Box,
 } from "@redshank/native";
 
 const AvatarScreen = () => {
@@ -14,7 +14,7 @@ const AvatarScreen = () => {
       <View style={styles.container}>
         <View>
           <Title level={3}>Avatar Group</Title>
-          <Space orientation="vertical">
+          <Box gap={1}>
             <AvatarGroup
               max={3}
               moreProps={{
@@ -88,60 +88,60 @@ const AvatarScreen = () => {
                 },
               ]}
             />
-          </Space>
+          </Box>
         </View>
 
         <View>
           <Title level={3}>Sizes Avatar</Title>
-          <Space>
+          <Box gap={1}>
             <Avatar text="user" size={18} />
             <Avatar text="user" size={30} />
             <Avatar text="Kevin Rivas" />
             <Avatar text="Kevin" size={50} />
-          </Space>
+          </Box>
         </View>
 
         <View>
           <Title level={3}>Circle Avatar</Title>
-          <Space>
+          <Box gap={1}>
             <Avatar type="circle" text="Kevin Rivas" size={65} />
             <Avatar type="circle" text="Kevin Rivas" />
             <Avatar type="circle" text="user" size={30} />
-          </Space>
+          </Box>
         </View>
 
         <View>
           <Title level={3}>Color Avatar</Title>
-          <Space>
+          <Box gap={1}>
             <Avatar text="Bertha Posada" />
             <Avatar text="Kevin Rivas" />
             <Avatar text="Rivas" />
             <Avatar text="Jhon" />
-          </Space>
+          </Box>
         </View>
 
         <View>
           <Title level={3}>Full Name Avatar</Title>
-          <Space>
+          <Box gap={1}>
             <Avatar text="Bertha" showCountText="all" />
             <Avatar text="Kev" showCountText="all" />
             <Avatar text="Rivas" showCountText="all" />
             <Avatar text="Jhon" showCountText="all" />
-          </Space>
+          </Box>
         </View>
 
         <View>
           <Title level={3}>Image Avatar</Title>
-          <Space>
+          <Box gap={1}>
             <Avatar src="https://i.imgur.com/bnip2HZ.png" size={65} />
             <Avatar src="https://i.imgur.com/bnip2HZ.png" />
             <Avatar src="https://i.imgur.com/bnip2HZ.png" size={30} />
-          </Space>
+          </Box>
         </View>
 
         <View>
           <Title level={3}>Icon Avatar</Title>
-          <Space>
+          <Box gap={1}>
             <Avatar
               icon={{
                 name: "user",
@@ -164,28 +164,28 @@ const AvatarScreen = () => {
                 type: "font-awesome-5",
               }}
             />
-          </Space>
+          </Box>
         </View>
 
         <View>
           <Title level={3}>Count Text</Title>
-          <Space>
+          <Box gap={1}>
             <Avatar size={65} showCountText={1} text="Redshank UI Design" />
             <Avatar size={65} showCountText={2} text="Redshank UI Design" />
             <Avatar size={65} showCountText={5} text="Redshank UI Design" />
             <Avatar size={65} showCountText="all" text="Redshank" />
-          </Space>
+          </Box>
         </View>
 
         <View>
           <Title level={3}>Pressable Avatar</Title>
-          <Space>
+          <Box gap={1}>
             <Avatar
               onPress={() => alert("On press here!")}
               src="https://i.imgur.com/bnip2HZ.png"
               size={65}
             />
-          </Space>
+          </Box>
         </View>
       </View>
     </InputScrollView>

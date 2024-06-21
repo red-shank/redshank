@@ -29,7 +29,7 @@ const CardScreen = () => {
         <Box gap={1}>
           <Title level={4}>Min / Max</Title>
           <Calendar
-            min={now.subtract(5, 'years').toISOString()}
+            min={now.subtract(5, 'days').toISOString()}
             max={now.add(5, 'days').toISOString()}
           />
         </Box>

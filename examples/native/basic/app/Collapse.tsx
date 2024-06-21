@@ -5,7 +5,7 @@ import {
   Text,
   Collapse,
   Icon,
-  Space,
+  Box,
   ScrollView,
 } from "@redshank/native";
 
@@ -272,7 +272,7 @@ const CollapseScreen = () => {
 
         <View style={styles.space}>
           <Title level={3}>Icon Position</Title>
-          <Space orientation="vertical" gutter={[0, 50]}>
+          <Box gap={1}>
             <Collapse iconPosition="left">
               <Collapse.Panel title="Panel 1" id="1">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit.
@@ -311,12 +311,12 @@ const CollapseScreen = () => {
                 </View>
               </Collapse.Panel>
             </Collapse>
-          </Space>
+          </Box>
         </View>
 
         <View style={styles.space}>
           <Title level={3}>Custom background</Title>
-          <Space orientation="vertical" gutter={[0, 50]}>
+          <Box gap={1}>
             <Collapse borderless headerColor="transparent">
               <Collapse.Panel title="Panel 1" id="1">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut
@@ -360,7 +360,7 @@ const CollapseScreen = () => {
                 </View>
               </Collapse.Panel>
             </Collapse>
-          </Space>
+          </Box>
         </View>
         {/* END */}
       </View>

@@ -6,7 +6,7 @@ import {
   Button,
   Modal,
   Text,
-  Space,
+  Box,
 } from '@redshank/native';
 
 const { useModal } = Modal;
@@ -42,10 +42,10 @@ const ModalScreen = () => {
 
         <View>
           <Title level={3}>Top/Bottom Modal</Title>
-          <Space>
+          <Box gap={1}>
             <Button onPress={toggleModalTop}>Open Top Modal</Button>
             <Button onPress={toggleModalBottom}>Open Bottom Modal</Button>
-          </Space>
+          </Box>
         </View>
 
         <Modal

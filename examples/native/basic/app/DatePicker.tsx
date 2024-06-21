@@ -2,7 +2,6 @@ import React from 'react';
 import {
   Title,
   InputScrollView,
-  Space,
   DatePicker,
   Box,
   Container
@@ -27,11 +26,11 @@ const DatePickerScreen = () => {
 
         <Box>
           <Title level={3}>Format</Title>
-          <Space orientation="vertical">
+          <Box gap={1}>
             <DatePicker format="DD MMM YYYY" />
             <DatePicker format="YYYY-MM-DDD" />
             <DatePicker format="YYYY MM DD" />
-          </Space>
+          </Box>
         </Box>
 
         <Box>
