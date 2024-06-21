@@ -89,9 +89,6 @@ export * from './components/Ripple';
 // Select export
 export * from './components/Select';
 
-// Space export
-export * from './components/Space';
-
 // Badge export
 export * from './components/Switch';
 

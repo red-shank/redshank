@@ -76,8 +76,7 @@ export const SocialButton: React.FC<SocialButtonProps> = ({
       bg="text"
       color="text"
       fullWidth
-      textAlign="left"
-      prefix={<Image width={25} height={25} source={uri} />}
+      icon={<Image width={25} height={25} source={uri} />}
       sx={{
         text: {
           flex: 1,

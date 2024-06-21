@@ -72,8 +72,14 @@ export const Avatar: React.FC<AvatarProps> = ({
   }, [backgroundColor, colors, src, bordered]);
 
   const colorText = React.useMemo<string | undefined>(() => {
-    return colors[textColor] || textColor;
-  }, [textColor, colors]);
+    console.log({
+      _backgroundColor,
+      textColor
+    });
+    return textColor
+      ? colors[textColor] || textColor
+      : getColorForBackground(_backgroundColor);
+  }, [textColor, colors, _backgroundColor]);
 
   const borderRadiusElement = type === 'circle' ? 100 : 1;
   const sourceImage = typeof src === 'string' ? { uri: src } : src;

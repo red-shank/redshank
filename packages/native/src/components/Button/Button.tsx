@@ -26,7 +26,6 @@ export const Button: React.FC<ButtonProps> = ({
   prefix = icon,
   textProps,
   bg,
-  color,
   fullWidth = true,
   withMarginBottom = false,
   textAlign = 'center',
@@ -34,6 +33,7 @@ export const Button: React.FC<ButtonProps> = ({
   size = 'middle',
   backgroundColor = bg || 'primary',
   type = 'solid',
+  color = type === 'link' ? 'primary' : undefined,
   shape = 'round',
   ...rest
 }) => {
@@ -138,7 +138,7 @@ export const Button: React.FC<ButtonProps> = ({
             {
               sx: sx?.text,
               style: StyleSheet.flatten([
-                fonts.bold,
+                type !== 'link' && fonts.bold,
                 {
                   fontSize: fontSizes.base,
                   color: colorText

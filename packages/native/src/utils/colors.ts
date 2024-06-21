@@ -3,7 +3,7 @@ import { Dimensions } from 'react-native';
 
 export const width = Dimensions.get('screen').width;
 
-export const isLight = (color: string, lumi = 0.7) => {
+export const isLight = (color: string, lumi = 0.5) => {
   const luminosity = Color(color).luminosity();
   return luminosity > lumi;
 };

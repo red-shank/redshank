@@ -74,6 +74,7 @@ const CalendarProvider = ({
         selectedDate,
         onSelectDate,
         locale,
+        onChange,
         ...rest
       }}
     >
