@@ -29,7 +29,6 @@ export const ScrollView = React.forwardRef<NScrollView, ScrollViewProps>(
         )}
         contentContainerStyle={createSxStyle(
           {
-            flex: 1,
             sx: contentContainerSx,
             style: contentContainerStyle
           },
