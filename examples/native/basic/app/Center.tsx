@@ -1,13 +1,13 @@
 import React from 'react';
-import { Center, ScrollView, Text } from '@redshank/native';
+import { Center, Container, Text } from '@redshank/native';
 
 const CenterScreen = () => {
   return (
-    <ScrollView>
+    <Container>
       <Center>
         <Text>Center</Text>
       </Center>
-    </ScrollView>
+    </Container>
   );
 };
 

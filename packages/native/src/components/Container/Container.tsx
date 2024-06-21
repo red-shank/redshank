@@ -12,10 +12,7 @@ export type ContainerSize = Pick<
 export type ContainerProps = PropsWithChildren<
   Omit<BaseProps, 'flexDirection' | 'justifyContent' | 'sx'> & {
     size?: keyof ContainerSize;
-    sx?: SxProps & {
-      root?: SxProps;
-      container?: SxProps;
-    };
+    sx?: SxProps;
   }
 >;
 
@@ -27,25 +24,10 @@ const paddingSizes: ContainerSize = {
   xl: 5
 };
 
-export function Container({
-  sx,
-  children,
-  flex = 1,
-  size = 'sm',
-  ...rest
-}: ContainerProps) {
+export function Container({ children, size = 'sm', ...rest }: ContainerProps) {
   return (
-    <Box flex={flex} p={paddingSizes[size]} sx={sx?.root}>
-      <Box
-        flex={flex}
-        sx={{
-          ...sx,
-          ...sx?.container
-        }}
-        {...rest}
-      >
-        {children}
-      </Box>
+    <Box height="100%" width="100%" p={paddingSizes[size]} {...rest}>
+      {children}
     </Box>
   );
 }
