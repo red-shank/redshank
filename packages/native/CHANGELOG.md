@@ -1,5 +1,14 @@
 # CHANGELOG
 
+# 2.34.0 (2024-06-21)
+
+
+### Bug Fixes
+
+* remove flex 1 default in ScrollView ([83a840c](https://github.com/red-shank/redshank/commit/83a840c39d54179dd39c95907c440dbba3ddb125))
+
+
+
 # 2.33.0 (2024-06-21)
 
 
