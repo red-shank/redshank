@@ -1,5 +1,14 @@
 # CHANGELOG
 
+# 2.33.0 (2024-06-21)
+
+
+### Bug Fixes
+
+* fixed container flex ([7e4eb29](https://github.com/red-shank/redshank/commit/7e4eb291efe073ea2729c57b8d2ef6bd5754adbe))
+
+
+
 # 2.32.0 (2024-06-20)
 
 
