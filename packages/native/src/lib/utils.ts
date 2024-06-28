@@ -64,7 +64,7 @@ export function createStyleFromSx({
 
     if (propertyDictionary.type === 'color') {
       const newValue = colors[value as keyof typeof colors] || value;
-      acc[key] = propertyDictionary.resolve(newValue, acc);
+      acc[key] = propertyDictionary.resolve(newValue, acc, theme);
     } else if (propertyDictionary.type === 'number') {
       let newValue = value;
       if (key === 'zIndex') {
@@ -72,7 +72,7 @@ export function createStyleFromSx({
       } else if (!isNaN(Number(value))) {
         newValue = Number(value) * spacing;
       }
-      acc[key] = propertyDictionary.resolve(newValue, acc);
+      acc[key] = propertyDictionary.resolve(newValue, acc, theme);
     } else if (propertyDictionary.type === 'string') {
       let newValue: any = value;
       if (key === 'fontFamily') {
@@ -80,9 +80,9 @@ export function createStyleFromSx({
       } else if (key === 'fontSize') {
         newValue = fontSizes[value as keyof typeof fontSizes];
       }
-      acc[key] = propertyDictionary.resolve(newValue, acc);
+      acc[key] = propertyDictionary.resolve(newValue, acc, theme);
     } else {
-      acc[key] = propertyDictionary.resolve(value, acc);
+      acc[key] = propertyDictionary.resolve(value, acc, theme);
     }
 
     return acc;

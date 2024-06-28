@@ -1,5 +1,10 @@
 import { ViewStyle, TextStyle, DimensionValue } from 'react-native';
-import { ColorType, FontSizesProps, ZIndexType } from '../context/theme/types';
+import {
+  ColorType,
+  FontSizesProps,
+  ThemeProps,
+  ZIndexType
+} from '../context/theme/types';
 
 type ViewStyleKeys = {
   width: ViewStyle['width'];
@@ -107,7 +112,8 @@ type ViewStyleValue = {
   type: 'inherit' | 'color' | 'number' | 'string';
   resolve?: (
     value: DimensionValue | number | string | ColorType,
-    acc: ViewStyle
+    acc: ViewStyle,
+    theme: ThemeProps
   ) => DimensionValue | ViewStyle;
 };
 
@@ -152,7 +158,19 @@ const styleDictionary: StyleKeysSupported = {
     alignItems: { type: 'inherit' },
     alignSelf: { type: 'inherit' },
     overflow: { type: 'inherit' },
-    zIndex: { type: 'inherit' },
+    zIndex: {
+      type: 'inherit',
+      resolve: (
+        value: CustomStyleKeys['zIndex'],
+        _acc: ViewStyle,
+        theme: ThemeProps
+      ) => {
+        const resolveKeys = ['1', '2', '3', '4', '5', '10', 'max'];
+        return resolveKeys.includes(value as string)
+          ? theme.zIndices[value as keyof ZIndexType] || (value as number)
+          : (value as number);
+      }
+    },
     display: { type: 'inherit' },
     backfaceVisibility: { type: 'inherit' },
     borderBottomWidth: { type: 'inherit' },

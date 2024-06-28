@@ -17,80 +17,56 @@ export abstract class MessageRender<T = JSX.Element> {
 }
 
 class RenderMessage extends MessageRender {
-  default(content, options: MessageOptions = {}) {
+  default(content, options: MessageOptions) {
     return (
       <Base
         content={content}
         internalType="default"
-        iconLeft={<Icon type="antdesign" name="infocirlce" color="text" />}
+        startContent={<Icon type="antdesign" name="infocirlce" color="text" />}
         {...options}
       />
     );
   }
 
-  success(content, options: MessageOptions = {}) {
+  success(content, options: MessageOptions) {
     return (
       <Base
         content={content}
         internalType="success"
-        iconLeft={
-          <Icon
-            type="antdesign"
-            name="checkcircle"
-            color={options?.type === 'shadow' ? 'success' : 'white'}
-          />
-        }
+        startContent={<Icon type="antdesign" name="checkcircle" />}
         {...options}
       />
     );
   }
 
-  info(content, options: MessageOptions = {}) {
+  info(content, options: MessageOptions) {
     return (
       <Base
         content={content}
         internalType="info"
-        iconLeft={
-          <Icon
-            type="antdesign"
-            name="infocirlce"
-            color={options?.type === 'shadow' ? 'info' : 'white'}
-          />
-        }
+        startContent={<Icon type="antdesign" name="infocirlce" />}
         {...options}
       />
     );
   }
 
-  error(content, options: MessageOptions = {}) {
+  error(content, options: MessageOptions) {
     return (
       <Base
         content={content}
         internalType="error"
-        iconLeft={
-          <Icon
-            type="antdesign"
-            name="closecircle"
-            color={options?.type === 'shadow' ? 'error' : 'white'}
-          />
-        }
+        startContent={<Icon type="antdesign" name="closecircle" />}
         {...options}
       />
     );
   }
 
-  warning(content, options: MessageOptions = {}) {
+  warning(content, options: MessageOptions) {
     return (
       <Base
         content={content}
         internalType="warning"
-        iconLeft={
-          <Icon
-            type="entypo"
-            name="warning"
-            color={options?.type === 'shadow' ? 'warning' : 'white'}
-          />
-        }
+        startContent={<Icon type="entypo" name="warning" />}
         {...options}
       />
     );

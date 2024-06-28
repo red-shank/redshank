@@ -1,57 +1,74 @@
-import React, { createContext, PropsWithChildren } from 'react';
-import { StyleSheet, View } from 'react-native';
+import React, {
+  createContext,
+  PropsWithChildren,
+  useEffect,
+  useRef
+} from 'react';
 
 import { renderMessage } from './Render';
 import { getRandomId } from '../../utils';
-import useHeaderHeight from '../../hooks/useHeaderHeight';
 import type {
   ElementListType,
   ElementType,
   MessageContextType,
   MessageOptions
 } from './types';
+import { Box } from '../../components/Box';
+import { Animated, Platform, ViewStyle } from 'react-native';
+import { SxProps } from '../../lib/styleDictionary';
 
 const DEFAULT_DURATION = 5000; // 5s
 
-const MessageContext = createContext<MessageContextType>({
-  setHeight() {},
-  default() {},
-  error() {},
-  info() {},
-  warning() {},
-  success() {}
-});
+const MessageContext = createContext<MessageContextType | null>(null);
 
-export type MessageProviderProps = PropsWithChildren<{
-  height?: number;
-  defaultHeight?: number;
-  defaultDuration?: number;
-}>;
+export type MessageProviderProps = PropsWithChildren<
+  SxProps & {
+    defaultDuration?: number;
+  }
+>;
+
+let ref: NodeJS.Timeout = null;
+const translateYDefault = 60;
 
 export const MessageProvider = React.memo(
   ({
     children,
-    height: defaultHeight,
-    defaultDuration = DEFAULT_DURATION
+    defaultDuration = DEFAULT_DURATION,
+    height: defaultHeight = Platform.select({
+      default: 65
+    }),
+    ...sx
   }: MessageProviderProps) => {
-    const [height, setHeight] = React.useState<number>(
-      defaultHeight ?? useHeaderHeight()
-    );
+    let opacityAnimation = useRef(new Animated.Value(0)).current;
+    let translateYAnimation = useRef(
+      new Animated.Value(translateYDefault)
+    ).current;
+
+    const [height, setHeight] =
+      React.useState<ViewStyle['height']>(defaultHeight);
     const [currentMessage, setCurrentMessage] =
       React.useState<ElementListType | null>(null);
-    const [messagesQueue, setMessagesQueue] = React.useState<ElementListType[]>(
-      []
+
+    const removeMessage = React.useCallback(
+      (_id: string) => {
+        Animated.parallel([
+          Animated.timing(translateYAnimation, {
+            toValue: translateYDefault,
+            duration: 200,
+            useNativeDriver: false
+          }),
+          Animated.timing(opacityAnimation, {
+            toValue: 0,
+            duration: 100,
+            useNativeDriver: false
+          })
+        ]).start(() => setCurrentMessage(null));
+      },
+      [opacityAnimation, translateYAnimation]
     );
 
-    const removeMessage = React.useCallback((id: string) => {
-      setMessagesQueue((prevMessages) => {
-        return prevMessages.filter((item) => item.id !== id);
-      });
-      setCurrentMessage(null);
-    }, []);
-
     const addMessage = React.useCallback(
-      (content: string, type: ElementType, opts?: MessageOptions) => {
+      (content: string, type: ElementType, opts?: Partial<MessageOptions>) => {
         const options = {
           ...opts,
           onPress: opts?.onPress,
@@ -63,113 +80,149 @@ export const MessageProvider = React.memo(
 
         const isClosable = options.closable;
 
-        setMessagesQueue((prev) => [
-          ...prev,
-          {
-            id,
-            onPress: options.onPress,
-            closable: isClosable,
-            duration: options?.duration ?? defaultDuration,
-            component: renderMessage[type](content, {
-              ...options,
-              key: options?.key ?? id
-            })
-          }
-        ]);
-      },
-      []
-    );
-
-    // Render Queue
-    React.useEffect(() => {
-      if (messagesQueue.length) {
-        const [messageToRender] = messagesQueue;
-
-        const ref = setTimeout(() => {
-          removeMessage(messageToRender.id);
-        }, messageToRender.duration);
-
-        const onPress = (event: any) => {
-          if (messageToRender.closable) {
-            clearTimeout(ref);
-            removeMessage(messageToRender.id);
-          }
-
-          if (typeof messageToRender.onPress === 'function') {
-            messageToRender.onPress(event);
-          }
+        const payload = {
+          id,
+          onPress: options?.onPress,
+          closable: isClosable,
+          duration: options?.duration ?? defaultDuration
         };
 
-        setCurrentMessage({
-          ...messageToRender,
-          component: React.cloneElement(messageToRender.component, { onPress })
-        });
-      }
-    }, [messagesQueue, removeMessage]);
+        const onClose = () => {
+          clearTimeout(ref);
+          removeMessage(payload.id);
+        };
+
+        if (ref) {
+          Animated.parallel([
+            Animated.timing(translateYAnimation, {
+              toValue: translateYDefault,
+              duration: 200,
+              useNativeDriver: false
+            }),
+            Animated.timing(opacityAnimation, {
+              toValue: 0,
+              duration: 100,
+              useNativeDriver: false
+            })
+          ]).start(() => {
+            setCurrentMessage({
+              ...payload,
+              component: renderMessage?.[type]?.(
+                content,
+                Object.assign(options, {
+                  onClose,
+                  translateYAnimation,
+                  opacityAnimation,
+                  onPress: payload?.onPress,
+                  key: options?.key ?? id
+                })
+              )
+            });
+          });
+        } else {
+          setCurrentMessage({
+            ...payload,
+            component: renderMessage?.[type]?.(
+              content,
+              Object.assign(options, {
+                onClose,
+                translateYAnimation,
+                opacityAnimation,
+                onPress: payload?.onPress,
+                key: options?.key ?? id
+              })
+            )
+          });
+        }
+      },
+      [defaultDuration, opacityAnimation, removeMessage, translateYAnimation]
+    );
 
     const message = React.useMemo(() => {
-      return {
-        default(content: string, opts?: MessageOptions) {
-          addMessage(content, 'default', opts);
-        },
-        error(content: string, opts?: MessageOptions) {
-          addMessage(content, 'error', opts);
-        },
-        info(content: string, opts?: MessageOptions) {
-          addMessage(content, 'info', opts);
-        },
-        warning(content: string, opts?: MessageOptions) {
-          addMessage(content, 'warning', opts);
-        },
-        success(content: string, opts?: MessageOptions) {
-          addMessage(content, 'success', opts);
-        },
-        setHeight
+      const defaultFunc: MessageContextType = function (
+        content: string,
+        opts?: MessageOptions
+      ) {
+        addMessage(content, 'default', opts);
+      } as MessageContextType;
+
+      defaultFunc.default = function (content: string, opts?: MessageOptions) {
+        addMessage(content, 'default', opts);
       };
+
+      defaultFunc.error = function (content: string, opts?: MessageOptions) {
+        addMessage(content, 'error', opts);
+      };
+
+      defaultFunc.info = function (content: string, opts?: MessageOptions) {
+        addMessage(content, 'info', opts);
+      };
+
+      defaultFunc.warning = function (content: string, opts?: MessageOptions) {
+        addMessage(content, 'warning', opts);
+      };
+
+      defaultFunc.success = function (content: string, opts?: MessageOptions) {
+        addMessage(content, 'success', opts);
+      };
+
+      defaultFunc.setHeight = setHeight;
+
+      return defaultFunc;
     }, [addMessage, setHeight]);
+
+    useEffect(() => {
+      if (currentMessage) {
+        Animated.parallel([
+          Animated.timing(translateYAnimation, {
+            toValue: 0,
+            duration: 300,
+            useNativeDriver: false
+          }),
+          Animated.timing(opacityAnimation, {
+            toValue: 1,
+            duration: 200,
+            useNativeDriver: false
+          })
+        ]).start();
+
+        if (!!currentMessage?.duration) {
+          ref = setTimeout(() => {
+            removeMessage(currentMessage.id);
+          }, currentMessage?.duration);
+        }
+      }
+
+      return () => {
+        clearTimeout(ref);
+      };
+    }, [currentMessage, opacityAnimation, removeMessage, translateYAnimation]);
 
     return (
       <MessageContext.Provider value={message}>
-        <View
-          style={StyleSheet.flatten([
-            styles.wrapper,
-            {
-              height: currentMessage?.component ? height : 0
-            }
-          ])}
+        <Box
+          flex={1}
+          left={0}
+          right={0}
+          bottom={30}
+          zIndex="max"
+          bg="transparent"
+          position="absolute"
+          height={currentMessage?.component ? height : 0}
+          {...sx}
         >
           {currentMessage?.component}
-        </View>
+        </Box>
         {children}
       </MessageContext.Provider>
     );
   }
 );
 
-const styles = StyleSheet.create({
-  wrapper: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    flex: 1,
-    backgroundColor: 'transparent',
-    zIndex: 10000
-  }
-});
-
-export const useMessage = (): [
-  message: Pick<
-    MessageContextType,
-    'default' | 'info' | 'success' | 'warning' | 'error'
-  >,
-  setHeight: MessageContextType['setHeight']
-] => {
+export const useMessage = (): MessageContextType => {
   const context = React.useContext(MessageContext);
   if (!context) {
     throw new Error('useMessage must be used within a MessageProvider');
   }
-  const { setHeight, ...message } = context;
-
-  return [message, setHeight];
+  return context;
 };

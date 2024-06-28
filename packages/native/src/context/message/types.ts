@@ -1,46 +1,56 @@
 import type { ReactNode, Component } from 'react';
-import type { StyleProp, ViewStyle } from 'react-native';
+import { Animated, StyleProp, ViewStyle } from 'react-native';
 
 export type ElementType = 'default' | 'success' | 'info' | 'warning' | 'error';
-export type MessageType = 'default' | 'shadow';
+
+export type FuncRenderIcon = (onClose: () => void) => ReactNode;
 
 export interface MessageProps {
   Component?: typeof Component;
-  content: string;
-  iconLeft?: ReactNode;
-  iconRight?: ReactNode;
+  content:
+    | ReactNode
+    | {
+        title?: ReactNode;
+        description?: ReactNode;
+      };
+  startContent?: ReactNode | FuncRenderIcon;
+  endContent?: ReactNode | FuncRenderIcon;
   internalType?: ElementType;
-  onPress?: () => void;
+  onPress?: (event: any) => void;
+  closable?: boolean;
+  closeOnPress?: boolean;
+  onClose?: () => void;
   style?: StyleProp<ViewStyle>;
   styleText?: StyleProp<ViewStyle>;
-  type?: MessageType;
   withBoxShadow?: boolean;
   withIcon?: boolean;
+  opacityAnimation: Animated.Value;
+  translateYAnimation: Animated.Value;
 }
 
 export type ElementListType = {
   closable: boolean;
   component: JSX.Element;
-  duration: number;
+  duration?: number | false | null;
   id: string;
-  onPress?: (event: any) => void;
   top?: number;
 };
 
-export type MessageOptions = Partial<
-  Omit<MessageProps, 'internalType' | 'content'>
-> & {
-  closable?: boolean;
-  duration?: number;
+export type MessageOptions = Omit<MessageProps, 'internalType' | 'content'> & {
   key?: any;
-  onPress?: () => void;
+  duration: ElementListType['duration'];
 };
 
-export type MessageContextType = {
-  default: (content: string, opts?: MessageOptions) => void;
-  error: (content: string, opts?: MessageOptions) => void;
-  info: (content: string, opts?: MessageOptions) => void;
+type MessageTypeFunction = (
+  content: MessageProps['content'],
+  opts?: Partial<MessageOptions>
+) => void;
+
+export type MessageContextType = MessageTypeFunction & {
+  default: MessageTypeFunction;
+  error: MessageTypeFunction;
+  info: MessageTypeFunction;
+  success: MessageTypeFunction;
+  warning: MessageTypeFunction;
   setHeight: (height: number) => void;
-  success: (content: string, opts?: MessageOptions) => void;
-  warning: (content: string, opts?: MessageOptions) => void;
 };
