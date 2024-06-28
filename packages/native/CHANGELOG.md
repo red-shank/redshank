@@ -1,5 +1,14 @@
 # CHANGELOG
 
+# 2.36.0 (2024-06-28)
+
+
+### Features
+
+* feat: update message to Airbnb type ([d9bbb24](https://github.com/red-shank/redshank/commit/d9bbb244c3f308c83f6ba76aa65cb2e44a92f81b))
+
+
+
 # 2.35.0 (2024-06-21)
 
 
