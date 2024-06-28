@@ -9,6 +9,7 @@ const onGenerateCode = (code: string) => `
 import {
   useMessage,
   Button,
+  Image,
   MessageProvider,
   ScrollView,
   ThemeProvider,
@@ -34,10 +35,17 @@ export default function App() {
 
 export const defaultCode = onGenerateCode(`
 function RenderApp() {
-  const [message] = useMessage();
+  const message = useMessage();
 
   const onPress = (type: Type) => {
-    message[type](type);
+    message[type]({
+      title: (
+        <Text transformText="capitalize" fontWeight="bold">
+          {type}
+        </Text>
+      ),
+      description: <Text transformText="capitalize">{type}</Text>
+    });
   };
 
   return (
@@ -59,10 +67,12 @@ function RenderApp() {
 export const withIcon = onGenerateCode(
   `
 function RenderApp() {
-  const [message] = useMessage();
+  const message = useMessage();
 
   const onPress = (type: Type) => {
-    message[type](type, { withIcon: true });
+    message[type](type, {
+      withIcon: true
+    });
   };
 
   return (
@@ -82,12 +92,65 @@ function RenderApp() {
 `
 );
 
-export const withBoxShadow = onGenerateCode(
+export const withStartAndEndContent = onGenerateCode(
+  `
+function RenderApp() {
+  const message = useMessage();
+
+  const onPress = (type: Type) => {
+    message[type](type, {
+      closable: false,
+      startContent: (
+        <Image
+          width={50}
+          height={50}
+          borderRadius={8}
+          source="https://imgix.cosentino.com/es/wp-content/uploads/2023/07/Lumire-70-Facade-MtWaverley-vic-1.jpg?auto=format%2Ccompress&ixlib=php-3.3.0"
+        />
+      ),
+      endContent: (onClose) => {
+        return (
+          <Button
+            type="link"
+            color="text"
+            onPress={() => {
+              console.log('PRESS');
+              onClose();
+            }}
+            sx={{
+              text: { fontWeight: 'bold' }
+            }}
+          >
+            Change
+          </Button>
+        );
+      }
+    });
+  };
+
+  return (
+    <>
+     {types.map((f) => (
+        <Button
+          key={f}
+          onPress={() => onPress(f)}
+          color={f === "default" ? "gray800" : f}
+        >
+          {f}
+        </Button>
+      ))}
+    </>
+  );
+}
+`
+);
+
+export const withOutBoxShadow = onGenerateCode(
   `function RenderApp() {
   const [message] = useMessage();
 
   const onPress = (type: Type) => {
-    message[type](type, { withIcon: true, withBoxShadow: true });
+    message[type](type, { withBoxShadow: false });
   };
 
   return (
@@ -107,15 +170,13 @@ export const withBoxShadow = onGenerateCode(
 `
 );
 
-export const shadowAndOpacity = onGenerateCode(
+export const duration = onGenerateCode(
   `function RenderApp() {
-  const [message] = useMessage();
+  const message = useMessage();
 
   const onPress = (type: Type) => {
     message[type](type, {
-      type: 'shadow',
-      withIcon: true,
-      withBoxShadow: true
+      duration: 2000 // in ms
     });
   };
 

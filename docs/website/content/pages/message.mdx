@@ -35,19 +35,28 @@ import { Message } from '@redshank/native';
 <Spacer y={2} />
 
 <Playground
-  id="with-shadow-box"
-  title="With Shadow Box"
-  description="With shadow box message element."
-  code={message.withBoxShadow}
+  id="with-start-end-content"
+  title="With Start/End Content"
+  description="With left or right element."
+  code={message.withStartAndEndContent}
 />
 
 <Spacer y={2} />
 
 <Playground
-  id="with-shadow-opacity"
-  title="With Shadow Opacity"
-  description="With shadow opacity message element."
-  code={message.shadowAndOpacity}
+  id="without-shadow-box"
+  title="Without Shadow"
+  description="Without shadow box message element."
+  code={message.withOutBoxShadow}
+/>
+
+<Spacer y={2} />
+
+<Playground
+  id="duration"
+  title="Duration"
+  description="Set duration message, set `0`, `false` or `null` for infinity duration"
+  code={message.duration}
 />
 
 <Spacer y={2} />
@@ -55,15 +64,16 @@ import { Message } from '@redshank/native';
 #### Message
 Options Api props
 
-| Attribute         | Type                            | Accepted values           | Description                                  | Default                                                   |
-|-------------------|---------------------------------|---------------------------|----------------------------------------------|-----------------------------------------------------------|
-| **Component**     | `Component` `FunctionComponent` | `JSX.Element` `Component` | Change component Message                     | `View` if `onPress` then `Ripple`                         |
-| **content**       | `string`                        | `Text`                    | Content message                              | -                                                         |
-| **iconLeft**      | `ReactNode`                     | `Component`               | Icon left                                    | if `showIcon` is `true` then `closecircle` of `antdesign` |
-| **iconRight**     | `ReactNode`                     | `Component`               | Icon right                                   | -                                                         |
-| **onPress**       | `function`                      | `(event) => void`         | Optional function when trigger press message | -                                                         |
-| **style**         | `object`                        | `StyleProp<ViewStyle>`    | Style for component                          | -                                                         |
-| **styleText**     | `object`                        | `StyleProp<ViewStyle>`    | Style for text content                       | -                                                         |
-| **type**          | `MessageType`                   | `defautl` `shadow`        | Background opacity or solid color            | `default`                                                 |
-| **withBoxShadow** | `boolean`                       | `true` `false`            | Show shadown outsite message                 | `false`                                                   |
-| **withIcon**      | `boolean`                       | `true` `false`            | Show or hidden icon                          | `false`                                                   |
+| Attribute         | Type                            | Accepted values           | Description                                    | Default                                                   |
+|-------------------|---------------------------------|---------------------------|------------------------------------------------|-----------------------------------------------------------|
+| **bottom**        | `number` `string`               | `DimensionValue`          | Change the bottom position when render message | `30`                                                      |
+| **Component**     | `Component` `FunctionComponent` | `JSX.Element` `Component` | Change component Message                       | `Box` if `closable` or `onPress` then `Ripple`            |
+| **content**       | `string`                        | `Text`                    | Content message                                | -                                                         |
+| **startContent**  | `ReactNode`                     | `Component`               | Icon left                                      | if `showIcon` is `true` then `closecircle` of `antdesign` |
+| **endContent**    | `ReactNode`                     | `Component`               | Icon right                                     | -                                                         |
+| **onPress**       | `function`                      | `(event) => void`         | Optional function when trigger press message   | -                                                         |
+| **style**         | `object`                        | `StyleProp<ViewStyle>`    | Style for component                            | -                                                         |
+| **styleText**     | `object`                        | `StyleProp<ViewStyle>`    | Style for text content                         | -                                                         |
+| **type**          | `MessageType`                   | `defautl` `shadow`        | Background opacity or solid color              | `default`                                                 |
+| **withBoxShadow** | `boolean`                       | `true` `false`            | Show shadown outsite message                   | `false`                                                   |
+| **withIcon**      | `boolean`                       | `true` `false`            | Show or hidden icon                            | `false`                                                   |
