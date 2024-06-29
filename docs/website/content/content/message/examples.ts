@@ -10,6 +10,7 @@ import {
   useMessage,
   Button,
   Image,
+  Text,
   MessageProvider,
   ScrollView,
   ThemeProvider,
@@ -54,7 +55,7 @@ function RenderApp() {
         <Button
           key={f}
           onPress={() => onPress(f)}
-          color={f === "default" ? "gray800" : f}
+          bg={f === "default" ? "gray800" : f}
         >
           {f}
         </Button>
@@ -81,7 +82,7 @@ function RenderApp() {
         <Button
           key={f}
           onPress={() => onPress(f)}
-          color={f === "default" ? "gray800" : f}
+          bg={f === "default" ? "gray800" : f}
         >
           {f}
         </Button>

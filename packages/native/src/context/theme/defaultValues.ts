@@ -154,7 +154,7 @@ export const colorsLight = {
   accents8: '#EAEAEA',
   accents9: '#F4F4F4',
   background: '#f4f4f4',
-  notification: '#f4f4f4',
+  notification: '#ffffff',
   foreground: '#000000',
   text: '#333333',
   border: '#a1a1a1',
