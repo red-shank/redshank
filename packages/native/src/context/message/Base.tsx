@@ -28,7 +28,7 @@ export const Base: React.FC<MessageProps> = ({
   const { colors, isDark, activeOpacity } = useTheme();
 
   const boxShadowColor = React.useMemo(() => {
-    return isDark ? colors.gray600 : colors.gray300;
+    return isDark ? colors.gray800 : colors.gray200;
   }, [colors, isDark]);
 
   const standardContent = useMemo(() => {
@@ -81,7 +81,7 @@ export const Base: React.FC<MessageProps> = ({
               width: '100%',
               borderWidth: 1,
               borderStyle: 'solid',
-              borderColor: 'gray400',
+              borderColor: boxShadowColor,
               opacity: opacityAnimation,
               transform: [
                 {

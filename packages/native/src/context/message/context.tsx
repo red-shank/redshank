@@ -14,7 +14,7 @@ import type {
   MessageOptions
 } from './types';
 import { Box } from '../../components/Box';
-import { Animated, Platform, ViewStyle } from 'react-native';
+import { Animated } from 'react-native';
 import { SxProps } from '../../lib/styleDictionary';
 
 const DEFAULT_DURATION = 5000; // 5s
@@ -34,9 +34,6 @@ export const MessageProvider = React.memo(
   ({
     children,
     defaultDuration = DEFAULT_DURATION,
-    height: defaultHeight = Platform.select({
-      default: 65
-    }),
     ...sx
   }: MessageProviderProps) => {
     let opacityAnimation = useRef(new Animated.Value(0)).current;
@@ -44,8 +41,6 @@ export const MessageProvider = React.memo(
       new Animated.Value(translateYDefault)
     ).current;
 
-    const [height, setHeight] =
-      React.useState<ViewStyle['height']>(defaultHeight);
     const [currentMessage, setCurrentMessage] =
       React.useState<ElementListType | null>(null);
 
@@ -166,10 +161,8 @@ export const MessageProvider = React.memo(
         addMessage(content, 'success', opts);
       };
 
-      defaultFunc.setHeight = setHeight;
-
       return defaultFunc;
-    }, [addMessage, setHeight]);
+    }, [addMessage]);
 
     useEffect(() => {
       if (currentMessage) {
@@ -204,11 +197,11 @@ export const MessageProvider = React.memo(
           flex={1}
           left={0}
           right={0}
-          bottom={30}
+          bottom={10}
           zIndex="max"
           bg="transparent"
           position="absolute"
-          height={currentMessage?.component ? height : 0}
+          // height={currentMessage?.component ? height : 0}
           {...sx}
         >
           {currentMessage?.component}

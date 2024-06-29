@@ -31,7 +31,7 @@ const App = (props: PropsWithChildren) => {
 
   return (
     <Box flex={1} width={width} mx="auto">
-      <MessageProvider>
+      <MessageProvider bottom={30}>
         <ThemeProvider
           value={theme === 'dark' ? DarkTheme : DefaultTheme}
           {...props}

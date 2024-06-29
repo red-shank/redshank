@@ -52,5 +52,4 @@ export type MessageContextType = MessageTypeFunction & {
   info: MessageTypeFunction;
   success: MessageTypeFunction;
   warning: MessageTypeFunction;
-  setHeight: (height: number) => void;
 };

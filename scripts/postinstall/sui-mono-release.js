@@ -185,7 +185,7 @@ checkShouldRelease()
           githubUser
         });
       }
-
+      console.log({ status });
       const packagesToRelease = releasesByPackages({ status }).filter(
         ({ code }) => code !== 0
       );
