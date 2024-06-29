@@ -135,7 +135,7 @@ function RenderApp() {
         <Button
           key={f}
           onPress={() => onPress(f)}
-          color={f === "default" ? "gray800" : f}
+          bg={f === "default" ? "gray800" : f}
         >
           {f}
         </Button>
@@ -148,7 +148,7 @@ function RenderApp() {
 
 export const withOutBoxShadow = onGenerateCode(
   `function RenderApp() {
-  const [message] = useMessage();
+  const message = useMessage();
 
   const onPress = (type: Type) => {
     message[type](type, { withBoxShadow: false });
@@ -160,7 +160,7 @@ export const withOutBoxShadow = onGenerateCode(
         <Button
           key={f}
           onPress={() => onPress(f)}
-          color={f === "default" ? "gray800" : f}
+          bg={f === "default" ? "gray800" : f}
         >
           {f}
         </Button>
@@ -187,7 +187,7 @@ export const duration = onGenerateCode(
         <Button
           key={f}
           onPress={() => onPress(f)}
-          color={f === "default" ? "gray800" : f}
+          bg={f === "default" ? "gray800" : f}
         >
           {f}
         </Button>
