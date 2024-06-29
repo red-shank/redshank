@@ -1,5 +1,14 @@
 # CHANGELOG
 
+# 2.37.0 (2024-06-28)
+
+
+### Bug Fixes
+
+* fixed message style and height ([29c4479](https://github.com/red-shank/redshank/commit/29c447984813a741d2560fbca9a69de36b438473))
+
+
+
 # 2.36.0 (2024-06-28)
 
 
