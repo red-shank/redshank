@@ -64,16 +64,16 @@ import { Message } from '@redshank/native';
 #### Message
 Options Api props
 
-| Attribute         | Type                            | Accepted values           | Description                                    | Default                                                   |
-|-------------------|---------------------------------|---------------------------|------------------------------------------------|-----------------------------------------------------------|
-| **bottom**        | `number` `string`               | `DimensionValue`          | Change the bottom position when render message | `30`                                                      |
-| **Component**     | `Component` `FunctionComponent` | `JSX.Element` `Component` | Change component Message                       | `Box` if `closable` or `onPress` then `Ripple`            |
-| **content**       | `string`                        | `Text`                    | Content message                                | -                                                         |
-| **startContent**  | `ReactNode`                     | `Component`               | Icon left                                      | if `showIcon` is `true` then `closecircle` of `antdesign` |
-| **endContent**    | `ReactNode`                     | `Component`               | Icon right                                     | -                                                         |
-| **onPress**       | `function`                      | `(event) => void`         | Optional function when trigger press message   | -                                                         |
-| **style**         | `object`                        | `StyleProp<ViewStyle>`    | Style for component                            | -                                                         |
-| **styleText**     | `object`                        | `StyleProp<ViewStyle>`    | Style for text content                         | -                                                         |
-| **type**          | `MessageType`                   | `defautl` `shadow`        | Background opacity or solid color              | `default`                                                 |
-| **withBoxShadow** | `boolean`                       | `true` `false`            | Show shadow outside message                    | `false`                                                   |
-| **withIcon**      | `boolean`                       | `true` `false`            | Show or hidden icon                            | `false`                                                   |
+| Attribute         | Type                                                     | Accepted values           | Description                                    | Default                                                   |
+|-------------------|----------------------------------------------------------|---------------------------|------------------------------------------------|-----------------------------------------------------------|
+| **bottom**        | `number` `string`                                        | `DimensionValue`          | Change the bottom position when render message | `30`                                                      |
+| **Component**     | `Component` `FunctionComponent`                          | `JSX.Element` `Component` | Change component Message                       | `Box` if `closable` or `onPress` then `Ripple`            |
+| **content**       | `string` `{ title: ReactNode, description?: ReactNode }` | `Text` `JSX.Element`      | Content message                                | -                                                         |
+| **startContent**  | `ReactNode`                                              | `Component`               | Icon left                                      | if `showIcon` is `true` then `closecircle` of `antdesign` |
+| **endContent**    | `ReactNode`                                              | `Component`               | Icon right                                     | -                                                         |
+| **onPress**       | `function`                                               | `(event) => void`         | Optional function when trigger press message   | -                                                         |
+| **style**         | `object`                                                 | `StyleProp<ViewStyle>`    | Style for component                            | -                                                         |
+| **styleText**     | `object`                                                 | `StyleProp<ViewStyle>`    | Style for text content                         | -                                                         |
+| **type**          | `MessageType`                                            | `defautl` `shadow`        | Background opacity or solid color              | `default`                                                 |
+| **withBoxShadow** | `boolean`                                                | `true` `false`            | Show shadow outside message                    | `false`                                                   |
+| **withIcon**      | `boolean`                                                | `true` `false`            | Show or hidden icon                            | `false`                                                   |

@@ -50,19 +50,24 @@ import { Alert } from '@redshank/native';
 #### Input
 Api props extends from [View](https://reactnative.dev/docs/view)
 
-| Attribute    | Type        | Accepted values         | Description                        | Default   |
-|--------------|-------------|-------------------------|------------------------------------|-----------|
-| **closable** | `boolean`   | `true` `false`          | Closable alert                     | `false`   |
-| **message**  | `string`    | `Text`                  | Require text for show in the alert | -         |
-| **shadow**   | `boolean`   | `true` `false`          | Show shadow in the element         | `false`   |
-| **sizeIcon** | `number`    | `Number`                | Size of the icon in Alert          | `18`      |
-| **type**     | `AlertType` | [AlertType](#alerttype) | Type alert change color            | `warning` |
-| **withIcon** | `boolean`   | `true` `false`          | Show icon in the start             | `true`    |
+| Attribute         | Type                                                     | Accepted values           | Description                                    | Default                                                   |
+|-------------------|----------------------------------------------------------|---------------------------|------------------------------------------------|-----------------------------------------------------------|
+| **bottom**        | `number` `string`                                        | `DimensionValue`          | Change the bottom position when render message | `30`                                                      |
+| **Component**     | `Component` `FunctionComponent`                          | `JSX.Element` `Component` | Change component Message                       | `Box` if `closable` or `onPress` then `Ripple`            |
+| **content**       | `string` `{ title: ReactNode, description?: ReactNode }` | `Text` `JSX.Element`      | Content message                                | -                                                         |
+| **startContent**  | `ReactNode`                                              | `Component`               | Icon left                                      | if `showIcon` is `true` then `closecircle` of `antdesign` |
+| **endContent**    | `ReactNode`                                              | `Component`               | Icon right                                     | -                                                         |
+| **onPress**       | `function`                                               | `(event) => void`         | Optional function when trigger press message   | -                                                         |
+| **style**         | `object`                                                 | `StyleProp<ViewStyle>`    | Style for component                            | -                                                         |
+| **styleText**     | `object`                                                 | `StyleProp<ViewStyle>`    | Style for text content                         | -                                                         |
+| **type**          | `MessageType`                                            | `defautl` `shadow`        | Background opacity or solid color              | `default`                                                 |
+| **withBoxShadow** | `boolean`                                                | `true` `false`            | Show shadow outside message                    | `false`                                                   |
+| **withIcon**      | `boolean`                                                | `true` `false`            | Show or hidden icon                            | `false`                                                   |
 
 <Spacer y={2} />
 
-#### AlertType
+#### MessageType
 
 ```ts
-type AlertType = 'success' | 'warning' | 'error' | 'info';
+type MessageType = 'default' | 'success' | 'warning' | 'error' | 'info';
 ```

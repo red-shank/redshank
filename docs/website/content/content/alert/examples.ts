@@ -1,10 +1,68 @@
 import { withThemeProvider } from '@/content/utils/generateCode';
+import { Alert, Text } from '@redshank/native';
+import React from 'react';
 
 export const defaultCode = withThemeProvider(
-  `<Alert type="success" message="Alert message" />
-          <Alert type="warning" message="Alert message" />
-          <Alert type="info" message="Alert message" />
-          <Alert type="error" message="Alert message" />`,
+  `<Alert
+            type="success"
+            content={{
+                title: (
+                  <Text bold size="md">
+                    This is a title
+                  </Text>
+                ),
+                description: (
+                  <Text color="gray300">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab
+                  </Text>
+                )
+            }}
+          />
+          <Alert
+            type="warning"
+            content={{
+                title: (
+                  <Text bold size="md">
+                    This is a title
+                  </Text>
+                ),
+                description: (
+                  <Text color="gray300">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab
+                  </Text>
+                )
+            }}
+          />
+          <Alert
+            type="info"
+            content={{
+                title: (
+                  <Text bold size="md">
+                    This is a title
+                  </Text>
+                ),
+                description: (
+                  <Text color="gray300">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab
+                  </Text>
+                )
+            }}
+          />
+          <Alert
+            type="error"
+            content={{
+                title: (
+                  <Text bold size="md">
+                    This is a title
+                  </Text>
+                ),
+                description: (
+                  <Text color="gray300">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab
+                  </Text>
+                )
+            }}
+          />`,
   {
     package: ['Space', 'Alert']
   }
@@ -12,24 +70,24 @@ export const defaultCode = withThemeProvider(
 
 export const withShadow = withThemeProvider(
   `<Alert
-            shadow
+            withBoxShadow
             type="success"
-            message="This is an alert"
+            content="This is an alert"
           />
           <Alert
-            shadow
+            withBoxShadow
             type="warning"
-            message="This is an alert"
+            content="This is an alert"
           />
           <Alert
-            shadow
+            withBoxShadow
             type="error"
-            message="This is an alert"
+            content="This is an alert"
           />
           <Alert
-            shadow
+            withBoxShadow
             type="info"
-            message="This is an alert"
+            content="This is an alert"
           />`,
   {
     package: ['Space', 'Alert']
@@ -38,25 +96,73 @@ export const withShadow = withThemeProvider(
 
 export const closable = withThemeProvider(
   `<Alert
-            closable
-            type="success"
-            message="This is an alert"
-          />
-          <Alert
-            closable
-            type="warning"
-            message="This is an alert"
-          />
-          <Alert
-            closable
-            type="error"
-            message="This is an alert"
-          />
-          <Alert
-            closable
-            type="info"
-            message="This is an alert"
-          />`,
+          type="success"
+          withInternalClose
+          content={{
+            title: (
+              <Text bold size="md">
+                This is a title
+              </Text>
+            ),
+            description: (
+              <Text color="gray300">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab
+              </Text>
+            )
+          }}
+        />;
+        <Alert
+          type="warning"
+          withInternalClose
+          content={{
+            title: (
+              <Text bold size="md">
+                This is a title
+              </Text>
+            ),
+            description: (
+              <Text color="gray300">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              </Text>
+            )
+          }}
+        />;
+        <Alert
+          type="error"
+          withInternalClose
+          content={{
+            title: (
+              <Text bold size="md">
+                This is a title
+              </Text>
+            ),
+            description: (
+              <Text color="gray300">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Facilis, iure minima minus modi nostrum officiis quae
+                sapiente ut vel. Ab aspernatur distinctio eos in numquam
+                obcaecati officia recusandae veniam voluptates.
+              </Text>
+            )
+          }}
+        />;
+        <Alert
+          type="info"
+          withInternalClose
+          content={{
+            title: (
+              <Text bold size="md">
+                This is a title
+              </Text>
+            ),
+            description: (
+              <Text color="gray300">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Distinctio esse, laborum nihil non reprehenderit ullam?.
+              </Text>
+            )
+          }}
+        />;`,
   {
     package: ['Space', 'Alert']
   }
