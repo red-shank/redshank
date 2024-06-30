@@ -95,8 +95,9 @@ export const Modal: React.FC<ModalProps> & ExportComponent = ({
         >
           {closable ? (
             <Button
+              onlyIcon
               type="link"
-              color="text"
+              appearance="text"
               onPress={onClose}
               style={StyleSheet.flatten([
                 styles.closeButton,

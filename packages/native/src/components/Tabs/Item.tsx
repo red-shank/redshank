@@ -87,7 +87,7 @@ export function Item({
         sx={variantStyle?.bg}
       >
         {startAdornment}
-        <Text bold {...labelProps} sx={variantStyle?.label}>
+        <Text {...labelProps} sx={variantStyle?.label}>
           {label}
         </Text>
         {endAdornment}
@@ -97,9 +97,9 @@ export function Item({
 }
 
 const paddingSize: Record<SizeType, number> = {
-  large: 1.6,
-  middle: 1,
-  small: 0.6
+  large: 1,
+  middle: 0.7,
+  small: 0.1
 };
 
 const getVariantStyles: (
@@ -135,7 +135,6 @@ const getVariantStyles: (
     underlined: {
       container: {},
       bg: {
-        borderColor: 'transparent',
         borderBottomColor: isActive
           ? backgroundColors?.activeColor || 'primary'
           : backgroundColors?.inactiveColor || 'transparent'

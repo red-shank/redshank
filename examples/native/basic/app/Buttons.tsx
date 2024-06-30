@@ -20,7 +20,7 @@ const ButtonsScreen = () => {
           <Title level={4}>Default buttons</Title>
           <Box gap={1} flexDirection="row" flexWrap="wrap">
             {colors.map((c, i) => (
-              <Button key={i} bg={c}>
+              <Button key={i} appearance={c}>
                 {c}
               </Button>
             ))}
@@ -33,7 +33,7 @@ const ButtonsScreen = () => {
           <Title level={4}>Circle buttons</Title>
           <Box gap={1} flexDirection="row" flexWrap="wrap">
             {colors.map((c, i) => (
-              <Button key={i} shape="circle" bg={c}>
+              <Button key={i} shape="circle" appearance={c}>
                 {c}
               </Button>
             ))}
@@ -46,7 +46,7 @@ const ButtonsScreen = () => {
           <Title level={4}>Flat buttons</Title>
           <Box gap={1} flexDirection="row" flexWrap="wrap">
             {colors.map((c, i) => (
-              <Button key={i} shape="circle" type="flat" bg={c}>
+              <Button key={i} shape="circle" type="flat" appearance={c}>
                 {c}
               </Button>
             ))}
@@ -59,7 +59,7 @@ const ButtonsScreen = () => {
           <Title level={4}>Outline buttons</Title>
           <Box gap={1} flexDirection="row" flexWrap="wrap">
             {colors.map((c, i) => (
-              <Button key={i} shape="circle" type="outline" bg={c}>
+              <Button key={i} shape="circle" type="outline" appearance={c}>
                 {c}
               </Button>
             ))}
@@ -75,7 +75,7 @@ const ButtonsScreen = () => {
               shape="circle"
               type="flat"
               size="small"
-              bg="gray500"
+              appearance="gray500"
               color="primary"
               textProps={{ style: { textTransform: 'uppercase' } }}
             >
@@ -97,7 +97,7 @@ const ButtonsScreen = () => {
             <Button
               type="flat"
               size="small"
-              bg="gray500"
+              appearance="gray500"
               color="primary"
               textProps={{ style: { textTransform: 'uppercase' } }}
             >
@@ -114,41 +114,10 @@ const ButtonsScreen = () => {
         <View style={styles.space} />
 
         <View>
-          <Title level={4}>Icon, Prefix and Suffix Buttons</Title>
-          <Box gap={1} flexDirection="row" flexWrap="wrap">
-            <Button
-              icon={
-                <Icon color="yellow400" type="ant-design" name="smile-circle" />
-              }
-            >
-              Icon
-            </Button>
-            <Button
-              prefix={<Icon color="error" type="ant-design" name="heart" />}
-            >
-              Prefix
-            </Button>
-            <Button
-              suffix={<Icon type="antdesign" name="like1" color="white" />}
-            >
-              Suffix
-            </Button>
-            <Button
-              prefix={<Icon color="error" type="ant-design" name="heart" />}
-              suffix={<Icon type="antdesign" name="like1" color="white" />}
-            >
-              Both
-            </Button>
-          </Box>
-        </View>
-
-        <View style={styles.space} />
-
-        <View>
           <Title level={4} marginBottom={10}>
             Social buttons
           </Title>
-          <Box gap={1} flexDirection="row" flexWrap="wrap">
+          <Box gap={1}>
             <SocialButton provider="google" />
             <SocialButton provider="twitter" />
             <SocialButton provider="apple" />
@@ -161,10 +130,10 @@ const ButtonsScreen = () => {
         <View>
           <Title level={4}>Custom color buttons</Title>
           <Box gap={1} flexDirection="row" flexWrap="wrap">
-            <Button bg="#E5097F">Magenta</Button>
-            <Button bg="#30b0c7">Orangered</Button>
-            <Button bg="#ffcc00">Green</Button>
-            <Button bg="#af52de">Purple</Button>
+            <Button appearance="#E5097F">Magenta</Button>
+            <Button appearance="#30b0c7">Orangered</Button>
+            <Button appearance="#ffcc00">Green</Button>
+            <Button appearance="#af52de">Purple</Button>
           </Box>
         </View>
 
@@ -230,11 +199,72 @@ const ButtonsScreen = () => {
         <View style={styles.space} />
 
         <View>
+          <Title level={4}>Start and End content</Title>
+          <Box gap={1} flexDirection="row" flexWrap="wrap">
+            <Button type="outline" shape="circle" onlyIcon>
+              <Icon color="error" type="ant-design" name="heart" />
+            </Button>
+
+            <Button
+              startContent={
+                <Icon color="yellow400" type="ant-design" name="smile-circle" />
+              }
+            >
+              Icon
+            </Button>
+            <Button
+              startContent={
+                <Icon color="error" type="ant-design" name="heart" />
+              }
+            >
+              Start
+            </Button>
+            <Button
+              endContent={<Icon type="antdesign" name="like1" color="white" />}
+            >
+              End
+            </Button>
+            <Button
+              startContent={
+                <Icon color="error" type="ant-design" name="heart" />
+              }
+              endContent={<Icon type="antdesign" name="like1" color="white" />}
+            >
+              Both
+            </Button>
+          </Box>
+        </View>
+
+        <View style={styles.space} />
+
+        <View>
+          <Title level={4}>onlyIcon</Title>
+          <Box gap={1} flexDirection="row" flexWrap="wrap">
+            <Button size="small" type="outline" shape="circle" onlyIcon>
+              <Icon color="error" type="ant-design" name="heart" />
+            </Button>
+
+            <Button size="middle" type="outline" shape="circle" onlyIcon>
+              <Icon color="error" type="ant-design" name="heart" />
+            </Button>
+
+            <Button size="large" type="outline" onlyIcon>
+              <Icon color="error" type="ant-design" name="heart" />
+            </Button>
+
+            <Button size="xLarge" type="outline" onlyIcon>
+              <Icon color="error" type="ant-design" name="heart" />
+            </Button>
+          </Box>
+        </View>
+        <View style={styles.space} />
+
+        <View>
           <Title level={4}>Size buttons</Title>
           <Title level={5}>Small</Title>
           <Box gap={1} flexDirection="row" flexWrap="wrap">
             {colors.map((c, i) => (
-              <Button key={i} size="small" bg={c}>
+              <Button key={i} size="small" appearance={c}>
                 {c}
               </Button>
             ))}
@@ -242,7 +272,7 @@ const ButtonsScreen = () => {
           <Title level={5}>Middle(default)</Title>
           <Box gap={1} flexDirection="row" flexWrap="wrap">
             {colors.map((c, i) => (
-              <Button key={i} bg={c}>
+              <Button key={i} appearance={c}>
                 {c}
               </Button>
             ))}
@@ -250,7 +280,7 @@ const ButtonsScreen = () => {
           <Title level={5}>Large</Title>
           <Box gap={1} flexDirection="row" flexWrap="wrap">
             {colors.map((c, i) => (
-              <Button key={i} size="large" bg={c}>
+              <Button key={i} size="large" appearance={c}>
                 {c}
               </Button>
             ))}
@@ -258,7 +288,7 @@ const ButtonsScreen = () => {
           <Title level={5}>XLarge</Title>
           <Box gap={1} flexDirection="row" flexWrap="wrap">
             {colors.map((c, i) => (
-              <Button key={i} size="xLarge" bg={c}>
+              <Button key={i} size="xLarge" appearance={c}>
                 {c}
               </Button>
             ))}

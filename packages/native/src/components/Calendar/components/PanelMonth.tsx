@@ -32,7 +32,7 @@ function PanelMonth({}: MonthProps) {
         {onCancel && (
           <Button
             type="link"
-            color="text"
+            appearance="text"
             onPress={onCancel}
             sx={{
               height: 35,

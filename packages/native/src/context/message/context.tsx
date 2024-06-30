@@ -5,17 +5,18 @@ import React, {
   useRef
 } from 'react';
 
-import { renderMessage } from './Render';
 import { getRandomId } from '../../utils';
 import type {
   ElementListType,
-  ElementType,
   MessageContextType,
   MessageOptions
 } from './types';
 import { Box } from '../../components/Box';
 import { Animated } from 'react-native';
 import { SxProps } from '../../lib/styleDictionary';
+// import { Base } from './Base';
+import { Alert } from '../../components/Alert';
+import { AlertType } from '../../components/Alert/types';
 
 const DEFAULT_DURATION = 5000; // 5s
 
@@ -63,29 +64,35 @@ export const MessageProvider = React.memo(
     );
 
     const addMessage = React.useCallback(
-      (content: string, type: ElementType, opts?: Partial<MessageOptions>) => {
-        const options = {
-          ...opts,
-          onPress: opts?.onPress,
-          closable: opts?.closable ?? true,
-          duration: opts?.duration ?? defaultDuration
-        };
-
+      (content: string, type: AlertType, opts?: Partial<MessageOptions>) => {
         const id = getRandomId('message');
-
-        const isClosable = options.closable;
-
-        const payload = {
+        const options = {
+          withBoxShadow: true,
+          ...opts,
           id,
-          onPress: options?.onPress,
-          closable: isClosable,
-          duration: options?.duration ?? defaultDuration
+          type,
+          closable: opts?.closable ?? true,
+          duration: opts?.duration ?? defaultDuration,
+          sx: {
+            px: 4
+          }
         };
 
         const onClose = () => {
           clearTimeout(ref);
-          removeMessage(payload.id);
+          removeMessage(options.id);
         };
+
+        const component = (
+          <Alert
+            {...options}
+            content={content}
+            onClose={onClose}
+            translateYAnimation={translateYAnimation}
+            opacity={opacityAnimation}
+            key={options?.key ?? id}
+          />
+        );
 
         if (ref) {
           Animated.parallel([
@@ -101,32 +108,14 @@ export const MessageProvider = React.memo(
             })
           ]).start(() => {
             setCurrentMessage({
-              ...payload,
-              component: renderMessage?.[type]?.(
-                content,
-                Object.assign(options, {
-                  onClose,
-                  translateYAnimation,
-                  opacityAnimation,
-                  onPress: payload?.onPress,
-                  key: options?.key ?? id
-                })
-              )
+              ...options,
+              component: component
             });
           });
         } else {
           setCurrentMessage({
-            ...payload,
-            component: renderMessage?.[type]?.(
-              content,
-              Object.assign(options, {
-                onClose,
-                translateYAnimation,
-                opacityAnimation,
-                onPress: payload?.onPress,
-                key: options?.key ?? id
-              })
-            )
+            ...options,
+            component: component
           });
         }
       },
@@ -169,17 +158,17 @@ export const MessageProvider = React.memo(
         Animated.parallel([
           Animated.timing(translateYAnimation, {
             toValue: 0,
-            duration: 300,
+            duration: 200,
             useNativeDriver: false
           }),
           Animated.timing(opacityAnimation, {
             toValue: 1,
-            duration: 200,
+            duration: 100,
             useNativeDriver: false
           })
         ]).start();
 
-        if (!!currentMessage?.duration) {
+        if (currentMessage?.duration) {
           ref = setTimeout(() => {
             removeMessage(currentMessage.id);
           }, currentMessage?.duration);

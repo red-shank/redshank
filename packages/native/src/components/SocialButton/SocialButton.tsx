@@ -5,18 +5,14 @@ import { Button } from '../Button/Button';
 import { ButtonProps } from '../Button/types';
 import { resolveAssetUrl } from '../../utils';
 import useTheme from '../../context/theme/useTheme';
+import { Box } from '../Box';
 
 export type SocialButtonProvider = 'google' | 'facebook' | 'apple' | 'twitter';
 
 export interface SocialButtonProps
   extends Pick<
     ButtonProps,
-    | 'loading'
-    | 'Component'
-    | 'disabled'
-    | 'onPress'
-    | 'withMarginBottom'
-    | 'style'
+    'loading' | 'Component' | 'disabled' | 'onPress' | 'style'
   > {
   provider?: SocialButtonProvider;
   text?: string;
@@ -73,10 +69,10 @@ export const SocialButton: React.FC<SocialButtonProps> = ({
     <Button
       shape="circle"
       type="outline"
-      bg="text"
-      color="text"
+      appearance="text"
       fullWidth
-      icon={<Image width={25} height={25} source={uri} />}
+      startContent={<Image width={25} height={25} source={uri} />}
+      endContent={<Box width={25} height={25} />}
       sx={{
         text: {
           flex: 1,

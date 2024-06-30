@@ -7,17 +7,16 @@ import {
   useMessage,
   ScrollView,
   Image,
+  AlertType,
   Text
 } from '@redshank/native';
 
-type Type = 'default' | 'success' | 'error' | 'warning' | 'info';
-
-const types: Type[] = ['default', 'success', 'error', 'warning', 'info'];
+const types: AlertType[] = ['default', 'success', 'error', 'warning', 'info'];
 
 const MessageScreen = () => {
   const message = useMessage();
 
-  const onPressDefault = (type: Type) => {
+  const onPressDefault = (type: AlertType) => {
     message[type]({
       title: (
         <Text transformText="capitalize" fontWeight="bold">
@@ -28,13 +27,19 @@ const MessageScreen = () => {
     });
   };
 
-  const onLeftIcon = (type: Type) => {
-    message[type](type, {
-      withIcon: true
-    });
+  const onLeftIcon = (type: AlertType) => {
+    message[type](
+      {
+        title: type,
+        description: type
+      },
+      {
+        withIcon: true
+      }
+    );
   };
 
-  const onRightIcon = (type: Type) => {
+  const onRightIcon = (type: AlertType) => {
     message[type](type, {
       closable: false,
       startContent: (
@@ -65,13 +70,13 @@ const MessageScreen = () => {
     });
   };
 
-  const onPressShadow = (type: Type) => {
+  const onPressShadow = (type: AlertType) => {
     message[type](type, {
       withBoxShadow: false
     });
   };
 
-  const onPressDuration = (type: Type) => {
+  const onPressDuration = (type: AlertType) => {
     message[type](type, {
       duration: 2000 // in ms
     });

@@ -74,7 +74,7 @@ export default function MonthLabel({}: MonthLabelProps) {
             alignItems: 'center'
           }
         }}
-        suffix={
+        endContent={
           <Animated.View style={{ transform: [{ rotate: spin }] }}>
             <Icon name="right" color="primary" type="antdesign" size={18} />
           </Animated.View>
@@ -92,14 +92,14 @@ export default function MonthLabel({}: MonthLabelProps) {
           <Button
             {...buttonProps}
             onPress={onPrevMonth}
-            icon={
+            startContent={
               <Icon name="left" color="primary" type="antdesign" size={18} />
             }
           />
           <Button
             {...buttonProps}
             onPress={onNextMonth}
-            icon={
+            startContent={
               <Icon name="right" color="primary" type="antdesign" size={18} />
             }
           />

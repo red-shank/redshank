@@ -5,9 +5,10 @@ import { Ripple } from '../Ripple';
 import useTheme from '../../context/theme/useTheme';
 import { getColorForBackground, getOpacity } from '../../utils';
 
-import type { ButtonProps } from './types';
+import { ButtonProps, ButtonSize } from './types';
 import createSxStyle, { getSxStyleAndProps } from '../../lib/sx';
 import { Box } from '../Box';
+import { SxProps } from '../../lib/styleDictionary';
 
 export const Button: React.FC<ButtonProps> = ({
   children,
@@ -20,25 +21,23 @@ export const Button: React.FC<ButtonProps> = ({
   style,
   disableTransform,
   disableRipple,
-  icon,
-  suffix,
+  onlyIcon,
+  endContent,
   sx,
-  prefix = icon,
+  bold,
   textProps,
-  bg,
+  startContent = onlyIcon ? children || endContent : null,
   fullWidth = true,
-  withMarginBottom = false,
   textAlign = 'center',
   Component = Ripple,
   size = 'middle',
-  backgroundColor = bg || 'primary',
+  appearance = 'primary',
   type = 'solid',
   color = type === 'link' ? 'primary' : undefined,
   shape = 'round',
   ...rest
 }) => {
-  const { colors, fonts, sizes, fontSizes, activeOpacity, marginSizes } =
-    useTheme();
+  const { colors, fonts, sizes, fontSizes, activeOpacity } = useTheme();
   const theme = useTheme();
 
   const isSolid = type === 'solid';
@@ -46,41 +45,39 @@ export const Button: React.FC<ButtonProps> = ({
   const isFlat = type === 'flat';
   const isLink = type === 'link';
   const isCircle = shape === 'circle';
-  const internalColor = colors[backgroundColor] || backgroundColor;
+  const internalAppearanceColor = colors[appearance] || appearance;
   const textAlignWrapper = `text_${textAlign}`;
 
   const colorText = React.useMemo(() => {
     if (isFlat && !color) {
-      return internalColor;
+      return internalAppearanceColor;
     }
     if (isOutline && !color) {
-      return internalColor;
+      return internalAppearanceColor;
     }
 
     return !color
-      ? getColorForBackground(internalColor)
+      ? getColorForBackground(internalAppearanceColor)
       : colors[color] || color;
-  }, [isFlat, color, isOutline, colors, internalColor]);
+  }, [isFlat, color, isOutline, colors, internalAppearanceColor]);
 
   const resolveProps = getSxStyleAndProps(
     {
       ...StyleSheet.flatten([
-        styles.button,
         styles[textAlignWrapper],
         {
           borderRadius: isCircle ? sizes[size] : isLink ? 0 : 1
         },
         !fullWidth && { alignSelf: 'flex-start' },
-        withMarginBottom && { marginBottom: marginSizes.md },
         isSolid && {
-          backgroundColor: internalColor
+          backgroundColor: internalAppearanceColor
         },
         type === 'flat' && {
-          backgroundColor: getOpacity(internalColor, 0.3)
+          backgroundColor: getOpacity(internalAppearanceColor, 0.3)
         },
         type === 'outline' && {
           borderWidth: 1,
-          borderColor: internalColor
+          borderColor: internalAppearanceColor
         },
         disabled &&
           isSolid && {
@@ -100,7 +97,12 @@ export const Button: React.FC<ButtonProps> = ({
         style
       ]),
       ...sx,
-      sx: sx?.root,
+      sx: onlyIcon
+        ? {
+            ...sx?.root,
+            ...sizeOnlyIcon[size]
+          }
+        : sx?.root,
       ...rest
     },
     theme
@@ -119,7 +121,13 @@ export const Button: React.FC<ButtonProps> = ({
       {...resolveProps.props}
       style={resolveProps.style}
     >
-      <Box sx={sx?.container} style={styles.button}>
+      <Box
+        gap={1}
+        sx={sx?.container}
+        flexDirection="row"
+        alignItems="center"
+        justifyContent="center"
+      >
         {loading && (
           <ActivityIndicator
             style={styles.loading}
@@ -127,50 +135,62 @@ export const Button: React.FC<ButtonProps> = ({
             color={colorText}
           />
         )}
-        {!loading && prefix && (
-          <Box sx={sx?.icon} style={[styles.prefix]}>
-            {prefix}
-          </Box>
+        {!loading && startContent && <Box sx={sx?.icon}>{startContent}</Box>}
+        {!onlyIcon && children && (
+          <Text
+            {...textProps}
+            style={createSxStyle(
+              {
+                sx: sx?.text,
+                fontWeight: bold ? 'bold' : '500',
+                style: StyleSheet.flatten([
+                  type !== 'link' && fonts.bold,
+                  {
+                    fontSize: fontSizes.base,
+                    color: colorText
+                  },
+                  disabled &&
+                    !isSolid && {
+                      color: colors.accents5
+                    }
+                ])
+              },
+              theme
+            )}
+          >
+            {children}
+          </Text>
         )}
-        <Text
-          {...textProps}
-          style={createSxStyle(
-            {
-              sx: sx?.text,
-              style: StyleSheet.flatten([
-                type !== 'link' && fonts.bold,
-                {
-                  fontSize: fontSizes.base,
-                  color: colorText
-                },
-                disabled &&
-                  !isSolid && {
-                    color: colors.accents5
-                  }
-              ])
-            },
-            theme
-          )}
-        >
-          {children}
-        </Text>
-
-        {!loading && suffix && (
-          <Box sx={sx?.icon} style={styles.suffix}>
-            {suffix}
-          </Box>
-        )}
+        {endContent && <Box sx={sx?.icon}>{endContent}</Box>}
       </Box>
     </Component>
   );
 };
 
-const styles = StyleSheet.create({
-  button: {
-    overflow: 'hidden',
-    flexDirection: 'row',
-    alignItems: 'center'
+const sizeOnlyIcon: Record<ButtonSize, SxProps> = {
+  small: {
+    width: 32,
+    height: 32,
+    paddingHorizontal: 0
   },
+  middle: {
+    width: 40,
+    height: 40,
+    paddingHorizontal: 0
+  },
+  large: {
+    width: 50,
+    height: 50,
+    paddingHorizontal: 0
+  },
+  xLarge: {
+    width: 55,
+    height: 55,
+    paddingHorizontal: 0
+  }
+};
+
+const styles = StyleSheet.create({
   text_left: {
     justifyContent: 'flex-start'
   },
@@ -193,25 +213,15 @@ const styles = StyleSheet.create({
     shadowRadius: 6
   },
   small: {
-    paddingRight: 10,
-    paddingLeft: 10
+    paddingHorizontal: 8
   },
   middle: {
-    paddingRight: 18,
-    paddingLeft: 18
+    paddingHorizontal: 14
   },
   large: {
-    paddingRight: 18,
-    paddingLeft: 18
+    paddingHorizontal: 18
   },
   xLarge: {
-    paddingRight: 24,
-    paddingLeft: 25
-  },
-  prefix: {
-    marginRight: 8
-  },
-  suffix: {
-    marginLeft: 8
+    paddingHorizontal: 20
   }
 });

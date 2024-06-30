@@ -81,9 +81,9 @@ export const Controller: React.FC<ControllerProps> = ({
       >
         <View style={styles.item}>
           <Button
-            icon
+            onlyIcon
             type="link"
-            color="black"
+            appearance="black"
             onPress={onPrev}
             sx={{
               container: buttonSx,
@@ -110,9 +110,9 @@ export const Controller: React.FC<ControllerProps> = ({
 
         <View style={styles.item}>
           <Button
-            icon
+            onlyIcon
             type="link"
-            color="black"
+            appearance="black"
             onPress={onAdd}
             sx={{
               container: buttonSx,

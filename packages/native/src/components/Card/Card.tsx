@@ -130,7 +130,7 @@ const CardRender: React.FC<CardProps> = React.memo(
           >
             <Button
               type="link"
-              color="text"
+              appearance="text"
               style={StyleSheet.flatten([
                 styles.closeButton,
                 { zIndex: zIndices.max }

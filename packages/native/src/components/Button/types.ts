@@ -12,22 +12,21 @@ export type ButtonType = 'solid' | 'link' | 'flat' | 'outline';
 export interface ButtonProps extends BaseProperties, SxProps {
   Component?: typeof Component;
   children?: ReactNode;
-  color?: ColorType;
+  appearance?: ColorType;
   disableRipple?: boolean;
+  bold?: boolean;
   disableTransform?: boolean;
   disabled?: boolean;
   fullWidth?: boolean;
-  icon?: ReactNode;
   loading?: boolean;
-  prefix?: ReactNode;
+  onlyIcon?: boolean;
+  startContent?: ReactNode;
+  endContent?: ReactNode;
   shape?: 'circle' | 'round';
   size?: ButtonSize;
   style?: StyleProp<ViewStyle>;
-  suffix?: ReactNode;
-  textAlign?: 'left' | 'center' | 'right';
   textProps?: Omit<TextProps, 'children' | 'style'>;
   type?: ButtonType;
-  withMarginBottom?: boolean;
   sx?: SxProps & {
     root?: SxProps;
     container?: SxProps;

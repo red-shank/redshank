@@ -5,6 +5,7 @@ import { TabsProps, TabsVariant } from './types';
 import { SxProps } from '../../lib/styleDictionary';
 import { Box } from '../Box';
 import { ScrollView } from '../ScrollView';
+import Content from './Content';
 
 export function Tabs({
   items,
@@ -55,66 +56,75 @@ export function Tabs({
 
   return (
     <Box sx={sx?.root} style={styles?.root} {...sxProps}>
-      <ScrollView
-        horizontal
-        bounces={scrollable}
-        bouncesZoom={scrollable}
-        showsHorizontalScrollIndicator={scrollable}
-        sx={sx?.tab_scroll_view}
-        style={styles?.tab_scroll_view}
-        contentContainerStyle={styles?.tab_container}
-        contentContainerSx={{
-          gap: 0,
-          p: 0.4,
-          flexShrink: 0,
-          overflow: 'hidden',
-          borderWidth: 2,
-          flexDirection: 'row',
-          borderStyle: 'solid',
-          flexWrap: 'nowrap',
-          flex: scrollable ? undefined : 1,
-          ...variants[variant],
-          ...sx?.tab_container
-        }}
-      >
-        {items.map((item) => {
-          if (renderTabItem) {
-            return renderTabItem({
-              key: item.key,
-              label: item.label,
-              onPress: () => onInternalChange(item),
-              endAdornment: item?.endAdornment,
-              startAdornment: item?.startAdornment,
-              isActive: internalValue?.key === item.key
-            });
-          }
-          return (
-            <Item
-              id={item.key}
-              key={item.key}
-              variant={variant}
-              label={item.label}
-              endAdornment={item?.endAdornment}
-              startAdornment={item?.startAdornment}
-              size={size}
-              labelProps={labelProps}
-              isActive={internalValue?.key === item.key}
-              onPress={() => onInternalChange(item)}
-              labelColors={item?.labelColors}
-              backgroundColors={item?.backgroundColors}
-              style={styles?.item}
-              sx={{
-                flex: 1 / (items?.length || 0),
-                ...sx?.item
-              }}
-            />
-          );
-        })}
-      </ScrollView>
-
-      <Box pt={1} sx={sx?.content} style={styles?.content}>
-        {internalValue?.children}
+      <Box borderRadius={1.2} overflow="hidden" width="100%">
+        <ScrollView
+          horizontal
+          bounces={scrollable}
+          bouncesZoom={scrollable}
+          showsHorizontalScrollIndicator={scrollable}
+          sx={sx?.tab_scroll_view}
+          style={styles?.tab_scroll_view}
+          contentContainerStyle={styles?.tab_container}
+          contentContainerSx={{
+            gap: 0,
+            p: 0.65,
+            flexShrink: 0,
+            overflow: 'hidden',
+            borderWidth: 2,
+            flexDirection: 'row',
+            borderStyle: 'solid',
+            flexWrap: 'nowrap',
+            flex: scrollable ? undefined : 1,
+            ...variants[variant],
+            ...sx?.tab_container
+          }}
+        >
+          {items.map((item) => {
+            if (renderTabItem) {
+              return renderTabItem({
+                key: item.key,
+                label: item.label,
+                onPress: () => onInternalChange(item),
+                endAdornment: item?.endAdornment,
+                startAdornment: item?.startAdornment,
+                isActive: internalValue?.key === item.key
+              });
+            }
+            return (
+              <Item
+                id={item.key}
+                key={item.key}
+                variant={variant}
+                label={item.label}
+                endAdornment={item?.endAdornment}
+                startAdornment={item?.startAdornment}
+                size={size}
+                labelProps={labelProps}
+                isActive={internalValue?.key === item.key}
+                onPress={() => onInternalChange(item)}
+                labelColors={item?.labelColors}
+                backgroundColors={item?.backgroundColors}
+                style={styles?.item}
+                sx={{
+                  flex: 1 / (items?.length || 0),
+                  ...sx?.item
+                }}
+              />
+            );
+          })}
+        </ScrollView>
       </Box>
+
+      {internalValue?.children && (
+        <Content
+          pt={1}
+          sx={sx?.content}
+          style={styles?.content}
+          key={internalValue?.key}
+        >
+          {internalValue?.children}
+        </Content>
+      )}
     </Box>
   );
 }

@@ -1,153 +1,183 @@
-import React from 'react';
-import { Platform, StyleSheet } from 'react-native';
+import React, { isValidElement, useMemo } from 'react';
+import { StyleSheet, Animated } from 'react-native';
 
-import { getOpacity } from '../../utils';
+import { Text } from '../../components/Text';
+import { Ripple } from '../../components/Ripple';
 import useTheme from '../../context/theme/useTheme';
-import { Icon } from '../Icon';
-import { Text } from '../Text';
-import type { AlertProps, AlertType } from './types';
-import { Box } from '../Box';
-import createSxStyle, { getSxStyleAndProps } from '../../lib/sx';
-import { Ripple } from '../Ripple';
+import { isValidChild } from '../../utils/render';
+import { AlertProps, AlertType, FuncRenderIcon } from './types';
+import { Box } from '../../components/Box';
+import createSxStyle from '../../lib/sx';
+import { Icon } from '../../components/Icon';
+import { Button } from '../Button';
+
+const icons: Record<AlertType, React.ReactNode> = {
+  default: <Icon type="antdesign" name="infocirlce" />,
+  success: <Icon type="antdesign" name="checkcircle" color="success" />,
+  info: <Icon type="antdesign" name="infocirlce" color="info" />,
+  warning: <Icon type="entypo" name="warning" color="warning" />,
+  error: <Icon type="antdesign" name="closecircle" color="error" />
+};
+
+// {
+//   message,
+//     sx,
+//     sizeIcon = 18,
+//     shadow = false,
+//     closable = false,
+//     type = 'warning',
+//     withIcon = true,
+// ...restProps
+// }
 
 export const Alert: React.FC<AlertProps> = ({
-  message,
+  endContent,
+  content,
+  onPress,
+  onClose,
+  opacity,
+  type,
   sx,
-  sizeIcon = 18,
-  shadow = false,
-  closable = false,
-  type = 'warning',
+  withInternalClose = false,
+  closable = !onPress,
+  withBoxShadow = false,
   withIcon = true,
-  ...restProps
+  translateYAnimation = new Animated.Value(0),
+  startContent = withIcon ? icons[type] : null,
+  style = {},
+  styleText = {},
+  Component = (closable || onPress) && !withInternalClose ? Ripple : Box
 }) => {
   const theme = useTheme();
-  const { colors, isDark } = useTheme();
-  const [show, setShow] = React.useState<boolean>(true);
+  const [internalClose, setInternalClose] = React.useState(false);
+  const { colors, isDark, activeOpacity } = useTheme();
 
-  const onClose = React.useCallback(() => setShow(false), []);
+  const boxShadowColor = React.useMemo(() => {
+    return isDark ? colors.gray800 : colors.gray200;
+  }, [colors, isDark]);
 
-  if (!show) {
-    return null;
-  }
+  const standardContent = useMemo(() => {
+    return {
+      title: (content as any)?.title || content,
+      description: (content as any)?.description
+    };
+  }, [content]);
 
-  const internalColor = type === 'info' ? 'primary' : type;
+  const internalPress = (event: any) => {
+    onPress?.(event);
+    closable && onClose?.();
+  };
 
-  const resolveProps = getSxStyleAndProps(
-    { ...sx, sx: sx?.root, ...restProps },
-    theme
-  );
+  const start = useMemo<React.ReactNode>(() => {
+    if (!startContent) return null;
+    return isValidElement(startContent)
+      ? (startContent as React.ReactNode)
+      : (startContent as FuncRenderIcon)(onClose);
+  }, [onClose, startContent]);
 
+  const end = useMemo<React.ReactNode>(() => {
+    if (!endContent) return null;
+    return isValidElement(endContent)
+      ? (endContent as React.ReactNode)
+      : (endContent as FuncRenderIcon)(onClose);
+  }, [onClose, endContent]);
+
+  const showStartContent = withIcon || !!startContent;
+
+  if (internalClose) return null;
   return (
-    <Box
-      p={2}
-      gap={1}
-      borderRadius={1}
-      flexDirection="row"
-      justifyContent="space-between"
-      backgroundColor={getOpacity(colors[internalColor], 0.2)}
-      style={StyleSheet.flatten([
-        shadow && {
-          ..._styles.shadow,
-          shadowColor: colors[internalColor],
-          shadowOpacity: Platform.select({
-            default: isDark ? 0.9 : 0.5,
-            web: 0.4
-          })
-        },
-        resolveProps.style
-      ])}
-      {...resolveProps.props}
-    >
-      <Box
-        gap={1}
-        flex={1}
-        sx={sx?.container}
-        flexDirection="row"
-        pr={closable ? 2.2 : 0}
+    <Box flex={1} sx={sx}>
+      <Component
+        width="100%"
+        height="100%"
+        onPress={internalPress}
+        disableRipple={false}
+        disableTransform={true}
+        activeOpacity={activeOpacity}
       >
-        {withIcon && (
-          <Box sx={sx?.icon}>
-            <SelectIcon type={type} size={sizeIcon} />
-          </Box>
-        )}
-        <Text sx={sx?.text} testID="RN_TEXT_MESSAGE">
-          {message}
-        </Text>
-      </Box>
-
-      {closable && (
-        <Ripple
-          onPress={onClose}
+        <Animated.View
           style={createSxStyle(
             {
-              sx: sx?.button
+              p: 1.5,
+              gap: 1,
+              width: '100%',
+              borderWidth: 1,
+              borderStyle: 'solid',
+              borderColor: boxShadowColor,
+              opacity: opacity,
+              transform: [
+                {
+                  translateY: translateYAnimation
+                }
+              ],
+              mx: 'auto',
+              height: '100%',
+              borderRadius: 2,
+              position: 'relative',
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              bg: 'notification',
+              style: [
+                withBoxShadow && styles.shadowStyle,
+                withBoxShadow && {
+                  shadowColor: boxShadowColor
+                },
+                style
+              ]
             },
             theme
           )}
         >
-          <Icon name="close" type="antdesign" color="text" size={18} />
-        </Ripple>
-      )}
+          <Box
+            gap={1}
+            flex={1}
+            height="100%"
+            borderRadius={1.6}
+            alignItems="center"
+            flexDirection="row"
+            pr={withInternalClose || endContent ? 3 : 0}
+          >
+            {showStartContent ? start : null}
+            <Box>
+              {isValidChild(standardContent?.title) ? (
+                standardContent?.title
+              ) : (
+                <Text fontWeight="500" style={styleText}>
+                  {standardContent?.title}
+                </Text>
+              )}
+              {isValidChild(standardContent?.description) ? (
+                standardContent?.description
+              ) : (
+                <Text style={styleText}>{standardContent?.description}</Text>
+              )}
+            </Box>
+          </Box>
+          {end}
+          {withInternalClose && (
+            <Button
+              bold
+              type="link"
+              color="text"
+              onPress={() => setInternalClose(true)}
+            >
+              Close
+            </Button>
+          )}
+        </Animated.View>
+      </Component>
     </Box>
   );
 };
 
-const _styles = StyleSheet.create({
-  shadow: {
-    shadowOffset: Platform.select({
-      default: {
-        width: 0,
-        height: 20
-      },
-      web: {
-        width: 0,
-        height: 9
-      }
-    }),
-    shadowRadius: Platform.select({
-      default: 12,
-      web: 20
-    })
+const styles = StyleSheet.create({
+  shadowStyle: {
+    shadowOpacity: 0.5,
+    shadowOffset: {
+      width: 0,
+      height: 5
+    },
+    shadowRadius: 5
   }
 });
-
-const SelectIcon = ({
-  type,
-  size = 18
-}: {
-  type: AlertType;
-  size?: number;
-}) => {
-  switch (type) {
-    case 'success':
-      return (
-        <Icon name="checkcircle" type="antdesign" color={type} size={size} />
-      );
-    case 'info':
-      return (
-        <Icon name="infocirlce" type="antdesign" color="primary" size={size} />
-      );
-    case 'error':
-      return (
-        <Icon name="closecircle" type="antdesign" color={type} size={size} />
-      );
-    case 'warning':
-      return (
-        <Icon
-          name="exclamationcircle"
-          type="antdesign"
-          color={type}
-          size={size}
-        />
-      );
-    default:
-      return (
-        <Icon
-          name="exclamationcircle"
-          type="antdesign"
-          color={type}
-          size={size}
-        />
-      );
-  }
-};
