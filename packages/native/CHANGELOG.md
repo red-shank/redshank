@@ -1,5 +1,14 @@
 # CHANGELOG
 
+# 2.38.0 (2024-06-29)
+
+
+### Features
+
+* added apearance in buttons and onion alert and message components ([5d27547](https://github.com/red-shank/redshank/commit/5d2754718a8a075191ee1632f2ef1f75efb86930))
+
+
+
 # 2.37.0 (2024-06-28)
 
 
