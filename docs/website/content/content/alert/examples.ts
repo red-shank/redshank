@@ -1,6 +1,4 @@
 import { withThemeProvider } from '@/content/utils/generateCode';
-import { Alert, Text } from '@redshank/native';
-import React from 'react';
 
 export const defaultCode = withThemeProvider(
   `<Alert
