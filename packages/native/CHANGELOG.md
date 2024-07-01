@@ -1,5 +1,14 @@
 # CHANGELOG
 
+# 2.39.0 (2024-06-30)
+
+
+### Bug Fixes
+
+* fixed tabs color underline ([5a60a94](https://github.com/red-shank/redshank/commit/5a60a943ee445041bd2712a4c0f6c55286f2b7b5))
+
+
+
 # 2.38.0 (2024-06-29)
 
 
