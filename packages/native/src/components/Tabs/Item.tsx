@@ -97,8 +97,8 @@ export function Item({
 }
 
 const paddingSize: Record<SizeType, number> = {
-  large: 1,
-  middle: 0.7,
+  large: 1.2,
+  middle: 1,
   small: 0.1
 };
 
@@ -135,6 +135,9 @@ const getVariantStyles: (
     underlined: {
       container: {},
       bg: {
+        borderLeftColor: 'transparent',
+        borderTopColor: 'transparent',
+        borderRightColor: 'transparent',
         borderBottomColor: isActive
           ? backgroundColors?.activeColor || 'primary'
           : backgroundColors?.inactiveColor || 'transparent'

@@ -70,7 +70,7 @@ export function Tabs({
             p: 0.65,
             flexShrink: 0,
             overflow: 'hidden',
-            borderWidth: 2,
+            borderWidth: 1,
             flexDirection: 'row',
             borderStyle: 'solid',
             flexWrap: 'nowrap',
