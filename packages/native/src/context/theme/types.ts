@@ -149,7 +149,12 @@ type ThemeType = Pick<
 };
 
 export type ThemeContextProps = PropsWithChildren<{
-  theme: Partial<ThemeType>;
+  theme: Omit<Partial<ThemeType>, 'colors'> & {
+    colors?: {
+      dark: Record<string, string | object>;
+      light: Record<string, string | object>;
+    };
+  };
 }>;
 
 export type ThemeProps = Omit<ThemeType, 'colors'> &
