@@ -8,7 +8,6 @@ projects
 
 [Documentation](https://www.redshank.app) under construction, launch scheduled for November 30, 2022.
 
-
 ## Installation
 
 ```sh

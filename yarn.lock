@@ -3473,7 +3473,7 @@
     "@react-types/shared" "^3.23.1"
 
 "@redshank/native@*", "@redshank/native@file:/Users/rivaslive/Documentos/npm/redshank/packages/native":
-  version "3.4.0"
+  version "3.5.0"
   resolved "file:packages/native"
   dependencies:
     "@react-native-picker/picker" "2.7.7"
