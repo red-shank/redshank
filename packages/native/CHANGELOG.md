@@ -1,5 +1,14 @@
 # CHANGELOG
 
+# 3.1.0 (2024-07-06)
+
+
+### Features
+
+* change theme complete to object in colors ([792927e](https://github.com/red-shank/redshank/commit/792927e6483e57ba3bdb894ac23e5754a4444da2))
+
+
+
 # 2.39.0 (2024-06-30)
 
 
