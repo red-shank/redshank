@@ -1,5 +1,14 @@
 # CHANGELOG
 
+# 3.4.0 (2024-07-06)
+
+
+### Bug Fixes
+
+* fixed a colors typw ([10e86d3](https://github.com/red-shank/redshank/commit/10e86d39492d50108666052a1698aef7580de25b))
+
+
+
 # 3.3.0 (2024-07-06)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@redshank/native",
-  "version": "3.3.0",
+  "version": "3.4.0",
   "description": "@redshank/native is a UI components library specifically designed for React Native. This library is not only aesthetically pleasing but also extremely powerful, allowing developers to create stunning and highly functional mobile applications with ease. Just like in MUI, redshank allows you to style your components using the sxProps property. This makes it easy to apply custom styles directly to the components without the need for additional style files.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
