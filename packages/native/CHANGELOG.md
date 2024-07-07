@@ -1,5 +1,14 @@
 # CHANGELOG
 
+# 3.3.0 (2024-07-06)
+
+
+### Features
+
+* added defaultValues export ([669d3cc](https://github.com/red-shank/redshank/commit/669d3cc2899195384b9abbf84bcb834f4bb36c0d))
+
+
+
 # 3.1.0 (2024-07-06)
 
 
