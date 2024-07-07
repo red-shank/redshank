@@ -14,16 +14,36 @@ function copyFiles() {
     if (err) {
       console.log('Oops! An Error Occured:', err);
     } else {
-      console.log('File copied');
+      console.log('package.json copied');
     }
   });
 
+  const filePathOutput = `${root}/temp/defaultValues.ts`;
+
   console.log(`Copying the variants file from ${defaultValuesDir}`);
-  fs.copyFile(defaultValuesDir, `${root}/temp/defaultValues.ts`, (err) => {
+  fs.readFile(defaultValuesDir, 'utf-8', (err, data) => {
     if (err) {
       console.log('Oops! An Error Occured:', err);
     } else {
-      console.log('File copied');
+      console.log('Content file copied');
+      const newContent = data.replace(
+        `import { BorderRadiusType } from './types';
+
+`,
+        ''
+      );
+
+      fs.writeFile(
+        filePathOutput,
+        newContent.replace(': BorderRadiusType', ''),
+        (err) => {
+          if (err) {
+            console.log('Oops! An Error Occured:', err);
+          } else {
+            console.log('Content file copied');
+          }
+        }
+      );
     }
   });
 }
