@@ -11,4 +11,5 @@ const ThemeProvider: React.FC<ThemeContextProps> = ({ children, theme }) => {
 
 export * from './theme/types';
 export * from './theme/color.type';
+export * from './theme/defaultValues';
 export { ThemeProvider, colorsDark, colorsLight, zIndices };
