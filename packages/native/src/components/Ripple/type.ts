@@ -1,5 +1,5 @@
 import { TouchableOpacityProps } from 'react-native';
-import type { ColorType } from '../../context/theme/types';
+import type { ColorName } from '../../context/theme/types';
 import { SxProps } from '../../lib/styleDictionary';
 
 export type StateType = {
@@ -10,7 +10,7 @@ export type StateType = {
 
 export type RippleProps = TouchableOpacityProps &
   SxProps & {
-    rippleColor?: ColorType;
+    rippleColor?: ColorName;
     nativeID?: any;
     rippleOpacity?: number; // 0 to 1
     rippleDuration?: number;

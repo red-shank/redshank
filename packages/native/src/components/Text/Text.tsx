@@ -31,7 +31,10 @@ export const Text: FC<TextProps> = ({
   const theme = useTheme();
   const { fonts, fontSizes } = useTheme();
   const [showMore, setShowMore] = useState<boolean>(false);
-
+  // console.log({
+  //   color,
+  //   colorText: theme.colors.get(color)
+  // });
   const changeShowMore = () => {
     setShowMore((prev) => !prev);
   };

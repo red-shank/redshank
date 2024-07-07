@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import type { StyleProp, ViewStyle } from 'react-native';
 import type { SizeType } from '../../@types/input';
-import type { ColorType } from '../../context/theme/types';
+import type { ColorName } from '../../context/theme/types';
 import { BaseProperties } from '../../@types/utilities';
 import { SxProps } from '../../lib/styleDictionary';
 
@@ -14,11 +14,11 @@ export type BadgePlacements =
   | 'bottom-left';
 
 export interface BadgeProps extends BaseProperties {
-  background?: ColorType;
-  borderColor?: ColorType;
+  background?: ColorName;
+  borderColor?: ColorName;
   bold?: boolean;
   children?: ReactNode;
-  color?: ColorType;
+  color?: ColorName;
   content?: number | string;
   bordered?: boolean;
   enableShadow?: boolean;

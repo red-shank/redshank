@@ -1,27 +1,30 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 
 import useTheme from '../../context/theme/useTheme';
 import { getOpacity } from '../../utils/colors';
 import { useCardProvider } from './Context';
 
 import type { CardHeaderProps } from './types';
+import { Box } from '../Box';
+import createSxStyle from '../../lib/sx';
 
 const Header: React.FC<CardHeaderProps> = ({
   children,
-  Component = View,
+  Component = Box,
   isAbsolute = false,
   withBackground = false,
   background = 'card',
   right,
   top = 0,
   left = 0,
+  sx,
   style = {},
   ...restProps
 }) => {
   const { isOpen, statusBarHeight } = useCardProvider();
-  const { colors, activeOpacity, borderRadius, zIndices, paddingSizes } =
-    useTheme();
+  const theme = useTheme();
+  const { colors, activeOpacity, zIndices } = theme;
 
   const backgroundColor = React.useMemo(() => {
     if (!withBackground) {
@@ -41,24 +44,30 @@ const Header: React.FC<CardHeaderProps> = ({
   return (
     <Component
       activeOpacity={activeOpacity}
-      style={StyleSheet.flatten([
-        styles.wrapper,
+      style={createSxStyle(
         {
-          zIndex: zIndices['2'],
-          padding: paddingSizes.card,
-          backgroundColor,
-          position: isAbsolute ? 'absolute' : 'relative',
-          borderTopLeftRadius: borderRadius.card,
-          borderTopRightRadius: borderRadius.card
+          sx,
+          style: StyleSheet.flatten([
+            styles.wrapper,
+            {
+              zIndex: zIndices['2'],
+              padding: 20,
+              backgroundColor,
+              position: isAbsolute ? 'absolute' : 'relative',
+              borderTopLeftRadius: 20,
+              borderTopRightRadius: 20
+            },
+            isAbsolute && {
+              top,
+              left,
+              right
+            },
+            isOpen && { paddingTop: statusBarHeight },
+            style
+          ])
         },
-        isAbsolute && {
-          top,
-          left,
-          right
-        },
-        isOpen && { paddingTop: statusBarHeight },
-        style
-      ])}
+        theme
+      )}
       {...restProps}
     >
       {children}

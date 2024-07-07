@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
 import { StyleProp, ViewStyle } from 'react-native';
+import { ButtonProps } from '../Button';
 
 type PopConfirmType = 'default' | 'delete';
 
@@ -12,6 +13,7 @@ export type PopConfirmProps = {
   onOk?: () => void;
   type?: PopConfirmType;
   visible?: boolean;
+  actions?: Array<ButtonProps>;
 };
 
 export type PropHeaderProps = {

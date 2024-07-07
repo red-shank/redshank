@@ -1,66 +1,87 @@
-import React, { useEffect } from 'react';
-import { Platform, StyleSheet, View } from 'react-native';
+import React, { useCallback, useEffect } from 'react';
+import { Platform } from 'react-native';
 // TODO: Migrate in the future to nativeComponent and remove lib
 import RNPickerSelect from 'react-native-picker-select';
 
 import { Icon as InternalIcon } from '../Icon';
 import useTheme from '../../context/theme/useTheme';
-import { TextError } from '../../utils/TextError';
-import { sizes } from '../../@types/input';
+import { HelperText } from '../../utils/HelperText';
 import { getDarken, getLighten } from '../../utils/colors';
 import type { SelectProps } from './types';
+import { Box } from '../Box';
+import createSxStyle, { getSxStyleAndProps } from '../../lib/sx';
+import { paddingInput } from '../../context/theme/defaultValues';
 
 export const Select: React.FC<SelectProps> = ({
   items,
-  placeholder,
   disabled,
   value,
   onChange,
   pickerProps,
   children,
   Icon,
+  placeholder = 'Select an item',
   size = 'middle',
-  textError,
+  helperText,
   error = false,
-  color = 'accents2',
-  background = 'inputColor',
-  borderInputColor = 'border',
-  placeholderColor = 'border',
+  color = 'accents.2',
+  background = 'input',
+  borderColor = 'border',
+  shape = 'rounded',
+  sx,
+  styles,
   ...rest
 }) => {
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
   const [isError, setError] = React.useState<undefined | boolean>(false);
-  const { colors, borderRadius, fontSizes, isDark, borderWidth } = useTheme();
+  const theme = useTheme();
+  const { colors, fontSizes, isDark, borderWidth, sizes } = useTheme();
 
   const onInternalChange = (_value: string, index: number) => {
     onChange && onChange(_value, index);
   };
 
   const borderModalColor = isDark
-    ? getDarken(colors.border, 0.6)
-    : getLighten(colors.border, 85);
-  const bgModalColor = isDark ? getLighten(colors.foreground, 5) : colors.white;
+    ? getDarken(colors.get('border'), 0.6)
+    : getLighten(colors.get('border'), 85);
+  const bgModalColor = isDark
+    ? getLighten(colors.background.foreground, 5)
+    : colors.white;
 
   useEffect(() => {
     typeof error === 'boolean' && setError(error);
   }, [error]);
 
-  const RenderIcon = () => {
+  const RenderIcon = useCallback(() => {
     if (Icon) {
       return Icon;
     }
     return (
       <InternalIcon
-        size={20}
+        size={16}
         type="antdesign"
         name={isOpen ? 'up' : 'down'}
-        color={colors[borderInputColor] || borderInputColor}
+        color={colors.get(borderColor)}
       />
     );
-  };
+  }, [Icon, borderColor, colors, isOpen]);
+
+  const resolveProps = getSxStyleAndProps(
+    {
+      ...rest,
+      sx: sx?.root,
+      style: styles?.root
+    },
+    theme
+  );
 
   return (
-    <View style={styles.wrapper}>
+    <Box
+      position="relative"
+      {...resolveProps?.props}
+      sx={sx?.root}
+      style={resolveProps?.props}
+    >
       <RNPickerSelect
         {...rest}
         onOpen={() => setIsOpen(true)}
@@ -92,72 +113,93 @@ export const Select: React.FC<SelectProps> = ({
         )}
         // IOS props
         pickerProps={{
-          itemStyle: {
-            backgroundColor: colors[background] ?? background,
-            color: colors[color] ?? color
-          },
+          itemStyle: createSxStyle(
+            {
+              bg: background,
+              color: color,
+              sx: sx?.iosPickerItem,
+              style: styles?.iosPickerItem
+            },
+            theme
+          ),
           ...pickerProps
         }}
         // general props
         touchableWrapperProps={{
-          style: {
-            ...sizes[size],
-            borderWidth,
-            borderStyle: 'solid',
-            borderRadius: borderRadius.lg,
-            borderColor: isError
-              ? colors.error
-              : colors[borderInputColor] ?? borderInputColor,
-            backgroundColor: colors[background] ?? background
-          }
+          style: createSxStyle(
+            {
+              height: sizes[size],
+              borderWidth,
+              borderStyle: 'solid',
+              borderRadius: `input.${shape}`,
+              borderColor: isError ? 'error' : borderColor,
+              backgroundColor: background,
+              justifyContent: 'center',
+              px: paddingInput,
+              sx: sx?.touchableWrapper,
+              style: styles?.touchableWrapper
+            },
+            theme
+          )
         }}
         style={{
-          inputAndroid: {
-            fontSize: fontSizes.base,
-            color: isError ? colors.error : colors[color] ?? color
-          },
-          inputIOS: {
-            fontSize: fontSizes.base,
-            color: isError ? colors.error : colors[color] ?? color
-          },
-          inputWeb: {
-            fontSize: fontSizes.base,
-            color: isError ? colors.error : colors[color] ?? color,
-            ...sizes[size],
-            borderWidth,
-            borderStyle: 'solid',
-            borderRadius: borderRadius.lg,
-            borderColor: isError
-              ? colors.error
-              : colors[borderInputColor] ?? borderInputColor,
-            backgroundColor: colors[background] ?? background
-          },
-          modalViewMiddle: {
-            borderBottomWidth: 1,
-            borderTopColor: borderModalColor,
-            borderBottomColor: borderModalColor,
-            backgroundColor: bgModalColor
-          }
+          inputAndroid: createSxStyle(
+            {
+              fontSize: 'base',
+              color: isError ? 'error' : color,
+              sx: sx?.inputAndroid,
+              style: styles?.inputAndroid
+            },
+            theme
+          ),
+          inputIOS: createSxStyle(
+            {
+              fontSize: 'base',
+              color: isError ? 'error' : color,
+              sx: sx?.inputIOS,
+              style: styles?.inputIOS
+            },
+            theme
+          ),
+          inputWeb: createSxStyle(
+            {
+              fontSize: fontSizes.base,
+              color: isError ? 'error' : color,
+              height: sizes[size],
+              borderWidth,
+              px: paddingInput,
+              borderStyle: 'solid',
+              borderRadius: `input.${shape}`,
+              borderColor: isError ? 'error' : borderColor,
+              bg: background,
+              sx: sx?.inputWeb,
+              style: styles?.inputWeb
+            },
+            theme
+          ),
+          modalViewMiddle: createSxStyle(
+            {
+              borderBottomWidth: 1,
+              borderTopColor: borderModalColor,
+              borderBottomColor: borderModalColor,
+              backgroundColor: bgModalColor,
+              sx: sx?.modalViewMiddle,
+              style: styles?.modalViewMiddle
+            },
+            theme
+          )
         }}
       />
 
-      {isError && <TextError>{textError}</TextError>}
-    </View>
+      {(isError || helperText) && (
+        <HelperText
+          color={isError ? 'error' : 'text.secondary'}
+          style={styles?.helperText}
+          sx={sx?.helperText}
+        >
+          {helperText}
+        </HelperText>
+      )}
+    </Box>
   );
 };
-
-const styles = StyleSheet.create({
-  wrapper: {
-    position: 'relative'
-  },
-  arrow: {
-    position: 'absolute',
-    width: 40,
-    height: '100%',
-    bottom: 0,
-    alignItems: 'center',
-    justifyContent: 'center',
-    right: 0
-  },
-  icon: {}
-});

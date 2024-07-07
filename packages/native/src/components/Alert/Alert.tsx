@@ -1,5 +1,5 @@
 import React, { isValidElement, useMemo } from 'react';
-import { StyleSheet, Animated } from 'react-native';
+import { StyleSheet, Animated, Platform, DimensionValue } from 'react-native';
 
 import { Text } from '../../components/Text';
 import { Ripple } from '../../components/Ripple';
@@ -46,14 +46,15 @@ export const Alert: React.FC<AlertProps> = ({
   startContent = withIcon ? icons[type] : null,
   style = {},
   styleText = {},
-  Component = (closable || onPress) && !withInternalClose ? Ripple : Box
+  Component = (closable || onPress) && !withInternalClose ? Ripple : Box,
+  ...restSxProps
 }) => {
   const theme = useTheme();
   const [internalClose, setInternalClose] = React.useState(false);
-  const { colors, isDark, activeOpacity } = useTheme();
+  const { colors, isDark, activeOpacity, borderRadius } = theme;
 
   const boxShadowColor = React.useMemo(() => {
-    return isDark ? colors.gray800 : colors.gray200;
+    return isDark ? colors.get('gray.800') : colors.get('gray.200');
   }, [colors, isDark]);
 
   const standardContent = useMemo(() => {
@@ -85,11 +86,22 @@ export const Alert: React.FC<AlertProps> = ({
   const showStartContent = withIcon || !!startContent;
 
   if (internalClose) return null;
+
+  const height = Platform.select<DimensionValue>({
+    default: '100%',
+    web: undefined
+  });
+
+  const flex = Platform.select({
+    default: 1,
+    web: undefined
+  });
+
   return (
-    <Box flex={1} sx={sx}>
+    <Box flex={flex} sx={sx} {...restSxProps}>
       <Component
         width="100%"
-        height="100%"
+        height={height}
         onPress={internalPress}
         disableRipple={false}
         disableTransform={true}
@@ -112,7 +124,7 @@ export const Alert: React.FC<AlertProps> = ({
               ],
               mx: 'auto',
               height: '100%',
-              borderRadius: 2,
+              borderRadius: borderRadius.alert,
               position: 'relative',
               flexDirection: 'row',
               alignItems: 'center',
@@ -133,13 +145,13 @@ export const Alert: React.FC<AlertProps> = ({
             gap={1}
             flex={1}
             height="100%"
-            borderRadius={1.6}
+            borderRadius={borderRadius.alert}
             alignItems="center"
             flexDirection="row"
             pr={withInternalClose || endContent ? 3 : 0}
           >
             {showStartContent ? start : null}
-            <Box>
+            <Box width="100%">
               {isValidChild(standardContent?.title) ? (
                 standardContent?.title
               ) : (

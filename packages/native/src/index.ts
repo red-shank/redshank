@@ -71,6 +71,15 @@ export * from './components/Image';
 // Modal export
 export * from './components/Modal';
 
+// BottomSheet export
+export * from './components/BottomSheet';
+
+// Touchable export
+export * from './components/Touchable';
+
+// Divider export
+export * from './components/Divider';
+
 // PopConfirm export
 export * from './components/PopConfim';
 
@@ -83,7 +92,7 @@ export * from './components/Radio';
 // RadioButton export
 export * from './components/RadioButton';
 
-// Ripple export
+// Touchable export
 export * from './components/Ripple';
 
 // Select export

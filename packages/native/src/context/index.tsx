@@ -1,29 +1,14 @@
 import React from 'react';
-import {
-  ThemeProviderProps,
-  ThemeProvider as InternalThemeProvider
-} from './theme/context';
-import {
-  colorsDark,
-  colorsLight,
-  paddingSizes,
-  marginSizes,
-  zIndices,
-  borderRadius
-} from './theme/defaultValues';
+import { ThemeProvider as InternalThemeProvider } from './theme/context';
+import { colorsDark, colorsLight, zIndices } from './theme/defaultValues';
+import { ThemeContextProps } from './theme/types';
 
-const ThemeProvider: React.FC<ThemeProviderProps> = ({ children, theme }) => {
+const ThemeProvider: React.FC<ThemeContextProps> = ({ children, theme }) => {
   return (
     <InternalThemeProvider theme={theme}>{children}</InternalThemeProvider>
   );
 };
 
-export {
-  ThemeProvider,
-  colorsDark,
-  colorsLight,
-  paddingSizes,
-  marginSizes,
-  zIndices,
-  borderRadius
-};
+export * from './theme/types';
+export * from './theme/color.type';
+export { ThemeProvider, colorsDark, colorsLight, zIndices };

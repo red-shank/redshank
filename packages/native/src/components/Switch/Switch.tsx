@@ -2,7 +2,7 @@ import React, { forwardRef } from 'react';
 import { StyleSheet, Animated, TouchableOpacity } from 'react-native';
 
 import useTheme from '../../context/theme/useTheme';
-import { TextError } from '../../utils/TextError';
+import { HelperText } from '../../utils/HelperText';
 import type { SwitchProps } from './types';
 import { Box } from '../Box';
 import createSxStyle from '../../lib/sx';
@@ -16,10 +16,10 @@ export const Switch: React.FC<SwitchProps> = forwardRef<any, SwitchProps>(
       textError,
       bordered,
       styles,
-      type = 'rounded',
+      type = 'circle',
       borderColor = 'primary',
-      activeColor = 'inputColor',
-      deactiveColor = 'inputColor',
+      activeColor = 'input',
+      deactiveColor = 'input',
       thumbActiveColor = 'primary',
       thumbDisabledColor = 'border',
       error = false,
@@ -33,30 +33,17 @@ export const Switch: React.FC<SwitchProps> = forwardRef<any, SwitchProps>(
   ) => {
     const theme = useTheme();
     const { activeOpacity, borderWidth } = useTheme();
-    const [isError, setError] = React.useState<undefined | boolean>(false);
     const [isEnabled, setIsEnabled] = React.useState<boolean>(
       defaultValue ?? false
     );
 
     const onToggleSwitch = () => {
-      setError(false);
       setIsEnabled((prev) => {
         const newValue = !prev;
         onChange && onChange(newValue);
         return newValue;
       });
     };
-
-    // React.useEffect(() => {
-    //   typeof defaultValue === 'boolean' &&
-    //     setIsEnabled((prev) => {
-    //       if (prev !== defaultValue) {
-    //         onChange && onChange(defaultValue);
-    //         return defaultValue;
-    //       }
-    //       return prev;
-    //     });
-    // }, [defaultValue, onChange]);
 
     React.useEffect(() => {
       if (typeof value === 'boolean') {
@@ -70,22 +57,18 @@ export const Switch: React.FC<SwitchProps> = forwardRef<any, SwitchProps>(
       }
     }, [value, onChange]);
 
-    React.useEffect(() => {
-      typeof error === 'boolean' && setError(error);
-    }, [error]);
-
     const { height, width } = sizesStyle[size];
 
-    const calcSizeToggle: number = height * (type === 'rounded' ? 0.75 : 0.7);
+    const calcSizeToggle: number = height * (type !== 'square' ? 0.75 : 0.7);
     const calcSizeIcon: number = height * 0.4;
 
     return (
       <Box
         mb={2}
         ref={ref}
-        style={style}
+        style={[style, styles?.root]}
         sx={{
-          ...styles?.root,
+          ...sx?.root,
           ...sx
         }}
         {...restSxProps}
@@ -93,7 +76,13 @@ export const Switch: React.FC<SwitchProps> = forwardRef<any, SwitchProps>(
         <TouchableOpacity
           activeOpacity={activeOpacity}
           onPress={onToggleSwitch}
-          style={createSxStyle(styles?.touchable, theme)}
+          style={createSxStyle(
+            {
+              style: styles?.touchable,
+              sx: sx?.touchable
+            },
+            theme
+          )}
         >
           <Animated.View
             style={createSxStyle(
@@ -105,14 +94,15 @@ export const Switch: React.FC<SwitchProps> = forwardRef<any, SwitchProps>(
                 width,
                 height,
                 borderWidth,
-                sx: styles?.thumb,
+                sx: sx?.thumb,
+                style: styles?.thumb,
                 alignItems: isEnabled ? 'flex-end' : 'flex-start',
-                borderRadius: type === 'rounded' ? 10 : 0.9,
+                rounded: `switch.${type}`,
                 borderColor:
-                  bordered || isError
-                    ? isError
+                  bordered || error
+                    ? error
                       ? 'error'
-                      : borderColor || 'borderColor'
+                      : borderColor
                     : 'transparent',
                 backgroundColor: isEnabled
                   ? thumbActiveColor
@@ -129,8 +119,9 @@ export const Switch: React.FC<SwitchProps> = forwardRef<any, SwitchProps>(
                   alignItems: 'center',
                   width: calcSizeToggle,
                   height: calcSizeToggle,
-                  sx: styles?.toggle,
-                  borderRadius: type === 'rounded' ? 10 : 0.65,
+                  sx: sx?.toggle,
+                  style: styles?.toggle,
+                  rounded: `switch.${type}`,
                   backgroundColor: isEnabled ? activeColor : deactiveColor
                 },
                 theme
@@ -151,7 +142,15 @@ export const Switch: React.FC<SwitchProps> = forwardRef<any, SwitchProps>(
             </Animated.View>
           </Animated.View>
         </TouchableOpacity>
-        {isError && textError && <TextError>{textError}</TextError>}
+        {(error || textError) && (
+          <HelperText
+            color={error ? 'error' : 'text.secondary'}
+            sx={sx?.helperText}
+            style={styles?.helperText}
+          >
+            {textError}
+          </HelperText>
+        )}
       </Box>
     );
   }

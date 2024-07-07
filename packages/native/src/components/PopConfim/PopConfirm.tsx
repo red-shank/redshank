@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 
-import { Modal } from '../Modal';
+import { Modal, ModalHandle } from '../Modal';
 import { Button } from '../Button';
 
 import Header from './Header';
@@ -10,11 +10,13 @@ import Content from './Content';
 import { PopConfirmProvider } from './Context';
 
 import type { PopConfirmProps } from './types';
+import { Box } from '../Box';
+import { Divider } from '../Divider';
+import { HEIGHT_DIVIDER } from './constants';
 
 type ExportComponent = {
   Header: typeof Header;
   Content: typeof Content;
-  Footer: typeof Footer;
 };
 
 export const PopConfirm: React.FC<PopConfirmProps> & ExportComponent = ({
@@ -23,25 +25,38 @@ export const PopConfirm: React.FC<PopConfirmProps> & ExportComponent = ({
   onClose,
   onOk,
   extra,
+  actions,
   okText = 'Continue',
   cancelText = 'Cancel',
   type = 'default'
 }) => {
+  const modalRef = React.useRef<ModalHandle>(null);
+
   return (
     <Modal
+      mb={5}
+      ref={modalRef}
       visible={visible}
       position="bottom"
       closable={false}
-      contentStyle={{ padding: 0 }}
+      maskClosable={false}
+      onClose={onClose}
+      width="100%"
+      sx={{
+        content: {
+          bg: 'transparent'
+        }
+      }}
       extra={
         extra || (
           <View style={styles.extra}>
             <Button
               fullWidth
-              appearance="modal"
-              textAlign="center"
+              size="xLarge"
+              rounded="modal"
               color="primary"
-              onPress={onClose}
+              appearance="modal"
+              onPress={modalRef?.current?.onClose}
             >
               {cancelText}
             </Button>
@@ -50,21 +65,42 @@ export const PopConfirm: React.FC<PopConfirmProps> & ExportComponent = ({
       }
     >
       <PopConfirmProvider>
-        {children}
-        {onOk ? (
-          <Footer noPadding>
-            <Button
-              fullWidth
-              appearance="modal"
-              onPress={onOk}
-              textAlign="center"
-              style={styles.okButton}
-              color={type === 'default' ? 'primary' : 'error'}
-            >
-              {okText}
-            </Button>
-          </Footer>
-        ) : null}
+        <Modal.Content bg="popConfirm" p={0}>
+          {children}
+          {(onOk || !!actions?.length) && (
+            <Footer noPadding>
+              {actions?.map?.((action, index) => (
+                <Box key={index}>
+                  <Button
+                    bg="transparent"
+                    color="primary"
+                    {...action}
+                    fullWidth
+                    size="xLarge"
+                  />
+                  <Divider height={HEIGHT_DIVIDER} />
+                </Box>
+              ))}
+
+              {onOk && (
+                <>
+                  <Button
+                    key="onOK"
+                    fullWidth
+                    size="xLarge"
+                    onPress={onOk}
+                    bg="transparent"
+                    fontWeight="normal"
+                    style={styles.okButton}
+                    color={type === 'default' ? 'primary' : 'error'}
+                  >
+                    {okText}
+                  </Button>
+                </>
+              )}
+            </Footer>
+          )}
+        </Modal.Content>
       </PopConfirmProvider>
     </Modal>
   );
@@ -72,7 +108,6 @@ export const PopConfirm: React.FC<PopConfirmProps> & ExportComponent = ({
 
 PopConfirm.Header = Header;
 PopConfirm.Content = Content;
-PopConfirm.Footer = Footer;
 
 const styles = StyleSheet.create({
   extra: {

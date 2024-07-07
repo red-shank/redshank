@@ -4,7 +4,7 @@ import { IconObject } from '../Icon';
 import { ImageProps } from '../Image';
 import { ImageSrcType } from '../../@types/image';
 import { BaseProperties } from '../../@types/utilities';
-import { ColorType } from '../../context/theme/types';
+import { ColorName } from '../../context/theme/types';
 import { SxProps } from '../../lib/styleDictionary';
 
 export type AvatarIcon = Omit<IconObject, 'iconStyle'>;
@@ -16,9 +16,9 @@ export interface AvatarProps extends BaseProperties {
   bordered?: boolean;
   imageProps?: Partial<ImageProps>;
   showCountText?: number | 'all';
-  backgroundColor?: ColorType;
-  borderColor?: ColorType;
-  innerBorderColor?: ColorType;
+  backgroundColor?: ColorName;
+  borderColor?: ColorName;
+  innerBorderColor?: ColorName;
   size?: number;
   src?: ImageSrcType;
   style?: StyleProp<ViewStyle>;
@@ -30,7 +30,7 @@ export interface AvatarProps extends BaseProperties {
     image?: SxProps;
   };
   text?: string;
-  textColor?: ColorType;
+  textColor?: ColorName;
   textStyle?: StyleProp<TextStyle>;
   type?: 'circle' | 'square';
 }

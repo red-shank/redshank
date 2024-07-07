@@ -1,7 +1,7 @@
 import type { ReactNode, Component } from 'react';
 import type { StyleProp, ViewStyle } from 'react-native';
 
-import type { ColorType } from '../../context/theme/types';
+import type { ColorName } from '../../context/theme/types';
 import type { TextProps } from '../Text';
 import { BaseProperties } from '../../@types/utilities';
 import { SxProps } from '../../lib/styleDictionary';
@@ -12,7 +12,7 @@ export type ButtonType = 'solid' | 'link' | 'flat' | 'outline';
 export interface ButtonProps extends BaseProperties, SxProps {
   Component?: typeof Component;
   children?: ReactNode;
-  appearance?: ColorType;
+  appearance?: ColorName;
   disableRipple?: boolean;
   bold?: boolean;
   disableTransform?: boolean;

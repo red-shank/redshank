@@ -74,7 +74,6 @@ export const StickyHeader: React.FC<StickyHeaderProps> = ({
             scrollOffsetY={scrollOffsetY}
             setHeightLayout={setHeightLayout}
             animateInHeight={animateInHeight}
-            // dynamicHeightAnimation={dynamicHeightAnimation}
             isSticky={isSticky}
           />
           {content}

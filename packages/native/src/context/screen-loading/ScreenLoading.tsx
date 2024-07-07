@@ -55,11 +55,11 @@ const DummyLoadingComponent: FunctionComponent<LoadingComponentProps> = (
     <View
       style={StyleSheet.flatten([
         styles.content,
-        { backgroundColor: colors.background, zIndex: zIndices.max }
+        { backgroundColor: colors.background.main, zIndex: zIndices.max }
       ])}
       {...props}
     >
-      <ActivityIndicator size="large" color={colors.text} />
+      <ActivityIndicator size="large" color={colors.text.main} />
       <Text>Loading...</Text>
     </View>
   );
@@ -94,7 +94,7 @@ export function ScreenLoadingProvider({
             styles.overlay,
             {
               zIndex: zIndices.max,
-              backgroundColor: getOpacity(colors.background, 0.8)
+              backgroundColor: getOpacity(colors.background.main, 0.8)
             }
           ])}
         >

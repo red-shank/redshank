@@ -36,7 +36,7 @@ function PanelMonth({}: MonthProps) {
             onPress={onCancel}
             sx={{
               height: 35,
-              paddingHorizontal: 10,
+              px: 2,
               opacity: openYearList ? 0 : 1
             }}
           >
@@ -48,7 +48,7 @@ function PanelMonth({}: MonthProps) {
             type="link"
             sx={{
               height: 35,
-              paddingHorizontal: 10,
+              px: 2,
               opacity: openYearList ? 0 : 1
             }}
             onPress={() => (openYearList ? onToggleYearList() : onApplyDate())}

@@ -1,11 +1,12 @@
 import React from 'react';
-import { Animated, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { Animated, StyleSheet, TouchableOpacity } from 'react-native';
 
-import { Group, GAP } from './Group';
+import { Group } from './Group';
 import { Text } from '../Text';
 import useTheme from '../../context/theme/useTheme';
 import type { RadioProps } from './types';
 import { Box } from '../Box';
+import createSxStyle from '../../lib/sx';
 
 interface ComponentExport {
   Group: typeof Group;
@@ -19,9 +20,11 @@ export const Radio: React.FC<RadioProps> & ComponentExport = ({
   activeColor = 'primary',
   inactiveColor = 'border',
   type = 'circle',
-  size = 'middle'
+  size = 'middle',
+  sx,
+  styles
 }) => {
-  const { borderRadius, colors, activeOpacity } = useTheme();
+  const theme = useTheme();
 
   const [animationState] = React.useState({
     fadeAnim: new Animated.Value(0)
@@ -52,76 +55,73 @@ export const Radio: React.FC<RadioProps> & ComponentExport = ({
     onPress && onPress(value);
   };
 
-  const { width, height } = styles[size];
+  const { width, height } = sizes[size];
 
   const internalColor = isActive
-    ? colors[activeColor] || activeColor
+    ? theme.colors.get(activeColor)
     : 'transparent';
 
   return (
     <TouchableOpacity
       onPress={onInternalPress}
-      activeOpacity={activeOpacity}
-      style={StyleSheet.flatten([styles.wrapper])}
+      activeOpacity={theme.activeOpacity}
+      style={createSxStyle(
+        {
+          gap: 1,
+          flexDirection: 'row',
+          alignItems: 'center',
+          sx: sx?.root,
+          style: styles?.root
+        },
+        theme
+      )}
     >
       <Box
-        style={StyleSheet.flatten([
-          styles.radio,
-          {
-            width,
-            height,
-            borderRadius:
-              type === 'square' ? borderRadius.sm : borderRadius.max,
-            borderColor: isActive
-              ? colors[activeColor] || activeColor
-              : colors[inactiveColor] || inactiveColor
-          }
-        ])}
+        width={width}
+        height={height}
+        borderRadius={`radio.${type}`}
+        borderColor={isActive ? activeColor : inactiveColor}
+        justifyContent="center"
+        alignItems="center"
+        borderWidth={1}
+        borderStyle="solid"
+        style={styles?.container}
+        sx={sx?.container}
       >
         <Animated.View
           style={{
             opacity: isActive ? animationState.fadeAnim : 0
           }}
         >
-          <View
-            style={StyleSheet.flatten([
-              styles.radioAnimation,
+          <Box
+            borderRadius={`radio.${type}`}
+            style={createSxStyle(
               {
+                borderWidth: 1,
+                borderStyle: 'solid',
                 width: width / 2,
                 height: height / 2,
-                borderRadius:
-                  type === 'square' ? borderRadius.xs : borderRadius.max,
                 backgroundColor: internalColor,
-                borderColor: internalColor
-              }
-            ])}
+                borderColor: internalColor,
+                sx: sx?.toggle,
+                style: styles?.toggle
+              },
+              theme
+            )}
           />
         </Animated.View>
       </Box>
 
-      <Text>{label}</Text>
+      <Text sx={sx?.text} style={styles?.text}>
+        {label}
+      </Text>
     </TouchableOpacity>
   );
 };
 
 Radio.Group = Group;
 
-const styles = StyleSheet.create({
-  wrapper: {
-    gap: GAP / 2,
-    flexDirection: 'row',
-    alignItems: 'center'
-  },
-  radio: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderWidth: 1,
-    borderStyle: 'solid'
-  },
-  radioAnimation: {
-    borderWidth: 1,
-    borderStyle: 'solid'
-  },
+const sizes = StyleSheet.create({
   small: {
     width: 16,
     height: 16

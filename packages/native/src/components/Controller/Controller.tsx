@@ -1,13 +1,14 @@
 import React from 'react';
-import { Platform, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 // components
 import { Icon } from '../Icon';
 import { Text } from '../Text/Text';
 import { Button } from '../Button/Button';
-import useTheme from '../../context/theme/useTheme';
-import { TextError } from '../../utils/TextError';
+import { HelperText } from '../../utils/HelperText';
 import type { ControllerProps } from './types';
+import { Box } from '../Box';
+import useTheme from '../../context/theme/useTheme';
 
 export const Controller: React.FC<ControllerProps> = ({
   value,
@@ -20,12 +21,13 @@ export const Controller: React.FC<ControllerProps> = ({
   maxOverflow,
   style,
   textError,
+  size = 'middle',
   width = 135,
   error = false,
   color = 'text',
-  borderColor = 'accents4'
+  borderColor = 'accents.3'
 }) => {
-  const { colors, borderRadius } = useTheme();
+  const theme = useTheme();
   const [count, setCount] = React.useState<number>(min ?? 1);
 
   React.useEffect(() => {
@@ -65,88 +67,53 @@ export const Controller: React.FC<ControllerProps> = ({
   };
 
   return (
-    <View style={StyleSheet.flatten([styles.wrapper, { width }])}>
-      <View
-        style={StyleSheet.flatten([
-          styles.content,
-          {
-            backgroundColor: colors.inputColor,
-            borderRadius: borderRadius.lg,
-            borderColor: error
-              ? colors.error
-              : colors[borderColor] || borderColor
-          },
-          style
-        ])}
+    <Box
+      height={theme.sizes[size]}
+      style={StyleSheet.flatten([styles.wrapper, { width }])}
+    >
+      <Box
+        bg="input"
+        height="100%"
+        borderRadius={2}
+        borderColor={error ? 'error' : borderColor}
+        style={StyleSheet.flatten([styles.content, style])}
       >
         <View style={styles.item}>
-          <Button
-            onlyIcon
-            type="link"
-            appearance="black"
-            onPress={onPrev}
-            sx={{
-              container: buttonSx,
-              icon: {
-                color: 'accents3',
-                mt: iconMtSx
-              }
-            }}
-          >
+          <Button onlyIcon appearance="transparent" onPress={onPrev}>
             <Icon
               size={18}
               name="minus"
               type="antdesign"
-              color={error ? colors.error : colors[borderColor] || borderColor}
+              color={error ? 'error' : borderColor}
             />
           </Button>
         </View>
 
         <View style={styles.item}>
-          <Text size={16} color={colors[color] || color} bold>
+          <Text size={16} color={color} bold>
             {count}
           </Text>
         </View>
 
         <View style={styles.item}>
-          <Button
-            onlyIcon
-            type="link"
-            appearance="black"
-            onPress={onAdd}
-            sx={{
-              container: buttonSx,
-              icon: {
-                color: 'accents3',
-                mt: iconMtSx
-              }
-            }}
-          >
+          <Button onlyIcon onPress={onAdd} appearance="transparent">
             <Icon
               size={18}
               name="plus"
               type="antdesign"
-              color={error ? colors.error : colors[borderColor] || borderColor}
+              color={error ? 'error' : borderColor}
             />
           </Button>
         </View>
-      </View>
-      {<TextError>{error && textError && textError}</TextError>}
-    </View>
+      </Box>
+      {(error || textError) && (
+        <HelperText color={error ? 'error' : 'text.secondary'}>
+          {textError}
+        </HelperText>
+      )}
+    </Box>
   );
 };
-
-const buttonSx = {
-  flex: 1,
-  px: 1,
-  m: 0
-};
-
-const iconMtSx = Platform.select({
-  ios: 5,
-  android: 5,
-  default: 0
-});
 
 const styles = StyleSheet.create({
   wrapper: {
@@ -160,8 +127,6 @@ const styles = StyleSheet.create({
     borderWidth: 1
   },
   item: {
-    width: 42,
-    height: 42,
     alignItems: 'center',
     justifyContent: 'center'
   }

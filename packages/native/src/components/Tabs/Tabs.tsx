@@ -6,6 +6,7 @@ import { SxProps } from '../../lib/styleDictionary';
 import { Box } from '../Box';
 import { ScrollView } from '../ScrollView';
 import Content from './Content';
+import useTheme from '../../context/theme/useTheme';
 
 export function Tabs({
   items,
@@ -22,6 +23,7 @@ export function Tabs({
   size = 'middle',
   ...sxProps
 }: TabsProps) {
+  const theme = useTheme();
   const [internalValue, setInternalValue] = React.useState<
     TabsProps['items'][0] | null
   >(null);
@@ -54,9 +56,15 @@ export function Tabs({
     backgroundColors
   });
 
+  const isUnderline = variant === 'underlined';
+
   return (
     <Box sx={sx?.root} style={styles?.root} {...sxProps}>
-      <Box borderRadius={1.2} overflow="hidden" width="100%">
+      <Box
+        rounded={!isUnderline && theme.borderRadius.tab}
+        overflow="hidden"
+        width="100%"
+      >
         <ScrollView
           horizontal
           bounces={scrollable}
@@ -67,7 +75,7 @@ export function Tabs({
           contentContainerStyle={styles?.tab_container}
           contentContainerSx={{
             gap: 0,
-            p: 0.65,
+            p: !isUnderline && 0.65,
             flexShrink: 0,
             overflow: 'hidden',
             borderWidth: 1,
@@ -139,7 +147,10 @@ const getVariantStyles: (
       backgroundColor: backgroundColors?.background || 'card'
     },
     underlined: {
-      borderColor: 'transparent'
+      borderTopColor: 'transparent',
+      borderLeftColor: 'transparent',
+      borderRightColor: 'transparent',
+      borderBottomColor: 'border'
     },
     bordered: {
       borderRadius: 1.2,

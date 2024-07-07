@@ -1,55 +1,53 @@
-import React, { cloneElement, useEffect, forwardRef } from 'react';
-import {
-  TextInput,
-  StyleSheet,
-  View,
-  TouchableOpacity,
-  KeyboardTypeOptions
-} from 'react-native';
+import React, { cloneElement, forwardRef } from 'react';
+import { TextInput, TouchableOpacity, KeyboardTypeOptions } from 'react-native';
 
 import { Icon } from '../Icon';
-import { TextError } from '../../utils/TextError';
+import { HelperText } from '../../utils/HelperText';
 import useTheme from '../../context/theme/useTheme';
 import type { InputProps } from './types';
 import useCreateRef from '../../hooks/useCreateRef';
+import { Box } from '../Box';
+import createSxStyle from '../../lib/sx';
+import { SxProps } from '../../lib/styleDictionary';
+import { paddingInput } from '../../context/theme/defaultValues';
 
 export const Input = forwardRef<TextInput, InputProps>(
   (
     {
-      background = 'inputColor',
-      borderInputColor = 'border',
-      color = 'accents2',
+      bg = 'input',
+      borderColor = 'border',
+      color = 'accents.2',
       defaultValue,
       onChange,
       error,
       editable = true,
       isDisabled,
       placeholder,
+      shape = 'rounded',
       placeholderColor = 'border',
-      prefix,
+      startContent,
       size = 'middle',
       style = {},
-      textError,
+      helperText,
       type = 'default',
-      suffix = type === 'password' ? (
+      endContent = type === 'password' ? (
         <Icon name="eye" type="antdesign" />
       ) : undefined,
       withMarginBottom,
-      wrapperStyle,
       Component = TextInput,
+      sx,
+      styles,
       ...rest
     },
     _ref
   ) => {
+    const theme = useTheme();
     const { ref } = useCreateRef<TextInput>(_ref, null);
-    const { colors, borderRadius, fontSizes, borderWidth, sizes } = useTheme();
 
     // states
     const [show, setShow] = React.useState<boolean>(false);
-    const [isError, setError] = React.useState<undefined | boolean>(false);
 
     const onInternalChange = (v: string) => {
-      setError(false);
       if (onChange) {
         onChange(v);
       }
@@ -65,31 +63,38 @@ export const Input = forwardRef<TextInput, InputProps>(
       };
     }, [type]);
 
-    useEffect(() => {
-      typeof error === 'boolean' && setError(error);
-    }, [error]);
-
     return (
-      <View>
-        <View
-          style={StyleSheet.flatten([
-            styles.wrapper,
-            withMarginBottom && styles.withBorder,
-            isDisabled && editable && { opacity: 0.5 },
-            wrapperStyle
-          ])}
+      <Box
+        sx={sx?.root}
+        style={[styles?.root, style]}
+        mb={withMarginBottom ? 2 : 0}
+      >
+        <Box
+          width="100%"
+          position="relative"
+          flexDirection="row"
+          opacity={isDisabled && editable ? 0.5 : 1}
+          sx={sx?.wrapper}
+          style={styles?.wrapper}
         >
           {/* prefix icon */}
-          {prefix && (
+          {startContent && (
             <TouchableOpacity
-              style={StyleSheet.flatten([styles.wrapperIcon, { left: 0 }])}
+              style={createSxStyle(
+                {
+                  sx: wrapperIcon,
+                  left: 0,
+                  style: styles?.wrapperIcon
+                },
+                theme
+              )}
             >
-              <View style={styles.icon}>
-                {cloneElement(prefix, {
-                  color: colors.border,
-                  ...prefix.props
+              <Box style={styles?.start}>
+                {cloneElement(startContent, {
+                  color: theme.colors.get('border'),
+                  ...startContent.props
                 })}
-              </View>
+              </Box>
             </TouchableOpacity>
           )}
           <Component
@@ -103,69 +108,65 @@ export const Input = forwardRef<TextInput, InputProps>(
             }
             placeholder={placeholder}
             onChangeText={onInternalChange}
-            placeholderTextColor={colors[placeholderColor] || placeholderColor}
-            style={StyleSheet.flatten([
-              styles.input,
+            placeholderTextColor={theme.colors.get(placeholderColor)}
+            style={createSxStyle(
               {
-                borderWidth,
-                height: sizes[size],
-                fontSize: fontSizes.base,
-                backgroundColor: colors[background] || background,
-                borderColor: isError
-                  ? colors.error
-                  : colors[borderInputColor] || borderInputColor,
-                borderRadius: borderRadius.xl,
-                color: colors[color] || color
+                borderWidth: theme.borderWidth,
+                height: theme.sizes[size],
+                fontSize: 'base',
+                bg: bg,
+                width: '100%',
+                borderColor: error ? 'error' : borderColor,
+                rounded: shape === 'circle' ? 10 : `input.${shape}`,
+                color: color,
+                py: 1,
+                pl: startContent ? 4 : paddingInput,
+                pr: endContent ? 4 : paddingInput,
+                sx: sx?.input,
+                style: styles?.input
               },
-              prefix && {
-                paddingLeft: 35
-              },
-              suffix && {
-                paddingRight: 45
-              },
-              style
-            ])}
+              theme
+            )}
           />
 
-          {suffix && (
+          {endContent && (
             <TouchableOpacity
               {...propsPassword}
-              style={StyleSheet.flatten([styles.wrapperIcon, { right: 0 }])}
+              style={createSxStyle(
+                {
+                  right: 0,
+                  sx: wrapperIcon,
+                  style: styles?.wrapperIcon
+                },
+                theme
+              )}
             >
-              <View style={styles.icon}>
-                {React.cloneElement(suffix, {
-                  color: colors.border,
-                  ...suffix.props
+              <Box style={styles?.end}>
+                {React.cloneElement(endContent, {
+                  color: theme.colors.get('border'),
+                  ...endContent.props
                 })}
-              </View>
+              </Box>
             </TouchableOpacity>
           )}
-        </View>
-        {isError && textError && <TextError>{textError}</TextError>}
-      </View>
+        </Box>
+        {(error || helperText) && (
+          <HelperText sx={sx?.helperText} style={styles?.helperText}>
+            {helperText}
+          </HelperText>
+        )}
+      </Box>
     );
   }
 );
 
-export const styles = StyleSheet.create({
-  wrapper: {
-    width: '100%',
-    position: 'relative'
-  },
-  withBorder: { marginBottom: 15 },
-  input: {
-    paddingRight: 10,
-    paddingLeft: 10
-  },
-  wrapperIcon: {
-    position: 'absolute',
-    width: 40,
-    height: '100%',
-    bottom: 0,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'transparent',
-    zIndex: 2
-  },
-  icon: {}
-});
+const wrapperIcon: SxProps = {
+  position: 'absolute',
+  width: 40,
+  height: '100%',
+  bottom: 0,
+  alignItems: 'center',
+  justifyContent: 'center',
+  backgroundColor: 'transparent',
+  zIndex: 2
+};

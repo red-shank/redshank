@@ -1,6 +1,7 @@
-import { ViewStyle, TextStyle, DimensionValue } from 'react-native';
+import { DimensionValue, TextStyle, ViewStyle } from 'react-native';
 import {
-  ColorType,
+  BorderRadiusType,
+  ColorName,
   FontSizesProps,
   ThemeProps,
   ZIndexType
@@ -10,6 +11,7 @@ type ViewStyleKeys = {
   width: ViewStyle['width'];
   height: ViewStyle['height'];
   position: ViewStyle['position'];
+  padding: ViewStyle['padding'];
   paddingBottom: ViewStyle['paddingBottom'];
   paddingHorizontal: ViewStyle['paddingHorizontal'];
   paddingLeft: ViewStyle['paddingLeft'];
@@ -86,44 +88,65 @@ type CustomStyleKeys = {
   mx: ViewStyle['marginHorizontal'];
   my: ViewStyle['marginVertical'];
   gap: ViewStyle['gap'];
-  backgroundColor: ColorType;
-  borderBottomColor: ColorType;
-  borderColor: ColorType;
-  borderLeftColor: ColorType;
-  borderRightColor: ColorType;
-  borderTopColor: ColorType;
-  shadowColor: ColorType;
-  textShadowColor: ColorType;
-  background: ColorType;
-  bg: ColorType;
-  color: ColorType;
+  backgroundColor: ColorName;
+  borderBottomColor: ColorName;
+  borderColor: ColorName;
+  borderLeftColor: ColorName;
+  borderRightColor: ColorName;
+  borderTopColor: ColorName;
+  shadowColor: ColorName;
+  textShadowColor: ColorName;
+  background: ColorName;
+  bg: ColorName;
+  color: ColorName;
   zIndex: keyof ZIndexType | ViewStyle['zIndex'];
-  fontSize: FontSizesProps;
-  borderRadius: ViewStyle['borderRadius'];
-  borderBottomRadius: ViewStyle['borderRadius'];
-  borderTopRadius: ViewStyle['borderRadius'];
-  borderBottomLeftRadius: ViewStyle['borderBottomLeftRadius'];
-  borderBottomRightRadius: ViewStyle['borderBottomRightRadius'];
-  borderTopLeftRadius: ViewStyle['borderTopLeftRadius'];
-  borderTopRightRadius: ViewStyle['borderTopRightRadius'];
+  fontSize: keyof FontSizesProps | TextStyle['fontSize'];
+  // border radius
+  rounded: keyof BorderRadiusType | ViewStyle['borderRadius'];
+  borderRadius: keyof BorderRadiusType | ViewStyle['borderRadius'];
+  roundedLeft: keyof BorderRadiusType | ViewStyle['borderRadius'];
+  roundedRight: keyof BorderRadiusType | ViewStyle['borderRadius'];
+  roundedBottom: keyof BorderRadiusType | ViewStyle['borderRadius'];
+  roundedTop: keyof BorderRadiusType | ViewStyle['borderRadius'];
+  borderBottomLeftRadius: keyof BorderRadiusType | ViewStyle['borderRadius'];
+  borderBottomRightRadius: keyof BorderRadiusType | ViewStyle['borderRadius'];
+  borderTopLeftRadius: keyof BorderRadiusType | ViewStyle['borderRadius'];
+  borderTopRightRadius: keyof BorderRadiusType | ViewStyle['borderRadius'];
 };
 
 type ViewStyleValue = {
   type: 'inherit' | 'color' | 'number' | 'string';
   resolve?: (
-    value: DimensionValue | number | string | ColorType,
+    value: DimensionValue | number | string | ColorName,
     acc: ViewStyle,
     theme: ThemeProps
-  ) => DimensionValue | ViewStyle;
+  ) => DimensionValue | ViewStyle | void | string;
 };
 
-export type SxKeys = keyof ViewStyleKeys & keyof CustomStyleKeys;
+export type SxKeys = keyof CustomStyleKeys | keyof ViewStyleKeys;
 
-export type SxProps = Partial<ViewStyleKeys & CustomStyleKeys>;
+export type Keys = ViewStyleKeys & CustomStyleKeys;
+
+export type SxProps = Partial<Keys>;
 
 type StyleKeysSupported = {
   properties: Record<SxKeys, ViewStyleValue>;
 };
+
+function getValueNumberOrPercentage(
+  _value: number | `${number}%` | 'auto',
+  spacing: number
+) {
+  return Number.isNaN(Number(_value)) ? _value : Number(_value) * spacing;
+}
+
+function getValueNumber(
+  value: number | string,
+  acc: object,
+  spacing: number
+): number | undefined {
+  return (acc[value] || value) * spacing;
+}
 
 const styleDictionary: StyleKeysSupported = {
   properties: {
@@ -131,19 +154,90 @@ const styleDictionary: StyleKeysSupported = {
     width: { type: 'inherit' },
     height: { type: 'inherit' },
     position: { type: 'inherit' },
-    paddingBottom: { type: 'inherit' },
-    paddingHorizontal: { type: 'inherit' },
-    paddingLeft: { type: 'inherit' },
-    paddingRight: { type: 'inherit' },
-    paddingTop: { type: 'inherit' },
-    paddingVertical: { type: 'inherit' },
-    margin: { type: 'inherit' },
-    marginBottom: { type: 'inherit' },
-    marginHorizontal: { type: 'inherit' },
-    marginLeft: { type: 'inherit' },
-    marginRight: { type: 'inherit' },
-    marginTop: { type: 'inherit' },
-    marginVertical: { type: 'inherit' },
+    padding: {
+      type: 'inherit',
+      resolve(_value: number | `${number}%`, _, theme) {
+        return getValueNumberOrPercentage(_value, theme.spacing);
+      }
+    },
+    paddingBottom: {
+      type: 'inherit',
+      resolve(_value: number | `${number}%`, _, theme) {
+        return getValueNumberOrPercentage(_value, theme.spacing);
+      }
+    },
+    paddingHorizontal: {
+      type: 'inherit',
+      resolve(_value: number | `${number}%`, _, theme) {
+        return getValueNumberOrPercentage(_value, theme.spacing);
+      }
+    },
+    paddingLeft: {
+      type: 'inherit',
+      resolve(_value: number | `${number}%`, _, theme) {
+        return getValueNumberOrPercentage(_value, theme.spacing);
+      }
+    },
+    paddingRight: {
+      type: 'inherit',
+      resolve(_value: number | `${number}%`, _, theme) {
+        return getValueNumberOrPercentage(_value, theme.spacing);
+      }
+    },
+    paddingTop: {
+      type: 'inherit',
+      resolve(_value: number | `${number}%`, _, theme) {
+        return getValueNumberOrPercentage(_value, theme.spacing);
+      }
+    },
+    paddingVertical: {
+      type: 'inherit',
+      resolve(_value: number | `${number}%`, _, theme) {
+        return getValueNumberOrPercentage(_value, theme.spacing);
+      }
+    },
+    margin: {
+      type: 'inherit',
+      resolve(_value: number | `${number}%` | 'auto', _, theme) {
+        return getValueNumberOrPercentage(_value, theme.spacing);
+      }
+    },
+    marginBottom: {
+      type: 'inherit',
+      resolve(_value: number | `${number}%` | 'auto', _, theme) {
+        return getValueNumberOrPercentage(_value, theme.spacing);
+      }
+    },
+    marginHorizontal: {
+      type: 'inherit',
+      resolve(_value: number | `${number}%` | 'auto', _, theme) {
+        return getValueNumberOrPercentage(_value, theme.spacing);
+      }
+    },
+    marginLeft: {
+      type: 'inherit',
+      resolve(_value: number | `${number}%` | 'auto', _, theme) {
+        return getValueNumberOrPercentage(_value, theme.spacing);
+      }
+    },
+    marginRight: {
+      type: 'inherit',
+      resolve(_value: number | `${number}%` | 'auto', _, theme) {
+        return getValueNumberOrPercentage(_value, theme.spacing);
+      }
+    },
+    marginTop: {
+      type: 'inherit',
+      resolve(_value: number | `${number}%` | 'auto', _, theme) {
+        return getValueNumberOrPercentage(_value, theme.spacing);
+      }
+    },
+    marginVertical: {
+      type: 'inherit',
+      resolve(_value: number | `${number}%` | 'auto', _, theme) {
+        return getValueNumberOrPercentage(_value, theme.spacing);
+      }
+    },
     bottom: { type: 'inherit' },
     left: { type: 'inherit' },
     right: { type: 'inherit' },
@@ -179,7 +273,7 @@ const styleDictionary: StyleKeysSupported = {
     borderRightWidth: { type: 'inherit' },
     borderTopWidth: { type: 'inherit' },
     borderWidth: { type: 'inherit' },
-    decomposedMatrix: { type: 'inherit' },
+    // decomposedMatrix: { type: 'inherit' },
     elevation: { type: 'inherit' },
     fontStyle: { type: 'inherit' },
     fontVariant: { type: 'inherit' },
@@ -188,7 +282,7 @@ const styleDictionary: StyleKeysSupported = {
     letterSpacing: { type: 'inherit' },
     opacity: { type: 'inherit' },
     rotation: { type: 'inherit' },
-    scale: { type: 'inherit' },
+    // scale: { type: 'inherit' },
     scaleX: { type: 'inherit' },
     scaleY: { type: 'inherit' },
     translateY: { type: 'inherit' },
@@ -203,94 +297,285 @@ const styleDictionary: StyleKeysSupported = {
     shadowOpacity: { type: 'inherit' },
     shadowOffset: { type: 'inherit' },
     // Number values
-    p: { type: 'number' },
-    pb: { type: 'number' },
-    pl: { type: 'number' },
-    pr: { type: 'number' },
-    py: { type: 'number' },
-    pt: { type: 'number' },
-    px: { type: 'number' },
-    m: { type: 'number' },
-    mb: { type: 'number' },
-    ml: { type: 'number' },
-    mr: { type: 'number' },
-    mt: { type: 'number' },
-    mx: { type: 'number' },
-    my: { type: 'number' },
-    gap: { type: 'number' },
-    // border radius
-    borderRadius: { type: 'number' },
-    borderBottomRadius: {
+    p: {
       type: 'number',
-      resolve: (value: number, acc: ViewStyle) => {
+      resolve(value: number, acc, theme) {
+        acc.padding = getValueNumberOrPercentage(value, theme.spacing);
+      }
+    },
+    pb: {
+      type: 'number',
+      resolve(value: number, acc, theme) {
+        acc.paddingBottom = getValueNumberOrPercentage(value, theme.spacing);
+      }
+    },
+    pl: {
+      type: 'number',
+      resolve(value: number, acc, theme) {
+        acc.paddingLeft = getValueNumberOrPercentage(value, theme.spacing);
+      }
+    },
+    pr: {
+      type: 'number',
+      resolve(value: number, acc, theme) {
+        acc.paddingRight = getValueNumberOrPercentage(value, theme.spacing);
+      }
+    },
+    py: {
+      type: 'number',
+      resolve(value: number, acc, theme) {
+        acc.paddingVertical = getValueNumberOrPercentage(value, theme.spacing);
+      }
+    },
+    pt: {
+      type: 'number',
+      resolve(value: number, acc, theme) {
+        acc.paddingTop = getValueNumberOrPercentage(value, theme.spacing);
+      }
+    },
+    px: {
+      type: 'number',
+      resolve(value: number, acc, theme) {
+        acc.paddingHorizontal = getValueNumberOrPercentage(
+          value,
+          theme.spacing
+        );
+      }
+    },
+    m: {
+      type: 'number',
+      resolve(value: number, acc, theme) {
+        acc.margin = getValueNumberOrPercentage(value, theme.spacing);
+      }
+    },
+    mb: {
+      type: 'number',
+      resolve(value: number, acc, theme) {
+        acc.marginBottom = getValueNumberOrPercentage(value, theme.spacing);
+      }
+    },
+    ml: {
+      type: 'number',
+      resolve(value: number, acc, theme) {
+        acc.marginLeft = getValueNumberOrPercentage(value, theme.spacing);
+      }
+    },
+    mr: {
+      type: 'number',
+      resolve(value: number, acc, theme) {
+        acc.marginRight = getValueNumberOrPercentage(value, theme.spacing);
+      }
+    },
+    mt: {
+      type: 'number',
+      resolve(value: number, acc, theme) {
+        acc.marginTop = getValueNumberOrPercentage(value, theme.spacing);
+      }
+    },
+    mx: {
+      type: 'number',
+      resolve(value: number, acc, theme) {
+        acc.marginHorizontal = getValueNumberOrPercentage(value, theme.spacing);
+      }
+    },
+    my: {
+      type: 'number',
+      resolve(value: number, acc, theme) {
+        acc.marginVertical = getValueNumberOrPercentage(value, theme.spacing);
+      }
+    },
+    gap: {
+      type: 'number',
+      resolve(_value: number, _, theme) {
+        return getValueNumberOrPercentage(_value, theme.spacing);
+      }
+    },
+    // border radius
+    rounded: {
+      type: 'number',
+      resolve: (_value: number, acc, theme) => {
+        acc.borderRadius = getValueNumber(
+          _value,
+          theme?.borderRadius,
+          theme?.spacing
+        );
+      }
+    },
+    borderRadius: {
+      type: 'number',
+      resolve: (_value: number, _, theme) => {
+        return getValueNumber(_value, theme?.borderRadius, theme?.spacing);
+      }
+    },
+    roundedBottom: {
+      type: 'number',
+      resolve: (_value: number, acc, theme) => {
+        const value = getValueNumber(
+          _value,
+          theme?.borderRadius,
+          theme?.spacing
+        );
         acc.borderBottomLeftRadius = value;
         acc.borderBottomRightRadius = value;
       }
     },
-    borderTopRadius: {
+    roundedTop: {
       type: 'number',
-      resolve: (value: number, acc: ViewStyle) => {
+      resolve: (_value: number, acc, theme) => {
+        const value = getValueNumber(
+          _value,
+          theme?.borderRadius,
+          theme?.spacing
+        );
         acc.borderTopLeftRadius = value;
         acc.borderTopRightRadius = value;
       }
     },
-    borderBottomLeftRadius: { type: 'number' },
-    borderBottomRightRadius: { type: 'number' },
-    borderTopLeftRadius: { type: 'number' },
-    borderTopRightRadius: { type: 'number' },
+    roundedLeft: {
+      type: 'number',
+      resolve: (_value: number, acc, theme) => {
+        const value = getValueNumber(
+          _value,
+          theme?.borderRadius,
+          theme?.spacing
+        );
+        acc.borderTopLeftRadius = value;
+        acc.borderBottomLeftRadius = value;
+      }
+    },
+    roundedRight: {
+      type: 'number',
+      resolve: (_value: number, acc, theme) => {
+        const value = getValueNumber(
+          _value,
+          theme?.borderRadius,
+          theme?.spacing
+        );
+        acc.borderTopRightRadius = value;
+        acc.borderBottomRightRadius = value;
+      }
+    },
+    borderBottomLeftRadius: {
+      type: 'number',
+      resolve: (_value: number, acc, theme) => {
+        acc.borderBottomLeftRadius = getValueNumber(
+          _value,
+          theme?.borderRadius,
+          theme?.spacing
+        );
+      }
+    },
+    borderBottomRightRadius: {
+      type: 'number',
+      resolve: (_value: number, acc, theme) => {
+        acc.borderBottomRightRadius = getValueNumber(
+          _value,
+          theme?.borderRadius,
+          theme?.spacing
+        );
+      }
+    },
+    borderTopLeftRadius: {
+      type: 'number',
+      resolve: (_value: number, acc, theme) => {
+        acc.borderTopLeftRadius = getValueNumber(
+          _value,
+          theme?.borderRadius,
+          theme?.spacing
+        );
+      }
+    },
+    borderTopRightRadius: {
+      type: 'number',
+      resolve: (_value: number, acc, theme) => {
+        acc.borderTopRightRadius = getValueNumber(
+          _value,
+          theme?.borderRadius,
+          theme?.spacing
+        );
+      }
+    },
     // Color values
-    backgroundColor: { type: 'color' },
-    borderColor: { type: 'color' },
-    borderBottomColor: { type: 'color' },
-    borderLeftColor: { type: 'color' },
-    borderRightColor: { type: 'color' },
-    borderTopColor: { type: 'color' },
-    shadowColor: { type: 'color' },
-    textShadowColor: { type: 'color' },
-    background: { type: 'color' },
-    color: { type: 'color' },
-    bg: { type: 'color' },
-    fontSize: { type: 'string' },
-    fontFamily: { type: 'string' }
+    backgroundColor: {
+      type: 'color',
+      resolve(value: string, _, theme) {
+        return theme.colors.get(value);
+      }
+    },
+    borderColor: {
+      type: 'color',
+      resolve(value: string, _, theme) {
+        return theme.colors.get(value);
+      }
+    },
+    borderBottomColor: {
+      type: 'color',
+      resolve(value: string, _, theme) {
+        return theme.colors.get(value);
+      }
+    },
+    borderLeftColor: {
+      type: 'color',
+      resolve(value: string, _, theme) {
+        return theme.colors.get(value);
+      }
+    },
+    borderRightColor: {
+      type: 'color',
+      resolve(value: string, _, theme) {
+        return theme.colors.get(value);
+      }
+    },
+    borderTopColor: {
+      type: 'color',
+      resolve(value: string, _, theme) {
+        return theme.colors.get(value);
+      }
+    },
+    shadowColor: {
+      type: 'color',
+      resolve(value: string, _, theme) {
+        return theme.colors.get(value);
+      }
+    },
+    textShadowColor: {
+      type: 'color',
+      resolve(value: string, _, theme) {
+        return theme.colors.get(value);
+      }
+    },
+    background: {
+      type: 'color',
+      resolve(value: string, _, theme) {
+        return theme.colors.get(value);
+      }
+    },
+    color: {
+      type: 'color',
+      resolve(value: string, _, theme) {
+        return theme.colors.get(value);
+      }
+    },
+    bg: {
+      type: 'color',
+      resolve(value: string, acc, theme) {
+        acc.backgroundColor = theme.colors.get(value);
+      }
+    },
+    // text values
+    fontSize: {
+      type: 'string',
+      resolve(value: string, _, theme) {
+        return theme.fontSizes[value] || value;
+      }
+    },
+    fontFamily: {
+      type: 'string',
+      resolve(value: string, _, theme) {
+        return theme.fonts[value] || value;
+      }
+    }
   }
-};
-
-export const resolverDictionaryKey: Record<keyof CustomStyleKeys, string> = {
-  borderRadius: 'borderRadius',
-  color: 'color',
-  backgroundColor: 'backgroundColor',
-  borderBottomColor: 'borderBottomColor',
-  borderBottomLeftRadius: 'borderBottomLeftRadius',
-  borderBottomRightRadius: 'borderBottomRightRadius',
-  borderColor: 'borderColor',
-  borderLeftColor: 'borderLeftColor',
-  borderRightColor: 'borderRightColor',
-  borderTopColor: 'borderTopColor',
-  borderBottomRadius: 'borderBottomRadius',
-  borderTopRadius: 'borderTopRadius',
-  borderTopLeftRadius: 'borderTopLeftRadius',
-  borderTopRightRadius: 'borderTopRightRadius',
-  fontSize: 'fontSize',
-  m: 'margin',
-  mb: 'marginBottom',
-  ml: 'marginLeft',
-  mr: 'marginRight',
-  mt: 'marginTop',
-  mx: 'marginHorizontal',
-  my: 'marginVertical',
-  p: 'padding',
-  pb: 'paddingBottom',
-  pl: 'paddingLeft',
-  pr: 'paddingRight',
-  pt: 'paddingTop',
-  px: 'paddingHorizontal',
-  py: 'paddingVertical',
-  gap: 'gap',
-  zIndex: 'zIndex',
-  shadowColor: 'shadowColor',
-  textShadowColor: 'textShadowColor',
-  background: 'backgroundColor',
-  bg: 'backgroundColor'
 };
 
 export default styleDictionary;

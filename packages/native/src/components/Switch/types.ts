@@ -1,17 +1,16 @@
 import type { ReactElement } from 'react';
 import type { StyleProp, ViewStyle } from 'react-native';
 import type { SizeType } from '../../@types/input';
-import type { ColorType } from '../../context/theme/types';
+import type { ColorName } from '../../context/theme/types';
 import { SxProps } from '../../lib/styleDictionary';
-
-export type SwitchType = 'square' | 'rounded';
+import { ShapeInput } from '../Input/types';
 
 export interface SwitchProps extends SxProps {
-  activeColor?: ColorType;
-  borderColor?: ColorType;
+  activeColor?: ColorName;
+  borderColor?: ColorName;
   bordered?: boolean;
   defaultValue?: boolean;
-  deactiveColor?: ColorType;
+  deactiveColor?: ColorName;
   error?: boolean;
   icon?: {
     false?: ReactElement<{ color?: string }> | null | undefined;
@@ -21,15 +20,22 @@ export interface SwitchProps extends SxProps {
   size?: SizeType;
   style?: StyleProp<ViewStyle>;
   textError?: string;
-  thumbActiveColor?: ColorType;
-  thumbDisabledColor?: ColorType;
-  type?: SwitchType;
+  thumbActiveColor?: ColorName;
+  thumbDisabledColor?: ColorName;
+  type?: ShapeInput;
   value?: boolean;
-  sx?: SxProps;
-  styles?: {
+  sx?: SxProps & {
     root?: SxProps;
     touchable?: SxProps;
     thumb?: SxProps;
     toggle?: SxProps;
+    helperText?: SxProps;
+  };
+  styles?: {
+    root?: StyleProp<ViewStyle>;
+    touchable?: StyleProp<ViewStyle>;
+    thumb?: StyleProp<ViewStyle>;
+    toggle?: StyleProp<ViewStyle>;
+    helperText?: StyleProp<ViewStyle>;
   };
 }

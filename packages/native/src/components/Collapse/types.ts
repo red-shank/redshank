@@ -1,18 +1,18 @@
 import type { ReactNode } from 'react';
 import type { StyleProp, ViewStyle } from 'react-native';
-import type { ColorType } from '../../context/theme/types';
+import type { ColorName } from '../../context/theme/types';
 
 export type KeyType = string | number;
 export type IconPosition = 'right' | 'left';
 
 export type CollapseProps = {
   accordion?: boolean;
-  borderColor?: ColorType;
+  borderColor?: ColorName;
   borderless?: boolean;
   children?: ReactNode;
-  contentColor?: ColorType;
+  contentColor?: ColorName;
   defaultOpenKeys?: KeyType[];
-  headerColor?: ColorType;
+  headerColor?: ColorName;
   icon?: ReactNode;
   iconPosition?: IconPosition;
   onChange?: (key: KeyType) => void;
@@ -23,10 +23,10 @@ export type CollapseProps = {
 };
 
 export interface CollapseContextProps {
-  borderColor: ColorType;
+  borderColor: ColorName;
   borderless?: boolean;
-  contentColor: ColorType;
-  headerColor: ColorType;
+  contentColor: ColorName;
+  headerColor: ColorName;
   icon: ReactNode;
   iconPosition: IconPosition;
   onChange?: (key: KeyType) => void;

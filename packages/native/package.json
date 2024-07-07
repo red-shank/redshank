@@ -26,6 +26,7 @@
     "bootstrap"
   ],
   "scripts": {
+    "script:dev": "npx ts-node src/context/theme/script.ts",
     "build:dev": "tsc --composite false && node scripts/afterBuild.js",
     "build": "node scripts/beforeBuild.js && tsc --composite false && node scripts/afterBuild.js",
     "build:watch": "nodemon -e ts,tsx --watch . --exec \"yarn build:dev\"",
@@ -35,8 +36,7 @@
     "test:watch": "jest --watch",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "clean-install": "rimraf node_modules && yarn",
-    "deploy": "yarn build && npm publish --access public",
-    "prepublish": "yarn run deploy"
+    "typecheck": "tsc --noEmit"
   },
   "author": "Kevin Rivas",
   "license": "MIT",
@@ -46,10 +46,11 @@
   "homepage": "https://www.redshank.app",
   "dependencies": {
     "color": "4.2.3",
-    "rc-field-form": "1.32.2",
+    "rc-field-form": "2.2.1",
     "react-native-input-scroll-view": "1.11.0",
-    "react-native-picker-select": "8.0.4",
-    "react-native-size-matters": "0.4.0"
+    "react-native-picker-select": "9.1.3",
+    "react-native-size-matters": "0.4.2",
+    "@react-native-picker/picker": "2.7.7"
   },
   "devDependencies": {
     "@types/react-native-vector-icons": "6.4.12",

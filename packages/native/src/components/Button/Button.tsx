@@ -5,10 +5,9 @@ import { Ripple } from '../Ripple';
 import useTheme from '../../context/theme/useTheme';
 import { getColorForBackground, getOpacity } from '../../utils';
 
-import { ButtonProps, ButtonSize } from './types';
+import { ButtonProps } from './types';
 import createSxStyle, { getSxStyleAndProps } from '../../lib/sx';
 import { Box } from '../Box';
-import { SxProps } from '../../lib/styleDictionary';
 
 export const Button: React.FC<ButtonProps> = ({
   children,
@@ -33,19 +32,21 @@ export const Button: React.FC<ButtonProps> = ({
   size = 'middle',
   appearance = 'primary',
   type = 'solid',
-  color = type === 'link' ? 'primary' : undefined,
+  fontWeight = '500',
+  color = type === 'link' && !appearance ? 'primary' : undefined,
   shape = 'round',
   ...rest
 }) => {
-  const { colors, fonts, sizes, fontSizes, activeOpacity } = useTheme();
+  const { colors, fonts, sizes, borderRadius, fontSizes, activeOpacity } =
+    useTheme();
   const theme = useTheme();
 
   const isSolid = type === 'solid';
   const isOutline = type === 'outline';
   const isFlat = type === 'flat';
   const isLink = type === 'link';
-  const isCircle = shape === 'circle';
-  const internalAppearanceColor = colors[appearance] || appearance;
+  // const isCircle = shape === 'circle';
+  const internalAppearanceColor = colors.get(appearance);
   const textAlignWrapper = `text_${textAlign}`;
 
   const colorText = React.useMemo(() => {
@@ -55,19 +56,20 @@ export const Button: React.FC<ButtonProps> = ({
     if (isOutline && !color) {
       return internalAppearanceColor;
     }
+    if (isLink && !color) {
+      return internalAppearanceColor;
+    }
 
     return !color
       ? getColorForBackground(internalAppearanceColor)
-      : colors[color] || color;
-  }, [isFlat, color, isOutline, colors, internalAppearanceColor]);
+      : colors.get(color);
+  }, [isFlat, color, isOutline, isLink, internalAppearanceColor, colors]);
 
   const resolveProps = getSxStyleAndProps(
     {
-      ...StyleSheet.flatten([
+      borderRadius: borderRadius[`button.${shape}`],
+      style: StyleSheet.flatten([
         styles[textAlignWrapper],
-        {
-          borderRadius: isCircle ? sizes[size] : isLink ? 0 : 1
-        },
         !fullWidth && { alignSelf: 'flex-start' },
         isSolid && {
           backgroundColor: internalAppearanceColor
@@ -81,11 +83,11 @@ export const Button: React.FC<ButtonProps> = ({
         },
         disabled &&
           isSolid && {
-            backgroundColor: colors.accents5
+            backgroundColor: colors.get('accents.5')
           },
         disabled &&
           !isSolid && {
-            borderColor: colors.accents5
+            borderColor: colors.get('accents.5')
           },
         type !== 'link' &&
           StyleSheet.flatten([
@@ -100,7 +102,8 @@ export const Button: React.FC<ButtonProps> = ({
       sx: onlyIcon
         ? {
             ...sx?.root,
-            ...sizeOnlyIcon[size]
+            width: sizes[size],
+            height: sizes[size]
           }
         : sx?.root,
       ...rest
@@ -142,7 +145,7 @@ export const Button: React.FC<ButtonProps> = ({
             style={createSxStyle(
               {
                 sx: sx?.text,
-                fontWeight: bold ? 'bold' : '500',
+                fontWeight: bold ? 'bold' : fontWeight,
                 style: StyleSheet.flatten([
                   type !== 'link' && fonts.bold,
                   {
@@ -151,7 +154,7 @@ export const Button: React.FC<ButtonProps> = ({
                   },
                   disabled &&
                     !isSolid && {
-                      color: colors.accents5
+                      color: colors.get('accents.5')
                     }
                 ])
               },
@@ -165,29 +168,6 @@ export const Button: React.FC<ButtonProps> = ({
       </Box>
     </Component>
   );
-};
-
-const sizeOnlyIcon: Record<ButtonSize, SxProps> = {
-  small: {
-    width: 32,
-    height: 32,
-    paddingHorizontal: 0
-  },
-  middle: {
-    width: 40,
-    height: 40,
-    paddingHorizontal: 0
-  },
-  large: {
-    width: 50,
-    height: 50,
-    paddingHorizontal: 0
-  },
-  xLarge: {
-    width: 55,
-    height: 55,
-    paddingHorizontal: 0
-  }
 };
 
 const styles = StyleSheet.create({

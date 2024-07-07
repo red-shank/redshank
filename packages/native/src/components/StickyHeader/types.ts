@@ -1,7 +1,7 @@
 import React, { PropsWithChildren, ReactNode } from 'react';
 import { Animated, FlatListProps } from 'react-native';
 
-import type { ColorType } from '../../context/theme/types';
+import type { ColorName } from '../../context/theme/types';
 import { ScrollViewProps } from '../ScrollView';
 import { SxProps } from '../../lib/styleDictionary';
 
@@ -9,10 +9,10 @@ export type TitleStickyPosition = 'left' | 'center' | 'right';
 
 export type BackgroundStickyProps =
   | {
-      initial?: ColorType;
-      sticky?: ColorType;
+      initial?: ColorName;
+      sticky?: ColorName;
     }
-  | [initial?: ColorType, sticky?: ColorType];
+  | [initial?: ColorName, sticky?: ColorName];
 
 export type TitleStickyProps =
   | {

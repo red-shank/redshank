@@ -43,7 +43,7 @@ export const Badge: React.FC<BadgeProps> = ({
 
   const backgroundColor = React.useMemo(() => {
     if (isFlat) {
-      return getOpacity(colors[background] || background, 0.3);
+      return getOpacity(colors.get(background), 0.3);
     }
     return background;
   }, [isFlat, colors, background]);
@@ -133,13 +133,15 @@ export const Badge: React.FC<BadgeProps> = ({
 const sizesPadding: Record<SizeType, number> = {
   small: 0.4,
   middle: 0.65,
-  large: 1
+  large: 1,
+  xLarge: 1.2
 };
 
 const fonts: Record<SizeType, keyof FontSizesProps> = {
   small: 'xxs',
   middle: 'xs',
-  large: 'md'
+  large: 'md',
+  xLarge: 'lg'
 };
 
 const placementStyles: Record<string, SxProps> = {

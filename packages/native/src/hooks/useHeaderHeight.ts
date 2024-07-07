@@ -6,6 +6,24 @@ import {
 import { getDefaultHeaderHeight } from '../utils/header';
 import { Platform } from 'react-native';
 
+export function useStatusBarHeight() {
+  try {
+    const insets = useSafeAreaInsets();
+
+    return insets.top;
+  } catch (e) {
+    console.warn(
+      'We recommend integrating the SafeAreaProvider to better calculate the height of the statusBar'
+    );
+
+    return Platform.select({
+      android: 40,
+      ios: 59,
+      default: 0
+    });
+  }
+}
+
 export default function useHeaderHeight(defaultHeight?: number) {
   try {
     const frame = useSafeAreaFrame();

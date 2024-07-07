@@ -65,8 +65,8 @@ export function Header<T = unknown>({
   const backgroundColor = fadeInBackground.interpolate({
     inputRange: [0, 1],
     outputRange: [
-      theme.colors?.[background.initial],
-      theme.colors?.[background.sticky]
+      theme.colors?.get(background.initial),
+      theme.colors?.get(background.sticky)
     ]
   });
 

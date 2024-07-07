@@ -5,11 +5,12 @@ import { Text } from '../Text';
 import { Ripple } from '../Ripple';
 import useTheme from '../../context/theme/useTheme';
 import type { CheckboxProps } from './types';
+import { Box } from '../Box';
 
 export const Checkbox: React.FC<CheckboxProps> = ({
   onChange,
   label,
-  inactiveColor = 'accents2',
+  inactiveColor = 'accents.2',
   activeColor = 'primary',
   value,
   required = false,
@@ -18,8 +19,7 @@ export const Checkbox: React.FC<CheckboxProps> = ({
   size = 'middle',
   error = false
 }) => {
-  const { colors, borderRadius } = useTheme();
-
+  const theme = useTheme();
   const [active, setActive] = React.useState<boolean>(false);
   const [state] = React.useState({
     fadeAnim: new Animated.Value(0)
@@ -66,53 +66,38 @@ export const Checkbox: React.FC<CheckboxProps> = ({
     value !== undefined && setActive(value);
   }, [value]);
 
-  const borderR = type === 'circle' ? 1000 : borderRadius.sm;
+  const borderR = theme.borderRadius[`radio.${type}`];
 
   return (
     <Ripple
       onPress={onInternalPress}
       style={StyleSheet.flatten([styles.container])}
     >
-      <View
-        style={StyleSheet.flatten([
-          styles.radioButton,
-          {
-            borderColor: active
-              ? colors[activeColor] || activeColor
-              : error
-                ? colors.error
-                : colors[inactiveColor] || inactiveColor
-          },
-          {
-            borderRadius: borderR
-          },
-          sizes[size]
-        ])}
+      <Box
+        borderRadius={borderR}
+        borderColor={active ? activeColor : error ? 'error' : inactiveColor}
+        style={StyleSheet.flatten([styles.radioButton, sizes[size]])}
       >
         <Animated.View style={styleAnimation(active, state.fadeAnim)}>
-          <View
-            style={StyleSheet.flatten([
+          <Box
+            sx={StyleSheet.flatten([
               {
                 borderWidth: 1,
                 borderRadius: borderR - 2,
-                backgroundColor: active
-                  ? colors[activeColor] || activeColor
-                  : 'transparent',
-                borderColor: active
-                  ? colors[activeColor] || activeColor
-                  : 'transparent'
+                backgroundColor: active ? activeColor : 'transparent',
+                borderColor: active ? activeColor : 'transparent'
               },
               internalSizes[size]
             ])}
           />
         </Animated.View>
-      </View>
+      </Box>
       {/* label */}
       <View style={StyleSheet.flatten([styles.labelView, styles.flexOne])}>
         {required && <Text color="error">*</Text>}
         <Text
           style={styles.flexOne}
-          color={error && !active ? 'error' : 'text'}
+          color={error && !active ? 'error' : 'text.main'}
         >
           {label}
         </Text>

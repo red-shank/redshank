@@ -10,7 +10,7 @@ export default function createSxStyle(
     showLog,
     style = {},
     ...otherProps
-  }: Partial<SxProps> & {
+  }: SxProps & {
     sx?: SxProps;
     showLog?: boolean;
     style?: StyleProp<ViewStyle & TextStyle>;

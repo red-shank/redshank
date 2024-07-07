@@ -1,4 +1,11 @@
 {
+  "ts-node": {
+    "compilerOptions": {
+      "module": "CommonJS",
+      "esModuleInterop": true,
+      "allowSyntheticDefaultImports": true
+    }
+  },
   "Display": "Redshank",
   "compilerOptions": {
     "baseUrl": ".",
@@ -12,14 +19,14 @@
       "esnext",
       "dom"
     ],
-    "module": "esnext",
+    "module": "ESNext",
     "moduleResolution": "node",
     "noFallthroughCasesInSwitch": true,
     "noImplicitReturns": true,
     "noImplicitUseStrict": false,
     "noStrictGenericChecks": false,
     "resolveJsonModule": true,
-    "target": "esnext",
+    "target": "ESNext",
     "allowJs": true
     /* Allow javascript files to be compiled. */,
     "outDir": "dist",

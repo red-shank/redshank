@@ -28,7 +28,8 @@ export interface TextAreaProps {
 const sizesMinHeight: Record<SizeType, number> = {
   small: 45,
   middle: 60,
-  large: 85
+  large: 85,
+  xLarge: 100
 };
 
 export const TextArea: React.FC<TextAreaProps> = ({
@@ -48,12 +49,12 @@ export const TextArea: React.FC<TextAreaProps> = ({
       onContentSizeChange={(event) => {
         setHeight(event.nativeEvent.contentSize.height);
       }}
-      style={StyleSheet.flatten([
-        {
+      sx={{
+        input: {
           height: Math.max(minHeight || sizesMinHeight[size], height)
-        },
-        style
-      ])}
+        }
+      }}
+      style={StyleSheet.flatten([style])}
     />
   );
 };

@@ -1,4 +1,4 @@
-import type { StyleProp, TextStyle, ViewStyle } from 'react-native';
+import type { StyleProp, TextStyle } from 'react-native';
 
 import type { ButtonProps } from '../Button';
 import type { AlignType, TransformType } from '../../@types/typography';

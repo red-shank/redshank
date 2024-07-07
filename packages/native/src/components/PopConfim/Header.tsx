@@ -1,9 +1,8 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
 
 import { isValidChild } from '../../utils/render';
 import { Text } from '../Text';
-import useTheme from '../../context/theme/useTheme';
+import { Box } from '../Box';
 import { usePopConfirm } from './Context';
 import type { PropHeaderProps } from './types';
 
@@ -14,24 +13,15 @@ const Header: React.FC<PropHeaderProps> = ({
   style
 }) => {
   const { addElement } = usePopConfirm();
-  const { paddingSizes } = useTheme();
 
   React.useEffect(() => {
     addElement('Header');
   }, [addElement]);
 
   return (
-    <View
-      style={StyleSheet.flatten([
-        styles.wrapper,
-        {
-          padding: paddingSizes.md
-        },
-        style
-      ])}
-    >
-      {image ? <View style={styles.image}>{image}</View> : null}
-      <View style={styles.content}>
+    <Box p={2} flexDirection="row" style={style}>
+      {image ? <Box mr={1}>{image}</Box> : null}
+      <Box flex={1}>
         {isValidChild(title) ? (
           title
         ) : (
@@ -40,21 +30,9 @@ const Header: React.FC<PropHeaderProps> = ({
           </Text>
         )}
         {isValidChild(description) ? description : <Text>{description}</Text>}
-      </View>
-    </View>
+      </Box>
+    </Box>
   );
 };
-
-const styles = StyleSheet.create({
-  wrapper: {
-    flexDirection: 'row'
-  },
-  image: {
-    marginRight: 10
-  },
-  content: {
-    flex: 1
-  }
-});
 
 export default Header;

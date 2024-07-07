@@ -1,3 +1,5 @@
+import { BorderRadiusType } from './types';
+
 export const zIndices = {
   1: 100,
   2: 200,
@@ -8,130 +10,131 @@ export const zIndices = {
   max: 9999
 };
 
-export const borderRadius = {
-  xxs: 1,
-  xs: 2,
-  sm: 4,
-  md: 5,
-  card: 20,
-  modal: 8,
-  lg: 8,
-  xl: 12,
-  xxl: 14,
-  max: 20
-};
-
-export const paddingSizes = {
-  xxs: 5,
-  xs: 7,
-  sm: 10,
-  md: 12,
-  card: 15,
-  modal: 15,
-  lg: 14,
-  xl: 20,
-  xxl: 24,
-  max: 30
-};
-
-export const marginSizes = {
-  xxs: 5,
-  xs: 7,
-  sm: 10,
-  md: 12,
-  card: 20,
-  modal: 20,
-  lg: 14,
-  xl: 20,
-  xxl: 24,
-  max: 30
-};
-
 export const colorsBase = {
-  primary: '#0070F3',
-  secondary: '#7928ca',
-  success: '#17c964',
-  info: '#3D9CF7',
-  warning: '#f5a623',
-  error: '#ff244e',
+  primary: {
+    main: '#0070F3',
+    light: '#42a5f5',
+    dark: '#1565c0'
+  },
+  secondary: {
+    main: '#9c27b0',
+    light: '#ba68c8',
+    dark: '#7b1fa2'
+  },
+  success: {
+    main: '#17c964',
+    light: '#4caf50',
+    dark: '#1b5e20'
+  },
+  info: {
+    main: '#3D9CF7',
+    light: '#03a9f4',
+    dark: '#01579b'
+  },
+  warning: {
+    main: '#ed6c02',
+    light: '#ff9800',
+    dark: '#e65100'
+  },
+  error: {
+    main: '#ff244e',
+    light: '#f84065',
+    dark: '#c21e3e'
+  },
   card: '#16181A',
   message: '#2a2626',
   modal: '#1C1C1E',
+  modalMask: 'rgba(0,0,0,0.5)',
   hover: '#63636a',
   imagePlaceholder: '#2a2626',
-  modalMask: 'rgba(0,0,0,0.5)',
-  blue100: '#bfd8fc',
-  blue200: '#98D5FD',
-  blue300: '#64B8FB',
-  blue400: '#3D9CF7',
-  blue500: '#0070F3',
-  blue600: '#0056D0',
-  blue700: '#0040AE',
-  blue800: '#002D8C',
-  blue900: '#001835',
-  purple100: '#dbc8f0',
-  purple200: '#DDA9F9',
-  purple300: '#C17CEF',
-  purple400: '#A258DF',
-  purple500: '#7928ca',
-  purple600: '#5E1DAD',
-  purple700: '#461491',
-  purple800: '#310C75',
-  purple900: '#1c0631',
-  green100: '#c5f0d5',
-  green200: '#A1F9AC',
-  green300: '#6FEE8D',
-  green400: '#4ADE7B',
-  green500: '#17c964',
-  green600: '#10AC63',
-  green700: '#0B905F',
-  green800: '#077457',
-  green900: '#033116',
-  yellow100: '#fce6c7',
-  yellow200: '#FEE7A6',
-  yellow300: '#FCD57A',
-  yellow400: '#F9C258',
-  yellow500: '#f5a623',
-  yellow600: '#D28519',
-  yellow700: '#B06811',
-  yellow800: '#8E4D0B',
-  yellow900: '#3d2705',
-  red100: '#fbc4d5',
-  red200: '#FDA0A5',
-  red300: '#FB7085',
-  red400: '#F74C77',
-  red500: '#f21361',
-  red600: '#D00D65',
-  red700: '#AE0963',
-  red800: '#8C065C',
-  red900: '#3c0216',
-  cyan100: '#EEFFF4',
-  cyan200: '#DDFFED',
-  cyan300: '#CCFFE9',
-  cyan400: '#BFFFEA',
-  cyan500: '#AAFFEC',
-  cyan600: '#7CDBCF',
-  cyan700: '#55B7B4',
-  cyan800: '#368D93',
-  cyan900: '#206C7A',
-  pink100: '#FFDBE7',
-  pink200: '#FFB8D6',
-  pink300: '#FF94CC',
-  pink400: '#FF7ACC',
-  pink500: '#ff4ecd',
-  pink600: '#DB39BD',
-  pink700: '#B727AA',
-  pink800: '#921893',
-  pink900: '#6E0E7A',
-  gray100: '#F4F4F4',
-  gray200: '#EAEAEA',
-  gray300: '#C1C1C1',
-  gray400: '#999999',
-  gray500: '#888888',
-  gray600: '#666666',
-  gray700: '#444444',
-  gray800: '#333333',
-  gray900: '#111111',
+  blue: {
+    '100': '#bfd8fc',
+    '200': '#98D5FD',
+    '300': '#64B8FB',
+    '400': '#3D9CF7',
+    '500': '#0070F3',
+    '600': '#0056D0',
+    '700': '#0040AE',
+    '800': '#002D8C',
+    '900': '#001835'
+  },
+  purple: {
+    '100': '#dbc8f0',
+    '200': '#DDA9F9',
+    '300': '#C17CEF',
+    '400': '#A258DF',
+    '500': '#7928ca',
+    '600': '#5E1DAD',
+    '700': '#461491',
+    '800': '#310C75',
+    '900': '#1c0631'
+  },
+  green: {
+    '100': '#c5f0d5',
+    '200': '#A1F9AC',
+    '300': '#6FEE8D',
+    '400': '#4ADE7B',
+    '500': '#17c964',
+    '600': '#10AC63',
+    '700': '#0B905F',
+    '800': '#077457',
+    '900': '#033116'
+  },
+  yellow: {
+    '100': '#fce6c7',
+    '200': '#FEE7A6',
+    '300': '#FCD57A',
+    '400': '#F9C258',
+    '500': '#f5a623',
+    '600': '#D28519',
+    '700': '#B06811',
+    '800': '#8E4D0B',
+    '900': '#3d2705'
+  },
+  red: {
+    '100': '#fbc4d5',
+    '200': '#FDA0A5',
+    '300': '#FB7085',
+    '400': '#F74C77',
+    '500': '#f21361',
+    '600': '#D00D65',
+    '700': '#AE0963',
+    '800': '#8C065C',
+    '900': '#3c0216'
+  },
+  cyan: {
+    '100': '#EEFFF4',
+    '200': '#DDFFED',
+    '300': '#CCFFE9',
+    '400': '#BFFFEA',
+    '500': '#AAFFEC',
+    '600': '#7CDBCF',
+    '700': '#55B7B4',
+    '800': '#368D93',
+    '900': '#206C7A'
+  },
+  pink: {
+    '100': '#FFDBE7',
+    '200': '#FFB8D6',
+    '300': '#FF94CC',
+    '400': '#FF7ACC',
+    '500': '#ff4ecd',
+    '600': '#DB39BD',
+    '700': '#B727AA',
+    '800': '#921893',
+    '900': '#6E0E7A'
+  },
+  gray: {
+    '100': '#F4F4F4',
+    '200': '#EAEAEA',
+    '300': '#C1C1C1',
+    '400': '#999999',
+    '500': '#888888',
+    '600': '#666666',
+    '700': '#444444',
+    '800': '#333333',
+    '900': '#111111'
+  },
   white: '#ffffff',
   black: '#000000'
 };
@@ -141,60 +144,84 @@ export const colorsLight = {
   card: '#ffffff',
   message: '#ffffff',
   modal: '#F3F2F9',
+  popConfirm: '#e9e9e9',
   hover: '#F3F2F9',
   imagePlaceholder: '#f4f4f4',
-  inputColor: '#f4f4f4',
-  accents1: '#111111',
-  accents2: '#333333',
-  accents3: '#444444',
-  accents4: '#666666',
-  accents5: '#888888',
-  accents6: '#999999',
-  accents7: '#C1C1C1',
-  accents8: '#EAEAEA',
-  accents9: '#F4F4F4',
-  background: '#f4f4f4',
+  input: '#f4f4f4',
+  accents: {
+    '1': '#111111',
+    '2': '#333333',
+    '3': '#444444',
+    '4': '#666666',
+    '5': '#888888',
+    '6': '#999999',
+    '7': '#C1C1C1',
+    '8': '#EAEAEA',
+    '9': '#F4F4F4'
+  },
+  background: {
+    main: '#f4f4f4',
+    foreground: '#000000'
+  },
   notification: '#ffffff',
-  foreground: '#000000',
-  text: '#333333',
+  text: {
+    main: '#333333',
+    secondary: '#666666'
+  },
   border: '#a1a1a1',
   calendar: '#ffffff',
   link: '#3D9CF7',
   selection: '#461491',
   code: '#6cc0e1',
-  radioButtonInactiveBackground: '#e1e1e1',
-  radioButtonActiveBackground: colorsBase.primary,
-  radioButtonInactiveLabel: '#333333',
-  radioButtonActiveText: colorsBase.white,
+  radioButtonColor: {
+    active: colorsBase.primary.main,
+    inactive: '#e1e1e1'
+  },
+  radioButtonLabel: {
+    active: colorsBase.white,
+    inactive: '#333333'
+  },
   header: '#ffffff',
   stickyHeader: '#ffffff'
 };
 
 export const colorsDark = {
   ...colorsBase,
-  inputColor: '#111111',
-  accents1: '#F4F4F4',
-  accents2: '#EAEAEA',
-  accents3: '#C1C1C1',
-  accents4: '#999999',
-  accents5: '#888888',
-  accents6: '#666666',
-  accents7: '#444444',
-  accents8: '#333333',
-  accents9: '#111111',
-  background: '#000000',
+  input: '#111111',
+  accents: {
+    '1': '#F4F4F4',
+    '2': '#EAEAEA',
+    '3': '#C1C1C1',
+    '4': '#999999',
+    '5': '#888888',
+    '6': '#666666',
+    '7': '#444444',
+    '8': '#333333',
+    '9': '#111111'
+  },
+  background: {
+    main: '#000000',
+    foreground: '#ffffff'
+  },
+  popConfirm: '#1C1C1E',
   notification: '#000000',
-  foreground: '#ffffff',
   border: '#777777',
-  text: '#ffffff',
+  text: {
+    main: '#ffffff',
+    secondary: '#999999'
+  },
   calendar: '#000000',
   link: '#0070F3',
   selection: '#98D5FD',
   code: '#DB39BD',
-  radioButtonInactiveBackground: '#252525',
-  radioButtonActiveBackground: colorsBase.primary,
-  radioButtonInactiveLabel: '#ffffff',
-  radioButtonActiveText: colorsBase.white,
+  radioButtonColor: {
+    active: colorsBase.primary.main,
+    inactive: '#252525'
+  },
+  radioButtonLabel: {
+    active: colorsBase.white,
+    inactive: '#ffffff'
+  },
   header: '#16181A',
   stickyHeader: '#16181A'
 };
@@ -205,3 +232,31 @@ export const sizes = {
   large: 50,
   xLarge: 55
 };
+
+export const borderRadius: BorderRadiusType = {
+  compact: 1,
+  base: 2,
+  'avatar.square': 1,
+  'button.round': 1,
+  'button.circle': 10,
+  carousel: 2,
+  tab: 1,
+  alert: 2,
+  collapse: 3,
+  progress: 3,
+  card: 2,
+  'badge.square': 1,
+  modal: 2,
+  controller: 5,
+  'input.square': 0.5,
+  'input.rounded': 1.5,
+  'input.circle': 12,
+  'switch.square': 0.5,
+  'switch.rounded': 1.2,
+  'switch.circle': 12,
+  'radio.square': 0.5,
+  'radio.rounded': 1.2,
+  'radio.circle': 12
+};
+
+export const paddingInput = 1.5;

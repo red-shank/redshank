@@ -1,7 +1,8 @@
 import React, { useEffect, useMemo } from 'react';
-import { StyleSheet, View, Animated } from 'react-native';
+import { StyleSheet, Animated } from 'react-native';
 import useTheme from '../../context/theme/useTheme';
 import { ProgressProps } from './types';
+import { Box } from '../Box';
 
 export const Progress: React.FC<ProgressProps> = ({
   fallbackColor,
@@ -13,7 +14,7 @@ export const Progress: React.FC<ProgressProps> = ({
   onPressOut,
   onLongPress,
   style,
-  Component = View,
+  Component = Box,
   size = 3,
   ...restTouchProps
 }) => {
@@ -22,11 +23,11 @@ export const Progress: React.FC<ProgressProps> = ({
   const { colors } = useTheme();
 
   const backgroundColor = React.useMemo(() => {
-    return colors[fallbackColor] || colors.accents8;
+    return colors.get(fallbackColor) || colors.accents['8'];
   }, [fallbackColor, colors]);
 
   const backgroundActiveColor = React.useMemo(() => {
-    return colors[activeColor] || colors.primary;
+    return colors.get(activeColor) || colors.get('primary');
   }, [activeColor, colors]);
 
   const calcWidth = useMemo(() => {
@@ -46,7 +47,7 @@ export const Progress: React.FC<ProgressProps> = ({
       duration: 750,
       useNativeDriver: false
     }).start();
-  }, [calcWidth]);
+  }, [animation, calcWidth]);
 
   return (
     <Component

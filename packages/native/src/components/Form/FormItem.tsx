@@ -61,7 +61,7 @@ export const FormItem = ({
             return React.cloneElement(children as JSX.Element, {
               ...childProps,
               error: !!textError,
-              textError
+              helperText: textError
             });
           }}
         </Field>

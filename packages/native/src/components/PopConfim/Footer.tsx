@@ -1,9 +1,10 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
 
 import { usePopConfirm } from './Context';
-import useTheme from '../../context/theme/useTheme';
 import type { PropFooterProps } from './types';
+import { Box } from '../Box';
+import { Divider } from '../Divider';
+import { HEIGHT_DIVIDER } from './constants';
 
 const Footer: React.FC<PropFooterProps> = ({
   children,
@@ -12,30 +13,15 @@ const Footer: React.FC<PropFooterProps> = ({
   noPadding = false
 }) => {
   const { haveContent } = usePopConfirm();
-  const { paddingSizes, colors } = useTheme();
 
   return (
-    <View
-      style={StyleSheet.flatten([
-        styles.wrapper,
-        {
-          padding: noPadding ? 0 : paddingSizes.md,
-          borderTopColor:
-            withBorder || haveContent ? colors.border : 'transparent'
-        },
-        style
-      ])}
-    >
-      {children}
-    </View>
+    <>
+      {(withBorder || haveContent) && <Divider height={HEIGHT_DIVIDER} />}
+      <Box p={noPadding ? 0 : 2} style={style}>
+        {children}
+      </Box>
+    </>
   );
 };
-
-const styles = StyleSheet.create({
-  wrapper: {
-    borderColor: 'transparent',
-    borderTopWidth: 0.5
-  }
-});
 
 export default Footer;

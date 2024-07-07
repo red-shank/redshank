@@ -1,25 +1,20 @@
 import React from 'react';
 import {
   Platform,
-  View,
   StyleSheet,
   ViewStyle,
   StyleProp,
   TextStyle,
-  Pressable,
   ColorValue
 } from 'react-native';
-import {
-  IconButtonProps,
-  IconProps as VectorIconProps
-} from 'react-native-vector-icons/Icon';
-import Color from 'color';
+import { IconProps as VectorIconProps } from 'react-native-vector-icons/Icon';
 import getIconType from '../../helpers/getIconType';
 import getIconStyle from '../../helpers/getIconStyle';
-import androidRipple from '../../helpers/androidRipple';
 import useTheme from '../../context/theme/useTheme';
-import { ColorType } from '../../context/theme/types';
+import { ColorName } from '../../context/theme/types';
 import { Text } from '../Text';
+import { Box } from '../Box';
+import { Ripple, RippleProps } from '../Ripple';
 
 export type IconType =
   | 'material'
@@ -39,17 +34,23 @@ export type IconType =
 
 export type IconObject = {
   name: string;
-  color?: ColorType;
+  color?: ColorName;
   size?: number;
   type?: IconType;
   iconStyle?: StyleProp<TextStyle>;
 };
 
-export type IconProps = Omit<IconButtonProps, 'color'> & {
+export type IconProps = Omit<RippleProps, 'children'> & {
   type?: IconType;
   Component?: typeof React.Component;
   reverse?: boolean;
   raised?: boolean;
+  borderRadius?: number | undefined;
+  iconStyle?: TextStyle | undefined;
+  style?: ViewStyle | TextStyle | undefined;
+  backgroundColor?: ColorValue | number | undefined;
+  name: string;
+  size?: number | undefined;
   containerStyle?: StyleProp<ViewStyle>;
   iconProps?: Partial<VectorIconProps>;
   reverseColor?: string;
@@ -57,7 +58,7 @@ export type IconProps = Omit<IconButtonProps, 'color'> & {
   disabledStyle?: StyleProp<ViewStyle>;
   solid?: boolean;
   brand?: boolean;
-  color?: ColorType;
+  color?: ColorName;
 };
 
 export const Icon: React.FC<IconProps> = ({
@@ -67,7 +68,6 @@ export const Icon: React.FC<IconProps> = ({
   color: colorProp,
   iconStyle,
   iconProps,
-  underlayColor = 'transparent',
   reverse = false,
   raised = false,
   containerStyle,
@@ -78,17 +78,14 @@ export const Icon: React.FC<IconProps> = ({
   onLongPress,
   onPressIn,
   onPressOut,
-  Component = onPress || onLongPress || onPressIn || onPressOut
-    ? Pressable
-    : View,
+  Component = onPress || onLongPress || onPressIn || onPressOut ? Ripple : Box,
   solid = false,
   brand = false,
   ...rest
 }) => {
   const { colors } = useTheme();
-  const color = colors[colorProp] || colorProp || colors?.text;
-  const reverseColor =
-    colors[reverseColorProp] || reverseColorProp || colors?.text;
+  const color = colors.get(colorProp || 'text');
+  const reverseColor = colors.get(reverseColorProp || 'text');
   const IconComponent = getIconType(type);
   const iconSpecificStyle = getIconStyle(type, { solid, brand });
 
@@ -96,8 +93,8 @@ export const Icon: React.FC<IconProps> = ({
     if (reverse) {
       return color;
     }
-    return raised ? colors?.white : 'transparent';
-  }, [color, raised, reverse, colors?.white]);
+    return raised ? colors.get('white') : 'transparent';
+  }, [reverse, raised, colors, color]);
 
   const buttonStyles = React.useMemo(
     () => ({
@@ -109,7 +106,7 @@ export const Icon: React.FC<IconProps> = ({
   );
 
   return (
-    <View
+    <Box
       style={StyleSheet.flatten([
         styles.container,
         (reverse || raised) && styles.button,
@@ -125,39 +122,25 @@ export const Icon: React.FC<IconProps> = ({
       testID="BD__ICON__CONTAINER"
     >
       <Component
-        {...{
-          android_ripple: androidRipple(
-            Color(reverse ? color : (underlayColor as string))
-              .alpha(0.3)
-              .rgb()
-              .string()
-          ),
-          onPress,
-          onLongPress,
-          onPressIn,
-          onPressOut,
-          disabled,
-          accessibilityRole: 'button',
-          ...rest
-        }}
-        testID="RNE__ICON__CONTAINER_ACTION"
+        onPress={onPress}
+        onLongPress={onLongPress}
+        onPressIn={onPressIn}
+        onPressOut={onPressOut}
+        disabled={disabled}
+        {...rest}
       >
-        <View
+        <Box
+          bg={getBackgroundColor}
+          alignItems="center"
+          justifyContent="center"
           style={StyleSheet.flatten([
             (reverse || raised) && buttonStyles,
-            {
-              backgroundColor: getBackgroundColor as ColorValue,
-              alignItems: 'center',
-              justifyContent: 'center'
-            },
             disabled && styles.disabled,
             disabled && disabledStyle
           ])}
-          testID="RNE__ICON"
         >
           {IconComponent ? (
             <IconComponent
-              testID="RNE__ICON__Component"
               style={StyleSheet.flatten([
                 { backgroundColor: 'transparent' },
                 iconStyle && iconStyle
@@ -178,9 +161,9 @@ export const Icon: React.FC<IconProps> = ({
               ?
             </Text>
           )}
-        </View>
+        </Box>
       </Component>
-    </View>
+    </Box>
   );
 };
 

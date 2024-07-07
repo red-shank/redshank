@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import { StyleProp, ViewStyle } from 'react-native';
 import { SizeType } from '../../@types/input';
-import { ColorType } from '../../context/theme/types';
+import { ColorName } from '../../context/theme/types';
 import { SxProps } from '../../lib/styleDictionary';
 import { TextProps } from '../Text';
 
@@ -17,12 +17,12 @@ export interface TabItemProps {
   sx?: SxProps;
   style?: StyleProp<ViewStyle>;
   backgroundColors?: {
-    activeColor?: ColorType;
-    inactiveColor?: ColorType;
+    activeColor?: ColorName;
+    inactiveColor?: ColorName;
   };
   labelColors?: {
-    activeColor?: ColorType;
-    inactiveColor?: ColorType;
+    activeColor?: ColorName;
+    inactiveColor?: ColorName;
   };
   label: string;
   labelProps?: Partial<Omit<TextProps, 'children'>>;
@@ -62,8 +62,8 @@ export type TabsProps = Partial<Pick<TabItemProps, 'size' | 'sx'>> &
     labelProps?: TabItemProps['labelProps'];
     variant?: TabsVariant;
     backgroundColors?: {
-      borderColor?: ColorType;
-      background?: ColorType;
+      borderColor?: ColorName;
+      background?: ColorName;
     };
     sx?: {
       root?: SxProps;

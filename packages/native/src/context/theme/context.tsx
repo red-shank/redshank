@@ -11,126 +11,129 @@ import { fonts, fontSizes, titleFontSizes } from './fonts';
 import {
   colorsDark,
   colorsLight,
-  paddingSizes,
-  marginSizes,
   zIndices,
   sizes,
   borderRadius
 } from './defaultValues';
-import type { FontTypes, ThemeProps as InternalThemeProps } from './types';
+import {
+  FontTypes,
+  ThemeContextProps,
+  ThemeContextValue,
+  ThemeProps
+} from './types';
+import { ColorName, ColorSchema } from './color.type';
+// import createColorName from './script';
+import { getColorValue } from './utils';
 
 const dimensions = Dimensions.get('screen');
 
 const colorScheme = Appearance.getColorScheme();
 
-const initialValue: InternalThemeProps = {
+const initialColorFunction = (
+  colors: ColorSchema
+): ThemeContextValue['colors'] => {
+  return {
+    ...colors,
+    get: (color: ColorName) => {
+      return getColorValue(color, colors);
+    }
+  };
+};
+
+type InternalStateTheme = ThemeProps;
+
+const initialValue: InternalStateTheme = {
   theme: colorScheme === 'dark' ? 'dark' : 'light',
   isDark: colorScheme === 'dark',
   fonts: fonts as FontTypes,
   fontSizes,
+  width: dimensions.width,
+  height: dimensions.height,
   titleFontSizes,
   activeOpacity: 0.6,
   zIndices,
   sizes,
   spacing: 8,
   borderWidth: 1,
+  darkColors: colorsDark,
+  lightColors: colorsLight,
   borderRadius,
-  paddingSizes,
-  marginSizes,
-  darkColors: colorsDark,
-  lightColors: colorsLight,
-  colors: colorScheme === 'dark' ? colorsDark : colorsLight
+  colors:
+    colorScheme === 'dark'
+      ? initialColorFunction(colorsDark)
+      : initialColorFunction(colorsLight)
 };
 
-type ThemeProps = Omit<
-  Partial<InternalThemeProps>,
-  'isDark' | 'device' | 'isIos' | 'isAndroid' | 'colors'
-> & {
-  colors?: {
-    dark: Partial<InternalThemeProps>['colors'];
-    light: Partial<InternalThemeProps>['colors'];
-  };
-};
-
-export interface ThemeContextProps extends InternalThemeProps {
-  setContextTheme: (newTheme: ThemeProps) => void;
-  setTheme: (theme: 'dark' | 'light') => void;
-  width: number;
-  height: number;
-}
-
-export const ThemeContext = createContext<ThemeContextProps>({
+const themeContextDefaultValue: ThemeContextValue = {
   ...initialValue,
-  lightColors: colorsLight,
-  darkColors: colorsDark,
-  width: dimensions.width,
-  height: dimensions.height,
   setContextTheme: () => {},
   setTheme: () => {}
-});
+};
 
-export interface ThemeProviderProps {
-  children: React.ReactNode;
-  theme?: ThemeProps;
-}
+export const ThemeContext = createContext<ThemeContextValue>(
+  themeContextDefaultValue
+);
 
-export const ThemeProvider: React.FC<ThemeProviderProps> = React.memo(
+export const ThemeProvider: React.FC<ThemeContextProps> = React.memo(
   ({ children, theme }) => {
     const { width, height } = useWindowDimensions();
 
-    const [internalTheme, setInternalTheme] = useState<InternalThemeProps>(
-      JSON.parse(JSON.stringify(initialValue))
-    );
+    const [internalTheme, setInternalTheme] = useState<InternalStateTheme>({
+      ...initialValue
+    });
 
-    const setContextTheme = React.useCallback((_theme: ThemeProps) => {
-      setInternalTheme((prevTheme) => {
-        const theme = _theme?.theme ?? prevTheme?.theme;
-        const darkColors = Object.assign(
-          prevTheme.darkColors,
-          _theme?.colors?.dark
-        );
-        const lightColors = Object.assign(
-          prevTheme.lightColors,
-          _theme?.colors?.light
-        );
+    const setContextTheme = React.useCallback(
+      (_theme: Omit<ThemeContextProps['theme'], 'children'>) => {
+        setInternalTheme((prevTheme) => {
+          const themeScheme = _theme?.theme ?? prevTheme?.theme;
+          const darkColors = Object.assign(
+            prevTheme.darkColors,
+            _theme?.colors?.dark
+          );
+          const lightColors = Object.assign(
+            prevTheme.lightColors,
+            _theme?.colors?.light
+          );
 
-        const colors = Object.assign(
-          theme === 'dark' ? darkColors : lightColors,
-          _theme?.colors?.[theme]
-        );
+          const colors = initialColorFunction(
+            Object.assign(
+              themeScheme === 'dark' ? darkColors : lightColors,
+              _theme?.colors?.[themeScheme]
+            )
+          );
 
-        return {
-          colors,
-          theme,
-          darkColors,
-          lightColors,
-          isDark: theme === 'dark',
-          borderWidth: _theme?.borderWidth ?? prevTheme.borderWidth,
-          activeOpacity: _theme?.activeOpacity ?? prevTheme.activeOpacity,
-          spacing: _theme?.spacing ?? prevTheme.spacing,
-          fonts: Object.assign(prevTheme?.fonts, _theme?.fonts),
-          sizes: Object.assign(prevTheme?.sizes, _theme?.sizes),
-          fontSizes: Object.assign(prevTheme?.fontSizes, _theme?.fontSizes),
-          titleFontSizes: Object.assign(
-            prevTheme?.titleFontSizes,
-            _theme?.titleFontSizes
-          ),
-          marginSizes: Object.assign(
-            prevTheme?.marginSizes,
-            _theme?.marginSizes
-          ),
-          paddingSizes: Object.assign(
-            prevTheme?.paddingSizes,
-            _theme?.paddingSizes
-          ),
-          zIndices: Object.assign(prevTheme?.zIndices, _theme?.zIndices),
-          borderRadius: Object.assign(
+          const _borderRadius = Object.assign(
             prevTheme?.borderRadius,
             _theme?.borderRadius
-          )
-        };
-      });
-    }, []);
+          );
+
+          // createColorName(colors);
+
+          return {
+            colors,
+            theme: themeScheme,
+            darkColors,
+            lightColors,
+            width: _theme?.width ?? width,
+            height: _theme?.height ?? height,
+            borderRadius: _borderRadius,
+            isDark: themeScheme === 'dark',
+            borderWidth: _theme?.borderWidth ?? prevTheme.borderWidth,
+            activeOpacity: _theme?.activeOpacity ?? prevTheme.activeOpacity,
+            spacing: _theme?.spacing ?? prevTheme.spacing,
+            fonts: Object.assign(prevTheme?.fonts, _theme?.fonts),
+            sizes: Object.assign(prevTheme?.sizes, _theme?.sizes),
+            fontSizes: Object.assign(prevTheme?.fontSizes, _theme?.fontSizes),
+            titleFontSizes: Object.assign(
+              prevTheme?.titleFontSizes,
+              _theme?.titleFontSizes
+            ),
+            zIndices: Object.assign(prevTheme?.zIndices, _theme?.zIndices)
+          };
+        });
+      },
+      [height, width]
+    );
 
     const setTheme = useCallback((_theme: 'dark' | 'light') => {
       setInternalTheme((prevTheme) => {
@@ -138,8 +141,9 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = React.memo(
           ...prevTheme,
           theme: _theme,
           isDark: _theme === 'dark',
-          colors:
+          colors: initialColorFunction(
             _theme === 'dark' ? prevTheme.darkColors : prevTheme.lightColors
+          )
         };
       });
     }, []);
@@ -152,19 +156,32 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = React.memo(
       <ThemeContext.Provider
         value={React.useMemo(() => {
           return {
-            ...internalTheme,
-            setContextTheme,
+            colors: internalTheme.colors,
+            theme: internalTheme.theme,
+            darkColors: internalTheme.darkColors,
+            lightColors: internalTheme.lightColors,
+            isDark: internalTheme.isDark,
+            zIndices: internalTheme.zIndices,
+            sizes: internalTheme.sizes,
+            spacing: internalTheme.spacing,
+            fonts: internalTheme.fonts,
+            borderRadius: internalTheme.borderRadius,
+            fontSizes: internalTheme.fontSizes,
+            titleFontSizes: internalTheme.titleFontSizes,
+            activeOpacity: internalTheme.activeOpacity,
+            borderWidth: internalTheme.borderWidth,
+            setContextTheme: setContextTheme,
             setTheme,
-            width,
-            height
-          };
-        }, [internalTheme, setTheme, setContextTheme, width, height])}
+            width: internalTheme.width,
+            height: internalTheme.height
+          } as ThemeContextValue;
+        }, [internalTheme, setTheme, setContextTheme])}
       >
         <View
           style={StyleSheet.flatten([
             styles.wrapper,
             {
-              backgroundColor: internalTheme.colors.background
+              backgroundColor: internalTheme.colors.background.main
             }
           ])}
         >

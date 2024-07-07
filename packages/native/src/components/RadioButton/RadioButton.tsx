@@ -1,18 +1,18 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
 
-import { TextError } from '../../utils/TextError';
+import { HelperText } from '../../utils/HelperText';
 import { RadioSquare } from './RadioSquare';
-import type { NumberStringValue, RadioGroupProps } from './types';
+import type { NumberStringValue, RadioGroupButtonProps } from './types';
 import { SxProps } from '../../lib/styleDictionary';
 import { Box } from '../Box';
 
-export const RadioButton: React.FC<RadioGroupProps & SxProps> = ({
+export const RadioButton: React.FC<RadioGroupButtonProps & SxProps> = ({
   options,
   value,
   error,
   onChange,
-  textError,
+  helperText,
   defaultValue,
   backgroundColors,
   labelColors,
@@ -23,11 +23,9 @@ export const RadioButton: React.FC<RadioGroupProps & SxProps> = ({
 }) => {
   const [internalValue, setInternalValue] =
     React.useState<NumberStringValue>('');
-  const [isError, setError] = React.useState<undefined | boolean>(false);
 
   const onInternalChange = (val: NumberStringValue) => {
     setInternalValue(val);
-    setError(false);
     onChange && onChange(val);
   };
 
@@ -49,10 +47,6 @@ export const RadioButton: React.FC<RadioGroupProps & SxProps> = ({
     });
   }, [defaultValue]);
 
-  React.useEffect(() => {
-    typeof error === 'boolean' && setError(error);
-  }, [error]);
-
   return (
     <Box style={StyleSheet.flatten([styles.wrapper])} {...sxProps}>
       <Box
@@ -65,7 +59,7 @@ export const RadioButton: React.FC<RadioGroupProps & SxProps> = ({
         flexWrap="nowrap"
         borderRadius={borderRadiusProp}
         backgroundColor={
-          backgroundColors?.inactiveColor || 'radioButtonInactiveBackground'
+          backgroundColors?.inactiveColor || 'radioButtonColor.inactive'
         }
       >
         {options.map((option) => {
@@ -83,23 +77,25 @@ export const RadioButton: React.FC<RadioGroupProps & SxProps> = ({
               }}
               backgroundColors={{
                 activeColor:
-                  backgroundColors?.activeColor ||
-                  'radioButtonActiveBackground',
+                  backgroundColors?.activeColor || 'radioButtonColor.active',
                 inactiveColor:
-                  backgroundColors?.inactiveColor ||
-                  'radioButtonInactiveBackground'
+                  backgroundColors?.inactiveColor || 'radioButtonColor.inactive'
               }}
               labelColors={{
                 activeColor:
-                  labelColors?.activeColor || 'radioButtonActiveText',
+                  labelColors?.activeColor || 'radioButtonLabel.active',
                 inactiveColor:
-                  labelColors?.inactiveColor || 'radioButtonInactiveLabel'
+                  labelColors?.inactiveColor || 'radioButtonLabel.inactive'
               }}
             />
           );
         })}
       </Box>
-      {isError && textError && <TextError>{textError}</TextError>}
+      {(error || helperText) && (
+        <HelperText color={error ? 'error' : 'text.secondary'}>
+          {helperText}
+        </HelperText>
+      )}
     </Box>
   );
 };

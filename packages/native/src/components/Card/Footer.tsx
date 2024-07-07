@@ -1,26 +1,26 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 
 import useTheme from '../../context/theme/useTheme';
 import { getOpacity } from '../../utils/colors';
 import type { CardFooterProps } from './types';
-import { useCardProvider } from './Context';
+import { Box } from '../Box';
+import createSxStyle from '../../lib/sx';
 
 const Footer: React.FC<CardFooterProps> = ({
   children,
-  Component = View,
+  Component = Box,
   withBackground,
   isAbsolute = false,
   right,
   bottom = 0,
   left = 0,
+  sx,
   background = isAbsolute ? 'card' : undefined,
   style = {},
   ...restProps
 }) => {
-  const { isOpen, expandContent } = useCardProvider();
-  const { colors, activeOpacity, borderRadius, zIndices, paddingSizes } =
-    useTheme();
+  const theme = useTheme();
 
   const backgroundColor = React.useMemo(() => {
     if (!withBackground) {
@@ -30,34 +30,37 @@ const Footer: React.FC<CardFooterProps> = ({
       return background;
     }
 
-    const color = colors[background] || background;
+    const color = theme.colors.get(background);
     if (isAbsolute) {
       return getOpacity(color, 0.6);
     }
     return color;
-  }, [background, colors, isAbsolute, withBackground]);
+  }, [background, theme.colors, isAbsolute, withBackground]);
 
   return (
     <>
       <Component
-        activeOpacity={activeOpacity}
-        style={StyleSheet.flatten([
-          styles.wrapper,
+        activeOpacity={theme.activeOpacity}
+        zIndex={2}
+        p={2}
+        borderBottom={2}
+        bg={backgroundColor}
+        position={isAbsolute ? 'absolute' : 'relative'}
+        style={createSxStyle(
           {
-            zIndex: zIndices['2'],
-            padding: paddingSizes.card,
-            backgroundColor,
-            position: isAbsolute ? 'absolute' : 'relative',
-            borderBottomLeftRadius: borderRadius.card,
-            borderBottomRightRadius: borderRadius.card
+            sx,
+            style: [
+              styles.wrapper,
+              isAbsolute && {
+                bottom,
+                left,
+                right
+              },
+              style
+            ]
           },
-          isAbsolute && {
-            bottom,
-            left,
-            right
-          },
-          style
-        ])}
+          theme
+        )}
         {...restProps}
       >
         {children}

@@ -4,6 +4,7 @@ import { Text, TextProps } from '../../../Text';
 import { Ripple } from '../../../Ripple';
 import useTheme from '../../../../context/theme/useTheme';
 import { SxProps } from '../../../../lib/styleDictionary';
+import createSxStyle from '../../../../lib/sx';
 
 interface CellProps {
   content: string | number;
@@ -31,7 +32,8 @@ export default function Cell({
   style,
   sx
 }: CellProps) {
-  const { width, borderRadius, colors } = useTheme();
+  const theme = useTheme();
+  const { width } = useTheme();
   const fadeAnimation = useRef(new Animated.Value(1)).current;
 
   const handlePress = () => {
@@ -71,21 +73,22 @@ export default function Cell({
     >
       {selected && (
         <Animated.View
-          style={StyleSheet.flatten([
+          style={createSxStyle(
             {
-              height: styleSize.height + 8,
-              width: styleSize.width + 8
-            },
-            isLabel && styles.textHeightAuto,
-            styles.textWrapper,
-            styles.backgroundAbsolute,
-            {
+              bg: 'primary',
               opacity: fadeAnimation,
-              borderRadius: borderRadius.max,
-              backgroundColor: colors.primary,
-              zIndex: 1
-            }
-          ])}
+              borderRadius: 100,
+              zIndex: 1,
+              height: styleSize.height + 8,
+              width: styleSize.width + 8,
+              style: StyleSheet.flatten([
+                isLabel && styles.textHeightAuto,
+                styles.textWrapper,
+                styles.backgroundAbsolute
+              ])
+            },
+            theme
+          )}
         />
       )}
 
@@ -98,7 +101,7 @@ export default function Cell({
           selected
             ? 'white'
             : disabledRipple
-              ? 'accents5'
+              ? 'accents.5'
               : isNow
                 ? 'primary'
                 : textColor

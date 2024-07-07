@@ -1,169 +1,319 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import {
+  Animated,
   Modal as RNModal,
-  Platform,
   RefreshControl,
-  ScrollView,
   StatusBar,
-  TouchableOpacity,
-  StyleSheet,
-  View
+  TouchableOpacity
 } from 'react-native';
 
-import { Icon } from '../Icon';
-import { Button } from '../Button';
 import useTheme from '../../context/theme/useTheme';
-import useHeaderHeight from '../../hooks/useHeaderHeight';
+import { useStatusBarHeight } from '../../hooks/useHeaderHeight';
 import useModal, { UseModalType } from '../../hooks/useModal';
 
-import type { ModalProps } from './types';
+import type { ModalHandle, ModalProps, PositionType } from './types';
+import { Box } from '../Box';
+import createSxStyle from '../../lib/sx';
+import { ModalProvider } from './context';
+import { SxProps } from '../../lib/styleDictionary';
+import { Header } from './Header';
+import { Content } from './Content';
+import { Footer } from './Footer';
+import { ScrollView } from '../ScrollView';
+import { Icon } from '../Icon';
+import { Button } from '../Button';
+
+const AnimatedTouchable = Animated.createAnimatedComponent(TouchableOpacity);
 
 type ExportComponent = {
   useModal: (initial?: boolean) => UseModalType;
+  Header: typeof Header;
+  Content: typeof Content;
+  Footer: typeof Footer;
 };
 
-export const MIN_PADDING_VERTICAL = 20;
+const DEFAULT_ANIMATIONS = {
+  fade: 0,
+  fadeMask: 0,
+  translate: 250
+};
 
-export const Modal: React.FC<ModalProps> & ExportComponent = ({
-  children,
-  hiddenBar,
-  visible,
-  onClose,
-  fullScreen,
-  extra,
-  buttonCloseStyle,
-  maskStyle,
-  contentStyle,
-  contentContainerStyle,
-  closable = true,
-  closeIconProps = {},
-  scrollable = false,
-  maskClosable = false,
-  maskComponent: Component = maskClosable ? TouchableOpacity : View,
-  position = 'center',
-  animationType = 'fade'
-}) => {
-  const { zIndices, colors, paddingSizes, borderRadius, activeOpacity } =
-    useTheme();
+const RenderModal = forwardRef<ModalHandle, ModalProps>(
+  (
+    {
+      children,
+      hiddenBar,
+      visible,
+      onClose: _onClose,
+      fullScreen,
+      styles,
+      sx,
+      extra,
+      closeIcon,
+      statusHeight: _statusHeight,
+      closable = true,
+      scrollable = false,
+      maskClosable = true,
+      maskComponent: MaskComponent = maskClosable
+        ? AnimatedTouchable
+        : Animated.View,
+      position = 'center',
+      animationType = position !== 'bottom' ? 'fade' : 'slide',
+      ...rest
+    },
+    ref
+  ) => {
+    const translate = React.useRef(
+      new Animated.Value(DEFAULT_ANIMATIONS.translate)
+    ).current;
+    const fadeMask = React.useRef(
+      new Animated.Value(DEFAULT_ANIMATIONS.fadeMask)
+    ).current;
+    const fade = React.useRef(
+      new Animated.Value(DEFAULT_ANIMATIONS.fade)
+    ).current;
 
-  const height = useHeaderHeight();
+    const theme = useTheme();
 
-  const ComponentChild = React.useMemo<any>(() => {
-    return scrollable ? ScrollView : TouchableOpacity;
-  }, [scrollable]);
+    const statusBarHeight = useStatusBarHeight();
 
-  return (
-    <RNModal transparent visible={visible} animationType={animationType}>
-      {hiddenBar && <StatusBar hidden />}
-      <Component
-        onPress={onClose}
-        activeOpacity={activeOpacity}
-        style={StyleSheet.flatten([
-          styles.wrapper,
-          styles[position],
-          {
-            backgroundColor: colors.modalMask,
-            paddingHorizontal: paddingSizes.card,
-            paddingVertical:
-              position === 'top' ? height : MIN_PADDING_VERTICAL * 1.5
-          },
-          fullScreen && styles.fullScreen,
-          maskStyle
-        ])}
+    const ComponentChild = scrollable ? ScrollView : Box;
+
+    const isBottom = position === 'bottom';
+    const isEnabledAnimation = animationType !== 'none';
+
+    React.useEffect(() => {
+      if (visible && isEnabledAnimation) {
+        if (isBottom) {
+          Animated.parallel([
+            Animated.timing(fadeMask, {
+              toValue: 1,
+              duration: 200,
+              useNativeDriver: false
+            }),
+            Animated.timing(translate, {
+              toValue: 0,
+              duration: 200,
+              useNativeDriver: false
+            })
+          ]).start();
+        } else {
+          Animated.parallel([
+            Animated.timing(fadeMask, {
+              toValue: 1,
+              duration: 200,
+              useNativeDriver: false
+            }),
+            Animated.timing(fade, {
+              toValue: 1,
+              duration: 200,
+              useNativeDriver: false
+            })
+          ]).start();
+        }
+      }
+    }, [translate, isBottom, fade, visible, isEnabledAnimation, fadeMask]);
+
+    const onClose = () => {
+      if (!isEnabledAnimation) {
+        _onClose?.();
+      } else if (isBottom) {
+        Animated.parallel([
+          Animated.timing(translate, {
+            toValue: DEFAULT_ANIMATIONS.fadeMask,
+            duration: 150,
+            useNativeDriver: false
+          }),
+          Animated.timing(translate, {
+            toValue: DEFAULT_ANIMATIONS.translate,
+            duration: 200,
+            useNativeDriver: false
+          })
+        ]).start(_onClose);
+      } else {
+        Animated.parallel([
+          Animated.timing(translate, {
+            toValue: DEFAULT_ANIMATIONS.fadeMask,
+            duration: 150,
+            useNativeDriver: false
+          }),
+          Animated.timing(fade, {
+            toValue: DEFAULT_ANIMATIONS.fade,
+            duration: 200,
+            useNativeDriver: false
+          })
+        ]).start(_onClose);
+      }
+    };
+
+    const icon = closeIcon || (
+      <Icon
+        name="close-circle"
+        type="ionicon"
+        color="text"
+        size={32}
+        sx={sx?.closeIcon}
+        style={styles?.closeIcon}
+      />
+    );
+
+    React.useImperativeHandle(ref, () => ({
+      onClose
+    }));
+
+    return (
+      <ModalProvider
+        onClose={onClose}
+        closable={closable}
+        isBottom={isBottom}
+        scrollable={scrollable}
       >
-        <ComponentChild
-          activeOpacity={1}
-          refreshControl={
-            <RefreshControl
-              style={{ opacity: 0 }}
-              refreshing={false}
-              children={<View />}
-              onRefresh={onClose}
-            />
-          }
-          contentContainerStyle={contentContainerStyle}
-          style={StyleSheet.flatten([
-            styles.content,
-            {
-              borderRadius: borderRadius.modal,
-              padding: paddingSizes.modal,
-              backgroundColor: colors.modal
-            },
-            fullScreen && !scrollable && styles.fullContent,
-            contentStyle
-          ])}
-        >
-          {closable ? (
-            <Button
-              onlyIcon
-              type="link"
-              appearance="text"
+        <RNModal transparent visible={visible}>
+          {hiddenBar && <StatusBar hidden />}
+
+          <Animated.View
+            style={createSxStyle(
+              {
+                style: styles?.root,
+                sx: {
+                  position: 'absolute',
+                  rounded: 'modal',
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  flex: 1,
+                  height: theme.height,
+                  width: theme.width,
+                  mx: 'auto',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  overflow: !scrollable ? 'hidden' : undefined,
+                  ...positionSx[position],
+                  ...sx?.root
+                }
+              },
+              theme
+            )}
+          >
+            <MaskComponent
+              // @ts-ignore
               onPress={onClose}
-              style={StyleSheet.flatten([
-                styles.closeButton,
-                scrollable && styles.closeButtonScroll,
-                fullScreen && styles.closeButtonFull,
-                { zIndex: zIndices.max },
-                buttonCloseStyle
-              ])}
+              activeOpacity={1}
+              style={createSxStyle(
+                {
+                  position: 'absolute',
+                  zIndex: 1,
+                  flex: 1,
+                  height: '100%',
+                  width: '100%',
+                  opacity: isEnabledAnimation ? fadeMask : undefined,
+                  bg: fullScreen ? 'modal' : 'modalMask',
+                  ...positionSx[position],
+                  style: styles?.mask,
+                  sx: sx?.mask
+                },
+                theme
+              )}
+            />
+
+            <Animated.View
+              style={createSxStyle(
+                {
+                  zIndex: 2,
+                  p: !scrollable || !fullScreen ? 1 : undefined,
+                  flex: fullScreen ? 1 : undefined,
+                  sx: sx?.container,
+                  ...sx,
+                  ...rest,
+                  style: [
+                    {
+                      paddingTop: _statusHeight ?? statusBarHeight
+                    },
+                    isBottom &&
+                      isEnabledAnimation && {
+                        transform: [{ translateY: translate }]
+                      },
+                    !isBottom &&
+                      isEnabledAnimation && {
+                        opacity: fade
+                      },
+                    styles?.container
+                  ]
+                },
+                theme
+              )}
             >
-              <Icon
-                name="close-circle"
-                type="ionicon"
-                color="text"
-                size={37}
-                {...closeIconProps}
-              />
-            </Button>
-          ) : null}
-          {children}
-        </ComponentChild>
-        {extra}
-      </Component>
-    </RNModal>
-  );
-};
+              <ComponentChild
+                style={createSxStyle(
+                  {
+                    rounded: 'modal',
+                    bg: 'modal',
+                    overflow: !scrollable || !fullScreen ? 'hidden' : undefined,
+                    mb: scrollable && !fullScreen ? 3 : undefined,
+                    sx: sx?.content,
+                    style: styles?.content
+                  },
+                  theme
+                )}
+                contentContainerSx={{
+                  overflow: 'hidden',
+                  rounded: 'modal',
+                  ...sx?.contentScroll
+                }}
+                contentContainerStyle={styles?.contentScroll}
+                refreshControl={
+                  <RefreshControl
+                    style={{ opacity: 0 }}
+                    refreshing={false}
+                    children={<Box />}
+                    onRefresh={onClose}
+                  />
+                }
+              >
+                {closable && (
+                  <Button
+                    onlyIcon
+                    type="link"
+                    appearance="text"
+                    onPress={onClose}
+                    position="absolute"
+                    top={10}
+                    right={10}
+                    zIndex="max"
+                  >
+                    {icon}
+                  </Button>
+                )}
+                {children}
+              </ComponentChild>
+              {extra}
+            </Animated.View>
+          </Animated.View>
+        </RNModal>
+      </ModalProvider>
+    );
+  }
+);
 
-Modal.useModal = useModal;
-
-const styles = StyleSheet.create({
-  wrapper: {
-    flex: 1
-  },
-  content: {
-    position: 'relative'
-  },
-  fullScreen: {
-    paddingHorizontal: 0,
-    paddingVertical: 0
-  },
-  fullContent: {
-    flex: 1,
-    padding: 0
-  },
+const positionSx: Record<PositionType, SxProps> = {
   top: {
-    justifyContent: 'flex-start'
+    justifyContent: 'flex-start',
+    alignItems: 'center'
   },
   center: {
-    justifyContent: 'center'
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   bottom: {
-    justifyContent: 'flex-end'
-  },
-  closeButton: {
-    position: 'absolute',
-    top: Platform.select({
-      ios: 15,
-      default: 15
-    }),
-    right: 15
-  },
-  closeButtonFull: {
-    top: 30,
-    right: 20
-  },
-  closeButtonScroll: {
-    top: 0,
-    right: 0
+    justifyContent: 'flex-end',
+    alignItems: 'center'
   }
-});
+};
+
+export const Modal = RenderModal as unknown as React.FC<ModalProps> &
+  ExportComponent;
+
+Modal.useModal = useModal;
+Modal.Header = Header;
+Modal.Content = Content;
+Modal.Footer = Footer;

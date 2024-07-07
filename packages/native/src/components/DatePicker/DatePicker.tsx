@@ -3,46 +3,50 @@ import React, { cloneElement, FC, useEffect, useState } from 'react';
 import {
   StyleSheet,
   TouchableOpacity,
-  View,
-  Modal,
   Platform,
   DimensionValue
 } from 'react-native';
 
 import { Icon } from '../Icon';
 import { Text } from '../Text';
-import { TextError } from '../../utils/TextError';
+import { HelperText } from '../../utils/HelperText';
 import useTheme from '../../context/theme/useTheme';
 import { Ripple } from '../Ripple';
 import type { DatePickerProps } from './types';
 import { Calendar } from '../Calendar';
 import { Box } from '../Box';
+import { paddingInput } from '../../context/theme/defaultValues';
+import createSxStyle from '../../lib/sx';
+import { Modal } from '../Modal';
 
 export const DatePicker: FC<DatePickerProps> = ({
-  textError,
+  helperText,
   onChange,
-  prefix,
+  startContent,
   defaultValue,
   value,
+  shape = 'rounded',
   locale = 'en',
-  suffix = <Icon name="clockcircleo" type="ant-design" />,
+  endContent = <Icon name="clockcircleo" type="ant-design" />,
   format = 'YYYY-MM-DD',
   error = false,
   size = 'middle',
-  color = 'accents2',
-  background = 'inputColor',
-  borderInputColor = 'border',
+  color = 'accents.2',
+  background = 'input',
+  borderColor = 'border',
   style = {},
-  placeholder
+  placeholder,
+  sx,
+  styles,
+  isDisabled,
+  ...restProps
 }) => {
-  const { colors, borderRadius, sizes, width, borderWidth } = useTheme();
+  const theme = useTheme();
+  const { colors, sizes, width, borderWidth } = useTheme();
   const [date, setDate] = useState<dayjs.Dayjs>(
     dayjs(defaultValue, format).locale(locale)
   );
   const [show, setShow] = useState(false);
-
-  // states
-  const [isError, setError] = React.useState<undefined | boolean>(false);
 
   const onApplyDate = (selectedDate: string) => {
     setShow(false);
@@ -68,114 +72,138 @@ export const DatePicker: FC<DatePickerProps> = ({
     }
   }, [format, value]);
 
-  useEffect(() => {
-    setError(error);
-  }, [error, textError]);
-
   return (
-    <View>
-      <View style={StyleSheet.flatten([styles.wrapper, styles.relative])}>
+    <Box sx={sx?.root} style={[style, styles?.root]} {...restProps}>
+      <Box
+        sx={sx?.container}
+        opacity={isDisabled ? 0.5 : 1}
+        style={[_styles.wrapper, _styles.relative, styles?.container]}
+      >
         <Ripple
           disableTransform
           onPress={onPress}
-          style={StyleSheet.flatten([
-            styles.inputDate,
-            styles.wrapper,
-            {
-              borderWidth,
-              height: sizes[size],
-              backgroundColor: colors[background] || background,
-              borderColor: isError
-                ? colors.error
-                : colors[borderInputColor] || borderInputColor,
-              borderRadius: borderRadius.xl
-            },
-            prefix && {
-              paddingLeft: 35
-            },
-            suffix && {
-              paddingRight: 45
-            },
-            style
-          ])}
+          rounded={`input.${shape}`}
+          borderWidth={borderWidth}
+          height={sizes[size]}
+          backgroundColor={background}
+          borderColor={error ? 'error' : borderColor}
+          pl={startContent ? 4.4 : paddingInput}
+          pr={endContent ? 11.25 : paddingInput}
+          sx={sx?.toggle}
+          style={[_styles.wrapper, style, styles?.toggle]}
         >
-          {prefix && (
+          {startContent && (
             <TouchableOpacity
               onPress={onPress}
-              style={StyleSheet.flatten([styles.wrapperIcon, { left: 0 }])}
+              style={createSxStyle(
+                {
+                  left: 0,
+                  sx: sx?.wrapperIcon,
+                  style: [_styles.wrapperIcon, styles?.wrapperIcon]
+                },
+                theme
+              )}
             >
-              <View style={styles.icon}>
-                {cloneElement(prefix, {
+              <Box sx={sx?.icon} style={[_styles.icon, styles?.icon]}>
+                {cloneElement(startContent, {
                   color: colors.border,
-                  ...prefix.props
+                  ...startContent.props
                 })}
-              </View>
+              </Box>
             </TouchableOpacity>
           )}
-          <Text color={isError ? colors.error : colors[color] || color}>
+          <Text sx={sx?.text} style={styles?.text} color={color}>
             {dateText || placeholder}
           </Text>
         </Ripple>
 
-        {suffix && (
+        {endContent && (
           <TouchableOpacity
             onPress={onPress}
-            style={StyleSheet.flatten([styles.wrapperIcon, { right: 0 }])}
+            style={createSxStyle(
+              {
+                right: 0,
+                style: [_styles.wrapperIcon, styles?.wrapperIcon]
+              },
+              theme
+            )}
           >
-            <View style={styles.icon}>
-              {React.cloneElement(suffix, {
-                color: colors.border,
-                ...suffix.props
+            <Box sx={sx?.icon} style={[_styles.icon, styles?.icon]}>
+              {React.cloneElement(endContent, {
+                color: colors.get('border'),
+                ...endContent.props
               })}
-            </View>
+            </Box>
           </TouchableOpacity>
         )}
-      </View>
-      {isError && textError && <TextError>{textError}</TextError>}
+      </Box>
+      {(error || helperText) && (
+        <HelperText
+          color={error ? 'error' : 'text.secondary'}
+          sx={sx?.helperText}
+          style={styles?.helperText}
+        >
+          {helperText}
+        </HelperText>
+      )}
 
-      <Modal visible={show} transparent>
-        <Box bg="modalMask" style={StyleSheet.flatten([styles.modal])}>
-          <Box
-            mx="auto"
-            width={Platform.select<DimensionValue>({
-              android: '100%',
-              ios: '100%',
-              default: width <= 450 ? '100%' : 450
-            })}
-          >
-            <Calendar
-              locale={locale}
-              backgroundColor={background}
-              selected={date.toISOString()}
-              onChange={onApplyDate}
-              onCancel={() => setShow(false)}
-              styles={{
-                layout: {
-                  padding: 12
-                },
-                container: {
-                  paddingTop: 16,
-                  borderRadius: borderRadius.modal
-                }
-              }}
-            />
-          </Box>
+      <Modal
+        visible={show}
+        transparent
+        closable={false}
+        onClose={() => setShow(false)}
+        sx={{
+          content: {
+            bg: 'transparent'
+          }
+        }}
+        style={createSxStyle(
+          {
+            sx: sx?.modal,
+            style: styles?.modal
+          },
+          theme
+        )}
+      >
+        <Box
+          mx="auto"
+          width={Platform.select<DimensionValue>({
+            android: '100%',
+            ios: '100%',
+            default: width <= 450 ? '100%' : 450
+          })}
+          sx={sx?.modalBody}
+          style={styles?.modalBody}
+        >
+          <Calendar
+            locale={locale}
+            backgroundColor={background}
+            selected={date.toISOString()}
+            onChange={onApplyDate}
+            onCancel={() => setShow(false)}
+            styles={{
+              layout: {
+                width: '100%',
+                padding: 12
+              },
+              container: {
+                paddingTop: 16,
+                borderRadius: 20
+              }
+            }}
+          />
         </Box>
       </Modal>
-    </View>
+    </Box>
   );
 };
 
-const styles = StyleSheet.create({
+const _styles = StyleSheet.create({
   relative: {
     position: 'relative'
   },
   wrapper: {
     justifyContent: 'center'
-  },
-  inputDate: {
-    paddingRight: 10,
-    paddingLeft: 10
   },
   wrapperIcon: {
     position: 'absolute',

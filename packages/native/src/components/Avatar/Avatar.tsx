@@ -57,23 +57,23 @@ export const Avatar: React.FC<AvatarProps> = ({
 
   const borderColorResolve = React.useMemo(() => {
     if (bordered) {
-      return borderColor ? colors[borderColor] ?? borderColor : colors.border;
+      return borderColor ? colors.get(borderColor) : colors.get('border');
     }
     return 'transparent';
   }, [colors, bordered, borderColor]);
 
   const _backgroundColor = React.useMemo(() => {
     if (bordered) {
-      return colors[backgroundColor] || backgroundColor || getRandomColor();
+      return colors.get(backgroundColor) || getRandomColor();
     }
     return src
-      ? colors.accents7
-      : colors[backgroundColor] || backgroundColor || getRandomColor();
+      ? colors.accents['7']
+      : colors.get(backgroundColor) || getRandomColor();
   }, [backgroundColor, colors, src, bordered]);
 
   const colorText = React.useMemo<string | undefined>(() => {
     return textColor
-      ? colors[textColor] || textColor
+      ? colors.get(textColor) || textColor
       : getColorForBackground(_backgroundColor);
   }, [textColor, colors, _backgroundColor]);
 

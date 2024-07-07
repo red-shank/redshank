@@ -1,9 +1,6 @@
 import { DimensionValue } from 'react-native';
 import { ThemeProps } from '../context/theme/types';
-import styleDictionary, {
-  resolverDictionaryKey,
-  SxProps
-} from './styleDictionary';
+import styleDictionary, { SxProps } from './styleDictionary';
 
 export function extractSxProps({
   otherProps,
@@ -51,39 +48,16 @@ export function createStyleFromSx({
   theme: ThemeProps;
   sx: SxProps;
 }) {
-  const { colors, fontSizes, spacing, fonts, zIndices } = theme;
-
-  return Object.entries(sx).reduce((acc, [keyProp, value]) => {
-    const key = resolverDictionaryKey[keyProp] ?? keyProp;
-    const propertyDictionary = styleDictionary.properties[keyProp];
+  return Object.entries(sx).reduce((acc, [key, value]) => {
+    const propertyDictionary = styleDictionary.properties[key];
     if (!propertyDictionary) return acc;
 
     if (!propertyDictionary?.resolve) {
       propertyDictionary.resolve = (_value: DimensionValue) => _value;
     }
 
-    if (propertyDictionary.type === 'color') {
-      const newValue = colors[value as keyof typeof colors] || value;
-      acc[key] = propertyDictionary.resolve(newValue, acc, theme);
-    } else if (propertyDictionary.type === 'number') {
-      let newValue = value;
-      if (key === 'zIndex') {
-        newValue = zIndices[value as keyof typeof zIndices];
-      } else if (!isNaN(Number(value))) {
-        newValue = Number(value) * spacing;
-      }
-      acc[key] = propertyDictionary.resolve(newValue, acc, theme);
-    } else if (propertyDictionary.type === 'string') {
-      let newValue: any = value;
-      if (key === 'fontFamily') {
-        newValue = fonts[value as keyof typeof fonts];
-      } else if (key === 'fontSize') {
-        newValue = fontSizes[value as keyof typeof fontSizes];
-      }
-      acc[key] = propertyDictionary.resolve(newValue, acc, theme);
-    } else {
-      acc[key] = propertyDictionary.resolve(value, acc, theme);
-    }
+    const newValue = propertyDictionary.resolve(value, acc, theme);
+    newValue !== undefined && (acc[key] = newValue);
 
     return acc;
   }, {});

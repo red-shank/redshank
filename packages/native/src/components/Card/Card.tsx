@@ -1,14 +1,10 @@
 import React from 'react';
-import { scale } from 'react-native-size-matters';
 import {
   Animated,
   StyleSheet,
-  View,
   Modal,
-  StatusBar,
-  Platform,
-  ScrollView,
-  RefreshControl
+  RefreshControl,
+  Platform
 } from 'react-native';
 
 import Body from './Body';
@@ -22,6 +18,9 @@ import { Icon } from '../Icon';
 import BaseComponent from './Base';
 import { useCardProvider, CardProvider } from './Context';
 import type { CardProps } from './types';
+import { Box } from '../Box';
+import createSxStyle, { getSxStyleAndProps } from '../../lib/sx';
+import { ScrollView } from '../ScrollView';
 
 interface ComponentExport {
   Header: typeof Header;
@@ -38,7 +37,7 @@ const CardRender: React.FC<CardProps> = React.memo(
     onClose,
     isExpandCard = Boolean(expandContent),
     isPressable = isExpandCard,
-    Component = isPressable ? Ripple : View,
+    Component = isPressable ? Ripple : Box,
     borderWidth = 1,
     borderColor = 'border',
     withBorder = !!borderColor,
@@ -46,12 +45,12 @@ const CardRender: React.FC<CardProps> = React.memo(
     rippleProps = {
       disableRipple: true
     },
-    componentStyle,
     style = {},
+    sx,
+    styles,
     ...restProps
   }) => {
-    const { colors, activeOpacity, borderRadius, zIndices, paddingSizes } =
-      useTheme();
+    const theme = useTheme();
     const {
       isOpen,
       toggle: toggleAction,
@@ -78,22 +77,35 @@ const CardRender: React.FC<CardProps> = React.memo(
       [expandContent, isPressable, onClose, toggleAction]
     );
 
+    const resolveProps = getSxStyleAndProps(
+      {
+        borderStyle: 'solid',
+        flexDirection: 'column',
+        position: 'relative',
+        sx: sx?.root,
+        ...sx,
+        ...restProps,
+        style: [style, styles?.root]
+      },
+      theme
+    );
+
     return (
       <>
-        <Animated.View style={StyleSheet.flatten([styles.wrapper, style])}>
+        <Animated.View style={resolveProps.style} {...resolveProps.props}>
           <BaseComponent
             Component={Component}
-            activeOpacity={activeOpacity}
+            activeOpacity={theme.activeOpacity}
+            rounded={isOpen ? 0 : theme.borderRadius.card}
+            overflow="hidden"
+            backgroundColor={theme.colors.get(background)}
+            sx={sx?.base}
             style={StyleSheet.flatten([
-              {
-                borderRadius: isOpen ? 0 : borderRadius.card,
-                backgroundColor: colors[background] || background
-              },
               withBorder && {
                 borderWidth,
-                borderColor: colors[borderColor] || borderColor
+                borderColor: theme.colors.get(borderColor)
               },
-              componentStyle
+              styles?.base
             ])}
             disableRipple={rippleProps?.disableRipple}
             disableTransform={rippleProps?.disableTransform}
@@ -104,52 +116,99 @@ const CardRender: React.FC<CardProps> = React.memo(
           </BaseComponent>
         </Animated.View>
 
-        <Modal visible={isOpen} animationType="fade">
-          <StatusBar hidden />
-          <BaseComponent
-            Component={ScrollView}
-            refreshControl={
-              <RefreshControl
-                style={{ opacity: 0 }}
-                refreshing={false}
-                children={<View />}
-                onRefresh={onInternalClose}
-              />
-            }
-            activeOpacity={activeOpacity}
-            style={StyleSheet.flatten([
-              styles.openCard,
-              {
-                backgroundColor: colors.background
-              }
-            ])}
-            disableRipple={true}
-            disableTransform={true}
-            {...restProps}
-            onPress={undefined}
+        <Modal
+          visible={isOpen}
+          animationType="fade"
+          presentationStyle="pageSheet"
+          style={createSxStyle(
+            {
+              sx: sx?.modal,
+              style: styles?.modal
+            },
+            theme
+          )}
+        >
+          <Box
+            flex={1}
+            sx={sx?.modalBody}
+            alignItems="center"
+            bg="background.main"
+            justifyContent="center"
+            style={styles?.modalBody}
           >
-            <Button
-              type="link"
-              appearance="text"
-              style={StyleSheet.flatten([
-                styles.closeButton,
-                { zIndex: zIndices.max }
-              ])}
-              onPress={onInternalClose}
+            <Box
+              height="100%"
+              width={theme.width}
+              sx={sx?.modalContent}
+              style={styles?.modalContent}
             >
-              <Icon name="close-circle" type="ionicon" color="text" size={37} />
-            </Button>
-            {!onlyExpandContent && (
-              <View style={StyleSheet.flatten([styles.openCard])}>
-                {children}
-              </View>
-            )}
-            {isOpen ? (
-              <Animated.View style={[{ padding: paddingSizes.card }]}>
-                {expandContent}
-              </Animated.View>
-            ) : null}
-          </BaseComponent>
+              {/*<StatusBar hidden />*/}
+              <BaseComponent
+                Component={ScrollView}
+                refreshControl={
+                  <RefreshControl
+                    style={{ opacity: 0 }}
+                    refreshing={false}
+                    children={<Box />}
+                    onRefresh={onInternalClose}
+                  />
+                }
+                activeOpacity={theme.activeOpacity}
+                bg="background"
+                disableRipple={true}
+                disableTransform={true}
+                sx={sx?.modalBase}
+                style={styles?.modalBase}
+                {...restProps}
+                onPress={undefined}
+              >
+                {Platform.select({
+                  ios: null,
+                  default: (
+                    <Button
+                      type="link"
+                      appearance="text"
+                      zIndex="max"
+                      position="absolute"
+                      top={20}
+                      right={20}
+                      onPress={onInternalClose}
+                      style={styles?.modalCloseButton}
+                      sx={sx?.modalCloseButton}
+                    >
+                      <Icon
+                        name="close-circle"
+                        type="ionicon"
+                        color="text"
+                        size={37}
+                        style={styles?.modalCloseIcon}
+                        sx={sx?.modalCloseIcon}
+                      />
+                    </Button>
+                  )
+                })}
+                {!onlyExpandContent && (
+                  <Box style={styles?.modalChildren} sx={sx?.modalChildren}>
+                    {children}
+                  </Box>
+                )}
+                {isOpen ? (
+                  <Animated.View
+                    style={createSxStyle(
+                      {
+                        padding: 2,
+                        sx: sx?.modalExpand,
+                        style: styles?.modalExpand
+                      },
+                      theme
+                    )}
+                  >
+                    {expandContent}
+                  </Animated.View>
+                ) : null}
+              </BaseComponent>
+            </Box>
+          </Box>
         </Modal>
       </>
     );
@@ -175,23 +234,3 @@ Card.Header = Header;
 Card.Body = Body;
 Card.Footer = Footer;
 Card.Divider = Divider;
-
-const styles = StyleSheet.create({
-  wrapper: {
-    borderStyle: 'solid',
-    flexDirection: 'column',
-    position: 'relative'
-  },
-  openCard: {
-    position: 'relative',
-    borderRadius: 0
-  },
-  closeButton: {
-    position: 'absolute',
-    top: Platform.select({
-      ios: scale(20),
-      default: scale(20)
-    }),
-    right: 20
-  }
-});

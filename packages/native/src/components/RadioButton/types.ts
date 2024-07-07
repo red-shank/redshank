@@ -1,18 +1,18 @@
 import { ReactNode } from 'react';
 import { SizeType } from '../../@types/input';
-import { ColorType } from '../../context/theme/types';
+import { ColorName } from '../../context/theme/types';
 import { SxProps } from '../../lib/styleDictionary';
 
 export type NumberStringValue = string | number;
 
 export interface RadioButtonProps {
   backgroundColors?: {
-    activeColor?: ColorType;
-    inactiveColor?: ColorType;
+    activeColor?: ColorName;
+    inactiveColor?: ColorName;
   };
   labelColors?: {
-    activeColor?: ColorType;
-    inactiveColor?: ColorType;
+    activeColor?: ColorName;
+    inactiveColor?: ColorName;
   };
   isActive?: boolean;
   startAdornment?: ReactNode;
@@ -25,7 +25,7 @@ export interface RadioButtonProps {
   sx?: SxProps;
 }
 
-export type RadioGroupProps = Partial<
+export type RadioGroupButtonProps = Partial<
   Pick<
     RadioButtonProps,
     'backgroundColors' | 'labelColors' | 'value' | 'size' | 'sx'
@@ -38,6 +38,6 @@ export type RadioGroupProps = Partial<
   defaultValue?: NumberStringValue;
   error?: boolean;
   onChange?: (key: NumberStringValue) => void;
-  textError?: string;
+  helperText?: string;
   itemSx?: SxProps;
 };

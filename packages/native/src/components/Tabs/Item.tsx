@@ -7,7 +7,7 @@ import { NumberStringValue, TabItemProps, TabsVariant } from './types';
 import { Box } from '../Box';
 import createSxStyle from '../../lib/sx';
 import { SxProps } from '../../lib/styleDictionary';
-import { SizeType } from '../../@types/input';
+import { ThemeProps } from '../../context';
 
 export function Item({
   onPress,
@@ -57,8 +57,11 @@ export function Item({
   const variantStyle = getVariantStyles({
     backgroundColors,
     isActive,
+    theme,
     labelColors
   })[variant];
+
+  const isUnderlined = variant === 'underlined';
 
   return (
     <TouchableOpacity
@@ -78,13 +81,13 @@ export function Item({
       <Box
         flex={1}
         gap={0.5}
-        p={paddingSize[size]}
         borderWidth={2}
         borderStyle="solid"
         alignItems="center"
         flexDirection="row"
         justifyContent="center"
         sx={variantStyle?.bg}
+        height={theme.sizes[size] - (isUnderlined ? 0 : 1.548 * theme.spacing)}
       >
         {startAdornment}
         <Text {...labelProps} sx={variantStyle?.label}>
@@ -92,19 +95,28 @@ export function Item({
         </Text>
         {endAdornment}
       </Box>
+      {isUnderlined && (
+        <Box
+          height={4}
+          width="100%"
+          position="absolute"
+          bottom={-2}
+          rounded={1}
+          bg={
+            isActive
+              ? backgroundColors?.activeColor || 'primary'
+              : backgroundColors?.inactiveColor || 'transparent'
+          }
+        />
+      )}
     </TouchableOpacity>
   );
 }
 
-const paddingSize: Record<SizeType, number> = {
-  large: 1.2,
-  middle: 1,
-  small: 0.1
-};
-
 const getVariantStyles: (
   props: Pick<TabItemProps, 'backgroundColors' | 'labelColors'> & {
     isActive: boolean;
+    theme: ThemeProps;
   }
 ) => Record<
   TabsVariant,
@@ -113,12 +125,12 @@ const getVariantStyles: (
     label: SxProps;
     container: SxProps;
   }
-> = ({ backgroundColors, isActive, labelColors }) => {
+> = ({ backgroundColors, isActive, theme, labelColors }) => {
   return {
     solid: {
       container: {},
       bg: {
-        borderRadius: 0.8,
+        borderRadius: theme.borderRadius.tab - 0.5,
         borderColor: isActive
           ? backgroundColors?.activeColor || 'primary'
           : backgroundColors?.inactiveColor || 'card',
@@ -134,14 +146,7 @@ const getVariantStyles: (
     },
     underlined: {
       container: {},
-      bg: {
-        borderLeftColor: 'transparent',
-        borderTopColor: 'transparent',
-        borderRightColor: 'transparent',
-        borderBottomColor: isActive
-          ? backgroundColors?.activeColor || 'primary'
-          : backgroundColors?.inactiveColor || 'transparent'
-      },
+      bg: {},
       label: {
         color: isActive
           ? labelColors?.activeColor || 'primary'

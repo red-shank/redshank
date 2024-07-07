@@ -1,30 +1,39 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 
 import useTheme from '../../context/theme/useTheme';
 import { useCardProvider } from './Context';
 import type { CardBodyProps } from './types';
+import { Box } from '../Box';
+import createSxStyle from '../../lib/sx';
 
 const Body: React.FC<CardBodyProps> = ({
   children,
-  Component = View,
+  Component = Box,
   withPadding,
+  sx,
   style = {},
   ...restProps
 }) => {
   const { isOpen } = useCardProvider();
-  const { activeOpacity, paddingSizes } = useTheme();
+  const theme = useTheme();
 
   return (
     <Component
-      activeOpacity={activeOpacity}
-      style={StyleSheet.flatten([
-        styles.wrapper,
+      activeOpacity={theme.activeOpacity}
+      style={createSxStyle(
         {
-          padding: isOpen || !withPadding ? 0 : paddingSizes.card
+          sx,
+          style: StyleSheet.flatten([
+            styles.wrapper,
+            {
+              padding: isOpen || !withPadding ? 0 : 16
+            },
+            style
+          ])
         },
-        style
-      ])}
+        theme
+      )}
       {...restProps}
     >
       {children}

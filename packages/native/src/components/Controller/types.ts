@@ -1,9 +1,10 @@
 import type { StyleProp, ViewStyle } from 'react-native';
-import type { ColorType } from '../../context/theme/types';
+import type { ColorName } from '../../context/theme/types';
+import { SizeType } from '../../@types/input';
 
 export interface ControllerProps {
-  borderColor?: ColorType;
-  color?: ColorType;
+  borderColor?: ColorName;
+  color?: ColorName;
   error?: boolean;
   max?: number;
   maxOverflow?: () => void;
@@ -16,4 +17,5 @@ export interface ControllerProps {
   textError?: string;
   value?: number;
   width?: number;
+  size?: SizeType;
 }

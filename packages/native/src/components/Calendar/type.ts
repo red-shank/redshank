@@ -1,5 +1,5 @@
 import { StyleProp, ViewStyle } from 'react-native';
-import { ColorType } from '../../context/theme/types';
+import { ColorName } from '../../context/theme/types';
 
 import { MonthProps } from './components/PanelMonth';
 import { SxProps } from '../../lib/styleDictionary';
@@ -31,7 +31,7 @@ export interface LocaleKeys {
 }
 
 export interface CommonCalendarProps {
-  backgroundColor?: ColorType;
+  backgroundColor?: ColorName;
   cancelText?: string;
   defaultSelected?: string;
   disabled?: boolean;

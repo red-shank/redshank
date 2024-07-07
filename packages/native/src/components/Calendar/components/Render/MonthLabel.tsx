@@ -1,11 +1,11 @@
 import React from 'react';
-import { Animated, Easing, StyleSheet, View } from 'react-native';
+import { Animated, Easing } from 'react-native';
 import { Title } from '../../../Title';
-import useTheme from '../../../../context/theme/useTheme';
 import { useCalendarContext } from '../../context/calendar';
 import { Button, ButtonType } from '../../../Button';
 import { Icon } from '../../../Icon';
 import { useCalendarMonthContext } from '../../context/CalendarMonth';
+import { Box } from '../../../Box';
 
 interface MonthLabelProps {}
 
@@ -17,7 +17,6 @@ const buttonProps = {
 export default function MonthLabel({}: MonthLabelProps) {
   const rotateAnimation = React.useRef(new Animated.Value(0)).current;
   const fadeAnimation = React.useRef(new Animated.Value(0)).current;
-  const { marginSizes } = useTheme();
   const { locale } = useCalendarContext();
   const {
     onPrevMonth,
@@ -56,13 +55,13 @@ export default function MonthLabel({}: MonthLabelProps) {
   }, [fadeAnimation]);
 
   return (
-    <View
-      style={StyleSheet.flatten([
-        style.wrapper,
-        {
-          marginBottom: marginSizes.sm
-        }
-      ])}
+    <Box
+      mb={1}
+      gap={1.5}
+      width="100%"
+      flexDirection="row"
+      alignItems="center"
+      justifyContent="space-between"
     >
       <Button
         {...buttonProps}
@@ -88,7 +87,12 @@ export default function MonthLabel({}: MonthLabelProps) {
       </Button>
 
       {!openYearList && (
-        <View style={style.actions}>
+        <Box
+          gap={1}
+          flexDirection="row"
+          alignItems="center"
+          justifyContent="flex-end"
+        >
           <Button
             {...buttonProps}
             onPress={onPrevMonth}
@@ -103,29 +107,8 @@ export default function MonthLabel({}: MonthLabelProps) {
               <Icon name="right" color="primary" type="antdesign" size={18} />
             }
           />
-        </View>
+        </Box>
       )}
-    </View>
+    </Box>
   );
 }
-
-const style = StyleSheet.create({
-  wrapper: {
-    gap: 12,
-    width: '100%',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between'
-  },
-  title: {
-    gap: 8,
-    flexDirection: 'row',
-    alignItems: 'center'
-  },
-  actions: {
-    gap: 8,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'flex-end'
-  }
-});

@@ -1,7 +1,8 @@
 import { Component, FunctionComponent } from 'react';
 import { TextInputProps, StyleProp, ViewStyle } from 'react-native';
 import { SizeType } from '../../@types/input';
-import { ColorType } from '../../context/theme/types';
+import { ColorName } from '../../context/theme/types';
+import { SxProps } from '../../lib/styleDictionary';
 
 export type KeyboardType =
   | 'password'
@@ -21,21 +22,39 @@ export type KeyboardTypeIOS =
 export type KeyboardTypeAndroid = 'visible-password';
 export type InputTypes = KeyboardType | KeyboardTypeAndroid | KeyboardTypeIOS;
 
-export interface InputProps extends Omit<TextInputProps, 'type' | 'onChange'> {
-  background?: ColorType;
-  borderInputColor?: ColorType;
-  color?: ColorType;
-  isDisabled?: boolean;
-  error?: boolean;
-  onChange?: (v: any) => void;
-  placeholderColor?: ColorType;
-  prefix?: JSX.Element;
-  showIcon?: boolean;
-  size?: SizeType;
-  suffix?: JSX.Element;
-  textError?: string;
-  type?: InputTypes;
-  Component?: typeof Component | FunctionComponent;
-  withMarginBottom?: boolean;
-  wrapperStyle?: StyleProp<ViewStyle>;
-}
+export type ShapeInput = 'square' | 'rounded' | 'circle';
+
+export type InputProps = Omit<TextInputProps, 'type' | 'onChange'> &
+  SxProps & {
+    isDisabled?: boolean;
+    error?: boolean;
+    onChange?: (v: any) => void;
+    placeholderColor?: ColorName;
+    startContent?: JSX.Element;
+    showIcon?: boolean;
+    size?: SizeType;
+    endContent?: JSX.Element;
+    helperText?: string;
+    type?: InputTypes;
+    shape?: ShapeInput;
+    Component?: typeof Component | FunctionComponent;
+    withMarginBottom?: boolean;
+    sx?: SxProps & {
+      root?: SxProps;
+      input?: SxProps;
+      wrapperIcon?: SxProps;
+      start?: SxProps;
+      end?: SxProps;
+      helperText?: SxProps;
+      wrapper?: SxProps;
+    };
+    styles?: {
+      root?: StyleProp<ViewStyle>;
+      input?: StyleProp<ViewStyle>;
+      wrapperIcon?: StyleProp<ViewStyle>;
+      start?: StyleProp<ViewStyle>;
+      end?: StyleProp<ViewStyle>;
+      helperText?: StyleProp<ViewStyle>;
+      wrapper?: StyleProp<ViewStyle>;
+    };
+  };

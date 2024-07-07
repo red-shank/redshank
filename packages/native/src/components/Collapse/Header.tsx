@@ -100,8 +100,8 @@ const Header: React.FC<
         borderColor: borderColor,
         backgroundColor: headerColor,
         borderTopWidth: isFirstElement || borderless ? 0 : 1,
-        borderTopRadius: isFirstElement ? 1 : 0,
-        borderBottomRadius: isLastElement ? 1 : 0
+        roundedTop: isFirstElement ? 1 : 0,
+        roundedBottom: isLastElement ? 1 : 0
       }}
     >
       <>
