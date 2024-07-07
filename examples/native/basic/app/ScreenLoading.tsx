@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 import {
   Title,
   Text,
@@ -6,8 +6,8 @@ import {
   ScreenLoadingProvider,
   Box,
   useScreenLoading,
-  LoadingComponentProps,
-} from "@redshank/native";
+  LoadingComponentProps
+} from '@redshank/native';
 
 const App = () => {
   const { onVisible } = useScreenLoading();
@@ -22,9 +22,7 @@ const App = () => {
 // Set this provider before React Navigation
 const ScreenLoading = () => {
   return (
-    <ScreenLoadingProvider
-      LoadingComponent={LoadingScreen}
-    >
+    <ScreenLoadingProvider LoadingComponent={LoadingScreen}>
       <App />
     </ScreenLoadingProvider>
   );

@@ -76,25 +76,86 @@ When requiring users to interact with the application, but without jumping to a 
 #### Modal
 Api props extends from [Modal](https://reactnative.dev/docs/modal)
 
-| Attribute                 | Type                            | Accepted values           | Description                                         | Default                                          |
-|---------------------------|---------------------------------|---------------------------|-----------------------------------------------------|--------------------------------------------------|
-| **animationType**         | `Enum`                          | `fade`                    | `slide`                                             | `none`                                           | Change background color of the input                | `inputColor`                            |
-| **buttonCloseStyle**      | `object`                        | `StyleProp<ViewStyle>`    | Style for close button                              | -                                                |
-| **children**              | `ReactNode`                     | `Component` `JSX.ELement` | Content for show in the modal                       | -                                                |
-| **closable**              | `boolean`                       | `true` `false`            | Show or hidden close button                         | `false`                                          |
-| **closeIconProps**        | `object`                        | `IconProps`               | Props for Icon close, change name or type icon      | -                                                |
-| **contentContainerStyle** | `object`                        | `StyleProp<ViewStyle>`    | Style for scrollview in modal                       | -                                                |
-| **contentStyle**          | `object`                        | `StyleProp<ViewStyle>`    | Style of the scrollView                             | -                                                |
-| **extra**                 | `ReactNode` `JSX.Element`       | `Component`               | Extra content in bottom modal                       | -                                                |
-| **fullScreen**            | `boolean`                       | `true` `false`            | Show content in full screen                         | `false`                                          |
-| **hiddenBar**             | `boolean`                       | `true` `false`            | Show or hidden statusbar in mobiles                 | `false`                                          |
-| **maskClosable**          | `boolean`                       | `true` `false`            | Allow close modal when press outside modal          | `false`                                          |
-| **maskComponent**         | `Component` `FunctionComponent` | `JSX.Element` `Component` | Change component mask modal                         | `View` if `maskClosable` then `TouchableOpacity` |
-| **maskStyle**             | `object`                        | `StyleProp<ViewStyle>`    | Style of the mask component                         | -                                                |
-| **onClose**               | `function`                      | `() => void`              | Required function for close modal                   | -                                                |
-| **position**              | `PositionType`                  | `top` `center` `bottom`   | Position of the modal, when `fullScreen` is `false` | `center`                                         |
-| **scrollable**            | `boolean`                       | `true` `false`            | Can scroll in modal content                         | `false`                                          |
-| **visible**               | `boolean`                       | `true` `false`            | Required controller show or hidden modal            | -                                                |
+| Attribute         | Type                            | Accepted values                               | Description                                         | Default                                         |
+|-------------------|---------------------------------|-----------------------------------------------|-----------------------------------------------------|-------------------------------------------------|
+| **animationType** | `Enum`                          | `fade`                                        | `slide`                                             | `none`                                          | Change background color of the input                | `inputColor`                            |
+| **children**      | `ReactNode`                     | `Component` `JSX.ELement`                     | Content for show in the modal                       | -                                               |
+| **closable**      | `boolean`                       | `true` `false`                                | Show or hidden close button                         | `false`                                         |
+| **extra**         | `ReactNode` `JSX.Element`       | `Component`                                   | Extra content in bottom modal                       | -                                               |
+| **fullScreen**    | `boolean`                       | `true` `false`                                | Show content in full screen                         | `false`                                         |
+| **hiddenBar**     | `boolean`                       | `true` `false`                                | Show or hidden statusbar in mobiles                 | `false`                                         |
+| **statusHeight**  | `Number`                        | `Int`                                         | Status height for not render content here           | `automatic`                                     |
+| **maskClosable**  | `boolean`                       | `true` `false`                                | Allow close modal when press outside modal          | `false`                                         |
+| **maskComponent** | `Component` `FunctionComponent` | `JSX.Element` `Component`                     | Change component mask modal                         | `Box` if `maskClosable` then `TouchableOpacity` |
+| **onClose**       | `function`                      | `() => void`                                  | Required function for close modal                   | -                                               |
+| **position**      | `PositionType`                  | `top` `center` `bottom`                       | Position of the modal, when `fullScreen` is `false` | `center`                                        |
+| **scrollable**    | `boolean`                       | `true` `false`                                | Can scroll in modal content                         | `false`                                         |
+| **visible**       | `boolean`                       | `true` `false`                                | Required controller show or hidden modal            | -                                               |
+| **sx**            | `object`                        | [Sx customization](#sx-customization)         | Sx props for components                             |                                                 |
+| **styles**        | `object`                        | [Styles customization](#styles-customization) | Styles props for components                         |                                                 |
+
+<Spacer y={2} />
+
+### Sx Customization
+
+More info about `SxProps` in [The sx prop](/docs/the-sx-prop)
+
+```ts
+type Sx = {
+  root?: SxProps;
+  touchable?: SxProps;
+  thumb?: SxProps;
+  toggle?: SxProps;
+  helperText?: SxProps;
+};
+```
+
+<Spacer y={2} />
+
+### Styles Customization
+
+More info about `StyleProp` in [styles](https://reactnative.dev/docs/style)
+
+```ts
+type Styles = {
+  root?: StyleProp<ViewStyle>;
+  touchable?: StyleProp<ViewStyle>;
+  thumb?: StyleProp<ViewStyle>;
+  toggle?: StyleProp<ViewStyle>;
+  helperText?: StyleProp<ViewStyle>;
+}
+```
+
+<Spacer y={2} />
+
+#### Modal.Header
+Api props extends from [Box](/docs/components/box)
+
+| Attribute  | Type     | Accepted values                                    | Description                 | Default |
+|------------|----------|----------------------------------------------------|-----------------------------|---------|
+| **sx**     | `object` | [Sx props](/docs/the-sx-prop)                      | Sx props for components     |         |
+| **styles** | `object` | [Styles props](https://reactnative.dev/docs/style) | Styles props for components |         |
+
+<Spacer y={2} />
+
+#### Modal.Content
+Api props extends from [Box](/docs/components/box)
+
+| Attribute     | Type                            | Accepted values                                    | Description                 | Default |
+|---------------|---------------------------------|----------------------------------------------------|-----------------------------|---------|
+| **Component** | `Component` `FunctionComponent` | `JSX.Element` `Component`                          | Change component base       | `Box`   |
+| **sx**        | `object`                        | [Sx props](/docs/the-sx-prop)                      | Sx props for components     |         |
+| **styles**    | `object`                        | [Styles props](https://reactnative.dev/docs/style) | Styles props for components |         |
+
+<Spacer y={2} />
+
+#### Modal.Footer
+Api props extends from [Box](/docs/components/box)
+
+| Attribute     | Type                            | Accepted values                                    | Description                 | Default |
+|---------------|---------------------------------|----------------------------------------------------|-----------------------------|---------|
+| **sx**        | `object`                        | [Sx props](/docs/the-sx-prop)                      | Sx props for components     |         |
+| **styles**    | `object`                        | [Styles props](https://reactnative.dev/docs/style) | Styles props for components |         |
 
 <Spacer y={2} />
 

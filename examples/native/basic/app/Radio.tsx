@@ -1,6 +1,6 @@
-import React from "react";
-import { StyleSheet, View } from "react-native";
-import { Title, Radio, Box, RadioButton, ScrollView } from "@redshank/native";
+import React from 'react';
+import { StyleSheet, View } from 'react-native';
+import { Title, Radio, Box, RadioButton, ScrollView } from '@redshank/native';
 
 const RadioScreen = () => {
   return (
@@ -11,7 +11,8 @@ const RadioScreen = () => {
           <Radio label="No Select" value="hi" />
           <Radio isActive label="Select" value="hi" />
           <Radio type="square" label="Select" value="hi" />
-          <Radio type="square" isActive label="Select" value="hi" />
+          <Radio type="rounded" label="Select" value="hi" />
+          <Radio type="circle" isActive label="Select" value="hi" />
         </Box>
 
         <View>
@@ -34,7 +35,7 @@ const RadioScreen = () => {
           <Title level={3}>Group Radio</Title>
           <Radio.Group
             error
-            textError="Error description"
+            helperText="Error description"
             defaultValue="no-selected"
           >
             <Radio label="No Select" value="no-selected" />
@@ -64,17 +65,17 @@ const RadioScreen = () => {
             defaultValue="opt-2"
             options={[
               {
-                label: "Option 1",
-                value: "opt-1",
+                label: 'Option 1',
+                value: 'opt-1'
               },
               {
-                label: "Option 2",
-                value: "opt-2",
+                label: 'Option 2',
+                value: 'opt-2'
               },
               {
-                label: "Option 3",
-                value: "opt-3",
-              },
+                label: 'Option 3',
+                value: 'opt-3'
+              }
             ]}
           />
         </View>
@@ -88,18 +89,18 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 10,
-    height: "100%",
+    height: '100%'
   },
   headTitle: {
     paddingLeft: 20,
     paddingRight: 20,
     borderWidth: 1,
-    borderColor: "transparent",
-    borderBottomColor: "rgba(100, 100, 100, .3)",
+    borderColor: 'transparent',
+    borderBottomColor: 'rgba(100, 100, 100, .3)'
   },
   space: {
-    marginTop: 50,
-  },
+    marginTop: 50
+  }
 });
 
 export default RadioScreen;

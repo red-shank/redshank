@@ -1,6 +1,13 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import { Input, Title, InputScrollView, Box, Icon } from '@redshank/native';
+import {
+  Input,
+  Title,
+  InputScrollView,
+  Box,
+  Icon,
+  Divider
+} from '@redshank/native';
 
 const { TextArea } = Input;
 
@@ -8,7 +15,7 @@ const InputScreen = () => {
   return (
     <InputScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.container}>
-        <View>
+        <Box gap={2}>
           <Title level={3}>Default Input</Title>
           <Box gap={1}>
             <Input placeholder="Default input" />
@@ -16,15 +23,18 @@ const InputScreen = () => {
             <Input placeholder="Small input" size="small" />
             <Input placeholder="Middle input" size="middle" />
             <Input placeholder="Large input" size="large" />
+            <Input placeholder="Large input" size="xLarge" />
+
+            <Divider my={2} />
             <Input
               placeholder="Email or username"
-              prefix={<Icon name="mail" type="antdesign" />}
+              startContent={<Icon name="mail" type="antdesign" />}
             />
             <Input type="password" placeholder="Insert password" />
             <Input
               placeholder="Prefix and Suffix"
-              prefix={<Icon name="lock" type="antdesign" />}
-              suffix={<Icon name="mail" type="antdesign" />}
+              startContent={<Icon name="lock" type="antdesign" />}
+              endContent={<Icon name="mail" type="antdesign" />}
             />
           </Box>
 
@@ -41,8 +51,15 @@ const InputScreen = () => {
             <Input
               placeholder="Placeholder color #A569BD"
               placeholderColor="#A569BD"
-              borderInputColor="#A569BD"
+              borderColor="#A569BD"
             />
+          </Box>
+
+          <Title level={3}>Placeholder color</Title>
+          <Box gap={1}>
+            <Input shape="square" placeholder="Placeholder color Primary" />
+            <Input shape="rounded" placeholder="Placeholder color Primary" />
+            <Input shape="circle" placeholder="Placeholder color Primary" />
           </Box>
 
           <Title level={3}>Error input</Title>
@@ -52,25 +69,21 @@ const InputScreen = () => {
             placeholder="Placeholder color Primary"
           />
 
-          <View style={{ height: 20 }} />
-
           <Title level={5}>With message error</Title>
           <Input
             error
-            textError="This is required field"
+            helperText="This is required field"
             defaultValue="Kevin R"
             placeholder="Placeholder color Primary"
           />
-
-          <View style={{ height: 20 }} />
-        </View>
+        </Box>
         <View>
           <Title level={3}>Input Number</Title>
           <Box gap={1}>
             <Input type="numeric" placeholder="Insert only numbers" />
             <Input
               error
-              textError="This is required field"
+              helperText="This is required field"
               type="numeric"
               placeholder="Insert only numbers"
             />
@@ -101,18 +114,18 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 10,
-    height: '100%',
+    height: '100%'
   },
   headTitle: {
     paddingLeft: 20,
     paddingRight: 20,
     borderWidth: 1,
     borderColor: 'transparent',
-    borderBottomColor: 'rgba(100, 100, 100, .3)',
+    borderBottomColor: 'rgba(100, 100, 100, .3)'
   },
   space: {
-    marginTop: 50,
-  },
+    marginTop: 50
+  }
 });
 
 export default React.memo(InputScreen);

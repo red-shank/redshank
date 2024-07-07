@@ -6,7 +6,7 @@ export const isLight = (color: string, lumi = 0.7) => {
 };
 
 type Colors = {
-  [key: string]: string;
+  [key: string]: string | Colors;
 };
 
 const NAMES = {
@@ -49,6 +49,14 @@ const layoutNames = [
 ];
 const hightlighNames = ['link', 'selection', 'code', 'hover'];
 
+// @ts-ignore
+const getColorsMap = (name: string, value: string | Colors) => {
+  if (typeof value === 'string') return [{ name, value }];
+  return Object.entries(value)
+    .map(([key, val]) => getColorsMap(`${name}.${key}`, val))
+    .flat();
+};
+
 export default function processColor(colors: Colors) {
   const output: OutputColors[] = Object.values(NAMES).map((categoryName) => {
     const sectionOutput: OutputColors = {
@@ -58,73 +66,37 @@ export default function processColor(colors: Colors) {
 
     Object.entries(colors).forEach(([name, color]) => {
       if (categoryName === NAMES.Brand && brandNames.includes(name)) {
-        sectionOutput.colors.push({
-          name,
-          value: color
-        });
+        sectionOutput.colors.push(...getColorsMap(name, color));
       } else if (categoryName === NAMES.Layout && layoutNames.includes(name)) {
-        sectionOutput.colors.push({
-          name,
-          value: color
-        });
+        sectionOutput.colors.push(...getColorsMap(name, color));
       } else if (categoryName === NAMES.Blue && name.includes('blue')) {
-        sectionOutput.colors.push({
-          name,
-          value: color
-        });
+        sectionOutput.colors.push(...getColorsMap(name, color));
       } else if (categoryName === NAMES.Purple && name.includes('purple')) {
-        sectionOutput.colors.push({
-          name,
-          value: color
-        });
+        sectionOutput.colors.push(...getColorsMap(name, color));
       } else if (categoryName === NAMES.Green && name.includes('green')) {
-        sectionOutput.colors.push({
-          name,
-          value: color
-        });
+        sectionOutput.colors.push(...getColorsMap(name, color));
       } else if (categoryName === NAMES.Yellow && name.includes('yellow')) {
-        sectionOutput.colors.push({
-          name,
-          value: color
-        });
+        sectionOutput.colors.push(...getColorsMap(name, color));
       } else if (categoryName === NAMES.Red && name.includes('red')) {
-        sectionOutput.colors.push({
-          name,
-          value: color
-        });
+        sectionOutput.colors.push(...getColorsMap(name, color));
       } else if (categoryName === NAMES.Cyan && name.includes('cyan')) {
-        sectionOutput.colors.push({
-          name,
-          value: color
-        });
+        sectionOutput.colors.push(...getColorsMap(name, color));
       } else if (categoryName === NAMES.Pink && name.includes('pink')) {
-        sectionOutput.colors.push({
-          name,
-          value: color
-        });
+        sectionOutput.colors.push(...getColorsMap(name, color));
       } else if (categoryName === NAMES.Gray && name.includes('gray')) {
-        sectionOutput.colors.push({
-          name,
-          value: color
-        });
+        sectionOutput.colors.push(...getColorsMap(name, color));
       } else if (categoryName === NAMES.Accents && name.includes('accents')) {
-        sectionOutput.colors.push({
-          name,
-          value: color
-        });
+        sectionOutput.colors.push(...getColorsMap(name, color));
       } else if (
         categoryName === NAMES.Highlights &&
         hightlighNames.includes(name)
       ) {
-        sectionOutput.colors.push({
-          name,
-          value: color
-        });
+        sectionOutput.colors.push(...getColorsMap(name, color));
       }
     });
 
     return sectionOutput;
   });
 
-  return output;
+  return output.flat();
 }

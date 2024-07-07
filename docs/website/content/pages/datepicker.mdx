@@ -13,7 +13,7 @@ expo install @react-native-community/datetimepicker
 
 > **_NOTE:_**  Please added [dayjs](https://day.js.org/) to dependencies using `expo install dayjs` or `npm i dayjs`.
 
-<Spacer y={2}/>
+<Spacer y={2} />
 
 ### When To Use
 By clicking the input box, you can select a date from a popup calendar.
@@ -22,7 +22,7 @@ By clicking the input box, you can select a date from a popup calendar.
 import { DatePicker } from '@redshank/native';
 ```
 
-<Spacer y={2}/>
+<Spacer y={2} />
 
 ### Examples
 
@@ -49,7 +49,7 @@ import { DatePicker } from '@redshank/native';
 
 [//]  # (/>)
 
-<Spacer y={2}/>
+<Spacer y={2} />
 
 <Playground
   id="format"
@@ -59,7 +59,7 @@ import { DatePicker } from '@redshank/native';
   code={datePicker.format}
 />
 
-<Spacer y={2}/>
+<Spacer y={2} />
 
 
 <h4>Locales</h4>
@@ -68,29 +68,78 @@ You can change the language of the calendar by passing the `locales` prop.
   code={datePicker.locales}
 />
 
-<Spacer y={2}/>
+<Spacer y={2} />
 
 ### APIs
 
-<Spacer y={2}/>
+<Spacer y={2} />
 
 #### DatePicker Props
 Api props extends from [react-native-modal-datetime-picker](https://github.com/mmazzarolo/react-native-modal-datetime-picker)
 
-| Attribute            | Type            | Accepted values                          | Description                                                                    | Default      |
-|----------------------|-----------------|------------------------------------------|--------------------------------------------------------------------------------|--------------|
-| **background**       | `ThemeColor`    | [ThemeColor](/docs/default-theme)        | Background color of the element                                                | `inputColor` |
-| **borderInputColor** | `ThemeColor`    | [ThemeColor](/docs/default-theme)        | Select border color                                                            | `border`     |
-| **color**            | `ThemeColor`    | [ThemeColor](/docs/default-theme)        | Text color                                                                     | `accents2`   |
-| **defaultValue**     | `Date` `string` | `Date` `Text`                            | Default date in date instance or string with some format that format prop      | -            |
-| **display**          | `Enum`          | `spinner` `default` `inline`             | How the modal is displayed                                                     | `spinner`    |
-| **error**            | `boolean`       | `true` `false`                           | Show error variant                                                             | -            |
-| **format**           | `string`        | `Text`                                   | Date format for show in input and format default and value prop when is string | -            |
-| **onChange**         | `function`      | `(date: Date, dateText: string) => void` | On change function, pass to Date object and date text format                   | -            |
-| **placeholder**      | `string`        | `Text`                                   | Placeholder prop                                                               | -            |
-| **prefix**           | `ReactNode`     | `Icon`                                   | Prop for render element to start                                               | -            |
-| **size**             | `SizeType`      | `small` `middle` `large`                 | Size element                                                                   | `middle`     |
-| **suffix**           | `ReactNode`     | `Icon`                                   | Prop for render element to end                                                 | -            |
-| **textError**        | `string`        | `Text`                                   | Message of the error, set with error prop in `true`                            | -            |
-| **value**            | `string` `Date` | `Text` `Date`                            | Value prop for controlled element, if the value is string apply format prop    | -            |
-| **style**            | `object`        | `StyleProp<ViewStyle>`                   | Style for the wrapper element                                                  | -            |
+| Attribute            | Type                  | Accepted values                               | Description                                                                    | Default      |
+|----------------------|-----------------------|-----------------------------------------------|--------------------------------------------------------------------------------|--------------|
+| **background**       | `ThemeColor`          | [ThemeColor](/docs/default-theme)             | Background color of the element                                                | `inputColor` |
+| **borderColor**      | `ThemeColor`          | [ThemeColor](/docs/default-theme)             | Select border color                                                            | `border`     |
+| **color**            | `ThemeColor`          | [ThemeColor](/docs/default-theme)             | Text color                                                                     | `accents2`   |
+| **defaultValue**     | `Date` `string`       | `Date` `Text`                                 | Default date in date instance or string with some format that format prop      | -            |
+| **display**          | `Enum`                | `spinner` `default` `inline`                  | How the modal is displayed                                                     | `spinner`    |
+| **error**            | `boolean`             | `true` `false`                                | Show error variant                                                             | -            |
+| **format**           | `string`              | `Text`                                        | Date format for show in input and format default and value prop when is string | -            |
+| **isDisabled**       | `boolean`             | `true` `false`                                | Editable or Disabled input                                                     | -            |
+| **onChange**         | `function`            | `(date: Date, dateText: string) => void`      | On change function, pass to Date object and date text format                   | -            |
+| **locale**           | `string`              | `text`                                        | Language for display in calendar and format                                    | 'en'         |
+| **placeholder**      | `string`              | `Text` `string`                               | Placeholder text for the Input                                                 | -            |
+| **placeholderColor** | `ThemeColor` `string` | [ThemeColor](/docs/default-theme)             | Placeholder color for the Input                                                | `border`     |
+| **startContent**     | `ReactNode`           | `Icon`                                        | Prop for render element to start                                               | -            |
+| **size**             | `SizeType`            | `small` `middle` `large`                      | Size element                                                                   | `middle`     |
+| **shape**            | `ShapeType`           | `square` `rounded` `circle`                   | Rounded of the component                                                       | `rounded`    |
+| **endContent**       | `ReactNode`           | `Icon`                                        | Prop for render element to end                                                 | -            |
+| **helperText**       | `string`              | `Text`                                        | Message of the error, set with error prop in `true`                            | -            |
+| **value**            | `string` `Date`       | `Text` `Date`                                 | Value prop for controlled element, if the value is string apply format prop    | -            |
+| **sx**               | `object`              | [Sx customization](#sx-customization)         | Sx props for components                                                        |              |
+| **style**            | `object`              | `StyleProp<ViewStyle>`                        | Style for the wrapper element                                                  | -            |
+| **styles**           | `object`              | [Styles customization](#styles-customization) | Styles props for components                                                    |              |
+
+<Spacer y={2} />
+
+### Sx Customization
+
+More info about `SxProps` in [The sx prop](/docs/the-sx-prop)
+
+```ts
+type Sx = {
+  root?: SxProps;
+  container?: SxProps;
+  toggle?: SxProps;
+  wrapperIcon?: SxProps;
+  icon?: SxProps;
+  helperText?: SxProps;
+  text?: SxProps;
+  modal?: SxProps;
+  modalContainer?: SxProps;
+  modalBody?: SxProps;
+};
+```
+
+<Spacer y={2} />
+
+### Styles Customization
+
+More info about `StyleProp` in [styles](https://reactnative.dev/docs/style)
+
+```ts
+type Styles = {
+  root?: StyleProp<ViewStyle>;
+  container?: StyleProp<ViewStyle>;
+  toggle?: StyleProp<ViewStyle>;
+  wrapperIcon?: StyleProp<ViewStyle>;
+  icon?: StyleProp<ViewStyle>;
+  text?: StyleProp<ViewStyle>;
+  helperText?: StyleProp<ViewStyle>;
+  modal?: StyleProp<ViewStyle>;
+  modalContainer?: StyleProp<ViewStyle>;
+  modalBody?: StyleProp<ViewStyle>;
+}
+```
+<Spacer y={2} />

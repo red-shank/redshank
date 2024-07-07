@@ -75,7 +75,7 @@ const ButtonsScreen = () => {
               shape="circle"
               type="flat"
               size="small"
-              appearance="gray500"
+              appearance="gray.500"
               color="primary"
               textProps={{ style: { textTransform: 'uppercase' } }}
             >
@@ -97,7 +97,7 @@ const ButtonsScreen = () => {
             <Button
               type="flat"
               size="small"
-              appearance="gray500"
+              appearance="gray.500"
               color="primary"
               textProps={{ style: { textTransform: 'uppercase' } }}
             >
@@ -207,7 +207,11 @@ const ButtonsScreen = () => {
 
             <Button
               startContent={
-                <Icon color="yellow400" type="ant-design" name="smile-circle" />
+                <Icon
+                  color="yellow.400"
+                  type="ant-design"
+                  name="smile-circle"
+                />
               }
             >
               Icon

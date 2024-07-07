@@ -49,18 +49,21 @@ import { Select } from '@redshank/native';
 #### Select Props
 Api props extends from [RNPickerSelect](https://github.com/lawnstarter/react-native-picker-select)
 
-| Attribute            | Type           | Accepted values                   | Description                     | Default      |
-|----------------------|----------------|-----------------------------------|---------------------------------|--------------|
-| **background**       | `ThemeColor`   | [ThemeColor](/docs/default-theme) | Background color of the element | `inputColor` |
-| **borderInputColor** | `ThemeColor`   | [ThemeColor](/docs/default-theme) | Border color of the element     | `border`     |
-| **color**            | `ThemeColor`   | [ThemeColor](/docs/default-theme) | Color of the element selected   | `accents2`   |
-| **disabled**         | `boolean`      | `true` `false`                    | Disabled or enable component    | -            |
-| **error**            | `boolean`      | `true` `false`                    | Show error variant              | -            |
-| **items**            | `SelectItem[]` | [SelectItem](#selectitem)         | Required list of the options    | -            |
-| **onChange**         | `function`     | `(value, index) => void`          | On change function trigger      | -            |
-| **size**             | `SizeType`     | `small` `middle` `large`          | Size of the select input        | `middle`     |
-| **type**             | `RadioType`    | `circle` `square`                 | Circle or square variant        | `circle`     |
-| **value**            | `string`       | `Text`                            | Value of the select input       | -            |
+| Attribute       | Type           | Accepted values                               | Description                     | Default     |
+|-----------------|----------------|-----------------------------------------------|---------------------------------|-------------|
+| **background**  | `ThemeColor`   | [ThemeColor](/docs/default-theme)             | Background color of the element | `input`     |
+| **borderColor** | `ThemeColor`   | [ThemeColor](/docs/default-theme)             | Border color of the element     | `border`    |
+| **color**       | `ThemeColor`   | [ThemeColor](/docs/default-theme)             | Color of the element selected   | `accents.2` |
+| **isDisabled**  | `boolean`      | `true` `false`                                | Disabled or enable component    | -           |
+| **error**       | `boolean`      | `true` `false`                                | Show error variant              | -           |
+| **items**       | `SelectItem[]` | [SelectItem](#selectitem)                     | Required list of the options    | -           |
+| **onChange**    | `function`     | `(value, index) => void`                      | On change function trigger      | -           |
+| **size**        | `SizeType`     | `small` `middle` `large`                      | Size of the select input        | `middle`    |
+| **shape**       | `ShapeType`    | `square` `rounded` `circle`                   | Rounded for the element         | `rounded`   |
+| **type**        | `RadioType`    | `circle` `square`                             | Circle or square variant        | `circle`    |
+| **value**       | `string`       | `Text`                                        | Value of the select input       | -           |
+| **sx**          | `object`       | [Sx customization](#sx-customization)         | Sx props for components         |             |
+| **styles**      | `object`       | [Styles customization](#styles-customization) | Styles props for components     |             |
 
 <Spacer y={2} />
 
@@ -71,3 +74,43 @@ Api props extends from [RNPickerSelect](https://github.com/lawnstarter/react-nat
 | **key**   | `string` `number` | `Text` `Number` | Optional key for identify the option | -       |
 | **label** | `string`          | `Text`          | Text for show in the spinner         | -       |
 | **value** | `string`          | `Text`          | Value for the select element         | -       |
+
+
+<Spacer y={2} />
+
+### Sx Customization
+
+More info about `SxProps` in [The sx prop](/docs/the-sx-prop)
+
+```ts
+type Sx = {
+  root?: SxProps;
+  iosPickerItem?: SxProps;
+  inputAndroid?: SxProps;
+  inputIOS?: SxProps;
+  inputWeb?: SxProps;
+  modalViewMiddle?: SxProps;
+  touchableWrapper?: SxProps;
+  helperText?: SxProps;
+};
+```
+
+<Spacer y={2} />
+
+### Styles Customization
+
+More info about `StyleProp` in [styles](https://reactnative.dev/docs/style)
+
+```ts
+type Styles = {
+  root?: StyleProp<ViewStyle>;
+  iosPickerItem?: StyleProp<ViewStyle>;
+  touchableWrapper?: StyleProp<ViewStyle>;
+  inputAndroid?: StyleProp<ViewStyle>;
+  inputIOS?: StyleProp<ViewStyle>;
+  inputWeb?: StyleProp<ViewStyle>;
+  modalViewMiddle?: StyleProp<ViewStyle>;
+  helperText?: StyleProp<ViewStyle>;
+}
+```
+<Spacer y={2} />

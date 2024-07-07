@@ -46,16 +46,17 @@ The difference with the `confirm` modal dialog is that it's more lightweight tha
 #### PopConfirm
 Api props
 
-| Attribute      | Type        | Accepted values    | Description                                         | Default    |
-|----------------|-------------|--------------------|-----------------------------------------------------|------------|
-| **cancelText** | `string`    | `Text`             | Cancel text button                                  | `Cancel`   |
-| **children**   | `ReactNode` | `Component`        | Content of the modal, recommended `Header``Content` | -          |
-| **extra**      | `ReactNode` | `Component`        | Extra content for show bottom modal                 | -          |
-| **okText**     | `string`    | `Text`             | Ok text button                                      | `Continue` |
-| **onClose**    | `function`  | `() => void`       | Required function for close pop                     | -          |
-| **onOk**       | `function`  | `() => void`       | Optional function for continue button               | -          |
-| **type**       | `function`  | `default` `delete` | Optional function for continue button               | `default`  |
-| **visible**    | `boolean`   | `true` `false`     | Show or hidden pop                                  | `false`    |
+| Attribute      | Type        | Accepted values                               | Description                                         | Default    |
+|----------------|-------------|-----------------------------------------------|-----------------------------------------------------|------------|
+| **cancelText** | `string`    | `Text`                                        | Cancel text button                                  | `Cancel`   |
+| **children**   | `ReactNode` | `Component`                                   | Content of the modal, recommended `Header``Content` | -          |
+| **extra**      | `ReactNode` | `Component`                                   | Extra content for show bottom modal                 | -          |
+| **okText**     | `string`    | `Text`                                        | Ok text button                                      | `Continue` |
+| **onClose**    | `function`  | `() => void`                                  | Required function for close pop                     | -          |
+| **onOk**       | `function`  | `() => void`                                  | Optional function for continue button               | -          |
+| **type**       | `function`  | `default` `delete`                            | Optional function for continue button               | `default`  |
+| **visible**    | `boolean`   | `true` `false`                                | Show or hidden pop                                  | `false`    |
+| **actions**    | `array`     | (Button props)[/docs/components/button#props] | Props for actions to show                           | -          |
 
 <Spacer y={2} />
 
@@ -79,17 +80,4 @@ Content Api props
 | **children**   | `ReactNode` | `Component`            | Content of the pop                       | -       |
 | **style**      | `object`    | `StyleProp<ViewStyle>` | Style for wrapper element                | -       |
 | **withBorder** | `boolean`   | `true` `false`         | Show or hidden border top in the element | `false` |
-
-
-<Spacer y={2} />
-
-#### Footer
-Footer Api props
-
-| Attribute      | Type        | Accepted values        | Description                              | Default               |
-|----------------|-------------|------------------------|------------------------------------------|-----------------------|
-| **children**   | `ReactNode` | `Component`            | Content of the pop                       | -                     |
-| **noPadding**  | `boolean`   | `true` `false`         | Add or remove padding                    | `paddingSizes.md` `0` |
-| **style**      | `object`    | `StyleProp<ViewStyle>` | Style for wrapper element                | -                     |
-| **withBorder** | `boolean`   | `true` `false`         | Show or hidden border top in the element | `false`               |
 

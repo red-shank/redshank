@@ -7,12 +7,14 @@ import {
   Modal,
   Text,
   Box,
+  BottomSheet
 } from '@redshank/native';
 
 const { useModal } = Modal;
 
 const ModalScreen = () => {
   const [isFull, setFull] = useState(false);
+  const [bottomSheet, toggleBottomSheet] = useModal();
   const [visible, toggleModal] = useModal();
   const [visibleTop, toggleModalTop] = useModal();
   const [visibleBottom, toggleModalBottom] = useModal();
@@ -25,18 +27,50 @@ const ModalScreen = () => {
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.container}>
         <View>
+          <Title level={3}>Bottom Sheet</Title>
+          <Button onPress={toggleBottomSheet}>Open Bottom Sheet</Button>
+
+          <BottomSheet visible={bottomSheet} onClose={toggleBottomSheet}>
+            <Text>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. A
+              aliquid amet cum dolores eligendi, eos ex incidunt ipsum non
+              perferendis quas quia repellat repellendus rerum saepe soluta
+              voluptatibus voluptatum? Eum.
+            </Text>
+
+            <Text>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. A
+              aliquid amet cum dolores eligendi, eos ex incidunt ipsum non
+              perferendis quas quia repellat repellendus rerum saepe soluta
+              voluptatibus voluptatum? Eum.
+            </Text>
+
+            <Text>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. A
+              aliquid amet cum dolores eligendi, eos ex incidunt ipsum non
+              perferendis quas quia repellat repellendus rerum saepe soluta
+              voluptatibus voluptatum? Eum.
+            </Text>
+          </BottomSheet>
+        </View>
+
+        <View>
           <Title level={3}>Default Modal</Title>
           <Button onPress={toggleModal}>Open Modal</Button>
         </View>
 
         <Modal visible={visible} onClose={toggleModal}>
-          <Title>Welcome!</Title>
-          <Text>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus
-            aspernatur, autem cum error exercitationem explicabo illo neque
-            nihil non ratione sed unde voluptatibus. A consectetur eos error,
-            iusto nisi sapiente?
-          </Text>
+          <Modal.Header>
+            <Title level={3}>Welcome!</Title>
+          </Modal.Header>
+          <Modal.Content>
+            <Text>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              Accusamus aspernatur, autem cum error exercitationem explicabo
+              illo neque nihil non ratione sed unde voluptatibus. A consectetur
+              eos error, iusto nisi sapiente?
+            </Text>
+          </Modal.Content>
         </Modal>
         {/* END */}
 
@@ -48,18 +82,36 @@ const ModalScreen = () => {
           </Box>
         </View>
 
+        <Modal visible={visibleTop} position="top" onClose={toggleModalTop}>
+          <Modal.Header>
+            <Title level={3}>Top!</Title>
+          </Modal.Header>
+          <Modal.Content>
+            <Text>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              Accusamus aspernatur, autem cum error exercitationem explicabo
+              illo neque nihil non ratione sed unde voluptatibus. A consectetur
+              eos error, iusto nisi sapiente?
+            </Text>
+          </Modal.Content>
+        </Modal>
+
         <Modal
-          visible={visibleTop || visibleBottom}
-          position={visibleBottom ? 'bottom' : 'top'}
-          onClose={visibleBottom ? toggleModalBottom : toggleModalTop}
+          visible={visibleBottom}
+          position={'bottom'}
+          onClose={toggleModalBottom}
         >
-          <Title>Welcome!</Title>
-          <Text>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus
-            aspernatur, autem cum error exercitationem explicabo illo neque
-            nihil non ratione sed unde voluptatibus. A consectetur eos error,
-            iusto nisi sapiente?
-          </Text>
+          <Modal.Header>
+            <Title level={3}>Bottom!</Title>
+          </Modal.Header>
+          <Modal.Content>
+            <Text>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              Accusamus aspernatur, autem cum error exercitationem explicabo
+              illo neque nihil non ratione sed unde voluptatibus. A consectetur
+              eos error, iusto nisi sapiente?
+            </Text>
+          </Modal.Content>
         </Modal>
 
         <View>
@@ -79,74 +131,74 @@ const ModalScreen = () => {
           fullScreen={isFull}
           visible={visibleScroll}
           onClose={toggleModalScroll}
-          buttonCloseStyle={{ top: 0 }}
-          contentStyle={{
-            paddingVertical: isFull ? 50 : 20,
-          }}
         >
-          <Title>Welcome!</Title>
-          <Text>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus
-            aspernatur, autem cum error exercitationem explicabo illo neque
-            nihil non ratione sed unde voluptatibus. A consectetur eos error,
-            iusto nisi sapiente?
-          </Text>
-          <Text>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus
-            aspernatur, autem cum error exercitationem explicabo illo neque
-            nihil non ratione sed unde voluptatibus. A consectetur eos error,
-            iusto nisi sapiente?
-          </Text>
-          <Text>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus
-            aspernatur, autem cum error exercitationem explicabo illo neque
-            nihil non ratione sed unde voluptatibus. A consectetur eos error,
-            iusto nisi sapiente?
-          </Text>
-          <Text>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus
-            aspernatur, autem cum error exercitationem explicabo illo neque
-            nihil non ratione sed unde voluptatibus. A consectetur eos error,
-            iusto nisi sapiente?
-          </Text>
-          <Text>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus
-            aspernatur, autem cum error exercitationem explicabo illo neque
-            nihil non ratione sed unde voluptatibus. A consectetur eos error,
-            iusto nisi sapiente?
-          </Text>
-          <Text>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus
-            aspernatur, autem cum error exercitationem explicabo illo neque
-            nihil non ratione sed unde voluptatibus. A consectetur eos error,
-            iusto nisi sapiente?
-          </Text>
-          <Text>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus
-            aspernatur, autem cum error exercitationem explicabo illo neque
-            nihil non ratione sed unde voluptatibus. A consectetur eos error,
-            iusto nisi sapiente?
-          </Text>
-          <Text>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus
-            aspernatur, autem cum error exercitationem explicabo illo neque
-            nihil non ratione sed unde voluptatibus. A consectetur eos error,
-            iusto nisi sapiente?
-          </Text>
-          <Text>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus
-            aspernatur, autem cum error exercitationem explicabo illo neque
-            nihil non ratione sed unde voluptatibus. A consectetur eos error,
-            iusto nisi sapiente?
-          </Text>
-          <Text>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus
-            aspernatur, autem cum error exercitationem explicabo illo neque
-            nihil non ratione sed unde voluptatibus. A consectetur eos error,
-            iusto nisi sapiente?
-          </Text>
+          <Modal.Header>
+            <Title level={3}>Welcome!</Title>
+          </Modal.Header>
+          <Modal.Content>
+            <Text>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              Accusamus aspernatur, autem cum error exercitationem explicabo
+              illo neque nihil non ratione sed unde voluptatibus. A consectetur
+              eos error, iusto nisi sapiente?
+            </Text>
+            <Text>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              Accusamus aspernatur, autem cum error exercitationem explicabo
+              illo neque nihil non ratione sed unde voluptatibus. A consectetur
+              eos error, iusto nisi sapiente?
+            </Text>
+            <Text>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              Accusamus aspernatur, autem cum error exercitationem explicabo
+              illo neque nihil non ratione sed unde voluptatibus. A consectetur
+              eos error, iusto nisi sapiente?
+            </Text>
+            <Text>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              Accusamus aspernatur, autem cum error exercitationem explicabo
+              illo neque nihil non ratione sed unde voluptatibus. A consectetur
+              eos error, iusto nisi sapiente?
+            </Text>
+            <Text>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              Accusamus aspernatur, autem cum error exercitationem explicabo
+              illo neque nihil non ratione sed unde voluptatibus. A consectetur
+              eos error, iusto nisi sapiente?
+            </Text>
+            <Text>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              Accusamus aspernatur, autem cum error exercitationem explicabo
+              illo neque nihil non ratione sed unde voluptatibus. A consectetur
+              eos error, iusto nisi sapiente?
+            </Text>
+            <Text>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              Accusamus aspernatur, autem cum error exercitationem explicabo
+              illo neque nihil non ratione sed unde voluptatibus. A consectetur
+              eos error, iusto nisi sapiente?
+            </Text>
+            <Text>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              Accusamus aspernatur, autem cum error exercitationem explicabo
+              illo neque nihil non ratione sed unde voluptatibus. A consectetur
+              eos error, iusto nisi sapiente?
+            </Text>
+            <Text>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              Accusamus aspernatur, autem cum error exercitationem explicabo
+              illo neque nihil non ratione sed unde voluptatibus. A consectetur
+              eos error, iusto nisi sapiente?
+            </Text>
+            <Text>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              Accusamus aspernatur, autem cum error exercitationem explicabo
+              illo neque nihil non ratione sed unde voluptatibus. A consectetur
+              eos error, iusto nisi sapiente?
+            </Text>
 
-          <View style={{ height: isFull ? 100 : 50 }} />
+            <View style={{ height: isFull ? 100 : 50 }} />
+          </Modal.Content>
         </Modal>
 
         <View>
@@ -170,18 +222,21 @@ const ModalScreen = () => {
         <Modal
           hiddenBar
           fullScreen
+          closable
           visible={visibleFullScreen}
           onClose={toggleModalFullScreen}
         >
-          <View style={{ paddingVertical: 50, paddingHorizontal: 20 }}>
+          <Modal.Header>
             <Title>Welcome!</Title>
+          </Modal.Header>
+          <Modal.Content>
             <Text>
               Lorem ipsum dolor sit amet, consectetur adipisicing elit.
               Accusamus aspernatur, autem cum error exercitationem explicabo
               illo neque nihil non ratione sed unde voluptatibus. A consectetur
               eos error, iusto nisi sapiente?
             </Text>
-          </View>
+          </Modal.Content>
         </Modal>
         {/* END */}
 
@@ -191,13 +246,17 @@ const ModalScreen = () => {
         </View>
 
         <Modal maskClosable visible={visibleMask} onClose={toggleModalMask}>
-          <Title>Welcome!</Title>
-          <Text>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus
-            aspernatur, autem cum error exercitationem explicabo illo neque
-            nihil non ratione sed unde voluptatibus. A consectetur eos error,
-            iusto nisi sapiente?
-          </Text>
+          <Modal.Header>
+            <Title>Welcome!</Title>
+          </Modal.Header>
+          <Modal.Content>
+            <Text>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              Accusamus aspernatur, autem cum error exercitationem explicabo
+              illo neque nihil non ratione sed unde voluptatibus. A consectetur
+              eos error, iusto nisi sapiente?
+            </Text>
+          </Modal.Content>
         </Modal>
 
         {/* END */}
@@ -211,15 +270,23 @@ const ModalScreen = () => {
           position="bottom"
           visible={visibleExtra}
           onClose={toggleModalExtra}
-          extra={<Title>Extra content</Title>}
+          extra={
+            <Box my={2} p={3} rounded="modal" bg="modal">
+              <Title>Extra content</Title>
+            </Box>
+          }
         >
-          <Title>Welcome!</Title>
-          <Text>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus
-            aspernatur, autem cum error exercitationem explicabo illo neque
-            nihil non ratione sed unde voluptatibus. A consectetur eos error,
-            iusto nisi sapiente?
-          </Text>
+          <Modal.Header>
+            <Title>Welcome!</Title>
+          </Modal.Header>
+          <Modal.Content>
+            <Text>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              Accusamus aspernatur, autem cum error exercitationem explicabo
+              illo neque nihil non ratione sed unde voluptatibus. A consectetur
+              eos error, iusto nisi sapiente?
+            </Text>
+          </Modal.Content>
         </Modal>
         {/* END */}
       </View>
@@ -232,18 +299,18 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 10,
-    height: '100%',
+    height: '100%'
   },
   headTitle: {
     paddingLeft: 20,
     paddingRight: 20,
     borderWidth: 1,
     borderColor: 'transparent',
-    borderBottomColor: 'rgba(100, 100, 100, .3)',
+    borderBottomColor: 'rgba(100, 100, 100, .3)'
   },
   space: {
-    marginTop: 50,
-  },
+    marginTop: 50
+  }
 });
 
 export default ModalScreen;

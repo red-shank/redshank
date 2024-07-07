@@ -20,13 +20,13 @@ export const sizes = withThemeProvider(
 export const prefixSuffix = withThemeProvider(
   `<Input
             placeholder="Email or username"
-            prefix={<Icon name="mail" type="antdesign" />}
+            startContent={<Icon name="mail" type="antdesign" />}
           />
           <Input type="password" placeholder="Insert password" />
           <Input
             placeholder="Prefix and Suffix"
-            prefix={<Icon name="lock" type="antdesign" />}
-            suffix={<Icon name="mail" type="antdesign" />}
+            startContent={<Icon name="lock" type="antdesign" />}
+            endContent={<Icon name="mail" type="antdesign" />}
           />`,
   {
     package: ['Input', 'Icon']
@@ -37,15 +37,19 @@ export const errors = withThemeProvider(
   `<Input
               error
               placeholder="Placeholder color Primary"
-            />
+            />;
             <Box>
-              <Title level={5}>With message error</Title>
+              <Title level={5}>With message</Title>
               <Input
-                error
-                textError="This is required field"
+                helperText="This is helper text"
                 placeholder="Placeholder color Primary"
               />
-            </Box>`,
+              <Input
+                error
+                helperText="This is required field"
+                placeholder="Placeholder color Primary"
+              />
+            </Box>;`,
   {
     package: ['Input', 'Box', 'Title']
   }
@@ -56,7 +60,7 @@ export const number = withThemeProvider(
           <Input
             error
             type="numeric"
-            textError="This is required field"
+            helperText="This is required field"
             placeholder="Insert only numbers"
           />`,
   { package: ['Input'] }

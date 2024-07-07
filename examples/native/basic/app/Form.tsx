@@ -10,7 +10,8 @@ import {
   Radio,
   Checkbox,
   Switch,
-  Container
+  Container,
+  Select
 } from '@redshank/native';
 
 const { TextArea } = Input;
@@ -97,23 +98,23 @@ const FormScreen = () => {
             >
               <DatePicker />
             </Form.Item>
-            {/*<Form.Item
-            required
-            name="gender"
-            label="Gender"
-            rules={[{ required: true, message: 'Required field' }]}
-          >
-            <Select
-              items={[
-                { label: 'Male', value: 'male' },
-                { label: 'Female', value: 'female' },
-                {
-                  label: 'Other',
-                  value: 'other',
-                },
-              ]}
-            />
-          </Form.Item>*/}
+            <Form.Item
+              required
+              name="gender"
+              label="Gender"
+              rules={[{ message: 'Required field' }]}
+            >
+              <Select
+                items={[
+                  { label: 'Male', value: 'male' },
+                  { label: 'Female', value: 'female' },
+                  {
+                    label: 'Other',
+                    value: 'other'
+                  }
+                ]}
+              />
+            </Form.Item>
 
             <Form.Item
               required

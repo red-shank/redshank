@@ -125,6 +125,6 @@ export const custom = withThemeProvider(
           />`,
   {
     header,
-    package: ['Tabs', 'Title', 'Box', 'Text', 'Ripple', 'TabsVariant', 'SizeType']
+    package: ['Tabs', 'Title', 'Box', 'Text', 'Touchable', 'TabsVariant', 'SizeType']
   }
 );

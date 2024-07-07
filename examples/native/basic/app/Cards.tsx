@@ -1,5 +1,5 @@
-import React from "react";
-import { ScrollView, StyleSheet, View } from "react-native";
+import React from 'react';
+import { ScrollView, StyleSheet, View } from 'react-native';
 import {
   Card,
   Title,
@@ -7,8 +7,8 @@ import {
   Text,
   Button,
   Avatar,
-  Image,
-} from "@redshank/native";
+  Image
+} from '@redshank/native';
 
 const ExpandContent = () => (
   <View>
@@ -25,7 +25,6 @@ const ExpandContent = () => (
 );
 
 const CardScreen = () => {
-  const { borderRadius } = useTheme();
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.container}>
@@ -48,9 +47,8 @@ const CardScreen = () => {
           <Card.Body>
             <Image
               height={250}
-              style={{ borderRadius: borderRadius.card }}
               source={{
-                uri: "https://images.pexels.com/photos/7858126/pexels-photo-7858126.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+                uri: 'https://images.pexels.com/photos/7858126/pexels-photo-7858126.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
               }}
             />
           </Card.Body>
@@ -69,7 +67,7 @@ const CardScreen = () => {
           <Image
             style={{ height: 250 }}
             source={{
-              uri: "https://images.pexels.com/photos/17383711/pexels-photo-17383711/free-photo-of-fondo-de-pantalla-de-la-camara.jpeg?auto=compress&cs=tinysrgb&w=1600",
+              uri: 'https://images.pexels.com/photos/17383711/pexels-photo-17383711/free-photo-of-fondo-de-pantalla-de-la-camara.jpeg?auto=compress&cs=tinysrgb&w=1600'
             }}
           />
           <Card.Footer>
@@ -91,7 +89,7 @@ const CardScreen = () => {
           <Image
             style={{ height: 250 }}
             source={{
-              uri: "https://images.pexels.com/photos/16873016/pexels-photo-16873016/free-photo-of-camara-lente-nikon-mesa-negra.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+              uri: 'https://images.pexels.com/photos/16873016/pexels-photo-16873016/free-photo-of-camara-lente-nikon-mesa-negra.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
             }}
           />
           <Card.Footer>
@@ -113,7 +111,7 @@ const CardScreen = () => {
           <Image
             style={{ height: 250 }}
             source={{
-              uri: "https://images.pexels.com/photos/16873016/pexels-photo-16873016/free-photo-of-camara-lente-nikon-mesa-negra.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+              uri: 'https://images.pexels.com/photos/16873016/pexels-photo-16873016/free-photo-of-camara-lente-nikon-mesa-negra.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
             }}
           />
           <Card.Footer>
@@ -164,21 +162,21 @@ const CardScreen = () => {
 const styles = StyleSheet.create({
   view: {
     flex: 1,
-    padding: 20,
+    padding: 20
   },
   container: {
     flex: 1,
     padding: 10,
-    height: "100%",
+    height: '100%'
   },
   contentHead: {
     flex: 1,
-    alignItems: "center",
-    flexDirection: "row",
+    alignItems: 'center',
+    flexDirection: 'row'
   },
   card: {
-    marginBottom: 20,
-  },
+    marginBottom: 20
+  }
 });
 
 export default React.memo(CardScreen);

@@ -1,25 +1,24 @@
-import React from "react";
+import React from 'react';
 import {
   Tabs,
   Title,
   Text,
-  useTheme,
   Box,
   Ripple,
   ScrollView,
   TabsVariant,
-  Badge,
-} from "@redshank/native";
-import { SizeType } from "@redshank/native/src/@types/input";
+  Badge
+} from '@redshank/native';
+import { SizeType } from '@redshank/native/src/@types/input';
 
-const variants: TabsVariant[] = ["solid", "underlined", "bordered", "light"];
+const variants: TabsVariant[] = ['solid', 'underlined', 'bordered', 'light'];
 
-const sizes: SizeType[] = ["small", "middle", "large"];
+const sizes: SizeType[] = ['small', 'middle', 'large', 'xLarge'];
 
 const tabs = [
   {
-    key: "tab-1",
-    label: "Tab 1",
+    key: 'tab-1',
+    label: 'Tab 1',
     children: (
       <Box>
         <Title level={4}>Title here</Title>
@@ -30,22 +29,21 @@ const tabs = [
           reprehenderit sint.
         </Text>
       </Box>
-    ),
+    )
   },
   {
-    key: "tab-2",
-    label: "Tab 2",
-    children: <Text>Tab 2</Text>,
+    key: 'tab-2',
+    label: 'Tab 2',
+    children: <Text>Tab 2</Text>
   },
   {
-    key: "tab-3",
-    label: "Tab 3",
-    children: <Text>Tab 3</Text>,
-  },
+    key: 'tab-3',
+    label: 'Tab 3',
+    children: <Text>Tab 3</Text>
+  }
 ];
 
 const TabScreen = () => {
-  const { colors } = useTheme();
   return (
     <ScrollView contentContainerSx={{ p: 2 }}>
       <Title level={1}>Tabs Menu</Title>
@@ -79,7 +77,7 @@ const TabScreen = () => {
           endAdornment:
             index === 0 ? (
               <Badge content="1" size="small" color="white"></Badge>
-            ) : null,
+            ) : null
         }))}
       />
 
@@ -98,15 +96,13 @@ const TabScreen = () => {
               key={key}
               borderRadius={2}
               onPress={onPress}
-              backgroundColor={
-                isActive ? colors.primary : "rgba(100, 100, 100, .3)"
-              }
+              backgroundColor={isActive ? 'primary' : 'rgba(100, 100, 100, .3)'}
             >
               <Text
                 px={5}
                 align="center"
                 borderWidth={0}
-                color={isActive ? "white" : "text"}
+                color={isActive ? 'white' : 'text'}
                 borderBottomColor="rgba(100, 100, 100, .3)"
               >
                 {label}
@@ -117,7 +113,7 @@ const TabScreen = () => {
                 align="center"
                 fontWeight="bold"
                 textAlign="center"
-                color={isActive ? "white" : "text"}
+                color={isActive ? 'white' : 'text'}
               >
                 {key}
               </Text>

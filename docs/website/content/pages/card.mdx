@@ -61,21 +61,23 @@ import { Card } from '@redshank/native';
 #### Card
 Api props extends from [View](https://reactnative.dev/docs/view) or [Ripple](/docs/components/ripple#apis)
 
-| Attribute             | Type                  | Accepted values                   | Description                                                                                   | Default                           |
-|-----------------------|-----------------------|-----------------------------------|-----------------------------------------------------------------------------------------------|-----------------------------------|
-| **Component**         | `Component`           | React Component                   | Change the element base                                                                       | [Ripple](/docs/components/ripple) |
-| **background**        | `ThemeColor` `string` | [ThemeColor](/docs/default-theme) | Change background color                                                                       | `border`                          |
-| **borderWidth**       | `number`              | `Number`                          | When withBorder prop is true render width of the border in the card                           | -                                 |
-| **children**          | `ReactNode`           | `ReactNode`                       | Accessory as a child for the component, we suggest passing Header, Content or Footer elements | -                                 |
-| **expandContent**     | `ReactNode`           | `ReactNode`                       | Accessory for expand when user press the card                                                 | -                                 |
-| **isExpandCard**      | `boolean`             | `true` `false`                    | Active expand element with press the card                                                     | `!!expandContent`                 |
-| **isPressable**       | `boolean`             | `true` `false`                    | Active the animation effect when to press card                                                | `isExpandCard`                    |
-| **onlyExpandContent** | `boolean`             | `true` `false`                    | If it is true, it will only show the expandConstant when it is extended.                      | -                                 |
-| **onClose**           | `function`            | `(event: any) => void`            | Function that is executed after closing the expand content                                    | -                                 |
-| **rippleProps**       | `RippleProps`         | `object`                          | Props for ripple wrapper element                                                              | -                                 |
-| **withBorder**        | `boolean`             | `true` `false`                    | Show borders for the card                                                                     | `false`                           |
-| **style**             | `object`              | `StyleProp<ViewStyle>`            | Style for the wrapper card                                                                    | -                                 |
-| **Other Props**       | `any`                 | [Other props](#base-properties)   | Interactive props for element                                                                 | -                                 |
+| Attribute             | Type                  | Accepted values                               | Description                                                                                   | Default                           |
+|-----------------------|-----------------------|-----------------------------------------------|-----------------------------------------------------------------------------------------------|-----------------------------------|
+| **Component**         | `Component`           | React Component                               | Change the element base                                                                       | [Ripple](/docs/components/ripple) |
+| **background**        | `ThemeColor` `string` | [ThemeColor](/docs/default-theme)             | Change background color                                                                       | `border`                          |
+| **borderWidth**       | `number`              | `Number`                                      | When withBorder prop is true render width of the border in the card                           | -                                 |
+| **children**          | `ReactNode`           | `ReactNode`                                   | Accessory as a child for the component, we suggest passing Header, Content or Footer elements | -                                 |
+| **expandContent**     | `ReactNode`           | `ReactNode`                                   | Accessory for expand when user press the card                                                 | -                                 |
+| **isExpandCard**      | `boolean`             | `true` `false`                                | Active expand element with press the card                                                     | `!!expandContent`                 |
+| **isPressable**       | `boolean`             | `true` `false`                                | Active the animation effect when to press card                                                | `isExpandCard`                    |
+| **onlyExpandContent** | `boolean`             | `true` `false`                                | If it is true, it will only show the expandConstant when it is extended.                      | -                                 |
+| **onClose**           | `function`            | `(event: any) => void`                        | Function that is executed after closing the expand content                                    | -                                 |
+| **rippleProps**       | `RippleProps`         | `object`                                      | Props for ripple wrapper element                                                              | -                                 |
+| **withBorder**        | `boolean`             | `true` `false`                                | Show borders for the card                                                                     | `false`                           |
+| **style**             | `object`              | `StyleProp<ViewStyle>`                        | Style for the wrapper card                                                                    | -                                 |
+| **Other Props**       | `any`                 | [Other props](#base-properties)               | Interactive props for element                                                                 | -                                 |
+| **sx**                | `object`              | [Sx customization](#sx-customization)         | Sx props for components                                                                       |                                   |
+| **styles**            | `object`              | [Styles customization](#styles-customization) | Styles props for components                                                                   |                                   |
 
 <Spacer y={2} />
 
@@ -137,3 +139,46 @@ Api props for `Card.Divider` element
 <Spacer y={2} />
 
 <BaseProperties />
+
+<Spacer y={2}/>
+
+### Sx Customization
+
+More info about `SxProps` in [The sx prop](/docs/the-sx-prop)
+
+```ts
+type Sx = {
+  root?: SxProps;
+  base?: SxProps;
+  modal?: SxProps;
+  modalContent?: SxProps;
+  modalBody?: SxProps;
+  modalBase?: SxProps;
+  modalCloseButton?: SxProps;
+  modalCloseIcon?: SxProps;
+  modalChildren?: SxProps;
+  modalExpand?: SxProps;
+};
+```
+
+<Spacer y={2}/>
+
+### Styles Customization
+
+More info about `StyleProp` in [styles](https://reactnative.dev/docs/style)
+
+```ts
+type Styles = {
+  root?: StyleProp<ViewStyle>;
+  base?: StyleProp<ViewStyle>;
+  modal?: StyleProp<ViewStyle>;
+  modalContent?: StyleProp<ViewStyle>;
+  modalBody?: StyleProp<ViewStyle>;
+  modalBase?: StyleProp<ViewStyle>;
+  modalCloseButton?: StyleProp<ViewStyle>;
+  modalCloseIcon?: StyleProp<ViewStyle>;
+  modalChildren?: StyleProp<ViewStyle>;
+  modalExpand?: StyleProp<ViewStyle>;
+}
+```
+<Spacer y={2}/>

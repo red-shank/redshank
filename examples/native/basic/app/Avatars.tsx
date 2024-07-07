@@ -1,12 +1,12 @@
-import React from "react";
-import { StyleSheet, View } from "react-native";
+import React from 'react';
+import { StyleSheet, View } from 'react-native';
 import {
   Title,
   InputScrollView,
   Avatar,
   AvatarGroup,
-  Box,
-} from "@redshank/native";
+  Box
+} from '@redshank/native';
 
 const AvatarScreen = () => {
   return (
@@ -18,31 +18,31 @@ const AvatarScreen = () => {
             <AvatarGroup
               max={3}
               moreProps={{
-                backgroundColor: "primary",
+                backgroundColor: 'primary'
               }}
               items={[
                 {
-                  src: "https://i.imgur.com/bnip2HZ.png",
-                  borderColor: "primary",
+                  src: 'https://i.imgur.com/bnip2HZ.png',
+                  borderColor: 'primary'
                 },
                 {
-                  src: "https://i.imgur.com/bnip2HZ.png",
+                  src: 'https://i.imgur.com/bnip2HZ.png'
                 },
                 {
-                  src: "https://i.imgur.com/bnip2HZ.png",
+                  src: 'https://i.imgur.com/bnip2HZ.png'
                 },
                 {
-                  src: "https://i.imgur.com/bnip2HZ.png",
+                  src: 'https://i.imgur.com/bnip2HZ.png'
                 },
                 {
-                  src: "https://i.imgur.com/bnip2HZ.png",
+                  src: 'https://i.imgur.com/bnip2HZ.png'
                 },
                 {
-                  src: "https://i.imgur.com/bnip2HZ.png",
+                  src: 'https://i.imgur.com/bnip2HZ.png'
                 },
                 {
-                  src: "https://i.imgur.com/bnip2HZ.png",
-                },
+                  src: 'https://i.imgur.com/bnip2HZ.png'
+                }
               ]}
             />
 
@@ -52,40 +52,40 @@ const AvatarScreen = () => {
               bordered
               borderColor="background"
               moreProps={{
-                backgroundColor: "brandAlphaAvatarMore",
-                borderColor: "background",
-                textColor: "text",
+                backgroundColor: 'brandAlphaAvatarMore',
+                borderColor: 'background',
+                textColor: 'text',
                 textStyle: {
                   fontSize: 11,
-                  fontWeight: "bold",
-                },
+                  fontWeight: 'bold'
+                }
               }}
               items={[
                 {
-                  src: "https://i.imgur.com/bnip2HZ.png",
+                  src: 'https://i.imgur.com/bnip2HZ.png'
                 },
                 {
-                  text: "Ernesto",
-                  borderColor: "primary",
+                  text: 'Ernesto',
+                  borderColor: 'primary'
                 },
                 {
-                  src: "https://i.imgur.com/bnip2HZ.png",
+                  src: 'https://i.imgur.com/bnip2HZ.png'
                 },
                 {
-                  src: "https://i.imgur.com/bnip2HZ.png",
+                  src: 'https://i.imgur.com/bnip2HZ.png'
                 },
                 {
-                  src: "https://i.imgur.com/bnip2HZ.png",
+                  src: 'https://i.imgur.com/bnip2HZ.png'
                 },
                 {
-                  src: "https://i.imgur.com/bnip2HZ.png",
+                  src: 'https://i.imgur.com/bnip2HZ.png'
                 },
                 {
-                  src: "https://i.imgur.com/bnip2HZ.png",
+                  src: 'https://i.imgur.com/bnip2HZ.png'
                 },
                 {
-                  src: "https://i.imgur.com/bnip2HZ.png",
-                },
+                  src: 'https://i.imgur.com/bnip2HZ.png'
+                }
               ]}
             />
           </Box>
@@ -144,24 +144,24 @@ const AvatarScreen = () => {
           <Box gap={1}>
             <Avatar
               icon={{
-                name: "user",
-                type: "antdesign",
+                name: 'user',
+                type: 'antdesign'
               }}
             />
             <Avatar
               size={50}
               icon={{
                 size: 30,
-                type: "fontisto",
-                name: "user-secret",
+                type: 'fontisto',
+                name: 'user-secret'
               }}
             />
             <Avatar
               size={65}
               icon={{
                 size: 35,
-                name: "user",
-                type: "font-awesome-5",
+                name: 'user',
+                type: 'font-awesome-5'
               }}
             />
           </Box>
@@ -181,7 +181,7 @@ const AvatarScreen = () => {
           <Title level={3}>Pressable Avatar</Title>
           <Box gap={1}>
             <Avatar
-              onPress={() => alert("On press here!")}
+              onPress={() => alert('On press here!')}
               src="https://i.imgur.com/bnip2HZ.png"
               size={65}
             />
@@ -195,18 +195,18 @@ const AvatarScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 15,
+    padding: 15
   },
   headTitle: {
     paddingLeft: 20,
     paddingRight: 20,
     borderWidth: 1,
-    borderColor: "transparent",
-    borderBottomColor: "rgba(100, 100, 100, .3)",
+    borderColor: 'transparent',
+    borderBottomColor: 'rgba(100, 100, 100, .3)'
   },
   space: {
-    marginTop: 50,
-  },
+    marginTop: 50
+  }
 });
 
 export default AvatarScreen;

@@ -42,7 +42,7 @@ export const errors = withThemeProvider(
             <Select
               error
               items={items}
-              textError="This is required field"
+              helperText="This is required field"
             />
           </Box>`,
   {

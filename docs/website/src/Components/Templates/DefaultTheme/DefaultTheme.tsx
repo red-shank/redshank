@@ -1,11 +1,5 @@
 import { useMemo } from 'react';
-import {
-  Text,
-  Link as NLink,
-  useTheme,
-  Grid,
-  Tooltip
-} from '@nextui-org/react';
+import { Text, Link as NLink, Grid, Tooltip } from '@nextui-org/react';
 import Link from 'next/link';
 
 import { libTheme, PACKAGE_NAME } from '@/config';
@@ -46,19 +40,12 @@ export const content = {
 };
 
 const DefaultThemeTemplate = () => {
+  console.log(libTheme);
   const palette = useMemo(() => {
     return {
       dark: processColor(libTheme.colorsDark),
       light: processColor(libTheme.colorsLight)
     };
-  }, []);
-
-  const paddingObjectString = useMemo(() => {
-    return processObject(libTheme.paddingSizes);
-  }, []);
-
-  const marginObjectString = useMemo(() => {
-    return processObject(libTheme.marginSizes);
   }, []);
 
   const borderRadiusObjectString = useMemo(() => {
@@ -78,6 +65,7 @@ const DefaultThemeTemplate = () => {
       {content.header}
 
       {palette.dark.map(({ colors, name }, indexPalette) => {
+        console.log(colors);
         return (
           <div key={name}>
             <TitleLink>{name}</TitleLink>
@@ -135,12 +123,6 @@ const DefaultThemeTemplate = () => {
           </div>
         );
       })}
-
-      {content.padding}
-      <BlockCode language="JSON" code={paddingObjectString} />
-
-      {content.margins}
-      <BlockCode language="JSON" code={marginObjectString} />
 
       {content.borderRadius}
       <BlockCode language="JSON" code={borderRadiusObjectString} />

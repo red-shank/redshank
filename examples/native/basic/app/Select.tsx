@@ -5,12 +5,12 @@ import { Title, Select, Box } from '@redshank/native';
 const items = [
   {
     label: 'Uno',
-    value: 'uno',
+    value: 'uno'
   },
   {
     label: 'Dos',
-    value: 'dos',
-  },
+    value: 'dos'
+  }
 ];
 
 const SelectScreen = () => {
@@ -28,8 +28,15 @@ const SelectScreen = () => {
             items={items}
             size="middle"
             placeholder="Select item..."
-            textError="This is error"
+            helperText="This is error"
           />
+        </Box>
+
+        <Box gap={1}>
+          <Title>Shape Select</Title>
+          <Select shape="square" placeholder="Select text" items={items} />
+          <Select shape="rounded" placeholder="Select text" items={items} />
+          <Select shape="circle" placeholder="Select text" items={items} />
         </Box>
       </View>
     </ScrollView>
@@ -40,18 +47,18 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 10,
-    height: '100%',
+    height: '100%'
   },
   headTitle: {
     paddingLeft: 20,
     paddingRight: 20,
     borderWidth: 1,
     borderColor: 'transparent',
-    borderBottomColor: 'rgba(100, 100, 100, .3)',
+    borderBottomColor: 'rgba(100, 100, 100, .3)'
   },
   space: {
-    marginTop: 50,
-  },
+    marginTop: 50
+  }
 });
 
 export default SelectScreen;

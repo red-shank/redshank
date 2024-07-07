@@ -14,8 +14,53 @@ export const editingTheme = `import React from 'react';
 import { ThemeProvider } from '${PACKAGE_NAME}';
 
 const theme = {
-  colors: {
-    newColor: '#f1f1f1'
+  type: 'light',
+  theme: {
+    colors: {
+      dark: {
+        custom: '#1976d2'
+      },
+      light: {
+        custom: '#42a5f5'
+      }
+    },
+    spaceing: 8,
+    fontSizes: {
+      ...
+    },
+    fonts: {
+      ...
+    },
+    fontWeights: {
+      ...
+    },
+    lineHeights: {
+      ...
+    },
+    letterSpacings: {
+      ...
+    },
+    sizes: {
+      ...
+    },
+    borderWidths: {
+      ...
+    },
+    borderStyles: {
+      ...
+    },
+    radii: {
+      ...
+    },
+    shadows: {
+      ...
+    },
+    zIndices: {
+      ...
+    },
+    transitions: {
+      ...
+    }
   }
 };
 
@@ -24,13 +69,13 @@ const App = () => {
     <ThemeProvider theme={theme}>
       ...
     </ThemeProvider>
-)};`;
+);};`;
 
 export const themeObject = `{
   "type": "light", // light / dark
   "theme": {
     "colors": {},
-    "space": {},
+    "spacing": number,
     "fontSizes": {},
     "fonts": {},
     "fontWeights": {},

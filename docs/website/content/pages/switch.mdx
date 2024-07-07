@@ -77,24 +77,26 @@ import { Switch } from '@redshank/native';
 #### Switch Props
 Api props extends from [TouchableOpacity](https://reactnative.dev/docs/touchableopacity)
 
-| Attribute              | Type         | Accepted values                   | Description                                           | Default      |
-|------------------------|--------------|-----------------------------------|-------------------------------------------------------|--------------|
-| **activeColor**        | `ThemeColor` | [ThemeColor](/docs/default-theme) | Active color of the element                           | `inputColor` |
-| **borderColor**        | `ThemeColor` | [ThemeColor](/docs/default-theme) | Border color of the element                           | `primary`    |
-| **bordered**           | `boolean`    | `true` `false`                    | Show or not borderColor component                     | `false`      |
-| **deactiveColor**      | `ThemeColor` | [ThemeColor](/docs/default-theme) | Color when switch is false                            | `inputColor` |
-| **defaultValue**       | `boolean`    | `true` `false`                    | Default value of the switch input                     | -            |
-| **error**              | `boolean`    | `true` `false`                    | Show error variant                                    | -            |
-| **icon**               | `object`     | [IconObject](#iconobject)         | Pass icon for deactive and active switch              | -            |
-| **onChange**           | `function`   | `(value) => void`                 | On change function trigger received `true` or `false` | -            |
-| **size**               | `SizeType`   | `small` `middle` `large`          | Size of the switch selector                           | `middle`     |
-| **style**              | `object`     | `StyleProp<StyleView>`            | Style for the point                                   | -            |
-| **textError**          | `string`     | `Text`                            | Message of the error, set with error prop in `true`   | -            |
-| **thumbActiveColor**   | `ThemeColor` | [ThemeColor](/docs/default-theme) | Background color of the element when is switchable    | `primary`    |
-| **thumbDisabledColor** | `ThemeColor` | [ThemeColor](/docs/default-theme) | Background color of the element when is not selected  | `border`     |
-| **thumbStyle**         | `object`     | `StyleProp<StyleView>`            | Style for the wrapper                                 | -            |
-| **type**               | `SwitchType` | `rounded` `square`                | Variant type for the switch                           | `rounded`    |
-| **value**              | `boolean`    | `true` `false`                    | Value of the switch input                             | -            |
+| Attribute              | Type         | Accepted values                               | Description                                           | Default      |
+|------------------------|--------------|-----------------------------------------------|-------------------------------------------------------|--------------|
+| **activeColor**        | `ThemeColor` | [ThemeColor](/docs/default-theme)             | Active color of the element                           | `inputColor` |
+| **borderColor**        | `ThemeColor` | [ThemeColor](/docs/default-theme)             | Border color of the element                           | `primary`    |
+| **bordered**           | `boolean`    | `true` `false`                                | Show or not borderColor component                     | `false`      |
+| **deactiveColor**      | `ThemeColor` | [ThemeColor](/docs/default-theme)             | Color when switch is false                            | `inputColor` |
+| **defaultValue**       | `boolean`    | `true` `false`                                | Default value of the switch input                     | -            |
+| **error**              | `boolean`    | `true` `false`                                | Show error variant                                    | -            |
+| **icon**               | `object`     | [IconObject](#iconobject)                     | Pass icon for deactive and active switch              | -            |
+| **onChange**           | `function`   | `(value) => void`                             | On change function trigger received `true` or `false` | -            |
+| **size**               | `SizeType`   | `small` `middle` `large`                      | Size of the switch selector                           | `middle`     |
+| **style**              | `object`     | `StyleProp<StyleView>`                        | Style for the point                                   | -            |
+| **textError**          | `string`     | `Text`                                        | Message of the error, set with error prop in `true`   | -            |
+| **thumbActiveColor**   | `ThemeColor` | [ThemeColor](/docs/default-theme)             | Background color of the element when is switchable    | `primary`    |
+| **thumbDisabledColor** | `ThemeColor` | [ThemeColor](/docs/default-theme)             | Background color of the element when is not selected  | `border`     |
+| **thumbStyle**         | `object`     | `StyleProp<StyleView>`                        | Style for the wrapper                                 | -            |
+| **type**               | `SwitchType` | `rounded` `square`                            | Variant type for the switch                           | `rounded`    |
+| **value**              | `boolean`    | `true` `false`                                | Value of the switch input                             | -            |
+| **sx**                 | `object`     | [Sx customization](#sx-customization)         | Sx props for components                               |              |
+| **styles**             | `object`     | [Styles customization](#styles-customization) | Styles props for components                           |              |
 
 <Spacer y={2} />
 
@@ -106,3 +108,37 @@ type IconObject = {
   true: ReactNode,
 }
 ```
+
+<Spacer y={2}/>
+
+### Sx Customization
+
+More info about `SxProps` in [The sx prop](/docs/the-sx-prop)
+
+```ts
+type Sx = {
+  root?: SxProps;
+  touchable?: SxProps;
+  thumb?: SxProps;
+  toggle?: SxProps;
+  helperText?: SxProps;
+};
+```
+
+<Spacer y={2}/>
+
+### Styles Customization
+
+More info about `StyleProp` in [styles](https://reactnative.dev/docs/style)
+
+```ts
+type Styles = {
+  root?: StyleProp<ViewStyle>;
+  touchable?: StyleProp<ViewStyle>;
+  thumb?: StyleProp<ViewStyle>;
+  toggle?: StyleProp<ViewStyle>;
+  helperText?: StyleProp<ViewStyle>;
+}
+```
+<Spacer y={2}/>
+

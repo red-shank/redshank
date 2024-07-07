@@ -19,7 +19,7 @@ const SwitchScreen = () => {
           <Title level={3}>Custom Switch</Title>
           <Switch
             activeColor="secondary"
-            deactiveColor="pink500"
+            deactiveColor="pink.500"
             thumbActiveColor="primary"
             thumbDisabledColor="secondary"
           />
@@ -57,11 +57,21 @@ const SwitchScreen = () => {
         </View>
 
         <View>
-          <Title level={3}>Square Switch</Title>
+          <Title level={3}>Rounded</Title>
           <Box flexDirection="row" gap={1}>
             <Switch size="large" type="square" />
             <Switch type="square" />
             <Switch size="small" type="square" />
+          </Box>
+          <Box flexDirection="row" gap={1}>
+            <Switch size="large" type="rounded" />
+            <Switch type="rounded" />
+            <Switch size="small" type="rounded" />
+          </Box>
+          <Box flexDirection="row" gap={1}>
+            <Switch size="large" type="circle" />
+            <Switch type="circle" />
+            <Switch size="small" type="circle" />
           </Box>
         </View>
       </View>

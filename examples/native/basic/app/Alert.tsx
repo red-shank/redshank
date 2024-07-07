@@ -45,7 +45,7 @@ const AlertScreen = () => {
                   </Text>
                 ),
                 description: (
-                  <Text color="gray300">
+                  <Text color="gray.300">
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab
                   </Text>
                 )
@@ -61,7 +61,7 @@ const AlertScreen = () => {
                   </Text>
                 ),
                 description: (
-                  <Text color="gray300">
+                  <Text color="gray.300">
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                   </Text>
                 )
@@ -77,7 +77,7 @@ const AlertScreen = () => {
                   </Text>
                 ),
                 description: (
-                  <Text color="gray300">
+                  <Text color="gray.300">
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                     Facilis, iure minima minus modi nostrum officiis quae
                     sapiente ut vel. Ab aspernatur distinctio eos in numquam
@@ -96,7 +96,7 @@ const AlertScreen = () => {
                   </Text>
                 ),
                 description: (
-                  <Text color="gray300">
+                  <Text color="gray.300">
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                     Distinctio esse, laborum nihil non reprehenderit ullam?.
                   </Text>

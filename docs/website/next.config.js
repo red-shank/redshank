@@ -1,6 +1,8 @@
 /** @type {import('next').NextConfig} */
+const withPWA = require('next-pwa');
 
-const nextConfig = {
+const nextConfig = withPWA({
+  disable: true,
   pageExtensions: ['jsx', 'js', 'mdx', 'md', 'ts', 'tsx'],
   reactStrictMode: false,
   eslint: {
@@ -8,7 +10,7 @@ const nextConfig = {
   },
   typescript: {
     ignoreBuildErrors: process.env.IS_VERCEL_ENV === 'true'
-  },
-};
+  }
+});
 
 module.exports = nextConfig;

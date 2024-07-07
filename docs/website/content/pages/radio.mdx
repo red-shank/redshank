@@ -92,18 +92,20 @@ Api props extends from [TouchableOpacity](https://reactnative.dev/docs/touchable
 #### Radio Group Props
 Api props extends from [View](https://reactnative.dev/docs/view)
 
-| Attribute         | Type                | Accepted values                         | Description                                         | Default      |
-|-------------------|---------------------|-----------------------------------------|-----------------------------------------------------|--------------|
-| **activeColor**   | `ThemeColor`        | [ThemeColor](/docs/default-theme)       | Active color of the element                         | `inputColor` |
-| **align**         | `AlignType`         | `horizontal` `vertical`                 | Orientation type                                    | `horizontal` |
-| **inactiveColor** | `ThemeColor`        | [ThemeColor](/docs/default-theme)       | Inactive color of the element                       | `inputColor` |
-| **defaultValue**  | `NumberStringValue` | [NumberStringValue](#numberstringvalue) | Default Value for element                           | -            |
-| **error**         | `boolean`           | `true` `false`                          | Show error variant                                  | -            |
-| **onChange**      | `function`          | `(value: NumberStringValue) => void`    | On change function trigger                          | -            |
-| **textError**     | `string`            | `Text` `String`                         | Message of the error, set with error prop in `true` | -            |
-| **value**         | `NumberStringValue` | [NumberStringValue](#numberstringvalue) | Value of the controller input                       | -            |
-| **size**          | `SizeType`          | `small` `middle` `large`                | Size of the radio                                   | `middle`     |
-| **type**          | `RadioType`         | `circle` `square`                       | Circle or square variant                            | `circle`     |
+| Attribute         | Type                | Accepted values                               | Description                                         | Default      |
+|-------------------|---------------------|-----------------------------------------------|-----------------------------------------------------|--------------|
+| **activeColor**   | `ThemeColor`        | [ThemeColor](/docs/default-theme)             | Active color of the element                         | `inputColor` |
+| **align**         | `AlignType`         | `horizontal` `vertical`                       | Orientation type                                    | `horizontal` |
+| **inactiveColor** | `ThemeColor`        | [ThemeColor](/docs/default-theme)             | Inactive color of the element                       | `inputColor` |
+| **defaultValue**  | `NumberStringValue` | [NumberStringValue](#numberstringvalue)       | Default Value for element                           | -            |
+| **error**         | `boolean`           | `true` `false`                                | Show error variant                                  | -            |
+| **onChange**      | `function`          | `(value: NumberStringValue) => void`          | On change function trigger                          | -            |
+| **textError**     | `string`            | `Text` `String`                               | Message of the error, set with error prop in `true` | -            |
+| **value**         | `NumberStringValue` | [NumberStringValue](#numberstringvalue)       | Value of the controller input                       | -            |
+| **size**          | `SizeType`          | `small` `middle` `large`                      | Size of the radio                                   | `middle`     |
+| **type**          | `RadioType`         | `circle` `square`                             | Circle or square variant                            | `circle`     |
+| **sx**            | `object`            | [Sx customization](#sx-customization)         | Sx props for components                             |              |
+| **styles**        | `object`            | [Styles customization](#styles-customization) | Styles props for components                         |              |
 
 <Spacer y={2} />
 
@@ -111,3 +113,32 @@ Api props extends from [View](https://reactnative.dev/docs/view)
 ```ts
 type NumberStringValue = 'string' | 'number'
 ```
+
+<Spacer y={2}/>
+
+### Sx Customization
+
+More info about `SxProps` in [The sx prop](/docs/the-sx-prop)
+
+```ts
+type Sx = {
+  root?: SxProps;
+  container?: SxProps;
+  helperText?: SxProps;
+};
+```
+
+<Spacer y={2}/>
+
+### Styles Customization
+
+More info about `StyleProp` in [styles](https://reactnative.dev/docs/style)
+
+```ts
+type Styles = {
+  root?: StyleProp<ViewStyle>;
+  container?: StyleProp<ViewStyle>;
+  helperText?: StyleProp<ViewStyle>;
+}
+```
+<Spacer y={2}/>

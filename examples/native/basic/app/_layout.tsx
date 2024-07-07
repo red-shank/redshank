@@ -21,35 +21,46 @@ import MenuToggleButton from '@/components/MenuToggleButton';
 
 const dimension = Dimensions.get('window');
 
-const App = (props: PropsWithChildren) => {
-  const { theme } = useTheme();
+const width = Platform.select<number>({
+  default: dimension.width,
+  web: dimension.width <= 720 ? dimension.width : 720
+});
 
-  const width = Platform.select<DimensionValue>({
-    default: '100%',
-    web: dimension.width <= 720 ? '100%' : 720
-  });
+const App = (props: PropsWithChildren) => {
+  const { isDark } = useTheme();
 
   return (
-    <Box flex={1} width={width} mx="auto">
-      <MessageProvider bottom={30}>
-        <ThemeProvider
-          value={theme === 'dark' ? DarkTheme : DefaultTheme}
-          {...props}
-        >
-          <Drawer
-            screenOptions={(props) => {
-              if (props?.route?.name === 'Header') {
+    <Box flex={1} bg="background">
+      <Box
+        height="100%"
+        width={width}
+        mx="auto"
+        overflow={Platform.select({
+          web: 'hidden',
+          default: undefined
+        })}
+      >
+        <MessageProvider bottom={30}>
+          <ThemeProvider
+            key={isDark.toString()}
+            value={isDark ? DarkTheme : DefaultTheme}
+            {...props}
+          >
+            <Drawer
+              screenOptions={(props) => {
+                if (props?.route?.name === 'Header') {
+                  return {
+                    headerShown: false
+                  };
+                }
                 return {
-                  headerShown: false
+                  headerLeft: (props) => <MenuToggleButton {...props} />
                 };
-              }
-              return {
-                headerLeft: (props) => <MenuToggleButton {...props} />
-              };
-            }}
-          />
-        </ThemeProvider>
-      </MessageProvider>
+              }}
+            />
+          </ThemeProvider>
+        </MessageProvider>
+      </Box>
     </Box>
   );
 };
@@ -61,6 +72,7 @@ export default function RootLayout() {
     <RThemeProvider
       theme={{
         theme: colorSchema || 'light',
+        width
       }}
     >
       <App />

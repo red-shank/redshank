@@ -7,7 +7,7 @@ import {
   PopConfirm,
   useModal,
   Text,
-  Image,
+  Image
 } from '@redshank/native';
 
 const PopConfirmScreen = () => {
@@ -20,9 +20,7 @@ const PopConfirmScreen = () => {
       <View style={styles.container}>
         <View>
           <Title level={3}>Pop confirm</Title>
-          <Button onPress={toggleDefaultVisible}>
-            show
-          </Button>
+          <Button onPress={toggleDefaultVisible}>show</Button>
 
           <PopConfirm visible={visibleDefault} onClose={toggleDefaultVisible}>
             <PopConfirm.Content>
@@ -38,15 +36,20 @@ const PopConfirmScreen = () => {
 
         <View>
           <Title level={3}>Pop confirm Header/Body/Footer</Title>
-          <Button onPress={toggleWithoutImage}>
-            show
-          </Button>
+          <Button onPress={toggleWithoutImage}>show</Button>
 
           <PopConfirm
-            okText="Confirm"
+            okText="No"
             visible={visibleWithoutImage}
             onClose={toggleWithoutImage}
             onOk={toggleWithoutImage}
+            actions={[
+              {
+                children: 'Yes',
+                color: 'error',
+                fontWeight: 'normal'
+              }
+            ]}
           >
             <PopConfirm.Header
               title="Beauty Design"
@@ -67,17 +70,12 @@ const PopConfirmScreen = () => {
                 odit tempora ut?
               </Text>
             </PopConfirm.Content>
-            <PopConfirm.Footer>
-              <Button>Show more</Button>
-            </PopConfirm.Footer>
           </PopConfirm>
         </View>
 
         <View>
           <Title level={3}>Pop confirm delete</Title>
-          <Button onPress={toggleVisibleConfirm}>
-            show
-          </Button>
+          <Button onPress={toggleVisibleConfirm}>show</Button>
 
           <PopConfirm
             type="delete"
@@ -87,7 +85,7 @@ const PopConfirmScreen = () => {
           >
             <PopConfirm.Content>
               <Text fontWeight="700">Are you sure to perform this action?</Text>
-              <Text marginTop={10}>This action cannot be returned</Text>
+              <Text mt={1}>This action cannot be returned</Text>
             </PopConfirm.Content>
           </PopConfirm>
         </View>
@@ -101,18 +99,18 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 10,
-    height: '100%',
+    height: '100%'
   },
   headTitle: {
     paddingLeft: 20,
     paddingRight: 20,
     borderWidth: 1,
     borderColor: 'transparent',
-    borderBottomColor: 'rgba(100, 100, 100, .3)',
+    borderBottomColor: 'rgba(100, 100, 100, .3)'
   },
   space: {
-    marginTop: 50,
-  },
+    marginTop: 50
+  }
 });
 
 export default PopConfirmScreen;

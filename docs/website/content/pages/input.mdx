@@ -77,24 +77,26 @@ import { Input } from '@redshank/native';
 #### Input
 Api props extends from [TextInput](https://reactnative.dev/docs/textinput)
 
-| Attribute            | Type                      | Accepted values                   | Description                                         | Default                                 |
-|----------------------|---------------------------|-----------------------------------|-----------------------------------------------------|-----------------------------------------|
-| **background**       | `ThemeColor` `string`     | [ThemeColor](/docs/default-theme) | Change background color of the input                | `inputColor`                            |
-| **borderInputColor** | `ThemeColor` `string`     | [ThemeColor](/docs/default-theme) | Change border color of the input                    | `border`                                |
-| **color**            | `ThemeColor` `string`     | [ThemeColor](/docs/default-theme) | Change text color of the input                      | `accents2`                              |
-| **error**            | `boolean`                 | `true` `false`                    | Show error variant                                  | -                                       |
-| **isDisabled**       | `boolean`                 | `true` `false`                    | Editable or Disabled input                          | -                                       |
-| **onChange**         | `function`                | `(value: any) => void`            | On change function                                  | -                                       |
-| **placeholder**      | `string`                  | `Text` `string`                   | Placeholder text for the Input                      | -                                       |
-| **placeholderColor** | `ThemeColor` `string`     | [ThemeColor](/docs/default-theme) | Placeholder color for the Input                     | `border`                                |
-| **prefix**           | `ReactNode` `JSX.Element` | `Component`                       | Prefix icon                                         | -                                       |
-| **showIcon**         | `boolean`                 | `true` `false`                    | Hidden or Show icon, util when type is `password`   | `false` and `true` when type="password" |
-| **size**             | `SizeType`                | `small` `middle` `large`          | Size element customizable in `ThemeProvider`        | `middle`                                |
-| **suffix**           | `ReactNode` `JSX.Element` | `Component`                       | Suffix icon                                         | -                                       |
-| **textError**        | `string`                  | `Text`                            | Message of the error, set with error prop in `true` | -                                       |
-| **type**             | `InputType`               | [Input Type](#input-type)         | Type of the input                                   | `default`                               |
-| **withMarginBottom** | `boolean`                 | `true` `false`                    | Insert margin bottom if your not use Form           | `false`                                 |
-| **wrapperStyle**     | `object`                  | `StyleProp<ViewStyle>`            | Style for the wrapper element                       | -                                       |
+| Attribute            | Type                      | Accepted values                               | Description                                         | Default                                 |
+|----------------------|---------------------------|-----------------------------------------------|-----------------------------------------------------|-----------------------------------------|
+| **bg**               | `ThemeColor` `string`     | [ThemeColor](/docs/default-theme)             | Change background color of the input                | `inputColor`                            |
+| **borderColor**      | `ThemeColor` `string`     | [ThemeColor](/docs/default-theme)             | Change border color of the input                    | `border`                                |
+| **color**            | `ThemeColor` `string`     | [ThemeColor](/docs/default-theme)             | Change text color of the input                      | `accents2`                              |
+| **error**            | `boolean`                 | `true` `false`                                | Show error variant                                  | -                                       |
+| **isDisabled**       | `boolean`                 | `true` `false`                                | Editable or Disabled input                          | -                                       |
+| **onChange**         | `function`                | `(value: any) => void`                        | On change function                                  | -                                       |
+| **placeholder**      | `string`                  | `Text` `string`                               | Placeholder text for the Input                      | -                                       |
+| **placeholderColor** | `ThemeColor` `string`     | [ThemeColor](/docs/default-theme)             | Placeholder color for the Input                     | `border`                                |
+| **startContent**     | `ReactNode` `JSX.Element` | `Component`                                   | Prefix icon                                         | -                                       |
+| **showIcon**         | `boolean`                 | `true` `false`                                | Hidden or Show icon, util when type is `password`   | `false` and `true` when type="password" |
+| **size**             | `SizeType`                | `small` `middle` `large`                      | Size element customizable in `ThemeProvider`        | `middle`                                |
+| **endContent**       | `ReactNode` `JSX.Element` | `Component`                                   | Suffix icon                                         | -                                       |
+| **helperText**       | `string`                  | `Text`                                        | Message of the error, set with error prop in `true` | -                                       |
+| **type**             | `InputType`               | [Input Type](#input-type)                     | Type of the input                                   | `default`                               |
+| **shape**            | `ShapeType`               | `square` `rounded` `circle`                   | Type radius of the input                            | `rounded`                               |
+| **withMarginBottom** | `boolean`                 | `true` `false`                                | Insert margin bottom if your not use Form           | `false`                                 |
+| **sx**               | `object`                  | [Sx customization](#sx-customization)         | Styles for the internal elements using SxProps      | -                                       |
+| **styles**           | `object`                  | [Styles customization](#styles-customization) | Styles for the internal elements                    | -                                       |
 
 <Spacer y={2} />
 
@@ -118,4 +120,36 @@ type InputType =
 | 'web-search'
 // Android Only
 | 'visible-password'
+```
+
+### Sx Customization
+
+More info about `SxProps` in [The sx prop](/docs/the-sx-prop)
+
+```ts
+type Sx = {
+    root?: SxProps;
+    input?: SxProps;
+    wrapperIcon?: SxProps;
+    start?: SxProps;
+    end?: SxProps;
+    textError?: SxProps;
+    wrapper?: SxProps;
+}
+```
+
+### Styles Customization
+
+More info about `StyleProp` in [styles](https://reactnative.dev/docs/style)
+
+```ts
+type Styles = {
+    root?: StyleProp<ViewStyle>;
+    input?: StyleProp<ViewStyle>;
+    wrapperIcon?: StyleProp<ViewStyle>;
+    start?: StyleProp<ViewStyle>;
+    end?: StyleProp<ViewStyle>;
+    textError?: StyleProp<ViewStyle>;
+    wrapper?: StyleProp<ViewStyle>;
+}
 ```
