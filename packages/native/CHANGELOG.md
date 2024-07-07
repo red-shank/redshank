@@ -1,5 +1,14 @@
 # CHANGELOG
 
+# 3.5.0 (2024-07-06)
+
+
+### Bug Fixes
+
+* lauch release ([185dfa1](https://github.com/red-shank/redshank/commit/185dfa11026b7c2ff66ba07323f86e7005a8c339))
+
+
+
 # 3.4.0 (2024-07-06)
 
 
