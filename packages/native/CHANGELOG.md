@@ -1,5 +1,14 @@
 # CHANGELOG
 
+# 3.6.0 (2024-07-06)
+
+
+### Bug Fixes
+
+* launch new release ([ab8062a](https://github.com/red-shank/redshank/commit/ab8062ae612b4f637850cc2e838c92e183513d58))
+
+
+
 # 3.5.0 (2024-07-06)
 
 
