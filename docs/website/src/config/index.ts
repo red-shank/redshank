@@ -2,9 +2,7 @@ import pkg from '../../temp/_package.json';
 import {
   colorsDark,
   colorsLight,
-  paddingSizes,
   borderRadius,
-  marginSizes,
   zIndices
 } from '../../temp/defaultValues';
 
@@ -21,9 +19,7 @@ export const REPOSITORY_URL = pkg?.repository?.url?.replace?.('git+', '') || '';
 export const libTheme = {
   colorsDark,
   colorsLight,
-  paddingSizes,
   borderRadius,
-  marginSizes,
   zIndices
 };
 export const isProd = process.env.NODE_ENV === 'production';
