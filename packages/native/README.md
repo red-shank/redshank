@@ -1,10 +1,13 @@
 # @redshank/native
 
-The objective of this project is to create a complete and advanced framework such as Antd for the web, I want to be able to offer a set of reusable components that are native and beautiful in such a way that we all love to use it in our projects
+The objective of this project is to create a complete and advanced framework such as Antd for the web, I want to be able
+to offer a set of reusable components that are native and beautiful in such a way that we all love to use it in our
+projects
 
 # Documentation
 
 [Documentation](https://www.redshank.app) under construction, launch scheduled for November 30, 2022.
+
 
 ## Installation
 
