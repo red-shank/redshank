@@ -40,12 +40,12 @@ const Footer: React.FC<CardFooterProps> = ({
   return (
     <>
       <Component
-        activeOpacity={theme.activeOpacity}
-        zIndex={2}
-        p={2}
-        borderBottom={2}
-        bg={backgroundColor}
-        position={isAbsolute ? 'absolute' : 'relative'}
+        sx={{
+          zIndex: 2,
+          p: 2,
+          bg: backgroundColor,
+          position: isAbsolute ? 'absolute' : 'relative'
+        }}
         style={createSxStyle(
           {
             sx,

@@ -24,7 +24,7 @@ const Header: React.FC<CardHeaderProps> = ({
 }) => {
   const { isOpen, statusBarHeight } = useCardProvider();
   const theme = useTheme();
-  const { colors, activeOpacity, zIndices } = theme;
+  const { colors, zIndices } = theme;
 
   const backgroundColor = React.useMemo(() => {
     if (!withBackground) {
@@ -43,7 +43,6 @@ const Header: React.FC<CardHeaderProps> = ({
 
   return (
     <Component
-      activeOpacity={activeOpacity}
       style={createSxStyle(
         {
           sx,

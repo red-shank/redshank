@@ -146,7 +146,9 @@ const getVariantStyles: (
     },
     underlined: {
       container: {},
-      bg: {},
+      bg: {
+        borderColor: 'transparent'
+      },
       label: {
         color: isActive
           ? labelColors?.activeColor || 'primary'

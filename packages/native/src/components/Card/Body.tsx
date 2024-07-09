@@ -20,7 +20,6 @@ const Body: React.FC<CardBodyProps> = ({
 
   return (
     <Component
-      activeOpacity={theme.activeOpacity}
       style={createSxStyle(
         {
           sx,

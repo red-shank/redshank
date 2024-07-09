@@ -158,8 +158,8 @@ const Colors = {
   },
   "error": {
     "main": "#ff244e",
-    "light": "#ef5350",
-    "dark": "#c62828"
+    "light": "#f84065",
+    "dark": "#c21e3e"
   },
   "card": "#ffffff",
   "message": "#ffffff",

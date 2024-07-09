@@ -8,7 +8,7 @@ import { SxProps } from '../../lib/styleDictionary';
 
 export type CardProps = BaseProperties &
   SxProps & {
-    Component?: ComponentType;
+    Component?: ComponentType<Record<string, any>>;
     children?: ReactNode;
     expandContent?: ReactNode;
     isExpandCard?: boolean;
@@ -45,7 +45,7 @@ export type CardProps = BaseProperties &
   };
 
 export interface CardHeaderProps {
-  Component?: ComponentType;
+  Component?: ComponentType<Record<string, any>>;
   background?: ColorName;
   children?: ReactNode;
   isAbsolute?: boolean;
@@ -63,7 +63,7 @@ export interface CardFooterProps extends Omit<CardHeaderProps, 'top'> {
 }
 
 export interface CardBodyProps {
-  Component?: ComponentType;
+  Component?: ComponentType<Record<string, any>>;
   children?: ReactNode;
   style?: StyleProp<ViewStyle>;
   withPadding?: boolean;
