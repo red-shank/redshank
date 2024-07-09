@@ -1,5 +1,14 @@
 # CHANGELOG
 
+# 3.8.0 (2024-07-08)
+
+
+### Bug Fixes
+
+* fixed border line in tabs ([b14799c](https://github.com/red-shank/redshank/commit/b14799cc06dd15e1d01c1442f29319c7b96d1bfe))
+
+
+
 # 3.7.0 (2024-07-08)
 
 
