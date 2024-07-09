@@ -98,7 +98,7 @@ const CardRender: React.FC<CardProps> = React.memo(
             activeOpacity={theme.activeOpacity}
             rounded={isOpen ? 0 : theme.borderRadius.card}
             overflow="hidden"
-            backgroundColor={theme.colors.get(background)}
+            bg={theme.colors.get(background)}
             sx={sx?.base}
             style={StyleSheet.flatten([
               withBorder && {

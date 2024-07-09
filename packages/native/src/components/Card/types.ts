@@ -1,4 +1,4 @@
-import type { Component, ReactNode } from 'react';
+import type { ComponentType, ReactNode } from 'react';
 import type { DimensionValue, StyleProp, ViewStyle } from 'react-native';
 
 import type { RippleProps } from '../Ripple/type';
@@ -8,7 +8,7 @@ import { SxProps } from '../../lib/styleDictionary';
 
 export type CardProps = BaseProperties &
   SxProps & {
-    Component?: typeof Component;
+    Component?: ComponentType;
     children?: ReactNode;
     expandContent?: ReactNode;
     isExpandCard?: boolean;
@@ -45,7 +45,7 @@ export type CardProps = BaseProperties &
   };
 
 export interface CardHeaderProps {
-  Component?: typeof Component;
+  Component?: ComponentType;
   background?: ColorName;
   children?: ReactNode;
   isAbsolute?: boolean;
@@ -63,7 +63,7 @@ export interface CardFooterProps extends Omit<CardHeaderProps, 'top'> {
 }
 
 export interface CardBodyProps {
-  Component?: typeof Component;
+  Component?: ComponentType;
   children?: ReactNode;
   style?: StyleProp<ViewStyle>;
   withPadding?: boolean;
