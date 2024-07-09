@@ -1,5 +1,14 @@
 # CHANGELOG
 
+# 3.7.0 (2024-07-08)
+
+
+### Bug Fixes
+
+* fixed cards type Component ([d55984f](https://github.com/red-shank/redshank/commit/d55984f499a1cf87aa8cc7332a7d2e3c9eb40ab7))
+
+
+
 # 3.6.0 (2024-07-06)
 
 
