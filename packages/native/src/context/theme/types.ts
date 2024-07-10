@@ -35,6 +35,7 @@ export type SizeElements = {
 export type BorderRadiusType = {
   compact: number;
   base: number;
+  max: number;
   alert: number;
   tab: number;
   card: number;

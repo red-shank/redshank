@@ -13,8 +13,8 @@ export const zIndices = {
 export const colorsBase = {
   primary: {
     main: '#0070F3',
-    light: '#42a5f5',
-    dark: '#1565c0'
+    dark: '#1565c0',
+    light: '#42a5f5'
   },
   secondary: {
     main: '#9c27b0',
@@ -236,6 +236,7 @@ export const sizes = {
 export const borderRadius: BorderRadiusType = {
   compact: 1,
   base: 2,
+  max: 100,
   'avatar.square': 1,
   'button.round': 1,
   'button.circle': 10,

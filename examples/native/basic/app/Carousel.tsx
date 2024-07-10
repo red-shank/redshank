@@ -23,23 +23,29 @@ const CarouselScreen = () => {
   const theme = useTheme();
 
   return (
-    <Box p={2}>
-      <Title level={1}>Carousel</Title>
-      <Carousel maxWidth={theme.width - theme.spacing * 4}>
-        {items.map(({ key, image }) => (
-          <Box key={key} height={200}>
-            <Image source={image} style={styles.image} />
-          </Box>
-        ))}
-      </Carousel>
+    <Box p={2} gap={5}>
+      <Box>
+        <Title level={1}>Carousel</Title>
+        <Carousel maxWidth={theme.width - theme.spacing * 4}>
+          {items.map(({ key, image }) => (
+            <Box key={key} height={200}>
+              <Image source={image} style={styles.image} />
+            </Box>
+          ))}
+        </Carousel>
+      </Box>
 
-      <Carousel variant="ios" maxWidth={theme.width - theme.spacing * 2}>
-        {items.map(({ key, image }) => (
-          <Box key={key} height={200} borderRadius={3}>
-            <Image source={image} style={styles.image} />
-          </Box>
-        ))}
-      </Carousel>
+      <Box>
+        <Title level={1}>iOS Carousel</Title>
+
+        <Carousel variant="ios" maxWidth={theme.width - theme.spacing * 2}>
+          {items.map(({ key, image }) => (
+            <Box key={key} height={200} borderRadius={3}>
+              <Image source={image} style={styles.image} />
+            </Box>
+          ))}
+        </Carousel>
+      </Box>
     </Box>
   );
 };
@@ -47,8 +53,7 @@ const CarouselScreen = () => {
 const styles = StyleSheet.create({
   image: {
     width: '100%',
-    height: '100%',
-    borderRadius: 12
+    height: '100%'
   }
 });
 

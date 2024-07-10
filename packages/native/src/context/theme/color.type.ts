@@ -2,8 +2,8 @@
 
 export type ColorKeys = {
   "primary.main": "primary.main",
-  "primary.light": "primary.light",
   "primary.dark": "primary.dark",
+  "primary.light": "primary.light",
   "secondary.main": "secondary.main",
   "secondary.light": "secondary.light",
   "secondary.dark": "secondary.dark",
@@ -133,8 +133,8 @@ export type ColorName = keyof ColorKeys | string;
 const Colors = {
   "primary": {
     "main": "#0070F3",
-    "light": "#42a5f5",
-    "dark": "#1565c0"
+    "dark": "#1565c0",
+    "light": "#42a5f5"
   },
   "secondary": {
     "main": "#9c27b0",
@@ -166,7 +166,7 @@ const Colors = {
   "modal": "#F3F2F9",
   "modalMask": "rgba(0,0,0,0.5)",
   "hover": "#F3F2F9",
-  "imagePlaceholder": "#f4f4f4",
+  "imagePlaceholder": "#999999",
   "blue": {
     "100": "#bfd8fc",
     "200": "#98D5FD",
