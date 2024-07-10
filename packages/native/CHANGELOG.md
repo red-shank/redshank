@@ -1,5 +1,14 @@
 # CHANGELOG
 
+# 3.10.0 (2024-07-10)
+
+
+### Features
+
+* added dots to carousel ([7da6ab4](https://github.com/red-shank/redshank/commit/7da6ab48710bb9a7c464efba608ca328b817a825))
+
+
+
 # 3.9.0 (2024-07-09)
 
 
