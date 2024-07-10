@@ -46,7 +46,7 @@ export const colorsBase = {
   modal: '#1C1C1E',
   modalMask: 'rgba(0,0,0,0.5)',
   hover: '#63636a',
-  imagePlaceholder: '#2a2626',
+  imagePlaceholder: '#16181A',
   blue: {
     '100': '#bfd8fc',
     '200': '#98D5FD',
@@ -146,7 +146,7 @@ export const colorsLight = {
   modal: '#F3F2F9',
   popConfirm: '#e9e9e9',
   hover: '#F3F2F9',
-  imagePlaceholder: '#f4f4f4',
+  imagePlaceholder: '#999999',
   input: '#f4f4f4',
   accents: {
     '1': '#111111',

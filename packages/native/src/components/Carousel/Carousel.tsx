@@ -3,15 +3,21 @@ import { View, StyleSheet, ScrollView } from 'react-native';
 
 import { CarouselProps } from './types';
 import useTheme from '../../context/theme/useTheme';
+import { Box } from '../Box';
 
 export const Carousel: FC<CarouselProps> = ({
+  maxWidth,
   widthChild,
+  variant = 'default',
   children = [],
   showScroll = false,
   scrollViewProps = {}
 }) => {
   const ref = useRef<ScrollView>(null);
-  const { width } = useTheme();
+  const theme = useTheme();
+  const width = maxWidth ?? theme.width;
+
+  const isIos = variant === 'ios';
 
   useEffect(() => {
     setTimeout(() => {
@@ -25,30 +31,37 @@ export const Carousel: FC<CarouselProps> = ({
       horizontal
       pagingEnabled
       style={styles.container}
+      alwaysBounceHorizontal={false}
+      alwaysBounceVertical={false}
+      bounces={false}
       showsHorizontalScrollIndicator={showScroll}
+      showsVerticalScrollIndicator={showScroll}
       decelerationRate="fast"
-      snapToInterval={width - 50}
+      snapToInterval={isIos ? width - 47 : width}
       snapToAlignment="center"
       contentInset={{
         top: 0,
-        left: 30,
+        left: isIos ? 0 : 0,
         bottom: 0,
-        right: 30
+        right: isIos ? 0 : 0
       }}
       {...scrollViewProps}
     >
-      {Children.map(children, (child) => {
+      {Children.map(children, (child, index) => {
+        const isFirst = index === 0;
+        const isLast = index === Children.count(children) - 1;
+
         return (
-          <View
-            style={StyleSheet.flatten([
-              styles.view,
-              {
-                width: widthChild ?? width - 60
-              }
-            ])}
+          <Box
+            bg="transparent"
+            mx={isIos && 0.8}
+            pl={!isIos && !isFirst && 1}
+            pr={!isIos && !isLast && 1}
+            flex={!isIos ? 1 : 0.8}
+            width={isIos ? widthChild ?? width - 60 : width}
           >
             {child}
-          </View>
+          </Box>
         );
       })}
     </ScrollView>

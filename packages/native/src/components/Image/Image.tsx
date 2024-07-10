@@ -83,10 +83,11 @@ export const Image: React.FC<ImageProps> = ({
           StyleSheet.absoluteFillObject,
           {
             opacity: hasImage ? placeholderOpacity.current : 1
-          }
+          },
+          style
         ]}
       >
-        <View
+        <Animated.View
           style={StyleSheet.flatten([
             createSxStyle(
               {
@@ -105,17 +106,17 @@ export const Image: React.FC<ImageProps> = ({
           {React.isValidElement(placeholderContent)
             ? placeholderContent
             : placeholderContent && <Text>{placeholderContent}</Text>}
-        </View>
+        </Animated.View>
       </Animated.View>
       {/* Children for Image */}
-      <View
+      <Animated.View
         style={StyleSheet.flatten([
           { width, height },
           childrenContainerStyle ?? style
         ])}
       >
         {children}
-      </View>
+      </Animated.View>
     </Component>
   );
 };
@@ -125,11 +126,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
     position: 'relative',
     overflow: 'hidden'
-  },
-  placeholder: {
-    backgroundColor: '#bdbdbd',
-    alignItems: 'center',
-    justifyContent: 'center'
   }
 });
 

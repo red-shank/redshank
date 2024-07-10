@@ -41,8 +41,8 @@ const Footer: React.FC<CardFooterProps> = ({
     <>
       <Component
         sx={{
-          zIndex: 2,
           p: 2,
+          zIndex: 2,
           bg: backgroundColor,
           position: isAbsolute ? 'absolute' : 'relative'
         }}
