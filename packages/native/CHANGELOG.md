@@ -1,5 +1,14 @@
 # CHANGELOG
 
+# 3.9.0 (2024-07-09)
+
+
+### Features
+
+* added carousel default variant ([1a7c1f4](https://github.com/red-shank/redshank/commit/1a7c1f439758dc0b3f826760eab74677f899870e))
+
+
+
 # 3.8.0 (2024-07-08)
 
 
