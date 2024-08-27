@@ -1,5 +1,14 @@
 # CHANGELOG
 
+# 3.11.0 (2024-08-26)
+
+
+### Features
+
+* feat: added label react node in form and more ([2f52306](https://github.com/red-shank/redshank/commit/2f52306a31c8087edc56b5e55d6f7a81c3b54e3a))
+
+
+
 # 3.10.0 (2024-07-10)
 
 
