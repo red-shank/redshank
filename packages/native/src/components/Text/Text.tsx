@@ -1,11 +1,11 @@
 import React, { FC, useState } from 'react';
 import { StyleSheet, Text as TextNative } from 'react-native';
 
-import { Button } from '../Button/Button';
 import useTheme from '../../context/theme/useTheme';
 import type { TextProps } from './types';
 import createSxStyle from '../../lib/sx';
 import { Box } from '../Box';
+import { Ripple } from '../Ripple/Ripple';
 
 export const Text: FC<TextProps> = ({
   children,
@@ -75,8 +75,7 @@ export const Text: FC<TextProps> = ({
         {children}
       </TextNative>
       {readMore && (
-        <Button
-          type="link"
+        <Ripple
           onPress={changeShowMore}
           {...readMoreButtonProps}
           style={StyleSheet.flatten([
@@ -84,8 +83,10 @@ export const Text: FC<TextProps> = ({
             _styles.readMore
           ])}
         >
-          {showMore ? textReadLess : textReadMore}
-        </Button>
+          <Text color="primary.main">
+            {showMore ? textReadLess : textReadMore}
+          </Text>
+        </Ripple>
       )}
     </Box>
   );

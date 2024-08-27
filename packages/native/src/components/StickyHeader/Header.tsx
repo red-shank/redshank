@@ -8,7 +8,9 @@ import React, {
 import { Animated, Platform, StyleSheet, View } from 'react-native';
 
 import useTheme from '../../context/theme/useTheme';
-import useHeaderHeight from '../../hooks/useHeaderHeight';
+import useHeaderHeight, {
+  useStatusBarHeight
+} from '../../hooks/useHeaderHeight';
 import { HeaderProps, TitleStickyPosition } from './types';
 import { getResolveValue } from './utils';
 import createSxStyle from '../../lib/sx';
@@ -41,6 +43,7 @@ export function Header<T = unknown>({
   animateInHeight,
   setHeightLayout,
   isSticky,
+  keepStatusHeight = false,
   statusBarHeight = defaultStatusHeight,
   titlePosition: _titlePosition = defaultTitlePosition,
   background: _background = {
@@ -49,8 +52,11 @@ export function Header<T = unknown>({
   }
 }: HeaderProps<T>) {
   const theme = useTheme();
+  const statusBarHeader = useStatusBarHeight();
   const defaultHeight = useHeaderHeight();
+
   const [fadeInText] = useState(new Animated.Value(0));
+  const fadeInInitialBg = useRef(new Animated.Value(0)).current;
   const fadeInBackground = useRef(new Animated.Value(0)).current;
   const isFirstTime = useRef(true);
 
@@ -141,6 +147,14 @@ export function Header<T = unknown>({
     fadeInBackgroundAnimation
   ]);
 
+  React.useEffect(() => {
+    Animated.timing(fadeInInitialBg, {
+      toValue: 1,
+      duration: 200,
+      useNativeDriver: false
+    }).start();
+  }, [fadeInInitialBg]);
+
   const titleBase = useMemo(() => {
     if (!title?.initial) return null;
     if (React.isValidElement(title?.initial)) return title?.initial;
@@ -206,16 +220,27 @@ export function Header<T = unknown>({
     return titlePosition?.initial === 'center';
   }, [isSticky, titlePosition]);
 
+  React.useEffect(() => {
+    if (!titleBase && !isSticky) {
+      setHeightLayout(keepStatusHeight ? statusBarHeader : 0);
+    }
+  }, [isSticky, setHeightLayout, statusBarHeader, titleBase, keepStatusHeight]);
+
+  if (!titleBase && !isSticky) return null;
+
   return (
     <Animated.View
       onLayout={(layout) => {
-        setHeightLayout(layout?.nativeEvent?.layout?.height ?? 0);
+        if (titleBase) {
+          setHeightLayout(layout?.nativeEvent?.layout?.height ?? 0);
+        }
       }}
       style={[
         createSxStyle(
           {
             width: '100%',
             sx: styles?.header,
+            opacity: fadeInInitialBg,
             height: defaultHeight || statusBarHeight,
             zIndex: theme?.zIndices.max,
             style: STYLES.header

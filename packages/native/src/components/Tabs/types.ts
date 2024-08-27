@@ -61,6 +61,8 @@ export type TabsProps = Partial<Pick<TabItemProps, 'size' | 'sx'>> &
     onChange?: (item: TabsProps['items'][0]) => void;
     labelProps?: TabItemProps['labelProps'];
     variant?: TabsVariant;
+    itemLabelColors?: TabItemProps['labelColors'];
+    itemBackgroundColors?: TabItemProps['backgroundColors'];
     backgroundColors?: {
       borderColor?: ColorName;
       background?: ColorName;

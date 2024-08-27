@@ -17,6 +17,8 @@ export function Tabs({
   renderTabItem,
   sx,
   styles,
+  itemLabelColors,
+  itemBackgroundColors,
   scrollable = false,
   variant = 'solid',
   labelProps = {},
@@ -65,12 +67,40 @@ export function Tabs({
         overflow="hidden"
         width="100%"
       >
+        {variant === 'underlined' && (
+          <Box
+            left={0}
+            bottom={0}
+            zIndex={1}
+            height={1}
+            width="100%"
+            position="absolute"
+            flexDirection="row"
+          >
+            <Box height={1} width={1} bg="transparent" />
+            <Box
+              height={1}
+              flex={1}
+              bg={
+                sx?.tab_container?.borderBottomColor ||
+                sx?.tab_container?.borderColor ||
+                sx?.tab_container?.borderBlockColor ||
+                sx?.tab_container?.borderBlockEndColor ||
+                'border'
+              }
+            />
+            <Box height={1} width={1} bg="transparent" />
+          </Box>
+        )}
         <ScrollView
           horizontal
           bounces={scrollable}
           bouncesZoom={scrollable}
           showsHorizontalScrollIndicator={scrollable}
-          sx={sx?.tab_scroll_view}
+          sx={{
+            ...sx?.tab_scroll_view,
+            zIndex: 2
+          }}
           style={styles?.tab_scroll_view}
           contentContainerStyle={styles?.tab_container}
           contentContainerSx={{
@@ -110,8 +140,10 @@ export function Tabs({
                 labelProps={labelProps}
                 isActive={internalValue?.key === item.key}
                 onPress={() => onInternalChange(item)}
-                labelColors={item?.labelColors}
-                backgroundColors={item?.backgroundColors}
+                labelColors={item?.labelColors || itemLabelColors}
+                backgroundColors={
+                  item?.backgroundColors || itemBackgroundColors
+                }
                 style={styles?.item}
                 sx={{
                   flex: 1 / (items?.length || 0),

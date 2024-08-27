@@ -32,6 +32,7 @@ export type StickyHeaderProps<T = unknown> = PropsWithChildren<{
   hidden?: boolean;
   animateInHeight?: number;
   statusBarHeight?: number;
+  keepStatusHeight?: boolean;
   scrollOffsetY?: Animated.Value;
   background?: BackgroundStickyProps;
   title?: TitleStickyProps;

@@ -13,6 +13,12 @@ export const BottomSheet: React.FC<BottomSheetProps> = ({
   onClose,
   fullScreen,
   animationType = 'slide',
+  sx,
+  styles,
+  containerStyle,
+  containerSx,
+  contentStyle,
+  contentSx,
   ...rest
 }) => {
   const modalRef = React.useRef<ModalHandle>(null);
@@ -50,36 +56,44 @@ export const BottomSheet: React.FC<BottomSheetProps> = ({
   return (
     <Modal
       p={0}
+      width="100%"
       ref={modalRef}
       position="bottom"
       visible={visible}
       onClose={onClose}
       closable={false}
+      maskClosable={false}
       height={fullScreen ? '100%' : undefined}
       animationType={animationType}
+      styles={styles}
       sx={{
-        content: {
-          px: 2
+        ...sx,
+        mask: {
+          ...sx?.mask,
+          bg: 'rgba(0, 0, 0, 0.7)'
         }
       }}
       {...rest}
     >
       <Modal.Content
-        p={0}
         pb={4}
         pt={1.2}
         rounded="modal"
         flex={fullScreen && 1}
+        sx={containerSx}
+        style={containerStyle}
       >
         <Box
+          style={contentStyle}
           sx={{
             width: '100%',
             justifyContent: 'center',
             alignItems: 'center',
             zIndex: 'max',
-            bg: 'modal',
+            bg: 'transparent',
             pb: 1,
-            roundedTop: theme.borderRadius.modal
+            roundedTop: theme.borderRadius.modal,
+            ...contentSx
           }}
         >
           <Animated.View

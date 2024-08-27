@@ -67,15 +67,16 @@ export const SocialButton: React.FC<SocialButtonProps> = ({
 
   return (
     <Button
+      fullWidth
       shape="circle"
       type="outline"
       appearance="text"
-      fullWidth
+      alignItems="center"
       startContent={<Image width={25} height={25} source={uri} />}
       endContent={<Box width={25} height={25} />}
       sx={{
         text: {
-          flex: 1,
+          width: '100%',
           textAlign: 'center',
           alignItems: 'flex-end'
         }

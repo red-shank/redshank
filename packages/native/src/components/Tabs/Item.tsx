@@ -90,7 +90,11 @@ export function Item({
         height={theme.sizes[size] - (isUnderlined ? 0 : 1.548 * theme.spacing)}
       >
         {startAdornment}
-        <Text {...labelProps} sx={variantStyle?.label}>
+        <Text
+          size={size === 'small' ? 'xs' : 'base'}
+          {...labelProps}
+          sx={variantStyle?.label}
+        >
           {label}
         </Text>
         {endAdornment}
@@ -141,7 +145,7 @@ const getVariantStyles: (
       label: {
         color: isActive
           ? labelColors?.activeColor || 'white'
-          : labelColors?.inactiveColor || 'text'
+          : labelColors?.inactiveColor || 'text.secondary'
       }
     },
     underlined: {
@@ -152,7 +156,7 @@ const getVariantStyles: (
       label: {
         color: isActive
           ? labelColors?.activeColor || 'primary'
-          : labelColors?.inactiveColor || 'text'
+          : labelColors?.inactiveColor || 'text.secondary'
       }
     },
     bordered: {
@@ -170,7 +174,7 @@ const getVariantStyles: (
       label: {
         color: isActive
           ? labelColors?.activeColor || 'text'
-          : labelColors?.inactiveColor || 'text'
+          : labelColors?.inactiveColor || 'text.secondary'
       }
     },
     light: {
@@ -185,7 +189,7 @@ const getVariantStyles: (
       label: {
         color: isActive
           ? labelColors?.activeColor || 'white'
-          : labelColors?.inactiveColor || 'text'
+          : labelColors?.inactiveColor || 'text.secondary'
       }
     }
   };

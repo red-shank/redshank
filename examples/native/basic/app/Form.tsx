@@ -11,7 +11,8 @@ import {
   Checkbox,
   Switch,
   Container,
-  Select
+  Select,
+  Text
 } from '@redshank/native';
 
 const { TextArea } = Input;
@@ -59,7 +60,18 @@ const FormScreen = () => {
             <Form.Item
               required
               name="password"
-              label="Password"
+              label={
+                <Box
+                  width="100%"
+                  flexDirection="row"
+                  alignItems="center"
+                  justifyContent="space-between"
+                >
+                  <Text>Password</Text>
+
+                  <Button type="link">Forgot Password?</Button>
+                </Box>
+              }
               rules={[{ required: true }]}
             >
               <Input type="password" placeholder="********" />

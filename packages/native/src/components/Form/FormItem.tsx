@@ -1,16 +1,24 @@
 import React, { useMemo } from 'react';
-import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
 import { Field } from 'rc-field-form';
 import type { FieldProps } from 'rc-field-form/lib/Field';
+import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
 
 import { Text } from '../Text';
 import { useFormProvider } from './context';
+import { Box } from '../Box';
+import { SxProps } from '../../lib/styleDictionary';
+import createSxStyle from '../../lib/sx';
+import useTheme from '../../context/theme/useTheme';
 
 export interface FormItemProps extends FieldProps {
-  label?: string;
+  label?: React.ReactNode;
   required?: boolean;
   isSubmit?: boolean;
   style?: StyleProp<ViewStyle>;
+  sx?: SxProps & {
+    wrapper?: SxProps;
+    label?: SxProps;
+  };
 }
 
 export const FormItem = ({
@@ -20,9 +28,11 @@ export const FormItem = ({
   children,
   style,
   isSubmit,
+  sx,
   rules = [],
   ...rest
 }: FormItemProps) => {
+  const theme = useTheme();
   const [textError, setTextError] = React.useState<string>();
   const { errors, marginBottom, internalForm } = useFormProvider();
 
@@ -42,13 +52,25 @@ export const FormItem = ({
     return rules;
   }, [label, required, rules]);
 
+  const isLabelReactNode = React.isValidElement(label);
+
   return (
     <View style={StyleSheet.flatten([styles.wrapper, { marginBottom }, style])}>
       {label && (
-        <View style={styles.labelWrapper}>
+        <Box
+          sx={createSxStyle(
+            {
+              flexDirection: 'row',
+              marginBottom: 0.07,
+              marginTop: 0,
+              lineHeight: 0
+            },
+            theme
+          )}
+        >
           {required && <Text color="error">*</Text>}
-          <Text>{label}</Text>
-        </View>
+          {isLabelReactNode ? label : <Text sx={sx?.label}>{label}</Text>}
+        </Box>
       )}
 
       {isSubmit ? (

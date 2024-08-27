@@ -36,6 +36,16 @@ const HeaderScreen = () => {
     setConfig(defaultValues(colors.get('text')));
   };
 
+  const onInitialHidden = () => {
+    setConfig({
+      ...defaultValues(colors.get('text')),
+      title: {
+        initial: null,
+        sticky: 'Left scroll'
+      }
+    });
+  };
+
   const onWithRightIcon = () => {
     setConfig({
       title: {
@@ -96,6 +106,17 @@ const HeaderScreen = () => {
       >
         <Title level={4}>Default Header</Title>
         <Button onPress={onDefaultValues}>Restore</Button>
+      </View>
+
+      <View
+        style={[
+          styles.headContent,
+          styles.marginTop,
+          { backgroundColor: navigationTheme.colors.card }
+        ]}
+      >
+        <Title level={4}>Initial hidden Header</Title>
+        <Button onPress={onInitialHidden}>Set initial hidden</Button>
       </View>
 
       <View

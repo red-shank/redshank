@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, ActivityIndicator, Text } from 'react-native';
+import { StyleSheet, ActivityIndicator } from 'react-native';
 
 import { Ripple } from '../Ripple';
 import useTheme from '../../context/theme/useTheme';
@@ -8,6 +8,8 @@ import { getColorForBackground, getOpacity } from '../../utils';
 import { ButtonProps } from './types';
 import createSxStyle, { getSxStyleAndProps } from '../../lib/sx';
 import { Box } from '../Box';
+import { Text } from '../Text';
+import { SizeType } from '../../@types/input';
 
 export const Button: React.FC<ButtonProps> = ({
   children,
@@ -47,7 +49,6 @@ export const Button: React.FC<ButtonProps> = ({
   const isLink = type === 'link';
   // const isCircle = shape === 'circle';
   const internalAppearanceColor = colors.get(appearance);
-  const textAlignWrapper = `text_${textAlign}`;
 
   const colorText = React.useMemo(() => {
     if (isFlat && !color) {
@@ -68,8 +69,10 @@ export const Button: React.FC<ButtonProps> = ({
   const resolveProps = getSxStyleAndProps(
     {
       borderRadius: borderRadius[`button.${shape}`],
+      height: !isLink && sizes[size],
+      px: !isLink && !onlyIcon && sxPx[size],
+      justifyContent: sxAlign[textAlign],
       style: StyleSheet.flatten([
-        styles[textAlignWrapper],
         !fullWidth && { alignSelf: 'flex-start' },
         isSolid && {
           backgroundColor: internalAppearanceColor
@@ -89,21 +92,16 @@ export const Button: React.FC<ButtonProps> = ({
           !isSolid && {
             borderColor: colors.get('accents.5')
           },
-        type !== 'link' &&
-          StyleSheet.flatten([
-            {
-              height: sizes[size]
-            },
-            styles[size]
-          ]),
         style
       ]),
       ...sx,
       sx: onlyIcon
         ? {
-            ...sx?.root,
             width: sizes[size],
-            height: sizes[size]
+            height: sizes[size],
+            justifyContent: 'center',
+            alignItems: 'center',
+            ...sx?.root
           }
         : sx?.root,
       ...rest
@@ -131,27 +129,25 @@ export const Button: React.FC<ButtonProps> = ({
         alignItems="center"
         justifyContent="center"
       >
-        {loading && (
-          <ActivityIndicator
-            style={styles.loading}
-            size={fontSizes.sm}
-            color={colorText}
-          />
+        {(loading || startContent) && (
+          <Box sx={sx?.icon}>
+            {loading ? (
+              <ActivityIndicator color={colorText} size={fontSizes.sm} />
+            ) : (
+              startContent
+            )}
+          </Box>
         )}
-        {!loading && startContent && <Box sx={sx?.icon}>{startContent}</Box>}
         {!onlyIcon && children && (
           <Text
             {...textProps}
+            color={colorText}
             style={createSxStyle(
               {
                 sx: sx?.text,
                 fontWeight: bold ? 'bold' : fontWeight,
                 style: StyleSheet.flatten([
                   type !== 'link' && fonts.bold,
-                  {
-                    fontSize: fontSizes.base,
-                    color: colorText
-                  },
                   disabled &&
                     !isSolid && {
                       color: colors.get('accents.5')
@@ -170,38 +166,15 @@ export const Button: React.FC<ButtonProps> = ({
   );
 };
 
-const styles = StyleSheet.create({
-  text_left: {
-    justifyContent: 'flex-start'
-  },
-  text_center: {
-    justifyContent: 'center'
-  },
-  text_right: {
-    justifyContent: 'flex-end'
-  },
-  loading: {
-    lineHeight: 0,
-    paddingTop: 2,
-    marginRight: 5
-  },
-  shadow: {
-    shadowOffset: {
-      width: 0,
-      height: 5
-    },
-    shadowRadius: 6
-  },
-  small: {
-    paddingHorizontal: 8
-  },
-  middle: {
-    paddingHorizontal: 14
-  },
-  large: {
-    paddingHorizontal: 18
-  },
-  xLarge: {
-    paddingHorizontal: 20
-  }
-});
+const sxPx: Record<SizeType, number> = {
+  small: 1,
+  middle: 1.8,
+  large: 2.2,
+  xLarge: 2.5
+};
+
+const sxAlign = {
+  left: 'flex-start',
+  center: 'center',
+  right: 'flex-end'
+};

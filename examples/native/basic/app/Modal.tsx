@@ -31,26 +31,27 @@ const ModalScreen = () => {
           <Button onPress={toggleBottomSheet}>Open Bottom Sheet</Button>
 
           <BottomSheet visible={bottomSheet} onClose={toggleBottomSheet}>
-            <Text>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. A
-              aliquid amet cum dolores eligendi, eos ex incidunt ipsum non
-              perferendis quas quia repellat repellendus rerum saepe soluta
-              voluptatibus voluptatum? Eum.
-            </Text>
+            <Title level={4}>Hello word</Title>
+            {/*<Text>*/}
+            {/*  Lorem ipsum dolor sit amet, consectetur adipisicing elit. A*/}
+            {/*  aliquid amet cum dolores eligendi, eos ex incidunt ipsum non*/}
+            {/*  perferendis quas quia repellat repellendus rerum saepe soluta*/}
+            {/*  voluptatibus voluptatum? Eum.*/}
+            {/*</Text>*/}
 
-            <Text>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. A
-              aliquid amet cum dolores eligendi, eos ex incidunt ipsum non
-              perferendis quas quia repellat repellendus rerum saepe soluta
-              voluptatibus voluptatum? Eum.
-            </Text>
+            {/*<Text>*/}
+            {/*  Lorem ipsum dolor sit amet, consectetur adipisicing elit. A*/}
+            {/*  aliquid amet cum dolores eligendi, eos ex incidunt ipsum non*/}
+            {/*  perferendis quas quia repellat repellendus rerum saepe soluta*/}
+            {/*  voluptatibus voluptatum? Eum.*/}
+            {/*</Text>*/}
 
-            <Text>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. A
-              aliquid amet cum dolores eligendi, eos ex incidunt ipsum non
-              perferendis quas quia repellat repellendus rerum saepe soluta
-              voluptatibus voluptatum? Eum.
-            </Text>
+            {/*<Text>*/}
+            {/*  Lorem ipsum dolor sit amet, consectetur adipisicing elit. A*/}
+            {/*  aliquid amet cum dolores eligendi, eos ex incidunt ipsum non*/}
+            {/*  perferendis quas quia repellat repellendus rerum saepe soluta*/}
+            {/*  voluptatibus voluptatum? Eum.*/}
+            {/*</Text>*/}
           </BottomSheet>
         </View>
 

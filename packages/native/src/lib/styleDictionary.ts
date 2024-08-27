@@ -99,6 +99,9 @@ type CustomStyleKeys = {
   background: ColorName;
   bg: ColorName;
   color: ColorName;
+  borderBlockColor: ColorName;
+  borderBlockEndColor: ColorName;
+  borderBlockStartColor: ColorName;
   zIndex: keyof ZIndexType | ViewStyle['zIndex'];
   fontSize: keyof FontSizesProps | TextStyle['fontSize'];
   // border radius
@@ -527,6 +530,24 @@ const styleDictionary: StyleKeysSupported = {
       }
     },
     borderTopColor: {
+      type: 'color',
+      resolve(value: string, _, theme) {
+        return theme.colors.get(value);
+      }
+    },
+    borderBlockColor: {
+      type: 'color',
+      resolve(value: string, _, theme) {
+        return theme.colors.get(value);
+      }
+    },
+    borderBlockStartColor: {
+      type: 'color',
+      resolve(value: string, _, theme) {
+        return theme.colors.get(value);
+      }
+    },
+    borderBlockEndColor: {
       type: 'color',
       resolve(value: string, _, theme) {
         return theme.colors.get(value);

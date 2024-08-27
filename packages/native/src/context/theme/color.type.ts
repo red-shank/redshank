@@ -115,6 +115,8 @@ export type ColorKeys = {
   "notification": "notification",
   "text.main": "text.main",
   "text.secondary": "text.secondary",
+  "text.light": "text.light",
+  "text.extraLight": "text.extraLight",
   "border": "border",
   "calendar": "calendar",
   "link": "link",
@@ -163,7 +165,7 @@ const Colors = {
   },
   "card": "#ffffff",
   "message": "#ffffff",
-  "modal": "#F3F2F9",
+  "modal": "#ffffff",
   "modalMask": "rgba(0,0,0,0.5)",
   "hover": "#F3F2F9",
   "imagePlaceholder": "#999999",
@@ -277,7 +279,9 @@ const Colors = {
   "notification": "#ffffff",
   "text": {
     "main": "#333333",
-    "secondary": "#666666"
+    "secondary": "#666666",
+    "light": "#cbcbcb",
+    "extraLight": "#dcdcdc"
   },
   "border": "#a1a1a1",
   "calendar": "#ffffff",

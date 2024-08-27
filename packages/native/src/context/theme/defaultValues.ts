@@ -143,7 +143,7 @@ export const colorsLight = {
   ...colorsBase,
   card: '#ffffff',
   message: '#ffffff',
-  modal: '#F3F2F9',
+  modal: '#ffffff',
   popConfirm: '#e9e9e9',
   hover: '#F3F2F9',
   imagePlaceholder: '#999999',
@@ -166,7 +166,9 @@ export const colorsLight = {
   notification: '#ffffff',
   text: {
     main: '#333333',
-    secondary: '#666666'
+    secondary: '#666666',
+    light: '#cbcbcb',
+    extraLight: '#dcdcdc'
   },
   border: '#a1a1a1',
   calendar: '#ffffff',
@@ -208,7 +210,9 @@ export const colorsDark = {
   border: '#777777',
   text: {
     main: '#ffffff',
-    secondary: '#999999'
+    light: '#dddddd',
+    extraLight: '#ededed',
+    secondary: '#9a9a9a'
   },
   calendar: '#000000',
   link: '#0070F3',

@@ -11,6 +11,10 @@ import { getLighten } from '../../utils';
 export const Carousel: FC<CarouselProps> = ({
   maxWidth,
   widthChild,
+  sx,
+  styles,
+  renderDots,
+  dotsBackground,
   variant = 'default',
   children = [],
   showScroll = false,
@@ -41,7 +45,7 @@ export const Carousel: FC<CarouselProps> = ({
   };
 
   return (
-    <Box>
+    <Box {...sx} sx={sx?.root} style={styles?.root}>
       <ScrollView
         ref={ref}
         horizontal
@@ -50,8 +54,12 @@ export const Carousel: FC<CarouselProps> = ({
         decelerationRate={0}
         sx={{
           rounded,
+          ...sx?.scrollView,
           ...restSxProps
         }}
+        contentContainerSx={sx?.scrollViewContent}
+        style={styles?.scrollView}
+        contentContainerStyle={styles?.scrollViewContent}
         onScroll={(event) => {
           const contentOffsetX = event.nativeEvent.contentOffset.x;
           setActive(Math.round(contentOffsetX / width));
@@ -79,6 +87,8 @@ export const Carousel: FC<CarouselProps> = ({
               flex={!isIos ? 1 : 0.8}
               rounded={isIos ? rounded : undefined}
               width={isIos ? widthChild ?? width - 60 : widthChild ?? width}
+              sx={sx?.item}
+              style={styles?.item}
             >
               {child}
             </Box>
@@ -96,10 +106,19 @@ export const Carousel: FC<CarouselProps> = ({
           flexDirection="row"
           alignItems="center"
           justifyContent="center"
+          sx={sx?.dotWrapper}
+          style={styles?.dotWrapper}
         >
           {Children.map(children, (_, index) => {
             const isActive = index === active;
-
+            if (renderDots) {
+              return renderDots({
+                isActive,
+                index,
+                onPress: onPressDot,
+                totalItems: Children.count(children)
+              });
+            }
             return (
               <Touchable
                 height={14}
@@ -108,9 +127,12 @@ export const Carousel: FC<CarouselProps> = ({
                 onPress={() => onPressDot(index)}
                 bg={
                   isActive
-                    ? 'primary'
-                    : getLighten(theme.colors.get('primary.main'), 92)
+                    ? dotsBackground?.active || 'primary'
+                    : dotsBackground?.inactive ||
+                      getLighten(theme.colors.get('primary.main'), 92)
                 }
+                sx={sx?.dot}
+                style={styles?.dot}
               />
             );
           })}
