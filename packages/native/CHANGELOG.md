@@ -1,5 +1,14 @@
 # CHANGELOG
 
+# 3.12.0 (2024-08-27)
+
+
+### Features
+
+* feat: added KeyboardSpace for height spacing in input bottom ([c835e5c](https://github.com/red-shank/redshank/commit/c835e5c554015341b3d71c84c94a31e01130193e))
+
+
+
 # 3.11.0 (2024-08-26)
 
 
