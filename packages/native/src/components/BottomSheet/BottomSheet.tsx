@@ -6,6 +6,7 @@ import useTheme from '../../context/theme/useTheme';
 import createSxStyle from '../../lib/sx';
 import { BottomSheetProps } from './types';
 import { Modal, ModalHandle } from '../Modal';
+import { KeyboardSpace } from '../KeyboardSpace';
 
 export const BottomSheet: React.FC<BottomSheetProps> = ({
   children,
@@ -117,6 +118,7 @@ export const BottomSheet: React.FC<BottomSheetProps> = ({
           </Animated.View>
         </Box>
         {children}
+        <KeyboardSpace />
       </Modal.Content>
     </Modal>
   );

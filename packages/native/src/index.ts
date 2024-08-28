@@ -128,5 +128,8 @@ export * from './utils/colors';
 // Calendar
 export * from './components/Calendar';
 
+// KeyboardSpace
+export * from './components/KeyboardSpace';
+
 // useModal
 export { useModal };

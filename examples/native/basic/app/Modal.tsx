@@ -7,7 +7,8 @@ import {
   Modal,
   Text,
   Box,
-  BottomSheet
+  BottomSheet,
+  Input
 } from '@redshank/native';
 
 const { useModal } = Modal;
@@ -32,6 +33,8 @@ const ModalScreen = () => {
 
           <BottomSheet visible={bottomSheet} onClose={toggleBottomSheet}>
             <Title level={4}>Hello word</Title>
+
+            <Input placeholder="Insert email" />
             {/*<Text>*/}
             {/*  Lorem ipsum dolor sit amet, consectetur adipisicing elit. A*/}
             {/*  aliquid amet cum dolores eligendi, eos ex incidunt ipsum non*/}
