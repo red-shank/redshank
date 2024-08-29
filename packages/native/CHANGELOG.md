@@ -1,5 +1,14 @@
 # CHANGELOG
 
+# 3.13.0 (2024-08-28)
+
+
+### Bug Fixes
+
+* fixed carousel in android ([7cc340f](https://github.com/red-shank/redshank/commit/7cc340f2562d6eeded409c832cf7b72ae7262722))
+
+
+
 # 3.12.0 (2024-08-27)
 
 
