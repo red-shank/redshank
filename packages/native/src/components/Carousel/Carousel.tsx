@@ -1,5 +1,5 @@
 import React, { Children, FC, useEffect, useRef } from 'react';
-import { ScrollView as RNScrollView } from 'react-native';
+import { Platform, ScrollView as RNScrollView } from 'react-native';
 
 import { CarouselProps } from './types';
 import useTheme from '../../context/theme/useTheme';
@@ -51,7 +51,11 @@ export const Carousel: FC<CarouselProps> = ({
         horizontal
         pagingEnabled
         bounces={false}
-        decelerationRate={0}
+        scrollEventThrottle={16}
+        decelerationRate={Platform.select<'fast' | number>({
+          android: 'fast',
+          default: 0.8
+        })}
         sx={{
           rounded,
           ...sx?.scrollView,
