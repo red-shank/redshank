@@ -10,7 +10,7 @@ import { Calendar } from '@redshank/native';
 
 > **_NOTE:_**  Please added [dayjs](https://day.js.org/) to dependencies using `expo install dayjs` or `npm i dayjs`.
 
-<Spacer y={2}/>
+<Spacer y={2} />
 
 ### Examples
 
@@ -28,7 +28,7 @@ import { Calendar } from '@redshank/native';
   code={calendarContent.selectedDate}
 />
 
-<Spacer y={2}/>
+<Spacer y={2} />
 
 <Playground
   id="min_max"
@@ -38,7 +38,7 @@ import { Calendar } from '@redshank/native';
   code={calendarContent.minAndMax}
 />
 
-<Spacer y={2}/>
+<Spacer y={2} />
 
 <Playground
   id="disabled"
@@ -47,7 +47,7 @@ import { Calendar } from '@redshank/native';
   code={calendarContent.disabled}
 />
 
-<Spacer y={2}/>
+<Spacer y={2} />
 
 <h4>Locales</h4>
 You can change the language of the calendar by passing the `locales` prop.
@@ -56,32 +56,35 @@ You can change the language of the calendar by passing the `locales` prop.
   code={calendarContent.locales}
 />
 
-<Spacer y={3}/>
+<Spacer y={3} />
 
 ### APIs
 
-<Spacer y={2}/>
+<Spacer y={2} />
 
 #### Props
 
-| Attribute           | Type                    | Accepted values                               | Description                                        | Default      |
-|---------------------|-------------------------|-----------------------------------------------|----------------------------------------------------|--------------|
-| **backgroundColor** | `ThemeColor` `string`   | [ThemeColor](/docs/default-theme)             | Background calendar color                          | `background` |
-| **cancelText**      | `string`                | `Text`                                        | Cancel text for button footer                      | `Cancel`     |
-| **defaultSelected** | `string`                | `YYYY-MM-DD`                                  | Default selected date in calendar                  | `now`        |
-| **disabled**        | `boolean`               | `true`, `false`                               | Disabled the calendar                              |              |
-| **locale**          | `string` `dayjs.locale` | `en`, `es`, `fr`, `etc`                       | Valid locale for dayjs                             | `en`         |
-| **max**             | `string`                | `YYYY-MM-DD`                                  | Valid string date for max posible selected date    |              |
-| **min**             | `string`                | `YYYY-MM-DD`                                  | Valid string date for min posible selected date    |              |
-| **okText**          | `string`                | `Text`                                        | Ok text for button footer                          | `Ok`         |
-| **onCancel**        | `function`              | `() => void`                                  | Function for Cancel button in footer               |              |
-| **onChange**        | `function`              | `(date: string) => void`                      | Function for  ok button in footer                  |              |
-| **onSelected**      | `function`              | `(date: string) => void`                      | Trigger when user select a day                     |              |
-| **selected**        | `string`                | `YYYY-MM-DD`                                  | Selected date in calendar for controller component |              |
-| **sx**              | `object`                | [Sx customization](#sx-customization)         | Sx props for components                            |              |
-| **styles**          | `object`                | [Styles customization](#styles-customization) | Styles props for components                        |              |
+| Attribute            | Type                    | Accepted values                                            | Description                                                                                                                                                                | Default      |
+|----------------------|-------------------------|------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------|
+| **backgroundColor**  | `ThemeColor` `string`   | [ThemeColor](/docs/default-theme)                          | Background calendar color                                                                                                                                                  | `background` |
+| **cancelText**       | `string`                | `Text`                                                     | Cancel text for button footer                                                                                                                                              | `Cancel`     |
+| **calendarProps**    | `object`                | `{ hidden?: boolean; }`                                    | Hidden a Calendar only show header with interactivity Year Picker                                                                                                          | `Cancel`     |
+| **defaultSelected**  | `string`                | `YYYY-MM-DD`                                               | Default selected date in calendar                                                                                                                                          | `now`        |
+| **disabled**         | `boolean`               | `true`, `false`                                            | Disabled the calendar                                                                                                                                                      |              |
+| **locale**           | `string` `dayjs.locale` | `en`, `es`, `fr`, `etc`                                    | Valid locale for dayjs                                                                                                                                                     | `en`         |
+| **max**              | `string`                | `YYYY-MM-DD`                                               | Valid string date for max posible selected date                                                                                                                            |              |
+| **min**              | `string`                | `YYYY-MM-DD`                                               | Valid string date for min posible selected date                                                                                                                            |              |
+| **monthHeaderProps** | `object`                | `Omit<ButtonProps, 'children'> & { format?: string; }`     | Props for header button and label, for default show MMM YYYY and icon >                                                                                                    |              |
+| **okText**           | `string`                | `Text`                                                     | Ok text for button footer                                                                                                                                                  | `Ok`         |
+| **onCancel**         | `function`              | `() => void`                                               | Function for Cancel button in footer                                                                                                                                       |              |
+| **onChange**         | `function`              | `(date: string) => void`                                   | Function for  ok button in footer                                                                                                                                          |              |
+| **onSelected**       | `function`              | `(date: string) => void`                                   | Trigger when user select a day                                                                                                                                             |              |
+| **onTrigger**        | `function`              | `(date: string, reason: 'year' , 'month' , 'day') => void` | It is triggered when the user interacts with the calendar, when the year, month or day changes even if the date has not yet been accepted, then onSelected will be called. |              |
+| **selected**         | `string`                | `YYYY-MM-DD`                                               | Selected date in calendar for controller component                                                                                                                         |              |
+| **sx**               | `object`                | [Sx customization](#sx-customization)                      | Sx props for components                                                                                                                                                    |              |
+| **styles**           | `object`                | [Styles customization](#styles-customization)              | Styles props for components                                                                                                                                                |              |
 
-<Spacer y={2}/>
+<Spacer y={2} />
 
 ### Sx Customization
 
@@ -97,7 +100,7 @@ type Sx = {
 };
 ```
 
-<Spacer y={2}/>
+<Spacer y={2} />
 
 ### Styles Customization
 
@@ -112,4 +115,4 @@ type Styles = {
   helperText?: StyleProp<ViewStyle>;
 }
 ```
-<Spacer y={2}/>
+<Spacer y={2} />

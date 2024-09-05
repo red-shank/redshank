@@ -27,15 +27,15 @@ export const Button: React.FC<ButtonProps> = ({
   sx,
   bold,
   textProps,
+  color,
   startContent = onlyIcon ? children || endContent : null,
   fullWidth = true,
   textAlign = 'center',
   Component = Ripple,
   size = 'middle',
-  appearance = 'primary',
   type = 'solid',
   fontWeight = '500',
-  color = type === 'link' && !appearance ? 'primary' : undefined,
+  appearance = type === 'link' ? 'primary' : 'text',
   shape = 'round',
   ...rest
 }) => {

@@ -24,6 +24,9 @@ export interface CalendarContextProps
     | 'locale'
     | 'min'
     | 'max'
+    | 'monthHeaderProps'
+    | 'calendarProps'
+    | 'onTrigger'
   > {
   now: dayjs.Dayjs;
   selectedDate: dayjs.Dayjs;

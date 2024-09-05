@@ -27,10 +27,13 @@ const getWeeksIndex = (size: number) => Array.from(new Array(size).keys());
 const daysOfWeekIndex = Array.from(new Array(7).keys());
 
 function Month({ withoutMarginBottom }: MonthProps) {
-  const { min, max } = useCalendarContext();
+  const { min, max, calendarProps } = useCalendarContext();
   const { currentMonth, openYearList } = useCalendarMonthContext();
 
+  const hiddenCalendar = calendarProps?.hidden;
+
   const render = useMemo(() => {
+    if (hiddenCalendar) return null;
     const startMonth = dayjs(currentMonth).startOf('month');
     const endMonth = dayjs(currentMonth).endOf('month');
     const firstDayOfMonth = startMonth.day();
@@ -79,13 +82,13 @@ function Month({ withoutMarginBottom }: MonthProps) {
     }
 
     return weeks;
-  }, [currentMonth, min, max]);
+  }, [currentMonth, min, max, hiddenCalendar]);
 
   return (
     <View style={StyleSheet.flatten([!withoutMarginBottom && styles.panel])}>
       <MonthLabel />
 
-      {!openYearList && <WeekDaysLabel />}
+      {!openYearList && !hiddenCalendar && <WeekDaysLabel />}
       {openYearList ? <YearPicker /> : render}
     </View>
   );

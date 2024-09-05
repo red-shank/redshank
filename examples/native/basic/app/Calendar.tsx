@@ -45,6 +45,16 @@ const CardScreen = () => {
           <Title level={6}>Portuguese</Title>
           <Calendar locale="pt" />
         </Box>
+
+        <Box gap={1}>
+          <Title level={4}>Hidden Calendar</Title>
+          <Calendar
+            onTrigger={console.log}
+            calendarProps={{
+              hidden: true
+            }}
+          />
+        </Box>
       </Container>
     </ScrollView>
   );

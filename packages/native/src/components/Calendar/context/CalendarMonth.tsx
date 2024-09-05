@@ -29,19 +29,29 @@ const CalendarMonthContext = createContext<CalendarMonthContextProps | null>(
 );
 
 const CalendarMonthProvider = ({ children }: PropsWithChildren) => {
-  const { selectedDate, onSelectDate } = useCalendarContext();
+  const { selectedDate, onSelectDate, onTrigger } = useCalendarContext();
   const [openYearList, toggleYearList] = useModal();
 
   const [currentMonth, setCurrentMonth] = useState<dayjs.Dayjs>(selectedDate);
   const [inInternalYear, setInternalYear] = useState<dayjs.Dayjs>(selectedDate);
 
   const onPrevMonth = useCallback(() => {
-    setCurrentMonth((prev) => prev.startOf('month').subtract(1, 'month'));
-  }, []);
+    setCurrentMonth((prev) => {
+      const newDate = prev.startOf('month').subtract(1, 'month');
+
+      onTrigger?.(newDate.toISOString(), 'month');
+      return newDate;
+    });
+  }, [onTrigger]);
 
   const onNextMonth = useCallback(() => {
-    setCurrentMonth((prev) => prev.startOf('month').add(1, 'month'));
-  }, []);
+    setCurrentMonth((prev) => {
+      const newDate = prev.startOf('month').add(1, 'month');
+
+      onTrigger?.(newDate.toISOString(), 'month');
+      return newDate;
+    });
+  }, [onTrigger]);
 
   const onToggleYearList = useCallback(
     (year?: number) => {
@@ -50,13 +60,14 @@ const CalendarMonthProvider = ({ children }: PropsWithChildren) => {
           const newDate = inInternalYear.set('year', year);
           setInternalYear(newDate);
           onSelectDate(newDate, false);
+          onTrigger?.(newDate.toISOString(), 'year');
         }
         toggleYearList();
       } else {
         toggleYearList();
       }
     },
-    [inInternalYear, onSelectDate, openYearList, toggleYearList]
+    [inInternalYear, onSelectDate, openYearList, toggleYearList, onTrigger]
   );
 
   const onApplyDate = useCallback(() => {
@@ -67,9 +78,11 @@ const CalendarMonthProvider = ({ children }: PropsWithChildren) => {
       toggleYearList();
 
       if (internalYear !== selectedDateFormat) {
+        onTrigger?.(inInternalYear.toISOString(), 'year');
         onSelectDate(inInternalYear);
       }
     } else {
+      onTrigger?.(selectedDate.toISOString(), 'day');
       onSelectDate(selectedDate);
     }
   }, [
@@ -77,6 +90,7 @@ const CalendarMonthProvider = ({ children }: PropsWithChildren) => {
     inInternalYear,
     selectedDate,
     toggleYearList,
+    onTrigger,
     onSelectDate
   ]);
 

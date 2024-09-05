@@ -3,6 +3,7 @@ import { ColorName } from '../../context/theme/types';
 
 import { MonthProps } from './components/PanelMonth';
 import { SxProps } from '../../lib/styleDictionary';
+import { ButtonProps } from '../Button';
 
 export interface LocaleKeys {
   week: {
@@ -31,6 +32,12 @@ export interface LocaleKeys {
 }
 
 export interface CommonCalendarProps {
+  monthHeaderProps?: Omit<ButtonProps, 'children'> & {
+    format?: string;
+  };
+  calendarProps?: {
+    hidden?: boolean;
+  };
   backgroundColor?: ColorName;
   cancelText?: string;
   defaultSelected?: string;
@@ -42,6 +49,8 @@ export interface CommonCalendarProps {
   onCancel?: () => void;
   onChange?: (date: string) => void;
   onSelected?: (date: string) => void;
+  // trigger when change month, year, or day
+  onTrigger?: (date: string, reason: 'year' | 'month' | 'day') => void;
   selected?: string;
   sx?: {
     container?: SxProps;

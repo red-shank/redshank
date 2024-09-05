@@ -9,7 +9,7 @@ import { Box } from '../../../Box';
 
 interface MonthLabelProps {}
 
-const buttonProps = {
+const defaultButtonProps = {
   type: 'link' as ButtonType,
   px: 1
 };
@@ -17,7 +17,7 @@ const buttonProps = {
 export default function MonthLabel({}: MonthLabelProps) {
   const rotateAnimation = React.useRef(new Animated.Value(0)).current;
   const fadeAnimation = React.useRef(new Animated.Value(0)).current;
-  const { locale } = useCalendarContext();
+  const { locale, monthHeaderProps } = useCalendarContext();
   const {
     onPrevMonth,
     onNextMonth,
@@ -25,6 +25,11 @@ export default function MonthLabel({}: MonthLabelProps) {
     openYearList,
     onToggleYearList
   } = useCalendarMonthContext();
+
+  const { format = 'MMM YYYY', ...buttonProps } = {
+    ...defaultButtonProps,
+    ...monthHeaderProps
+  };
 
   const spin = rotateAnimation.interpolate({
     inputRange: [0, 1],
@@ -65,6 +70,7 @@ export default function MonthLabel({}: MonthLabelProps) {
     >
       <Button
         {...buttonProps}
+        {...monthHeaderProps}
         onPress={() => onToggleYearList()}
         sx={{
           container: {
@@ -81,7 +87,7 @@ export default function MonthLabel({}: MonthLabelProps) {
       >
         <Animated.View style={[{ opacity: fadeIn }]}>
           <Title level={5} align="left" pt={0.5}>
-            {`${currentMonth.locale(locale).format('MMM')} ${currentMonth.format('YYYY')}`}
+            {currentMonth.locale(locale).format(format)}
           </Title>
         </Animated.View>
       </Button>

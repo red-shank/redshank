@@ -16,6 +16,7 @@ const ButtonsScreen = () => {
   return (
     <InputScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.container}>
+        <Button type="link">Link</Button>
         <View>
           <Title level={4}>Default buttons</Title>
           <Box gap={1} flexDirection="row" flexWrap="wrap">
