@@ -9,7 +9,8 @@ import { Box } from '../../Box';
 export type MonthProps = {};
 
 function PanelMonth({}: MonthProps) {
-  const { onCancel, onChange, okText, cancelText } = useCalendarContext();
+  const { onCancel, onChange, okText, cancelText, styles, sx } =
+    useCalendarContext();
   const { currentMonth, onApplyDate, onToggleYearList, openYearList } =
     useCalendarMonthContext();
 
@@ -28,6 +29,8 @@ function PanelMonth({}: MonthProps) {
         gap={1}
         flexDirection="row"
         justifyContent="flex-end"
+        sx={sx?.actions}
+        style={styles?.actions}
       >
         {onCancel && (
           <Button

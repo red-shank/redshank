@@ -61,6 +61,7 @@ export interface CommonCalendarProps {
     daySelected?: SxProps;
     dayNow?: SxProps;
     layout?: SxProps;
+    actions?: SxProps;
   };
   styles?: {
     container?: StyleProp<ViewStyle>;
@@ -71,6 +72,7 @@ export interface CommonCalendarProps {
     daySelected?: StyleProp<ViewStyle>;
     dayNow?: StyleProp<ViewStyle>;
     layout?: StyleProp<ViewStyle>;
+    actions?: StyleProp<ViewStyle>;
   };
 }
 

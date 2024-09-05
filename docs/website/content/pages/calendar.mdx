@@ -92,11 +92,15 @@ More info about `SxProps` in [The sx prop](/docs/the-sx-prop)
 
 ```ts
 type Sx = {
-  root?: SxProps;
-  touchable?: SxProps;
-  thumb?: SxProps;
-  toggle?: SxProps;
-  helperText?: SxProps;
+  container: SxProps;
+  daysNameWeekItem: SxProps;
+  daysNameWeekWrapper: SxProps;
+  daysOfWeekWrapper: SxProps;
+  daysOfWeekItem: SxProps;
+  daySelected: SxProps;
+  dayNow: SxProps;
+  layout: SxProps;
+  actions: SxProps;
 };
 ```
 
@@ -108,11 +112,15 @@ More info about `StyleProp` in [styles](https://reactnative.dev/docs/style)
 
 ```ts
 type Styles = {
-  root?: StyleProp<ViewStyle>;
-  touchable?: StyleProp<ViewStyle>;
-  thumb?: StyleProp<ViewStyle>;
-  toggle?: StyleProp<ViewStyle>;
-  helperText?: StyleProp<ViewStyle>;
+  container: StyleProp<ViewStyle>;
+  daysNameWeekItem: StyleProp<ViewStyle>;
+  daysNameWeekWrapper: StyleProp<ViewStyle>;
+  daysOfWeekWrapper: StyleProp<ViewStyle>;
+  daysOfWeekItem: StyleProp<ViewStyle>;
+  daySelected: StyleProp<ViewStyle>;
+  dayNow: StyleProp<ViewStyle>;
+  layout: StyleProp<ViewStyle>;
+  actions: StyleProp<ViewStyle>;
 }
 ```
 <Spacer y={2} />
