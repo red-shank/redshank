@@ -1,5 +1,23 @@
 # CHANGELOG
 
+# 3.16.0 (2024-09-12)
+
+
+### Bug Fixes
+
+* fixÑ fixed sizes to recomendate sizes elements ([8a36cb8](https://github.com/red-shank/redshank/commit/8a36cb8e92f1b29c10cafdd93441f085e6920c84))
+
+
+
+# 3.15.0 (2024-09-04)
+
+
+### Bug Fixes
+
+* fix: remove actions when not exist onChange or onCancel ([193b669](https://github.com/red-shank/redshank/commit/193b66926addfc340a7bfa6d8de72699a6272303))
+
+
+
 # 3.15.0 (2024-09-04)
 
 
