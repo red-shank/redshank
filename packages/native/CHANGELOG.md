@@ -1,5 +1,14 @@
 # CHANGELOG
 
+# 3.15.0 (2024-09-04)
+
+
+### Bug Fixes
+
+* fix: remove actions when not exist onChange or onCancel ([193b669](https://github.com/red-shank/redshank/commit/193b66926addfc340a7bfa6d8de72699a6272303))
+
+
+
 # 3.14.0 (2024-09-04)
 
 

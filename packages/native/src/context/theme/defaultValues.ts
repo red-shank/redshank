@@ -232,9 +232,9 @@ export const colorsDark = {
 
 export const sizes = {
   small: 32,
-  middle: 45,
-  large: 50,
-  xLarge: 55
+  middle: 48,
+  large: 56,
+  xLarge: 64
 };
 
 export const borderRadius: BorderRadiusType = {
