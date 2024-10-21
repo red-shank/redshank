@@ -12,11 +12,34 @@ import { Icon } from '../../components/Icon';
 import { Button } from '../Button';
 
 const icons: Record<AlertType, React.ReactNode> = {
-  default: <Icon type="antdesign" name="infocirlce" />,
-  success: <Icon type="antdesign" name="checkcircle" color="success" />,
-  info: <Icon type="antdesign" name="infocirlce" color="info" />,
-  warning: <Icon type="entypo" name="warning" color="warning" />,
-  error: <Icon type="antdesign" name="closecircle" color="error" />
+  default: <Icon type="ionicons" name="checkmark-circle-outline" size={25} />,
+  success: (
+    <Icon
+      type="ionicons"
+      name="checkmark-circle-outline"
+      color="success"
+      size={25}
+    />
+  ),
+  info: (
+    <Icon
+      type="ionicons"
+      name="information-circle-outline"
+      color="info"
+      size={25}
+    />
+  ),
+  warning: (
+    <Icon
+      type="ionicons"
+      name="alert-circle-outline"
+      color="warning"
+      size={25}
+    />
+  ),
+  error: (
+    <Icon type="ionicons" size={25} name="close-circle-outline" color="error" />
+  )
 };
 
 // {

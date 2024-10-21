@@ -34,7 +34,7 @@ const MessageScreen = () => {
         description: type
       },
       {
-        withIcon: true
+        withIcon: false
       }
     );
   };
