@@ -1,5 +1,14 @@
 # CHANGELOG
 
+# 3.17.0 (2024-10-21)
+
+
+### Bug Fixes
+
+* fix: change icon in alerts ([b62d46f](https://github.com/red-shank/redshank/commit/b62d46f4d8e44e029a6c63d332e7439f255447c5))
+
+
+
 # 3.16.0 (2024-09-12)
 
 
