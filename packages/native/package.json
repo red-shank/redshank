@@ -49,7 +49,7 @@
     "color": "4.2.3",
     "rc-field-form": "2.2.1",
     "react-native-input-scroll-view": "1.11.0",
-    "react-native-picker-select": "9.1.3",
+    "react-native-picker-select": "9.3.1",
     "react-native-size-matters": "0.4.2",
     "@react-native-picker/picker": "2.7.7"
   },
