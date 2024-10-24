@@ -39,8 +39,8 @@
     "typecheck": "tsc --noEmit",
     "deploy": "yarn build && npm publish --access public"
   },
-  "author": "Kevin Rivas",
   "license": "MIT",
+  "author": "Kevin Rivas",
   "bugs": {
     "url": "https://github.com/red-shank/redshank/issues"
   },
