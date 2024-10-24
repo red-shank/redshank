@@ -1,5 +1,14 @@
 # CHANGELOG
 
+# 3.18.0 (2024-10-24)
+
+
+### Features
+
+* feat: update react-native-picker-select ([fe8b0e5](https://github.com/red-shank/redshank/commit/fe8b0e5cddfd145bf332391f9d1935f6c27c23d7))
+
+
+
 # 3.17.0 (2024-10-21)
 
 
