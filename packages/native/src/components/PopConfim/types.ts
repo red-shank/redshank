@@ -5,10 +5,10 @@ import { ButtonProps } from '../Button';
 type PopConfirmType = 'default' | 'delete';
 
 export type PopConfirmProps = {
-  cancelText?: string;
+  cancelText?: ReactNode;
   children?: ReactNode;
   extra?: ReactNode;
-  okText?: string;
+  okText?: ReactNode;
   onClose: () => void;
   onOk?: () => void;
   type?: PopConfirmType;
@@ -17,10 +17,10 @@ export type PopConfirmProps = {
 };
 
 export type PropHeaderProps = {
-  description: string;
+  description: ReactNode;
   image?: ReactNode;
   style?: StyleProp<ViewStyle>;
-  title: string;
+  title: ReactNode;
 };
 
 export type PropContentProps = {

@@ -3,7 +3,6 @@ import { StyleSheet, View } from 'react-native';
 import { Switch, ScrollView, Title, Icon, Box } from '@redshank/native';
 
 const SwitchScreen = () => {
-
   return (
     <ScrollView>
       <View style={styles.container}>

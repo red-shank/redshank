@@ -57,6 +57,10 @@ export const PopConfirm: React.FC<PopConfirmProps> & ExportComponent = ({
               color="primary"
               appearance="modal"
               onPress={modalRef?.current?.onClose}
+              textProps={{
+                bold: true,
+                size: 'md'
+              }}
             >
               {cancelText}
             </Button>
@@ -75,6 +79,10 @@ export const PopConfirm: React.FC<PopConfirmProps> & ExportComponent = ({
                     bg="transparent"
                     color="primary"
                     {...action}
+                    textProps={{
+                      size: 'md',
+                      ...action?.textProps
+                    }}
                     fullWidth
                     size="xLarge"
                   />
@@ -93,6 +101,9 @@ export const PopConfirm: React.FC<PopConfirmProps> & ExportComponent = ({
                     fontWeight="normal"
                     style={styles.okButton}
                     color={type === 'default' ? 'primary' : 'error'}
+                    textProps={{
+                      size: 'md'
+                    }}
                   >
                     {okText}
                   </Button>

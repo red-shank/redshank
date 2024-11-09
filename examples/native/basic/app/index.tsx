@@ -4,19 +4,19 @@ import {
   useTheme,
   Text,
   Title,
-  InputScrollView,
   Box,
   Ripple,
   getColorForBackground,
   Container,
-  Button
+  Button,
+  ScrollView
 } from '@redshank/native';
 
 const ThemeScreen = () => {
   const { colors, setTheme, isDark } = useTheme();
 
   return (
-    <InputScrollView showsVerticalScrollIndicator={false}>
+    <ScrollView>
       <Container>
         <Title>Toggle theme</Title>
         <Button
@@ -89,7 +89,7 @@ const ThemeScreen = () => {
           })}
         </Box>
       </Container>
-    </InputScrollView>
+    </ScrollView>
   );
 };
 
