@@ -1,5 +1,14 @@
 # CHANGELOG
 
+# 3.21.0 (2024-11-08)
+
+
+### Bug Fixes
+
+* fix: fixed value and added isDisabled prop to Switch ([1bddb66](https://github.com/red-shank/redshank/commit/1bddb669f2493df229401cefd1721feb3d1198a7))
+
+
+
 # 3.20.0 (2024-10-24)
 
 
