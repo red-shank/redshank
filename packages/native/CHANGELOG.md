@@ -1,5 +1,19 @@
 # CHANGELOG
 
+# 3.23.0 (2024-11-08)
+
+
+### Bug Fixes
+
+* added release ([c64c2c5](https://github.com/red-shank/redshank/commit/c64c2c5072c16b554b3e24ca5b955438aded7d46))
+
+
+### Features
+
+* feat: change string for ReactNode in popconfirm ([1bc1478](https://github.com/red-shank/redshank/commit/1bc147839e571069dfb6aec7693401d20eda2590))
+
+
+
 # 3.21.0 (2024-11-08)
 
 
