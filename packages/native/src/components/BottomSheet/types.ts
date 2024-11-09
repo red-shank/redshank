@@ -2,7 +2,10 @@ import type { ReactNode } from 'react';
 import { ModalProps } from '../Modal';
 import { SxProps } from '../../lib/styleDictionary';
 
-export type BottomSheetProps = Pick<ModalProps, 'sx' | 'styles' | 'style'> &
+export type BottomSheetProps = Pick<
+  ModalProps,
+  'sx' | 'scrollable' | 'styles' | 'style'
+> &
   Omit<SxProps, 'position'> & {
     animationType?: 'fade' | 'slide' | 'none';
     children?: ReactNode;

@@ -16,6 +16,7 @@ export const Switch: React.FC<SwitchProps> = forwardRef<any, SwitchProps>(
       textError,
       bordered,
       styles,
+      isDisabled,
       type = 'circle',
       borderColor = 'primary',
       activeColor = 'input',
@@ -38,22 +39,20 @@ export const Switch: React.FC<SwitchProps> = forwardRef<any, SwitchProps>(
     );
 
     const onToggleSwitch = () => {
-      setIsEnabled((prev) => {
-        const newValue = !prev;
-        onChange && onChange(newValue);
-        return newValue;
-      });
+      if (typeof value === 'boolean') {
+        console.log(onChange);
+        if (onChange) {
+          setIsEnabled(!value);
+          return onChange && onChange(!value);
+        }
+      } else {
+        setIsEnabled(!isEnabled);
+      }
     };
 
     React.useEffect(() => {
       if (typeof value === 'boolean') {
-        setIsEnabled((prev) => {
-          if (prev !== value) {
-            onChange && onChange(value);
-            return value;
-          }
-          return prev;
-        });
+        setIsEnabled(value);
       }
     }, [value, onChange]);
 
@@ -66,6 +65,7 @@ export const Switch: React.FC<SwitchProps> = forwardRef<any, SwitchProps>(
       <Box
         mb={2}
         ref={ref}
+        opacity={isDisabled ? 0.5 : 1}
         style={[style, styles?.root]}
         sx={{
           ...sx?.root,
@@ -74,8 +74,8 @@ export const Switch: React.FC<SwitchProps> = forwardRef<any, SwitchProps>(
         {...restSxProps}
       >
         <TouchableOpacity
-          activeOpacity={activeOpacity}
-          onPress={onToggleSwitch}
+          activeOpacity={isDisabled ? 1 : activeOpacity}
+          onPress={!isDisabled ? onToggleSwitch : undefined}
           style={createSxStyle(
             {
               style: styles?.touchable,

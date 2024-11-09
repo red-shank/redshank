@@ -11,6 +11,7 @@ export interface SwitchProps extends SxProps {
   bordered?: boolean;
   defaultValue?: boolean;
   deactiveColor?: ColorName;
+  isDisabled?: boolean;
   error?: boolean;
   icon?: {
     false?: ReactElement<{ color?: string }> | null | undefined;
