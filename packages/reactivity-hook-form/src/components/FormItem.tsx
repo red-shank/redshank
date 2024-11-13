@@ -129,7 +129,6 @@ export const FormItem = <TFieldValues extends FieldValues = FieldValues>(
           ...renderProps
         });
 
-        console.log(args);
         const childrenElement = React.cloneElement(children, args);
 
         const errorText =
