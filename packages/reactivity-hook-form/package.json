@@ -1,6 +1,6 @@
 {
   "name": "@redshank/reactivity-hook-form",
-  "version": "1.0.19",
+  "version": "1.1.0",
   "keywords": [
     "react-hook-form",
     "form",
@@ -29,7 +29,7 @@
     "example-basic:dev": "cd examples/basic && vite",
     "example-basic:build": "cd examples/basic && tsc && vite build",
     "example-basic:preview": "cd examples/basic && vite preview --base ./example/basic",
-    "deploy": "yarn build && npm publish",
+    "deplocoy": "yarn build && npm publish",
     "build": "yarn build:esm && yarn build:cjs && node ./post-build.js",
     "build:esm": "tsc && node ./post-build.js",
     "build:cjs": "tsc --module commonjs --outDir lib/cjs && node ./post-build.js",
