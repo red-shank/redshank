@@ -1,0 +1,70 @@
+{
+  "name": "@redshank/reactivity-hook-form",
+  "version": "1.0.19",
+  "keywords": [
+    "react-hook-form",
+    "form",
+    "react",
+    "reactivity",
+    "react-form",
+    "reactivity-hook-form",
+    "reactivity-f",
+    "rc-fields-form",
+    "rc-field-form",
+    "rc-form",
+    "reactivity-form"
+  ],
+  "description": "Reactivity Hook Form is an innovative wrapper designed to work with React Hook Form, a popular library for managing forms in React. This wrapper focuses on simplifying and automating the process of form integration, providing an elegant and efficient solution for developers.",
+  "files": [
+    "/lib"
+  ],
+  "main": "./lib/cjs/index.js",
+  "module": "./lib/esm/index.js",
+  "types": "./lib/esm/index.d.ts",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "scripts": {
+    "example-basic:dev": "cd examples/basic && vite",
+    "example-basic:build": "cd examples/basic && tsc && vite build",
+    "example-basic:preview": "cd examples/basic && vite preview --base ./example/basic",
+    "deploy": "yarn build && npm publish",
+    "build": "yarn build:esm && yarn build:cjs && node ./post-build.js",
+    "build:esm": "tsc && node ./post-build.js",
+    "build:cjs": "tsc --module commonjs --outDir lib/cjs && node ./post-build.js",
+    "prepublishOnly": "yarn build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "license": "ISC",
+  "author": "rivaslive",
+  "bugs": {
+    "url": "https://github.com/red-shank/redshank/issues"
+  },
+  "homepage": "https://github.com/red-shank/redshank/issues",
+  "dependencies": {
+    "react-hook-form": "^7.49.3"
+  },
+  "peerDependencies": {
+    "react": ">=16"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.48",
+    "@types/react-dom": "^18.2.18",
+    "@typescript-eslint/eslint-plugin": "^6.14.0",
+    "@typescript-eslint/parser": "^6.14.0",
+    "@vitejs/plugin-react-swc": "^3.5.0",
+    "eslint": "^8.55.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.5",
+    "prettier": "^3.2.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "typescript": "^5.3.3",
+    "vite": "^5.0.11"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/red-shank/redshank.git"
+  }
+}

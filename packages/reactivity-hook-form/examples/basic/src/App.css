@@ -1,0 +1,20 @@
+#root {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
+}
+
+.container {
+    width: 350px;
+    max-width: 100%;
+    margin: auto;
+
+    input {
+        display: block;
+        width: 100%;
+        padding: 0.5rem;
+        font-size: 1rem;
+        font-weight: 500;
+    }
+}
