@@ -29,10 +29,10 @@
     "example-basic:dev": "cd examples/basic && vite",
     "example-basic:build": "cd examples/basic && tsc && vite build",
     "example-basic:preview": "cd examples/basic && vite preview --base ./example/basic",
-    "deplocoy": "yarn build && npm publish",
+    "deploy": "yarn build && npm publish",
     "build": "yarn build:esm && yarn build:cjs && node ./post-build.js",
-    "build:esm": "tsc && node ./post-build.js",
-    "build:cjs": "tsc --module commonjs --outDir lib/cjs && node ./post-build.js",
+    "build:esm": "tsc",
+    "build:cjs": "tsc --module commonjs --outDir lib/cjs",
     "prepublishOnly": "yarn build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

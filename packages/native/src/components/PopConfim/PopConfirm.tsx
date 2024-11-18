@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { Modal, ModalHandle } from '../Modal';
-import { Button } from '../Button';
+import { Button, ButtonProps } from '../Button';
 
 import Header from './Header';
 import Footer from './Footer';
@@ -75,7 +75,7 @@ export const PopConfirm: React.FC<PopConfirmProps> & ExportComponent = ({
             <Footer noPadding>
               {actions?.map?.((action, index) => (
                 <Box key={index}>
-                  <Button
+                  <ButtonState
                     bg="transparent"
                     color="primary"
                     {...action}
@@ -91,23 +91,21 @@ export const PopConfirm: React.FC<PopConfirmProps> & ExportComponent = ({
               ))}
 
               {onOk && (
-                <>
-                  <Button
-                    key="onOK"
-                    fullWidth
-                    size="xLarge"
-                    onPress={onOk}
-                    bg="transparent"
-                    fontWeight="normal"
-                    style={styles.okButton}
-                    color={type === 'default' ? 'primary' : 'error'}
-                    textProps={{
-                      size: 'md'
-                    }}
-                  >
-                    {okText}
-                  </Button>
-                </>
+                <ButtonState
+                  key="onOK"
+                  fullWidth
+                  size="xLarge"
+                  onPress={onOk}
+                  bg="transparent"
+                  fontWeight="normal"
+                  style={styles.okButton}
+                  color={type === 'default' ? 'primary' : 'error'}
+                  textProps={{
+                    size: 'md'
+                  }}
+                >
+                  {okText}
+                </ButtonState>
               )}
             </Footer>
           )}
@@ -116,6 +114,24 @@ export const PopConfirm: React.FC<PopConfirmProps> & ExportComponent = ({
     </Modal>
   );
 };
+
+function ButtonState({ onPress, ...rest }: ButtonProps) {
+  const [isLoading, setIsLoading] = useState(false);
+
+  const onInternalPress: ButtonProps['onPress'] = async (args) => {
+    setIsLoading(true);
+    await onPress?.(args);
+    setIsLoading(false);
+  };
+
+  return (
+    <Button
+      {...rest}
+      loading={rest?.loading || isLoading}
+      onPress={onInternalPress}
+    />
+  );
+}
 
 PopConfirm.Header = Header;
 PopConfirm.Content = Content;

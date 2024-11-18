@@ -5,6 +5,7 @@ import Form, {
   ReactivityHookFormProvider
 } from '../../../../reactivity-hook-form/src';
 import { FieldPathLib } from '../../../src/types/extend-react-hook-form.type.ts';
+import { useForm } from 'react-hook-form';
 
 type FormType = {
   user: {
@@ -18,6 +19,8 @@ const key: FieldPathLib<FormType> = 'user.username';
 console.log(key);
 
 function App() {
+  const formContext = useForm<FormType>();
+
   return (
     <ReactivityHookFormProvider
       sanitize={(args) => ({
@@ -26,7 +29,10 @@ function App() {
       })}
     >
       <div className="container">
-        <Form<FormType>>
+        <Form<FormType>
+          formContext={formContext}
+          onSubmit={(values) => console.log({ values })}
+        >
           <FormItem<FormType>
             name="user.username"
             label="Username"
