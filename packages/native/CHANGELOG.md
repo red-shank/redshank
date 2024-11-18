@@ -1,5 +1,14 @@
 # CHANGELOG
 
+# 3.24.0 (2024-11-17)
+
+
+### Features
+
+* feat: added loading type to pop confirm ([d4b8fad](https://github.com/red-shank/redshank/commit/d4b8fad63ce6223ee844af270fb83201cb701f04))
+
+
+
 # 3.23.0 (2024-11-08)
 
 
