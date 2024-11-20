@@ -61,7 +61,11 @@ export const Image: React.FC<ImageProps> = ({
     <Component
       {...{ onPress, onLongPress }}
       accessibilityIgnoresInvertColors={true}
-      style={StyleSheet.flatten([styles.container, containerStyle])}
+      style={StyleSheet.flatten([
+        styles.container,
+        containerStyle,
+        { backgroundColor: theme.colors.get('imagePlaceholder') }
+      ])}
     >
       <ImageComponent
         {...props}
@@ -93,7 +97,7 @@ export const Image: React.FC<ImageProps> = ({
               {
                 alignItems: 'center',
                 justifyContent: 'center',
-                backgroundColor: 'imagePlaceholder',
+                backgroundColor: theme.colors.get('imagePlaceholder'),
                 width,
                 height,
                 style
