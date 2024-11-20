@@ -1,5 +1,14 @@
 # CHANGELOG
 
+# 3.25.0 (2024-11-19)
+
+
+### Bug Fixes
+
+* fix: fixed placeholder image set ([c010aae](https://github.com/red-shank/redshank/commit/c010aae9ff931185d3a33a09d8290d16b08e6956))
+
+
+
 # 3.24.0 (2024-11-17)
 
 
