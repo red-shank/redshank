@@ -1,5 +1,14 @@
 # CHANGELOG
 
+# 3.26.0 (2024-12-03)
+
+
+### Bug Fixes
+
+* fix: added button props in social buttons ([c00be39](https://github.com/red-shank/redshank/commit/c00be39a82c8ef5f07b42439e32472a6ff6a294a))
+
+
+
 # 3.25.0 (2024-11-19)
 
 
