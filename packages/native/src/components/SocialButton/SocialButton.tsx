@@ -9,11 +9,7 @@ import { Box } from '../Box';
 
 export type SocialButtonProvider = 'google' | 'facebook' | 'apple' | 'twitter';
 
-export interface SocialButtonProps
-  extends Pick<
-    ButtonProps,
-    'loading' | 'Component' | 'disabled' | 'onPress' | 'style'
-  > {
+export interface SocialButtonProps extends Omit<ButtonProps, 'children'> {
   provider?: SocialButtonProvider;
   text?: string;
 }
