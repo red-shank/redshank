@@ -1,5 +1,14 @@
 # CHANGELOG
 
+# 3.27.0 (2024-12-03)
+
+
+### Bug Fixes
+
+* fix: fixed build ([e6d496b](https://github.com/red-shank/redshank/commit/e6d496ba878aa12813c134cf56abfdace16dee5c))
+
+
+
 # 3.26.0 (2024-12-03)
 
 
