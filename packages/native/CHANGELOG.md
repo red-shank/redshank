@@ -1,5 +1,14 @@
 # CHANGELOG
 
+# 3.28.0 (2024-12-03)
+
+
+### Features
+
+* feat: added iconSize to social button ([6256886](https://github.com/red-shank/redshank/commit/625688621527c34363ec047c1402a16483410cde))
+
+
+
 # 3.27.0 (2024-12-03)
 
 
