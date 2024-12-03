@@ -64,7 +64,6 @@ export const SocialButton: React.FC<SocialButtonProps> = ({
   return (
     <Button
       fullWidth
-      shape="circle"
       type="outline"
       appearance="text"
       alignItems="center"
