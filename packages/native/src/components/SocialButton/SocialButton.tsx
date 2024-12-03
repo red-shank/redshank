@@ -12,6 +12,7 @@ export type SocialButtonProvider = 'google' | 'facebook' | 'apple' | 'twitter';
 export interface SocialButtonProps extends Omit<ButtonProps, 'children'> {
   provider?: SocialButtonProvider;
   text?: string;
+  iconSize?: number;
 }
 
 const SwitchProvidersTextMap: Record<SocialButtonProvider, string> = {
@@ -46,6 +47,7 @@ const SwitchProvidersImageMap: Record<
 export const SocialButton: React.FC<SocialButtonProps> = ({
   text,
   provider,
+  iconSize = 25,
   ...rest
 }) => {
   const { theme } = useTheme();
@@ -67,8 +69,8 @@ export const SocialButton: React.FC<SocialButtonProps> = ({
       type="outline"
       appearance="text"
       alignItems="center"
-      startContent={<Image width={25} height={25} source={uri} />}
-      endContent={<Box width={25} height={25} />}
+      startContent={<Image width={iconSize} height={iconSize} source={uri} />}
+      endContent={<Box width={iconSize} height={iconSize} />}
       sx={{
         text: {
           width: '100%',
