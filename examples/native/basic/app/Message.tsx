@@ -18,12 +18,8 @@ const MessageScreen = () => {
 
   const onPressDefault = (type: AlertType) => {
     message[type]({
-      title: (
-        <Text transformText="capitalize" fontWeight="bold">
-          {type}
-        </Text>
-      ),
-      description: <Text transformText="capitalize">{type}</Text>
+      title: type,
+      description: type
     });
   };
 
@@ -97,7 +93,7 @@ const MessageScreen = () => {
         </View>
 
         <View style={{ alignItems: 'center' }}>
-          <Title level={3}>With icon</Title>
+          <Title level={3}>Without icon</Title>
           <Box gap={1} flexDirection="row" flexWrap="wrap">
             {types.map((f) => (
               <Button key={f} onPress={() => onLeftIcon(f)}>

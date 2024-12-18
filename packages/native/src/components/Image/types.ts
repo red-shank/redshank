@@ -18,8 +18,10 @@ export type ImageProps = Omit<RNImageProps, 'source' | 'width' | 'height'> &
     height?: DimensionValue;
     width?: DimensionValue;
     placeholderContent?: ReactElement;
+    errorContent?: ReactElement;
     placeholderStyle?: StyleProp<ViewStyle>;
     source: ImageSrcType;
     transition?: boolean;
+    persisRatioWithImageFailed?: boolean;
     transitionDuration?: number;
   };

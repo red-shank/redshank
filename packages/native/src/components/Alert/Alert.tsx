@@ -42,17 +42,6 @@ const icons: Record<AlertType, React.ReactNode> = {
   )
 };
 
-// {
-//   message,
-//     sx,
-//     sizeIcon = 18,
-//     shadow = false,
-//     closable = false,
-//     type = 'warning',
-//     withIcon = true,
-// ...restProps
-// }
-
 export const Alert: React.FC<AlertProps> = ({
   endContent,
   content,
@@ -61,6 +50,7 @@ export const Alert: React.FC<AlertProps> = ({
   opacity,
   type,
   sx,
+  closeText = 'Close',
   withInternalClose = false,
   closable = !onPress,
   withBoxShadow = false,
@@ -171,21 +161,27 @@ export const Alert: React.FC<AlertProps> = ({
             borderRadius={borderRadius.alert}
             alignItems="center"
             flexDirection="row"
-            pr={withInternalClose || endContent ? 3 : 0}
+            pr={withInternalClose || endContent ? 4 : 0}
           >
             {showStartContent ? start : null}
-            <Box width="100%">
+            <Box width={withInternalClose ? '100%' : '90%'}>
               {isValidChild(standardContent?.title) ? (
                 standardContent?.title
               ) : (
-                <Text fontWeight="500" style={styleText}>
+                <Text
+                  size="sm"
+                  fontWeight={standardContent?.description ? '500' : '400'}
+                  style={styleText}
+                >
                   {standardContent?.title}
                 </Text>
               )}
               {isValidChild(standardContent?.description) ? (
                 standardContent?.description
               ) : (
-                <Text style={styleText}>{standardContent?.description}</Text>
+                <Text style={styleText} size="sm">
+                  {standardContent?.description}
+                </Text>
               )}
             </Box>
           </Box>
@@ -197,7 +193,7 @@ export const Alert: React.FC<AlertProps> = ({
               color="text"
               onPress={() => setInternalClose(true)}
             >
-              Close
+              {closeText}
             </Button>
           )}
         </Animated.View>

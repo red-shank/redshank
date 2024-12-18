@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import {
   Animated,
   Image as ImageNative,
@@ -17,10 +17,13 @@ export const Image: React.FC<ImageProps> = ({
   onPress,
   onLongPress,
   source,
+  src,
   Component = onPress || onLongPress ? Ripple : View,
   placeholderStyle,
   placeholderContent,
+  errorContent,
   containerStyle,
+  persisRatioWithImageFailed = true,
   childrenContainerStyle = null,
   style = {},
   ImageComponent = ImageNative,
@@ -33,27 +36,26 @@ export const Image: React.FC<ImageProps> = ({
   ...props
 }) => {
   const theme = useTheme();
-  const placeholderOpacity = React.useRef(
-    new Animated.Value(transition ? 1 : 0)
-  );
+  const [error, setError] = useState(false);
+  const placeholderOpacity = React.useRef(new Animated.Value(1));
 
   const onLoadHandler = useCallback(
     (event: NativeSyntheticEvent<ImageLoadEventData>) => {
-      if (transition) {
-        Animated.timing(placeholderOpacity.current, {
-          toValue: 0,
-          duration: transitionDuration,
-          useNativeDriver: true
-        }).start();
-      } else {
-        placeholderOpacity.current.setValue(0);
-      }
+      Animated.timing(placeholderOpacity.current, {
+        toValue: 0,
+        duration: transitionDuration,
+        useNativeDriver: true
+      }).start();
       onLoad?.(event);
     },
-    [transition, transitionDuration, onLoad]
+    [transitionDuration, onLoad]
   );
 
-  const hasImage = Boolean(source);
+  const onLoadError = useCallback(() => {
+    setError(true);
+  }, []);
+
+  const hasImage = Boolean(source || src);
 
   const sourceResolve = typeof source === 'string' ? { uri: source } : source;
 
@@ -63,8 +65,8 @@ export const Image: React.FC<ImageProps> = ({
       accessibilityIgnoresInvertColors={true}
       style={StyleSheet.flatten([
         styles.container,
-        containerStyle,
-        { backgroundColor: theme.colors.get('imagePlaceholder') }
+        (!error || persisRatioWithImageFailed) && { width, height },
+        containerStyle
       ])}
     >
       <ImageComponent
@@ -72,9 +74,10 @@ export const Image: React.FC<ImageProps> = ({
         {...{ transition, transitionDuration }}
         source={sourceResolve}
         onLoad={onLoadHandler}
+        onError={onLoadError}
         style={StyleSheet.flatten([
           StyleSheet.absoluteFill,
-          { width, height, aspectRatio: 1 },
+          { width: '100%', height: '100%', aspectRatio: 1 },
           style
         ])}
       />
@@ -86,7 +89,10 @@ export const Image: React.FC<ImageProps> = ({
         style={[
           StyleSheet.absoluteFillObject,
           {
-            opacity: hasImage ? placeholderOpacity.current : 1
+            opacity: placeholderOpacity.current,
+            backgroundColor: error
+              ? 'transparent'
+              : theme.colors.get('imagePlaceholder')
           },
           style
         ]}
@@ -97,7 +103,6 @@ export const Image: React.FC<ImageProps> = ({
               {
                 alignItems: 'center',
                 justifyContent: 'center',
-                backgroundColor: theme.colors.get('imagePlaceholder'),
                 width,
                 height,
                 style
@@ -107,20 +112,27 @@ export const Image: React.FC<ImageProps> = ({
             placeholderStyle
           ])}
         >
-          {React.isValidElement(placeholderContent)
+          {React.isValidElement(placeholderContent) && !error
             ? placeholderContent
-            : placeholderContent && <Text>{placeholderContent}</Text>}
+            : placeholderContent && !error && <Text>{placeholderContent}</Text>}
+
+          {React.isValidElement(errorContent)
+            ? errorContent
+            : errorContent && <Text>{errorContent}</Text>}
         </Animated.View>
       </Animated.View>
+
       {/* Children for Image */}
-      <Animated.View
-        style={StyleSheet.flatten([
-          { width, height },
-          childrenContainerStyle ?? style
-        ])}
-      >
-        {children}
-      </Animated.View>
+      {children && (
+        <Animated.View
+          style={StyleSheet.flatten([
+            { width, height, backgroundColor: 'transparent' },
+            childrenContainerStyle ?? style
+          ])}
+        >
+          {children}
+        </Animated.View>
+      )}
     </Component>
   );
 };

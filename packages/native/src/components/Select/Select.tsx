@@ -59,6 +59,10 @@ export const Select: React.FC<SelectProps> = ({
     return (
       <InternalIcon
         size={16}
+        mt={Platform.select({
+          android: 0.8,
+          default: undefined
+        })}
         type="antdesign"
         name={isOpen ? 'up' : 'down'}
         color={colors.get(borderColor)}

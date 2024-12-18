@@ -21,6 +21,7 @@ export interface AlertProps extends SxProps {
   type?: AlertType;
   onPress?: (event: any) => void;
   closable?: boolean;
+  closeText?: ReactNode;
   withInternalClose?: boolean;
   closeOnPress?: boolean;
   onClose?: () => void;

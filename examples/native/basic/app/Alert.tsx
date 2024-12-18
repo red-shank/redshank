@@ -19,6 +19,27 @@ const AlertScreen = () => {
             <Alert type="warning" content="This is an alert" />
             <Alert type="error" content="This is an alert" />
             <Alert type="info" content="This is an alert" />
+
+            <Alert
+              type="success"
+              content={{
+                title: 'Error here',
+                description:
+                  'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis, iure minima minus modi nostrum officiis quae sapiente ut vel. Ab aspernatur distinctio eos in numquam obcaecati officia recusandae veniam voluptates.'
+              }}
+            />
+            <Alert
+              type="warning"
+              content="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis, iure minima minus modi nostrum officiis quae sapiente ut vel. Ab aspernatur distinctio eos in numquam obcaecati officia recusandae veniam voluptates."
+            />
+            <Alert
+              type="error"
+              content="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis, iure minima minus modi nostrum officiis quae sapiente ut vel. Ab aspernatur distinctio eos in numquam obcaecati officia recusandae veniam voluptates."
+            />
+            <Alert
+              type="info"
+              content="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis, iure minima minus modi nostrum officiis quae sapiente ut vel. Ab aspernatur distinctio eos in numquam obcaecati officia recusandae veniam voluptates."
+            />
           </Box>
         </Box>
 
@@ -44,11 +65,8 @@ const AlertScreen = () => {
                     This is a title
                   </Text>
                 ),
-                description: (
-                  <Text color="gray.300">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab
-                  </Text>
-                )
+                description:
+                  'lorem ipsum dolor sit amet, consectetur adipisicing elit. lorem ipsum dolor sit amet, consectetur adipisicing elit.'
               }}
             />
             <Alert
