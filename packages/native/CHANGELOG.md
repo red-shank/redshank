@@ -1,5 +1,14 @@
 # CHANGELOG
 
+# 3.29.0 (2024-12-18)
+
+
+### Bug Fixes
+
+* fix: fixed imagen placeholder and fixed select and alert width ([23095d6](https://github.com/red-shank/redshank/commit/23095d69f21dbbdd70b19eefb7d481169b390c9e))
+
+
+
 # 3.28.0 (2024-12-03)
 
 
