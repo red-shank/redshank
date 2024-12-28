@@ -1,5 +1,14 @@
 # CHANGELOG
 
+# 3.30.0 (2024-12-27)
+
+
+### Bug Fixes
+
+* fix: fixed avatar borderer width imagen ([e96afab](https://github.com/red-shank/redshank/commit/e96afab769f4488ba28c12fd496d4fea9cdb63b4))
+
+
+
 # 3.29.0 (2024-12-18)
 
 
