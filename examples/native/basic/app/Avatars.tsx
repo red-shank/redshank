@@ -133,7 +133,7 @@ const AvatarScreen = () => {
         <View>
           <Title level={3}>Image Avatar</Title>
           <Box gap={1}>
-            <Avatar src="https://i.imgur.com/bnip2HZ.png" size={65} />
+            <Avatar src="https://i.imgur.com/bnip2HZ.png" bordered size={65} />
             <Avatar src="https://i.imgur.com/bnip2HZ.png" />
             <Avatar src="https://i.imgur.com/bnip2HZ.png" size={30} />
           </Box>

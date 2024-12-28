@@ -81,6 +81,7 @@ export const Avatar: React.FC<AvatarProps> = ({
   const sourceImage = typeof src === 'string' ? { uri: src } : src;
 
   const internalPaddingImage = !bordered ? 0 : size * 0.15;
+  const widthAndHeight = size - internalPaddingImage;
 
   const resolveProps = getSxStyleAndProps(
     {
@@ -117,8 +118,8 @@ export const Avatar: React.FC<AvatarProps> = ({
       <Box
         overflow="hidden"
         bg={_backgroundColor}
-        width={bordered ? size - internalPaddingImage : size}
-        height={bordered ? size - internalPaddingImage : size}
+        width={widthAndHeight}
+        height={widthAndHeight}
         borderRadius={borderRadiusElement}
         justifyContent="center"
         alignItems="center"
@@ -158,14 +159,15 @@ export const Avatar: React.FC<AvatarProps> = ({
         ) : (
           <ImageComponent
             source={sourceImage}
+            width={widthAndHeight}
+            height={widthAndHeight}
             resizeMode="cover"
-            width={size}
-            height={size}
             {...imageProps}
             style={StyleSheet.flatten([
               {
-                width: size - internalPaddingImage,
-                height: size - internalPaddingImage
+                width: widthAndHeight,
+                height: widthAndHeight,
+                resizeMode: 'cover'
               },
               { borderRadius: borderRadiusElement },
               imageProps && imageProps.style,
@@ -187,13 +189,5 @@ const _styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
     alignItems: 'center'
-  },
-  title: {
-    color: '#ffffff',
-    backgroundColor: 'transparent',
-    textAlign: 'center'
-  },
-  hiddenPlaceholderStyle: {
-    backgroundColor: 'transparent'
   }
 });
