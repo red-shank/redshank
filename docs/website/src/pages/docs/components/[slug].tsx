@@ -1,8 +1,9 @@
 import matter from 'gray-matter';
 import remarkSlug from 'remark-slug';
 import mapboxPrism from '@mapbox/rehype-prism';
-import remarkAutoLink from 'remark-autolink-headings';
 import { serialize } from 'next-mdx-remote/serialize';
+// @ts-ignore
+import remarkAutoLink from 'remark-autolink-headings';
 
 import v1 from '@/versions/v1.json';
 import { isProd } from '@/config';
