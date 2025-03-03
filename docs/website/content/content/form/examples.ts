@@ -5,10 +5,10 @@ export const defaultCode =
             onSubmit={onFinish}
             validations={{
               email: {
-                required: true,
+                required: 'Please insert your email',
                 pattern: {
-                  value: /^\\S+@\\S+\\.\\S+$/,
-                  message: 'Email invalid
+                  value: /\\S+@\\S+\\.\\S+/,
+                  message: 'Please insert a valid email'
                 }
               },
               password: {
@@ -46,33 +46,29 @@ export const completed = withThemeProvider(`<Form
             onSubmit={onFinish}
             validations={{
               first_name: {
-                required: 'Required field',
+                required: 'Required field'
               },
               last_name: {
-                 required: 'Required field',
+                 required: 'Required field'
               },
               payment_date: {
-                 required: 'Required field',
+                 required: 'Required field'
               },
               gender: {
-                 required: 'Required field',
+                 required: 'Required field'
               },
               mayor_of_age: {
-                 required: 'Required field',
+                 required: 'Required field'
               },
               switch: {
                  required: 'Required field',
-                 validate: (value) =>
-                    value
-                      ? undefined
-                      : 'Should select switch',
-                },
+                 validate: (value) => value ? undefined : 'Should select switch'
               },
               agree: {
                  required: 'Required field',
-                 validate: (value) => value ? undefined : 'Should accept agreement',
-              },
-            }
+                 validate: (value) => value ? undefined : 'Should accept agreement'
+              }
+            }}
           >
             <Form.Item
               name="first_name"
@@ -116,7 +112,7 @@ export const completed = withThemeProvider(`<Form
                 <Radio value="yes" label="Yes" />
                 <Radio value="no" label="No" />
               </Radio.Group>
-            </Form.Item>
+            </Form.Item>;
 
             <Form.Item name="description" label="Description">
               <Input.TextArea placeholder="Insert description here!" />
@@ -139,8 +135,8 @@ export const completed = withThemeProvider(`<Form
                 label="I accept the terms and conditions"
               />
             </Form.Item>
-            <Form.Item>
-              <Button fullWidth onPress={submit}>
+            <Form.Item isSubmit>
+              <Button fullWidth>
                 Login
               </Button>
             </Form.Item>
@@ -170,7 +166,7 @@ export const controller = withThemeProvider(`<Form context={form} onSubmit={onFi
                 required: 'Email is required',
                 pattern: {
                   value: /^\\S+@\\S+\\.\\S+$/,
-                  message: 'Email invalid
+                  message: 'Email invalid'
                 }
               }}
             >

@@ -113,7 +113,9 @@ export const Radio: React.FC<RadioProps> & ComponentExport = ({
         </Animated.View>
       </Box>
 
-      {isValidChild(label) && (
+      {isValidChild(label) ? (
+        label
+      ) : (
         <Text sx={sx?.text} style={styles?.text}>
           {label}
         </Text>
