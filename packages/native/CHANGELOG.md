@@ -1,5 +1,14 @@
 # CHANGELOG
 
+# 4.2.0 (2025-03-03)
+
+
+### Features
+
+* added new form component and fixed documentation ([dac30ea](https://github.com/red-shank/redshank/commit/dac30eaca841ce4b9b5faa707493a2735dab34e4))
+
+
+
 # 3.30.0 (2024-12-27)
 
 
