@@ -1,3 +1,5 @@
+'use client';
+
 import { styled } from '@nextui-org/react';
 import { Player } from '@lottiefiles/react-lottie-player';
 

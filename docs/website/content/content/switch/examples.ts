@@ -34,7 +34,17 @@ export const withIcon = withThemeProvider(
             }}
           />`,
   {
-    package: ['Switch', 'Icon']
+    package: ['Switch', 'Icon'],
+    icons: [
+      {
+        key: 'font-awesome-5',
+        value: 'FontAwesome5'
+      },
+      {
+        key: 'ionicons',
+        value: 'Ionicons'
+      }
+    ]
   }
 );
 

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {
   ComponentProps,
-  PropsWithChildren,
+  ElementType,
   ReactNode,
   useEffect,
   useState
@@ -12,17 +12,33 @@ import {
   SubmitHandler,
   UseFormProps,
   useForm,
-  UseFormReturn
+  UseFormReturn,
+  useFieldArray,
+  useFormContext,
+  useWatch,
+  useController,
+  useFormState
 } from 'react-hook-form';
 import { ValidationsProvider } from '../context/ValidationsContext';
 import { FormDependencies } from '../types/dependencies.type';
 import { FieldPathLib } from '../types/extend-react-hook-form.type';
 import { FormValidations } from '../types/validations.type';
-import { getNameAndIndexKey } from '../utils';
+import { getFirstNameFromObject, getNameAndIndexKey } from '../utils';
 import {
   FormOptions,
   ReactivityHookFormProvider
 } from '../context/FormOptions';
+import { FormItem } from './FormItem';
+
+interface ComponentExport {
+  Item: typeof FormItem;
+  useForm: typeof useForm;
+  useFieldArray: typeof useFieldArray;
+  useFormContext: typeof useFormContext;
+  useWatch: typeof useWatch;
+  useController: typeof useController;
+  useFormState: typeof useFormState;
+}
 
 type FormProps<TFieldValues extends FieldValues = FieldValues> =
   UseFormProps<TFieldValues> &
@@ -33,23 +49,11 @@ type FormProps<TFieldValues extends FieldValues = FieldValues> =
       dependencies?: FormDependencies<TFieldValues>;
       validations?: FormValidations<TFieldValues>;
       onSubmit?: SubmitHandler<TFieldValues>;
+      context?: UseFormReturn<TFieldValues>;
       formContext?: UseFormReturn<TFieldValues>;
       options?: Partial<FormOptions>;
+      Component?: ElementType;
     };
-
-const Component = ({
-  options,
-  children
-}: PropsWithChildren<{ options?: Partial<FormOptions> }>) => {
-  if (typeof options !== 'undefined') {
-    return (
-      <ReactivityHookFormProvider {...options}>
-        {children}
-      </ReactivityHookFormProvider>
-    );
-  }
-  return <>{children}</>;
-};
 
 const Form = <TFieldValues extends FieldValues = FieldValues>(
   props: FormProps<TFieldValues>
@@ -60,23 +64,24 @@ const Form = <TFieldValues extends FieldValues = FieldValues>(
     dependencies,
     validations,
     onSubmit,
-    formContext,
+    context: externalContext,
+    formContext = externalContext,
     defaultValues,
     options,
     gap = 16,
+    Component = ((props) => <form {...props} />) as ElementType,
     ...restFormProps
   } = props;
 
   // using a state here to make the "scroll & focus" happen once per submission
   const [canFocus, setCanFocus] = useState(true);
 
-  const methods =
-    formContext ??
+  const methods = (formContext ??
     useForm<TFieldValues>({
       mode: 'onChange',
       defaultValues,
       ...restFormProps
-    });
+    })) as UseFormReturn<TFieldValues>;
 
   // this useEffect is to enable the watcher and launch the action of the dependencies
   useEffect(() => {
@@ -105,10 +110,45 @@ const Form = <TFieldValues extends FieldValues = FieldValues>(
 
   // This useEffect is to enable auto-scroll to the input with error
   useEffect(() => {
-    if (methods.formState.errors && canFocus) {
-      // Sort inputs based on their position on the page. (the order will be based on validaton order otherwise)
+    if (
+      methods.formState.errors &&
+      canFocus &&
+      typeof window &&
+      typeof window !== 'undefined' &&
+      window?.document &&
+      typeof window?.document !== 'undefined'
+    ) {
+      // Sort inputs based on their position on the page. (the order will be based on validation order otherwise)
       const elements = Object.keys(methods.formState.errors)
-        .map((name) => document.getElementsByName(name)[0])
+        .map((name) => {
+          const valueName = methods.formState.errors?.[name];
+          let arrayName = name;
+
+          // if by object fields
+          if (
+            valueName?.constructor === Object &&
+            !Object.prototype.hasOwnProperty.call(valueName, 'ref') &&
+            !Object.prototype.hasOwnProperty.call(valueName, 'message')
+          ) {
+            return Object.entries(valueName).map(([key, value]) => {
+              const currName = getFirstNameFromObject(value, `${name}.${key}`);
+              return document.getElementsByName(currName)[0];
+            });
+          } else if (Array.isArray(valueName)) {
+            arrayName = Object.values(valueName).reduce<string>(
+              (acc, currentValue, currentIndex) => {
+                if (acc || currentIndex !== 0) return acc;
+                return getFirstNameFromObject(
+                  currentValue,
+                  `${name}.${currentIndex}`
+                );
+              },
+              ''
+            );
+          }
+          return document.getElementsByName(arrayName)[0];
+        })
+        .flat()
         .filter(Boolean)
         .sort(
           (a, b) =>
@@ -117,8 +157,8 @@ const Form = <TFieldValues extends FieldValues = FieldValues>(
 
       if (elements.length > 0) {
         const errorElement = elements[0];
-        errorElement.scrollIntoView({ behavior: 'smooth', block: 'center' }); // scrollIntoView options are not supported in Safari
-        errorElement.focus({ preventScroll: true });
+        errorElement.scrollIntoView?.({ behavior: 'smooth', block: 'center' }); // scrollIntoView options are not supported in Safari
+        errorElement.focus();
       }
 
       setCanFocus(false);
@@ -129,13 +169,15 @@ const Form = <TFieldValues extends FieldValues = FieldValues>(
     setCanFocus(true);
   }, [methods.formState.submitCount]);
 
+  const handleSubmit = methods.handleSubmit(onSubmit || (() => {}));
+
   return (
-    <Component options={options}>
+    <ReactivityHookFormProvider onSubmit={handleSubmit} {...options}>
       <FormProvider {...methods}>
         <ValidationsProvider validations={validations}>
-          <form
+          <Component
             id={formId}
-            onSubmit={methods.handleSubmit(onSubmit ?? (() => {}))}
+            onSubmit={handleSubmit}
             {...restFormProps}
             style={{
               gap,
@@ -145,11 +187,24 @@ const Form = <TFieldValues extends FieldValues = FieldValues>(
             }}
           >
             {children}
-          </form>
+          </Component>
         </ValidationsProvider>
       </FormProvider>
-    </Component>
+    </ReactivityHookFormProvider>
   );
 };
 
-export default Form;
+export type * from 'react-hook-form/dist/types/index';
+
+export default Form as (<TFieldValues extends FieldValues = FieldValues>(
+  props: FormProps<TFieldValues>
+) => JSX.Element) &
+  ComponentExport;
+
+Form.Item = FormItem;
+Form.useForm = useForm;
+Form.useFieldArray = useFieldArray;
+Form.useFormContext = useFormContext;
+Form.useWatch = useWatch;
+Form.useController = useController;
+Form.useFormState = useFormState;

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
-import { Modal, ModalHandle } from '../Modal';
+import { Modal } from '../Modal';
 import { Button, ButtonProps } from '../Button';
 
 import Header from './Header';
@@ -30,12 +30,9 @@ export const PopConfirm: React.FC<PopConfirmProps> & ExportComponent = ({
   cancelText = 'Cancel',
   type = 'default'
 }) => {
-  const modalRef = React.useRef<ModalHandle>(null);
-
   return (
     <Modal
       mb={5}
-      ref={modalRef}
       visible={visible}
       position="bottom"
       closable={false}
@@ -56,7 +53,7 @@ export const PopConfirm: React.FC<PopConfirmProps> & ExportComponent = ({
               rounded="modal"
               color="primary"
               appearance="modal"
-              onPress={modalRef?.current?.onClose}
+              onPress={onClose}
               textProps={{
                 bold: true,
                 size: 'md'

@@ -10,6 +10,30 @@ const items = [
   {
     label: 'Dos',
     value: 'dos'
+  },
+  {
+    label: 'Tres',
+    value: 'Tres'
+  },
+  {
+    label: 'Cuatro',
+    value: 'Cuatro'
+  },
+  {
+    label: 'Cinco',
+    value: 'Cinco'
+  },
+  {
+    label: 'Seis',
+    value: 'Seis'
+  },
+  {
+    label: 'Siete',
+    value: 'Siete'
+  },
+  {
+    label: 'Ocho',
+    value: 'Ocho'
   }
 ];
 

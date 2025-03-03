@@ -3,7 +3,6 @@ import { Animated } from 'react-native';
 
 import { useChildren } from '../../hooks/useChildren';
 
-import { Icon } from '../Icon';
 import { defaultContextCollapse, CollapseContext } from './Context';
 import type {
   CollapseInternalItemProps,
@@ -12,6 +11,7 @@ import type {
   KeyType
 } from './types';
 import { Box } from '../Box';
+import { ChevronRightIcon } from '../../icons';
 
 export const Collapse: React.FC<CollapseProps> = ({
   style,
@@ -25,7 +25,7 @@ export const Collapse: React.FC<CollapseProps> = ({
   headerColor = 'card',
   contentColor = 'card',
   showArrow = true,
-  icon = <Icon type="antdesign" name="right" color="text" />,
+  icon = <ChevronRightIcon color="text" />,
   accordion = true,
   iconPosition = 'right'
 }) => {

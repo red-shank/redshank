@@ -60,7 +60,7 @@ export * from './components/StickyHeader';
 
 // Icons
 export * from './components/Icon';
-export { default as getIconType } from './utils/getIconType';
+export { default as getIconType } from './helpers/getIconType';
 
 // Input export
 export * from './components/Input';

@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  Animated,
-  StyleSheet,
-  Modal,
-  RefreshControl,
-  Platform
-} from 'react-native';
+import { Animated, StyleSheet, Modal, RefreshControl } from 'react-native';
 
 import Body from './Body';
 import Header from './Header';
@@ -14,13 +8,13 @@ import Divider from './Divider';
 import { Ripple } from '../Ripple';
 import useTheme from '../../context/theme/useTheme';
 import { Button } from '../Button';
-import { Icon } from '../Icon';
 import BaseComponent from './Base';
 import { useCardProvider, CardProvider } from './Context';
 import type { CardProps } from './types';
 import { Box } from '../Box';
 import createSxStyle, { getSxStyleAndProps } from '../../lib/sx';
 import { ScrollView } from '../ScrollView';
+import { CloseOutlineIcon } from '../../icons';
 
 interface ComponentExport {
   Header: typeof Header;
@@ -162,31 +156,25 @@ const CardRender: React.FC<CardProps> = React.memo(
                 {...restProps}
                 onPress={undefined}
               >
-                {Platform.select({
-                  ios: null,
-                  default: (
-                    <Button
-                      type="link"
-                      appearance="text"
-                      zIndex="max"
-                      position="absolute"
-                      top={20}
-                      right={20}
-                      onPress={onInternalClose}
-                      style={styles?.modalCloseButton}
-                      sx={sx?.modalCloseButton}
-                    >
-                      <Icon
-                        name="close-circle"
-                        type="ionicon"
-                        color="text"
-                        size={37}
-                        style={styles?.modalCloseIcon}
-                        sx={sx?.modalCloseIcon}
-                      />
-                    </Button>
-                  )
-                })}
+                <Button
+                  type="link"
+                  appearance="text"
+                  zIndex="max"
+                  position="absolute"
+                  top={20}
+                  right={20}
+                  onPress={onInternalClose}
+                  style={styles?.modalCloseButton}
+                  sx={sx?.modalCloseButton}
+                >
+                  <CloseOutlineIcon
+                    fill="text"
+                    size={37}
+                    style={styles?.modalCloseIcon}
+                    sx={sx?.modalCloseIcon}
+                  />
+                </Button>
+
                 {!onlyExpandContent && (
                   <Box style={styles?.modalChildren} sx={sx?.modalChildren}>
                     {children}

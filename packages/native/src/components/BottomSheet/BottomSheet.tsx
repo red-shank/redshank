@@ -5,7 +5,7 @@ import { Box } from '../Box';
 import useTheme from '../../context/theme/useTheme';
 import createSxStyle from '../../lib/sx';
 import { BottomSheetProps } from './types';
-import { Modal, ModalHandle } from '../Modal';
+import { Modal } from '../Modal';
 
 export const BottomSheet: React.FC<BottomSheetProps> = ({
   children,
@@ -19,9 +19,9 @@ export const BottomSheet: React.FC<BottomSheetProps> = ({
   containerSx,
   contentStyle,
   contentSx,
+  headerPan,
   ...rest
 }) => {
-  const modalRef = React.useRef<ModalHandle>(null);
   const theme = useTheme();
 
   const pan = React.useRef(new Animated.Value(0)).current;
@@ -34,7 +34,7 @@ export const BottomSheet: React.FC<BottomSheetProps> = ({
           toValue: 0,
           useNativeDriver: false
         }).start();
-        modalRef?.current?.onClose?.();
+        onClose?.();
       },
       onPanResponderMove: (evt, gestureState) => {
         const isDown = gestureState.dy > 0;
@@ -48,7 +48,7 @@ export const BottomSheet: React.FC<BottomSheetProps> = ({
           toValue: 0,
           useNativeDriver: false
         }).start();
-        modalRef?.current?.onClose?.();
+        onClose?.();
       }
     })
   ).current;
@@ -57,7 +57,6 @@ export const BottomSheet: React.FC<BottomSheetProps> = ({
     <Modal
       p={0}
       width="100%"
-      ref={modalRef}
       position="bottom"
       visible={visible}
       onClose={onClose}
@@ -75,6 +74,40 @@ export const BottomSheet: React.FC<BottomSheetProps> = ({
       }}
       {...rest}
     >
+      <Box
+        style={contentStyle}
+        sx={{
+          width: '100%',
+          justifyContent: 'center',
+          alignItems: 'center',
+          zIndex: 'max',
+          bg: 'transparent',
+          pb: 1,
+          roundedTop: theme.borderRadius.modal,
+          ...contentSx
+        }}
+      >
+        <Animated.View
+          {...panResponder.panHandlers}
+          style={createSxStyle(
+            {
+              // py: 1,
+              transform: [{ translateY: pan }],
+              style: Platform.select({
+                web: {
+                  cursor: 'pointer'
+                },
+                default: {}
+              })
+            },
+            theme
+          )}
+        >
+          {headerPan ?? (
+            <Box height={5} width={50} my={1} bg="text" rounded={1} />
+          )}
+        </Animated.View>
+      </Box>
       <Modal.Content
         pb={4}
         pt={1.2}
@@ -83,39 +116,6 @@ export const BottomSheet: React.FC<BottomSheetProps> = ({
         sx={containerSx}
         style={containerStyle}
       >
-        <Box
-          style={contentStyle}
-          sx={{
-            width: '100%',
-            justifyContent: 'center',
-            alignItems: 'center',
-            zIndex: 'max',
-            bg: 'transparent',
-            pb: 1,
-            roundedTop: theme.borderRadius.modal,
-            ...contentSx
-          }}
-        >
-          <Animated.View
-            {...panResponder.panHandlers}
-            style={createSxStyle(
-              {
-                px: 2,
-                py: 1,
-                transform: [{ translateY: pan }],
-                style: Platform.select({
-                  web: {
-                    cursor: 'pointer'
-                  },
-                  default: {}
-                })
-              },
-              theme
-            )}
-          >
-            <Box height={5} width={50} bg="text" rounded={1} />
-          </Animated.View>
-        </Box>
         {children}
       </Modal.Content>
     </Modal>

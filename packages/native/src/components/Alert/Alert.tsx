@@ -8,38 +8,20 @@ import { isValidChild } from '../../utils/render';
 import { AlertProps, AlertType, FuncRenderIcon } from './types';
 import { Box } from '../../components/Box';
 import createSxStyle from '../../lib/sx';
-import { Icon } from '../../components/Icon';
 import { Button } from '../Button';
+import {
+  CheckSuccessIcon,
+  InfoOutlineIcon,
+  WarningOutlineIcon,
+  CloseOutlineIcon
+} from '../../icons';
 
 const icons: Record<AlertType, React.ReactNode> = {
-  default: <Icon type="ionicons" name="checkmark-circle-outline" size={25} />,
-  success: (
-    <Icon
-      type="ionicons"
-      name="checkmark-circle-outline"
-      color="success"
-      size={25}
-    />
-  ),
-  info: (
-    <Icon
-      type="ionicons"
-      name="information-circle-outline"
-      color="info"
-      size={25}
-    />
-  ),
-  warning: (
-    <Icon
-      type="ionicons"
-      name="alert-circle-outline"
-      color="warning"
-      size={25}
-    />
-  ),
-  error: (
-    <Icon type="ionicons" size={25} name="close-circle-outline" color="error" />
-  )
+  default: <CheckSuccessIcon size={25} fill="success" />,
+  success: <CheckSuccessIcon size={25} fill="success" />,
+  info: <InfoOutlineIcon fill="info" size={25} />,
+  warning: <WarningOutlineIcon fill="warning" size={25} />,
+  error: <CloseOutlineIcon size={25} fill="error" />
 };
 
 export const Alert: React.FC<AlertProps> = ({

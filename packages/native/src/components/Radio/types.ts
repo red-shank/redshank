@@ -1,4 +1,4 @@
-import { ReactElement } from 'react';
+import { ReactElement, ReactNode } from 'react';
 import { SizeType } from '../../@types/input';
 import { ColorName } from '../../context/theme/types';
 import { SxProps } from '../../lib/styleDictionary';
@@ -11,7 +11,7 @@ export interface RadioProps {
   activeColor?: ColorName;
   inactiveColor?: ColorName;
   isActive?: boolean;
-  label: string;
+  label: ReactNode;
   onPress?: (value: NumberStringValue) => void;
   size?: SizeType;
   type?: ShapeInput;

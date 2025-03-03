@@ -75,7 +75,7 @@ export const ThemeContext = createContext<ThemeContextValue>(
 );
 
 export const ThemeProvider: React.FC<ThemeContextProps> = React.memo(
-  ({ children, theme }) => {
+  ({ children, theme = {} }) => {
     const { width, height } = useWindowDimensions();
 
     const [internalTheme, setInternalTheme] = useState<InternalStateTheme>({

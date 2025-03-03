@@ -2,13 +2,13 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 
 // components
-import { Icon } from '../Icon';
 import { Text } from '../Text/Text';
 import { Button } from '../Button/Button';
 import { HelperText } from '../../utils/HelperText';
 import type { ControllerProps } from './types';
 import { Box } from '../Box';
 import useTheme from '../../context/theme/useTheme';
+import { MinusIcon, PlusIcon } from '../../icons';
 
 export const Controller: React.FC<ControllerProps> = ({
   value,
@@ -80,12 +80,7 @@ export const Controller: React.FC<ControllerProps> = ({
       >
         <View style={styles.item}>
           <Button onlyIcon appearance="transparent" onPress={onPrev}>
-            <Icon
-              size={18}
-              name="minus"
-              type="antdesign"
-              color={error ? 'error' : borderColor}
-            />
+            <MinusIcon size={18} color={error ? 'error' : borderColor} />
           </Button>
         </View>
 
@@ -97,12 +92,7 @@ export const Controller: React.FC<ControllerProps> = ({
 
         <View style={styles.item}>
           <Button onlyIcon onPress={onAdd} appearance="transparent">
-            <Icon
-              size={18}
-              name="plus"
-              type="antdesign"
-              color={error ? 'error' : borderColor}
-            />
+            <PlusIcon size={18} color={error ? 'error' : borderColor} />
           </Button>
         </View>
       </Box>

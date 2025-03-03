@@ -2,10 +2,17 @@ import React from 'react';
 import { ThemeProvider as InternalThemeProvider } from './theme/context';
 import { colorsDark, colorsLight, zIndices } from './theme/defaultValues';
 import { ThemeContextProps } from './theme/types';
+import { RuntimeProvider } from './runtime/runtime.context';
 
-const ThemeProvider: React.FC<ThemeContextProps> = ({ children, theme }) => {
+const ThemeProvider: React.FC<ThemeContextProps> = ({
+  children,
+  packs,
+  ...rest
+}) => {
   return (
-    <InternalThemeProvider theme={theme}>{children}</InternalThemeProvider>
+    <RuntimeProvider packs={packs}>
+      <InternalThemeProvider {...rest}>{children}</InternalThemeProvider>
+    </RuntimeProvider>
   );
 };
 

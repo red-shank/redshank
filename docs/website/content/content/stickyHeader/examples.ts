@@ -64,6 +64,10 @@ import {
 } from "${PACKAGE_NAME}";
 import React from "react";
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { Feather } from '@expo/vector-icons';
+
+const iconsPack = new Map();
+iconsPack.set("feather", Feather);
 
 const defaultValues = {
   title: {
@@ -121,7 +125,7 @@ export default function App() {
 
   return (
     <SafeAreaProvider>
-      <ThemeProvider>
+      <ThemeProvider packs={iconsPack}>
         <StickyHeader {...config}>
           <Box style={styles.container}>
             <Title level={2}>Header</Title>

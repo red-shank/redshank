@@ -32,11 +32,12 @@ export type FormOptions<TFieldValues extends FieldValues = FieldValues> = {
   showErrorText?: boolean;
   /** Middleware that will resolve the props for each field, by default it passes value, onChange, error, helperText, ref, etc. If your components do not support these props you can use this middleware to set the properties you expect. **/
   sanitize: (args: SanitizeProps<TFieldValues>) => any;
+  onSubmit: (e?: React.BaseSyntheticEvent) => Promise<void>;
 };
 
 const FormOptionsContext = createContext<FormOptions>({
-  showErrorText: true,
-  sanitize: (props) => props
+  sanitize: (props) => props,
+  onSubmit: () => Promise.resolve()
 });
 
 const defaultSanitize: <
@@ -47,11 +48,11 @@ export function ReactivityHookFormProvider<
   TFieldValues extends FieldValues = FieldValues
 >({
   children,
-  showErrorText = true,
+  onSubmit,
   sanitize = defaultSanitize<TFieldValues>()
 }: PropsWithChildren<Partial<FormOptions<TFieldValues>>>) {
   return (
-    <FormOptionsContext.Provider value={{ showErrorText, sanitize } as any}>
+    <FormOptionsContext.Provider value={{ sanitize, onSubmit } as any}>
       {children}
     </FormOptionsContext.Provider>
   );

@@ -1,11 +1,8 @@
 import { withThemeProvider } from '@/content/utils/generateCode';
 
-export const text = withThemeProvider(
-  `<Avatar text="Kevin Rivas" />`,
-  {
-    package: ['Avatar']
-  }
-);
+export const text = withThemeProvider(`<Avatar text="Kevin Rivas" />`, {
+  package: ['Avatar']
+});
 
 export const colorAndSize = withThemeProvider(
   `<Avatar
@@ -108,6 +105,20 @@ export const icons = withThemeProvider(
             }}
           />`,
   {
-    package: ['Avatar']
+    package: ['Avatar'],
+    icons: [
+      {
+        key: 'antd',
+        value: 'AntDesign'
+      },
+      {
+        key: 'fontisto',
+        value: 'Fontisto'
+      },
+      {
+        key: 'font-awesome-5',
+        value: 'FontAwesome5'
+      }
+    ]
   }
 );

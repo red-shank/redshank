@@ -4,16 +4,8 @@ export const defaultCode = withThemeProvider(
   `<Alert
             type="success"
             content={{
-                title: (
-                  <Text bold size="md">
-                    This is a title
-                  </Text>
-                ),
-                description: (
-                  <Text color="gray300">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab
-                  </Text>
-                )
+                title: <Text bold size="md">This is a title</Text>,
+                description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab'
             }}
           />
           <Alert
@@ -25,9 +17,7 @@ export const defaultCode = withThemeProvider(
                   </Text>
                 ),
                 description: (
-                  <Text color="gray300">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab
-                  </Text>
+                  'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab'
                 )
             }}
           />
@@ -40,9 +30,7 @@ export const defaultCode = withThemeProvider(
                   </Text>
                 ),
                 description: (
-                  <Text color="gray300">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab
-                  </Text>
+                  'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab'
                 )
             }}
           />
@@ -55,14 +43,12 @@ export const defaultCode = withThemeProvider(
                   </Text>
                 ),
                 description: (
-                  <Text color="gray300">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab
-                  </Text>
+                  'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab'
                 )
             }}
           />`,
   {
-    package: ['Space', 'Alert']
+    package: ['Space', 'Alert', 'Text']
   }
 );
 
@@ -103,9 +89,7 @@ export const closable = withThemeProvider(
               </Text>
             ),
             description: (
-              <Text color="gray300">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab
-              </Text>
+              'Lorem ipsum dolor sit amet, consectetur adipisicing elit.'
             )
           }}
         />;
@@ -119,9 +103,7 @@ export const closable = withThemeProvider(
               </Text>
             ),
             description: (
-              <Text color="gray300">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              </Text>
+              'Lorem ipsum dolor sit amet, consectetur adipisicing elit.'
             )
           }}
         />;
@@ -135,12 +117,7 @@ export const closable = withThemeProvider(
               </Text>
             ),
             description: (
-              <Text color="gray300">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Facilis, iure minima minus modi nostrum officiis quae
-                sapiente ut vel. Ab aspernatur distinctio eos in numquam
-                obcaecati officia recusandae veniam voluptates.
-              </Text>
+              'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis, iure minima minus modi nostrum officiis quae sapiente ut vel. Ab aspernatur distinctio eos in numquam obcaecati officia recusandae veniam voluptates.'
             )
           }}
         />;
@@ -154,14 +131,11 @@ export const closable = withThemeProvider(
               </Text>
             ),
             description: (
-              <Text color="gray300">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Distinctio esse, laborum nihil non reprehenderit ullam?.
-              </Text>
+              'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio esse, laborum nihil non reprehenderit ullam?.'
             )
           }}
         />;`,
   {
-    package: ['Space', 'Alert']
+    package: ['Space', 'Alert', 'Text']
   }
 );

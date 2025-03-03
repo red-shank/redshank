@@ -1,5 +1,5 @@
 import { ControllerRenderProps } from 'react-hook-form/dist/types/controller';
-import { FieldProps, RenderFieldProps } from '../components/FormItem';
+import { FieldProps, RenderFieldProps, IsSubmitFieldProps } from '../components/FormItem';
 import { ArrayKey } from '../types/extend-react-hook-form.type';
 import { isValidElement } from 'react';
 import { FieldValues } from 'react-hook-form/dist/types';
@@ -10,6 +10,12 @@ export function hasRenderFunction<
   TFieldValues extends FieldValues = FieldValues
 >(props: FieldProps<TFieldValues>): props is RenderFieldProps<TFieldValues> {
   return !isValidElement(props?.children);
+}
+
+export function hasSubmitFunction<
+  TFieldValues extends FieldValues = FieldValues
+>(props: FieldProps<TFieldValues>): props is IsSubmitFieldProps {
+  return !!props?.isSubmit;
 }
 
 export function cleanInputProps<TFieldValues extends FieldValues = FieldValues>(
@@ -46,4 +52,30 @@ export const getNameAndIndexKey = (
     name,
     index
   };
+};
+
+export const getFirstNameFromObject = (
+  object: object,
+  initialKey = ''
+): string => {
+  if (
+    Object.prototype.hasOwnProperty.call(object, 'type') &&
+    Object.prototype.hasOwnProperty.call(object, 'message')
+  ) {
+    return initialKey;
+  }
+
+  let isFirstSuccess = false;
+  return Object.entries(object).reduce((acc, currentValue) => {
+    const [key, value] = currentValue;
+    if (isFirstSuccess) return acc;
+    if (typeof value === 'object' && !value?.type && !value?.message) {
+      const nestedName = getFirstNameFromObject(value, key);
+      isFirstSuccess = true;
+      return `${acc}.${nestedName}`;
+    }
+
+    isFirstSuccess = true;
+    return `${acc}.${key}`;
+  }, initialKey);
 };

@@ -1,5 +1,6 @@
 import { ColorName, ColorSchema } from './color.type';
 import { PropsWithChildren } from 'react';
+import { RuntimeContextType } from '../runtime/types';
 
 export type FontType =
   | 'thin'
@@ -150,7 +151,8 @@ type ThemeType = Pick<
 };
 
 export type ThemeContextProps = PropsWithChildren<{
-  theme: Omit<Partial<ThemeType>, 'colors'> & {
+  packs?: RuntimeContextType['packs'];
+  theme?: Omit<Partial<ThemeType>, 'colors'> & {
     colors?: {
       dark: Record<string, string | object>;
       light: Record<string, string | object>;

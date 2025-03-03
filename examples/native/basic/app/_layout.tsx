@@ -1,9 +1,4 @@
-import {
-  Dimensions,
-  DimensionValue,
-  Platform,
-  useColorScheme
-} from 'react-native';
+import { Dimensions, Platform, useColorScheme } from 'react-native';
 import {
   DarkTheme,
   DefaultTheme,
@@ -13,11 +8,18 @@ import { Drawer } from 'expo-router/drawer';
 import React, { PropsWithChildren } from 'react';
 import {
   Box,
+  IconType,
   MessageProvider,
   ThemeProvider as RThemeProvider,
   useTheme
 } from '@redshank/native';
 import MenuToggleButton from '@/components/MenuToggleButton';
+import {
+  MaterialIcons,
+  AntDesign,
+  Ionicons,
+  Fontisto
+} from '@expo/vector-icons';
 
 const dimension = Dimensions.get('window');
 
@@ -26,11 +28,18 @@ const width = Platform.select<number>({
   web: dimension.width <= 720 ? dimension.width : 720
 });
 
+const iconsPack = new Map<IconType, any>();
+iconsPack.set('material-design-icons', MaterialIcons);
+iconsPack.set('antd', AntDesign);
+iconsPack.set('ionicons', Ionicons);
+iconsPack.set('fontisto', Fontisto);
+
 const App = (props: PropsWithChildren) => {
   const { isDark } = useTheme();
 
   return (
     <Box flex={1} bg="background">
+      {/*<Ionicons name="timer"></Ionicons>*/}
       <Box
         height="100%"
         width={width}
@@ -70,6 +79,7 @@ export default function RootLayout() {
 
   return (
     <RThemeProvider
+      packs={iconsPack}
       theme={{
         theme: colorSchema || 'light',
         width

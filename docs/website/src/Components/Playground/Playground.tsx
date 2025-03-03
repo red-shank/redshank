@@ -13,7 +13,7 @@ type SnackProps = {
   dependencies?: string;
 };
 
-const _dependencies = `@expo/vector-icons@^14.0.0,${PACKAGE_NAME}@${LIB_VERSION}`;
+export const _dependencies = `${PACKAGE_NAME}@${LIB_VERSION},dayjs@1.11.13,@redshank/reactivity-hook-form@1.3.3,react-native-svg@15.11.1,@react-native-picker/picker@2.11.0,@expo/vector-icons@14.0.4`;
 
 const modes = {
   mobile: [

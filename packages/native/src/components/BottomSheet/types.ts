@@ -17,4 +17,5 @@ export type BottomSheetProps = Pick<
     containerStyle?: ModalProps['style'];
     contentSx?: SxProps;
     contentStyle?: ModalProps['style'];
+    headerPan?: ReactNode;
   };

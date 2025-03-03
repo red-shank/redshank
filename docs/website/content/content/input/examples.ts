@@ -29,7 +29,13 @@ export const prefixSuffix = withThemeProvider(
             endContent={<Icon name="mail" type="antdesign" />}
           />`,
   {
-    package: ['Input', 'Icon']
+    package: ['Input', 'Icon'],
+    icons: [
+      {
+        key: 'antd',
+        value: 'AntDesign'
+      }
+    ]
   }
 );
 
@@ -51,7 +57,7 @@ export const errors = withThemeProvider(
               />
             </Box>;`,
   {
-    package: ['Input', 'Box', 'Title']
+    package: ['Input', 'Box', 'Title'],
   }
 );
 

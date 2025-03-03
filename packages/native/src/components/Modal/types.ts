@@ -4,6 +4,7 @@ import { SxProps } from '../../lib/styleDictionary';
 
 export type PositionType = 'top' | 'bottom' | 'center';
 
+/** @deprecated: deprecated not is necessary */
 export type ModalHandle = {
   onClose: () => void;
 };

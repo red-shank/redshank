@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { StyleProp, StyleSheet, TextStyle } from 'react-native';
+import React, { forwardRef, useState } from 'react';
+import { StyleProp, StyleSheet, TextInput, TextStyle } from 'react-native';
 
 import { Input } from './Input';
 import { SizeType } from '../../@types/input';
@@ -32,29 +32,29 @@ const sizesMinHeight: Record<SizeType, number> = {
   xLarge: 100
 };
 
-export const TextArea: React.FC<TextAreaProps> = ({
-  minHeight,
-  style = {},
-  numberOfLines = 3,
-  size = 'middle',
-  ...rest
-}) => {
-  const [height, setHeight] = useState(minHeight || sizesMinHeight[size]);
+export const TextArea = forwardRef<TextInput, TextAreaProps>(
+  (
+    { minHeight, style = {}, numberOfLines = 3, size = 'middle', ...rest },
+    ref
+  ) => {
+    const [height, setHeight] = useState(minHeight || sizesMinHeight[size]);
 
-  return (
-    <Input
-      {...rest}
-      multiline
-      numberOfLines={numberOfLines}
-      onContentSizeChange={(event) => {
-        setHeight(event.nativeEvent.contentSize.height);
-      }}
-      sx={{
-        input: {
-          height: Math.max(minHeight || sizesMinHeight[size], height)
-        }
-      }}
-      style={StyleSheet.flatten([style])}
-    />
-  );
-};
+    return (
+      <Input
+        ref={ref}
+        {...rest}
+        multiline
+        numberOfLines={numberOfLines}
+        onContentSizeChange={(event) => {
+          setHeight(event.nativeEvent.contentSize.height);
+        }}
+        sx={{
+          input: {
+            height: Math.max(minHeight || sizesMinHeight[size], height)
+          }
+        }}
+        style={StyleSheet.flatten([style])}
+      />
+    );
+  }
+);

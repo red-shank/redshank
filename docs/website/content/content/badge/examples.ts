@@ -203,6 +203,12 @@ export const withToggle = withThemeProvider(
     hooks: `const [visibleBadge, setVisibleBadge] = useState(true);`,
     react: ['useState'],
     native: ['TouchableOpacity'],
-    package: ['Badge', 'Icon', 'Text']
+    package: ['Badge', 'Icon', 'Text'],
+    icons: [
+      {
+        key: 'feather',
+        value: 'Feather'
+      }
+    ]
   }
 );

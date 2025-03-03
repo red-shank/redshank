@@ -7,30 +7,15 @@ import {
   TextStyle,
   ColorValue
 } from 'react-native';
-import { IconProps as VectorIconProps } from 'react-native-vector-icons/Icon';
-import getIconType from '../../helpers/getIconType';
+import { IconProps as VectorIconProps } from '@react-native-vector-icons/common';
+import getIconType, { IconType } from '../../helpers/getIconType';
 import getIconStyle from '../../helpers/getIconStyle';
 import useTheme from '../../context/theme/useTheme';
 import { ColorName } from '../../context/theme/types';
 import { Text } from '../Text';
 import { Box } from '../Box';
 import { Ripple, RippleProps } from '../Ripple';
-
-export type IconType =
-  | 'material'
-  | 'material-community'
-  | 'simple-line-icon'
-  | 'zocial'
-  | 'font-awesome'
-  | 'octicon'
-  | 'ionicon'
-  | 'foundation'
-  | 'evilicon'
-  | 'entypo'
-  | 'antdesign'
-  | 'font-awesome-5'
-  | 'font-awesome-6'
-  | string;
+import { useIconRuntime } from '../../context/runtime/runtime.context';
 
 export type IconObject = {
   name: string;
@@ -52,17 +37,18 @@ export type IconProps = Omit<RippleProps, 'children'> & {
   name: string;
   size?: number | undefined;
   containerStyle?: StyleProp<ViewStyle>;
-  iconProps?: Partial<VectorIconProps>;
+  iconProps?: Partial<VectorIconProps<string>>;
   reverseColor?: string;
   disabled?: boolean;
   disabledStyle?: StyleProp<ViewStyle>;
   solid?: boolean;
   brand?: boolean;
   color?: ColorName;
+  fallbackIcon?: IconProps;
 };
 
 export const Icon: React.FC<IconProps> = ({
-  type = 'material',
+  type = 'material-design-icons',
   name,
   size = 18,
   color: colorProp,
@@ -78,15 +64,22 @@ export const Icon: React.FC<IconProps> = ({
   onLongPress,
   onPressIn,
   onPressOut,
+  fallbackIcon,
   Component = onPress || onLongPress || onPressIn || onPressOut ? Ripple : Box,
   solid = false,
   brand = false,
   ...rest
 }) => {
   const { colors } = useTheme();
+  const { packs } = useIconRuntime();
   const color = colors.get(colorProp || 'text');
   const reverseColor = colors.get(reverseColorProp || 'text');
-  const IconComponent = getIconType(type);
+  // const [IconComponent, setIconComponent] =
+  //   useState<FunctionComponent<{}> | null>(null);
+  const IconComponent = getIconType(type, packs);
+  const FallbackIconComponent = fallbackIcon
+    ? getIconType(fallbackIcon.type, packs)
+    : null;
   const iconSpecificStyle = getIconStyle(type, { solid, brand });
 
   const getBackgroundColor = React.useMemo(() => {
@@ -151,6 +144,19 @@ export const Icon: React.FC<IconProps> = ({
               {...iconSpecificStyle}
               {...iconProps}
             />
+          ) : FallbackIconComponent ? (
+            <FallbackIconComponent
+              style={StyleSheet.flatten([
+                { backgroundColor: 'transparent' },
+                iconStyle && iconStyle
+              ])}
+              size={size}
+              name={name}
+              color={reverse ? reverseColor : color}
+              {...iconSpecificStyle}
+              {...iconProps}
+              {...fallbackIcon}
+            />
           ) : (
             <Text
               size={size}
@@ -193,3 +199,5 @@ const styles = StyleSheet.create({
 });
 
 Icon.displayName = 'Icon';
+
+export { IconType };

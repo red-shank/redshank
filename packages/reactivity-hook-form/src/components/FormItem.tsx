@@ -1,4 +1,4 @@
-import React, { ReactNode, ComponentProps, useMemo } from 'react';
+import React, { ComponentProps, ReactNode, useMemo } from 'react';
 import {
   Controller,
   ControllerProps as RHFControllerProps,
@@ -8,7 +8,11 @@ import {
 } from 'react-hook-form';
 import { FieldPath, FieldPathValue } from 'react-hook-form/dist/types';
 import { useValidations } from '../context/ValidationsContext';
-import { cleanInputProps, hasRenderFunction } from '../utils';
+import {
+  cleanInputProps,
+  hasRenderFunction,
+  hasSubmitFunction
+} from '../utils';
 import { FieldAccessoryProps, useFormOptions } from '../context/FormOptions';
 
 type ControllerProps<TFieldValues extends FieldValues = FieldValues> = Omit<
@@ -22,7 +26,6 @@ type InputFieldProps<TFieldValues extends FieldValues = FieldValues> = Omit<
 > &
   Omit<ComponentProps<'div'>, 'children' | 'onChange'> & {
     children: React.ReactElement<{
-      cyName: string;
       value: TFieldValues | unknown;
       checked: TFieldValues | unknown;
       helperText?: string;
@@ -45,28 +48,41 @@ type InputFieldProps<TFieldValues extends FieldValues = FieldValues> = Omit<
         context: UseFormReturn<TFieldValues>;
       }
     ) => void;
+    isSubmit?: false;
   };
 
 export type RenderFieldProps<TFieldValues extends FieldValues = FieldValues> = {
   children: (context: UseFormReturn<TFieldValues>) => React.ReactElement;
   name?: never;
   rules?: never;
+  isSubmit?: false;
+};
+
+export type IsSubmitFieldProps = {
+  isSubmit: true;
+  children: React.ReactElement;
 };
 
 export type FieldProps<TFieldValues extends FieldValues = FieldValues> =
   | InputFieldProps<TFieldValues>
-  | RenderFieldProps<TFieldValues>;
+  | RenderFieldProps<TFieldValues>
+  | IsSubmitFieldProps;
 
 export const FormItem = <TFieldValues extends FieldValues = FieldValues>(
   props: FieldProps<TFieldValues>
 ): JSX.Element => {
   const formContext = useFormContext<TFieldValues>();
   const { getValidation } = useValidations<TFieldValues>();
-  const { showErrorText, sanitize: contextSanitize } =
+  const { sanitize: contextSanitize, onSubmit } =
     useFormOptions<TFieldValues>();
 
   if (hasRenderFunction(props)) {
     return props.children(formContext);
+  }
+  if (hasSubmitFunction(props)) {
+    return React.cloneElement(props?.children, {
+      onPress: onSubmit
+    });
   }
 
   const {
@@ -75,13 +91,14 @@ export const FormItem = <TFieldValues extends FieldValues = FieldValues>(
     rules,
     onChange,
     getValue,
-    injectPropsField = [],
     label,
     labelProps,
     shouldUnregister,
     disabled,
     defaultValue,
+    isSubmit,
     sanitize: sanitizeProp,
+    injectPropsField = [],
     ...restDivProps
   } = props;
 
@@ -112,6 +129,7 @@ export const FormItem = <TFieldValues extends FieldValues = FieldValues>(
         }, {});
 
         const args = sanitize({
+          ...restDivProps,
           ...field,
           ...propsFieldInject,
           ...renderProps,
@@ -129,46 +147,7 @@ export const FormItem = <TFieldValues extends FieldValues = FieldValues>(
           ...renderProps
         });
 
-        const childrenElement = React.cloneElement(children, args);
-
-        const errorText =
-          showErrorText && !!fieldState.error ? (
-            <p className="error-text-rhf helper-text-rhf">
-              {fieldState.error?.message}
-            </p>
-          ) : null;
-
-        const helperText =
-          !fieldState.error && !!children?.props?.helperText ? (
-            <p className="helper-text-rhf">{children?.props?.helperText}</p>
-          ) : null;
-
-        if (label) {
-          return (
-            <div {...restDivProps}>
-              <label
-                htmlFor={name}
-                {...labelProps}
-                className={`label-rhf ${labelProps?.className}`}
-              >
-                {label && <span className="label-text-rhf">{label}</span>}
-
-                {childrenElement}
-              </label>
-              {errorText}
-              {helperText}
-            </div>
-          );
-        }
-
-        return (
-          <div {...restDivProps}>
-            {childrenElement}
-
-            {errorText}
-            {helperText}
-          </div>
-        );
+        return React.cloneElement(children, args);
       }}
     />
   );

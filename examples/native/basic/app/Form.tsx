@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import {
   Input,
   Title,
-  Form,
   Button,
   InputScrollView,
   DatePicker,
@@ -14,30 +13,34 @@ import {
   Select,
   Text
 } from '@redshank/native';
+import Form, { useForm } from '@redshank/reactivity-hook-form';
 
 const { TextArea } = Input;
-const { useForm } = Form;
 
 const THREE_SECONDS = 3000;
 
 const FormScreen = () => {
-  const [form, submit] = useForm();
+  const form = useForm();
 
   const onFinish = (values: any) => {
     console.log('Finish:', values);
   };
 
   const onSubmitCallback = async () => {
-    form?.setErrors?.([
-      { name: 'email', error: 'Email invalid' },
-      { name: 'password', error: 'Please insert a password' }
-    ]);
+    form?.setError('email', {
+      message: 'Email invalid',
+      type: 'validate'
+    });
+    form?.setError('password', {
+      message: 'Please insert a password',
+      type: 'validate'
+    });
   };
 
   useEffect(() => {
     setTimeout(() => {
-      form.setFieldsValue({
-        email: 'example@mail.com'
+      form.setError('email', {
+        message: 'example@mail.com'
       });
     }, THREE_SECONDS);
   }, [form]);
@@ -48,17 +51,21 @@ const FormScreen = () => {
         <Box>
           {/*Basic form*/}
           <Title level={3}>Basic Form</Title>
-          <Form onFinish={onFinish}>
+          <Form Component={Box} onSubmit={onFinish}>
             <Form.Item
-              required
               name="email"
               label="Email"
-              rules={[{ required: true, type: 'email' }]}
+              rules={{
+                required: 'Please insert your email',
+                pattern: {
+                  value: /\S+@\S+\.\S+/,
+                  message: 'Please insert a valid email'
+                }
+              }}
             >
               <Input placeholder="example@mail.com" />
             </Form.Item>
             <Form.Item
-              required
               name="password"
               label={
                 <Box
@@ -72,7 +79,13 @@ const FormScreen = () => {
                   <Button type="link">Forgot Password?</Button>
                 </Box>
               }
-              rules={[{ required: true }]}
+              rules={{
+                required: 'Please insert your password',
+                minLength: {
+                  value: 6,
+                  message: 'Password must have at least 6 characters'
+                }
+              }}
             >
               <Input type="password" placeholder="********" />
             </Form.Item>
@@ -85,36 +98,40 @@ const FormScreen = () => {
         {/*Form instance*/}
         <Box>
           <Title level={3}>Fields Form</Title>
-          <Form onFinish={onFinish}>
+          <Form Component={Box} onSubmit={onFinish}>
             <Form.Item
-              required
               name="first_name"
               label="Name"
-              rules={[{ required: true, message: 'Required field' }]}
+              rules={{
+                required: 'Please insert your first name'
+              }}
             >
               <Input placeholder="First Name" />
             </Form.Item>
             <Form.Item
-              required
               name="last_name"
               label="Last Name"
-              rules={[{ required: true, message: 'Required field' }]}
+              rules={{
+                required: 'Please insert your last name'
+              }}
             >
               <Input placeholder="Last Name" />
             </Form.Item>
             <Form.Item
-              required
               name="payment_date"
               label="Payment date"
-              rules={[{ required: true, message: 'Required field' }]}
+              rules={{
+                required: 'Please insert payment date'
+              }}
             >
               <DatePicker />
             </Form.Item>
             <Form.Item
-              required
               name="gender"
               label="Gender"
-              rules={[{ message: 'Required field' }]}
+              rules={{
+                required: 'Please select a gender'
+              }}
             >
               <Select
                 items={[
@@ -129,10 +146,11 @@ const FormScreen = () => {
             </Form.Item>
 
             <Form.Item
-              required
               name="mayor_of_age"
               label="You are over 18 years old?"
-              rules={[{ required: true, message: 'Required field' }]}
+              rules={{
+                required: 'Required field'
+              }}
             >
               <Radio.Group align="vertical">
                 <Radio value="yes" label="Yes" />
@@ -146,30 +164,22 @@ const FormScreen = () => {
 
             <Form.Item
               name="switch"
-              rules={[
-                { required: true, message: 'Required field' },
-                {
-                  validator: (_: any, value: boolean) =>
-                    value
-                      ? Promise.resolve()
-                      : Promise.reject(new Error('Should select switch'))
-                }
-              ]}
+              rules={{
+                required: 'Required field',
+                validate: (value: boolean, values) =>
+                  value ? undefined : 'Should select switch'
+              }}
             >
               <Switch />
             </Form.Item>
 
             <Form.Item
               name="agree"
-              rules={[
-                { required: true, message: 'Required field' },
-                {
-                  validator: (_: any, value: boolean) =>
-                    value
-                      ? Promise.resolve()
-                      : Promise.reject(new Error('Should accept agreement'))
-                }
-              ]}
+              rules={{
+                required: 'Required field',
+                validate: (value: boolean, values) =>
+                  value ? undefined : 'Should accept agreement'
+              }}
             >
               <Checkbox
                 required
@@ -180,29 +190,37 @@ const FormScreen = () => {
             </Form.Item>
 
             <Form.Item isSubmit>
-              <Button fullWidth onPress={submit}>
-                Send
-              </Button>
+              <Button fullWidth>Send</Button>
             </Form.Item>
           </Form>
         </Box>
         <Box>
           {/*Basic form*/}
           <Title level={3}>Controller Form</Title>
-          <Form form={form} onFinish={onFinish}>
+          <Form Component={Box} context={form} onSubmit={onFinish}>
             <Form.Item
-              required
               name="email"
               label="Email"
-              rules={[{ required: true, type: 'email' }]}
+              rules={{
+                required: 'Please insert your email',
+                pattern: {
+                  value: /\S+@\S+\.\S+/,
+                  message: 'Please insert a valid email'
+                }
+              }}
             >
               <Input placeholder="example@mail.com" />
             </Form.Item>
             <Form.Item
-              required
               name="password"
               label="Password"
-              rules={[{ required: true }]}
+              rules={{
+                required: 'Please insert your password',
+                minLength: {
+                  value: 6,
+                  message: 'Password must have at least 6 characters'
+                }
+              }}
             >
               <Input type="password" placeholder="********" />
             </Form.Item>

@@ -50,6 +50,6 @@ function RenderApp() {
   );
 }`,
   {
-    package: ['Container', 'Select']
+    package: ['Container', 'Select', 'Box']
   }
 );

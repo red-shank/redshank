@@ -9,7 +9,8 @@ import {
   Box,
   BottomSheet,
   Input,
-  KeyboardSpace
+  KeyboardSpace,
+  DatePicker
 } from '@redshank/native';
 
 const { useModal } = Modal;
@@ -36,6 +37,7 @@ const ModalScreen = () => {
             <Title level={4}>Hello word</Title>
 
             <Input placeholder="Insert email" />
+            <DatePicker />
             <KeyboardSpace />
             {/*<Text>*/}
             {/*  Lorem ipsum dolor sit amet, consectetur adipisicing elit. A*/}

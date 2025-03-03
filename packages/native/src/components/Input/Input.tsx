@@ -1,7 +1,6 @@
-import React, { cloneElement, forwardRef } from 'react';
+import React, { cloneElement, forwardRef, useMemo } from 'react';
 import { TextInput, TouchableOpacity, KeyboardTypeOptions } from 'react-native';
 
-import { Icon } from '../Icon';
 import { HelperText } from '../../utils/HelperText';
 import useTheme from '../../context/theme/useTheme';
 import type { InputProps } from './types';
@@ -10,6 +9,7 @@ import { Box } from '../Box';
 import createSxStyle from '../../lib/sx';
 import { SxProps } from '../../lib/styleDictionary';
 import { paddingInput } from '../../context/theme/defaultValues';
+import { EyeIcon, EyeMuteIcon } from '../../icons';
 
 export const Input = forwardRef<TextInput, InputProps>(
   (
@@ -30,9 +30,7 @@ export const Input = forwardRef<TextInput, InputProps>(
       style = {},
       helperText,
       type = 'default',
-      endContent = type === 'password' ? (
-        <Icon name="eye" type="antdesign" />
-      ) : undefined,
+      endContent: endContentProp,
       withMarginBottom,
       Component = TextInput,
       sx,
@@ -46,6 +44,18 @@ export const Input = forwardRef<TextInput, InputProps>(
 
     // states
     const [show, setShow] = React.useState<boolean>(false);
+
+    const endContent = useMemo(() => {
+      if (endContentProp) return endContentProp;
+      if (type === 'password') {
+        return !show ? (
+          <EyeMuteIcon size={22} fill={borderColor} />
+        ) : (
+          <EyeIcon size={22} fill={borderColor} />
+        );
+      }
+      return null;
+    }, [borderColor, endContentProp, show, type]);
 
     const onInternalChange = (v: string) => {
       if (onChange) {

@@ -7,6 +7,7 @@ import useTheme from '../../context/theme/useTheme';
 import type { RadioProps } from './types';
 import { Box } from '../Box';
 import createSxStyle from '../../lib/sx';
+import { isValidChild } from '../../utils/render';
 
 interface ComponentExport {
   Group: typeof Group;
@@ -112,9 +113,11 @@ export const Radio: React.FC<RadioProps> & ComponentExport = ({
         </Animated.View>
       </Box>
 
-      <Text sx={sx?.text} style={styles?.text}>
-        {label}
-      </Text>
+      {isValidChild(label) && (
+        <Text sx={sx?.text} style={styles?.text}>
+          {label}
+        </Text>
+      )}
     </TouchableOpacity>
   );
 };

@@ -17,7 +17,7 @@ export default function createSxStyle(
     [key: string]: unknown;
   } = {},
   theme: ThemeProps
-) {
+): StyleProp<any> {
   const sxPropExtracted = extractSxProps({
     sx,
     otherProps

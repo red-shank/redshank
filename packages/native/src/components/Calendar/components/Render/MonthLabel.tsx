@@ -3,9 +3,9 @@ import { Animated, Easing } from 'react-native';
 import { Title } from '../../../Title';
 import { useCalendarContext } from '../../context/calendar';
 import { Button, ButtonType } from '../../../Button';
-import { Icon } from '../../../Icon';
 import { useCalendarMonthContext } from '../../context/CalendarMonth';
 import { Box } from '../../../Box';
+import { ChevronLeftIcon, ChevronRightIcon } from '../../../../icons';
 
 interface MonthLabelProps {}
 
@@ -81,7 +81,7 @@ export default function MonthLabel({}: MonthLabelProps) {
         }}
         endContent={
           <Animated.View style={{ transform: [{ rotate: spin }] }}>
-            <Icon name="right" color="primary" type="antdesign" size={18} />
+            <ChevronRightIcon color="primary" size={25} />
           </Animated.View>
         }
       >
@@ -102,16 +102,12 @@ export default function MonthLabel({}: MonthLabelProps) {
           <Button
             {...buttonProps}
             onPress={onPrevMonth}
-            startContent={
-              <Icon name="left" color="primary" type="antdesign" size={18} />
-            }
+            startContent={<ChevronLeftIcon color="primary" size={25} />}
           />
           <Button
             {...buttonProps}
             onPress={onNextMonth}
-            startContent={
-              <Icon name="right" color="primary" type="antdesign" size={18} />
-            }
+            startContent={<ChevronRightIcon color="primary" size={25} />}
           />
         </Box>
       )}

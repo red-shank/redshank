@@ -1,4 +1,4 @@
-import type { PickerSelectProps } from 'react-native-picker-select';
+import type { PickerProps } from '@react-native-picker/picker';
 import { InputProps } from '../Input';
 import { SxProps } from '../../lib/styleDictionary';
 import { StyleProp, ViewStyle } from 'react-native';
@@ -7,9 +7,10 @@ export interface SelectItemProps {
   key?: string | number;
   label: string;
   value: string;
+  disabled?: boolean;
 }
 
-export type SelectProps = Omit<PickerSelectProps, 'onValueChange' | 'items'> &
+export type SelectProps = Omit<PickerProps, 'onValueChange' | 'items'> &
   Pick<
     InputProps,
     | 'isDisabled'
@@ -18,11 +19,18 @@ export type SelectProps = Omit<PickerSelectProps, 'onValueChange' | 'items'> &
     | 'placeholder'
     | 'size'
     | 'value'
+    | 'startContent'
+    | 'endContent'
     | 'shape'
   > &
   SxProps & {
+    okText?: string;
+    cancelText?: string;
+    multiple?: boolean;
+    itemHeight?: number;
     items: SelectItemProps[];
-    onChange?: (value: any, index: number) => void;
+    onSelectionChange?: (value: any, index: number) => void;
+    onChange?: (value: string | number, item: any) => void;
     sx?: SxProps & {
       root?: SxProps;
       iosPickerItem?: SxProps;

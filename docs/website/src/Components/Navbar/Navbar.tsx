@@ -58,7 +58,12 @@ const RenderLink = ({
   );
 };
 
-const menu = [ROUTES.HOME, ROUTES.DOCS, ROUTES.COMPONENTS, ROUTES.ABOUT];
+const menu = [
+  ROUTES.HOME,
+  ROUTES.DOCS,
+  ROUTES.COMPONENTS,
+  // ROUTES.ABOUT
+];
 
 const Navbar = ({ isActive, contentFit, ...props }: NavbarProps) => {
   const { setTheme, theme } = useNextTheme();
@@ -89,7 +94,7 @@ const Navbar = ({ isActive, contentFit, ...props }: NavbarProps) => {
       <Link href={ROUTES.HOME.path}>
         <NextNavbar.Brand>
           <Image src="/brand.svg" alt="Default Image" width={50} height={50} />
-          <Badge color="warning" content="Preview" shape="rectangle">
+          <Badge color="success" content="Production" shape="rectangle">
             <Text b className="text-2xl" transform="capitalize">
               {REPO_NAME}
             </Text>
