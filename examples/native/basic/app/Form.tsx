@@ -13,9 +13,10 @@ import {
   Select,
   Text
 } from '@redshank/native';
-import Form, { useForm } from '@redshank/reactivity-hook-form';
+import Form from '@redshank/reactivity-hook-form';
 
 const { TextArea } = Input;
+const { useForm } = Form;
 
 const THREE_SECONDS = 3000;
 
