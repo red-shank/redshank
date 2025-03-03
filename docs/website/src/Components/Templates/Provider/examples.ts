@@ -2,16 +2,20 @@ import { PACKAGE_NAME } from '@/config';
 
 export const basic = `import React from 'react';
 import { ThemeProvider } from '${PACKAGE_NAME}';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 const App = () => {
   return (
-    <ThemeProvider>
-      ...
-    </ThemeProvider>
+    <SafeAreaProvider>
+      <ThemeProvider>
+        ...
+      </ThemeProvider>
+    </SafeAreaProvider>
 )};`;
 
 export const editingTheme = `import React from 'react';
 import { ThemeProvider } from '${PACKAGE_NAME}';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 const theme = {
   type: 'light',
@@ -66,9 +70,11 @@ const theme = {
 
 const App = () => {
   return (
-    <ThemeProvider theme={theme}>
-      ...
-    </ThemeProvider>
+    <SafeAreaProvider>
+      <ThemeProvider theme={theme}>
+        ...
+      </ThemeProvider>
+    </SafeAreaProvider>
 );};`;
 
 export const themeObject = `{

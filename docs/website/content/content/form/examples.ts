@@ -1,17 +1,28 @@
 import { withThemeProvider } from '@/content/utils/generateCode';
 
 export const defaultCode =
-  withThemeProvider(`<Form onFinish={onFinish}>
+  withThemeProvider(`<Form
+            onSubmit={onFinish}
+            validations={{
+              email: {
+                required: true,
+                pattern: {
+                  value: /^\\S+@\\S+\\.\\S+$/,
+                  message: 'Email invalid
+                }
+              },
+              password: {
+                required: true,
+              },
+            }}
+          >
             <Form.Item
-              required
               name="email"
               label="Email"
-              rules={[{ type: 'email' }]}
             >
               <Input placeholder="example@mail.com" />
             </Form.Item>
             <Form.Item
-              required
               name="password"
               label="Password"
             >
@@ -31,36 +42,59 @@ export const defaultCode =
     package: ['Form', 'Input', 'Button']
   });
 
-export const completed = withThemeProvider(`<Form form={form} onFinish={onFinish}>
+export const completed = withThemeProvider(`<Form
+            onSubmit={onFinish}
+            validations={{
+              first_name: {
+                required: 'Required field',
+              },
+              last_name: {
+                 required: 'Required field',
+              },
+              payment_date: {
+                 required: 'Required field',
+              },
+              gender: {
+                 required: 'Required field',
+              },
+              mayor_of_age: {
+                 required: 'Required field',
+              },
+              switch: {
+                 required: 'Required field',
+                 validate: (value) =>
+                    value
+                      ? undefined
+                      : 'Should select switch',
+                },
+              },
+              agree: {
+                 required: 'Required field',
+                 validate: (value) => value ? undefined : 'Should accept agreement',
+              },
+            }
+          >
             <Form.Item
-              required
               name="first_name"
               label="Name"
-              rules={[{ message: 'Required field' }]}
             >
               <Input placeholder="First Name" />
             </Form.Item>
             <Form.Item
-              required
               name="last_name"
               label="Last Name"
-              rules={[{ message: 'Required field' }]}
             >
               <Input placeholder="Last Name" />
             </Form.Item>
             <Form.Item
-              required
               name="payment_date"
               label="Payment date"
-              rules={[{ message: 'Required field' }]}
             >
               <DatePicker />
             </Form.Item>
             <Form.Item
-              required
               name="gender"
               label="Gender"
-              rules={[{ message: 'Required field' }]}
             >
               <Select
                 items={[
@@ -75,10 +109,8 @@ export const completed = withThemeProvider(`<Form form={form} onFinish={onFinish
             </Form.Item>
 
             <Form.Item
-              required
               name="mayor_of_age"
               label="You are over 18 years old?"
-              rules={[{ message: 'Required field' }]}
             >
               <Radio.Group align="vertical">
                 <Radio value="yes" label="Yes" />
@@ -91,34 +123,14 @@ export const completed = withThemeProvider(`<Form form={form} onFinish={onFinish
             </Form.Item>
 
             <Form.Item
-              required
               name="switch"
               label="Switch"
-              rules={[
-                { message: 'Required field' },
-                {
-                  validator: (_: any, value: boolean) =>
-                    value
-                      ? Promise.resolve()
-                      : Promise.reject(new Error('Should select switch')),
-                },
-              ]}
             >
               <Switch />
             </Form.Item>
 
             <Form.Item
-              required
               name="agree"
-              rules={[
-                { message: 'Required field' },
-                {
-                  validator: (_: any, value: boolean) =>
-                    value
-                      ? Promise.resolve()
-                      : Promise.reject(new Error('Should accept agreement')),
-                },
-              ]}
             >
               <Checkbox
                 required
@@ -133,8 +145,7 @@ export const completed = withThemeProvider(`<Form form={form} onFinish={onFinish
               </Button>
             </Form.Item>
           </Form>`, {
-  hooks: `const [form, submit] = Form.useForm();
-
+  hooks: `
   const onFinish = (values: any) => {
     console.log('Finish:', values);
   };
@@ -151,33 +162,37 @@ export const completed = withThemeProvider(`<Form form={form} onFinish={onFinish
   ]
 });
 
-export const controller = withThemeProvider(`<Form form={form} onFinish={onFinish}>
+export const controller = withThemeProvider(`<Form context={form} onSubmit={onFinish}>
             <Form.Item
-              required
               name="email"
               label="Email"
-              rules={[{ required: true }, { type: 'email' }]}
+              rules={{
+                required: 'Email is required',
+                pattern: {
+                  value: /^\\S+@\\S+\\.\\S+$/,
+                  message: 'Email invalid
+                }
+              }}
             >
               <Input placeholder="example@mail.com" />
             </Form.Item>
             <Form.Item
-              required
               name="password"
               label="Password"
-              rules={[{ required: true }]}
+              rules={{ required: 'Password is required' }}
             >
               <Input type="password" placeholder="********" />
             </Form.Item>
-            <Form.Item>
-              <Button fullWidth onPress={submit}>
+            <Form.Item isSubmit>
+              <Button fullWidth>
                 Login
               </Button>
             </Form.Item>
-          </Form>`, {
+          </Form>;`, {
   header: `
 const THREE_SECONDS = 3000;
   `,
-  hooks: `const [form, submit] = Form.useForm();
+  hooks: `const form = Form.useForm();
 
    const onFinish = (values: any) => {
      console.log('Finish:', values);
@@ -185,17 +200,10 @@ const THREE_SECONDS = 3000;
 
    useEffect(() => {
      setTimeout(() => {
-       form.setFieldsValue({
-         email: 'example@mail.com'
-       });
-
-       setTimeout(() => {
-         form.setErrors([
-           { name: 'email', error: 'Email invalid' },
-           { name: 'password', error: 'Please insert a password' },
-        ]);
-       }, THREE_SECONDS);
-     }, THREE_SECONDS);
+      form.setError('email', {
+        message: 'example@mail.com'
+      });
+    }, THREE_SECONDS);
    }, [form])
 `,
   react: ['useEffect'],
